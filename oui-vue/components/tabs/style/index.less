@@ -2,7 +2,7 @@
 @import "../../style/mixins/index";
 @import "./card-style";
 
-@tab-prefix-cls: ~"@{oui-prefix}-tabs";
+@tab-prefix-cls: ~"@{ant-prefix}-tabs";
 
 // Hidden content
 .tabs-hidden-content() {
@@ -59,7 +59,7 @@
     }
   }
 
-  // https://github.com/oui-design/oui-design/issues/9104
+  // https://github.com/ant-design/ant-design/issues/9104
   &-bottom &-bottom-bar {
     margin-top: 16px;
     margin-bottom: 0;
@@ -245,7 +245,7 @@
   }
 
   // Create an empty element to avoid margin collapsing
-  // https://github.com/oui-design/oui-design/issues/18103
+  // https://github.com/ant-design/ant-design/issues/18103
   &-content::before {
     display: block;
     overflow: hidden;

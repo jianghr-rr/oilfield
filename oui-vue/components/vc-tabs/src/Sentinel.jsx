@@ -39,7 +39,7 @@ export default {
         {...{
           directives: [
             {
-              name: "oui-ref",
+              name: "ant-ref",
               value: setRef
             }
           ]

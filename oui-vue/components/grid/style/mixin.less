@@ -12,11 +12,11 @@
 
 .make-grid-columns() {
   .col(@index) {
-    @item: ~".@{oui-prefix}-col-@{index}, .@{oui-prefix}-col-xs-@{index}, .@{oui-prefix}-col-sm-@{index}, .@{oui-prefix}-col-md-@{index}, .@{oui-prefix}-col-lg-@{index}";
+    @item: ~".@{ant-prefix}-col-@{index}, .@{ant-prefix}-col-xs-@{index}, .@{ant-prefix}-col-sm-@{index}, .@{ant-prefix}-col-md-@{index}, .@{ant-prefix}-col-lg-@{index}";
     .col((@index + 1), @item);
   }
   .col(@index, @list) when (@index =< @grid-columns) {
-    @item: ~".@{oui-prefix}-col-@{index}, .@{oui-prefix}-col-xs-@{index}, .@{oui-prefix}-col-sm-@{index}, .@{oui-prefix}-col-md-@{index}, .@{oui-prefix}-col-lg-@{index}";
+    @item: ~".@{ant-prefix}-col-@{index}, .@{ant-prefix}-col-xs-@{index}, .@{ant-prefix}-col-sm-@{index}, .@{ant-prefix}-col-md-@{index}, .@{ant-prefix}-col-lg-@{index}";
     .col((@index + 1), ~"@{list}, @{item}");
   }
   .col(@index, @list) when (@index > @grid-columns) {
@@ -32,12 +32,12 @@
 .float-grid-columns(@class) {
   .col(@index) {
     // initial
-    @item: ~".@{oui-prefix}-col@{class}-@{index}";
+    @item: ~".@{ant-prefix}-col@{class}-@{index}";
     .col((@index + 1), @item);
   }
   .col(@index, @list) when (@index =< @grid-columns) {
     // general
-    @item: ~".@{oui-prefix}-col@{class}-@{index}";
+    @item: ~".@{ant-prefix}-col@{class}-@{index}";
     .col((@index + 1), ~"@{list}, @{item}");
   }
   .col(@index, @list) when (@index > @grid-columns) {
@@ -51,46 +51,46 @@
 }
 
 .loop-grid-columns(@index, @class) when (@index > 0) {
-  .@{oui-prefix}-col@{class}-@{index} {
+  .@{ant-prefix}-col@{class}-@{index} {
     display: block;
     box-sizing: border-box;
     width: percentage((@index / @grid-columns));
   }
-  .@{oui-prefix}-col@{class}-push-@{index} {
+  .@{ant-prefix}-col@{class}-push-@{index} {
     left: percentage((@index / @grid-columns));
   }
-  .@{oui-prefix}-col@{class}-pull-@{index} {
+  .@{ant-prefix}-col@{class}-pull-@{index} {
     right: percentage((@index / @grid-columns));
   }
-  .@{oui-prefix}-col@{class}-offset-@{index} {
+  .@{ant-prefix}-col@{class}-offset-@{index} {
     margin-left: percentage((@index / @grid-columns));
   }
-  .@{oui-prefix}-col@{class}-order-@{index} {
+  .@{ant-prefix}-col@{class}-order-@{index} {
     order: @index;
   }
   .loop-grid-columns((@index - 1), @class);
 }
 
 .loop-grid-columns(@index, @class) when (@index = 0) {
-  .@{oui-prefix}-col@{class}-@{index} {
+  .@{ant-prefix}-col@{class}-@{index} {
     display: none;
   }
-  .@{oui-prefix}-col-push-@{index} {
+  .@{ant-prefix}-col-push-@{index} {
     left: auto;
   }
-  .@{oui-prefix}-col-pull-@{index} {
+  .@{ant-prefix}-col-pull-@{index} {
     right: auto;
   }
-  .@{oui-prefix}-col@{class}-push-@{index} {
+  .@{ant-prefix}-col@{class}-push-@{index} {
     left: auto;
   }
-  .@{oui-prefix}-col@{class}-pull-@{index} {
+  .@{ant-prefix}-col@{class}-pull-@{index} {
     right: auto;
   }
-  .@{oui-prefix}-col@{class}-offset-@{index} {
+  .@{ant-prefix}-col@{class}-offset-@{index} {
     margin-left: 0;
   }
-  .@{oui-prefix}-col@{class}-order-@{index} {
+  .@{ant-prefix}-col@{class}-order-@{index} {
     order: 0;
   }
 }

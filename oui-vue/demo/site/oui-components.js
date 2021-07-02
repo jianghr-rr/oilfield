@@ -68,7 +68,7 @@ import {
   //   PageHeader,
   //   Space,
   // ColorPicker,
-} from 'oui-vue/es';
+} from '../../components';
 
 // Vue.prototype.$message = message;
 // Vue.prototype.$notification = notification;

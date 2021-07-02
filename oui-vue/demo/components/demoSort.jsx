@@ -1,5 +1,3 @@
-import { Col, Row } from '../../components/grid';
-import '../../components/grid/style';
 function isEmptyElement(c) {
   return !(c.tag || (c.text && c.text.trim() !== ''));
 }
@@ -31,19 +29,19 @@ export default {
       }
     });
     return (
-      <Row gutter={16}>
-        <Col
+      <a-row gutter={16}>
+        <a-col
           span={isSingleCol ? 24 : 12}
           class={isSingleCol ? 'code-boxes-col-1-1' : 'code-boxes-col-2-1'}
         >
           {leftChildren}
-        </Col>
+        </a-col>
         {isSingleCol ? null : (
-          <Col class="code-boxes-col-2-1" span={12}>
+          <a-col class="code-boxes-col-2-1" span={12}>
             {rightChildren}
-          </Col>
+          </a-col>
         )}
-      </Row>
+      </a-row>
     );
   },
 };

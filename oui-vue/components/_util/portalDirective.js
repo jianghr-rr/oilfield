@@ -1,5 +1,5 @@
 export function antPortal(Vue) {
-  return Vue.directive("oui-portal", {
+  return Vue.directive("ant-portal", {
     inserted(el, binding) {
       const { value } = binding;
       const parentNode = typeof value === "function" ? value(el) : value;

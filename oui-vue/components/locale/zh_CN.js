@@ -1,14 +1,14 @@
-// import Pagination from '../vc-pagination/locale/zh_CN';
-// import DatePicker from '../date-picker/locale/zh_CN';
-// import TimePicker from '../time-picker/locale/zh_CN';
-// import Calendar from '../calendar/locale/zh_CN';
+import Pagination from "../vc-pagination/locale/zh_CN";
+import DatePicker from "../date-picker/locale/zh_CN";
+import TimePicker from "../time-picker/locale/zh_CN";
+import Calendar from "../calendar/locale/zh_CN";
 
 export default {
   locale: "zh-cn",
-  // Pagination,
-  // DatePicker,
-  // TimePicker,
-  // Calendar,
+  Pagination,
+  DatePicker,
+  TimePicker,
+  Calendar,
   // locales for all comoponents
   global: {
     placeholder: "请选择"

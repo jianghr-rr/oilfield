@@ -40,7 +40,7 @@ function componentDidUpdate(component, init) {
       let width = tabNode.offsetWidth;
       // If tabNode'width width equal to wrapNode'width when tabBarPosition is top or bottom
       // It means no css working, then ink bar should not have width until css is loaded
-      // Fix https://github.com/oui-design/oui-design/issues/7564
+      // Fix https://github.com/ant-design/ant-design/issues/7564
       if (width === rootNode.offsetWidth) {
         width = 0;
       } else if (styles.inkBar && styles.inkBar.width !== undefined) {
@@ -125,7 +125,7 @@ export default {
         {...{
           directives: [
             {
-              name: "oui-ref",
+              name: "ant-ref",
               value: this.saveRef("inkBar")
             }
           ]

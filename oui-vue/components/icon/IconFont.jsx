@@ -29,7 +29,7 @@ export default function create(options) {
 
   const Iconfont = {
     functional: true,
-    name: "OIconfont",
+    name: "AIconfont",
     props: Icon.props,
     render(h, context) {
       const { props, slots, listeners, data } = context;

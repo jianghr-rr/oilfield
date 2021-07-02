@@ -1,5 +1,5 @@
 /* @remove-on-es-build-begin */
-// this file is not used if use https://github.com/oui-design/babel-plugin-import
+// this file is not used if use https://github.com/ant-design/babel-plugin-import
 const ENV = process.env.NODE_ENV;
 if (
   ENV !== "production" &&
@@ -9,7 +9,7 @@ if (
   typeof window !== "undefined"
 ) {
   console.warn(
-    "You are using a whole package, " +
+    "You are using a whole package of antd, " +
       "please use https://www.npmjs.com/package/babel-plugin-import to reduce app bundle size."
   );
 }
@@ -29,7 +29,7 @@ import { default as Alert } from "./alert";
 
 // import { default as Badge } from './badge';
 
-import { default as Base } from "./base";
+// import { default as Base } from './base';
 
 // import { default as Breadcrumb } from './breadcrumb';
 
@@ -37,7 +37,7 @@ import { default as Base } from "./base";
 
 // import { default as Calendar } from './calendar';
 
-import { default as Card } from "./card";
+// import { default as Card } from './card';
 
 // import { default as Collapse } from './collapse';
 
@@ -145,18 +145,18 @@ import { default as Card } from "./card";
 // import { default as Space } from './space';
 
 const components = [
-  Base,
+  // Base,
   // Affix,
   // Anchor,
   // AutoComplete,
-  Alert,
+  Alert
   // Avatar,
   // BackTop,
   // Badge,
   // Breadcrumb,
   // Button,
   // Calendar,
-  Card
+  // Card,
   // Collapse,
   // Carousel,
   // Cascader,
@@ -232,7 +232,7 @@ if (typeof window !== "undefined" && window.Vue) {
 }
 
 export {
-  Base,
+  // Base,
   // version,
   // install,
   // message,
@@ -240,14 +240,14 @@ export {
   // Affix,
   // Anchor,
   // AutoComplete,
-  Alert,
+  Alert
   // Avatar,
   // BackTop,
   // Badge,
   // Breadcrumb,
   // Button,
   // Calendar,
-  Card
+  // Card,
   // Collapse,
   // Carousel,
   // Cascader,

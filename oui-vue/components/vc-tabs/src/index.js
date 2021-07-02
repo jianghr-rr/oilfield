@@ -5,7 +5,7 @@ import Tabs from "./Tabs";
 import TabPane from "./TabPane";
 import TabContent from "./TabContent";
 
-Vue.use(ref, { name: "oui-ref" });
+Vue.use(ref, { name: "ant-ref" });
 
 export default Tabs;
 export { TabPane, TabContent };

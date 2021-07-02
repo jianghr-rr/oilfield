@@ -54,15 +54,15 @@ export function alias(type) {
     case "cross":
       newType = "close";
       break;
-    // https://github.com/oui-design/oui-design/issues/13007
+    // https://github.com/ant-design/ant-design/issues/13007
     case "interation":
       newType = "interaction";
       break;
-    // https://github.com/oui-design/oui-design/issues/16810
+    // https://github.com/ant-design/ant-design/issues/16810
     case "canlendar":
       newType = "calendar";
       break;
-    // https://github.com/oui-design/oui-design/issues/17448
+    // https://github.com/ant-design/ant-design/issues/17448
     case "colum-height":
       newType = "column-height";
       break;

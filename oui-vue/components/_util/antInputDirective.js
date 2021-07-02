@@ -45,7 +45,7 @@ if (isIE9) {
 }
 
 export function antInput(Vue) {
-  return Vue.directive("oui-input", {
+  return Vue.directive("ant-input", {
     inserted(el, binding, vnode) {
       if (vnode.tag === "textarea" || isTextInputType(el.type)) {
         if (!binding.modifiers || !binding.modifiers.lazy) {

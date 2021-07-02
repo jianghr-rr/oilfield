@@ -12,7 +12,7 @@ export default {
     animated: { type: Boolean, default: true },
     animatedWithMargin: { type: Boolean, default: true },
     prefixCls: {
-      default: "oui-tabs",
+      default: "ant-tabs",
       type: String
     },
     activeKey: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),

@@ -1,5 +1,5 @@
 import 'babel-polyfill';
-import '../../components/style.js';
+// import './style.js';
 import './index.less';
 import 'nprogress/nprogress.css';
 import Vue from 'vue';
@@ -11,13 +11,14 @@ import NProgress from 'nprogress';
 import router from './router';
 import Md from '../components/md';
 import Api from '../components/api';
-import './components';
+// import './components';
 import './oui-components';
 import demoBox from '../components/demoBox';
 import demoContainer from '../components/demoContainer';
 import demoSort from '../components/demoSort';
-// import Antd from 'ant-design-vue';
+import Antd from 'ant-design-vue';
 import store from '../store/index.js';
+import 'ant-design-vue/dist/antd.css';
 
 const mountedCallback = {
   install: Vue => {
@@ -33,6 +34,7 @@ Vue.use(Vuex);
 Vue.use(mountedCallback);
 Vue.use(VueClipboard);
 Vue.use(VueRouter);
+Vue.use(Antd);
 Vue.component(Md.name, Md);
 Vue.component(Api.name, Api);
 Vue.component('demo-box', demoBox);

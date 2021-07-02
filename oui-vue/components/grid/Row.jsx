@@ -24,7 +24,7 @@ const RowProps = {
 const responsiveArray = ["xxl", "xl", "lg", "md", "sm", "xs"];
 
 export default {
-  name: "ORow",
+  name: "ARow",
   mixins: [BaseMixin],
   props: {
     ...RowProps,

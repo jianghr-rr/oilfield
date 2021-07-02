@@ -10,7 +10,7 @@ export function getComponentLocale(
   } else {
     const defaultLocale = getDefaultLocale();
     // TODO: make default lang of antd be English
-    // https://github.com/oui-design/oui-design/issues/6334
+    // https://github.com/ant-design/ant-design/issues/6334
     locale = defaultLocale.default || defaultLocale;
   }
 

@@ -50,7 +50,7 @@ export default {
       const { insertExtraNode } = this.$props;
       this.extraNode = document.createElement("div");
       const extraNode = this.extraNode;
-      extraNode.className = "oui-click-animating-node";
+      extraNode.className = "ant-click-animating-node";
       const attributeName = this.getAttributeName();
       node.removeAttribute(attributeName);
       node.setAttribute(attributeName, "true");
@@ -70,7 +70,7 @@ export default {
         }
         extraNode.style.borderColor = waveColor;
         styleForPesudo.innerHTML = `
-        [oui-click-animating-without-extra-node='true']::after, .oui-click-animating-node {
+        [ant-click-animating-without-extra-node='true']::after, .ant-click-animating-node {
           --antd-wave-shadow-color: ${waveColor};
         }`;
         if (!document.body.contains(styleForPesudo)) {
@@ -104,8 +104,8 @@ export default {
     getAttributeName() {
       const { insertExtraNode } = this.$props;
       return insertExtraNode
-        ? "oui-click-animating"
-        : "oui-click-animating-without-extra-node";
+        ? "ant-click-animating"
+        : "ant-click-animating-without-extra-node";
     },
     bindAnimationEvent(node) {
       if (

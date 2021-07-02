@@ -69,9 +69,7 @@ import {
   Space,
   // ColorPicker,
 } from 'ant-design-vue/es';
-import test from 'ant-design-vue/es';
 
-console.log(notification);
 Vue.prototype.$message = message;
 Vue.prototype.$notification = notification;
 Vue.prototype.$info = Modal.info;

@@ -3,7 +3,7 @@ import { ConfigConsumerProps } from "../config-provider/configConsumerProps";
 import { getListeners } from "../_util/props-util";
 
 export default {
-  name: "OCardGrid",
+  name: "ACardGrid",
   __ANT_CARD_GRID: true,
   props: {
     prefixCls: PropTypes.string,

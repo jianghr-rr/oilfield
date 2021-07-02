@@ -69,7 +69,7 @@ describe("Card", () => {
       }
     );
     wrapper
-      .findAll(".oui-tabs-tab")
+      .findAll(".ant-tabs-tab")
       .at(1)
       .trigger("click");
     expect(onTabChange).toHaveBeenCalledWith("tab2");
@@ -85,6 +85,6 @@ describe("Card", () => {
         );
       }
     });
-    expect(wrapper.findAll(".oui-card-actions").length).toBe(0);
+    expect(wrapper.findAll(".ant-card-actions").length).toBe(0);
   });
 });

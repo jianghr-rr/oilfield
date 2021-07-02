@@ -56,12 +56,22 @@ export default {
     const isCN = isZhCN(name);
     const path = this.$route.path;
     const selectedKeys = path === '/jobs/list-cn' ? ['jobs'] : ['components'];
-    return <header id="header">123</header>;
+    return (
+      <header id="header" class="header">
+        新疆油田
+      </header>
+    );
   },
 };
 </script>
 
 <style scope>
+.header {
+  height: 100px;
+  font-size: 24px;
+  display: flex;
+  align-items: center;
+}
 .adblock-banner {
   position: relative;
   z-index: 100;

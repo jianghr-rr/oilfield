@@ -94,7 +94,7 @@ export default {
       const navTabsContainer = this.$props.getRef("navTabsContainer");
       const navNodeWH = this.getScrollWH(navTabsContainer || navNode);
       // Add 1px to fix `offsetWidth` with decimal in Chrome not correct handle
-      // https://github.com/oui-design/oui-design/issues/13423
+      // https://github.com/ant-design/ant-design/issues/13423
       const containerWH = this.getOffsetWH(this.$props.getRef("container")) + 1;
       const navWrapNodeWH = this.getOffsetWH(this.$props.getRef("navWrap"));
       let { offset } = this;
@@ -108,7 +108,7 @@ export default {
         next = true;
       } else {
         next = false;
-        // Fix https://github.com/oui-design/oui-design/issues/8861
+        // Fix https://github.com/ant-design/ant-design/issues/8861
         // Test with container offset which is stable
         // and set the offset of the nav wrap node
         const realOffset = navWrapNodeWH - navNodeWH;
@@ -331,7 +331,7 @@ export default {
         {...{
           directives: [
             {
-              name: "oui-ref",
+              name: "ant-ref",
               value: this.saveRef("container")
             }
           ]
@@ -344,7 +344,7 @@ export default {
           {...{
             directives: [
               {
-                name: "oui-ref",
+                name: "ant-ref",
                 value: this.saveRef("navWrap")
               }
             ]
@@ -356,7 +356,7 @@ export default {
               {...{
                 directives: [
                   {
-                    name: "oui-ref",
+                    name: "ant-ref",
                     value: this.saveRef("nav")
                   }
                 ]

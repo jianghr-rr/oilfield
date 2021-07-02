@@ -11,7 +11,7 @@ describe("Empty", () => {
         return <Empty imageStyle={{ height: "20px" }} />;
       }
     });
-    expect(wrapper.find(".oui-empty-image").element.style.height).toBe("20px");
+    expect(wrapper.find(".ant-empty-image").element.style.height).toBe("20px");
   });
 
   it("description can be false", () => {
@@ -20,6 +20,6 @@ describe("Empty", () => {
         return <Empty description={false} />;
       }
     });
-    expect(wrapper.findAll(".oui-empty-description").length).toBe(0);
+    expect(wrapper.findAll(".ant-empty-description").length).toBe(0);
   });
 });

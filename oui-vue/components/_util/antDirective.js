@@ -5,7 +5,7 @@ import { antPortal } from "./portalDirective";
 
 export default {
   install: Vue => {
-    Vue.use(ref, { name: "oui-ref" });
+    Vue.use(ref, { name: "ant-ref" });
     antInput(Vue);
     antDecorator(Vue);
     antPortal(Vue);

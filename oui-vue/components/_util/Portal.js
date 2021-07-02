@@ -40,7 +40,7 @@ export default {
       return cloneElement(this.$props.children, {
         directives: [
           {
-            name: "oui-portal",
+            name: "ant-portal",
             value: this._container
           }
         ]

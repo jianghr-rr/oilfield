@@ -42,7 +42,7 @@ export default {
     renderTabContent: PropTypes.func.isRequired,
     navWrapper: PropTypes.func.def(arg => arg),
     children: PropTypes.any.def([]),
-    prefixCls: PropTypes.string.def("oui-tabs"),
+    prefixCls: PropTypes.string.def("ant-tabs"),
     tabBarPosition: PropTypes.string.def("top"),
     activeKey: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
     defaultActiveKey: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
@@ -77,7 +77,7 @@ export default {
           _activeKey: nextProps.activeKey
         });
       } else if (!activeKeyIsValid(nextProps, this.$data._activeKey)) {
-        // https://github.com/oui-design/oui-design/issues/7093
+        // https://github.com/ant-design/ant-design/issues/7093
         this.setState({
           _activeKey: getDefaultActiveKey(nextProps)
         });

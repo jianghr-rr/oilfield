@@ -9,8 +9,8 @@ const windowIsUndefined = !(
   window.document &&
   window.document.createElement
 );
-// https://github.com/oui-design/oui-design/issues/19340
-// https://github.com/oui-design/oui-design/issues/19332
+// https://github.com/ant-design/ant-design/issues/19340
+// https://github.com/ant-design/ant-design/issues/19332
 let cacheOverflow = {};
 
 export default {
@@ -151,7 +151,7 @@ export default {
           {...{
             directives: [
               {
-                name: "oui-ref",
+                name: "ant-ref",
                 value: this.savePortal
               }
             ]

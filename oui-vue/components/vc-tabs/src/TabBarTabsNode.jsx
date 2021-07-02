@@ -52,7 +52,7 @@ export default {
       const directives = [];
       if (activeKey === key) {
         directives.push({
-          name: "oui-ref",
+          name: "ant-ref",
           value: saveRef("activeTab")
         });
       }
@@ -94,7 +94,7 @@ export default {
         {...{
           directives: [
             {
-              name: "oui-ref",
+              name: "ant-ref",
               value: this.saveRef("navTabsContainer")
             }
           ]
