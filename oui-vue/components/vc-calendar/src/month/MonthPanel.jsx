@@ -1,7 +1,7 @@
-import PropTypes from "../../../_util/vue-types";
-import BaseMixin from "../../../_util/BaseMixin";
-import { hasProp, getListeners } from "../../../_util/props-util";
-import MonthTable from "./MonthTable";
+import PropTypes from '../../../_util/vue-types';
+import BaseMixin from '../../../_util/BaseMixin';
+import { hasProp, getListeners } from '../../../_util/props-util';
+import MonthTable from './MonthTable';
 
 function goYear(direction) {
   this.changeYear(direction);
@@ -10,7 +10,7 @@ function goYear(direction) {
 function noop() {}
 
 const MonthPanel = {
-  name: "MonthPanel",
+  name: 'MonthPanel',
   mixins: [BaseMixin],
   props: {
     value: PropTypes.any,
@@ -23,7 +23,7 @@ const MonthPanel = {
     disabledDate: PropTypes.func,
     // onSelect: PropTypes.func,
     renderFooter: PropTypes.func,
-    changeYear: PropTypes.func.def(noop)
+    changeYear: PropTypes.func.def(noop),
   },
 
   data() {
@@ -32,29 +32,29 @@ const MonthPanel = {
     this.nextYear = goYear.bind(this, 1);
     this.previousYear = goYear.bind(this, -1);
     return {
-      sValue: value || defaultValue
+      sValue: value || defaultValue,
     };
   },
   watch: {
     value(val) {
       this.setState({
-        sValue: val
+        sValue: val,
       });
-    }
+    },
   },
   methods: {
     setAndSelectValue(value) {
       this.setValue(value);
-      this.__emit("select", value);
+      this.__emit('select', value);
     },
 
     setValue(value) {
-      if (hasProp(this, "value")) {
+      if (hasProp(this, 'value')) {
         this.setState({
-          sValue: value
+          sValue: value,
         });
       }
-    }
+    },
   },
 
   render() {
@@ -65,12 +65,12 @@ const MonthPanel = {
       locale,
       rootPrefixCls,
       disabledDate,
-      renderFooter
+      renderFooter,
     } = this;
     const year = sValue.year();
     const prefixCls = `${rootPrefixCls}-month-panel`;
 
-    const footer = renderFooter && renderFooter("month");
+    const footer = renderFooter && renderFooter('month');
     return (
       <div class={prefixCls}>
         <div>
@@ -114,7 +114,7 @@ const MonthPanel = {
         </div>
       </div>
     );
-  }
+  },
 };
 
 export default MonthPanel;

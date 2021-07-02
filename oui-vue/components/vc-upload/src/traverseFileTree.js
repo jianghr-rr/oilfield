@@ -23,7 +23,7 @@ function loopFiles(item, callback) {
 
 const traverseFileTree = (files, callback, isAccepted) => {
   const _traverseFileTree = (item, path) => {
-    path = path || "";
+    path = path || '';
     if (item.isFile) {
       item.file(file => {
         if (isAccepted(file)) {
@@ -31,14 +31,14 @@ const traverseFileTree = (files, callback, isAccepted) => {
           if (item.fullPath && !file.webkitRelativePath) {
             Object.defineProperties(file, {
               webkitRelativePath: {
-                writable: true
-              }
+                writable: true,
+              },
             });
-            file.webkitRelativePath = item.fullPath.replace(/^\//, "");
+            file.webkitRelativePath = item.fullPath.replace(/^\//, '');
             Object.defineProperties(file, {
               webkitRelativePath: {
-                writable: false
-              }
+                writable: false,
+              },
             });
           }
           callback([file]);

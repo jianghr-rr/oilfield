@@ -1,9 +1,9 @@
-import PropTypes from "../../../_util/vue-types";
-import BaseMixin from "../../../_util/BaseMixin";
-import { getOptionProps, getListeners } from "../../../_util/props-util";
-import TodayButton from "./TodayButton";
-import OkButton from "./OkButton";
-import TimePickerButton from "./TimePickerButton";
+import PropTypes from '../../../_util/vue-types';
+import BaseMixin from '../../../_util/BaseMixin';
+import { getOptionProps, getListeners } from '../../../_util/props-util';
+import TodayButton from './TodayButton';
+import OkButton from './OkButton';
+import TimePickerButton from './TimePickerButton';
 
 const CalendarFooter = {
   mixins: [BaseMixin],
@@ -23,38 +23,30 @@ const CalendarFooter = {
     disabledDate: PropTypes.func,
     showTimePicker: PropTypes.bool,
     okDisabled: PropTypes.bool,
-    mode: PropTypes.string
+    mode: PropTypes.string,
   },
   methods: {
     onSelect(value) {
-      this.__emit("select", value);
+      this.__emit('select', value);
     },
 
     getRootDOMNode() {
       return this.$el;
-    }
+    },
   },
 
   render() {
     const props = getOptionProps(this);
-    const {
-      value,
-      prefixCls,
-      showOk,
-      timePicker,
-      renderFooter,
-      showToday,
-      mode
-    } = props;
+    const { value, prefixCls, showOk, timePicker, renderFooter, showToday, mode } = props;
     let footerEl = null;
     const extraFooter = renderFooter && renderFooter(mode);
     if (showToday || timePicker || extraFooter) {
       const btnProps = {
         props: {
           ...props,
-          value
+          value,
         },
-        on: getListeners(this)
+        on: getListeners(this),
       };
       let nowEl = null;
       if (showToday) {
@@ -67,9 +59,7 @@ const CalendarFooter = {
       }
       let timePickerBtn = null;
       if (timePicker) {
-        timePickerBtn = (
-          <TimePickerButton key="timePickerButton" {...btnProps} />
-        );
+        timePickerBtn = <TimePickerButton key="timePickerButton" {...btnProps} />;
       }
 
       let footerBtn;
@@ -85,12 +75,12 @@ const CalendarFooter = {
       }
       const cls = {
         [`${prefixCls}-footer`]: true,
-        [`${prefixCls}-footer-show-ok`]: !!okBtn
+        [`${prefixCls}-footer-show-ok`]: !!okBtn,
       };
       footerEl = <div class={cls}>{footerBtn}</div>;
     }
     return footerEl;
-  }
+  },
 };
 
 export default CalendarFooter;

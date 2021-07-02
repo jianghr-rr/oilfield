@@ -1,4 +1,4 @@
-import PropTypes from "../_util/vue-types";
+import PropTypes from '../_util/vue-types';
 
 function IDialogPropTypes() {
   return {
@@ -12,7 +12,7 @@ function IDialogPropTypes() {
     destroyOnClose: PropTypes.bool,
     mousePosition: PropTypes.shape({
       x: PropTypes.number,
-      y: PropTypes.number
+      y: PropTypes.number,
     }).loose,
     title: PropTypes.any,
     footer: PropTypes.any,
@@ -33,13 +33,13 @@ function IDialogPropTypes() {
     wrapProps: PropTypes.any,
     getContainer: PropTypes.any,
     dialogStyle: PropTypes.object.def(() => ({})),
-    dialogClass: PropTypes.string.def(""),
+    dialogClass: PropTypes.string.def(''),
     closeIcon: PropTypes.any,
     forceRender: PropTypes.bool,
     getOpenCount: PropTypes.func,
     // https://github.com/ant-design/ant-design/issues/19771
     // https://github.com/react-component/dialog/issues/95
-    focusTriggerAfterClose: PropTypes.bool
+    focusTriggerAfterClose: PropTypes.bool,
   };
 }
 

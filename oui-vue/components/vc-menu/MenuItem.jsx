@@ -1,10 +1,10 @@
-import PropTypes from "../_util/vue-types";
-import KeyCode from "../_util/KeyCode";
-import BaseMixin from "../_util/BaseMixin";
-import scrollIntoView from "dom-scroll-into-view";
-import { connect } from "../_util/store";
-import { noop, menuAllProps } from "./util";
-import { getComponentFromProp, getListeners } from "../_util/props-util";
+import PropTypes from '../_util/vue-types';
+import KeyCode from '../_util/KeyCode';
+import BaseMixin from '../_util/BaseMixin';
+import scrollIntoView from 'dom-scroll-into-view';
+import { connect } from '../_util/store';
+import { noop, menuAllProps } from './util';
+import { getComponentFromProp, getListeners } from '../_util/props-util';
 
 const props = {
   attribute: PropTypes.object,
@@ -18,12 +18,12 @@ const props = {
   inlineIndent: PropTypes.number.def(24),
   level: PropTypes.number.def(1),
   mode: PropTypes.oneOf([
-    "horizontal",
-    "vertical",
-    "vertical-left",
-    "vertical-right",
-    "inline"
-  ]).def("vertical"),
+    'horizontal',
+    'vertical',
+    'vertical-left',
+    'vertical-right',
+    'inline',
+  ]).def('vertical'),
   parentMenu: PropTypes.object,
   multiple: PropTypes.bool,
   value: PropTypes.any,
@@ -31,11 +31,11 @@ const props = {
   manualRef: PropTypes.func.def(noop),
   role: PropTypes.any,
   subMenuKey: PropTypes.string,
-  itemIcon: PropTypes.any
+  itemIcon: PropTypes.any,
   // clearSubMenuTimers: PropTypes.func.def(noop),
 };
 const MenuItem = {
-  name: "MenuItem",
+  name: 'MenuItem',
   props,
   mixins: [BaseMixin],
   isMenuItem: true,
@@ -47,13 +47,9 @@ const MenuItem = {
   updated() {
     this.$nextTick(() => {
       const { active, parentMenu, eventKey } = this.$props;
-      if (
-        !this.prevActive &&
-        active &&
-        (!parentMenu || !parentMenu[`scrolled-${eventKey}`])
-      ) {
+      if (!this.prevActive && active && (!parentMenu || !parentMenu[`scrolled-${eventKey}`])) {
         scrollIntoView(this.$el, this.parentMenu.$el, {
-          onlyScrollIfNeeded: true
+          onlyScrollIfNeeded: true,
         });
         parentMenu[`scrolled-${eventKey}`] = true;
       } else if (parentMenu && parentMenu[`scrolled-${eventKey}`]) {
@@ -65,7 +61,7 @@ const MenuItem = {
   },
   beforeDestroy() {
     const props = this.$props;
-    this.__emit("destroy", props.eventKey);
+    this.__emit('destroy', props.eventKey);
   },
   methods: {
     onKeyDown(e) {
@@ -78,25 +74,25 @@ const MenuItem = {
 
     onMouseLeave(e) {
       const { eventKey } = this.$props;
-      this.__emit("itemHover", {
+      this.__emit('itemHover', {
         key: eventKey,
-        hover: false
+        hover: false,
       });
-      this.__emit("mouseleave", {
+      this.__emit('mouseleave', {
         key: eventKey,
-        domEvent: e
+        domEvent: e,
       });
     },
 
     onMouseEnter(e) {
       const { eventKey } = this;
-      this.__emit("itemHover", {
+      this.__emit('itemHover', {
         key: eventKey,
-        hover: true
+        hover: true,
       });
-      this.__emit("mouseenter", {
+      this.__emit('mouseenter', {
         key: eventKey,
-        domEvent: e
+        domEvent: e,
       });
     },
 
@@ -106,18 +102,18 @@ const MenuItem = {
         key: eventKey,
         keyPath: [eventKey],
         item: this,
-        domEvent: e
+        domEvent: e,
       };
 
-      this.__emit("click", info);
+      this.__emit('click', info);
       if (multiple) {
         if (isSelected) {
-          this.__emit("deselect", info);
+          this.__emit('deselect', info);
         } else {
-          this.__emit("select", info);
+          this.__emit('select', info);
         }
       } else if (!isSelected) {
-        this.__emit("select", info);
+        this.__emit('select', info);
       }
     },
 
@@ -141,7 +137,7 @@ const MenuItem = {
       if (this.manualRef) {
         this.manualRef(this);
       }
-    }
+    },
   },
 
   render() {
@@ -150,38 +146,38 @@ const MenuItem = {
       [this.getPrefixCls()]: true,
       [this.getActiveClassName()]: !props.disabled && props.active,
       [this.getSelectedClassName()]: props.isSelected,
-      [this.getDisabledClassName()]: props.disabled
+      [this.getDisabledClassName()]: props.disabled,
     };
     let attrs = {
       ...props.attribute,
       title: props.title,
-      role: props.role || "menuitem",
-      "aria-disabled": props.disabled
+      role: props.role || 'menuitem',
+      'aria-disabled': props.disabled,
     };
-    if (props.role === "option") {
+    if (props.role === 'option') {
       // overwrite to option
       attrs = {
         ...attrs,
-        role: "option",
-        "aria-selected": props.isSelected
+        role: 'option',
+        'aria-selected': props.isSelected,
       };
-    } else if (props.role === null || props.role === "none") {
+    } else if (props.role === null || props.role === 'none') {
       // sometimes we want to specify role inside <li/> element
       // <li><a role='menuitem'>Link</a></li> would be a good example
       // in this case the role on <li/> should be "none" to
       // remove the implied listitem role.
       // https://www.w3.org/TR/wai-aria-practices-1.1/examples/menubar/menubar-1/menubar-1.html
-      attrs.role = "none";
+      attrs.role = 'none';
     }
     // In case that onClick/onMouseLeave/onMouseEnter is passed down from owner
     const mouseEvent = {
       click: props.disabled ? noop : this.onClick,
       mouseleave: props.disabled ? noop : this.onMouseLeave,
-      mouseenter: props.disabled ? noop : this.onMouseEnter
+      mouseenter: props.disabled ? noop : this.onMouseEnter,
     };
 
     const style = {};
-    if (props.mode === "inline") {
+    if (props.mode === 'inline') {
       style.paddingLeft = `${props.inlineIndent * props.level}px`;
     }
     const listeners = { ...getListeners(this) };
@@ -190,28 +186,26 @@ const MenuItem = {
     const liProps = {
       attrs: {
         ...props,
-        ...attrs
+        ...attrs,
       },
       on: {
         ...listeners,
-        ...mouseEvent
-      }
+        ...mouseEvent,
+      },
     };
     return (
       <li {...liProps} style={style} class={className}>
         {this.$slots.default}
-        {getComponentFromProp(this, "itemIcon", props)}
+        {getComponentFromProp(this, 'itemIcon', props)}
       </li>
     );
-  }
+  },
 };
 
-const connected = connect(
-  ({ activeKey, selectedKeys }, { eventKey, subMenuKey }) => ({
-    active: activeKey[subMenuKey] === eventKey,
-    isSelected: selectedKeys.indexOf(eventKey) !== -1
-  })
-)(MenuItem);
+const connected = connect(({ activeKey, selectedKeys }, { eventKey, subMenuKey }) => ({
+  active: activeKey[subMenuKey] === eventKey,
+  isSelected: selectedKeys.indexOf(eventKey) !== -1,
+}))(MenuItem);
 
 export default connected;
 export { props as menuItemProps };

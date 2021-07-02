@@ -1,5 +1,5 @@
-import DateConstants from "./DateConstants";
-import moment from "moment";
+import DateConstants from './DateConstants';
+import moment from 'moment';
 
 export default {
   functional: true,
@@ -13,13 +13,8 @@ export default {
     const firstDayOfWeek = localeData.firstDayOfWeek();
     let showWeekNumberEl;
     const now = moment();
-    for (
-      let dateColIndex = 0;
-      dateColIndex < DateConstants.DATE_COL_COUNT;
-      dateColIndex++
-    ) {
-      const index =
-        (firstDayOfWeek + dateColIndex) % DateConstants.DATE_COL_COUNT;
+    for (let dateColIndex = 0; dateColIndex < DateConstants.DATE_COL_COUNT; dateColIndex++) {
+      const index = (firstDayOfWeek + dateColIndex) % DateConstants.DATE_COL_COUNT;
       now.day(index);
       veryShortWeekdays[dateColIndex] = localeData.weekdaysMin(now);
       weekDays[dateColIndex] = localeData.weekdaysShort(now);
@@ -37,15 +32,8 @@ export default {
     }
     const weekDaysEls = weekDays.map((day, xindex) => {
       return (
-        <th
-          key={xindex}
-          role="columnheader"
-          title={day}
-          class={`${prefixCls}-column-header`}
-        >
-          <span class={`${prefixCls}-column-header-inner`}>
-            {veryShortWeekdays[xindex]}
-          </span>
+        <th key={xindex} role="columnheader" title={day} class={`${prefixCls}-column-header`}>
+          <span class={`${prefixCls}-column-header-inner`}>{veryShortWeekdays[xindex]}</span>
         </th>
       );
     });
@@ -57,5 +45,5 @@ export default {
         </tr>
       </thead>
     );
-  }
+  },
 };

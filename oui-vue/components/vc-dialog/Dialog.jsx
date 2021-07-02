@@ -1,23 +1,23 @@
-import { getComponentFromProp, initDefaultProps } from "../_util/props-util";
-import KeyCode from "../_util/KeyCode";
-import contains from "../vc-util/Dom/contains";
-import LazyRenderBox from "./LazyRenderBox";
-import BaseMixin from "../_util/BaseMixin";
-import getTransitionProps from "../_util/getTransitionProps";
-import switchScrollingEffect from "../_util/switchScrollingEffect";
-import getDialogPropTypes from "./IDialogPropTypes";
+import { getComponentFromProp, initDefaultProps } from '../_util/props-util';
+import KeyCode from '../_util/KeyCode';
+import contains from '../vc-util/Dom/contains';
+import LazyRenderBox from './LazyRenderBox';
+import BaseMixin from '../_util/BaseMixin';
+import getTransitionProps from '../_util/getTransitionProps';
+import switchScrollingEffect from '../_util/switchScrollingEffect';
+import getDialogPropTypes from './IDialogPropTypes';
 const IDialogPropTypes = getDialogPropTypes();
 
 let uuid = 0;
 
 function noop() {}
 function getScroll(w, top) {
-  let ret = w[`page${top ? "Y" : "X"}Offset`];
-  const method = `scroll${top ? "Top" : "Left"}`;
-  if (typeof ret !== "number") {
+  let ret = w[`page${top ? 'Y' : 'X'}Offset`];
+  const method = `scroll${top ? 'Top' : 'Left'}`;
+  if (typeof ret !== 'number') {
     const d = w.document;
     ret = d.documentElement[method];
-    if (typeof ret !== "number") {
+    if (typeof ret !== 'number') {
       ret = d.body[method];
     }
   }
@@ -26,7 +26,7 @@ function getScroll(w, top) {
 
 function setTransformOrigin(node, value) {
   const style = node.style;
-  ["Webkit", "Moz", "Ms", "ms"].forEach(prefix => {
+  ['Webkit', 'Moz', 'Ms', 'ms'].forEach(prefix => {
     style[`${prefix}TransformOrigin`] = value;
   });
   style[`transformOrigin`] = value;
@@ -36,7 +36,7 @@ function offset(el) {
   const rect = el.getBoundingClientRect();
   const pos = {
     left: rect.left,
-    top: rect.top
+    top: rect.top,
   };
   const doc = el.ownerDocument;
   const w = doc.defaultView || doc.parentWindow;
@@ -56,19 +56,19 @@ export default {
     closable: true,
     maskClosable: true,
     destroyOnClose: false,
-    prefixCls: "rc-dialog",
+    prefixCls: 'rc-dialog',
     getOpenCount: () => null,
-    focusTriggerAfterClose: true
+    focusTriggerAfterClose: true,
   }),
   data() {
     return {
-      destroyPopup: false
+      destroyPopup: false,
     };
   },
 
   provide() {
     return {
-      dialogContext: this
+      dialogContext: this,
     };
   },
 
@@ -80,7 +80,7 @@ export default {
       this.$nextTick(() => {
         this.updatedCallback(!val);
       });
-    }
+    },
   },
 
   beforeMount() {
@@ -91,11 +91,8 @@ export default {
     this.$nextTick(() => {
       this.updatedCallback(false);
       // if forceRender is true, set element style display to be none;
-      if (
-        (this.forceRender || (this.getContainer === false && !this.visible)) &&
-        this.$refs.wrap
-      ) {
-        this.$refs.wrap.style.display = "none";
+      if ((this.forceRender || (this.getContainer === false && !this.visible)) && this.$refs.wrap) {
+        this.$refs.wrap.style.display = 'none';
       }
     });
   },
@@ -127,11 +124,10 @@ export default {
             const elOffset = offset(dialogNode);
             setTransformOrigin(
               dialogNode,
-              `${mousePosition.x - elOffset.left}px ${mousePosition.y -
-                elOffset.top}px`
+              `${mousePosition.x - elOffset.left}px ${mousePosition.y - elOffset.top}px`,
             );
           } else {
-            setTransformOrigin(dialogNode, "");
+            setTransformOrigin(dialogNode, '');
           }
         }
       } else if (visible) {
@@ -157,7 +153,7 @@ export default {
       // need demo?
       // https://github.com/react-component/dialog/pull/28
       if (this.$refs.wrap) {
-        this.$refs.wrap.style.display = "none";
+        this.$refs.wrap.style.display = 'none';
       }
       if (destroyOnClose) {
         this.destroyPopup = true;
@@ -223,14 +219,14 @@ export default {
         bodyProps,
         forceRender,
         dialogStyle,
-        dialogClass
+        dialogClass,
       } = this;
       const dest = { ...dialogStyle };
       if (width !== undefined) {
-        dest.width = typeof width === "number" ? `${width}px` : width;
+        dest.width = typeof width === 'number' ? `${width}px` : width;
       }
       if (height !== undefined) {
-        dest.height = typeof height === "number" ? `${height}px` : height;
+        dest.height = typeof height === 'number' ? `${height}px` : height;
       }
 
       let footer;
@@ -255,7 +251,7 @@ export default {
 
       let closer;
       if (closable) {
-        const closeIcon = getComponentFromProp(this, "closeIcon");
+        const closeIcon = getComponentFromProp(this, 'closeIcon');
         closer = (
           <button
             type="button"
@@ -270,9 +266,9 @@ export default {
       }
 
       const style = dest;
-      const sentinelStyle = { width: 0, height: 0, overflow: "hidden" };
+      const sentinelStyle = { width: 0, height: 0, overflow: 'hidden' };
       const cls = {
-        [prefixCls]: true
+        [prefixCls]: true,
       };
       const transitionName = this.getTransitionName();
       const dialogElement = (
@@ -286,36 +282,20 @@ export default {
           forceRender={forceRender}
           onMousedown={this.onDialogMouseDown}
         >
-          <div
-            tabIndex={0}
-            ref="sentinelStart"
-            style={sentinelStyle}
-            aria-hidden="true"
-          />
+          <div tabIndex={0} ref="sentinelStart" style={sentinelStyle} aria-hidden="true" />
           <div class={`${prefixCls}-content`}>
             {closer}
             {header}
-            <div
-              key="body"
-              class={`${prefixCls}-body`}
-              style={bodyStyle}
-              ref="body"
-              {...bodyProps}
-            >
+            <div key="body" class={`${prefixCls}-body`} style={bodyStyle} ref="body" {...bodyProps}>
               {this.$slots.default}
             </div>
             {footer}
           </div>
-          <div
-            tabIndex={0}
-            ref="sentinelEnd"
-            style={sentinelStyle}
-            aria-hidden="true"
-          />
+          <div tabIndex={0} ref="sentinelEnd" style={sentinelStyle} aria-hidden="true" />
         </LazyRenderBox>
       );
       const dialogTransitionProps = getTransitionProps(transitionName, {
-        afterLeave: this.onAnimateLeave
+        afterLeave: this.onAnimateLeave,
       });
       return (
         <transition key="dialog" {...dialogTransitionProps}>
@@ -389,17 +369,17 @@ export default {
       const { getOpenCount } = this;
       const openCount = getOpenCount();
       if (openCount === 1) {
-        if (cacheOverflow.hasOwnProperty("overflowX")) {
+        if (cacheOverflow.hasOwnProperty('overflowX')) {
           return;
         }
         cacheOverflow = {
           overflowX: document.body.style.overflowX,
           overflowY: document.body.style.overflowY,
-          overflow: document.body.style.overflow
+          overflow: document.body.style.overflow,
         };
         switchScrollingEffect();
         // Must be set after switchScrollingEffect
-        document.body.style.overflow = "hidden";
+        document.body.style.overflow = 'hidden';
       } else if (!openCount) {
         // IE browser doesn't merge overflow style, need to set it separately
         // https://github.com/ant-design/ant-design/issues/19393
@@ -427,18 +407,11 @@ export default {
     //   // this.resetAdjustments();
     // },
     close(e) {
-      this.__emit("close", e);
-    }
+      this.__emit('close', e);
+    },
   },
   render() {
-    const {
-      prefixCls,
-      maskClosable,
-      visible,
-      wrapClassName,
-      title,
-      wrapProps
-    } = this;
+    const { prefixCls, maskClosable, visible, wrapClassName, title, wrapProps } = this;
     const style = this.getWrapStyle();
     // clear hide display
     // and only set display after async anim, not here for hide
@@ -451,7 +424,7 @@ export default {
         <div
           tabIndex={-1}
           onKeydown={this.onKeydown}
-          class={`${prefixCls}-wrap ${wrapClassName || ""}`}
+          class={`${prefixCls}-wrap ${wrapClassName || ''}`}
           ref="wrap"
           onClick={maskClosable ? this.onMaskClick : noop}
           onMouseup={maskClosable ? this.onMaskMouseUp : noop}
@@ -464,5 +437,5 @@ export default {
         </div>
       </div>
     );
-  }
+  },
 };

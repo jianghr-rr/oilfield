@@ -1,4 +1,4 @@
-import PropTypes from "./vue-types";
+import PropTypes from './vue-types';
 
 export default {
   props: {
@@ -9,7 +9,7 @@ export default {
     parent: PropTypes.any,
     getComponent: PropTypes.func.isRequired,
     getContainer: PropTypes.func.isRequired,
-    children: PropTypes.func.isRequired
+    children: PropTypes.func.isRequired,
   },
 
   mounted() {
@@ -42,16 +42,11 @@ export default {
     renderComponent(props = {}, ready) {
       const { visible, forceRender, getContainer, parent } = this;
       const self = this;
-      if (
-        visible ||
-        parent._component ||
-        parent.$refs._component ||
-        forceRender
-      ) {
+      if (visible || parent._component || parent.$refs._component || forceRender) {
         let el = this.componentEl;
         if (!this.container) {
           this.container = getContainer();
-          el = document.createElement("div");
+          el = document.createElement('div');
           this.componentEl = el;
           this.container.appendChild(el);
         }
@@ -62,7 +57,7 @@ export default {
             el,
             parent: self,
             data: {
-              _com: com
+              _com: com,
             },
             mounted() {
               this.$nextTick(() => {
@@ -81,23 +76,23 @@ export default {
             methods: {
               setComponent(_com) {
                 this.$data._com = _com;
-              }
+              },
             },
             render() {
               return this.$data._com.component;
-            }
+            },
           });
         } else {
           this._component.setComponent(com);
         }
       }
-    }
+    },
   },
 
   render() {
     return this.children({
       renderComponent: this.renderComponent,
-      removeContainer: this.removeContainer
+      removeContainer: this.removeContainer,
     });
-  }
+  },
 };

@@ -1,4 +1,4 @@
-import { getTodayTimeStr, getTodayTime, isAllowedDate } from "../util/";
+import { getTodayTimeStr, getTodayTime, isAllowedDate } from '../util/';
 function noop() {}
 export default {
   functional: true,
@@ -12,16 +12,13 @@ export default {
       disabled,
       disabledDate,
       // onToday,
-      text
+      text,
     } = props;
     const { today = noop } = listeners;
     const localeNow = (!text && timePicker ? locale.now : text) || locale.today;
-    const disabledToday =
-      disabledDate && !isAllowedDate(getTodayTime(value), disabledDate);
+    const disabledToday = disabledDate && !isAllowedDate(getTodayTime(value), disabledDate);
     const isDisabled = disabledToday || disabled;
-    const disabledTodayClass = isDisabled
-      ? `${prefixCls}-today-btn-disabled`
-      : "";
+    const disabledTodayClass = isDisabled ? `${prefixCls}-today-btn-disabled` : '';
     return (
       <a
         class={`${prefixCls}-today-btn ${disabledTodayClass}`}
@@ -32,5 +29,5 @@ export default {
         {localeNow}
       </a>
     );
-  }
+  },
 };

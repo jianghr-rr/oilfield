@@ -1,11 +1,11 @@
-import PropTypes from "../../../_util/vue-types";
-import BasePopup from "../Base/BasePopup";
-import SearchInput from "../SearchInput";
-import { createRef } from "../util";
-import { getListeners } from "../../../_util/props-util";
+import PropTypes from '../../../_util/vue-types';
+import BasePopup from '../Base/BasePopup';
+import SearchInput from '../SearchInput';
+import { createRef } from '../util';
+import { getListeners } from '../../../_util/props-util';
 
 const SinglePopup = {
-  name: "SinglePopup",
+  name: 'SinglePopup',
   props: {
     ...BasePopup.props,
     ...SearchInput.props,
@@ -13,7 +13,7 @@ const SinglePopup = {
     showSearch: PropTypes.bool,
     dropdownPrefixCls: PropTypes.string,
     disabled: PropTypes.bool,
-    searchPlaceholder: PropTypes.string
+    searchPlaceholder: PropTypes.string,
   },
   created() {
     this.inputRef = createRef();
@@ -37,7 +37,7 @@ const SinglePopup = {
       return (
         <span
           style={{
-            display: searchValue ? "none" : "block"
+            display: searchValue ? 'none' : 'block',
           }}
           onClick={this.onPlaceholderClick}
           class={`${prefixCls}-search__field__placeholder`}
@@ -60,51 +60,44 @@ const SinglePopup = {
           {...{
             directives: [
               {
-                name: "ant-ref",
-                value: this.searchRef
-              }
-            ]
+                name: 'ant-ref',
+                value: this.searchRef,
+              },
+            ],
           }}
         >
           <SearchInput
             {...{
-              props: {
-                ...this.$props,
-                renderPlaceholder: this._renderPlaceholder
-              },
+              props: { ...this.$props, renderPlaceholder: this._renderPlaceholder },
               on: getListeners(this),
               directives: [
                 {
-                  name: "ant-ref",
-                  value: this.inputRef
-                }
-              ]
+                  name: 'ant-ref',
+                  value: this.inputRef,
+                },
+              ],
             }}
           />
         </span>
       );
-    }
+    },
   },
   render() {
     return (
       <BasePopup
         {...{
-          props: {
-            ...this.$props,
-            renderSearch: this._renderSearch,
-            __propsSymbol__: Symbol()
-          },
+          props: { ...this.$props, renderSearch: this._renderSearch, __propsSymbol__: Symbol() },
           on: getListeners(this),
           directives: [
             {
-              name: "ant-ref",
-              value: this.popupRef
-            }
-          ]
+              name: 'ant-ref',
+              value: this.popupRef,
+            },
+          ],
         }}
       />
     );
-  }
+  },
 };
 
 export default SinglePopup;

@@ -1,23 +1,23 @@
-import moment from "moment";
-import classNames from "classnames";
-import PropTypes from "../_util/vue-types";
-import BaseMixin from "../_util/BaseMixin";
+import moment from 'moment';
+import classNames from 'classnames';
+import PropTypes from '../_util/vue-types';
+import BaseMixin from '../_util/BaseMixin';
 import {
   initDefaultProps,
   hasProp,
   getComponentFromProp,
   isValidElement,
-  getEvents
-} from "../_util/props-util";
-import { cloneElement } from "../_util/vnode";
-import Trigger from "../vc-trigger";
-import Panel from "./Panel";
-import placements from "./placements";
+  getEvents,
+} from '../_util/props-util';
+import { cloneElement } from '../_util/vnode';
+import Trigger from '../vc-trigger';
+import Panel from './Panel';
+import placements from './placements';
 
 function noop() {}
 
 export default {
-  name: "VcTimePicker",
+  name: 'VcTimePicker',
   mixins: [BaseMixin],
   props: initDefaultProps(
     {
@@ -28,7 +28,7 @@ export default {
         type: Object,
         default: () => {
           return moment();
-        }
+        },
       },
       inputReadOnly: PropTypes.bool,
       disabled: PropTypes.bool,
@@ -69,14 +69,14 @@ export default {
       id: PropTypes.string,
       inputIcon: PropTypes.any,
       clearIcon: PropTypes.any,
-      addon: PropTypes.func
+      addon: PropTypes.func,
     },
     {
-      clearText: "clear",
-      prefixCls: "rc-time-picker",
+      clearText: 'clear',
+      prefixCls: 'rc-time-picker',
       defaultOpen: false,
       inputReadOnly: false,
-      popupClassName: "",
+      popupClassName: '',
       popupStyle: {},
       align: {},
       allowEmpty: true,
@@ -87,37 +87,32 @@ export default {
       disabledMinutes: noop,
       disabledSeconds: noop,
       hideDisabledOptions: false,
-      placement: "bottomLeft",
+      placement: 'bottomLeft',
       use12Hours: false,
-      focusOnOpen: false
-    }
+      focusOnOpen: false,
+    },
   ),
   data() {
-    const {
-      defaultOpen,
-      defaultValue,
-      open = defaultOpen,
-      value = defaultValue
-    } = this;
+    const { defaultOpen, defaultValue, open = defaultOpen, value = defaultValue } = this;
     return {
       sOpen: open,
-      sValue: value
+      sValue: value,
     };
   },
 
   watch: {
     value(val) {
       this.setState({
-        sValue: val
+        sValue: val,
       });
     },
     open(val) {
       if (val !== undefined) {
         this.setState({
-          sOpen: val
+          sOpen: val,
         });
       }
-    }
+    },
   },
   mounted() {
     this.$nextTick(() => {
@@ -132,7 +127,7 @@ export default {
     },
 
     onAmPmChange(ampm) {
-      this.__emit("amPmChange", ampm);
+      this.__emit('amPmChange', ampm);
     },
 
     onClear(event) {
@@ -156,16 +151,16 @@ export default {
       }
     },
     onKeyDown2(e) {
-      this.__emit("keydown", e);
+      this.__emit('keydown', e);
     },
 
     setValue(value) {
-      if (!hasProp(this, "value")) {
+      if (!hasProp(this, 'value')) {
         this.setState({
-          sValue: value
+          sValue: value,
         });
       }
-      this.__emit("change", value);
+      this.__emit('change', value);
     },
 
     getFormat() {
@@ -175,24 +170,16 @@ export default {
       }
 
       if (use12Hours) {
-        const fmtString = [
-          showHour ? "h" : "",
-          showMinute ? "mm" : "",
-          showSecond ? "ss" : ""
-        ]
+        const fmtString = [showHour ? 'h' : '', showMinute ? 'mm' : '', showSecond ? 'ss' : '']
           .filter(item => !!item)
-          .join(":");
+          .join(':');
 
-        return fmtString.concat(" a");
+        return fmtString.concat(' a');
       }
 
-      return [
-        showHour ? "HH" : "",
-        showMinute ? "mm" : "",
-        showSecond ? "ss" : ""
-      ]
+      return [showHour ? 'HH' : '', showMinute ? 'mm' : '', showSecond ? 'ss' : '']
         .filter(item => !!item)
-        .join(":");
+        .join(':');
     },
 
     getPanelElement() {
@@ -216,9 +203,9 @@ export default {
         hourStep,
         minuteStep,
         secondStep,
-        sValue
+        sValue,
       } = this;
-      const clearIcon = getComponentFromProp(this, "clearIcon");
+      const clearIcon = getComponentFromProp(this, 'clearIcon');
       return (
         <Panel
           clearText={clearText}
@@ -252,14 +239,7 @@ export default {
     },
 
     getPopupClassName() {
-      const {
-        showHour,
-        showMinute,
-        showSecond,
-        use12Hours,
-        prefixCls,
-        popupClassName
-      } = this;
+      const { showHour, showMinute, showSecond, use12Hours, prefixCls, popupClassName } = this;
 
       let selectColumnCount = 0;
       if (showHour) {
@@ -278,22 +258,21 @@ export default {
       return classNames(
         popupClassName,
         {
-          [`${prefixCls}-panel-narrow`]:
-            (!showHour || !showMinute || !showSecond) && !use12Hours
+          [`${prefixCls}-panel-narrow`]: (!showHour || !showMinute || !showSecond) && !use12Hours,
         },
-        `${prefixCls}-panel-column-${selectColumnCount}`
+        `${prefixCls}-panel-column-${selectColumnCount}`,
       );
     },
 
     setOpen(open) {
       if (this.sOpen !== open) {
-        if (!hasProp(this, "open")) {
+        if (!hasProp(this, 'open')) {
           this.setState({ sOpen: open });
         }
         if (open) {
-          this.__emit("open", { open });
+          this.__emit('open', { open });
         } else {
-          this.__emit("close", { open });
+          this.__emit('close', { open });
         }
       }
     },
@@ -306,10 +285,10 @@ export default {
       this.$refs.picker.blur();
     },
     onFocus(e) {
-      this.__emit("focus", e);
+      this.__emit('focus', e);
     },
     onBlur(e) {
-      this.__emit("blur", e);
+      this.__emit('blur', e);
     },
     renderClearButton() {
       const { sValue } = this;
@@ -317,7 +296,7 @@ export default {
       if (!allowEmpty || !sValue || disabled) {
         return null;
       }
-      const clearIcon = getComponentFromProp(this, "clearIcon");
+      const clearIcon = getComponentFromProp(this, 'clearIcon');
       if (isValidElement(clearIcon)) {
         const { click } = getEvents(clearIcon) || {};
         return cloneElement(clearIcon, {
@@ -325,8 +304,8 @@ export default {
             click: (...args) => {
               if (click) click(...args);
               this.onClear(...args);
-            }
-          }
+            },
+          },
         });
       }
 
@@ -341,7 +320,7 @@ export default {
           {clearIcon || <i class={`${prefixCls}-clear-icon`} />}
         </a>
       );
-    }
+    },
   },
 
   render() {
@@ -362,10 +341,10 @@ export default {
       sValue,
       onFocus,
       onBlur,
-      popupStyle
+      popupStyle,
     } = this;
     const popupClassName = this.getPopupClassName();
-    const inputIcon = getComponentFromProp(this, "inputIcon");
+    const inputIcon = getComponentFromProp(this, 'inputIcon');
     return (
       <Trigger
         prefixCls={`${prefixCls}-panel`}
@@ -374,7 +353,7 @@ export default {
         popupAlign={align}
         builtinPlacements={placements}
         popupPlacement={placement}
-        action={disabled ? [] : ["click"]}
+        action={disabled ? [] : ['click']}
         destroyPopupOnHide
         getPopupContainer={getPopupContainer}
         popupTransitionName={transitionName}
@@ -391,7 +370,7 @@ export default {
             name={name}
             onKeydown={this.onKeyDown}
             disabled={disabled}
-            value={(sValue && sValue.format(this.getFormat())) || ""}
+            value={(sValue && sValue.format(this.getFormat())) || ''}
             autoComplete={autoComplete}
             onFocus={onFocus}
             onBlur={onBlur}
@@ -404,5 +383,5 @@ export default {
         </span>
       </Trigger>
     );
-  }
+  },
 };

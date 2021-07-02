@@ -1,25 +1,25 @@
-import PanelContent from "./PanelContent";
-import { initDefaultProps, getComponentFromProp } from "../../_util/props-util";
-import { panelProps } from "./commonProps";
+import PanelContent from './PanelContent';
+import { initDefaultProps, getComponentFromProp } from '../../_util/props-util';
+import { panelProps } from './commonProps';
 
 export default {
-  name: "Panel",
+  name: 'Panel',
   props: initDefaultProps(panelProps(), {
     showArrow: true,
     isActive: false,
     destroyInactivePanel: false,
-    headerClass: "",
-    forceRender: false
+    headerClass: '',
+    forceRender: false,
   }),
   methods: {
     handleItemClick() {
-      this.$emit("itemClick", this.panelKey);
+      this.$emit('itemClick', this.panelKey);
     },
     handleKeyPress(e) {
-      if (e.key === "Enter" || e.keyCode === 13 || e.which === 13) {
+      if (e.key === 'Enter' || e.keyCode === 13 || e.which === 13) {
         this.handleItemClick();
       }
-    }
+    },
   },
   render() {
     const {
@@ -33,29 +33,29 @@ export default {
       accordion,
       forceRender,
       expandIcon,
-      extra
+      extra,
     } = this.$props;
     const { $slots } = this;
 
     const transitionProps = {
       props: Object.assign({
         appear: true,
-        css: false
+        css: false,
       }),
-      on: { ...openAnimation }
+      on: { ...openAnimation },
     };
     const headerCls = {
       [`${prefixCls}-header`]: true,
-      [headerClass]: headerClass
+      [headerClass]: headerClass,
     };
-    const header = getComponentFromProp(this, "header");
+    const header = getComponentFromProp(this, 'header');
     const itemCls = {
       [`${prefixCls}-item`]: true,
       [`${prefixCls}-item-active`]: isActive,
-      [`${prefixCls}-item-disabled`]: disabled
+      [`${prefixCls}-item-disabled`]: disabled,
     };
     let icon = <i class="arrow" />;
-    if (showArrow && typeof expandIcon === "function") {
+    if (showArrow && typeof expandIcon === 'function') {
       icon = expandIcon(this.$props);
     }
     return (
@@ -64,7 +64,7 @@ export default {
           class={headerCls}
           onClick={this.handleItemClick.bind(this)}
           onKeypress={this.handleKeyPress}
-          role={accordion ? "tab" : "button"}
+          role={accordion ? 'tab' : 'button'}
           tabIndex={disabled ? -1 : 0}
           aria-expanded={isActive}
         >
@@ -79,12 +79,12 @@ export default {
             isActive={isActive}
             destroyInactivePanel={destroyInactivePanel}
             forceRender={forceRender}
-            role={accordion ? "tabpanel" : null}
+            role={accordion ? 'tabpanel' : null}
           >
             {$slots.default}
           </PanelContent>
         </transition>
       </div>
     );
-  }
+  },
 };

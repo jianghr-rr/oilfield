@@ -1,17 +1,14 @@
-import PropTypes from "../../../../_util/vue-types";
-import { createRef } from "../../util";
-import generateSelector, { selectorPropTypes } from "../../Base/BaseSelector";
-import SearchInput from "../../SearchInput";
-import Selection from "./Selection";
-import {
-  getComponentFromProp,
-  getListeners
-} from "../../../../_util/props-util";
-import getTransitionProps from "../../../../_util/getTransitionProps";
-import BaseMixin from "../../../../_util/BaseMixin";
-const TREE_SELECT_EMPTY_VALUE_KEY = "RC_TREE_SELECT_EMPTY_VALUE_KEY";
+import PropTypes from '../../../../_util/vue-types';
+import { createRef } from '../../util';
+import generateSelector, { selectorPropTypes } from '../../Base/BaseSelector';
+import SearchInput from '../../SearchInput';
+import Selection from './Selection';
+import { getComponentFromProp, getListeners } from '../../../../_util/props-util';
+import getTransitionProps from '../../../../_util/getTransitionProps';
+import BaseMixin from '../../../../_util/BaseMixin';
+const TREE_SELECT_EMPTY_VALUE_KEY = 'RC_TREE_SELECT_EMPTY_VALUE_KEY';
 
-const Selector = generateSelector("multiple");
+const Selector = generateSelector('multiple');
 
 // export const multipleSelectorContextTypes = {
 //   onMultipleSelectorRemove: PropTypes.func.isRequired,
@@ -27,12 +24,12 @@ const MultipleSelector = {
     searchValue: PropTypes.string,
     labelInValue: PropTypes.bool,
     maxTagCount: PropTypes.number,
-    maxTagPlaceholder: PropTypes.any
+    maxTagPlaceholder: PropTypes.any,
 
     // onChoiceAnimationLeave: PropTypes.func,
   },
   inject: {
-    vcTreeSelect: { default: () => ({}) }
+    vcTreeSelect: { default: () => ({}) },
   },
   created() {
     this.inputRef = createRef();
@@ -55,7 +52,7 @@ const MultipleSelector = {
         placeholder,
         searchPlaceholder,
         searchValue,
-        selectorValueList
+        selectorValueList,
       } = this.$props;
 
       const currentPlaceholder = placeholder || searchPlaceholder;
@@ -68,7 +65,7 @@ const MultipleSelector = {
       return (
         <span
           style={{
-            display: hidden ? "none" : "block"
+            display: hidden ? 'none' : 'block',
           }}
           onClick={this.onPlaceholderClick}
           class={`${prefixCls}-search__field__placeholder`}
@@ -78,7 +75,7 @@ const MultipleSelector = {
       );
     },
     onChoiceAnimationLeave(...args) {
-      this.__emit("choiceAnimationLeave", ...args);
+      this.__emit('choiceAnimationLeave', ...args);
     },
     renderSelection() {
       const {
@@ -86,11 +83,11 @@ const MultipleSelector = {
         choiceTransitionName,
         prefixCls,
         labelInValue,
-        maxTagCount
+        maxTagCount,
       } = this.$props;
       const {
         vcTreeSelect: { onMultipleSelectorRemove },
-        $slots
+        $slots,
       } = this;
       const listeners = getListeners(this);
       // Check if `maxTagCount` is set
@@ -105,9 +102,9 @@ const MultipleSelector = {
             props: {
               ...this.$props,
               label,
-              value
+              value,
             },
-            on: { ...listeners, remove: onMultipleSelectorRemove }
+            on: { ...listeners, remove: onMultipleSelectorRemove },
           }}
           key={value || TREE_SELECT_EMPTY_VALUE_KEY}
         >
@@ -118,20 +115,13 @@ const MultipleSelector = {
       // Rest node count
       if (maxTagCount >= 0 && maxTagCount < selectorValueList.length) {
         let content = `+ ${selectorValueList.length - maxTagCount} ...`;
-        const maxTagPlaceholder = getComponentFromProp(
-          this,
-          "maxTagPlaceholder",
-          {},
-          false
-        );
-        if (typeof maxTagPlaceholder === "string") {
+        const maxTagPlaceholder = getComponentFromProp(this, 'maxTagPlaceholder', {}, false);
+        if (typeof maxTagPlaceholder === 'string') {
           content = maxTagPlaceholder;
-        } else if (typeof maxTagPlaceholder === "function") {
+        } else if (typeof maxTagPlaceholder === 'function') {
           const restValueList = selectorValueList.slice(maxTagCount);
           content = maxTagPlaceholder(
-            labelInValue
-              ? restValueList
-              : restValueList.map(({ value }) => value)
+            labelInValue ? restValueList : restValueList.map(({ value }) => value),
           );
         }
 
@@ -141,9 +131,9 @@ const MultipleSelector = {
               props: {
                 ...this.$props,
                 label: content,
-                value: null
+                value: null,
               },
-              on: listeners
+              on: listeners,
             }}
             key="rc-tree-select-internal-max-tag-counter"
           >
@@ -155,34 +145,31 @@ const MultipleSelector = {
       }
 
       selectedValueNodes.push(
-        <li
-          class={`${prefixCls}-search ${prefixCls}-search--inline`}
-          key="__input"
-        >
+        <li class={`${prefixCls}-search ${prefixCls}-search--inline`} key="__input">
           <SearchInput
             {...{
               props: {
                 ...this.$props,
-                needAlign: true
+                needAlign: true,
               },
               on: listeners,
               directives: [
                 {
-                  name: "ant-ref",
-                  value: this.inputRef
-                }
-              ]
+                  name: 'ant-ref',
+                  value: this.inputRef,
+                },
+              ],
             }}
           >
             {$slots.default}
           </SearchInput>
-        </li>
+        </li>,
       );
       const className = `${prefixCls}-selection__rendered`;
       if (choiceTransitionName) {
         const transitionProps = getTransitionProps(choiceTransitionName, {
-          tag: "ul",
-          afterLeave: this.onChoiceAnimationLeave
+          tag: 'ul',
+          afterLeave: this.onChoiceAnimationLeave,
         });
         return (
           <transition-group class={className} {...transitionProps}>
@@ -195,7 +182,7 @@ const MultipleSelector = {
           {selectedValueNodes}
         </ul>
       );
-    }
+    },
   },
 
   render() {
@@ -209,15 +196,15 @@ const MultipleSelector = {
             tabIndex: -1,
             showArrow: false,
             renderSelection: this.renderSelection,
-            renderPlaceholder: this._renderPlaceholder
+            renderPlaceholder: this._renderPlaceholder,
           },
-          on: listeners
+          on: listeners,
         }}
       >
         {$slots.default}
       </Selector>
     );
-  }
+  },
 };
 
 export default MultipleSelector;

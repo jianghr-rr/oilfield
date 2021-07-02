@@ -21,6 +21,6 @@ export default {
     },
     saveFocusElement(focusElement) {
       this.focusElement = focusElement;
-    }
-  }
+    },
+  },
 };

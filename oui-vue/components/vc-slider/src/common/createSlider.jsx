@@ -1,12 +1,12 @@
-import classNames from "classnames";
-import PropTypes from "../../../_util/vue-types";
-import addEventListener from "../../../vc-util/Dom/addEventListener";
-import warning from "../../../_util/warning";
-import { initDefaultProps } from "../../../_util/props-util";
-import Steps from "./Steps";
-import Marks from "./Marks";
-import Handle from "../Handle";
-import * as utils from "../utils";
+import classNames from 'classnames';
+import PropTypes from '../../../_util/vue-types';
+import addEventListener from '../../../vc-util/Dom/addEventListener';
+import warning from '../../../_util/warning';
+import { initDefaultProps } from '../../../_util/props-util';
+import Steps from './Steps';
+import Marks from './Marks';
+import Handle from '../Handle';
+import * as utils from '../utils';
 
 function noop() {}
 
@@ -26,28 +26,22 @@ export default function createSlider(Component) {
     reverse: PropTypes.bool,
     minimumTrackStyle: PropTypes.object, // just for compatibility, will be deperecate
     maximumTrackStyle: PropTypes.object, // just for compatibility, will be deperecate
-    handleStyle: PropTypes.oneOfType([
-      PropTypes.object,
-      PropTypes.arrayOf(PropTypes.object)
-    ]),
-    trackStyle: PropTypes.oneOfType([
-      PropTypes.object,
-      PropTypes.arrayOf(PropTypes.object)
-    ]),
+    handleStyle: PropTypes.oneOfType([PropTypes.object, PropTypes.arrayOf(PropTypes.object)]),
+    trackStyle: PropTypes.oneOfType([PropTypes.object, PropTypes.arrayOf(PropTypes.object)]),
     railStyle: PropTypes.object,
     dotStyle: PropTypes.object,
     activeDotStyle: PropTypes.object,
-    autoFocus: PropTypes.bool
+    autoFocus: PropTypes.bool,
   };
   return {
-    name: "createSlider",
+    name: 'createSlider',
     mixins: [Component],
     model: {
-      prop: "value",
-      event: "change"
+      prop: 'value',
+      event: 'change',
     },
     props: initDefaultProps(propTypes, {
-      prefixCls: "rc-slider",
+      prefixCls: 'rc-slider',
       min: 0,
       max: 100,
       step: 1,
@@ -61,19 +55,17 @@ export default function createSlider(Component) {
       handleStyle: [{}],
       railStyle: {},
       dotStyle: {},
-      activeDotStyle: {}
+      activeDotStyle: {},
     }),
     data() {
       const { step, max, min } = this;
-      const isPointDiffEven = isFinite(max - min)
-        ? (max - min) % step === 0
-        : true; // eslint-disable-line
+      const isPointDiffEven = isFinite(max - min) ? (max - min) % step === 0 : true; // eslint-disable-line
       warning(
         step && Math.floor(step) === step ? isPointDiffEven : true,
-        "Slider",
-        "Slider[max] - Slider[min] (%s) should be a multiple of Slider[step] (%s)",
+        'Slider',
+        'Slider[max] - Slider[min] (%s) should be a multiple of Slider[step] (%s)',
         max - min,
-        step
+        step,
       );
       this.handlesRefs = {};
       return {};
@@ -81,8 +73,7 @@ export default function createSlider(Component) {
     mounted() {
       this.$nextTick(() => {
         // Snapshot testing cannot handle refs, so be sure to null-check this.
-        this.document =
-          this.$refs.sliderRef && this.$refs.sliderRef.ownerDocument;
+        this.document = this.$refs.sliderRef && this.$refs.sliderRef.ownerDocument;
         // this.setHandleRefs()
         const { autoFocus, disabled } = this;
         if (autoFocus && !disabled) {
@@ -104,13 +95,13 @@ export default function createSlider(Component) {
         }
         const handleProps = {
           props: {
-            ...restProps
+            ...restProps,
           },
           class: className,
           style,
           key: index,
           directives,
-          on
+          on,
         };
         return <Handle {...handleProps} />;
       },
@@ -123,10 +114,7 @@ export default function createSlider(Component) {
         if (!utils.isEventFromHandle(e, this.handlesRefs)) {
           this.dragOffset = 0;
         } else {
-          const handlePosition = utils.getHandleCenterPosition(
-            isVertical,
-            e.target
-          );
+          const handlePosition = utils.getHandleCenterPosition(isVertical, e.target);
           this.dragOffset = position - handlePosition;
           position = handlePosition;
         }
@@ -143,10 +131,7 @@ export default function createSlider(Component) {
         if (!utils.isEventFromHandle(e, this.handlesRefs)) {
           this.dragOffset = 0;
         } else {
-          const handlePosition = utils.getHandleCenterPosition(
-            isVertical,
-            e.target
-          );
+          const handlePosition = utils.getHandleCenterPosition(isVertical, e.target);
           this.dragOffset = position - handlePosition;
           position = handlePosition;
         }
@@ -157,19 +142,16 @@ export default function createSlider(Component) {
       onFocus(e) {
         const { vertical } = this;
         if (utils.isEventFromHandle(e, this.handlesRefs)) {
-          const handlePosition = utils.getHandleCenterPosition(
-            vertical,
-            e.target
-          );
+          const handlePosition = utils.getHandleCenterPosition(vertical, e.target);
           this.dragOffset = 0;
           this.onStart(handlePosition);
           utils.pauseEvent(e);
-          this.$emit("focus", e);
+          this.$emit('focus', e);
         }
       },
       onBlur(e) {
         this.onEnd();
-        this.$emit("blur", e);
+        this.$emit('blur', e);
       },
       onMouseUp() {
         if (this.handlesRefs[this.prevMovedHandleIndex]) {
@@ -194,10 +176,7 @@ export default function createSlider(Component) {
         this.onMove(e, position - this.dragOffset);
       },
       onKeyDown(e) {
-        if (
-          this.$refs.sliderRef &&
-          utils.isEventFromHandle(e, this.handlesRefs)
-        ) {
+        if (this.$refs.sliderRef && utils.isEventFromHandle(e, this.handlesRefs)) {
           this.onKeyboard(e);
         }
       },
@@ -226,28 +205,12 @@ export default function createSlider(Component) {
       },
       addDocumentTouchEvents() {
         // just work for Chrome iOS Safari and Android Browser
-        this.onTouchMoveListener = addEventListener(
-          this.document,
-          "touchmove",
-          this.onTouchMove
-        );
-        this.onTouchUpListener = addEventListener(
-          this.document,
-          "touchend",
-          this.onEnd
-        );
+        this.onTouchMoveListener = addEventListener(this.document, 'touchmove', this.onTouchMove);
+        this.onTouchUpListener = addEventListener(this.document, 'touchend', this.onEnd);
       },
       addDocumentMouseEvents() {
-        this.onMouseMoveListener = addEventListener(
-          this.document,
-          "mousemove",
-          this.onMouseMove
-        );
-        this.onMouseUpListener = addEventListener(
-          this.document,
-          "mouseup",
-          this.onEnd
-        );
+        this.onMouseMoveListener = addEventListener(this.document, 'mousemove', this.onMouseMove);
+        this.onMouseUpListener = addEventListener(this.document, 'mouseup', this.onEnd);
       },
       removeDocumentEvents() {
         /* eslint-disable no-unused-expressions */
@@ -275,9 +238,7 @@ export default function createSlider(Component) {
       calcValue(offset) {
         const { vertical, min, max } = this;
         const ratio = Math.abs(Math.max(offset, 0) / this.getSliderLength());
-        const value = vertical
-          ? (1 - ratio) * (max - min) + min
-          : ratio * (max - min) + min;
+        const value = vertical ? (1 - ratio) * (max - min) + min : ratio * (max - min) + min;
         return value;
       },
       calcValueByPos(position) {
@@ -293,7 +254,7 @@ export default function createSlider(Component) {
       },
       saveHandle(index, handle) {
         this.handlesRefs[index] = handle;
-      }
+      },
     },
     render(h) {
       const {
@@ -310,14 +271,14 @@ export default function createSlider(Component) {
         maximumTrackStyle,
         railStyle,
         dotStyle,
-        activeDotStyle
+        activeDotStyle,
       } = this;
       const { tracks, handles } = this.renderSlider(h);
 
       const sliderClassName = classNames(prefixCls, {
         [`${prefixCls}-with-marks`]: Object.keys(marks).length,
         [`${prefixCls}-disabled`]: disabled,
-        [`${prefixCls}-vertical`]: vertical
+        [`${prefixCls}-vertical`]: vertical,
       });
       const markProps = {
         props: {
@@ -329,11 +290,11 @@ export default function createSlider(Component) {
           max,
           min,
           reverse,
-          className: `${prefixCls}-mark`
+          className: `${prefixCls}-mark`,
         },
         on: {
-          clickLabel: disabled ? noop : this.onClickMarkLabel
-        }
+          clickLabel: disabled ? noop : this.onClickMarkLabel,
+        },
       };
       return (
         <div
@@ -351,7 +312,7 @@ export default function createSlider(Component) {
             class={`${prefixCls}-rail`}
             style={{
               ...maximumTrackStyle,
-              ...railStyle
+              ...railStyle,
             }}
           />
           {tracks}
@@ -375,6 +336,6 @@ export default function createSlider(Component) {
           {this.$slots.default}
         </div>
       );
-    }
+    },
   };
 }

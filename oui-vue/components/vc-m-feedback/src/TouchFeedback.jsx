@@ -1,25 +1,25 @@
-import { initDefaultProps } from "../../_util/props-util";
-import { cloneElement } from "../../_util/vnode";
-import warning from "../../_util/warning";
-import BaseMixin from "../../_util/BaseMixin";
-import { ITouchProps } from "./PropTypes";
+import { initDefaultProps } from '../../_util/props-util';
+import { cloneElement } from '../../_util/vnode';
+import warning from '../../_util/warning';
+import BaseMixin from '../../_util/BaseMixin';
+import { ITouchProps } from './PropTypes';
 
 export default {
-  name: "TouchFeedback",
+  name: 'TouchFeedback',
   mixins: [BaseMixin],
   props: initDefaultProps(ITouchProps, {
-    disabled: false
+    disabled: false,
   }),
   data() {
     return {
-      active: false
+      active: false,
     };
   },
   mounted() {
     this.$nextTick(() => {
       if (this.disabled && this.active) {
         this.setState({
-          active: false
+          active: false,
         });
       }
     });
@@ -30,39 +30,39 @@ export default {
       this.$emit(type, ev);
       if (isActive !== this.active) {
         this.setState({
-          active: isActive
+          active: isActive,
         });
       }
     },
     onTouchStart(e) {
-      this.triggerEvent("touchstart", true, e);
+      this.triggerEvent('touchstart', true, e);
     },
     onTouchMove(e) {
-      this.triggerEvent("touchmove", false, e);
+      this.triggerEvent('touchmove', false, e);
     },
     onTouchEnd(e) {
-      this.triggerEvent("touchend", false, e);
+      this.triggerEvent('touchend', false, e);
     },
     onTouchCancel(e) {
-      this.triggerEvent("touchcancel", false, e);
+      this.triggerEvent('touchcancel', false, e);
     },
     onMouseDown(e) {
       // pc simulate mobile
-      this.triggerEvent("mousedown", true, e);
+      this.triggerEvent('mousedown', true, e);
     },
     onMouseUp(e) {
-      this.triggerEvent("mouseup", false, e);
+      this.triggerEvent('mouseup', false, e);
     },
     onMouseLeave(e) {
-      this.triggerEvent("mouseleave", false, e);
-    }
+      this.triggerEvent('mouseleave', false, e);
+    },
   },
   render() {
-    const { disabled, activeClassName = "", activeStyle = {} } = this.$props;
+    const { disabled, activeClassName = '', activeStyle = {} } = this.$props;
 
     const child = this.$slots.default;
     if (child.length !== 1) {
-      warning(false, "m-feedback组件只能包含一个子元素");
+      warning(false, 'm-feedback组件只能包含一个子元素');
       return null;
     }
     let childProps = {
@@ -75,8 +75,8 @@ export default {
             touchcancel: this.onTouchCancel,
             mousedown: this.onMouseDown,
             mouseup: this.onMouseUp,
-            mouseleave: this.onMouseLeave
-          }
+            mouseleave: this.onMouseLeave,
+          },
     };
 
     if (!disabled && this.active) {
@@ -84,11 +84,11 @@ export default {
         ...childProps,
         ...{
           style: activeStyle,
-          class: activeClassName
-        }
+          class: activeClassName,
+        },
       };
     }
 
     return cloneElement(child, childProps);
-  }
+  },
 };

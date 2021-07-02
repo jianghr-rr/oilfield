@@ -1,42 +1,37 @@
-import { switchPropTypes } from "./PropTypes";
-import BaseMixin from "../_util/BaseMixin";
-import {
-  hasProp,
-  getOptionProps,
-  getComponentFromProp,
-  getListeners
-} from "../_util/props-util";
+import { switchPropTypes } from './PropTypes';
+import BaseMixin from '../_util/BaseMixin';
+import { hasProp, getOptionProps, getComponentFromProp, getListeners } from '../_util/props-util';
 
 // function noop () {
 // }
 export default {
-  name: "VcSwitch",
+  name: 'VcSwitch',
   mixins: [BaseMixin],
   model: {
-    prop: "checked",
-    event: "change"
+    prop: 'checked',
+    event: 'change',
   },
   props: {
     ...switchPropTypes,
-    prefixCls: switchPropTypes.prefixCls.def("rc-switch")
+    prefixCls: switchPropTypes.prefixCls.def('rc-switch'),
     // onChange: switchPropTypes.onChange.def(noop),
     // onClick: switchPropTypes.onClick.def(noop),
   },
   data() {
     let checked = false;
-    if (hasProp(this, "checked")) {
+    if (hasProp(this, 'checked')) {
       checked = !!this.checked;
     } else {
       checked = !!this.defaultChecked;
     }
     return {
-      stateChecked: checked
+      stateChecked: checked,
     };
   },
   watch: {
     checked(val) {
       this.stateChecked = val;
-    }
+    },
   },
   mounted() {
     this.$nextTick(() => {
@@ -51,15 +46,15 @@ export default {
       if (this.disabled) {
         return;
       }
-      if (!hasProp(this, "checked")) {
+      if (!hasProp(this, 'checked')) {
         this.stateChecked = checked;
       }
-      this.$emit("change", checked, e);
+      this.$emit('change', checked, e);
     },
     handleClick(e) {
       const checked = !this.stateChecked;
       this.setChecked(checked, e);
-      this.$emit("click", checked, e);
+      this.$emit('click', checked, e);
     },
     handleKeyDown(e) {
       if (e.keyCode === 37) {
@@ -74,28 +69,22 @@ export default {
       if (this.$refs.refSwitchNode) {
         this.$refs.refSwitchNode.blur();
       }
-      this.$emit("mouseup", e);
+      this.$emit('mouseup', e);
     },
     focus() {
       this.$refs.refSwitchNode.focus();
     },
     blur() {
       this.$refs.refSwitchNode.blur();
-    }
+    },
   },
   render() {
-    const {
-      prefixCls,
-      disabled,
-      loadingIcon,
-      tabIndex,
-      ...restProps
-    } = getOptionProps(this);
+    const { prefixCls, disabled, loadingIcon, tabIndex, ...restProps } = getOptionProps(this);
     const checked = this.stateChecked;
     const switchClassName = {
       [prefixCls]: true,
       [`${prefixCls}-checked`]: checked,
-      [`${prefixCls}-disabled`]: disabled
+      [`${prefixCls}-disabled`]: disabled,
     };
     const spanProps = {
       props: { ...restProps },
@@ -103,27 +92,27 @@ export default {
         ...getListeners(this),
         keydown: this.handleKeyDown,
         click: this.handleClick,
-        mouseup: this.handleMouseUp
+        mouseup: this.handleMouseUp,
       },
       attrs: {
-        type: "button",
-        role: "switch",
-        "aria-checked": checked,
+        type: 'button',
+        role: 'switch',
+        'aria-checked': checked,
         disabled,
-        tabIndex
+        tabIndex,
       },
       class: switchClassName,
-      ref: "refSwitchNode"
+      ref: 'refSwitchNode',
     };
     return (
       <button {...spanProps}>
         {loadingIcon}
         <span class={`${prefixCls}-inner`}>
           {checked
-            ? getComponentFromProp(this, "checkedChildren")
-            : getComponentFromProp(this, "unCheckedChildren")}
+            ? getComponentFromProp(this, 'checkedChildren')
+            : getComponentFromProp(this, 'unCheckedChildren')}
         </span>
       </button>
     );
-  }
+  },
 };

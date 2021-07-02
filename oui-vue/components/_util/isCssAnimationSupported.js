@@ -4,8 +4,8 @@ function isCssAnimationSupported() {
   if (animation !== undefined) {
     return animation;
   }
-  const domPrefixes = "Webkit Moz O ms Khtml".split(" ");
-  const elm = document.createElement("div");
+  const domPrefixes = 'Webkit Moz O ms Khtml'.split(' ');
+  const elm = document.createElement('div');
   if (elm.style.animationName !== undefined) {
     animation = true;
   }

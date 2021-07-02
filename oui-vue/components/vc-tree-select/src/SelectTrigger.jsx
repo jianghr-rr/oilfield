@@ -1,32 +1,32 @@
-import PropTypes from "../../_util/vue-types";
+import PropTypes from '../../_util/vue-types';
 
-import Trigger from "../../vc-trigger";
-import { createRef } from "./util";
-import classNames from "classnames";
+import Trigger from '../../vc-trigger';
+import { createRef } from './util';
+import classNames from 'classnames';
 
 const BUILT_IN_PLACEMENTS = {
   bottomLeft: {
-    points: ["tl", "bl"],
+    points: ['tl', 'bl'],
     offset: [0, 4],
     overflow: {
       adjustX: 0,
-      adjustY: 1
+      adjustY: 1,
     },
-    ignoreShake: true
+    ignoreShake: true,
   },
   topLeft: {
-    points: ["bl", "tl"],
+    points: ['bl', 'tl'],
     offset: [0, -4],
     overflow: {
       adjustX: 0,
-      adjustY: 1
+      adjustY: 1,
     },
-    ignoreShake: true
-  }
+    ignoreShake: true,
+  },
 };
 
 const SelectTrigger = {
-  name: "SelectTrigger",
+  name: 'SelectTrigger',
   props: {
     // Pass by outside user props
     disabled: PropTypes.bool,
@@ -46,7 +46,7 @@ const SelectTrigger = {
     dropdownPrefixCls: PropTypes.string,
     dropdownVisibleChange: PropTypes.func,
     popupElement: PropTypes.node,
-    open: PropTypes.bool
+    open: PropTypes.bool,
   },
   created() {
     this.triggerRef = createRef();
@@ -65,7 +65,7 @@ const SelectTrigger = {
       if ($trigger) {
         $trigger.forcePopupAlign();
       }
-    }
+    },
   },
 
   render() {
@@ -80,7 +80,7 @@ const SelectTrigger = {
       getPopupContainer,
       dropdownPrefixCls,
       popupElement,
-      open
+      open,
     } = this.$props;
 
     // TODO: [Legacy] Use new action when trigger fixed: https://github.com/react-component/trigger/pull/86
@@ -89,19 +89,19 @@ const SelectTrigger = {
     // ref: https://github.com/ant-design/ant-design/issues/10927
     let stretch;
     if (dropdownMatchSelectWidth !== false) {
-      stretch = dropdownMatchSelectWidth ? "width" : "minWidth";
+      stretch = dropdownMatchSelectWidth ? 'width' : 'minWidth';
     }
     return (
       <Trigger
         {...{
           directives: [
             {
-              name: "ant-ref",
-              value: this.triggerRef
-            }
-          ]
+              name: 'ant-ref',
+              value: this.triggerRef,
+            },
+          ],
         }}
-        action={disabled ? [] : ["click"]}
+        action={disabled ? [] : ['click']}
         popupPlacement="bottomLeft"
         builtinPlacements={BUILT_IN_PLACEMENTS}
         popupAlign={dropdownPopupAlign}
@@ -114,14 +114,14 @@ const SelectTrigger = {
         stretch={stretch}
         popupClassName={classNames(dropdownClassName, {
           [`${dropdownPrefixCls}--multiple`]: isMultiple,
-          [`${dropdownPrefixCls}--single`]: !isMultiple
+          [`${dropdownPrefixCls}--single`]: !isMultiple,
         })}
         popupStyle={dropdownStyle}
       >
         {this.$slots.default}
       </Trigger>
     );
-  }
+  },
 };
 
 export default SelectTrigger;

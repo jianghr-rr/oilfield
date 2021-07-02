@@ -1,16 +1,16 @@
-import set from "lodash/set";
-import createFormField, { isFormField } from "./createFormField";
-import { hasRules, flattenFields, getErrorStrs, startsWith } from "./utils";
+import set from 'lodash/set';
+import createFormField, { isFormField } from './createFormField';
+import { hasRules, flattenFields, getErrorStrs, startsWith } from './utils';
 
 function partOf(a, b) {
-  return b.indexOf(a) === 0 && [".", "["].indexOf(b[a.length]) !== -1;
+  return b.indexOf(a) === 0 && ['.', '['].indexOf(b[a.length]) !== -1;
 }
 
 function internalFlattenFields(fields) {
   return flattenFields(
     fields,
     (_, node) => isFormField(node),
-    "You must wrap field data with `createFormField`."
+    'You must wrap field data with `createFormField`.',
   );
 }
 
@@ -29,7 +29,7 @@ class FieldsStore {
     return flattenFields(
       fields,
       path => validFieldsName.indexOf(path) >= 0,
-      `You cannot set a form field before rendering a field associated with the value. You can use \`getFieldDecorator(id, options)\` instead \`v-decorator="[id, options]"\` to register it before render.`
+      `You cannot set a form field before rendering a field associated with the value. You can use \`getFieldDecorator(id, options)\` instead \`v-decorator="[id, options]"\` to register it before render.`,
     );
   }
 
@@ -40,7 +40,7 @@ class FieldsStore {
       if (fieldsMeta[name]) {
         this.setFieldMeta(name, {
           ...this.getFieldMeta(name),
-          initialValue: flattenedInitialValues[name]
+          initialValue: flattenedInitialValues[name],
         });
       }
     });
@@ -50,7 +50,7 @@ class FieldsStore {
     const fieldsMeta = this.fieldsMeta;
     const nowFields = {
       ...this.fields,
-      ...fields
+      ...fields,
     };
     const nowValues = {};
     Object.keys(fieldsMeta).forEach(f => {
@@ -63,12 +63,12 @@ class FieldsStore {
         const nowValue = fieldMeta.normalize(
           value,
           this.getValueFromFields(f, this.fields),
-          nowValues
+          nowValues,
         );
         if (nowValue !== value) {
           nowFields[f] = {
             ...nowFields[f],
-            value: nowValue
+            value: nowValue,
           };
         }
       }
@@ -78,12 +78,10 @@ class FieldsStore {
 
   resetFields(ns) {
     const { fields } = this;
-    const names = ns
-      ? this.getValidFieldsFullName(ns)
-      : this.getAllFieldsName();
+    const names = ns ? this.getValidFieldsFullName(ns) : this.getAllFieldsName();
     return names.reduce((acc, name) => {
       const field = fields[name];
-      if (field && "value" in field) {
+      if (field && 'value' in field) {
         acc[name] = {};
       }
       return acc;
@@ -101,7 +99,7 @@ class FieldsStore {
       if (field && fieldMeta && hasRules(fieldMeta.validate)) {
         this.fields[name] = {
           ...field,
-          dirty: true
+          dirty: true,
         };
       }
     });
@@ -114,7 +112,7 @@ class FieldsStore {
 
   getValueFromFields(name, fields) {
     const field = fields[name];
-    if (field && "value" in field) {
+    if (field && 'value' in field) {
       return field.value;
     }
     const fieldMeta = this.getFieldMeta(name);
@@ -125,7 +123,7 @@ class FieldsStore {
     const { fieldsMeta, fields } = this;
     return Object.keys(fieldsMeta).reduce(
       (acc, name) => set(acc, name, this.getValueFromFields(name, fields)),
-      {}
+      {},
     );
   };
 
@@ -150,15 +148,15 @@ class FieldsStore {
         partialName =>
           fullName === partialName ||
           (startsWith(fullName, partialName) &&
-            [".", "["].indexOf(fullName[partialName.length]) >= 0)
-      )
+            ['.', '['].indexOf(fullName[partialName.length]) >= 0),
+      ),
     );
   }
 
   getFieldValuePropValue(fieldMeta) {
     const { name, getValueProps, valuePropName } = fieldMeta;
     const field = this.getField(name);
-    const fieldValue = "value" in field ? field.value : fieldMeta.initialValue;
+    const fieldValue = 'value' in field ? field.value : fieldMeta.initialValue;
     if (getValueProps) {
       return getValueProps(fieldValue);
     }
@@ -168,7 +166,7 @@ class FieldsStore {
   getField(name) {
     return {
       ...this.fields[name],
-      name
+      name,
     };
   }
 
@@ -179,7 +177,7 @@ class FieldsStore {
       .map(name => ({
         name,
         dirty: false,
-        value: this.getFieldMeta(name).initialValue
+        value: this.getFieldMeta(name).initialValue,
       }))
       .reduce((acc, field) => set(acc, field.name, createFormField(field)), {});
   }
@@ -187,7 +185,7 @@ class FieldsStore {
   getNestedAllFields() {
     return Object.keys(this.fields).reduce(
       (acc, name) => set(acc, name, createFormField(this.fields[name])),
-      this.getNotCollectedFields()
+      this.getNotCollectedFields(),
     );
   }
 
@@ -208,12 +206,11 @@ class FieldsStore {
     ) {
       return getter(name);
     }
-    const isArrayValue = fullNames[0][name.length] === "[";
+    const isArrayValue = fullNames[0][name.length] === '[';
     const suffixNameStartIndex = isArrayValue ? name.length : name.length + 1;
     return fullNames.reduce(
-      (acc, fullName) =>
-        set(acc, fullName.slice(suffixNameStartIndex), getter(fullName)),
-      isArrayValue ? [] : {}
+      (acc, fullName) => set(acc, fullName.slice(suffixNameStartIndex), getter(fullName)),
+      isArrayValue ? [] : {},
     );
   }
 
@@ -223,9 +220,7 @@ class FieldsStore {
 
   getFieldValue = name => {
     const { fields } = this;
-    return this.getNestedField(name, fullName =>
-      this.getValueFromFields(fullName, fields)
-    );
+    return this.getNestedField(name, fullName => this.getValueFromFields(fullName, fields));
   };
 
   getFieldsError = names => {
@@ -234,12 +229,12 @@ class FieldsStore {
 
   getFieldError = name => {
     return this.getNestedField(name, fullName =>
-      getErrorStrs(this.getFieldMember(fullName, "errors"))
+      getErrorStrs(this.getFieldMember(fullName, 'errors')),
     );
   };
 
   isFieldValidating = name => {
-    return this.getFieldMember(name, "validating");
+    return this.getFieldMember(name, 'validating');
   };
 
   isFieldsValidating = ns => {
@@ -248,7 +243,7 @@ class FieldsStore {
   };
 
   isFieldTouched = name => {
-    return this.getFieldMember(name, "touched");
+    return this.getFieldMember(name, 'touched');
   };
 
   isFieldsTouched = ns => {

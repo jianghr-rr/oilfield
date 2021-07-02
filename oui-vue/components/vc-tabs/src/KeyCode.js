@@ -14,5 +14,5 @@ export default {
   /**
    * DOWN
    */
-  DOWN: 40 // also NUM_SOUTH
+  DOWN: 40, // also NUM_SOUTH
 };

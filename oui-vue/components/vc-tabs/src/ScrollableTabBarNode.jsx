@@ -1,27 +1,25 @@
-import debounce from "lodash/debounce";
-import ResizeObserver from "resize-observer-polyfill";
-import PropTypes from "../../_util/vue-types";
-import BaseMixin from "../../_util/BaseMixin";
-import { getComponentFromProp } from "../../_util/props-util";
-import { setTransform, isTransform3dSupported } from "./utils";
+import debounce from 'lodash/debounce';
+import ResizeObserver from 'resize-observer-polyfill';
+import PropTypes from '../../_util/vue-types';
+import BaseMixin from '../../_util/BaseMixin';
+import { getComponentFromProp } from '../../_util/props-util';
+import { setTransform, isTransform3dSupported } from './utils';
 
 function noop() {}
 export default {
-  name: "ScrollableTabBarNode",
+  name: 'ScrollableTabBarNode',
   mixins: [BaseMixin],
   props: {
     activeKey: PropTypes.any,
     getRef: PropTypes.func.def(() => {}),
     saveRef: PropTypes.func.def(() => {}),
-    tabBarPosition: PropTypes.oneOf(["left", "right", "top", "bottom"]).def(
-      "left"
-    ),
-    prefixCls: PropTypes.string.def(""),
+    tabBarPosition: PropTypes.oneOf(['left', 'right', 'top', 'bottom']).def('left'),
+    prefixCls: PropTypes.string.def(''),
     scrollAnimated: PropTypes.bool.def(true),
     navWrapper: PropTypes.func.def(arg => arg),
     prevIcon: PropTypes.any,
     nextIcon: PropTypes.any,
-    direction: PropTypes.string
+    direction: PropTypes.string,
   },
 
   data() {
@@ -29,7 +27,7 @@ export default {
     this.prevProps = { ...this.$props };
     return {
       next: false,
-      prev: false
+      prev: false,
     };
   },
   watch: {
@@ -38,7 +36,7 @@ export default {
       this.$nextTick(() => {
         this.setOffset(0);
       });
-    }
+    },
   },
 
   mounted() {
@@ -49,7 +47,7 @@ export default {
         this.scrollToActiveTab();
       }, 200);
       this.resizeObserver = new ResizeObserver(this.debouncedResize);
-      this.resizeObserver.observe(this.$props.getRef("container"));
+      this.resizeObserver.observe(this.$props.getRef('container'));
     });
   },
 
@@ -76,10 +74,7 @@ export default {
         return;
       }
       // wait next, prev show hide
-      if (
-        this.isNextPrevShown(this.$data) !==
-        this.isNextPrevShown(this.setNextPrev())
-      ) {
+      if (this.isNextPrevShown(this.$data) !== this.isNextPrevShown(this.setNextPrev())) {
         this.$forceUpdate();
         this.$nextTick(() => {
           this.scrollToActiveTab();
@@ -90,13 +85,13 @@ export default {
       }
     },
     setNextPrev() {
-      const navNode = this.$props.getRef("nav");
-      const navTabsContainer = this.$props.getRef("navTabsContainer");
+      const navNode = this.$props.getRef('nav');
+      const navTabsContainer = this.$props.getRef('navTabsContainer');
       const navNodeWH = this.getScrollWH(navTabsContainer || navNode);
       // Add 1px to fix `offsetWidth` with decimal in Chrome not correct handle
       // https://github.com/ant-design/ant-design/issues/13423
-      const containerWH = this.getOffsetWH(this.$props.getRef("container")) + 1;
-      const navWrapNodeWH = this.getOffsetWH(this.$props.getRef("navWrap"));
+      const containerWH = this.getOffsetWH(this.$props.getRef('container')) + 1;
+      const navWrapNodeWH = this.getOffsetWH(this.$props.getRef('navWrap'));
       let { offset } = this;
       const minOffset = containerWH - navNodeWH;
       let { next, prev } = this;
@@ -126,33 +121,33 @@ export default {
       this.setPrev(prev);
       return {
         next,
-        prev
+        prev,
       };
     },
 
     getOffsetWH(node) {
       const tabBarPosition = this.$props.tabBarPosition;
-      let prop = "offsetWidth";
-      if (tabBarPosition === "left" || tabBarPosition === "right") {
-        prop = "offsetHeight";
+      let prop = 'offsetWidth';
+      if (tabBarPosition === 'left' || tabBarPosition === 'right') {
+        prop = 'offsetHeight';
       }
       return node[prop];
     },
 
     getScrollWH(node) {
       const tabBarPosition = this.tabBarPosition;
-      let prop = "scrollWidth";
-      if (tabBarPosition === "left" || tabBarPosition === "right") {
-        prop = "scrollHeight";
+      let prop = 'scrollWidth';
+      if (tabBarPosition === 'left' || tabBarPosition === 'right') {
+        prop = 'scrollHeight';
       }
       return node[prop];
     },
 
     getOffsetLT(node) {
       const tabBarPosition = this.$props.tabBarPosition;
-      let prop = "left";
-      if (tabBarPosition === "left" || tabBarPosition === "right") {
-        prop = "top";
+      let prop = 'left';
+      if (tabBarPosition === 'left' || tabBarPosition === 'right') {
+        prop = 'top';
       }
       return node.getBoundingClientRect()[prop];
     },
@@ -163,30 +158,30 @@ export default {
         this.offset = target;
         let navOffset = {};
         const tabBarPosition = this.$props.tabBarPosition;
-        const navStyle = this.$props.getRef("nav").style;
+        const navStyle = this.$props.getRef('nav').style;
         const transformSupported = isTransform3dSupported(navStyle);
-        if (tabBarPosition === "left" || tabBarPosition === "right") {
+        if (tabBarPosition === 'left' || tabBarPosition === 'right') {
           if (transformSupported) {
             navOffset = {
-              value: `translate3d(0,${target}px,0)`
+              value: `translate3d(0,${target}px,0)`,
             };
           } else {
             navOffset = {
-              name: "top",
-              value: `${target}px`
+              name: 'top',
+              value: `${target}px`,
             };
           }
         } else if (transformSupported) {
-          if (this.$props.direction === "rtl") {
+          if (this.$props.direction === 'rtl') {
             target = -target;
           }
           navOffset = {
-            value: `translate3d(${target}px,0,0)`
+            value: `translate3d(${target}px,0,0)`,
           };
         } else {
           navOffset = {
-            name: "left",
-            value: `${target}px`
+            name: 'left',
+            value: `${target}px`,
           };
         }
         if (transformSupported) {
@@ -223,19 +218,19 @@ export default {
     },
 
     prevTransitionEnd(e) {
-      if (e.propertyName !== "opacity") {
+      if (e.propertyName !== 'opacity') {
         return;
       }
-      const container = this.$props.getRef("container");
+      const container = this.$props.getRef('container');
       this.scrollToActiveTab({
         target: container,
-        currentTarget: container
+        currentTarget: container,
       });
     },
 
     scrollToActiveTab(e) {
-      const activeTab = this.$props.getRef("activeTab");
-      const navWrap = this.$props.getRef("navWrap");
+      const activeTab = this.$props.getRef('activeTab');
+      const navWrap = this.$props.getRef('navWrap');
       if ((e && e.target !== e.currentTarget) || !activeTab) {
         return;
       }
@@ -262,26 +257,26 @@ export default {
     },
 
     prevClick(e) {
-      this.__emit("prevClick", e);
-      const navWrapNode = this.$props.getRef("navWrap");
+      this.__emit('prevClick', e);
+      const navWrapNode = this.$props.getRef('navWrap');
       const navWrapNodeWH = this.getOffsetWH(navWrapNode);
       const { offset } = this;
       this.setOffset(offset + navWrapNodeWH);
     },
 
     nextClick(e) {
-      this.__emit("nextClick", e);
-      const navWrapNode = this.$props.getRef("navWrap");
+      this.__emit('nextClick', e);
+      const navWrapNode = this.$props.getRef('navWrap');
       const navWrapNodeWH = this.getOffsetWH(navWrapNode);
       const { offset } = this;
       this.setOffset(offset - navWrapNodeWH);
-    }
+    },
   },
   render() {
     const { next, prev } = this;
     const { prefixCls, scrollAnimated, navWrapper } = this.$props;
-    const prevIcon = getComponentFromProp(this, "prevIcon");
-    const nextIcon = getComponentFromProp(this, "nextIcon");
+    const prevIcon = getComponentFromProp(this, 'prevIcon');
+    const nextIcon = getComponentFromProp(this, 'nextIcon');
     const showNextPrev = prev || next;
 
     const prevButton = (
@@ -291,7 +286,7 @@ export default {
         class={{
           [`${prefixCls}-tab-prev`]: 1,
           [`${prefixCls}-tab-btn-disabled`]: !prev,
-          [`${prefixCls}-tab-arrow-show`]: showNextPrev
+          [`${prefixCls}-tab-arrow-show`]: showNextPrev,
         }}
         onTransitionend={this.prevTransitionEnd}
       >
@@ -306,7 +301,7 @@ export default {
         class={{
           [`${prefixCls}-tab-next`]: 1,
           [`${prefixCls}-tab-btn-disabled`]: !next,
-          [`${prefixCls}-tab-arrow-show`]: showNextPrev
+          [`${prefixCls}-tab-arrow-show`]: showNextPrev,
         }}
       >
         {nextIcon || <span class={`${prefixCls}-tab-next-icon`} />}
@@ -316,25 +311,23 @@ export default {
     const navClassName = `${prefixCls}-nav`;
     const navClasses = {
       [navClassName]: true,
-      [scrollAnimated
-        ? `${navClassName}-animated`
-        : `${navClassName}-no-animated`]: true
+      [scrollAnimated ? `${navClassName}-animated` : `${navClassName}-no-animated`]: true,
     };
 
     return (
       <div
         class={{
           [`${prefixCls}-nav-container`]: 1,
-          [`${prefixCls}-nav-container-scrolling`]: showNextPrev
+          [`${prefixCls}-nav-container-scrolling`]: showNextPrev,
         }}
         key="container"
         {...{
           directives: [
             {
-              name: "ant-ref",
-              value: this.saveRef("container")
-            }
-          ]
+              name: 'ant-ref',
+              value: this.saveRef('container'),
+            },
+          ],
         }}
       >
         {prevButton}
@@ -344,10 +337,10 @@ export default {
           {...{
             directives: [
               {
-                name: "ant-ref",
-                value: this.saveRef("navWrap")
-              }
-            ]
+                name: 'ant-ref',
+                value: this.saveRef('navWrap'),
+              },
+            ],
           }}
         >
           <div class={`${prefixCls}-nav-scroll`}>
@@ -356,10 +349,10 @@ export default {
               {...{
                 directives: [
                   {
-                    name: "ant-ref",
-                    value: this.saveRef("nav")
-                  }
-                ]
+                    name: 'ant-ref',
+                    value: this.saveRef('nav'),
+                  },
+                ],
               }}
             >
               {navWrapper(this.$slots.default)}
@@ -368,5 +361,5 @@ export default {
         </div>
       </div>
     );
-  }
+  },
 };

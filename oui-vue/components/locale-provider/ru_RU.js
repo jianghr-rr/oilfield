@@ -1,3 +1,3 @@
-import locale from "../locale/ru_RU";
+import locale from '../locale/ru_RU';
 
 export default locale;

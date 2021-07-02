@@ -1,35 +1,33 @@
-import PropTypes from "../../_util/vue-types";
-import { cloneElement } from "../../_util/vnode";
+import PropTypes from '../../_util/vue-types';
+import { cloneElement } from '../../_util/vnode';
 import {
   getTransformByIndex,
   getActiveIndex,
   getTransformPropValue,
-  getMarginStyle
-} from "./utils";
+  getMarginStyle,
+} from './utils';
 export default {
-  name: "TabContent",
+  name: 'TabContent',
   props: {
     animated: { type: Boolean, default: true },
     animatedWithMargin: { type: Boolean, default: true },
     prefixCls: {
-      default: "ant-tabs",
-      type: String
+      default: 'ant-tabs',
+      type: String,
     },
     activeKey: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
     tabBarPosition: String,
     direction: PropTypes.string,
-    destroyInactiveTabPane: PropTypes.bool
+    destroyInactiveTabPane: PropTypes.bool,
   },
   computed: {
     classes() {
       const { animated, prefixCls } = this;
       return {
         [`${prefixCls}-content`]: true,
-        [animated
-          ? `${prefixCls}-content-animated`
-          : `${prefixCls}-content-no-animated`]: true
+        [animated ? `${prefixCls}-content-animated` : `${prefixCls}-content-no-animated`]: true,
       };
-    }
+    },
   },
   methods: {
     getTabPanes() {
@@ -49,37 +47,28 @@ export default {
             props: {
               active,
               destroyInactiveTabPane: props.destroyInactiveTabPane,
-              rootPrefixCls: props.prefixCls
-            }
-          })
+              rootPrefixCls: props.prefixCls,
+            },
+          }),
         );
       });
 
       return newChildren;
-    }
+    },
   },
   render() {
-    const {
-      activeKey,
-      tabBarPosition,
-      animated,
-      animatedWithMargin,
-      direction,
-      classes
-    } = this;
+    const { activeKey, tabBarPosition, animated, animatedWithMargin, direction, classes } = this;
     let style = {};
     if (animated && this.$slots.default) {
       const activeIndex = getActiveIndex(this.$slots.default, activeKey);
       if (activeIndex !== -1) {
         const animatedStyle = animatedWithMargin
           ? getMarginStyle(activeIndex, tabBarPosition)
-          : getTransformPropValue(
-              getTransformByIndex(activeIndex, tabBarPosition, direction)
-            );
+          : getTransformPropValue(getTransformByIndex(activeIndex, tabBarPosition, direction));
         style = animatedStyle;
       } else {
         style = {
-          display: "none"
+          display: 'none',
         };
       }
     }
@@ -88,5 +77,5 @@ export default {
         {this.getTabPanes()}
       </div>
     );
-  }
+  },
 };

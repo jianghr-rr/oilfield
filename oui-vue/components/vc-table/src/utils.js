@@ -3,26 +3,26 @@ let scrollbarHorizontalSize;
 
 // Measure scrollbar width for padding body during modal show/hide
 const scrollbarMeasure = {
-  position: "absolute",
-  top: "-9999px",
-  width: "50px",
-  height: "50px"
+  position: 'absolute',
+  top: '-9999px',
+  width: '50px',
+  height: '50px',
 };
 
-export const INTERNAL_COL_DEFINE = "RC_TABLE_INTERNAL_COL_DEFINE";
+export const INTERNAL_COL_DEFINE = 'RC_TABLE_INTERNAL_COL_DEFINE';
 
-export function measureScrollbar({ direction = "vertical", prefixCls }) {
-  if (typeof document === "undefined" || typeof window === "undefined") {
+export function measureScrollbar({ direction = 'vertical', prefixCls }) {
+  if (typeof document === 'undefined' || typeof window === 'undefined') {
     return 0;
   }
-  const isVertical = direction === "vertical";
+  const isVertical = direction === 'vertical';
   if (isVertical && scrollbarVerticalSize) {
     return scrollbarVerticalSize;
   }
   if (!isVertical && scrollbarHorizontalSize) {
     return scrollbarHorizontalSize;
   }
-  const scrollDiv = document.createElement("div");
+  const scrollDiv = document.createElement('div');
   Object.keys(scrollbarMeasure).forEach(scrollProp => {
     scrollDiv.style[scrollProp] = scrollbarMeasure[scrollProp];
   });
@@ -31,9 +31,9 @@ export function measureScrollbar({ direction = "vertical", prefixCls }) {
 
   // Append related overflow style
   if (isVertical) {
-    scrollDiv.style.overflowY = "scroll";
+    scrollDiv.style.overflowY = 'scroll';
   } else {
-    scrollDiv.style.overflowX = "scroll";
+    scrollDiv.style.overflowX = 'scroll';
   }
   document.body.appendChild(scrollDiv);
   let size = 0;

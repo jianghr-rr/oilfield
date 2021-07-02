@@ -1,43 +1,43 @@
-import Pagination from "../vc-pagination/locale/nb_NO";
-import DatePicker from "../date-picker/locale/nb_NO";
-import TimePicker from "../time-picker/locale/nb_NO";
-import Calendar from "../calendar/locale/nb_NO";
+import Pagination from '../vc-pagination/locale/nb_NO';
+import DatePicker from '../date-picker/locale/nb_NO';
+import TimePicker from '../time-picker/locale/nb_NO';
+import Calendar from '../calendar/locale/nb_NO';
 
 export default {
-  locale: "nb",
+  locale: 'nb',
   DatePicker,
   TimePicker,
   Calendar,
   Pagination,
   Table: {
-    filterTitle: "Filtermeny",
-    filterConfirm: "OK",
-    filterReset: "Nullstill",
-    selectAll: "Velg alle",
-    selectInvert: "Inverter valg"
+    filterTitle: 'Filtermeny',
+    filterConfirm: 'OK',
+    filterReset: 'Nullstill',
+    selectAll: 'Velg alle',
+    selectInvert: 'Inverter valg',
   },
   Modal: {
-    okText: "OK",
-    cancelText: "Avbryt",
-    justOkText: "OK"
+    okText: 'OK',
+    cancelText: 'Avbryt',
+    justOkText: 'OK',
   },
   Popconfirm: {
-    okText: "OK",
-    cancelText: "Avbryt"
+    okText: 'OK',
+    cancelText: 'Avbryt',
   },
   Transfer: {
-    searchPlaceholder: "Søk her",
-    itemUnit: "element",
-    itemsUnit: "elementer"
+    searchPlaceholder: 'Søk her',
+    itemUnit: 'element',
+    itemsUnit: 'elementer',
   },
   Upload: {
-    uploading: "Laster opp...",
-    removeFile: "Fjern fil",
-    uploadError: "Feil ved opplastning",
-    previewFile: "Forhåndsvisning",
-    downloadFile: "Last ned fil"
+    uploading: 'Laster opp...',
+    removeFile: 'Fjern fil',
+    uploadError: 'Feil ved opplastning',
+    previewFile: 'Forhåndsvisning',
+    downloadFile: 'Last ned fil',
   },
   Empty: {
-    description: "Ingen data"
-  }
+    description: 'Ingen data',
+  },
 };

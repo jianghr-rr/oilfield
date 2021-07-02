@@ -5,16 +5,16 @@ export function dataToArray(vars) {
   return [vars];
 }
 const transitionEndObject = {
-  transition: "transitionend",
-  WebkitTransition: "webkitTransitionEnd",
-  MozTransition: "transitionend",
-  OTransition: "oTransitionEnd otransitionend"
+  transition: 'transitionend',
+  WebkitTransition: 'webkitTransitionEnd',
+  MozTransition: 'transitionend',
+  OTransition: 'oTransitionEnd otransitionend',
 };
 export const transitionStr = Object.keys(transitionEndObject).filter(key => {
-  if (typeof document === "undefined") {
+  if (typeof document === 'undefined') {
     return false;
   }
-  const html = document.getElementsByTagName("html")[0];
+  const html = document.getElementsByTagName('html')[0];
   return key in (html ? html.style : {});
 })[0];
 export const transitionEnd = transitionEndObject[transitionStr];
@@ -37,7 +37,7 @@ export function removeEventListener(target, eventType, callback, options) {
 
 export function transformArguments(arg, cb) {
   let result;
-  if (typeof arg === "function") {
+  if (typeof arg === 'function') {
     result = arg(cb);
   } else {
     result = arg;
@@ -56,17 +56,13 @@ export const isNumeric = value => {
 };
 
 export const windowIsUndefined = !(
-  typeof window !== "undefined" &&
+  typeof window !== 'undefined' &&
   window.document &&
   window.document.createElement
 );
 
 export const getTouchParentScroll = (root, currentTarget, differX, differY) => {
-  if (
-    !currentTarget ||
-    currentTarget === document ||
-    currentTarget instanceof Document
-  ) {
+  if (!currentTarget || currentTarget === document || currentTarget instanceof Document) {
     return false;
   }
   // root 为 drawer-content 设定了 overflow, 判断为 root 的 parent 时结束滚动；
@@ -74,17 +70,15 @@ export const getTouchParentScroll = (root, currentTarget, differX, differY) => {
     return true;
   }
 
-  const isY =
-    Math.max(Math.abs(differX), Math.abs(differY)) === Math.abs(differY);
-  const isX =
-    Math.max(Math.abs(differX), Math.abs(differY)) === Math.abs(differX);
+  const isY = Math.max(Math.abs(differX), Math.abs(differY)) === Math.abs(differY);
+  const isX = Math.max(Math.abs(differX), Math.abs(differY)) === Math.abs(differX);
 
   const scrollY = currentTarget.scrollHeight - currentTarget.clientHeight;
   const scrollX = currentTarget.scrollWidth - currentTarget.clientWidth;
 
   const style = document.defaultView.getComputedStyle(currentTarget);
-  const overflowY = style.overflowY === "auto" || style.overflowY === "scroll";
-  const overflowX = style.overflowX === "auto" || style.overflowX === "scroll";
+  const overflowY = style.overflowY === 'auto' || style.overflowY === 'scroll';
+  const overflowX = style.overflowX === 'auto' || style.overflowX === 'scroll';
 
   const y = scrollY && overflowY;
   const x = scrollX && overflowX;
@@ -101,12 +95,7 @@ export const getTouchParentScroll = (root, currentTarget, differX, differY) => {
           ((currentTarget.scrollLeft >= scrollX && scrollX < 0) ||
             (currentTarget.scrollLeft <= 0 && scrollX > 0)))))
   ) {
-    return getTouchParentScroll(
-      root,
-      currentTarget.parentNode,
-      differX,
-      differY
-    );
+    return getTouchParentScroll(root, currentTarget.parentNode, differX, differY);
   }
   return false;
 };

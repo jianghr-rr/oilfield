@@ -1,12 +1,12 @@
-import PropTypes from "../../_util/vue-types";
-import BaseMixin from "../../_util/BaseMixin";
-import addEventListener from "../../vc-util/Dom/addEventListener";
-import { initDefaultProps } from "../../_util/props-util";
-import warning from "../../_util/warning";
-import debounce from "lodash/debounce";
-import throttle from "lodash/throttle";
-import parentScroll from "./utils/parentScroll";
-import inViewport from "./utils/inViewport";
+import PropTypes from '../../_util/vue-types';
+import BaseMixin from '../../_util/BaseMixin';
+import addEventListener from '../../vc-util/Dom/addEventListener';
+import { initDefaultProps } from '../../_util/props-util';
+import warning from '../../_util/warning';
+import debounce from 'lodash/debounce';
+import throttle from 'lodash/throttle';
+import parentScroll from './utils/parentScroll';
+import inViewport from './utils/inViewport';
 
 const lazyLoadProps = {
   debounce: PropTypes.bool,
@@ -22,14 +22,14 @@ const lazyLoadProps = {
   threshold: PropTypes.number,
   throttle: PropTypes.number,
   width: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
-  _propsSymbol: PropTypes.any
+  _propsSymbol: PropTypes.any,
 };
 
 export default {
-  name: "LazyLoad",
+  name: 'LazyLoad',
   mixins: [BaseMixin],
   props: initDefaultProps(lazyLoadProps, {
-    elementType: "div",
+    elementType: 'div',
     debounce: true,
     offset: 0,
     offsetBottom: 0,
@@ -38,7 +38,7 @@ export default {
     offsetRight: 0,
     offsetTop: 0,
     offsetVertical: 0,
-    throttle: 250
+    throttle: 250,
   }),
   data() {
     if (this.throttle > 0) {
@@ -49,7 +49,7 @@ export default {
       }
     }
     return {
-      visible: false
+      visible: false,
     };
   },
   watch: {
@@ -57,7 +57,7 @@ export default {
       if (!this.visible) {
         this.lazyLoadHandler();
       }
-    }
+    },
   },
   mounted() {
     this.$nextTick(() => {
@@ -69,16 +69,8 @@ export default {
       if (this.lazyLoadHandler.flush) {
         this.lazyLoadHandler.flush();
       }
-      this.resizeHander = addEventListener(
-        window,
-        "resize",
-        this.lazyLoadHandler
-      );
-      this.scrollHander = addEventListener(
-        eventNode,
-        "scroll",
-        this.lazyLoadHandler
-      );
+      this.resizeHander = addEventListener(window, 'resize', this.lazyLoadHandler);
+      this.scrollHander = addEventListener(eventNode, 'scroll', this.lazyLoadHandler);
     });
   },
   beforeDestroy() {
@@ -102,7 +94,7 @@ export default {
         offsetBottom,
         offsetLeft,
         offsetRight,
-        threshold
+        threshold,
       } = this.$props;
 
       const _offsetAll = threshold || offset;
@@ -113,7 +105,7 @@ export default {
         top: offsetTop || _offsetVertical,
         bottom: offsetBottom || _offsetVertical,
         left: offsetLeft || _offsetHorizontal,
-        right: offsetRight || _offsetHorizontal
+        right: offsetRight || _offsetHorizontal,
       };
     },
     lazyLoadHandler() {
@@ -126,7 +118,7 @@ export default {
 
       if (inViewport(node, eventNode, offset)) {
         this.setState({ visible: true }, () => {
-          this.__emit("contentVisible");
+          this.__emit('contentVisible');
         });
         this.detachListeners();
       }
@@ -134,33 +126,33 @@ export default {
     detachListeners() {
       this.resizeHander && this.resizeHander.remove();
       this.scrollHander && this.scrollHander.remove();
-    }
+    },
   },
   render(createElement) {
     const children = this.$slots.default;
     if (children.length !== 1) {
-      warning(false, "lazyLoad组件只能包含一个子元素");
+      warning(false, 'lazyLoad组件只能包含一个子元素');
       return null;
     }
     const { height, width, elementType } = this.$props;
     const { visible } = this;
 
     const elStyles = {
-      height: typeof height === "number" ? height + "px" : height,
-      width: typeof width === "number" ? width + "px" : width
+      height: typeof height === 'number' ? height + 'px' : height,
+      width: typeof width === 'number' ? width + 'px' : width,
     };
     const elClasses = {
       LazyLoad: true,
-      "is-visible": visible
+      'is-visible': visible,
     };
 
     return createElement(
       elementType,
       {
         class: elClasses,
-        style: elStyles
+        style: elStyles,
       },
-      [visible ? children[0] : null]
+      [visible ? children[0] : null],
     );
-  }
+  },
 };

@@ -1,54 +1,54 @@
-import { getComponentFromProp, getListeners } from "../_util/props-util";
-import PropTypes from "../_util/vue-types";
-import Trigger from "../vc-trigger";
-import Menus from "./Menus";
-import KeyCode from "../_util/KeyCode";
-import arrayTreeFilter from "array-tree-filter";
-import shallowEqualArrays from "shallow-equal/arrays";
-import { hasProp, getEvents, getSlot } from "../_util/props-util";
-import BaseMixin from "../_util/BaseMixin";
-import { cloneElement } from "../_util/vnode";
+import { getComponentFromProp, getListeners } from '../_util/props-util';
+import PropTypes from '../_util/vue-types';
+import Trigger from '../vc-trigger';
+import Menus from './Menus';
+import KeyCode from '../_util/KeyCode';
+import arrayTreeFilter from 'array-tree-filter';
+import shallowEqualArrays from 'shallow-equal/arrays';
+import { hasProp, getEvents, getSlot } from '../_util/props-util';
+import BaseMixin from '../_util/BaseMixin';
+import { cloneElement } from '../_util/vnode';
 
 const BUILT_IN_PLACEMENTS = {
   bottomLeft: {
-    points: ["tl", "bl"],
+    points: ['tl', 'bl'],
     offset: [0, 4],
     overflow: {
       adjustX: 1,
-      adjustY: 1
-    }
+      adjustY: 1,
+    },
   },
   topLeft: {
-    points: ["bl", "tl"],
+    points: ['bl', 'tl'],
     offset: [0, -4],
     overflow: {
       adjustX: 1,
-      adjustY: 1
-    }
+      adjustY: 1,
+    },
   },
   bottomRight: {
-    points: ["tr", "br"],
+    points: ['tr', 'br'],
     offset: [0, 4],
     overflow: {
       adjustX: 1,
-      adjustY: 1
-    }
+      adjustY: 1,
+    },
   },
   topRight: {
-    points: ["br", "tr"],
+    points: ['br', 'tr'],
     offset: [0, -4],
     overflow: {
       adjustX: 1,
-      adjustY: 1
-    }
-  }
+      adjustY: 1,
+    },
+  },
 };
 
 export default {
   mixins: [BaseMixin],
   model: {
-    prop: "value",
-    event: "change"
+    prop: 'value',
+    event: 'change',
   },
   props: {
     value: PropTypes.array,
@@ -58,32 +58,32 @@ export default {
     // onPopupVisibleChange: PropTypes.func,
     popupVisible: PropTypes.bool,
     disabled: PropTypes.bool.def(false),
-    transitionName: PropTypes.string.def(""),
-    popupClassName: PropTypes.string.def(""),
+    transitionName: PropTypes.string.def(''),
+    popupClassName: PropTypes.string.def(''),
     popupStyle: PropTypes.object.def(() => ({})),
-    popupPlacement: PropTypes.string.def("bottomLeft"),
-    prefixCls: PropTypes.string.def("rc-cascader"),
+    popupPlacement: PropTypes.string.def('bottomLeft'),
+    prefixCls: PropTypes.string.def('rc-cascader'),
     dropdownMenuColumnStyle: PropTypes.object,
     builtinPlacements: PropTypes.object.def(BUILT_IN_PLACEMENTS),
     loadData: PropTypes.func,
     changeOnSelect: PropTypes.bool,
     // onKeyDown: PropTypes.func,
-    expandTrigger: PropTypes.string.def("click"),
+    expandTrigger: PropTypes.string.def('click'),
     fieldNames: PropTypes.object.def(() => ({
-      label: "label",
-      value: "value",
-      children: "children"
+      label: 'label',
+      value: 'value',
+      children: 'children',
     })),
     expandIcon: PropTypes.any,
     loadingIcon: PropTypes.any,
-    getPopupContainer: PropTypes.func
+    getPopupContainer: PropTypes.func,
   },
   data() {
     let initialValue = [];
     const { value, defaultValue, popupVisible } = this;
-    if (hasProp(this, "value")) {
+    if (hasProp(this, 'value')) {
       initialValue = value || [];
-    } else if (hasProp(this, "defaultValue")) {
+    } else if (hasProp(this, 'defaultValue')) {
       initialValue = defaultValue || [];
     }
     // warning(!('filedNames' in props),
@@ -92,18 +92,18 @@ export default {
     return {
       sPopupVisible: popupVisible,
       sActiveValue: initialValue,
-      sValue: initialValue
+      sValue: initialValue,
     };
   },
   watch: {
     value(val, oldValue) {
       if (!shallowEqualArrays(val, oldValue)) {
         const newValues = {
-          sValue: val || []
+          sValue: val || [],
         };
         // allow activeValue diff from value
         // https://github.com/ant-design/ant-design/issues/2767
-        if (!hasProp(this, "loadData")) {
+        if (!hasProp(this, 'loadData')) {
           newValues.sActiveValue = val || [];
         }
         this.setState(newValues);
@@ -111,9 +111,9 @@ export default {
     },
     popupVisible(val) {
       this.setState({
-        sPopupVisible: val
+        sPopupVisible: val,
       });
-    }
+    },
   },
   methods: {
     getPopupDOMNode() {
@@ -130,39 +130,39 @@ export default {
       const { options = [], sActiveValue = [] } = this;
       const result = arrayTreeFilter(
         options,
-        (o, level) => o[this.getFieldName("value")] === sActiveValue[level],
-        { childrenKeyName: this.getFieldName("children") }
+        (o, level) => o[this.getFieldName('value')] === sActiveValue[level],
+        { childrenKeyName: this.getFieldName('children') },
       );
       if (result[result.length - 2]) {
-        return result[result.length - 2][this.getFieldName("children")];
+        return result[result.length - 2][this.getFieldName('children')];
       }
       return [...options].filter(o => !o.disabled);
     },
     getActiveOptions(activeValue) {
       return arrayTreeFilter(
         this.options || [],
-        (o, level) => o[this.getFieldName("value")] === activeValue[level],
-        { childrenKeyName: this.getFieldName("children") }
+        (o, level) => o[this.getFieldName('value')] === activeValue[level],
+        { childrenKeyName: this.getFieldName('children') },
       );
     },
     setPopupVisible(popupVisible) {
-      if (!hasProp(this, "popupVisible")) {
+      if (!hasProp(this, 'popupVisible')) {
         this.setState({ sPopupVisible: popupVisible });
       }
       // sync activeValue with value when panel open
       if (popupVisible && !this.sPopupVisible) {
         this.setState({
-          sActiveValue: this.sValue
+          sActiveValue: this.sValue,
         });
       }
-      this.__emit("popupVisibleChange", popupVisible);
+      this.__emit('popupVisibleChange', popupVisible);
     },
     handleChange(options, setProps, e) {
-      if (e.type !== "keydown" || e.keyCode === KeyCode.ENTER) {
+      if (e.type !== 'keydown' || e.keyCode === KeyCode.ENTER) {
         this.__emit(
-          "change",
-          options.map(o => o[this.getFieldName("value")]),
-          options
+          'change',
+          options.map(o => o[this.getFieldName('value')]),
+          options,
         );
         this.setPopupVisible(setProps.visible);
       }
@@ -182,11 +182,11 @@ export default {
       }
       let { sActiveValue } = this;
       sActiveValue = sActiveValue.slice(0, menuIndex + 1);
-      sActiveValue[menuIndex] = targetOption[this.getFieldName("value")];
+      sActiveValue[menuIndex] = targetOption[this.getFieldName('value')];
       const activeOptions = this.getActiveOptions(sActiveValue);
       if (
         targetOption.isLeaf === false &&
-        !targetOption[this.getFieldName("children")] &&
+        !targetOption[this.getFieldName('children')] &&
         loadData
       ) {
         if (changeOnSelect) {
@@ -198,18 +198,15 @@ export default {
       }
       const newState = {};
       if (
-        !targetOption[this.getFieldName("children")] ||
-        !targetOption[this.getFieldName("children")].length
+        !targetOption[this.getFieldName('children')] ||
+        !targetOption[this.getFieldName('children')].length
       ) {
         this.handleChange(activeOptions, { visible: false }, e);
         // set value to activeValue when select leaf option
         newState.sValue = sActiveValue;
         // add e.type judgement to prevent `onChange` being triggered by mouseEnter
-      } else if (
-        changeOnSelect &&
-        (e.type === "click" || e.type === "keydown")
-      ) {
-        if (expandTrigger === "hover") {
+      } else if (changeOnSelect && (e.type === 'click' || e.type === 'keydown')) {
+        if (expandTrigger === 'hover') {
           this.handleChange(activeOptions, { visible: false }, e);
         } else {
           this.handleChange(activeOptions, { visible: true }, e);
@@ -219,10 +216,7 @@ export default {
       }
       newState.sActiveValue = sActiveValue;
       //  not change the value by keyboard
-      if (
-        hasProp(this, "value") ||
-        (e.type === "keydown" && e.keyCode !== KeyCode.ENTER)
-      ) {
+      if (hasProp(this, 'value') || (e.type === 'keydown' && e.keyCode !== KeyCode.ENTER)) {
         delete newState.sValue;
       }
       this.setState(newState);
@@ -246,11 +240,10 @@ export default {
         }
       }
       const activeValue = [...this.sActiveValue];
-      const currentLevel =
-        activeValue.length - 1 < 0 ? 0 : activeValue.length - 1;
+      const currentLevel = activeValue.length - 1 < 0 ? 0 : activeValue.length - 1;
       const currentOptions = this.getCurrentLevelOptions();
       const currentIndex = currentOptions
-        .map(o => o[this.getFieldName("value")])
+        .map(o => o[this.getFieldName('value')])
         .indexOf(activeValue[currentLevel]);
       if (
         e.keyCode !== KeyCode.DOWN &&
@@ -291,24 +284,20 @@ export default {
         } else {
           nextIndex = 0;
         }
-        activeValue[currentLevel] =
-          currentOptions[nextIndex][this.getFieldName("value")];
-      } else if (
-        e.keyCode === KeyCode.LEFT ||
-        e.keyCode === KeyCode.BACKSPACE
-      ) {
+        activeValue[currentLevel] = currentOptions[nextIndex][this.getFieldName('value')];
+      } else if (e.keyCode === KeyCode.LEFT || e.keyCode === KeyCode.BACKSPACE) {
         e.preventDefault();
         activeValue.splice(activeValue.length - 1, 1);
       } else if (e.keyCode === KeyCode.RIGHT) {
         e.preventDefault();
         if (
           currentOptions[currentIndex] &&
-          currentOptions[currentIndex][this.getFieldName("children")]
+          currentOptions[currentIndex][this.getFieldName('children')]
         ) {
           activeValue.push(
-            currentOptions[currentIndex][this.getFieldName("children")][0][
-              this.getFieldName("value")
-            ]
+            currentOptions[currentIndex][this.getFieldName('children')][0][
+              this.getFieldName('value')
+            ],
           );
         }
       } else if (e.keyCode === KeyCode.ESC || e.keyCode === KeyCode.TAB) {
@@ -321,8 +310,8 @@ export default {
       const activeOptions = this.getActiveOptions(activeValue);
       const targetOption = activeOptions[activeOptions.length - 1];
       this.handleMenuSelect(targetOption, activeOptions.length - 1, e);
-      this.__emit("keydown", e);
-    }
+      this.__emit('keydown', e);
+    },
   },
 
   render() {
@@ -332,7 +321,7 @@ export default {
       handleMenuSelect,
       sPopupVisible,
       handlePopupVisibleChange,
-      handleKeyDown
+      handleKeyDown,
     } = this;
     const listeners = getListeners(this);
     const {
@@ -347,10 +336,10 @@ export default {
     } = $props;
     // Did not show popup when there is no options
     let menus = <div />;
-    let emptyMenuClassName = "";
+    let emptyMenuClassName = '';
     if (options && options.length > 0) {
-      const loadingIcon = getComponentFromProp(this, "loadingIcon");
-      const expandIcon = getComponentFromProp(this, "expandIcon") || ">";
+      const loadingIcon = getComponentFromProp(this, 'loadingIcon');
+      const expandIcon = getComponentFromProp(this, 'expandIcon') || '>';
       const menusProps = {
         props: {
           ...$props,
@@ -359,13 +348,13 @@ export default {
           activeValue: sActiveValue,
           visible: sPopupVisible,
           loadingIcon,
-          expandIcon
+          expandIcon,
         },
         on: {
           ...listeners,
           select: handleMenuSelect,
-          itemDoubleClick: this.handleItemDoubleClick
-        }
+          itemDoubleClick: this.handleItemDoubleClick,
+        },
       };
       menus = <Menus {...menusProps} />;
     } else {
@@ -378,31 +367,31 @@ export default {
         popupPlacement,
         builtinPlacements,
         popupTransitionName: transitionName,
-        action: disabled ? [] : ["click"],
+        action: disabled ? [] : ['click'],
         popupVisible: disabled ? false : sPopupVisible,
         prefixCls: `${prefixCls}-menus`,
-        popupClassName: popupClassName + emptyMenuClassName
+        popupClassName: popupClassName + emptyMenuClassName,
       },
       on: {
         ...listeners,
-        popupVisibleChange: handlePopupVisibleChange
+        popupVisibleChange: handlePopupVisibleChange,
       },
-      ref: "trigger"
+      ref: 'trigger',
     };
-    const children = getSlot(this, "default")[0];
+    const children = getSlot(this, 'default')[0];
     return (
       <Trigger {...triggerProps}>
         {children &&
           cloneElement(children, {
             on: {
-              keydown: handleKeyDown
+              keydown: handleKeyDown,
             },
             attrs: {
-              tabIndex: disabled ? undefined : 0
-            }
+              tabIndex: disabled ? undefined : 0,
+            },
           })}
         <template slot="popup">{menus}</template>
       </Trigger>
     );
-  }
+  },
 };

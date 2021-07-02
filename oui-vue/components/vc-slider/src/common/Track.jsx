@@ -7,22 +7,22 @@ const Track = {
 
     const positonStyle = vertical
       ? {
-          [reverse ? "top" : "bottom"]: `${offset}%`,
-          [reverse ? "bottom" : "top"]: "auto",
-          height: `${length}%`
+          [reverse ? 'top' : 'bottom']: `${offset}%`,
+          [reverse ? 'bottom' : 'top']: 'auto',
+          height: `${length}%`,
         }
       : {
-          [reverse ? "right" : "left"]: `${offset}%`,
-          [reverse ? "left" : "right"]: "auto",
-          width: `${length}%`
+          [reverse ? 'right' : 'left']: `${offset}%`,
+          [reverse ? 'left' : 'right']: 'auto',
+          width: `${length}%`,
         };
 
     const elStyle = {
       ...style,
-      ...positonStyle
+      ...positonStyle,
     };
     return included ? <div class={className} style={elStyle} /> : null;
-  }
+  },
 };
 
 export default Track;

@@ -1,10 +1,10 @@
-import classNames from "classnames";
-import PropTypes from "../../_util/vue-types";
-import BaseMixin from "../../_util/BaseMixin";
-import { initDefaultProps, hasProp } from "../../_util/props-util";
-import Track from "./common/Track";
-import createSlider from "./common/createSlider";
-import * as utils from "./utils";
+import classNames from 'classnames';
+import PropTypes from '../../_util/vue-types';
+import BaseMixin from '../../_util/BaseMixin';
+import { initDefaultProps, hasProp } from '../../_util/props-util';
+import Track from './common/Track';
+import createSlider from './common/createSlider';
+import * as utils from './utils';
 
 const trimAlignValue = ({ value, handle, bounds, props }) => {
   const { allowCross, pushable } = props;
@@ -15,10 +15,7 @@ const trimAlignValue = ({ value, handle, bounds, props }) => {
     if (handle > 0 && valInRange <= bounds[handle - 1] + thershold) {
       valNotConflict = bounds[handle - 1] + thershold;
     }
-    if (
-      handle < bounds.length - 1 &&
-      valInRange >= bounds[handle + 1] - thershold
-    ) {
+    if (handle < bounds.length - 1 && valInRange >= bounds[handle + 1] - thershold) {
       valNotConflict = bounds[handle + 1] - thershold;
     }
   }
@@ -37,24 +34,22 @@ const rangeProps = {
   prefixCls: PropTypes.string,
   min: PropTypes.number,
   max: PropTypes.number,
-  autoFocus: PropTypes.bool
+  autoFocus: PropTypes.bool,
 };
 const Range = {
-  name: "Range",
-  displayName: "Range",
+  name: 'Range',
+  displayName: 'Range',
   mixins: [BaseMixin],
   props: initDefaultProps(rangeProps, {
     count: 1,
     allowCross: true,
     pushable: false,
-    tabIndex: []
+    tabIndex: [],
   }),
   data() {
     const { count, min, max } = this;
     const initialValue = Array(...Array(count + 1)).map(() => min);
-    const defaultValue = hasProp(this, "defaultValue")
-      ? this.defaultValue
-      : initialValue;
+    const defaultValue = hasProp(this, 'defaultValue') ? this.defaultValue : initialValue;
     let { value } = this;
     if (value === undefined) {
       value = defaultValue;
@@ -63,14 +58,14 @@ const Range = {
       trimAlignValue({
         value: v,
         handle: i,
-        props: this.$props
-      })
+        props: this.$props,
+      }),
     );
     const recent = bounds[0] === max ? 0 : bounds.length - 1;
     return {
       sHandle: null,
       recent,
-      bounds
+      bounds,
     };
   },
   watch: {
@@ -79,7 +74,7 @@ const Range = {
         const { bounds } = this;
         this.setChangeValue(val || bounds);
       },
-      deep: true
+      deep: true,
     },
     min() {
       const { value } = this;
@@ -88,7 +83,7 @@ const Range = {
     max() {
       const { value } = this;
       this.setChangeValue(value || this.bounds);
-    }
+    },
   },
   methods: {
     setChangeValue(value) {
@@ -98,13 +93,10 @@ const Range = {
           value: v,
           handle: i,
           bounds,
-          props: this.$props
-        })
+          props: this.$props,
+        }),
       );
-      if (
-        nextBounds.length === bounds.length &&
-        nextBounds.every((v, i) => v === bounds[i])
-      )
+      if (nextBounds.length === bounds.length && nextBounds.every((v, i) => v === bounds[i]))
         return;
 
       this.setState({ bounds: nextBounds });
@@ -113,17 +105,17 @@ const Range = {
         const newValues = value.map(v => {
           return utils.ensureValueInRange(v, this.$props);
         });
-        this.$emit("change", newValues);
+        this.$emit('change', newValues);
       }
     },
     onChange(state) {
-      const isNotControlled = !hasProp(this, "value");
+      const isNotControlled = !hasProp(this, 'value');
       if (isNotControlled) {
         this.setState(state);
       } else {
         const controlledState = {};
 
-        ["sHandle", "recent"].forEach(item => {
+        ['sHandle', 'recent'].forEach(item => {
           if (state[item] !== undefined) {
             controlledState[item] = state[item];
           }
@@ -136,11 +128,11 @@ const Range = {
 
       const data = { ...this.$data, ...state };
       const changedValue = data.bounds;
-      this.$emit("change", changedValue);
+      this.$emit('change', changedValue);
     },
     onStart(position) {
       const { bounds } = this;
-      this.$emit("beforeChange", bounds);
+      this.$emit('beforeChange', bounds);
 
       const value = this.calcValueByPos(position);
       this.startValue = value;
@@ -151,7 +143,7 @@ const Range = {
 
       this.setState({
         sHandle: this.prevMovedHandleIndex,
-        recent: this.prevMovedHandleIndex
+        recent: this.prevMovedHandleIndex,
       });
 
       const prevValue = bounds[this.prevMovedHandleIndex];
@@ -164,7 +156,7 @@ const Range = {
       const { sHandle } = this;
       this.removeDocumentEvents();
       if (sHandle !== null || force) {
-        this.$emit("afterChange", this.bounds);
+        this.$emit('afterChange', this.bounds);
       }
       this.setState({ sHandle: null });
     },
@@ -190,7 +182,7 @@ const Range = {
           value: mutatedValue,
           handle: sHandle,
           bounds,
-          props: this.$props
+          props: this.$props,
         });
         if (value === oldValue) return;
         const isFromKeyboardEvent = true;
@@ -205,10 +197,7 @@ const Range = {
           closestBound = i;
         }
       }
-      if (
-        Math.abs(bounds[closestBound + 1] - value) <
-        Math.abs(bounds[closestBound] - value)
-      ) {
+      if (Math.abs(bounds[closestBound + 1] - value) < Math.abs(bounds[closestBound] - value)) {
         closestBound += 1;
       }
       return closestBound;
@@ -216,16 +205,14 @@ const Range = {
     getBoundNeedMoving(value, closestBound) {
       const { bounds, recent } = this;
       let boundNeedMoving = closestBound;
-      const isAtTheSamePoint =
-        bounds[closestBound + 1] === bounds[closestBound];
+      const isAtTheSamePoint = bounds[closestBound + 1] === bounds[closestBound];
 
       if (isAtTheSamePoint && bounds[recent] === bounds[closestBound]) {
         boundNeedMoving = recent;
       }
 
       if (isAtTheSamePoint && value !== bounds[closestBound + 1]) {
-        boundNeedMoving =
-          value < bounds[closestBound + 1] ? closestBound : closestBound + 1;
+        boundNeedMoving = value < bounds[closestBound + 1] ? closestBound : closestBound + 1;
       }
       return boundNeedMoving;
     },
@@ -272,14 +259,14 @@ const Range = {
       this.onChange({
         recent: nextHandle,
         sHandle: nextHandle,
-        bounds: nextBounds
+        bounds: nextBounds,
       });
       if (isFromKeyboardEvent) {
         // known problem: because setState is async,
         // so trigger focus will invoke handler's onEnd and another handler's onStart too early,
         // cause onBeforeChange and onAfterChange receive wrong value.
         // here use setState callback to hack，but not elegant
-        this.$emit("afterChange", nextBounds);
+        this.$emit('afterChange', nextBounds);
         this.setState({}, () => {
           this.handlesRefs[nextHandle].focus();
         });
@@ -306,9 +293,7 @@ const Range = {
 
       const nextHandle = handle + direction;
       const diffToNext = direction * (bounds[nextHandle] - value);
-      if (
-        !this.pushHandle(bounds, nextHandle, direction, threshold - diffToNext)
-      ) {
+      if (!this.pushHandle(bounds, nextHandle, direction, threshold - diffToNext)) {
         // revert to original value if pushing is impossible
         bounds[handle] = bounds[nextHandle] - direction * threshold;
       }
@@ -340,9 +325,7 @@ const Range = {
       const nextValue = points[nextPointIndex];
       const { pushable: threshold } = this;
       const diffToNext = direction * (bounds[nextHandle] - nextValue);
-      if (
-        !this.pushHandle(bounds, nextHandle, direction, threshold - diffToNext)
-      ) {
+      if (!this.pushHandle(bounds, nextHandle, direction, threshold - diffToNext)) {
         // couldn't push next handle, so we won't push this one either
         return false;
       }
@@ -356,7 +339,7 @@ const Range = {
         value,
         handle: sHandle,
         bounds,
-        props: this.$props
+        props: this.$props,
       });
     },
     ensureValueNotConflict(handle, val, { allowCross, pushable: thershold }) {
@@ -369,30 +352,19 @@ const Range = {
         if (handle > 0 && val <= bounds[handle - 1] + thershold) {
           return bounds[handle - 1] + thershold;
         }
-        if (
-          handle < bounds.length - 1 &&
-          val >= bounds[handle + 1] - thershold
-        ) {
+        if (handle < bounds.length - 1 && val >= bounds[handle + 1] - thershold) {
           return bounds[handle + 1] - thershold;
         }
       }
       /* eslint-enable eqeqeq */
       return val;
     },
-    getTrack({
-      bounds,
-      prefixCls,
-      reverse,
-      vertical,
-      included,
-      offsets,
-      trackStyle
-    }) {
+    getTrack({ bounds, prefixCls, reverse, vertical, included, offsets, trackStyle }) {
       return bounds.slice(0, -1).map((_, index) => {
         const i = index + 1;
         const trackClassName = classNames({
           [`${prefixCls}-track`]: true,
-          [`${prefixCls}-track-${i}`]: true
+          [`${prefixCls}-track-${i}`]: true,
         });
         return (
           <Track
@@ -423,7 +395,7 @@ const Range = {
         defaultHandle,
         trackStyle,
         handleStyle,
-        tabIndex
+        tabIndex,
       } = this;
       const handleGenerator = handle || defaultHandle;
       const offsets = bounds.map(v => this.calcOffset(v));
@@ -437,7 +409,7 @@ const Range = {
         return handleGenerator({
           className: classNames({
             [handleClassName]: true,
-            [`${handleClassName}-${i + 1}`]: true
+            [`${handleClassName}-${i + 1}`]: true,
           }),
           prefixCls,
           vertical,
@@ -453,14 +425,14 @@ const Range = {
           style: handleStyle[i],
           directives: [
             {
-              name: "ant-ref",
-              value: h => this.saveHandle(i, h)
-            }
+              name: 'ant-ref',
+              value: h => this.saveHandle(i, h),
+            },
           ],
           on: {
             focus: this.onFocus,
-            blur: this.onBlur
-          }
+            blur: this.onBlur,
+          },
         });
       });
 
@@ -472,12 +444,12 @@ const Range = {
           vertical,
           included,
           offsets,
-          trackStyle
+          trackStyle,
         }),
-        handles
+        handles,
       };
-    }
-  }
+    },
+  },
 };
 
 export default createSlider(Range);

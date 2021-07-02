@@ -1,7 +1,7 @@
-import Card from "./Card";
-import Meta from "./Meta";
-import Grid from "./Grid";
-import Base from "../base";
+import Card from './Card';
+import Meta from './Meta';
+import Grid from './Grid';
+import Base from '../base';
 Card.Meta = Meta;
 Card.Grid = Grid;
 

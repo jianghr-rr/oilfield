@@ -1,11 +1,11 @@
-import debounce from "lodash/debounce";
-import classnames from "classnames";
-import Vue from "vue";
-import ref from "vue-ref";
-import { getStyle, getListeners } from "../../_util/props-util";
-import BaseMixin from "../../_util/BaseMixin";
-import defaultProps from "./default-props";
-import initialState from "./initial-state";
+import debounce from 'lodash/debounce';
+import classnames from 'classnames';
+import Vue from 'vue';
+import ref from 'vue-ref';
+import { getStyle, getListeners } from '../../_util/props-util';
+import BaseMixin from '../../_util/BaseMixin';
+import defaultProps from './default-props';
+import initialState from './initial-state';
 import {
   getOnDemandLazySlides,
   extractObject,
@@ -21,20 +21,20 @@ import {
   getPreClones,
   getPostClones,
   getTrackLeft,
-  getTrackCSS
-} from "./utils/innerSliderUtils";
-import Track from "./track";
-import Dots from "./dots";
-import { PrevArrow, NextArrow } from "./arrows";
-import ResizeObserver from "resize-observer-polyfill";
+  getTrackCSS,
+} from './utils/innerSliderUtils';
+import Track from './track';
+import Dots from './dots';
+import { PrevArrow, NextArrow } from './arrows';
+import ResizeObserver from 'resize-observer-polyfill';
 
-Vue.use(ref, { name: "ant-ref" });
+Vue.use(ref, { name: 'ant-ref' });
 
 function noop() {}
 
 export default {
   props: {
-    ...defaultProps
+    ...defaultProps,
   },
   mixins: [BaseMixin],
   data() {
@@ -47,7 +47,7 @@ export default {
     return {
       ...initialState,
       currentSlide: this.initialSlide,
-      slideCount: this.children.length
+      slideCount: this.children.length,
     };
   },
   methods: {
@@ -59,18 +59,13 @@ export default {
     },
     adaptHeight() {
       if (this.adaptiveHeight && this.list) {
-        const elem = this.list.querySelector(
-          `[data-index="${this.currentSlide}"]`
-        );
-        this.list.style.height = getHeight(elem) + "px";
+        const elem = this.list.querySelector(`[data-index="${this.currentSlide}"]`);
+        this.list.style.height = getHeight(elem) + 'px';
       }
     },
     onWindowResized(setTrackStyle) {
       if (this.debouncedResize) this.debouncedResize.cancel();
-      this.debouncedResize = debounce(
-        () => this.resizeWindow(setTrackStyle),
-        50
-      );
+      this.debouncedResize = debounce(() => this.resizeWindow(setTrackStyle), 50);
       this.debouncedResize();
     },
     resizeWindow(setTrackStyle = true) {
@@ -80,34 +75,30 @@ export default {
         trackRef: this.track,
         children: this.children,
         ...this.$props,
-        ...this.$data
+        ...this.$data,
       };
       this.updateState(spec, setTrackStyle, () => {
         if (this.autoplay) {
-          this.handleAutoPlay("update");
+          this.handleAutoPlay('update');
         } else {
-          this.pause("paused");
+          this.pause('paused');
         }
       });
       // animating state should be cleared while resizing, otherwise autoplay stops working
       this.setState({
-        animating: false
+        animating: false,
       });
       clearTimeout(this.animationEndCallback);
       delete this.animationEndCallback;
     },
     updateState(spec, setTrackStyle, callback) {
       const updatedState = initializedState(spec);
-      spec = {
-        ...spec,
-        ...updatedState,
-        slideIndex: updatedState.currentSlide
-      };
+      spec = { ...spec, ...updatedState, slideIndex: updatedState.currentSlide };
       const targetLeft = getTrackLeft(spec);
       spec = { ...spec, left: targetLeft };
       const trackStyle = getTrackCSS(spec);
       if (setTrackStyle || this.children.length !== spec.children.length) {
-        updatedState["trackStyle"] = trackStyle;
+        updatedState['trackStyle'] = trackStyle;
       }
       this.setState(updatedState, callback);
     },
@@ -120,15 +111,15 @@ export default {
         const preClones = getPreClones({
           ...this.$props,
           ...this.$data,
-          slideCount: children.length
+          slideCount: children.length,
         });
         const postClones = getPostClones({
           ...this.$props,
           ...this.$data,
-          slideCount: children.length
+          slideCount: children.length,
         });
         children.forEach(child => {
-          const childWidth = getStyle(child).width.split("px")[0];
+          const childWidth = getStyle(child).width.split('px')[0];
           childrenWidths.push(childWidth);
           trackWidth += childWidth;
         });
@@ -143,46 +134,42 @@ export default {
           trackLeft += childrenWidths[i];
         }
         const trackStyle = {
-          width: trackWidth + "px",
-          left: -trackLeft + "px"
+          width: trackWidth + 'px',
+          left: -trackLeft + 'px',
         };
         if (this.centerMode) {
           const currentWidth = `${childrenWidths[this.currentSlide]}px`;
           trackStyle.left = `calc(${trackStyle.left} + (100% - ${currentWidth}) / 2 ) `;
         }
         this.setState({
-          trackStyle
+          trackStyle,
         });
         return;
       }
       const childrenCount = children.length;
       const spec = { ...this.$props, ...this.$data, slideCount: childrenCount };
-      const slideCount =
-        getPreClones(spec) + getPostClones(spec) + childrenCount;
+      const slideCount = getPreClones(spec) + getPostClones(spec) + childrenCount;
       const trackWidth = (100 / this.slidesToShow) * slideCount;
       const slideWidth = 100 / slideCount;
-      let trackLeft =
-        (-slideWidth * (getPreClones(spec) + this.currentSlide) * trackWidth) /
-        100;
+      let trackLeft = (-slideWidth * (getPreClones(spec) + this.currentSlide) * trackWidth) / 100;
       if (this.centerMode) {
         trackLeft += (100 - (slideWidth * trackWidth) / 100) / 2;
       }
       const trackStyle = {
-        width: trackWidth + "%",
-        left: trackLeft + "%"
+        width: trackWidth + '%',
+        left: trackLeft + '%',
       };
       this.setState({
-        slideWidth: slideWidth + "%",
-        trackStyle
+        slideWidth: slideWidth + '%',
+        trackStyle,
       });
     },
     checkImagesLoad() {
-      const images = document.querySelectorAll(".slick-slide img");
+      const images = document.querySelectorAll('.slick-slide img');
       const imagesCount = images.length;
       let loadedCount = 0;
       Array.prototype.forEach.call(images, image => {
-        const handler = () =>
-          ++loadedCount && loadedCount >= imagesCount && this.onWindowResized();
+        const handler = () => ++loadedCount && loadedCount >= imagesCount && this.onWindowResized();
         if (!image.onclick) {
           image.onclick = () => image.parentNode.focus();
         } else {
@@ -196,15 +183,13 @@ export default {
           if (this.$props.lazyLoad) {
             image.onload = () => {
               this.adaptHeight();
-              this.callbackTimers.push(
-                setTimeout(this.onWindowResized, this.speed)
-              );
+              this.callbackTimers.push(setTimeout(this.onWindowResized, this.speed));
             };
           } else {
             image.onload = handler;
             image.onerror = () => {
               handler();
-              this.$emit("lazyLoadError");
+              this.$emit('lazyLoadError');
             };
           }
         }
@@ -213,21 +198,13 @@ export default {
     progressiveLazyLoad() {
       const slidesToLoad = [];
       const spec = { ...this.$props, ...this.$data };
-      for (
-        let index = this.currentSlide;
-        index < this.slideCount + getPostClones(spec);
-        index++
-      ) {
+      for (let index = this.currentSlide; index < this.slideCount + getPostClones(spec); index++) {
         if (this.lazyLoadedList.indexOf(index) < 0) {
           slidesToLoad.push(index);
           break;
         }
       }
-      for (
-        let index = this.currentSlide - 1;
-        index >= -getPreClones(spec);
-        index--
-      ) {
+      for (let index = this.currentSlide - 1; index >= -getPreClones(spec); index--) {
         if (this.lazyLoadedList.indexOf(index) < 0) {
           slidesToLoad.push(index);
           break;
@@ -235,9 +212,9 @@ export default {
       }
       if (slidesToLoad.length > 0) {
         this.setState(state => ({
-          lazyLoadedList: state.lazyLoadedList.concat(slidesToLoad)
+          lazyLoadedList: state.lazyLoadedList.concat(slidesToLoad),
         }));
-        this.$emit("lazyLoad", slidesToLoad);
+        this.$emit('lazyLoad', slidesToLoad);
       } else {
         if (this.lazyLoadTimer) {
           clearInterval(this.lazyLoadTimer);
@@ -246,27 +223,21 @@ export default {
       }
     },
     slideHandler(index, dontAnimate = false) {
-      const {
-        asNavFor,
-        currentSlide,
-        beforeChange,
-        speed,
-        afterChange
-      } = this.$props;
+      const { asNavFor, currentSlide, beforeChange, speed, afterChange } = this.$props;
       const { state, nextState } = slideHandler({
         index,
         ...this.$props,
         ...this.$data,
         trackRef: this.track,
-        useCSS: this.useCSS && !dontAnimate
+        useCSS: this.useCSS && !dontAnimate,
       });
       if (!state) return;
       beforeChange && beforeChange(currentSlide, state.currentSlide);
       const slidesToLoad = state.lazyLoadedList.filter(
-        value => this.lazyLoadedList.indexOf(value) < 0
+        value => this.lazyLoadedList.indexOf(value) < 0,
       );
       if (getListeners(this).lazyLoad && slidesToLoad.length > 0) {
-        this.$emit("lazyLoad", slidesToLoad);
+        this.$emit('lazyLoad', slidesToLoad);
       }
       this.setState(state, () => {
         asNavFor &&
@@ -276,9 +247,7 @@ export default {
         this.animationEndCallback = setTimeout(() => {
           const { animating, ...firstBatch } = nextState;
           this.setState(firstBatch, () => {
-            this.callbackTimers.push(
-              setTimeout(() => this.setState({ animating }), 10)
-            );
+            this.callbackTimers.push(setTimeout(() => this.setState({ animating }), 10));
             afterChange && afterChange(state.currentSlide);
             delete this.animationEndCallback;
           });
@@ -304,7 +273,7 @@ export default {
     },
     keyHandler(e) {
       const dir = keyHandler(e, this.accessibility, this.rtl);
-      dir !== "" && this.changeSlide({ message: dir });
+      dir !== '' && this.changeSlide({ message: dir });
     },
     selectHandler(options) {
       this.changeSlide(options);
@@ -325,7 +294,7 @@ export default {
         this.disableBodyScroll();
       }
       const state = swipeStart(e, this.swipe, this.draggable);
-      state !== "" && this.setState(state);
+      state !== '' && this.setState(state);
     },
     swipeMove(e) {
       const state = swipeMove(e, {
@@ -333,10 +302,10 @@ export default {
         ...this.$data,
         trackRef: this.track,
         listRef: this.list,
-        slideIndex: this.currentSlide
+        slideIndex: this.currentSlide,
       });
       if (!state) return;
-      if (state["swiping"]) {
+      if (state['swiping']) {
         this.clickable = false;
       }
       this.setState(state);
@@ -347,11 +316,11 @@ export default {
         ...this.$data,
         trackRef: this.track,
         listRef: this.list,
-        slideIndex: this.currentSlide
+        slideIndex: this.currentSlide,
       });
       if (!state) return;
-      const triggerSlideHandler = state["triggerSlideHandler"];
-      delete state["triggerSlideHandler"];
+      const triggerSlideHandler = state['triggerSlideHandler'];
+      delete state['triggerSlideHandler'];
       this.setState(state);
       if (triggerSlideHandler === undefined) return;
       this.slideHandler(triggerSlideHandler);
@@ -363,31 +332,27 @@ export default {
       // this and fellow methods are wrapped in setTimeout
       // to make sure initialize setState has happened before
       // any of such methods are called
-      this.callbackTimers.push(
-        setTimeout(() => this.changeSlide({ message: "previous" }), 0)
-      );
+      this.callbackTimers.push(setTimeout(() => this.changeSlide({ message: 'previous' }), 0));
     },
     slickNext() {
-      this.callbackTimers.push(
-        setTimeout(() => this.changeSlide({ message: "next" }), 0)
-      );
+      this.callbackTimers.push(setTimeout(() => this.changeSlide({ message: 'next' }), 0));
     },
     slickGoTo(slide, dontAnimate = false) {
       slide = Number(slide);
-      if (isNaN(slide)) return "";
+      if (isNaN(slide)) return '';
       this.callbackTimers.push(
         setTimeout(
           () =>
             this.changeSlide(
               {
-                message: "index",
+                message: 'index',
                 index: slide,
-                currentSlide: this.currentSlide
+                currentSlide: this.currentSlide,
               },
-              dontAnimate
+              dontAnimate,
             ),
-          0
-        )
+          0,
+        ),
       );
     },
     play() {
@@ -409,25 +374,21 @@ export default {
         clearInterval(this.autoplayTimer);
       }
       const autoplaying = this.autoplaying;
-      if (playType === "update") {
-        if (
-          autoplaying === "hovered" ||
-          autoplaying === "focused" ||
-          autoplaying === "paused"
-        ) {
+      if (playType === 'update') {
+        if (autoplaying === 'hovered' || autoplaying === 'focused' || autoplaying === 'paused') {
           return;
         }
-      } else if (playType === "leave") {
-        if (autoplaying === "paused" || autoplaying === "focused") {
+      } else if (playType === 'leave') {
+        if (autoplaying === 'paused' || autoplaying === 'focused') {
           return;
         }
-      } else if (playType === "blur") {
-        if (autoplaying === "paused" || autoplaying === "hovered") {
+      } else if (playType === 'blur') {
+        if (autoplaying === 'paused' || autoplaying === 'hovered') {
           return;
         }
       }
       this.autoplayTimer = setInterval(this.play, this.autoplaySpeed + 50);
-      this.setState({ autoplaying: "playing" });
+      this.setState({ autoplaying: 'playing' });
     },
     pause(pauseType) {
       if (this.autoplayTimer) {
@@ -435,63 +396,57 @@ export default {
         this.autoplayTimer = null;
       }
       const autoplaying = this.autoplaying;
-      if (pauseType === "paused") {
-        this.setState({ autoplaying: "paused" });
-      } else if (pauseType === "focused") {
-        if (autoplaying === "hovered" || autoplaying === "playing") {
-          this.setState({ autoplaying: "focused" });
+      if (pauseType === 'paused') {
+        this.setState({ autoplaying: 'paused' });
+      } else if (pauseType === 'focused') {
+        if (autoplaying === 'hovered' || autoplaying === 'playing') {
+          this.setState({ autoplaying: 'focused' });
         }
       } else {
         // pauseType  is 'hovered'
-        if (autoplaying === "playing") {
-          this.setState({ autoplaying: "hovered" });
+        if (autoplaying === 'playing') {
+          this.setState({ autoplaying: 'hovered' });
         }
       }
     },
     onDotsOver() {
-      this.autoplay && this.pause("hovered");
+      this.autoplay && this.pause('hovered');
     },
     onDotsLeave() {
-      this.autoplay &&
-        this.autoplaying === "hovered" &&
-        this.handleAutoPlay("leave");
+      this.autoplay && this.autoplaying === 'hovered' && this.handleAutoPlay('leave');
     },
     onTrackOver() {
-      this.autoplay && this.pause("hovered");
+      this.autoplay && this.pause('hovered');
     },
     onTrackLeave() {
-      this.autoplay &&
-        this.autoplaying === "hovered" &&
-        this.handleAutoPlay("leave");
+      this.autoplay && this.autoplaying === 'hovered' && this.handleAutoPlay('leave');
     },
     onSlideFocus() {
-      this.autoplay && this.pause("focused");
+      this.autoplay && this.pause('focused');
     },
     onSlideBlur() {
-      this.autoplay &&
-        this.autoplaying === "focused" &&
-        this.handleAutoPlay("blur");
+      this.autoplay && this.autoplaying === 'focused' && this.handleAutoPlay('blur');
     },
     customPaging({ i }) {
       return <button>{i + 1}</button>;
     },
     appendDots({ dots }) {
-      return <ul style={{ display: "block" }}>{dots}</ul>;
-    }
+      return <ul style={{ display: 'block' }}>{dots}</ul>;
+    },
   },
   beforeMount() {
     this.ssrInit();
-    this.$emit("init");
+    this.$emit('init');
     if (this.lazyLoad) {
       const slidesToLoad = getOnDemandLazySlides({
         ...this.$props,
-        ...this.$data
+        ...this.$data,
       });
       if (slidesToLoad.length > 0) {
         this.setState(prevState => ({
-          lazyLoadedList: prevState.lazyLoadedList.concat(slidesToLoad)
+          lazyLoadedList: prevState.lazyLoadedList.concat(slidesToLoad),
         }));
-        this.$emit("lazyLoad", slidesToLoad);
+        this.$emit('lazyLoad', slidesToLoad);
       }
     }
   },
@@ -501,41 +456,36 @@ export default {
         listRef: this.list,
         trackRef: this.track,
         children: this.children,
-        ...this.$props
+        ...this.$props,
       };
       this.updateState(spec, true, () => {
         this.adaptHeight();
-        this.autoplay && this.handleAutoPlay("update");
+        this.autoplay && this.handleAutoPlay('update');
       });
-      if (this.lazyLoad === "progressive") {
+      if (this.lazyLoad === 'progressive') {
         this.lazyLoadTimer = setInterval(this.progressiveLazyLoad, 1000);
       }
       this.ro = new ResizeObserver(() => {
         if (this.animating) {
           this.onWindowResized(false); // don't set trackStyle hence don't break animation
-          this.callbackTimers.push(
-            setTimeout(() => this.onWindowResized(), this.speed)
-          );
+          this.callbackTimers.push(setTimeout(() => this.onWindowResized(), this.speed));
         } else {
           this.onWindowResized();
         }
       });
       this.ro.observe(this.list);
-      Array.prototype.forEach.call(
-        document.querySelectorAll(".slick-slide"),
-        slide => {
-          slide.onfocus = this.$props.pauseOnFocus ? this.onSlideFocus : null;
-          slide.onblur = this.$props.pauseOnFocus ? this.onSlideBlur : null;
-        }
-      );
+      Array.prototype.forEach.call(document.querySelectorAll('.slick-slide'), slide => {
+        slide.onfocus = this.$props.pauseOnFocus ? this.onSlideFocus : null;
+        slide.onblur = this.$props.pauseOnFocus ? this.onSlideBlur : null;
+      });
       // To support server-side rendering
       if (!window) {
         return;
       }
       if (window.addEventListener) {
-        window.addEventListener("resize", this.onWindowResized);
+        window.addEventListener('resize', this.onWindowResized);
       } else {
-        window.attachEvent("onresize", this.onWindowResized);
+        window.attachEvent('onresize', this.onWindowResized);
       }
     });
   },
@@ -551,9 +501,9 @@ export default {
       this.callbackTimers = [];
     }
     if (window.addEventListener) {
-      window.removeEventListener("resize", this.onWindowResized);
+      window.removeEventListener('resize', this.onWindowResized);
     } else {
-      window.detachEvent("onresize", this.onWindowResized);
+      window.detachEvent('onresize', this.onWindowResized);
     }
     if (this.autoplayTimer) {
       clearInterval(this.autoplayTimer);
@@ -561,17 +511,17 @@ export default {
   },
   updated() {
     this.checkImagesLoad();
-    this.$emit("reInit");
+    this.$emit('reInit');
     if (this.lazyLoad) {
       const slidesToLoad = getOnDemandLazySlides({
         ...this.$props,
-        ...this.$data
+        ...this.$data,
       });
       if (slidesToLoad.length > 0) {
         this.setState(prevState => ({
-          lazyLoadedList: prevState.lazyLoadedList.concat(slidesToLoad)
+          lazyLoadedList: prevState.lazyLoadedList.concat(slidesToLoad),
         }));
-        this.$emit("lazyLoad");
+        this.$emit('lazyLoad');
       }
     }
     // if (this.props.onLazyLoad) {
@@ -586,7 +536,7 @@ export default {
         listRef: this.list,
         trackRef: this.track,
         ...nextProps,
-        ...this.$data
+        ...this.$data,
       };
       let setTrackStyle = false;
       for (const key of Object.keys(this.preProps)) {
@@ -595,9 +545,9 @@ export default {
           break;
         }
         if (
-          typeof nextProps[key] === "object" ||
-          typeof nextProps[key] === "function" ||
-          typeof nextProps[key] === "symbol"
+          typeof nextProps[key] === 'object' ||
+          typeof nextProps[key] === 'function' ||
+          typeof nextProps[key] === 'symbol'
         ) {
           continue;
         }
@@ -609,80 +559,80 @@ export default {
       this.updateState(spec, setTrackStyle, () => {
         if (this.currentSlide >= nextProps.children.length) {
           this.changeSlide({
-            message: "index",
+            message: 'index',
             index: nextProps.children.length - nextProps.slidesToShow,
-            currentSlide: this.currentSlide
+            currentSlide: this.currentSlide,
           });
         }
         if (nextProps.autoplay) {
-          this.handleAutoPlay("update");
+          this.handleAutoPlay('update');
         } else {
-          this.pause("paused");
+          this.pause('paused');
         }
       });
       this.preProps = { ...nextProps };
-    }
+    },
   },
   render() {
-    const className = classnames("slick-slider", {
-      "slick-vertical": this.vertical,
-      "slick-initialized": true
+    const className = classnames('slick-slider', {
+      'slick-vertical': this.vertical,
+      'slick-initialized': true,
     });
     const spec = { ...this.$props, ...this.$data };
     let trackProps = extractObject(spec, [
-      "fade",
-      "cssEase",
-      "speed",
-      "infinite",
-      "centerMode",
-      "focusOnSelect",
-      "currentSlide",
-      "lazyLoad",
-      "lazyLoadedList",
-      "rtl",
-      "slideWidth",
-      "slideHeight",
-      "listHeight",
-      "vertical",
-      "slidesToShow",
-      "slidesToScroll",
-      "slideCount",
-      "trackStyle",
-      "variableWidth",
-      "unslick",
-      "centerPadding"
+      'fade',
+      'cssEase',
+      'speed',
+      'infinite',
+      'centerMode',
+      'focusOnSelect',
+      'currentSlide',
+      'lazyLoad',
+      'lazyLoadedList',
+      'rtl',
+      'slideWidth',
+      'slideHeight',
+      'listHeight',
+      'vertical',
+      'slidesToShow',
+      'slidesToScroll',
+      'slideCount',
+      'trackStyle',
+      'variableWidth',
+      'unslick',
+      'centerPadding',
     ]);
     const { pauseOnHover } = this.$props;
     trackProps = {
       props: {
         ...trackProps,
-        focusOnSelect: this.focusOnSelect ? this.selectHandler : null
+        focusOnSelect: this.focusOnSelect ? this.selectHandler : null,
       },
       directives: [
         {
-          name: "ant-ref",
-          value: this.trackRefHandler
-        }
+          name: 'ant-ref',
+          value: this.trackRefHandler,
+        },
       ],
       on: {
         mouseenter: pauseOnHover ? this.onTrackOver : noop,
         mouseleave: pauseOnHover ? this.onTrackLeave : noop,
-        mouseover: pauseOnHover ? this.onTrackOver : noop
-      }
+        mouseover: pauseOnHover ? this.onTrackOver : noop,
+      },
     };
 
     let dots;
     if (this.dots === true && this.slideCount >= this.slidesToShow) {
       let dotProps = extractObject(spec, [
-        "dotsClass",
-        "slideCount",
-        "slidesToShow",
-        "currentSlide",
-        "slidesToScroll",
-        "clickHandler",
-        "children",
-        "infinite",
-        "appendDots"
+        'dotsClass',
+        'slideCount',
+        'slidesToShow',
+        'currentSlide',
+        'slidesToScroll',
+        'clickHandler',
+        'children',
+        'infinite',
+        'appendDots',
       ]);
       dotProps.customPaging = this.customPaging;
       dotProps.appendDots = this.appendDots;
@@ -697,30 +647,27 @@ export default {
       dotProps = {
         props: {
           ...dotProps,
-          clickHandler: this.changeSlide
+          clickHandler: this.changeSlide,
         },
         on: {
           mouseenter: pauseOnDotsHover ? this.onDotsLeave : noop,
           mouseover: pauseOnDotsHover ? this.onDotsOver : noop,
-          mouseleave: pauseOnDotsHover ? this.onDotsLeave : noop
-        }
+          mouseleave: pauseOnDotsHover ? this.onDotsLeave : noop,
+        },
       };
       dots = <Dots {...dotProps} />;
     }
 
     let prevArrow, nextArrow;
     const arrowProps = extractObject(spec, [
-      "infinite",
-      "centerMode",
-      "currentSlide",
-      "slideCount",
-      "slidesToShow"
+      'infinite',
+      'centerMode',
+      'currentSlide',
+      'slideCount',
+      'slidesToShow',
     ]);
     arrowProps.clickHandler = this.changeSlide;
-    const {
-      prevArrow: prevArrowCustom,
-      nextArrow: nextArrowCustom
-    } = this.$scopedSlots;
+    const { prevArrow: prevArrowCustom, nextArrow: nextArrowCustom } = this.$scopedSlots;
     if (prevArrowCustom) {
       arrowProps.prevArrow = prevArrowCustom;
     }
@@ -735,10 +682,7 @@ export default {
 
     if (this.vertical) {
       verticalHeightStyle = {
-        height:
-          typeof this.listHeight === "number"
-            ? `${this.listHeight}px`
-            : this.listHeight
+        height: typeof this.listHeight === 'number' ? `${this.listHeight}px` : this.listHeight,
       };
     }
 
@@ -747,13 +691,13 @@ export default {
     if (this.vertical === false) {
       if (this.centerMode === true) {
         centerPaddingStyle = {
-          padding: "0px " + this.centerPadding
+          padding: '0px ' + this.centerPadding,
         };
       }
     } else {
       if (this.centerMode === true) {
         centerPaddingStyle = {
-          padding: this.centerPadding + " 0px"
+          padding: this.centerPadding + ' 0px',
         };
       }
     }
@@ -763,11 +707,11 @@ export default {
     let listProps = {
       directives: [
         {
-          name: "ant-ref",
-          value: this.listRefHandler
-        }
+          name: 'ant-ref',
+          value: this.listRefHandler,
+        },
       ],
-      class: "slick-list",
+      class: 'slick-list',
       style: listStyle,
       on: {
         click: this.clickHandler,
@@ -779,38 +723,38 @@ export default {
         touchmove: this.dragging && touchMove ? this.swipeMove : noop,
         touchend: touchMove ? this.swipeEnd : noop,
         touchcancel: this.dragging && touchMove ? this.swipeEnd : noop,
-        keydown: this.accessibility ? this.keyHandler : noop
-      }
+        keydown: this.accessibility ? this.keyHandler : noop,
+      },
     };
 
     let innerSliderProps = {
       class: className,
       props: {
-        dir: "ltr"
-      }
+        dir: 'ltr',
+      },
     };
 
     if (this.unslick) {
       listProps = {
-        class: "slick-list",
+        class: 'slick-list',
         directives: [
           {
-            name: "ant-ref",
-            value: this.listRefHandler
-          }
-        ]
+            name: 'ant-ref',
+            value: this.listRefHandler,
+          },
+        ],
       };
       innerSliderProps = { class: className };
     }
     return (
       <div {...innerSliderProps}>
-        {!this.unslick ? prevArrow : ""}
+        {!this.unslick ? prevArrow : ''}
         <div {...listProps}>
           <Track {...trackProps}>{this.children}</Track>
         </div>
-        {!this.unslick ? nextArrow : ""}
-        {!this.unslick ? dots : ""}
+        {!this.unslick ? nextArrow : ''}
+        {!this.unslick ? dots : ''}
       </div>
     );
-  }
+  },
 };

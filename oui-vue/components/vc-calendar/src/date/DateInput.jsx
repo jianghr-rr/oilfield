@@ -1,9 +1,9 @@
-import PropTypes from "../../../_util/vue-types";
-import BaseMixin from "../../../_util/BaseMixin";
-import { getComponentFromProp } from "../../../_util/props-util";
-import moment from "moment";
-import { formatDate } from "../util";
-import KeyCode from "../../../_util/KeyCode";
+import PropTypes from '../../../_util/vue-types';
+import BaseMixin from '../../../_util/BaseMixin';
+import { getComponentFromProp } from '../../../_util/props-util';
+import moment from 'moment';
+import { formatDate } from '../util';
+import KeyCode from '../../../_util/KeyCode';
 
 let cachedSelectionStart;
 let cachedSelectionEnd;
@@ -19,7 +19,7 @@ const DateInput = {
     format: PropTypes.oneOfType([
       PropTypes.string,
       PropTypes.arrayOf(PropTypes.string),
-      PropTypes.func
+      PropTypes.func,
     ]),
     locale: PropTypes.object,
     disabledDate: PropTypes.func,
@@ -30,7 +30,7 @@ const DateInput = {
     selectedValue: PropTypes.object,
     clearIcon: PropTypes.any,
     inputMode: PropTypes.string,
-    inputReadOnly: PropTypes.bool
+    inputReadOnly: PropTypes.bool,
   },
 
   data() {
@@ -38,7 +38,7 @@ const DateInput = {
     return {
       str: formatDate(selectedValue, this.format),
       invalid: false,
-      hasFocus: false
+      hasFocus: false,
     };
   },
   watch: {
@@ -47,7 +47,7 @@ const DateInput = {
     },
     format() {
       this.setState();
-    }
+    },
   },
 
   updated() {
@@ -58,10 +58,7 @@ const DateInput = {
         !this.invalid &&
         !(cachedSelectionStart === 0 && cachedSelectionEnd === 0)
       ) {
-        dateInputInstance.setSelectionRange(
-          cachedSelectionStart,
-          cachedSelectionEnd
-        );
+        dateInputInstance.setSelectionRange(cachedSelectionStart, cachedSelectionEnd);
       }
     });
   },
@@ -80,30 +77,30 @@ const DateInput = {
       if (!state.hasFocus) {
         newState = {
           str: formatDate(selectedValue, this.format),
-          invalid: false
+          invalid: false,
         };
       }
       return newState;
     },
     onClear() {
       this.setState({
-        str: ""
+        str: '',
       });
-      this.__emit("clear", null);
+      this.__emit('clear', null);
     },
     onInputChange(e) {
       const { value: str, composing } = e.target;
-      const { str: oldStr = "" } = this;
+      const { str: oldStr = '' } = this;
       if (e.isComposing || composing || oldStr === str) return;
 
       const { disabledDate, format, selectedValue } = this.$props;
 
       // 没有内容，合法并直接退出
       if (!str) {
-        this.__emit("change", null);
+        this.__emit('change', null);
         this.setState({
           invalid: false,
-          str
+          str,
         });
         return;
       }
@@ -113,7 +110,7 @@ const DateInput = {
       if (!parsed.isValid()) {
         this.setState({
           invalid: true,
-          str
+          str,
         });
         return;
       }
@@ -129,20 +126,17 @@ const DateInput = {
       if (!value || (disabledDate && disabledDate(value))) {
         this.setState({
           invalid: true,
-          str
+          str,
         });
         return;
       }
 
-      if (
-        selectedValue !== value ||
-        (selectedValue && value && !selectedValue.isSame(value))
-      ) {
+      if (selectedValue !== value || (selectedValue && value && !selectedValue.isSame(value))) {
         this.setState({
           invalid: false,
-          str
+          str,
         });
-        this.__emit("change", value);
+        this.__emit('change', value);
       }
     },
     onFocus() {
@@ -151,7 +145,7 @@ const DateInput = {
     onBlur() {
       this.setState((prevState, prevProps) => ({
         hasFocus: false,
-        str: formatDate(prevProps.value, prevProps.format)
+        str: formatDate(prevProps.value, prevProps.format),
       }));
     },
     onKeyDown(event) {
@@ -160,7 +154,7 @@ const DateInput = {
       if (keyCode === KeyCode.ENTER) {
         const validateDate = !disabledDate || !disabledDate(value);
         if (validateDate) {
-          this.__emit("select", value.clone());
+          this.__emit('select', value.clone());
         }
         event.preventDefault();
       }
@@ -175,7 +169,7 @@ const DateInput = {
     },
     saveDateInput(dateInput) {
       dateInputInstance = dateInput;
-    }
+    },
   },
 
   render() {
@@ -188,10 +182,10 @@ const DateInput = {
       disabled,
       showClear,
       inputMode,
-      inputReadOnly
+      inputReadOnly,
     } = this;
-    const clearIcon = getComponentFromProp(this, "clearIcon");
-    const invalidClass = invalid ? `${prefixCls}-input-invalid` : "";
+    const clearIcon = getComponentFromProp(this, 'clearIcon');
+    const invalidClass = invalid ? `${prefixCls}-input-invalid` : '';
     return (
       <div class={`${prefixCls}-input-wrap`}>
         <div class={`${prefixCls}-date-input-wrap`}>
@@ -199,13 +193,13 @@ const DateInput = {
             {...{
               directives: [
                 {
-                  name: "ant-ref",
-                  value: this.saveDateInput
+                  name: 'ant-ref',
+                  value: this.saveDateInput,
                 },
                 {
-                  name: "ant-input"
-                }
-              ]
+                  name: 'ant-input',
+                },
+              ],
             }}
             class={`${prefixCls}-input ${invalidClass}`}
             value={str}
@@ -226,7 +220,7 @@ const DateInput = {
         ) : null}
       </div>
     );
-  }
+  },
 };
 
 export default DateInput;

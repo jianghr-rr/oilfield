@@ -1,41 +1,31 @@
-import PropTypes from "../../_util/vue-types";
-import BaseMixin from "../../_util/BaseMixin";
-import {
-  getOptionProps,
-  hasProp,
-  getEvents,
-  getStyle
-} from "../../_util/props-util";
-import { cloneElement } from "../../_util/vnode";
-import createChainedFunction from "../../_util/createChainedFunction";
-import KeyCode from "../../_util/KeyCode";
-import placements from "./picker/placements";
-import Trigger from "../../vc-trigger";
-import moment from "moment";
-import isNil from "lodash/isNil";
+import PropTypes from '../../_util/vue-types';
+import BaseMixin from '../../_util/BaseMixin';
+import { getOptionProps, hasProp, getEvents, getStyle } from '../../_util/props-util';
+import { cloneElement } from '../../_util/vnode';
+import createChainedFunction from '../../_util/createChainedFunction';
+import KeyCode from '../../_util/KeyCode';
+import placements from './picker/placements';
+import Trigger from '../../vc-trigger';
+import moment from 'moment';
+import isNil from 'lodash/isNil';
 const TimeType = {
   validator(value) {
     if (Array.isArray(value)) {
       return (
-        value.length === 0 ||
-        value.findIndex(val => !isNil(val) && !moment.isMoment(val)) === -1
+        value.length === 0 || value.findIndex(val => !isNil(val) && !moment.isMoment(val)) === -1
       );
     } else {
       return isNil(value) || moment.isMoment(value);
     }
-  }
+  },
 };
 const Picker = {
-  name: "Picker",
+  name: 'Picker',
   props: {
     animation: PropTypes.oneOfType([PropTypes.func, PropTypes.string]),
     disabled: PropTypes.bool,
     transitionName: PropTypes.string,
-    format: PropTypes.oneOfType([
-      PropTypes.string,
-      PropTypes.array,
-      PropTypes.func
-    ]),
+    format: PropTypes.oneOfType([PropTypes.string, PropTypes.array, PropTypes.func]),
     // onChange: PropTypes.func,
     // onOpenChange: PropTypes.func,
     children: PropTypes.func,
@@ -43,20 +33,20 @@ const Picker = {
     calendar: PropTypes.any,
     open: PropTypes.bool,
     defaultOpen: PropTypes.bool.def(false),
-    prefixCls: PropTypes.string.def("rc-calendar-picker"),
-    placement: PropTypes.any.def("bottomLeft"),
+    prefixCls: PropTypes.string.def('rc-calendar-picker'),
+    placement: PropTypes.any.def('bottomLeft'),
     value: TimeType,
     defaultValue: TimeType,
     align: PropTypes.object.def(() => ({})),
     dropdownClassName: PropTypes.string,
-    dateRender: PropTypes.func
+    dateRender: PropTypes.func,
   },
   mixins: [BaseMixin],
 
   data() {
     const props = this.$props;
     let open;
-    if (hasProp(this, "open")) {
+    if (hasProp(this, 'open')) {
       open = props.open;
     } else {
       open = props.defaultOpen;
@@ -64,20 +54,20 @@ const Picker = {
     const value = props.value || props.defaultValue;
     return {
       sOpen: open,
-      sValue: value
+      sValue: value,
     };
   },
   watch: {
     value(val) {
       this.setState({
-        sValue: val
+        sValue: val,
       });
     },
     open(val) {
       this.setState({
-        sOpen: val
+        sOpen: val,
       });
-    }
+    },
   },
   mounted() {
     this.preSOpen = this.sOpen;
@@ -103,28 +93,25 @@ const Picker = {
 
     onCalendarSelect(value, cause = {}) {
       const props = this.$props;
-      if (!hasProp(this, "value")) {
+      if (!hasProp(this, 'value')) {
         this.setState({
-          sValue: value
+          sValue: value,
         });
       }
       const calendarProps = getOptionProps(props.calendar);
       if (
-        cause.source === "keyboard" ||
-        cause.source === "dateInputSelect" ||
-        (!calendarProps.timePicker && cause.source !== "dateInput") ||
-        cause.source === "todayButton"
+        cause.source === 'keyboard' ||
+        cause.source === 'dateInputSelect' ||
+        (!calendarProps.timePicker && cause.source !== 'dateInput') ||
+        cause.source === 'todayButton'
       ) {
         this.closeCalendar(this.focus);
       }
-      this.__emit("change", value);
+      this.__emit('change', value);
     },
 
     onKeyDown(event) {
-      if (
-        !this.sOpen &&
-        (event.keyCode === KeyCode.DOWN || event.keyCode === KeyCode.ENTER)
-      ) {
+      if (!this.sOpen && (event.keyCode === KeyCode.DOWN || event.keyCode === KeyCode.ENTER)) {
         this.openCalendar();
         event.preventDefault();
       }
@@ -153,24 +140,18 @@ const Picker = {
       const { sValue: value } = this;
       const defaultValue = value;
       const extraProps = {
-        ref: "calendarInstance",
+        ref: 'calendarInstance',
         props: {
           defaultValue: defaultValue || calendarProps.defaultValue,
-          selectedValue: value
+          selectedValue: value,
         },
         on: {
           keydown: this.onCalendarKeyDown,
           ok: createChainedFunction(calendarEvents.ok, this.onCalendarOk),
-          select: createChainedFunction(
-            calendarEvents.select,
-            this.onCalendarSelect
-          ),
-          clear: createChainedFunction(
-            calendarEvents.clear,
-            this.onCalendarClear
-          ),
-          blur: createChainedFunction(calendarEvents.blur, this.onCalendarBlur)
-        }
+          select: createChainedFunction(calendarEvents.select, this.onCalendarSelect),
+          clear: createChainedFunction(calendarEvents.clear, this.onCalendarClear),
+          blur: createChainedFunction(calendarEvents.blur, this.onCalendarBlur),
+        },
       };
 
       return cloneElement(props.calendar, extraProps);
@@ -178,15 +159,15 @@ const Picker = {
 
     setOpen(open, callback) {
       if (this.sOpen !== open) {
-        if (!hasProp(this, "open")) {
+        if (!hasProp(this, 'open')) {
           this.setState(
             {
-              sOpen: open
+              sOpen: open,
             },
-            callback
+            callback,
           );
         }
-        this.__emit("openChange", open);
+        this.__emit('openChange', open);
       }
     },
 
@@ -205,14 +186,10 @@ const Picker = {
     },
 
     focusCalendar() {
-      if (
-        this.sOpen &&
-        this.calendarInstance &&
-        this.calendarInstance.componentInstance
-      ) {
+      if (this.sOpen && this.calendarInstance && this.calendarInstance.componentInstance) {
         this.calendarInstance.componentInstance.focus();
       }
-    }
+    },
   },
 
   render() {
@@ -226,13 +203,13 @@ const Picker = {
       animation,
       disabled,
       dropdownClassName,
-      transitionName
+      transitionName,
     } = props;
     const { sValue, sOpen } = this;
     const children = this.$scopedSlots.default;
     const childrenState = {
       value: sValue,
-      open: sOpen
+      open: sOpen,
     };
     if (this.sOpen || !this.calendarInstance) {
       this.calendarInstance = this.getCalendarElement();
@@ -243,7 +220,7 @@ const Picker = {
         popupAlign={align}
         builtinPlacements={placements}
         popupPlacement={placement}
-        action={disabled && !sOpen ? [] : ["click"]}
+        action={disabled && !sOpen ? [] : ['click']}
         destroyPopupOnHide
         getPopupContainer={getCalendarContainer}
         popupStyle={style}
@@ -255,12 +232,10 @@ const Picker = {
         popupClassName={dropdownClassName}
       >
         <template slot="popup">{this.calendarInstance}</template>
-        {cloneElement(children(childrenState, props), {
-          on: { keydown: this.onKeyDown }
-        })}
+        {cloneElement(children(childrenState, props), { on: { keydown: this.onKeyDown } })}
       </Trigger>
     );
-  }
+  },
 };
 
 export default Picker;

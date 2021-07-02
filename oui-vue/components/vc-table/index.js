@@ -1,7 +1,7 @@
 // base rc-table 6.10.9
-import T from "./src/Table";
-import Column from "./src/Column";
-import ColumnGroup from "./src/ColumnGroup";
+import T from './src/Table';
+import Column from './src/Column';
+import ColumnGroup from './src/ColumnGroup';
 import {
   getOptionProps,
   getKey,
@@ -11,11 +11,11 @@ import {
   getSlotOptions,
   camelize,
   getSlots,
-  getListeners
-} from "../_util/props-util";
-import { INTERNAL_COL_DEFINE } from "./src/utils";
+  getListeners,
+} from '../_util/props-util';
+import { INTERNAL_COL_DEFINE } from './src/utils';
 const Table = {
-  name: "Table",
+  name: 'Table',
   Column,
   ColumnGroup,
   props: T.props,
@@ -48,20 +48,16 @@ const Table = {
           column.key = key;
         }
         if (getSlotOptions(element).isTableColumnGroup) {
-          column.children = this.normalize(
-            typeof children === "function" ? children() : children
-          );
+          column.children = this.normalize(typeof children === 'function' ? children() : children);
         } else {
           const customRender =
-            element.data &&
-            element.data.scopedSlots &&
-            element.data.scopedSlots.default;
+            element.data && element.data.scopedSlots && element.data.scopedSlots.default;
           column.customRender = column.customRender || customRender;
         }
         columns.push(column);
       });
       return columns;
-    }
+    },
   },
   render() {
     const { $slots, normalize } = this;
@@ -70,13 +66,13 @@ const Table = {
     const tProps = {
       props: {
         ...props,
-        columns
+        columns,
       },
       on: getListeners(this),
-      ref: "table"
+      ref: 'table',
     };
     return <T {...tProps} />;
-  }
+  },
 };
 
 export default Table;

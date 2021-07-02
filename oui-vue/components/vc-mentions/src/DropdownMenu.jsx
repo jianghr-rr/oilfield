@@ -1,16 +1,16 @@
-import Menu, { MenuItem } from "../../vc-menu";
-import PropTypes from "../../_util/vue-types";
-import { OptionProps } from "./Option";
+import Menu, { MenuItem } from '../../vc-menu';
+import PropTypes from '../../_util/vue-types';
+import { OptionProps } from './Option';
 
 function noop() {}
 export default {
-  name: "DropdownMenu",
+  name: 'DropdownMenu',
   props: {
     prefixCls: PropTypes.string,
-    options: PropTypes.arrayOf(OptionProps)
+    options: PropTypes.arrayOf(OptionProps),
   },
   inject: {
-    mentionsContext: { default: {} }
+    mentionsContext: { default: {} },
   },
 
   render() {
@@ -20,7 +20,7 @@ export default {
       setActiveIndex,
       selectOption,
       onFocus = noop,
-      onBlur = noop
+      onBlur = noop,
     } = this.mentionsContext;
     const { prefixCls, options } = this.$props;
     const activeOption = options[activeIndex] || {};
@@ -30,7 +30,7 @@ export default {
         {...{
           props: {
             prefixCls: `${prefixCls}-menu`,
-            activeKey: activeOption.value
+            activeKey: activeOption.value,
           },
           on: {
             select: ({ key }) => {
@@ -38,8 +38,8 @@ export default {
               selectOption(option);
             },
             focus: onFocus,
-            blur: onBlur
-          }
+            blur: onBlur,
+          },
         }}
       >
         {options.map((option, index) => {
@@ -59,5 +59,5 @@ export default {
         {!options.length && <MenuItem disabled>{notFoundContent}</MenuItem>}
       </Menu>
     );
-  }
+  },
 };

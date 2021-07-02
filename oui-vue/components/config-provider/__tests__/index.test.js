@@ -1,9 +1,9 @@
-import { mount } from "@vue/test-utils";
-import ConfigProvider from "..";
-import Button from "../../button";
-import mountTest from "../../../tests/shared/mountTest";
+import { mount } from '@vue/test-utils';
+import ConfigProvider from '..';
+import Button from '../../button';
+import mountTest from '../../../tests/shared/mountTest';
 
-describe("ConfigProvider", () => {
+describe('ConfigProvider', () => {
   mountTest({
     render() {
       return (
@@ -11,11 +11,11 @@ describe("ConfigProvider", () => {
           <div />
         </ConfigProvider>
       );
-    }
+    },
   });
 
-  it("Content Security Policy", () => {
-    const csp = { nonce: "test-antd" };
+  it('Content Security Policy', () => {
+    const csp = { nonce: 'test-antd' };
     const wrapper = mount({
       render() {
         return (
@@ -23,12 +23,12 @@ describe("ConfigProvider", () => {
             <Button />
           </ConfigProvider>
         );
-      }
+      },
     });
-    expect(wrapper.find({ name: "Wave" }).vm.csp).toBe(csp);
+    expect(wrapper.find({ name: 'Wave' }).vm.csp).toBe(csp);
   });
 
-  it("autoInsertSpaceInButton", () => {
+  it('autoInsertSpaceInButton', () => {
     const wrapper = mount({
       render() {
         return (
@@ -36,9 +36,9 @@ describe("ConfigProvider", () => {
             <Button>确定</Button>
           </ConfigProvider>
         );
-      }
+      },
     });
 
-    expect(wrapper.find({ name: "AButton" }).text()).toBe("确定");
+    expect(wrapper.find({ name: 'AButton' }).text()).toBe('确定');
   });
 });

@@ -1,8 +1,8 @@
-import PropTypes from "../../_util/vue-types";
-import BaseMixin from "../../_util/BaseMixin";
-import Tooltip from "../../vc-tooltip";
-import { getOptionProps } from "../../_util/props-util";
-import Handle from "./Handle";
+import PropTypes from '../../_util/vue-types';
+import BaseMixin from '../../_util/BaseMixin';
+import Tooltip from '../../vc-tooltip';
+import { getOptionProps } from '../../_util/props-util';
+import Handle from './Handle';
 
 export default function createSliderWithTooltip(Component) {
   return {
@@ -12,15 +12,12 @@ export default function createSliderWithTooltip(Component) {
       tipFormatter: PropTypes.func.def(value => {
         return value;
       }),
-      handleStyle: PropTypes.oneOfType([
-        PropTypes.object,
-        PropTypes.arrayOf(PropTypes.object)
-      ]),
-      tipProps: PropTypes.object.def(() => ({}))
+      handleStyle: PropTypes.oneOfType([PropTypes.object, PropTypes.arrayOf(PropTypes.object)]),
+      tipProps: PropTypes.object.def(() => ({})),
     },
     data() {
       return {
-        visibles: {}
+        visibles: {},
       };
     },
     methods: {
@@ -29,8 +26,8 @@ export default function createSliderWithTooltip(Component) {
           return {
             visibles: {
               ...prevState.visibles,
-              [index]: visible
-            }
+              [index]: visible,
+            },
           };
         });
       },
@@ -38,9 +35,9 @@ export default function createSliderWithTooltip(Component) {
         const { tipFormatter, tipProps, handleStyle } = this.$props;
 
         const {
-          prefixCls = "rc-slider-tooltip",
+          prefixCls = 'rc-slider-tooltip',
           overlay = tipFormatter(value),
-          placement = "top",
+          placement = 'top',
           visible = false,
           ...restTooltipProps
         } = tipProps;
@@ -58,23 +55,22 @@ export default function createSliderWithTooltip(Component) {
             prefixCls,
             overlay,
             placement,
-            visible:
-              (!disabled && (this.visibles[index] || dragging)) || visible
+            visible: (!disabled && (this.visibles[index] || dragging)) || visible,
           },
-          key: index
+          key: index,
         };
         const handleProps = {
           props: {
             value,
-            ...restProps
+            ...restProps,
           },
           on: {
             mouseenter: () => this.handleTooltipVisibleChange(index, true),
-            mouseleave: () => this.handleTooltipVisibleChange(index, false)
+            mouseleave: () => this.handleTooltipVisibleChange(index, false),
           },
           style: {
-            ...handleStyleWithIndex
-          }
+            ...handleStyleWithIndex,
+          },
         };
 
         return (
@@ -82,16 +78,16 @@ export default function createSliderWithTooltip(Component) {
             <Handle {...handleProps} />
           </Tooltip>
         );
-      }
+      },
     },
     render() {
       const componentProps = {
         props: {
           ...getOptionProps(this),
-          handle: this.handleWithTooltip
-        }
+          handle: this.handleWithTooltip,
+        },
       };
       return <Component {...componentProps} />;
-    }
+    },
   };
 }

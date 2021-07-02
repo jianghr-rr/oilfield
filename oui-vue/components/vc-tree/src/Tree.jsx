@@ -1,15 +1,10 @@
-import PropTypes from "../../_util/vue-types";
-import classNames from "classnames";
-import warning from "warning";
-import {
-  hasProp,
-  initDefaultProps,
-  getOptionProps,
-  getSlots
-} from "../../_util/props-util";
-import { cloneElement } from "../../_util/vnode";
-import BaseMixin from "../../_util/BaseMixin";
-import proxyComponent from "../../_util/proxyComponent";
+import PropTypes from '../../_util/vue-types';
+import classNames from 'classnames';
+import warning from 'warning';
+import { hasProp, initDefaultProps, getOptionProps, getSlots } from '../../_util/props-util';
+import { cloneElement } from '../../_util/vnode';
+import BaseMixin from '../../_util/BaseMixin';
+import proxyComponent from '../../_util/proxyComponent';
 import {
   convertTreeToEntities,
   convertDataToTree,
@@ -24,8 +19,8 @@ import {
   posToArr,
   mapChildren,
   conductCheck,
-  warnOnlyTreeNode
-} from "./util";
+  warnOnlyTreeNode,
+} from './util';
 
 /**
  * Thought we still use `cloneElement` to pass `key`,
@@ -43,7 +38,7 @@ function getWatch(keys = []) {
 }
 
 const Tree = {
-  name: "Tree",
+  name: 'Tree',
   mixins: [BaseMixin],
   props: initDefaultProps(
     {
@@ -90,10 +85,10 @@ const Tree = {
       openTransitionName: PropTypes.string,
       openAnimation: PropTypes.oneOfType([PropTypes.string, PropTypes.object]),
       switcherIcon: PropTypes.any,
-      _propsSymbol: PropTypes.any
+      _propsSymbol: PropTypes.any,
     },
     {
-      prefixCls: "rc-tree",
+      prefixCls: 'rc-tree',
       showLine: false,
       showIcon: true,
       selectable: true,
@@ -107,16 +102,13 @@ const Tree = {
       defaultExpandAll: false,
       defaultExpandedKeys: [],
       defaultCheckedKeys: [],
-      defaultSelectedKeys: []
-    }
+      defaultSelectedKeys: [],
+    },
   ),
 
   data() {
-    warning(this.$props.__propsSymbol__, "must pass __propsSymbol__");
-    warning(
-      this.$props.children,
-      "please use children prop replace slots.default"
-    );
+    warning(this.$props.__propsSymbol__, 'must pass __propsSymbol__');
+    warning(this.$props.children, 'please use children prop replace slots.default');
     this.needSyncKeys = {};
     this.domTreeNodes = {};
     const state = {
@@ -130,58 +122,55 @@ const Tree = {
       _loadingKeys: [],
       _treeNode: [],
       _prevProps: null,
-      _dragOverNodeKey: "",
+      _dragOverNodeKey: '',
       _dropPosition: null,
-      _dragNodesKeys: []
+      _dragNodesKeys: [],
     };
     return {
       ...state,
-      ...this.getDerivedState(getOptionProps(this), state)
+      ...this.getDerivedState(getOptionProps(this), state),
     };
   },
   provide() {
     return {
-      vcTree: this
+      vcTree: this,
     };
   },
 
   watch: {
     ...getWatch([
-      "treeData",
-      "children",
-      "expandedKeys",
-      "autoExpandParent",
-      "selectedKeys",
-      "checkedKeys",
-      "loadedKeys"
+      'treeData',
+      'children',
+      'expandedKeys',
+      'autoExpandParent',
+      'selectedKeys',
+      'checkedKeys',
+      'loadedKeys',
     ]),
     __propsSymbol__() {
       this.setState(this.getDerivedState(getOptionProps(this), this.$data));
       this.needSyncKeys = {};
-    }
+    },
   },
 
   methods: {
     getDerivedState(props, prevState) {
       const { _prevProps } = prevState;
       const newState = {
-        _prevProps: { ...props }
+        _prevProps: { ...props },
       };
       const self = this;
       function needSync(name) {
-        return (
-          (!_prevProps && name in props) ||
-          (_prevProps && self.needSyncKeys[name])
-        );
+        return (!_prevProps && name in props) || (_prevProps && self.needSyncKeys[name]);
       }
 
       // ================== Tree Node ==================
       let treeNode = null;
 
       // Check if `treeData` or `children` changed and save into the state.
-      if (needSync("treeData")) {
+      if (needSync('treeData')) {
         treeNode = convertDataToTree(this.$createElement, props.treeData);
-      } else if (needSync("children")) {
+      } else if (needSync('children')) {
         treeNode = props.children;
       }
 
@@ -198,10 +187,7 @@ const Tree = {
       const keyEntities = newState._keyEntities || prevState._keyEntities;
 
       // ================ expandedKeys =================
-      if (
-        needSync("expandedKeys") ||
-        (_prevProps && needSync("autoExpandParent"))
-      ) {
+      if (needSync('expandedKeys') || (_prevProps && needSync('autoExpandParent'))) {
         newState._expandedKeys =
           props.autoExpandParent || (!_prevProps && props.defaultExpandParent)
             ? conductExpandParent(props.expandedKeys, keyEntities)
@@ -217,13 +203,10 @@ const Tree = {
 
       // ================ selectedKeys =================
       if (props.selectable) {
-        if (needSync("selectedKeys")) {
+        if (needSync('selectedKeys')) {
           newState._selectedKeys = calcSelectedKeys(props.selectedKeys, props);
         } else if (!_prevProps && props.defaultSelectedKeys) {
-          newState._selectedKeys = calcSelectedKeys(
-            props.defaultSelectedKeys,
-            props
-          );
+          newState._selectedKeys = calcSelectedKeys(props.defaultSelectedKeys, props);
         }
       }
 
@@ -231,7 +214,7 @@ const Tree = {
       if (props.checkable) {
         let checkedKeyEntity;
 
-        if (needSync("checkedKeys")) {
+        if (needSync('checkedKeys')) {
           checkedKeyEntity = parseCheckedKeys(props.checkedKeys) || {};
         } else if (!_prevProps && props.defaultCheckedKeys) {
           checkedKeyEntity = parseCheckedKeys(props.defaultCheckedKeys) || {};
@@ -239,7 +222,7 @@ const Tree = {
           // If treeNode changed, we also need check it
           checkedKeyEntity = parseCheckedKeys(props.checkedKeys) || {
             checkedKeys: prevState._checkedKeys,
-            halfCheckedKeys: prevState._halfCheckedKeys
+            halfCheckedKeys: prevState._halfCheckedKeys,
           };
         }
 
@@ -256,7 +239,7 @@ const Tree = {
         }
       }
       // ================= loadedKeys ==================
-      if (needSync("loadedKeys")) {
+      if (needSync('loadedKeys')) {
         newState._loadedKeys = props.loadedKeys;
       }
 
@@ -270,12 +253,12 @@ const Tree = {
 
       this.setState({
         _dragNodesKeys: getDragNodesKeys(
-          typeof children === "function" ? children() : children,
-          node
+          typeof children === 'function' ? children() : children,
+          node,
         ),
-        _expandedKeys: arrDel(_expandedKeys, eventKey)
+        _expandedKeys: arrDel(_expandedKeys, eventKey),
       });
-      this.__emit("dragstart", { event, node });
+      this.__emit('dragstart', { event, node });
     },
 
     /**
@@ -296,8 +279,8 @@ const Tree = {
       // Skip if drag node is self
       if (this.dragNode.eventKey === eventKey && dropPosition === 0) {
         this.setState({
-          _dragOverNodeKey: "",
-          _dropPosition: null
+          _dragOverNodeKey: '',
+          _dropPosition: null,
         });
         return;
       }
@@ -311,7 +294,7 @@ const Tree = {
         // Update drag over node
         this.setState({
           _dragOverNodeKey: eventKey,
-          _dropPosition: dropPosition
+          _dropPosition: dropPosition,
         });
 
         // Side effect for delay drag
@@ -323,16 +306,12 @@ const Tree = {
         });
         this.delayedDragEnterLogic[pos] = setTimeout(() => {
           const newExpandedKeys = arrAdd(expandedKeys, eventKey);
-          if (!hasProp(this, "expandedKeys")) {
+          if (!hasProp(this, 'expandedKeys')) {
             this.setState({
-              _expandedKeys: newExpandedKeys
+              _expandedKeys: newExpandedKeys,
             });
           }
-          this.__emit("dragenter", {
-            event,
-            node,
-            expandedKeys: newExpandedKeys
-          });
+          this.__emit('dragenter', { event, node, expandedKeys: newExpandedKeys });
         }, 400);
       }, 0);
     },
@@ -340,32 +319,28 @@ const Tree = {
       const { eventKey } = node;
       const { _dragOverNodeKey, _dropPosition } = this.$data;
       // Update drag position
-      if (
-        this.dragNode &&
-        eventKey === _dragOverNodeKey &&
-        node.$refs.selectHandle
-      ) {
+      if (this.dragNode && eventKey === _dragOverNodeKey && node.$refs.selectHandle) {
         const dropPosition = calcDropPosition(event, node);
 
         if (dropPosition === _dropPosition) return;
 
         this.setState({
-          _dropPosition: dropPosition
+          _dropPosition: dropPosition,
         });
       }
-      this.__emit("dragover", { event, node });
+      this.__emit('dragover', { event, node });
     },
     onNodeDragLeave(event, node) {
       this.setState({
-        _dragOverNodeKey: ""
+        _dragOverNodeKey: '',
       });
-      this.__emit("dragleave", { event, node });
+      this.__emit('dragleave', { event, node });
     },
     onNodeDragEnd(event, node) {
       this.setState({
-        _dragOverNodeKey: ""
+        _dragOverNodeKey: '',
       });
-      this.__emit("dragend", { event, node });
+      this.__emit('dragend', { event, node });
       this.dragNode = null;
     },
     onNodeDrop(event, node) {
@@ -374,7 +349,7 @@ const Tree = {
       const { eventKey, pos } = node;
 
       this.setState({
-        _dragOverNodeKey: ""
+        _dragOverNodeKey: '',
       });
 
       if (_dragNodesKeys.indexOf(eventKey) !== -1) {
@@ -390,22 +365,22 @@ const Tree = {
         dragNode: this.dragNode,
         dragNodesKeys: _dragNodesKeys.slice(),
         dropPosition: _dropPosition + Number(posArr[posArr.length - 1]),
-        dropToGap: false
+        dropToGap: false,
       };
 
       if (_dropPosition !== 0) {
         dropResult.dropToGap = true;
       }
-      this.__emit("drop", dropResult);
+      this.__emit('drop', dropResult);
       this.dragNode = null;
     },
 
     onNodeClick(e, treeNode) {
-      this.__emit("click", e, treeNode);
+      this.__emit('click', e, treeNode);
     },
 
     onNodeDoubleClick(e, treeNode) {
-      this.__emit("dblclick", e, treeNode);
+      this.__emit('dblclick', e, treeNode);
     },
 
     onNodeSelect(e, treeNode) {
@@ -436,20 +411,20 @@ const Tree = {
       this.setUncontrolledState({ _selectedKeys: selectedKeys });
 
       const eventObj = {
-        event: "select",
+        event: 'select',
         selected: targetSelected,
         node: treeNode,
         selectedNodes,
-        nativeEvent: e
+        nativeEvent: e,
       };
-      this.__emit("update:selectedKeys", selectedKeys);
-      this.__emit("select", selectedKeys, eventObj);
+      this.__emit('update:selectedKeys', selectedKeys);
+      this.__emit('select', selectedKeys, eventObj);
     },
     onNodeCheck(e, treeNode, checked) {
       const {
         _keyEntities: keyEntities,
         _checkedKeys: oriCheckedKeys,
-        _halfCheckedKeys: oriHalfCheckedKeys
+        _halfCheckedKeys: oriHalfCheckedKeys,
       } = this.$data;
       const { checkStrictly } = this.$props;
       const { eventKey } = getOptionProps(treeNode);
@@ -457,10 +432,10 @@ const Tree = {
       // Prepare trigger arguments
       let checkedObj;
       const eventObj = {
-        event: "check",
+        event: 'check',
         node: treeNode,
         checked,
-        nativeEvent: e
+        nativeEvent: e,
       };
 
       if (checkStrictly) {
@@ -477,15 +452,10 @@ const Tree = {
 
         this.setUncontrolledState({ _checkedKeys: checkedKeys });
       } else {
-        const { checkedKeys, halfCheckedKeys } = conductCheck(
-          [eventKey],
-          checked,
-          keyEntities,
-          {
-            checkedKeys: oriCheckedKeys,
-            halfCheckedKeys: oriHalfCheckedKeys
-          }
-        );
+        const { checkedKeys, halfCheckedKeys } = conductCheck([eventKey], checked, keyEntities, {
+          checkedKeys: oriCheckedKeys,
+          halfCheckedKeys: oriHalfCheckedKeys,
+        });
 
         checkedObj = checkedKeys;
 
@@ -506,60 +476,52 @@ const Tree = {
 
         this.setUncontrolledState({
           _checkedKeys: checkedKeys,
-          _halfCheckedKeys: halfCheckedKeys
+          _halfCheckedKeys: halfCheckedKeys,
         });
       }
-      this.__emit("check", checkedObj, eventObj);
+      this.__emit('check', checkedObj, eventObj);
     },
     onNodeLoad(treeNode) {
       return new Promise(resolve => {
         // We need to get the latest state of loading/loaded keys
-        this.setState(
-          ({
-            _loadedKeys: loadedKeys = [],
-            _loadingKeys: loadingKeys = []
-          }) => {
-            const { loadData } = this.$props;
-            const { eventKey } = getOptionProps(treeNode);
+        this.setState(({ _loadedKeys: loadedKeys = [], _loadingKeys: loadingKeys = [] }) => {
+          const { loadData } = this.$props;
+          const { eventKey } = getOptionProps(treeNode);
 
-            if (
-              !loadData ||
-              loadedKeys.indexOf(eventKey) !== -1 ||
-              loadingKeys.indexOf(eventKey) !== -1
-            ) {
-              return {};
-            }
-
-            // Process load data
-            const promise = loadData(treeNode);
-            promise.then(() => {
-              const {
-                _loadedKeys: currentLoadedKeys,
-                _loadingKeys: currentLoadingKeys
-              } = this.$data;
-              const newLoadedKeys = arrAdd(currentLoadedKeys, eventKey);
-              const newLoadingKeys = arrDel(currentLoadingKeys, eventKey);
-
-              // onLoad should trigger before internal setState to avoid `loadData` trigger twice.
-              // https://github.com/ant-design/ant-design/issues/12464
-              this.__emit("load", newLoadedKeys, {
-                event: "load",
-                node: treeNode
-              });
-              this.setUncontrolledState({
-                _loadedKeys: newLoadedKeys
-              });
-              this.setState({
-                _loadingKeys: newLoadingKeys
-              });
-              resolve();
-            });
-
-            return {
-              _loadingKeys: arrAdd(loadingKeys, eventKey)
-            };
+          if (
+            !loadData ||
+            loadedKeys.indexOf(eventKey) !== -1 ||
+            loadingKeys.indexOf(eventKey) !== -1
+          ) {
+            return {};
           }
-        );
+
+          // Process load data
+          const promise = loadData(treeNode);
+          promise.then(() => {
+            const { _loadedKeys: currentLoadedKeys, _loadingKeys: currentLoadingKeys } = this.$data;
+            const newLoadedKeys = arrAdd(currentLoadedKeys, eventKey);
+            const newLoadingKeys = arrDel(currentLoadingKeys, eventKey);
+
+            // onLoad should trigger before internal setState to avoid `loadData` trigger twice.
+            // https://github.com/ant-design/ant-design/issues/12464
+            this.__emit('load', newLoadedKeys, {
+              event: 'load',
+              node: treeNode,
+            });
+            this.setUncontrolledState({
+              _loadedKeys: newLoadedKeys,
+            });
+            this.setState({
+              _loadingKeys: newLoadingKeys,
+            });
+            resolve();
+          });
+
+          return {
+            _loadingKeys: arrAdd(loadingKeys, eventKey),
+          };
+        });
       });
     },
 
@@ -574,7 +536,7 @@ const Tree = {
 
       warning(
         (expanded && index !== -1) || (!expanded && index === -1),
-        "Expand state not sync with index check"
+        'Expand state not sync with index check',
       );
 
       if (targetExpanded) {
@@ -584,12 +546,12 @@ const Tree = {
       }
 
       this.setUncontrolledState({ _expandedKeys: expandedKeys });
-      this.__emit("expand", expandedKeys, {
+      this.__emit('expand', expandedKeys, {
         node: treeNode,
         expanded: targetExpanded,
-        nativeEvent: e
+        nativeEvent: e,
       });
-      this.__emit("update:expandedKeys", expandedKeys);
+      this.__emit('update:expandedKeys', expandedKeys);
 
       // Async Load data
       if (targetExpanded && loadData) {
@@ -606,16 +568,16 @@ const Tree = {
     },
 
     onNodeMouseEnter(event, node) {
-      this.__emit("mouseenter", { event, node });
+      this.__emit('mouseenter', { event, node });
     },
 
     onNodeMouseLeave(event, node) {
-      this.__emit("mouseleave", { event, node });
+      this.__emit('mouseleave', { event, node });
     },
 
     onNodeContextMenu(event, node) {
       event.preventDefault();
-      this.__emit("rightClick", { event, node });
+      this.__emit('rightClick', { event, node });
     },
 
     /**
@@ -626,7 +588,7 @@ const Tree = {
       const newState = {};
       const props = getOptionProps(this);
       Object.keys(state).forEach(name => {
-        if (name.replace("_", "") in props) return;
+        if (name.replace('_', '') in props) return;
         needSync = true;
         newState[name] = state[name];
       });
@@ -662,7 +624,7 @@ const Tree = {
         _loadedKeys: loadedKeys = [],
         _loadingKeys: loadingKeys = [],
         _dragOverNodeKey: dragOverNodeKey,
-        _dropPosition: dropPosition
+        _dropPosition: dropPosition,
       } = this.$data;
       const pos = getPosition(level, index);
       let key = child.key;
@@ -688,11 +650,11 @@ const Tree = {
           // [Legacy] Drag props
           dragOver: dragOverNodeKey === key && dropPosition === 0,
           dragOverGapTop: dragOverNodeKey === key && dropPosition === -1,
-          dragOverGapBottom: dragOverNodeKey === key && dropPosition === 1
+          dragOverGapBottom: dragOverNodeKey === key && dropPosition === 1,
         },
-        key
+        key,
       });
-    }
+    },
   },
 
   render() {
@@ -702,18 +664,16 @@ const Tree = {
     return (
       <ul
         class={classNames(prefixCls, {
-          [`${prefixCls}-show-line`]: showLine
+          [`${prefixCls}-show-line`]: showLine,
         })}
         role="tree"
         unselectable="on"
         tabIndex={focusable ? tabIndex : null}
       >
-        {mapChildren(treeNode, (node, index) =>
-          this.renderTreeNode(node, index)
-        )}
+        {mapChildren(treeNode, (node, index) => this.renderTreeNode(node, index))}
       </ul>
     );
-  }
+  },
 };
 
 export { Tree };

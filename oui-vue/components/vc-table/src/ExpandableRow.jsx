@@ -1,14 +1,13 @@
-import PropTypes from "../../_util/vue-types";
-import ExpandIcon from "./ExpandIcon";
-import BaseMixin from "../../_util/BaseMixin";
+import PropTypes from '../../_util/vue-types';
+import ExpandIcon from './ExpandIcon';
+import BaseMixin from '../../_util/BaseMixin';
 
 const ExpandableRow = {
   mixins: [BaseMixin],
-  name: "ExpandableRow",
+  name: 'ExpandableRow',
   props: {
     prefixCls: PropTypes.string.isRequired,
-    rowKey: PropTypes.oneOfType([PropTypes.string, PropTypes.number])
-      .isRequired,
+    rowKey: PropTypes.oneOfType([PropTypes.string, PropTypes.number]).isRequired,
     fixed: PropTypes.oneOfType([PropTypes.string, PropTypes.bool]),
     record: PropTypes.oneOfType([PropTypes.object, PropTypes.array]).isRequired,
     indentSize: PropTypes.number,
@@ -18,18 +17,18 @@ const ExpandableRow = {
     expandIconColumnIndex: PropTypes.number,
     childrenColumnName: PropTypes.string,
     expandedRowRender: PropTypes.func,
-    expandIcon: PropTypes.func
+    expandIcon: PropTypes.func,
     // onExpandedChange: PropTypes.func.isRequired,
     // onRowClick: PropTypes.func,
     // children: PropTypes.func.isRequired,
   },
   inject: {
-    store: { from: "table-store", default: () => ({}) }
+    store: { from: 'table-store', default: () => ({}) },
   },
   computed: {
     expanded() {
       return this.store.expandedRowKeys.includes(this.$props.rowKey);
-    }
+    },
   },
   beforeDestroy() {
     this.handleDestroy();
@@ -38,10 +37,7 @@ const ExpandableRow = {
     hasExpandIcon(columnIndex) {
       const { expandRowByClick, expandIcon } = this.$props;
 
-      if (
-        this.tempExpandIconAsCell ||
-        columnIndex !== this.tempExpandIconColumnIndex
-      ) {
+      if (this.tempExpandIconAsCell || columnIndex !== this.tempExpandIconColumnIndex) {
         return false;
       }
 
@@ -50,12 +46,12 @@ const ExpandableRow = {
 
     handleExpandChange(record, event) {
       const { expanded, rowKey } = this;
-      this.__emit("expandedChange", !expanded, record, event, rowKey);
+      this.__emit('expandedChange', !expanded, record, event, rowKey);
     },
 
     handleDestroy() {
       const { rowKey, record } = this;
-      this.__emit("expandedChange", false, record, null, rowKey, true);
+      this.__emit('expandedChange', false, record, null, rowKey, true);
     },
 
     handleRowClick(record, index, event) {
@@ -63,17 +59,11 @@ const ExpandableRow = {
       if (expandRowByClick) {
         this.handleExpandChange(record, event);
       }
-      this.__emit("rowClick", record, index, event);
+      this.__emit('rowClick', record, index, event);
     },
 
     renderExpandIcon() {
-      const {
-        prefixCls,
-        expanded,
-        record,
-        needIndentSpaced,
-        expandIcon
-      } = this;
+      const { prefixCls, expanded, record, needIndentSpaced, expandIcon } = this;
       if (expandIcon) {
         return expandIcon({
           prefixCls,
@@ -81,7 +71,7 @@ const ExpandableRow = {
           record,
           needIndentSpaced,
           expandable: this.expandable,
-          onExpand: this.handleExpandChange
+          onExpand: this.handleExpandChange,
         });
       }
       return (
@@ -103,14 +93,11 @@ const ExpandableRow = {
       const { prefixCls } = this;
 
       cells.push(
-        <td
-          class={`${prefixCls}-expand-icon-cell`}
-          key="rc-table-expand-icon-cell"
-        >
+        <td class={`${prefixCls}-expand-icon-cell`} key="rc-table-expand-icon-cell">
           {this.renderExpandIcon()}
-        </td>
+        </td>,
       );
-    }
+    },
   },
 
   render() {
@@ -121,13 +108,11 @@ const ExpandableRow = {
       record,
       fixed,
       $scopedSlots,
-      expanded
+      expanded,
     } = this;
 
-    this.tempExpandIconAsCell =
-      fixed !== "right" ? this.expandIconAsCell : false;
-    this.tempExpandIconColumnIndex =
-      fixed !== "right" ? this.expandIconColumnIndex : -1;
+    this.tempExpandIconAsCell = fixed !== 'right' ? this.expandIconAsCell : false;
+    this.tempExpandIconColumnIndex = fixed !== 'right' ? this.expandIconColumnIndex : -1;
     const childrenData = record[childrenColumnName];
     this.expandable = !!(childrenData || expandedRowRender);
     const expandableRowProps = {
@@ -136,16 +121,16 @@ const ExpandableRow = {
         expanded, // not used in TableRow, but it's required to re-render TableRow when `expanded` changes
         hasExpandIcon: this.hasExpandIcon,
         renderExpandIcon: this.renderExpandIcon,
-        renderExpandIconCell: this.renderExpandIconCell
+        renderExpandIconCell: this.renderExpandIconCell,
       },
 
       on: {
-        rowClick: this.handleRowClick
-      }
+        rowClick: this.handleRowClick,
+      },
     };
 
     return $scopedSlots.default && $scopedSlots.default(expandableRowProps);
-  }
+  },
 };
 
 export default ExpandableRow;

@@ -1,9 +1,9 @@
-import PropTypes from "../../_util/vue-types";
+import PropTypes from '../../_util/vue-types';
 
 export const ITouchProps = {
   disabled: PropTypes.bool,
   activeClassName: PropTypes.string,
-  activeStyle: PropTypes.any
+  activeStyle: PropTypes.any,
   // onTouchStart: PropTypes.func,
   // onTouchEnd: PropTypes.func,
   // onTouchCancel: PropTypes.func,

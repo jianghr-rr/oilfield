@@ -1,59 +1,59 @@
-import Pagination from "../vc-pagination/locale/es_ES";
-import DatePicker from "../date-picker/locale/es_ES";
-import TimePicker from "../time-picker/locale/es_ES";
-import Calendar from "../calendar/locale/es_ES";
+import Pagination from '../vc-pagination/locale/es_ES';
+import DatePicker from '../date-picker/locale/es_ES';
+import TimePicker from '../time-picker/locale/es_ES';
+import Calendar from '../calendar/locale/es_ES';
 
 export default {
-  locale: "es",
+  locale: 'es',
   Pagination,
   DatePicker,
   TimePicker,
   Calendar,
   global: {
-    placeholder: "Seleccione"
+    placeholder: 'Seleccione',
   },
   Table: {
-    filterTitle: "Filtrar menú",
-    filterConfirm: "Aceptar",
-    filterReset: "Reiniciar",
-    selectAll: "Seleccionar todo",
-    selectInvert: "Invertir selección",
-    sortTitle: "Ordenar"
+    filterTitle: 'Filtrar menú',
+    filterConfirm: 'Aceptar',
+    filterReset: 'Reiniciar',
+    selectAll: 'Seleccionar todo',
+    selectInvert: 'Invertir selección',
+    sortTitle: 'Ordenar',
   },
   Modal: {
-    okText: "Aceptar",
-    cancelText: "Cancelar",
-    justOkText: "Aceptar"
+    okText: 'Aceptar',
+    cancelText: 'Cancelar',
+    justOkText: 'Aceptar',
   },
   Popconfirm: {
-    okText: "Aceptar",
-    cancelText: "Cancelar"
+    okText: 'Aceptar',
+    cancelText: 'Cancelar',
   },
   Transfer: {
-    searchPlaceholder: "Buscar aquí",
-    itemUnit: "elemento",
-    itemsUnit: "elementos"
+    searchPlaceholder: 'Buscar aquí',
+    itemUnit: 'elemento',
+    itemsUnit: 'elementos',
   },
   Upload: {
-    uploading: "Subiendo...",
-    removeFile: "Eliminar archivo",
-    uploadError: "Error al subir el archivo",
-    previewFile: "Vista previa",
-    downloadFile: "Descargar archivo"
+    uploading: 'Subiendo...',
+    removeFile: 'Eliminar archivo',
+    uploadError: 'Error al subir el archivo',
+    previewFile: 'Vista previa',
+    downloadFile: 'Descargar archivo',
   },
   Empty: {
-    description: "No hay datos"
+    description: 'No hay datos',
   },
   Icon: {
-    icon: "ícono"
+    icon: 'ícono',
   },
   Text: {
-    edit: "editar",
-    copy: "copiar",
-    copied: "copiado",
-    expand: "expandir"
+    edit: 'editar',
+    copy: 'copiar',
+    copied: 'copiado',
+    expand: 'expandir',
   },
   PageHeader: {
-    back: "volver"
-  }
+    back: 'volver',
+  },
 };

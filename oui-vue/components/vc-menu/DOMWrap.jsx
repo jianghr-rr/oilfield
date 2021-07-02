@@ -1,32 +1,27 @@
-import PropTypes from "../_util/vue-types";
-import ResizeObserver from "resize-observer-polyfill";
-import SubMenu from "./SubMenu";
-import BaseMixin from "../_util/BaseMixin";
-import { getWidth, setStyle, menuAllProps } from "./util";
-import { cloneElement } from "../_util/vnode";
-import {
-  getClass,
-  getPropsData,
-  getEvents,
-  getListeners
-} from "../_util/props-util";
+import PropTypes from '../_util/vue-types';
+import ResizeObserver from 'resize-observer-polyfill';
+import SubMenu from './SubMenu';
+import BaseMixin from '../_util/BaseMixin';
+import { getWidth, setStyle, menuAllProps } from './util';
+import { cloneElement } from '../_util/vnode';
+import { getClass, getPropsData, getEvents, getListeners } from '../_util/props-util';
 
 const canUseDOM = !!(
-  typeof window !== "undefined" &&
+  typeof window !== 'undefined' &&
   window.document &&
   window.document.createElement
 );
 
-const MENUITEM_OVERFLOWED_CLASSNAME = "menuitem-overflowed";
+const MENUITEM_OVERFLOWED_CLASSNAME = 'menuitem-overflowed';
 const FLOAT_PRECISION_ADJUST = 0.5;
 
 // Fix ssr
 if (canUseDOM) {
-  require("mutationobserver-shim");
+  require('mutationobserver-shim');
 }
 
 const DOMWrap = {
-  name: "DOMWrap",
+  name: 'DOMWrap',
   mixins: [BaseMixin],
   data() {
     this.resizeObserver = null;
@@ -41,14 +36,14 @@ const DOMWrap = {
     // cache item of the original items (so we can track the size and order)
     this.menuItemSizes = [];
     return {
-      lastVisibleIndex: undefined
+      lastVisibleIndex: undefined,
     };
   },
 
   mounted() {
     this.$nextTick(() => {
       this.setChildrenWidthAndResize();
-      if (this.level === 1 && this.mode === "horizontal") {
+      if (this.level === 1 && this.mode === 'horizontal') {
         const menuUl = this.$el;
         if (!menuUl) {
           return;
@@ -64,7 +59,7 @@ const DOMWrap = {
             this.resizeObserver.observe(el);
           });
 
-        if (typeof MutationObserver !== "undefined") {
+        if (typeof MutationObserver !== 'undefined') {
           this.mutationObserver = new MutationObserver(() => {
             this.resizeObserver.disconnect();
             [].slice
@@ -78,7 +73,7 @@ const DOMWrap = {
           this.mutationObserver.observe(menuUl, {
             attributes: false,
             childList: true,
-            subTree: false
+            subTree: false,
           });
         }
       }
@@ -105,23 +100,12 @@ const DOMWrap = {
       // filter out all overflowed indicator placeholder
       return [].slice
         .call(ul.children)
-        .filter(
-          node =>
-            node.className
-              .split(" ")
-              .indexOf(`${prefixCls}-overflowed-submenu`) < 0
-        );
+        .filter(node => node.className.split(' ').indexOf(`${prefixCls}-overflowed-submenu`) < 0);
     },
 
     getOverflowedSubMenuItem(keyPrefix, overflowedItems, renderPlaceholder) {
-      const {
-        overflowedIndicator,
-        level,
-        mode,
-        prefixCls,
-        theme
-      } = this.$props;
-      if (level !== 1 || mode !== "horizontal") {
+      const { overflowedIndicator, level, mode, prefixCls, theme } = this.$props;
+      if (level !== 1 || mode !== 'horizontal') {
         return null;
       }
       // put all the overflowed item inside a submenu
@@ -135,19 +119,19 @@ const DOMWrap = {
 
       if (overflowedItems.length === 0 && renderPlaceholder !== true) {
         style = {
-          display: "none"
+          display: 'none',
         };
       } else if (renderPlaceholder) {
         style = {
-          visibility: "hidden",
+          visibility: 'hidden',
           // prevent from taking normal dom space
-          position: "absolute"
+          position: 'absolute',
         };
         key = `${key}-placeholder`;
         eventKey = `${eventKey}-placeholder`;
       }
 
-      const popupClassName = theme ? `${prefixCls}-${theme}` : "";
+      const popupClassName = theme ? `${prefixCls}-${theme}` : '';
       const props = {};
       const on = {};
       menuAllProps.props.forEach(k => {
@@ -166,12 +150,12 @@ const DOMWrap = {
           popupClassName,
           ...props,
           eventKey,
-          disabled: false
+          disabled: false,
         },
         class: `${prefixCls}-overflowed-submenu`,
         key,
         style,
-        on
+        on,
       };
 
       return <SubMenu {...subMenuProps}>{overflowedItems}</SubMenu>;
@@ -179,7 +163,7 @@ const DOMWrap = {
 
     // memorize rendered menuSize
     setChildrenWidthAndResize() {
-      if (this.mode !== "horizontal") {
+      if (this.mode !== 'horizontal') {
         return;
       }
       const ul = this.$el;
@@ -194,11 +178,10 @@ const DOMWrap = {
         return;
       }
 
-      const lastOverflowedIndicatorPlaceholder =
-        ul.children[ulChildrenNodes.length - 1];
+      const lastOverflowedIndicatorPlaceholder = ul.children[ulChildrenNodes.length - 1];
 
       // need last overflowed indicator for calculating length;
-      setStyle(lastOverflowedIndicatorPlaceholder, "display", "inline-block");
+      setStyle(lastOverflowedIndicatorPlaceholder, 'display', 'inline-block');
 
       const menuItemNodes = this.getMenuItemNodes();
 
@@ -206,32 +189,27 @@ const DOMWrap = {
       // and then reset to original state after width calculation
 
       const overflowedItems = menuItemNodes.filter(
-        c => c.className.split(" ").indexOf(MENUITEM_OVERFLOWED_CLASSNAME) >= 0
+        c => c.className.split(' ').indexOf(MENUITEM_OVERFLOWED_CLASSNAME) >= 0,
       );
 
       overflowedItems.forEach(c => {
-        setStyle(c, "display", "inline-block");
+        setStyle(c, 'display', 'inline-block');
       });
 
       this.menuItemSizes = menuItemNodes.map(c => getWidth(c));
 
       overflowedItems.forEach(c => {
-        setStyle(c, "display", "none");
+        setStyle(c, 'display', 'none');
       });
-      this.overflowedIndicatorWidth = getWidth(
-        ul.children[ul.children.length - 1]
-      );
-      this.originalTotalWidth = this.menuItemSizes.reduce(
-        (acc, cur) => acc + cur,
-        0
-      );
+      this.overflowedIndicatorWidth = getWidth(ul.children[ul.children.length - 1]);
+      this.originalTotalWidth = this.menuItemSizes.reduce((acc, cur) => acc + cur, 0);
       this.handleResize();
       // prevent the overflowed indicator from taking space;
-      setStyle(lastOverflowedIndicatorPlaceholder, "display", "none");
+      setStyle(lastOverflowedIndicatorPlaceholder, 'display', 'none');
     },
 
     handleResize() {
-      if (this.mode !== "horizontal") {
+      if (this.mode !== 'horizontal') {
         return;
       }
 
@@ -271,42 +249,34 @@ const DOMWrap = {
       return (children || []).reduce((acc, childNode, index) => {
         let item = childNode;
         const eventKey = getPropsData(childNode).eventKey;
-        if (this.mode === "horizontal") {
+        if (this.mode === 'horizontal') {
           let overflowed = this.getOverflowedSubMenuItem(eventKey, []);
-          if (
-            lastVisibleIndex !== undefined &&
-            className[`${this.prefixCls}-root`] !== -1
-          ) {
+          if (lastVisibleIndex !== undefined && className[`${this.prefixCls}-root`] !== -1) {
             if (index > lastVisibleIndex) {
               item = cloneElement(
                 childNode,
                 // 这里修改 eventKey 是为了防止隐藏状态下还会触发 openkeys 事件
                 {
-                  style: { display: "none" },
+                  style: { display: 'none' },
                   props: { eventKey: `${eventKey}-hidden` },
-                  class: MENUITEM_OVERFLOWED_CLASSNAME
-                }
+                  class: MENUITEM_OVERFLOWED_CLASSNAME,
+                },
               );
             }
             if (index === lastVisibleIndex + 1) {
-              this.overflowedItems = children
-                .slice(lastVisibleIndex + 1)
-                .map(c => {
-                  return cloneElement(
-                    c,
-                    // children[index].key will become '.$key' in clone by default,
-                    // we have to overwrite with the correct key explicitly
-                    {
-                      key: getPropsData(c).eventKey,
-                      props: { mode: "vertical-left" }
-                    }
-                  );
-                });
+              this.overflowedItems = children.slice(lastVisibleIndex + 1).map(c => {
+                return cloneElement(
+                  c,
+                  // children[index].key will become '.$key' in clone by default,
+                  // we have to overwrite with the correct key explicitly
+                  {
+                    key: getPropsData(c).eventKey,
+                    props: { mode: 'vertical-left' },
+                  },
+                );
+              });
 
-              overflowed = this.getOverflowedSubMenuItem(
-                eventKey,
-                this.overflowedItems
-              );
+              overflowed = this.getOverflowedSubMenuItem(eventKey, this.overflowedItems);
             }
           }
 
@@ -320,33 +290,27 @@ const DOMWrap = {
         }
         return [...acc, item];
       }, []);
-    }
+    },
   },
 
   render() {
     const Tag = this.$props.tag;
     const tagProps = {
-      on: getListeners(this)
+      on: getListeners(this),
     };
     return <Tag {...tagProps}>{this.renderChildren(this.$slots.default)}</Tag>;
-  }
+  },
 };
 
 DOMWrap.props = {
-  mode: PropTypes.oneOf([
-    "horizontal",
-    "vertical",
-    "vertical-left",
-    "vertical-right",
-    "inline"
-  ]),
+  mode: PropTypes.oneOf(['horizontal', 'vertical', 'vertical-left', 'vertical-right', 'inline']),
   prefixCls: PropTypes.string,
   level: PropTypes.number,
   theme: PropTypes.string,
   overflowedIndicator: PropTypes.node,
   visible: PropTypes.bool,
   hiddenClassName: PropTypes.string,
-  tag: PropTypes.string.def("div")
+  tag: PropTypes.string.def('div'),
 };
 
 export default DOMWrap;

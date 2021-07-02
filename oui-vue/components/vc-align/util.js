@@ -1,4 +1,4 @@
-import contains from "../vc-util/Dom/contains";
+import contains from '../vc-util/Dom/contains';
 export function buffer(fn, ms) {
   let timer;
 
@@ -23,11 +23,11 @@ export function isSamePoint(prev, next) {
   if (prev === next) return true;
   if (!prev || !next) return false;
 
-  if ("pageX" in next && "pageY" in next) {
+  if ('pageX' in next && 'pageY' in next) {
     return prev.pageX === next.pageX && prev.pageY === next.pageY;
   }
 
-  if ("clientX" in next && "clientY" in next) {
+  if ('clientX' in next && 'clientY' in next) {
     return prev.clientX === next.clientX && prev.clientY === next.clientY;
   }
 
@@ -35,7 +35,7 @@ export function isSamePoint(prev, next) {
 }
 
 export function isWindow(obj) {
-  return obj && typeof obj === "object" && obj.window === obj;
+  return obj && typeof obj === 'object' && obj.window === obj;
 }
 
 export function isSimilarValue(val1, val2) {
@@ -46,10 +46,7 @@ export function isSimilarValue(val1, val2) {
 
 export function restoreFocus(activeElement, container) {
   // Focus back if is in the container
-  if (
-    activeElement !== document.activeElement &&
-    contains(container, activeElement)
-  ) {
+  if (activeElement !== document.activeElement && contains(container, activeElement)) {
     activeElement.focus();
   }
 }

@@ -1,15 +1,11 @@
-import PropTypes from "../../../_util/vue-types";
-import BaseMixin from "../../../_util/BaseMixin";
-import {
-  getOptionProps,
-  getComponentFromProp,
-  getListeners
-} from "../../../_util/props-util";
-import { cloneElement } from "../../../_util/vnode";
-import CalendarHeader from "../calendar/CalendarHeader";
-import DateTable from "../date/DateTable";
-import DateInput from "../date/DateInput";
-import { getTimeConfig } from "../util/index";
+import PropTypes from '../../../_util/vue-types';
+import BaseMixin from '../../../_util/BaseMixin';
+import { getOptionProps, getComponentFromProp, getListeners } from '../../../_util/props-util';
+import { cloneElement } from '../../../_util/vnode';
+import CalendarHeader from '../calendar/CalendarHeader';
+import DateTable from '../date/DateTable';
+import DateInput from '../date/DateInput';
+import { getTimeConfig } from '../util/index';
 function noop() {}
 const CalendarPart = {
   mixins: [BaseMixin],
@@ -37,7 +33,7 @@ const CalendarPart = {
     clearIcon: PropTypes.any,
     dateRender: PropTypes.func,
     inputMode: PropTypes.string,
-    inputReadOnly: PropTypes.bool
+    inputReadOnly: PropTypes.bool,
   },
   render() {
     const { $props: props } = this;
@@ -64,30 +60,28 @@ const CalendarPart = {
       showWeekNumber,
       showClear,
       inputMode,
-      inputReadOnly
+      inputReadOnly,
     } = props;
-    const clearIcon = getComponentFromProp(this, "clearIcon");
+    const clearIcon = getComponentFromProp(this, 'clearIcon');
     const {
       inputChange = noop,
       inputSelect = noop,
       valueChange = noop,
       panelChange = noop,
       select = noop,
-      dayHover = noop
+      dayHover = noop,
     } = getListeners(this);
     const shouldShowTimePicker = showTimePicker && timePicker;
     const disabledTimeConfig =
-      shouldShowTimePicker && disabledTime
-        ? getTimeConfig(selectedValue, disabledTime)
-        : null;
+      shouldShowTimePicker && disabledTime ? getTimeConfig(selectedValue, disabledTime) : null;
     const rangeClassName = `${prefixCls}-range`;
     const newProps = {
       locale,
       value,
       prefixCls,
-      showTimePicker
+      showTimePicker,
     };
-    const index = direction === "left" ? 0 : 1;
+    const index = direction === 'left' ? 0 : 1;
     let timePickerEle = null;
     if (shouldShowTimePicker) {
       const timePickerProps = getOptionProps(timePicker);
@@ -100,11 +94,11 @@ const CalendarPart = {
           ...disabledTimeConfig,
           ...timePickerDisabledTime,
           defaultOpenValue: value,
-          value: selectedValue[index]
+          value: selectedValue[index],
         },
         on: {
-          change: inputChange
-        }
+          change: inputChange,
+        },
       });
     }
 
@@ -133,12 +127,12 @@ const CalendarPart = {
         mode,
         enableNext,
         enablePrev,
-        disabledMonth
+        disabledMonth,
       },
       on: {
         valueChange,
-        panelChange
-      }
+        panelChange,
+      },
     };
     const tableProps = {
       props: {
@@ -147,23 +141,21 @@ const CalendarPart = {
         selectedValue,
         dateRender,
         disabledDate,
-        showWeekNumber
+        showWeekNumber,
       },
       on: {
         select,
-        dayHover
-      }
+        dayHover,
+      },
     };
     return (
       <div class={`${rangeClassName}-part ${rangeClassName}-${direction}`}>
         {dateInputElement}
-        <div style={{ outline: "none" }}>
+        <div style={{ outline: 'none' }}>
           <CalendarHeader {...headerProps} />
           {showTimePicker ? (
             <div class={`${prefixCls}-time-picker`}>
-              <div class={`${prefixCls}-time-picker-panel`}>
-                {timePickerEle}
-              </div>
+              <div class={`${prefixCls}-time-picker-panel`}>{timePickerEle}</div>
             </div>
           ) : null}
           <div class={`${prefixCls}-body`}>
@@ -172,7 +164,7 @@ const CalendarPart = {
         </div>
       </div>
     );
-  }
+  },
 };
 
 export default CalendarPart;

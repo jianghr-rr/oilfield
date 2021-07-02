@@ -1,13 +1,8 @@
-import BaseMixin from "../../_util/BaseMixin";
-import {
-  hasProp,
-  getPropsData,
-  isEmptyElement,
-  initDefaultProps
-} from "../../_util/props-util";
-import { cloneElement } from "../../_util/vnode";
-import openAnimationFactory from "./openAnimationFactory";
-import { collapseProps } from "./commonProps";
+import BaseMixin from '../../_util/BaseMixin';
+import { hasProp, getPropsData, isEmptyElement, initDefaultProps } from '../../_util/props-util';
+import { cloneElement } from '../../_util/vnode';
+import openAnimationFactory from './openAnimationFactory';
+import { collapseProps } from './commonProps';
 
 function _toArray(activeKey) {
   let currentActiveKey = activeKey;
@@ -17,46 +12,40 @@ function _toArray(activeKey) {
   return currentActiveKey.map(key => String(key));
 }
 export default {
-  name: "Collapse",
+  name: 'Collapse',
   mixins: [BaseMixin],
   model: {
-    prop: "activeKey",
-    event: "change"
+    prop: 'activeKey',
+    event: 'change',
   },
   props: initDefaultProps(collapseProps(), {
-    prefixCls: "rc-collapse",
+    prefixCls: 'rc-collapse',
     accordion: false,
-    destroyInactivePanel: false
+    destroyInactivePanel: false,
   }),
   data() {
-    const {
-      activeKey,
-      defaultActiveKey,
-      openAnimation,
-      prefixCls
-    } = this.$props;
+    const { activeKey, defaultActiveKey, openAnimation, prefixCls } = this.$props;
     let currentActiveKey = defaultActiveKey;
-    if (hasProp(this, "activeKey")) {
+    if (hasProp(this, 'activeKey')) {
       currentActiveKey = activeKey;
     }
-    const currentOpenAnimations =
-      openAnimation || openAnimationFactory(prefixCls);
+    const currentOpenAnimations = openAnimation || openAnimationFactory(prefixCls);
     return {
       currentOpenAnimations,
-      stateActiveKey: _toArray(currentActiveKey)
+      stateActiveKey: _toArray(currentActiveKey),
     };
   },
   watch: {
     activeKey(val) {
       this.setState({
-        stateActiveKey: _toArray(val)
+        stateActiveKey: _toArray(val),
       });
     },
     openAnimation(val) {
       this.setState({
-        currentOpenAnimations: val
+        currentOpenAnimations: val,
       });
-    }
+    },
   },
   methods: {
     onClickItem(key) {
@@ -79,12 +68,7 @@ export default {
     getNewChild(child, index) {
       if (isEmptyElement(child)) return;
       const activeKey = this.stateActiveKey;
-      const {
-        prefixCls,
-        accordion,
-        destroyInactivePanel,
-        expandIcon
-      } = this.$props;
+      const { prefixCls, accordion, destroyInactivePanel, expandIcon } = this.$props;
 
       // If there is no key provide, use the panel order as default key
       const key = child.key || String(index);
@@ -98,9 +82,9 @@ export default {
       }
 
       let panelEvents = {};
-      if (!disabled && disabled !== "") {
+      if (!disabled && disabled !== '') {
         panelEvents = {
-          itemClick: this.onClickItem
+          itemClick: this.onClickItem,
         };
       }
 
@@ -115,9 +99,9 @@ export default {
           destroyInactivePanel,
           openAnimation: this.currentOpenAnimations,
           accordion,
-          expandIcon
+          expandIcon,
         },
-        on: panelEvents
+        on: panelEvents,
       };
 
       return cloneElement(child, props);
@@ -132,18 +116,18 @@ export default {
     },
     setActiveKey(activeKey) {
       this.setState({ stateActiveKey: activeKey });
-      this.$emit("change", this.accordion ? activeKey[0] : activeKey);
-    }
+      this.$emit('change', this.accordion ? activeKey[0] : activeKey);
+    },
   },
   render() {
     const { prefixCls, accordion } = this.$props;
     const collapseClassName = {
-      [prefixCls]: true
+      [prefixCls]: true,
     };
     return (
-      <div class={collapseClassName} role={accordion ? "tablist" : null}>
+      <div class={collapseClassName} role={accordion ? 'tablist' : null}>
         {this.getItems()}
       </div>
     );
-  }
+  },
 };

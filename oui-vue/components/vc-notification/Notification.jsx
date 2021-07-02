@@ -1,11 +1,11 @@
-import Vue from "vue";
-import PropTypes from "../_util/vue-types";
-import { getStyle, getComponentFromProp } from "../_util/props-util";
-import BaseMixin from "../_util/BaseMixin";
-import createChainedFunction from "../_util/createChainedFunction";
-import getTransitionProps from "../_util/getTransitionProps";
-import Notice from "./Notice";
-import Base from "../base";
+import Vue from 'vue';
+import PropTypes from '../_util/vue-types';
+import { getStyle, getComponentFromProp } from '../_util/props-util';
+import BaseMixin from '../_util/BaseMixin';
+import createChainedFunction from '../_util/createChainedFunction';
+import getTransitionProps from '../_util/getTransitionProps';
+import Notice from './Notice';
+import Base from '../base';
 
 function noop() {}
 
@@ -19,17 +19,15 @@ function getUuid() {
 const Notification = {
   mixins: [BaseMixin],
   props: {
-    prefixCls: PropTypes.string.def("rc-notification"),
+    prefixCls: PropTypes.string.def('rc-notification'),
     transitionName: PropTypes.string,
-    animation: PropTypes.oneOfType([PropTypes.string, PropTypes.object]).def(
-      "fade"
-    ),
+    animation: PropTypes.oneOfType([PropTypes.string, PropTypes.object]).def('fade'),
     maxCount: PropTypes.number,
-    closeIcon: PropTypes.any
+    closeIcon: PropTypes.any,
   },
   data() {
     return {
-      notices: []
+      notices: [],
     };
   },
   methods: {
@@ -56,14 +54,13 @@ const Notification = {
             // XXX, use key of first item to update new added (let React to move exsiting
             // instead of remove and mount). Same key was used before for both a) external
             // manual control and b) internal react 'key' prop , which is not that good.
-            notice.updateKey =
-              updatedNotices[0].updateKey || updatedNotices[0].key;
+            notice.updateKey = updatedNotices[0].updateKey || updatedNotices[0].key;
             updatedNotices.shift();
           }
           updatedNotices.push(notice);
         }
         return {
-          notices: updatedNotices
+          notices: updatedNotices,
         };
       });
     },
@@ -71,10 +68,10 @@ const Notification = {
     remove(key) {
       this.setState(previousState => {
         return {
-          notices: previousState.notices.filter(notice => notice.key !== key)
+          notices: previousState.notices.filter(notice => notice.key !== key),
         };
       });
-    }
+    },
   },
 
   render(h) {
@@ -84,42 +81,30 @@ const Notification = {
       const update = Boolean(index === notices.length - 1 && notice.updateKey);
       const key = notice.updateKey ? notice.updateKey : notice.key;
 
-      const {
-        content,
-        duration,
-        closable,
-        onClose,
-        style,
-        class: className
-      } = notice;
-      const close = createChainedFunction(
-        remove.bind(this, notice.key),
-        onClose
-      );
+      const { content, duration, closable, onClose, style, class: className } = notice;
+      const close = createChainedFunction(remove.bind(this, notice.key), onClose);
       const noticeProps = {
         props: {
           prefixCls,
           duration,
           closable,
           update,
-          closeIcon: getComponentFromProp(this, "closeIcon")
+          closeIcon: getComponentFromProp(this, 'closeIcon'),
         },
         on: {
           close,
-          click: notice.onClick || noop
+          click: notice.onClick || noop,
         },
         style,
         class: className,
-        key
+        key,
       };
       return (
-        <Notice {...noticeProps}>
-          {typeof content === "function" ? content(h) : content}
-        </Notice>
+        <Notice {...noticeProps}>{typeof content === 'function' ? content(h) : content}</Notice>
       );
     });
     const className = {
-      [prefixCls]: 1
+      [prefixCls]: 1,
     };
     const style = getStyle(this);
     return (
@@ -127,23 +112,20 @@ const Notification = {
         class={className}
         style={
           style || {
-            top: "65px",
-            left: "50%"
+            top: '65px',
+            left: '50%',
           }
         }
       >
         <transition-group {...transitionProps}>{noticeNodes}</transition-group>
       </div>
     );
-  }
+  },
 };
 
-Notification.newInstance = function newNotificationInstance(
-  properties,
-  callback
-) {
+Notification.newInstance = function newNotificationInstance(properties, callback) {
   const { getContainer, style, class: className, ...props } = properties || {};
-  const div = document.createElement("div");
+  const div = document.createElement('div');
   if (getContainer) {
     const root = getContainer();
     root.appendChild(div);
@@ -167,19 +149,19 @@ Notification.newInstance = function newNotificationInstance(
           destroy() {
             self.$destroy();
             self.$el.parentNode.removeChild(self.$el);
-          }
+          },
         });
       });
     },
     render() {
       const p = {
         props,
-        ref: "notification",
+        ref: 'notification',
         style,
-        class: className
+        class: className,
       };
       return <Notification {...p} />;
-    }
+    },
   });
 };
 

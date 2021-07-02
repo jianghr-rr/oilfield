@@ -1,8 +1,8 @@
-import warning from "warning";
-import PropTypes from "../../../_util/vue-types";
-import { Tree } from "../../../vc-tree";
-import BaseMixin from "../../../_util/BaseMixin";
-import { createRef } from "../util";
+import warning from 'warning';
+import PropTypes from '../../../_util/vue-types';
+import { Tree } from '../../../vc-tree';
+import BaseMixin from '../../../_util/BaseMixin';
+import { createRef } from '../util';
 
 // export const popupContextTypes = {
 //   onPopupKeyDown: PropTypes.func.isRequired,
@@ -14,7 +14,7 @@ function getDerivedState(nextProps, prevState) {
     _prevProps: prevProps = {},
     _loadedKeys: loadedKeys,
     _expandedKeyList: expandedKeyList,
-    _cachedExpandedKeyList: cachedExpandedKeyList
+    _cachedExpandedKeyList: cachedExpandedKeyList,
   } = prevState || {};
   const {
     valueList,
@@ -22,11 +22,11 @@ function getDerivedState(nextProps, prevState) {
     keyEntities,
     treeExpandedKeys,
     filteredTreeNodes,
-    upperSearchValue
+    upperSearchValue,
   } = nextProps;
 
   const newState = {
-    _prevProps: { ...nextProps }
+    _prevProps: { ...nextProps },
   };
 
   // Check value update
@@ -50,11 +50,7 @@ function getDerivedState(nextProps, prevState) {
   // Cache `expandedKeyList` when filter set
   if (upperSearchValue && !prevProps.upperSearchValue) {
     newState._cachedExpandedKeyList = expandedKeyList;
-  } else if (
-    !upperSearchValue &&
-    prevProps.upperSearchValue &&
-    !treeExpandedKeys
-  ) {
+  } else if (!upperSearchValue && prevProps.upperSearchValue && !treeExpandedKeys) {
     newState._expandedKeyList = cachedExpandedKeyList || [];
     newState._cachedExpandedKeyList = [];
   }
@@ -73,7 +69,7 @@ function getDerivedState(nextProps, prevState) {
 }
 const BasePopup = {
   mixins: [BaseMixin],
-  name: "BasePopup",
+  name: 'BasePopup',
   props: {
     prefixCls: PropTypes.string,
     upperSearchValue: PropTypes.string,
@@ -103,25 +99,21 @@ const BasePopup = {
     renderSearch: PropTypes.func,
     // onTreeExpanded: PropTypes.func,
 
-    __propsSymbol__: PropTypes.any
+    __propsSymbol__: PropTypes.any,
   },
   inject: {
-    vcTreeSelect: { default: () => ({}) }
+    vcTreeSelect: { default: () => ({}) },
   },
   watch: {
     __propsSymbol__() {
       const state = getDerivedState(this.$props, this.$data);
       this.setState(state);
-    }
+    },
   },
   data() {
     this.treeRef = createRef();
-    warning(this.$props.__propsSymbol__, "must pass __propsSymbol__");
-    const {
-      treeDefaultExpandAll,
-      treeDefaultExpandedKeys,
-      keyEntities
-    } = this.$props;
+    warning(this.$props.__propsSymbol__, 'must pass __propsSymbol__');
+    const { treeDefaultExpandAll, treeDefaultExpandedKeys, keyEntities } = this.$props;
 
     // TODO: make `expandedKeyList` control
     let expandedKeyList = treeDefaultExpandedKeys;
@@ -135,11 +127,11 @@ const BasePopup = {
       // Cache `expandedKeyList` when tree is in filter. This is used in `getDerivedState`
       _cachedExpandedKeyList: [],
       _loadedKeys: [],
-      _prevProps: {}
+      _prevProps: {},
     };
     return {
       ...state,
-      ...getDerivedState(this.$props, state)
+      ...getDerivedState(this.$props, state),
     };
   },
   methods: {
@@ -149,11 +141,11 @@ const BasePopup = {
       // Set uncontrolled state
       if (!treeExpandedKeys) {
         this.setState({ _expandedKeyList: expandedKeyList }, () => {
-          this.__emit("treeExpanded");
+          this.__emit('treeExpanded');
         });
       }
-      this.__emit("update:treeExpandedKeys", expandedKeyList);
-      this.__emit("treeExpand", expandedKeyList);
+      this.__emit('update:treeExpandedKeys', expandedKeyList);
+      this.__emit('treeExpand', expandedKeyList);
     },
 
     onLoad(loadedKeys) {
@@ -181,11 +173,8 @@ const BasePopup = {
       const { upperSearchValue, treeNodeFilterProp } = this.$props;
 
       const filterVal = treeNode[treeNodeFilterProp];
-      if (typeof filterVal === "string") {
-        return (
-          upperSearchValue &&
-          filterVal.toUpperCase().indexOf(upperSearchValue) !== -1
-        );
+      if (typeof filterVal === 'string') {
+        return upperSearchValue && filterVal.toUpperCase().indexOf(upperSearchValue) !== -1;
       }
 
       return false;
@@ -195,14 +184,14 @@ const BasePopup = {
       const { prefixCls, notFoundContent } = this.$props;
 
       return <span class={`${prefixCls}-not-found`}>{notFoundContent}</span>;
-    }
+    },
   },
 
   render() {
     const {
       _keyList: keyList,
       _expandedKeyList: expandedKeyList,
-      _loadedKeys: loadedKeys
+      _loadedKeys: loadedKeys,
     } = this.$data;
     const {
       prefixCls,
@@ -216,10 +205,10 @@ const BasePopup = {
       ariaId,
       renderSearch,
       switcherIcon,
-      searchHalfCheckedKeys
+      searchHalfCheckedKeys,
     } = this.$props;
     const {
-      vcTreeSelect: { onPopupKeyDown, onTreeNodeSelect, onTreeNodeCheck }
+      vcTreeSelect: { onPopupKeyDown, onTreeNodeSelect, onTreeNodeCheck },
     } = this;
 
     const loadData = this.getLoadData();
@@ -242,7 +231,7 @@ const BasePopup = {
         if (treeCheckable && !treeCheckStrictly) {
           treeProps.checkedKeys = {
             checked: keyList,
-            halfChecked: searchHalfCheckedKeys
+            halfChecked: searchHalfCheckedKeys,
           };
         }
       } else {
@@ -274,20 +263,20 @@ const BasePopup = {
           switcherIcon,
           ...treeProps,
           __propsSymbol__: Symbol(),
-          children: $treeNodes
+          children: $treeNodes,
         },
         on: {
           select: onTreeNodeSelect,
           check: onTreeNodeCheck,
           expand: this.onTreeExpand,
-          load: this.onLoad
+          load: this.onLoad,
         },
         directives: [
           {
-            name: "ant-ref",
-            value: this.treeRef
-          }
-        ]
+            name: 'ant-ref',
+            value: this.treeRef,
+          },
+        ],
       };
       $tree = <Tree {...treeAllProps} />;
     }
@@ -298,7 +287,7 @@ const BasePopup = {
         {$tree}
       </div>
     );
-  }
+  },
 };
 
 export default BasePopup;

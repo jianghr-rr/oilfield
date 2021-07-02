@@ -1,3 +1,3 @@
-import locale from "../locale/sl_SI";
+import locale from '../locale/sl_SI';
 
 export default locale;

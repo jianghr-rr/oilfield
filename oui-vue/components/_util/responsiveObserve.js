@@ -3,30 +3,30 @@
 let enquire;
 
 // TODO: Will be removed in antd 4.0 because we will no longer support ie9
-if (typeof window !== "undefined") {
+if (typeof window !== 'undefined') {
   const matchMediaPolyfill = mediaQuery => {
     return {
       media: mediaQuery,
       matches: false,
       addListener() {},
-      removeListener() {}
+      removeListener() {},
     };
   };
   // ref: https://github.com/ant-design/ant-design/issues/18774
   if (!window.matchMedia) window.matchMedia = matchMediaPolyfill;
   // eslint-disable-next-line global-require
-  enquire = require("enquire.js");
+  enquire = require('enquire.js');
 }
 
-export const responsiveArray = ["xxl", "xl", "lg", "md", "sm", "xs"];
+export const responsiveArray = ['xxl', 'xl', 'lg', 'md', 'sm', 'xs'];
 
 export const responsiveMap = {
-  xs: "(max-width: 575px)",
-  sm: "(min-width: 576px)",
-  md: "(min-width: 768px)",
-  lg: "(min-width: 992px)",
-  xl: "(min-width: 1200px)",
-  xxl: "(min-width: 1600px)"
+  xs: '(max-width: 575px)',
+  sm: '(min-width: 576px)',
+  md: '(min-width: 768px)',
+  lg: '(min-width: 992px)',
+  xl: '(min-width: 1200px)',
+  xxl: '(min-width: 1600px)',
 };
 
 let subscribers = [];
@@ -53,7 +53,7 @@ const responsiveObserve = {
     const token = (++subUid).toString();
     subscribers.push({
       token,
-      func
+      func,
     });
     func(screens);
     return token;
@@ -65,9 +65,7 @@ const responsiveObserve = {
     }
   },
   unregister() {
-    Object.keys(responsiveMap).map(screen =>
-      enquire.unregister(responsiveMap[screen])
-    );
+    Object.keys(responsiveMap).map(screen => enquire.unregister(responsiveMap[screen]));
   },
   register() {
     Object.keys(responsiveMap).map(screen =>
@@ -75,22 +73,22 @@ const responsiveObserve = {
         match: () => {
           const pointMap = {
             ...screens,
-            [screen]: true
+            [screen]: true,
           };
           this.dispatch(pointMap);
         },
         unmatch: () => {
           const pointMap = {
             ...screens,
-            [screen]: false
+            [screen]: false,
           };
           this.dispatch(pointMap);
         },
         // Keep a empty destroy to avoid triggering unmatch when unregister
-        destroy() {}
-      })
+        destroy() {},
+      }),
     );
-  }
+  },
 };
 
 export default responsiveObserve;

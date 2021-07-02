@@ -1,24 +1,24 @@
-import { mount } from "@vue/test-utils";
-import { Col, Row } from "..";
-import mountTest from "../../../tests/shared/mountTest";
+import { mount } from '@vue/test-utils';
+import { Col, Row } from '..';
+import mountTest from '../../../tests/shared/mountTest';
 
-describe("Grid", () => {
+describe('Grid', () => {
   mountTest(Row);
   mountTest(Col);
-  it("should render Col", () => {
+  it('should render Col', () => {
     const wrapper = mount(Col, {
       propsData: {
-        span: 2
-      }
+        span: 2,
+      },
     });
     expect(wrapper.html()).toMatchSnapshot();
   });
-  it("should render Row", () => {
+  it('should render Row', () => {
     const wrapper = mount(Row);
     expect(wrapper.html()).toMatchSnapshot();
   });
 
-  it("renders wrapped Col correctly", () => {
+  it('renders wrapped Col correctly', () => {
     const wrapper = mount({
       render() {
         return (
@@ -29,7 +29,7 @@ describe("Grid", () => {
             <Col span={12} />
           </Row>
         );
-      }
+      },
     });
     expect(wrapper.html()).toMatchSnapshot();
   });

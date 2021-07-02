@@ -1,56 +1,56 @@
-import omit from "omit.js";
-import KeyCode from "../../_util/KeyCode";
-import BaseMixin from "../../_util/BaseMixin";
+import omit from 'omit.js';
+import KeyCode from '../../_util/KeyCode';
+import BaseMixin from '../../_util/BaseMixin';
 import {
   getSlots,
   hasProp,
   getOptionProps,
   getListeners,
-  initDefaultProps
-} from "../../_util/props-util";
-import warning from "warning";
+  initDefaultProps,
+} from '../../_util/props-util';
+import warning from 'warning';
 import {
   getBeforeSelectionText,
   getLastMeasureIndex,
   replaceWithMeasure,
-  setInputSelection
-} from "./util";
-import KeywordTrigger from "./KeywordTrigger";
-import { vcMentionsProps, defaultProps } from "./mentionsProps";
+  setInputSelection,
+} from './util';
+import KeywordTrigger from './KeywordTrigger';
+import { vcMentionsProps, defaultProps } from './mentionsProps';
 
 function noop() {}
 
 const Mentions = {
-  name: "Mentions",
+  name: 'Mentions',
   mixins: [BaseMixin],
   inheritAttrs: false,
   model: {
-    prop: "value",
-    event: "change"
+    prop: 'value',
+    event: 'change',
   },
   props: initDefaultProps(vcMentionsProps, defaultProps),
   provide() {
     return {
-      mentionsContext: this
+      mentionsContext: this,
     };
   },
   data() {
-    const { value = "", defaultValue = "" } = this.$props;
-    warning(this.$props.children, "please children prop replace slots.default");
+    const { value = '', defaultValue = '' } = this.$props;
+    warning(this.$props.children, 'please children prop replace slots.default');
     return {
-      _value: !hasProp(this, "value") ? defaultValue : value,
+      _value: !hasProp(this, 'value') ? defaultValue : value,
       measuring: false,
       measureLocation: 0,
       measureText: null,
-      measurePrefix: "",
+      measurePrefix: '',
       activeIndex: 0,
-      isFocus: false
+      isFocus: false,
     };
   },
   watch: {
     value(val) {
       this.$data._value = val;
-    }
+    },
   },
   updated() {
     this.$nextTick(() => {
@@ -65,12 +65,12 @@ const Mentions = {
   methods: {
     triggerChange(value) {
       const props = getOptionProps(this);
-      if (!("value" in props)) {
+      if (!('value' in props)) {
         this.setState({ _value: value });
       } else {
         this.$forceUpdate();
       }
-      this.$emit("change", value);
+      this.$emit('change', value);
     },
     onChange({ target: { value, composing }, isComposing }) {
       if (isComposing || composing) return;
@@ -90,7 +90,7 @@ const Mentions = {
         const offset = which === KeyCode.UP ? -1 : 1;
         const newActiveIndex = (activeIndex + offset + optionLen) % optionLen;
         this.setState({
-          activeIndex: newActiveIndex
+          activeIndex: newActiveIndex,
         });
         event.preventDefault();
       } else if (which === KeyCode.ESC) {
@@ -122,27 +122,21 @@ const Mentions = {
     onKeyUp(event) {
       const { key, which } = event;
       const { measureText: prevMeasureText, measuring } = this.$data;
-      const { prefix = "", validateSearch } = this.$props;
+      const { prefix = '', validateSearch } = this.$props;
       const target = event.target;
       const selectionStartText = getBeforeSelectionText(target);
-      const {
-        location: measureIndex,
-        prefix: measurePrefix
-      } = getLastMeasureIndex(selectionStartText, prefix);
+      const { location: measureIndex, prefix: measurePrefix } = getLastMeasureIndex(
+        selectionStartText,
+        prefix,
+      );
 
       // Skip if match the white key list
-      if (
-        [KeyCode.ESC, KeyCode.UP, KeyCode.DOWN, KeyCode.ENTER].indexOf(
-          which
-        ) !== -1
-      ) {
+      if ([KeyCode.ESC, KeyCode.UP, KeyCode.DOWN, KeyCode.ENTER].indexOf(which) !== -1) {
         return;
       }
 
       if (measureIndex !== -1) {
-        const measureText = selectionStartText.slice(
-          measureIndex + measurePrefix.length
-        );
+        const measureText = selectionStartText.slice(measureIndex + measurePrefix.length);
         const validateMeasure = validateSearch(measureText, this.$props);
         const matchOption = !!this.getOptions(measureText).length;
 
@@ -164,7 +158,7 @@ const Mentions = {
          * If met `space` means user finished searching.
          */
         if (validateMeasure) {
-          this.$emit("search", measureText, measurePrefix);
+          this.$emit('search', measureText, measurePrefix);
         }
       } else if (measuring) {
         this.stopMeasure();
@@ -186,7 +180,7 @@ const Mentions = {
       window.clearTimeout(this.focusId);
       const { isFocus } = this.$data;
       if (!isFocus && event) {
-        this.$emit("focus", event);
+        this.$emit('focus', event);
       }
       this.setState({ isFocus: true });
     },
@@ -194,19 +188,19 @@ const Mentions = {
       this.focusId = window.setTimeout(() => {
         this.setState({ isFocus: false });
         this.stopMeasure();
-        this.$emit("blur", event);
+        this.$emit('blur', event);
       }, 0);
     },
     selectOption(option) {
       const { _value: value, measureLocation, measurePrefix } = this.$data;
       const { split } = this.$props;
-      const { value: mentionValue = "" } = option;
+      const { value: mentionValue = '' } = option;
       const { text, selectionLocation } = replaceWithMeasure(value, {
         measureLocation,
         targetText: mentionValue,
         prefix: measurePrefix,
         selectionStart: this.$refs.textarea.selectionStart,
-        split
+        split,
       });
       this.triggerChange(text);
       this.stopMeasure(() => {
@@ -214,15 +208,15 @@ const Mentions = {
         setInputSelection(this.$refs.textarea, selectionLocation);
       });
 
-      this.$emit("select", option, measurePrefix);
+      this.$emit('select', option, measurePrefix);
     },
     setActiveIndex(activeIndex) {
       this.setState({
-        activeIndex
+        activeIndex,
       });
     },
     getOptions(measureText) {
-      const targetMeasureText = measureText || this.$data.measureText || "";
+      const targetMeasureText = measureText || this.$data.measureText || '';
       const { filterOption, children = [] } = this.$props;
       const list = (Array.isArray(children) ? children : [children])
         .map(item => {
@@ -244,7 +238,7 @@ const Mentions = {
         measureText,
         measurePrefix,
         measureLocation,
-        activeIndex: 0
+        activeIndex: 0,
       });
     },
     stopMeasure(callback) {
@@ -252,9 +246,9 @@ const Mentions = {
         {
           measuring: false,
           measureLocation: 0,
-          measureText: null
+          measureText: null,
         },
-        callback
+        callback,
       );
     },
     focus() {
@@ -262,16 +256,11 @@ const Mentions = {
     },
     blur() {
       this.$refs.textarea.blur();
-    }
+    },
   },
 
   render() {
-    const {
-      _value: value,
-      measureLocation,
-      measurePrefix,
-      measuring
-    } = this.$data;
+    const { _value: value, measureLocation, measurePrefix, measuring } = this.$data;
     const {
       prefixCls,
       placement,
@@ -283,13 +272,13 @@ const Mentions = {
     } = getOptionProps(this);
 
     const inputProps = omit(restProps, [
-      "value",
-      "defaultValue",
-      "prefix",
-      "split",
-      "children",
-      "validateSearch",
-      "filterOption"
+      'value',
+      'defaultValue',
+      'prefix',
+      'split',
+      'children',
+      'validateSearch',
+      'filterOption',
     ]);
 
     const options = measuring ? this.getOptions() : [];
@@ -299,10 +288,10 @@ const Mentions = {
         <textarea
           ref="textarea"
           {...{
-            directives: [{ name: "ant-input" }],
+            directives: [{ name: 'ant-input' }],
             attrs: { ...inputProps, ...this.$attrs },
             domProps: {
-              value
+              value,
             },
             on: {
               ...getListeners(this),
@@ -311,8 +300,8 @@ const Mentions = {
               input: this.onChange,
               keydown: this.onKeyDown,
               keyup: this.onKeyUp,
-              blur: this.onInputBlur
-            }
+              blur: this.onInputBlur,
+            },
           }}
         />
         {measuring && (
@@ -333,7 +322,7 @@ const Mentions = {
         )}
       </div>
     );
-  }
+  },
 };
 
 export default Mentions;

@@ -5,6 +5,6 @@ export default {
       this.$nextTick(() => {
         callback && callback();
       });
-    }
-  }
+    },
+  },
 };

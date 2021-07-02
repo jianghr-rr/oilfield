@@ -1,8 +1,8 @@
 /* eslint no-loop-func: 0*/
-import warning from "warning";
-import omit from "omit.js";
-import TreeNode from "./TreeNode";
-import { getSlotOptions, getOptionProps } from "../../_util/props-util";
+import warning from 'warning';
+import omit from 'omit.js';
+import TreeNode from './TreeNode';
+import { getSlotOptions, getOptionProps } from '../../_util/props-util';
 const DRAG_SIDE_RANGE = 0.25;
 const DRAG_MIN_GAP = 2;
 
@@ -12,7 +12,7 @@ export function warnOnlyTreeNode() {
   if (onlyTreeNodeWarned) return;
 
   onlyTreeNodeWarned = true;
-  warning(false, "Tree only accept TreeNode as children.");
+  warning(false, 'Tree only accept TreeNode as children.');
 }
 
 export function arrDel(list, value) {
@@ -33,7 +33,7 @@ export function arrAdd(list, value) {
 }
 
 export function posToArr(pos) {
-  return pos.split("-");
+  return pos.split('-');
 }
 
 export function getPosition(level, index) {
@@ -72,7 +72,7 @@ export function traverseTreeNodes(treeNodes, callback) {
         index,
         pos,
         key,
-        parentPos: parent.node ? parent.pos : null
+        parentPos: parent.node ? parent.pos : null,
       };
       callback(data);
     }
@@ -111,11 +111,7 @@ export function getDragNodesKeys(treeNodes, node) {
 
 export function calcDropPosition(event, treeNode) {
   const { clientY } = event;
-  const {
-    top,
-    bottom,
-    height
-  } = treeNode.$refs.selectHandle.getBoundingClientRect();
+  const { top, bottom, height } = treeNode.$refs.selectHandle.getBoundingClientRect();
   const des = Math.max(height * DRAG_SIDE_RANGE, DRAG_MIN_GAP);
 
   if (clientY <= top + des) {
@@ -160,11 +156,11 @@ export function calcSelectedKeys(selectedKeys, props) {
 
 const internalProcessProps = (props = {}) => {
   return {
-    props: omit(props, ["on", "key", "class", "className", "style"]),
+    props: omit(props, ['on', 'key', 'class', 'className', 'style']),
     on: props.on || {},
     class: props.class || props.className,
     style: props.style,
-    key: props.key
+    key: props.key,
   };
 };
 export function convertDataToTree(h, treeData, processor) {
@@ -186,13 +182,13 @@ export function convertDataToTree(h, treeData, processor) {
  */
 export function convertTreeToEntities(
   treeNodes,
-  { initWrapper, processEntity, onProcessFinished } = {}
+  { initWrapper, processEntity, onProcessFinished } = {},
 ) {
   const posEntities = new Map();
   const keyEntities = new Map();
   let wrapper = {
     posEntities,
-    keyEntities
+    keyEntities,
   };
 
   if (initWrapper) {
@@ -239,15 +235,15 @@ export function parseCheckedKeys(keys) {
     // [Legacy] Follow the api doc
     keyProps = {
       checkedKeys: keys,
-      halfCheckedKeys: undefined
+      halfCheckedKeys: undefined,
     };
-  } else if (typeof keys === "object") {
+  } else if (typeof keys === 'object') {
     keyProps = {
       checkedKeys: keys.checked || undefined,
-      halfCheckedKeys: keys.halfChecked || undefined
+      halfCheckedKeys: keys.halfChecked || undefined,
     };
   } else {
-    warning(false, "`checkedKeys` is not an array or an object");
+    warning(false, '`checkedKeys` is not an array or an object');
     return null;
   }
 
@@ -382,7 +378,7 @@ export function conductCheck(keyList, isCheck, keyEntities, checkStatus = {}) {
 
   return {
     checkedKeys: checkedKeyList,
-    halfCheckedKeys: halfCheckedKeyList
+    halfCheckedKeys: halfCheckedKeyList,
   };
 }
 
@@ -424,7 +420,7 @@ export function conductExpandParent(keyList, keyEntities) {
  */
 export function getDataAndAria(props) {
   return Object.keys(props).reduce((prev, key) => {
-    if (key.substr(0, 5) === "data-" || key.substr(0, 5) === "aria-") {
+    if (key.substr(0, 5) === 'data-' || key.substr(0, 5) === 'aria-') {
       prev[key] = props[key];
     }
     return prev;

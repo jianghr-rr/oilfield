@@ -1,13 +1,13 @@
-import Dialog from "./Dialog";
-import getDialogPropTypes from "./IDialogPropTypes";
-import { getListeners } from "../_util/props-util";
-import Portal from "../_util/PortalWrapper";
+import Dialog from './Dialog';
+import getDialogPropTypes from './IDialogPropTypes';
+import { getListeners } from '../_util/props-util';
+import Portal from '../_util/PortalWrapper';
 const IDialogPropTypes = getDialogPropTypes();
 const DialogWrap = {
   inheritAttrs: false,
   props: {
     ...IDialogPropTypes,
-    visible: IDialogPropTypes.visible.def(false)
+    visible: IDialogPropTypes.visible.def(false),
   },
 
   render() {
@@ -15,9 +15,9 @@ const DialogWrap = {
     const dialogProps = {
       props: this.$props,
       attrs: this.$attrs,
-      ref: "_component",
-      key: "dialog",
-      on: getListeners(this)
+      ref: '_component',
+      key: 'dialog',
+      on: getListeners(this),
     };
     // 渲染在当前 dom 里；
     if (getContainer === false) {
@@ -41,7 +41,7 @@ const DialogWrap = {
         }}
       />
     );
-  }
+  },
 };
 
 export default DialogWrap;

@@ -1,8 +1,8 @@
-import PropTypes from "./vue-types";
-import { getOptionProps, getListeners } from "./props-util";
+import PropTypes from './vue-types';
+import { getOptionProps, getListeners } from './props-util';
 
 function getDisplayName(WrappedComponent) {
-  return WrappedComponent.name || "Component";
+  return WrappedComponent.name || 'Component';
 }
 export default function wrapWithConnect(WrappedComponent) {
   const tempProps = WrappedComponent.props || {};
@@ -20,7 +20,7 @@ export default function wrapWithConnect(WrappedComponent) {
     methods: {
       getProxyWrappedInstance() {
         return this.$refs.wrappedInstance;
-      }
+      },
     },
     render() {
       const { $slots = {}, $scopedSlots } = this;
@@ -30,9 +30,9 @@ export default function wrapWithConnect(WrappedComponent) {
           ...props,
           __propsSymbol__: Symbol(),
           componentWillReceiveProps: { ...props },
-          children: $slots.default || props.children || []
+          children: $slots.default || props.children || [],
         },
-        on: getListeners(this)
+        on: getListeners(this),
       };
       if (Object.keys($scopedSlots).length) {
         wrapProps.scopedSlots = $scopedSlots;
@@ -47,7 +47,7 @@ export default function wrapWithConnect(WrappedComponent) {
             : null}
         </WrappedComponent>
       );
-    }
+    },
   };
   Object.keys(methods).map(m => {
     ProxyWrappedComponent.methods[m] = function() {

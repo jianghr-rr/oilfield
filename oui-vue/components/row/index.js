@@ -1,5 +1,5 @@
-import { Row } from "../grid";
-import Base from "../base";
+import { Row } from '../grid';
+import Base from '../base';
 
 /* istanbul ignore next */
 Row.install = function(Vue) {

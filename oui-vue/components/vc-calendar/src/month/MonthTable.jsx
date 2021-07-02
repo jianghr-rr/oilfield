@@ -1,6 +1,6 @@
-import PropTypes from "../../../_util/vue-types";
-import BaseMixin from "../../../_util/BaseMixin";
-import { getTodayTime, getMonthName } from "../util/index";
+import PropTypes from '../../../_util/vue-types';
+import BaseMixin from '../../../_util/BaseMixin';
+import { getTodayTime, getMonthName } from '../util/index';
 
 const ROW = 4;
 const COL = 3;
@@ -8,7 +8,7 @@ const COL = 3;
 function noop() {}
 
 const MonthTable = {
-  name: "MonthTable",
+  name: 'MonthTable',
   mixins: [BaseMixin],
   props: {
     cellRender: PropTypes.func,
@@ -16,26 +16,26 @@ const MonthTable = {
     value: PropTypes.object,
     locale: PropTypes.any,
     contentRender: PropTypes.any,
-    disabledDate: PropTypes.func
+    disabledDate: PropTypes.func,
   },
   data() {
     return {
-      sValue: this.value
+      sValue: this.value,
     };
   },
   watch: {
     value(val) {
       this.setState({
-        sValue: val
+        sValue: val,
       });
-    }
+    },
   },
   methods: {
     setAndSelectValue(value) {
       this.setState({
-        sValue: value
+        sValue: value,
       });
-      this.__emit("select", value);
+      this.__emit('select', value);
     },
     chooseMonth(month) {
       const next = this.sValue.clone();
@@ -55,13 +55,13 @@ const MonthTable = {
           months[rowIndex][colIndex] = {
             value: index,
             content,
-            title: content
+            title: content,
           };
           index++;
         }
       }
       return months;
-    }
+    },
   },
 
   render() {
@@ -70,13 +70,7 @@ const MonthTable = {
     const today = getTodayTime(value);
     const months = this.months();
     const currentMonth = value.month();
-    const {
-      prefixCls,
-      locale,
-      contentRender,
-      cellRender,
-      disabledDate
-    } = props;
+    const { prefixCls, locale, contentRender, cellRender, disabledDate } = props;
     const monthsEls = months.map((month, index) => {
       const tds = month.map(monthData => {
         let disabled = false;
@@ -90,7 +84,7 @@ const MonthTable = {
           [`${prefixCls}-cell-disabled`]: disabled,
           [`${prefixCls}-selected-cell`]: monthData.value === currentMonth,
           [`${prefixCls}-current-cell`]:
-            today.year() === value.year() && monthData.value === today.month()
+            today.year() === value.year() && monthData.value === today.month(),
         };
         let cellEl;
         if (cellRender) {
@@ -132,7 +126,7 @@ const MonthTable = {
         <tbody class={`${prefixCls}-tbody`}>{monthsEls}</tbody>
       </table>
     );
-  }
+  },
 };
 
 export default MonthTable;

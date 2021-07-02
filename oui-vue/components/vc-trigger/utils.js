@@ -9,26 +9,19 @@ export function getAlignFromPlacement(builtinPlacements, placementStr, align) {
   const baseAlign = builtinPlacements[placementStr] || {};
   return {
     ...baseAlign,
-    ...align
+    ...align,
   };
 }
 
-export function getAlignPopupClassName(
-  builtinPlacements,
-  prefixCls,
-  align,
-  isAlignPoint
-) {
+export function getAlignPopupClassName(builtinPlacements, prefixCls, align, isAlignPoint) {
   const points = align.points;
   for (const placement in builtinPlacements) {
     if (builtinPlacements.hasOwnProperty(placement)) {
-      if (
-        isPointsEq(builtinPlacements[placement].points, points, isAlignPoint)
-      ) {
+      if (isPointsEq(builtinPlacements[placement].points, points, isAlignPoint)) {
         return `${prefixCls}-placement-${placement}`;
       }
     }
   }
-  return "";
+  return '';
 }
 export function noop() {}

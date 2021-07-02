@@ -1,11 +1,11 @@
-import { TreeNode } from "../../vc-tree";
+import { TreeNode } from '../../vc-tree';
 /**
  * SelectNode wrapped the tree node.
  * Let's use SelectNode instead of TreeNode
  * since TreeNode is so confuse here.
  */
 export default {
-  name: "SelectNode",
+  name: 'SelectNode',
   functional: true,
   isTreeNode: true,
   props: TreeNode.props,
@@ -24,9 +24,9 @@ export default {
       props,
       scopedSlots: {
         ...scopedSlotsTemp,
-        ...scopedSlots
-      }
+        ...scopedSlots,
+      },
     };
     return <TreeNode {...treeNodeProps}>{children}</TreeNode>;
-  }
+  },
 };

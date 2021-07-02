@@ -1,17 +1,17 @@
-import PropTypes from "../../_util/vue-types";
+import PropTypes from '../../_util/vue-types';
 
 export default {
-  name: "PanelContent",
+  name: 'PanelContent',
   props: {
     prefixCls: PropTypes.string,
     isActive: PropTypes.bool,
     destroyInactivePanel: PropTypes.bool,
     forceRender: PropTypes.bool,
-    role: PropTypes.any
+    role: PropTypes.any,
   },
   data() {
     return {
-      _isActive: undefined
+      _isActive: undefined,
     };
   },
   render() {
@@ -19,17 +19,11 @@ export default {
     if (!this._isActive) {
       return null;
     }
-    const {
-      prefixCls,
-      isActive,
-      destroyInactivePanel,
-      forceRender,
-      role
-    } = this.$props;
+    const { prefixCls, isActive, destroyInactivePanel, forceRender, role } = this.$props;
     const { $slots } = this;
     const contentCls = {
       [`${prefixCls}-content`]: true,
-      [`${prefixCls}-content-active`]: isActive
+      [`${prefixCls}-content-active`]: isActive,
     };
     const child =
       !forceRender && !isActive && destroyInactivePanel ? null : (
@@ -40,5 +34,5 @@ export default {
         {child}
       </div>
     );
-  }
+  },
 };

@@ -1,62 +1,62 @@
-import Pagination from "../vc-pagination/locale/ro_RO";
-import DatePicker from "../date-picker/locale/ro_RO";
-import TimePicker from "../time-picker/locale/ro_RO";
-import Calendar from "../calendar/locale/ro_RO";
+import Pagination from '../vc-pagination/locale/ro_RO';
+import DatePicker from '../date-picker/locale/ro_RO';
+import TimePicker from '../time-picker/locale/ro_RO';
+import Calendar from '../calendar/locale/ro_RO';
 
 export default {
-  locale: "ro",
+  locale: 'ro',
   Pagination,
   DatePicker,
   TimePicker,
   Calendar,
   global: {
-    placeholder: "Selectează"
+    placeholder: 'Selectează',
   },
   Table: {
-    filterTitle: "Filtrează",
-    filterConfirm: "OK",
-    filterReset: "Resetează",
-    selectAll: "Selectează pagina curentă",
-    selectInvert: "Inversează pagina curentă",
-    sortTitle: "Ordonează",
-    expand: "Extinde rândul",
-    collapse: "Micșorează rândul"
+    filterTitle: 'Filtrează',
+    filterConfirm: 'OK',
+    filterReset: 'Resetează',
+    selectAll: 'Selectează pagina curentă',
+    selectInvert: 'Inversează pagina curentă',
+    sortTitle: 'Ordonează',
+    expand: 'Extinde rândul',
+    collapse: 'Micșorează rândul',
   },
   Modal: {
-    okText: "OK",
-    cancelText: "Anulare",
-    justOkText: "OK"
+    okText: 'OK',
+    cancelText: 'Anulare',
+    justOkText: 'OK',
   },
   Popconfirm: {
-    okText: "OK",
-    cancelText: "Anulare"
+    okText: 'OK',
+    cancelText: 'Anulare',
   },
   Transfer: {
-    titles: ["", ""],
-    searchPlaceholder: "Căutare",
-    itemUnit: "element",
-    itemsUnit: "elemente"
+    titles: ['', ''],
+    searchPlaceholder: 'Căutare',
+    itemUnit: 'element',
+    itemsUnit: 'elemente',
   },
   Upload: {
-    uploading: "Se transferă...",
-    removeFile: "Înlătură fișierul",
-    uploadError: "Eroare la upload",
-    previewFile: "Previzualizare fișier",
-    downloadFile: "Descărcare fișier"
+    uploading: 'Se transferă...',
+    removeFile: 'Înlătură fișierul',
+    uploadError: 'Eroare la upload',
+    previewFile: 'Previzualizare fișier',
+    downloadFile: 'Descărcare fișier',
   },
   Empty: {
-    description: "Fără date"
+    description: 'Fără date',
   },
   Icon: {
-    icon: "icon"
+    icon: 'icon',
   },
   Text: {
-    edit: "editează",
-    copy: "copiază",
-    copied: "copiat",
-    expand: "extinde"
+    edit: 'editează',
+    copy: 'copiază',
+    copied: 'copiat',
+    expand: 'extinde',
   },
   PageHeader: {
-    back: "înapoi"
-  }
+    back: 'înapoi',
+  },
 };

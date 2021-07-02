@@ -1,10 +1,10 @@
-import PropTypes from "../../_util/vue-types";
-import BaseMixin from "../../_util/BaseMixin";
-import { getComponentFromProp } from "../../_util/props-util";
+import PropTypes from '../../_util/vue-types';
+import BaseMixin from '../../_util/BaseMixin';
+import { getComponentFromProp } from '../../_util/props-util';
 function noop() {}
 
 export default {
-  name: "Star",
+  name: 'Star',
   mixins: [BaseMixin],
   props: {
     value: PropTypes.number,
@@ -15,21 +15,21 @@ export default {
     character: PropTypes.any,
     characterRender: PropTypes.func,
     focused: PropTypes.bool,
-    count: PropTypes.number
+    count: PropTypes.number,
   },
   methods: {
     onHover(e) {
       const { index } = this;
-      this.$emit("hover", e, index);
+      this.$emit('hover', e, index);
     },
     onClick(e) {
       const { index } = this;
-      this.$emit("click", e, index);
+      this.$emit('click', e, index);
     },
     onKeyDown(e) {
       const { index } = this.$props;
       if (e.keyCode === 13) {
-        this.__emit("click", e, index);
+        this.__emit('click', e, index);
       }
     },
     getClassName() {
@@ -44,14 +44,13 @@ export default {
           className += ` ${prefixCls}-focused`;
         }
       } else {
-        className +=
-          starValue <= value ? ` ${prefixCls}-full` : ` ${prefixCls}-zero`;
+        className += starValue <= value ? ` ${prefixCls}-full` : ` ${prefixCls}-zero`;
         if (starValue === value && focused) {
           className += ` ${prefixCls}-focused`;
         }
       }
       return className;
-    }
+    },
   },
   render() {
     const {
@@ -63,10 +62,10 @@ export default {
       characterRender,
       index,
       count,
-      value
+      value,
     } = this;
 
-    const character = getComponentFromProp(this, "character");
+    const character = getComponentFromProp(this, 'character');
     let star = (
       <li class={this.getClassName()}>
         <div
@@ -74,7 +73,7 @@ export default {
           onKeydown={disabled ? noop : onKeyDown}
           onMousemove={disabled ? noop : onHover}
           role="radio"
-          aria-checked={value > index ? "true" : "false"}
+          aria-checked={value > index ? 'true' : 'false'}
           aria-posinset={index + 1}
           aria-setsize={count}
           tabIndex={0}
@@ -88,5 +87,5 @@ export default {
       star = characterRender(star, this.$props);
     }
     return star;
-  }
+  },
 };

@@ -1,16 +1,12 @@
-import omit from "omit.js";
-import BaseMixin from "../../_util/BaseMixin";
-import PropTypes from "../../_util/vue-types";
-import raf from "raf";
-import KeyCode from "./KeyCode";
-import {
-  getOptionProps,
-  getListeners,
-  getValueByProp
-} from "../../_util/props-util";
-import { cloneElement } from "../../_util/vnode";
-import Sentinel from "./Sentinel";
-import isValid from "../../_util/isValid";
+import omit from 'omit.js';
+import BaseMixin from '../../_util/BaseMixin';
+import PropTypes from '../../_util/vue-types';
+import raf from 'raf';
+import KeyCode from './KeyCode';
+import { getOptionProps, getListeners, getValueByProp } from '../../_util/props-util';
+import { cloneElement } from '../../_util/vnode';
+import Sentinel from './Sentinel';
+import isValid from '../../_util/isValid';
 
 function getDefaultActiveKey(props) {
   let activeKey;
@@ -30,11 +26,11 @@ function activeKeyIsValid(props, key) {
 }
 
 export default {
-  name: "Tabs",
+  name: 'Tabs',
   mixins: [BaseMixin],
   model: {
-    prop: "activeKey",
-    event: "change"
+    prop: 'activeKey',
+    event: 'change',
   },
   props: {
     destroyInactiveTabPane: PropTypes.bool,
@@ -42,47 +38,47 @@ export default {
     renderTabContent: PropTypes.func.isRequired,
     navWrapper: PropTypes.func.def(arg => arg),
     children: PropTypes.any.def([]),
-    prefixCls: PropTypes.string.def("ant-tabs"),
-    tabBarPosition: PropTypes.string.def("top"),
+    prefixCls: PropTypes.string.def('ant-tabs'),
+    tabBarPosition: PropTypes.string.def('top'),
     activeKey: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
     defaultActiveKey: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
     __propsSymbol__: PropTypes.any,
-    direction: PropTypes.string.def("ltr"),
-    tabBarGutter: PropTypes.number
+    direction: PropTypes.string.def('ltr'),
+    tabBarGutter: PropTypes.number,
   },
   data() {
     const props = getOptionProps(this);
     let activeKey;
-    if ("activeKey" in props) {
+    if ('activeKey' in props) {
       activeKey = props.activeKey;
-    } else if ("defaultActiveKey" in props) {
+    } else if ('defaultActiveKey' in props) {
       activeKey = props.defaultActiveKey;
     } else {
       activeKey = getDefaultActiveKey(props);
     }
     return {
-      _activeKey: activeKey
+      _activeKey: activeKey,
     };
   },
   provide() {
     return {
-      sentinelContext: this
+      sentinelContext: this,
     };
   },
   watch: {
     __propsSymbol__() {
       const nextProps = getOptionProps(this);
-      if ("activeKey" in nextProps) {
+      if ('activeKey' in nextProps) {
         this.setState({
-          _activeKey: nextProps.activeKey
+          _activeKey: nextProps.activeKey,
         });
       } else if (!activeKeyIsValid(nextProps, this.$data._activeKey)) {
         // https://github.com/ant-design/ant-design/issues/7093
         this.setState({
-          _activeKey: getDefaultActiveKey(nextProps)
+          _activeKey: getDefaultActiveKey(nextProps),
         });
       }
-    }
+    },
   },
   beforeDestroy() {
     this.destroy = true;
@@ -145,12 +141,12 @@ export default {
     setActiveKey(activeKey) {
       if (this.$data._activeKey !== activeKey) {
         const props = getOptionProps(this);
-        if (!("activeKey" in props)) {
+        if (!('activeKey' in props)) {
           this.setState({
-            _activeKey: activeKey
+            _activeKey: activeKey,
           });
         }
-        this.__emit("change", activeKey);
+        this.__emit('change', activeKey);
       }
     },
 
@@ -158,8 +154,8 @@ export default {
       const activeKey = this.$data._activeKey;
       const children = [];
       this.$props.children.forEach(c => {
-        const disabled = getValueByProp(c, "disabled");
-        if (c && !disabled && disabled !== "") {
+        const disabled = getValueByProp(c, 'disabled');
+        if (c && !disabled && disabled !== '') {
           if (next) {
             children.push(c);
           } else {
@@ -188,7 +184,7 @@ export default {
         if (this.destroy) return;
         this.$forceUpdate();
       });
-    }
+    },
   },
   render() {
     const props = this.$props;
@@ -200,12 +196,12 @@ export default {
       renderTabBar,
       destroyInactiveTabPane,
       direction,
-      tabBarGutter
+      tabBarGutter,
     } = props;
     const cls = {
       [prefixCls]: 1,
       [`${prefixCls}-${tabBarPosition}`]: 1,
-      [`${prefixCls}-rtl`]: direction === "rtl"
+      [`${prefixCls}-rtl`]: direction === 'rtl',
     };
 
     this.tabBar = renderTabBar();
@@ -217,13 +213,13 @@ export default {
         panels: props.children,
         activeKey: this.$data._activeKey,
         direction,
-        tabBarGutter
+        tabBarGutter,
       },
       on: {
         keydown: this.onNavKeyDown,
-        tabClick: this.onTabClick
+        tabClick: this.onTabClick,
       },
-      key: "tabBar"
+      key: 'tabBar',
     });
     const tabContent = cloneElement(renderTabContent(), {
       props: {
@@ -231,13 +227,13 @@ export default {
         tabBarPosition,
         activeKey: this.$data._activeKey,
         destroyInactiveTabPane,
-        direction
+        direction,
       },
       on: {
-        change: this.setActiveKey
+        change: this.setActiveKey,
       },
       children: props.children,
-      key: "tabContent"
+      key: 'tabContent',
     });
 
     const sentinelStart = (
@@ -257,15 +253,15 @@ export default {
 
     const contents = [];
 
-    if (tabBarPosition === "bottom") {
+    if (tabBarPosition === 'bottom') {
       contents.push(sentinelStart, tabContent, sentinelEnd, tabBar);
     } else {
       contents.push(tabBar, sentinelStart, tabContent, sentinelEnd);
     }
     const listeners = {
-      ...omit(getListeners(this), ["change"]),
-      scroll: this.onScroll
+      ...omit(getListeners(this), ['change']),
+      scroll: this.onScroll,
     };
     return <div {...{ on: listeners, class: cls }}>{contents}</div>;
-  }
+  },
 };

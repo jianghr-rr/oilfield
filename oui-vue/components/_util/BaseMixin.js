@@ -1,14 +1,13 @@
-import { getOptionProps } from "./props-util";
+import { getOptionProps } from './props-util';
 
 export default {
   methods: {
     setState(state = {}, callback) {
-      let newState =
-        typeof state === "function" ? state(this.$data, this.$props) : state;
+      let newState = typeof state === 'function' ? state(this.$data, this.$props) : state;
       if (this.getDerivedStateFromProps) {
         const s = this.getDerivedStateFromProps(getOptionProps(this), {
           ...this.$data,
-          ...newState
+          ...newState,
         });
         if (s === null) {
           return;
@@ -36,6 +35,6 @@ export default {
           event(...args.slice(1));
         }
       }
-    }
-  }
+    },
+  },
 };

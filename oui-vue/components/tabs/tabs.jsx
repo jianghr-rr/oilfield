@@ -1,25 +1,25 @@
-import Icon from "../icon";
-import VcTabs, { TabPane } from "../vc-tabs/src";
-import TabContent from "../vc-tabs/src/TabContent";
-import { isFlexSupported } from "../_util/styleChecker";
-import PropTypes from "../_util/vue-types";
+import Icon from '../icon';
+import VcTabs, { TabPane } from '../vc-tabs/src';
+import TabContent from '../vc-tabs/src/TabContent';
+import { isFlexSupported } from '../_util/styleChecker';
+import PropTypes from '../_util/vue-types';
 import {
   getComponentFromProp,
   getOptionProps,
   filterEmpty,
-  getListeners
-} from "../_util/props-util";
-import { cloneElement } from "../_util/vnode";
-import isValid from "../_util/isValid";
-import { ConfigConsumerProps } from "../config-provider/configConsumerProps";
-import TabBar from "./TabBar";
+  getListeners,
+} from '../_util/props-util';
+import { cloneElement } from '../_util/vnode';
+import isValid from '../_util/isValid';
+import { ConfigConsumerProps } from '../config-provider/configConsumerProps';
+import TabBar from './TabBar';
 
 export default {
   TabPane,
-  name: "ATabs",
+  name: 'ATabs',
   model: {
-    prop: "activeKey",
-    event: "change"
+    prop: 'activeKey',
+    event: 'change',
   },
   props: {
     prefixCls: PropTypes.string,
@@ -29,24 +29,20 @@ export default {
     tabBarStyle: PropTypes.object,
     tabBarExtraContent: PropTypes.any,
     destroyInactiveTabPane: PropTypes.bool.def(false),
-    type: PropTypes.oneOf(["line", "card", "editable-card"]),
-    tabPosition: PropTypes.oneOf(["top", "right", "bottom", "left"]).def("top"),
-    size: PropTypes.oneOf(["default", "small", "large"]),
+    type: PropTypes.oneOf(['line', 'card', 'editable-card']),
+    tabPosition: PropTypes.oneOf(['top', 'right', 'bottom', 'left']).def('top'),
+    size: PropTypes.oneOf(['default', 'small', 'large']),
     animated: PropTypes.oneOfType([PropTypes.bool, PropTypes.object]),
     tabBarGutter: PropTypes.number,
-    renderTabBar: PropTypes.func
+    renderTabBar: PropTypes.func,
   },
   inject: {
-    configProvider: { default: () => ConfigConsumerProps }
+    configProvider: { default: () => ConfigConsumerProps },
   },
   mounted() {
-    const NO_FLEX = " no-flex";
+    const NO_FLEX = ' no-flex';
     const tabNode = this.$el;
-    if (
-      tabNode &&
-      !isFlexSupported &&
-      tabNode.className.indexOf(NO_FLEX) === -1
-    ) {
+    if (tabNode && !isFlexSupported && tabNode.className.indexOf(NO_FLEX) === -1) {
       tabNode.className += NO_FLEX;
     }
   },
@@ -54,24 +50,24 @@ export default {
     removeTab(targetKey, e) {
       e.stopPropagation();
       if (isValid(targetKey)) {
-        this.$emit("edit", targetKey, "remove");
+        this.$emit('edit', targetKey, 'remove');
       }
     },
     handleChange(activeKey) {
-      this.$emit("change", activeKey);
+      this.$emit('change', activeKey);
     },
     createNewTab(targetKey) {
-      this.$emit("edit", targetKey, "add");
+      this.$emit('edit', targetKey, 'add');
     },
     onTabClick(val) {
-      this.$emit("tabClick", val);
+      this.$emit('tabClick', val);
     },
     onPrevClick(val) {
-      this.$emit("prevClick", val);
+      this.$emit('prevClick', val);
     },
     onNextClick(val) {
-      this.$emit("nextClick", val);
-    }
+      this.$emit('nextClick', val);
+    },
   },
 
   render() {
@@ -79,40 +75,38 @@ export default {
     const {
       prefixCls: customizePrefixCls,
       size,
-      type = "line",
+      type = 'line',
       tabPosition,
       animated = true,
       hideAdd,
-      renderTabBar
+      renderTabBar,
     } = props;
     const getPrefixCls = this.configProvider.getPrefixCls;
-    const prefixCls = getPrefixCls("tabs", customizePrefixCls);
+    const prefixCls = getPrefixCls('tabs', customizePrefixCls);
     const children = filterEmpty(this.$slots.default);
 
-    let tabBarExtraContent = getComponentFromProp(this, "tabBarExtraContent");
-    let tabPaneAnimated =
-      typeof animated === "object" ? animated.tabPane : animated;
+    let tabBarExtraContent = getComponentFromProp(this, 'tabBarExtraContent');
+    let tabPaneAnimated = typeof animated === 'object' ? animated.tabPane : animated;
 
     // card tabs should not have animation
-    if (type !== "line") {
-      tabPaneAnimated = "animated" in props ? tabPaneAnimated : false;
+    if (type !== 'line') {
+      tabPaneAnimated = 'animated' in props ? tabPaneAnimated : false;
     }
     const cls = {
-      [`${prefixCls}-vertical`]:
-        tabPosition === "left" || tabPosition === "right",
+      [`${prefixCls}-vertical`]: tabPosition === 'left' || tabPosition === 'right',
       [`${prefixCls}-${size}`]: !!size,
-      [`${prefixCls}-card`]: type.indexOf("card") >= 0,
+      [`${prefixCls}-card`]: type.indexOf('card') >= 0,
       [`${prefixCls}-${type}`]: true,
-      [`${prefixCls}-no-animation`]: !tabPaneAnimated
+      [`${prefixCls}-no-animation`]: !tabPaneAnimated,
     };
     // only card type tabs can be added and closed
     let childrenWithClose = [];
-    if (type === "editable-card") {
+    if (type === 'editable-card') {
       childrenWithClose = [];
       children.forEach((child, index) => {
         const props = getOptionProps(child);
         let closable = props.closable;
-        closable = typeof closable === "undefined" ? true : closable;
+        closable = typeof closable === 'undefined' ? true : closable;
         const closeIcon = closable ? (
           <Icon
             type="close"
@@ -124,27 +118,21 @@ export default {
           cloneElement(child, {
             props: {
               tab: (
-                <div
-                  class={closable ? undefined : `${prefixCls}-tab-unclosable`}
-                >
-                  {getComponentFromProp(child, "tab")}
+                <div class={closable ? undefined : `${prefixCls}-tab-unclosable`}>
+                  {getComponentFromProp(child, 'tab')}
                   {closeIcon}
                 </div>
-              )
+              ),
             },
-            key: child.key || index
-          })
+            key: child.key || index,
+          }),
         );
       });
       // Add new tab handler
       if (!hideAdd) {
         tabBarExtraContent = (
           <span>
-            <Icon
-              type="plus"
-              class={`${prefixCls}-new-tab`}
-              onClick={this.createNewTab}
-            />
+            <Icon type="plus" class={`${prefixCls}-new-tab`} onClick={this.createNewTab} />
             {tabBarExtraContent}
           </span>
         );
@@ -162,13 +150,13 @@ export default {
         ...this.$props,
         prefixCls,
         tabBarExtraContent,
-        renderTabBar: renderTabBarSlot
+        renderTabBar: renderTabBarSlot,
       },
-      on: listeners
+      on: listeners,
     };
     const contentCls = {
       [`${prefixCls}-${tabPosition}-content`]: true,
-      [`${prefixCls}-card-content`]: type.indexOf("card") >= 0
+      [`${prefixCls}-card-content`]: type.indexOf('card') >= 0,
     };
     const tabsProps = {
       props: {
@@ -180,21 +168,17 @@ export default {
         // 添加key之后，会在babel jsx 插件中做一次merge，最终TabBar接收的是一个新的对象，而不是 tabBarProps
         renderTabBar: () => <TabBar key="tabBar" {...tabBarProps} />,
         renderTabContent: () => (
-          <TabContent
-            class={contentCls}
-            animated={tabPaneAnimated}
-            animatedWithMargin
-          />
+          <TabContent class={contentCls} animated={tabPaneAnimated} animatedWithMargin />
         ),
         children: childrenWithClose.length > 0 ? childrenWithClose : children,
-        __propsSymbol__: Symbol()
+        __propsSymbol__: Symbol(),
       },
       on: {
         ...listeners,
-        change: this.handleChange
+        change: this.handleChange,
       },
-      class: cls
+      class: cls,
     };
     return <VcTabs {...tabsProps} />;
-  }
+  },
 };

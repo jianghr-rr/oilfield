@@ -1,3 +1,3 @@
-import locale from "../locale/vi_VN";
+import locale from '../locale/vi_VN';
 
 export default locale;

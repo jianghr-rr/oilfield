@@ -1,4 +1,4 @@
-const availablePrefixs = ["moz", "ms", "webkit"];
+const availablePrefixs = ['moz', 'ms', 'webkit'];
 
 function requestAnimationFramePolyfill() {
   let lastTime = 0;
@@ -14,7 +14,7 @@ function requestAnimationFramePolyfill() {
 }
 
 export default function getRequestAnimationFrame() {
-  if (typeof window === "undefined") {
+  if (typeof window === 'undefined') {
     return () => {};
   }
   if (window.requestAnimationFrame) {
@@ -22,32 +22,25 @@ export default function getRequestAnimationFrame() {
     return window.requestAnimationFrame.bind(window);
   }
 
-  const prefix = availablePrefixs.filter(
-    key => `${key}RequestAnimationFrame` in window
-  )[0];
+  const prefix = availablePrefixs.filter(key => `${key}RequestAnimationFrame` in window)[0];
 
-  return prefix
-    ? window[`${prefix}RequestAnimationFrame`]
-    : requestAnimationFramePolyfill();
+  return prefix ? window[`${prefix}RequestAnimationFrame`] : requestAnimationFramePolyfill();
 }
 
 export function cancelRequestAnimationFrame(id) {
-  if (typeof window === "undefined") {
+  if (typeof window === 'undefined') {
     return null;
   }
   if (window.cancelAnimationFrame) {
     return window.cancelAnimationFrame(id);
   }
   const prefix = availablePrefixs.filter(
-    key =>
-      `${key}CancelAnimationFrame` in window ||
-      `${key}CancelRequestAnimationFrame` in window
+    key => `${key}CancelAnimationFrame` in window || `${key}CancelRequestAnimationFrame` in window,
   )[0];
 
   return prefix
     ? (
-        window[`${prefix}CancelAnimationFrame`] ||
-        window[`${prefix}CancelRequestAnimationFrame`]
+        window[`${prefix}CancelAnimationFrame`] || window[`${prefix}CancelRequestAnimationFrame`]
       ).call(this, id)
     : clearTimeout(id);
 }

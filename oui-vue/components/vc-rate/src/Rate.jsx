@@ -1,15 +1,15 @@
-import PropTypes from "../../_util/vue-types";
-import classNames from "classnames";
-import KeyCode from "../../_util/KeyCode";
+import PropTypes from '../../_util/vue-types';
+import classNames from 'classnames';
+import KeyCode from '../../_util/KeyCode';
 import {
   initDefaultProps,
   hasProp,
   getOptionProps,
-  getComponentFromProp
-} from "../../_util/props-util";
-import BaseMixin from "../../_util/BaseMixin";
-import { getOffsetLeft } from "./util";
-import Star from "./Star";
+  getComponentFromProp,
+} from '../../_util/props-util';
+import BaseMixin from '../../_util/BaseMixin';
+import { getOffsetLeft } from './util';
+import Star from './Star';
 
 const rateProps = {
   disabled: PropTypes.bool,
@@ -22,45 +22,45 @@ const rateProps = {
   character: PropTypes.any,
   characterRender: PropTypes.func,
   tabIndex: PropTypes.number,
-  autoFocus: PropTypes.bool
+  autoFocus: PropTypes.bool,
 };
 
 function noop() {}
 
 export default {
-  name: "Rate",
+  name: 'Rate',
   mixins: [BaseMixin],
   model: {
-    prop: "value",
-    event: "change"
+    prop: 'value',
+    event: 'change',
   },
   props: initDefaultProps(rateProps, {
     defaultValue: 0,
     count: 5,
     allowHalf: false,
     allowClear: true,
-    prefixCls: "rc-rate",
+    prefixCls: 'rc-rate',
     tabIndex: 0,
-    character: "★"
+    character: '★',
   }),
   data() {
     let value = this.value;
-    if (!hasProp(this, "value")) {
+    if (!hasProp(this, 'value')) {
       value = this.defaultValue;
     }
     return {
       sValue: value,
       focused: false,
       cleanedValue: null,
-      hoverValue: undefined
+      hoverValue: undefined,
     };
   },
   watch: {
     value(val) {
       this.setState({
-        sValue: val
+        sValue: val,
       });
-    }
+    },
   },
   mounted() {
     this.$nextTick(() => {
@@ -76,17 +76,17 @@ export default {
       if (hoverValue !== cleanedValue) {
         this.setState({
           hoverValue,
-          cleanedValue: null
+          cleanedValue: null,
         });
       }
-      this.$emit("hoverChange", hoverValue);
+      this.$emit('hoverChange', hoverValue);
     },
     onMouseLeave() {
       this.setState({
         hoverValue: undefined,
-        cleanedValue: null
+        cleanedValue: null,
       });
-      this.$emit("hoverChange", undefined);
+      this.$emit('hoverChange', undefined);
     },
     onClick(event, index) {
       const { allowClear, sValue: value } = this;
@@ -98,20 +98,20 @@ export default {
       this.onMouseLeave(true);
       this.changeValue(isReset ? 0 : newValue);
       this.setState({
-        cleanedValue: isReset ? newValue : null
+        cleanedValue: isReset ? newValue : null,
       });
     },
     onFocus() {
       this.setState({
-        focused: true
+        focused: true,
       });
-      this.$emit("focus");
+      this.$emit('focus');
     },
     onBlur() {
       this.setState({
-        focused: false
+        focused: false,
       });
-      this.$emit("blur");
+      this.$emit('blur');
     },
     onKeyDown(event) {
       const { keyCode } = event;
@@ -134,10 +134,10 @@ export default {
         this.changeValue(sValue);
         event.preventDefault();
       }
-      this.$emit("keydown", event);
+      this.$emit('keydown', event);
     },
     getStarDOM(index) {
-      return this.$refs["stars" + index].$el;
+      return this.$refs['stars' + index].$el;
     },
     getStarValue(index, x) {
       let value = index + 1;
@@ -162,24 +162,21 @@ export default {
       }
     },
     changeValue(value) {
-      if (!hasProp(this, "value")) {
+      if (!hasProp(this, 'value')) {
         this.setState({
-          sValue: value
+          sValue: value,
         });
       }
-      this.$emit("change", value);
-    }
+      this.$emit('change', value);
+    },
   },
   render() {
-    const { count, allowHalf, prefixCls, disabled, tabIndex } = getOptionProps(
-      this
-    );
+    const { count, allowHalf, prefixCls, disabled, tabIndex } = getOptionProps(this);
     const { sValue, hoverValue, focused } = this;
     const stars = [];
-    const disabledClass = disabled ? `${prefixCls}-disabled` : "";
-    const character = getComponentFromProp(this, "character");
-    const characterRender =
-      this.characterRender || this.$scopedSlots.characterRender;
+    const disabledClass = disabled ? `${prefixCls}-disabled` : '';
+    const character = getComponentFromProp(this, 'character');
+    const characterRender = this.characterRender || this.$scopedSlots.characterRender;
     for (let index = 0; index < count; index++) {
       const starProps = {
         props: {
@@ -191,14 +188,14 @@ export default {
           value: hoverValue === undefined ? sValue : hoverValue,
           character,
           characterRender,
-          focused
+          focused,
         },
         on: {
           click: this.onClick,
-          hover: this.onHover
+          hover: this.onHover,
         },
         key: index,
-        ref: `stars${index}`
+        ref: `stars${index}`,
       };
       stars.push(<Star {...starProps} />);
     }
@@ -216,5 +213,5 @@ export default {
         {stars}
       </ul>
     );
-  }
+  },
 };

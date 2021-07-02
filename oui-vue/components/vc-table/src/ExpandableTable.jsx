@@ -1,13 +1,9 @@
-import PropTypes from "../../_util/vue-types";
-import BaseMixin from "../../_util/BaseMixin";
-import shallowEqual from "shallowequal";
-import TableRow from "./TableRow";
-import { remove } from "./utils";
-import {
-  initDefaultProps,
-  getOptionProps,
-  getListeners
-} from "../../_util/props-util";
+import PropTypes from '../../_util/vue-types';
+import BaseMixin from '../../_util/BaseMixin';
+import shallowEqual from 'shallowequal';
+import TableRow from './TableRow';
+import { remove } from './utils';
+import { initDefaultProps, getOptionProps, getListeners } from '../../_util/props-util';
 
 export const ExpandableTableProps = () => ({
   expandIconAsCell: PropTypes.bool,
@@ -26,23 +22,23 @@ export const ExpandableTableProps = () => ({
   columnManager: PropTypes.object.isRequired,
   prefixCls: PropTypes.string.isRequired,
   data: PropTypes.array,
-  getRowKey: PropTypes.func
+  getRowKey: PropTypes.func,
 });
 
 const ExpandableTable = {
-  name: "ExpandableTable",
+  name: 'ExpandableTable',
   mixins: [BaseMixin],
   props: initDefaultProps(ExpandableTableProps(), {
     expandIconAsCell: false,
-    expandedRowClassName: () => "",
+    expandedRowClassName: () => '',
     expandIconColumnIndex: 0,
     defaultExpandAllRows: false,
     defaultExpandedRowKeys: [],
-    childrenColumnName: "children",
-    indentSize: 15
+    childrenColumnName: 'children',
+    indentSize: 15,
   }),
   inject: {
-    store: { from: "table-store", default: () => ({}) }
+    store: { from: 'table-store', default: () => ({}) },
   },
   data() {
     const {
@@ -51,7 +47,7 @@ const ExpandableTable = {
       defaultExpandAllRows,
       expandedRowKeys,
       defaultExpandedRowKeys,
-      getRowKey
+      getRowKey,
     } = this;
 
     let finalExpandedRowKeys = [];
@@ -85,7 +81,7 @@ const ExpandableTable = {
       this.$nextTick(() => {
         this.store.expandedRowKeys = val;
       });
-    }
+    },
   },
   methods: {
     handleUpdated() {
@@ -115,83 +111,70 @@ const ExpandableTable = {
         this.store.expandedRowKeys = expandedRowKeys;
       }
       // De-dup of repeat call
-      if (
-        !this.latestExpandedRows ||
-        !shallowEqual(this.latestExpandedRows, expandedRowKeys)
-      ) {
+      if (!this.latestExpandedRows || !shallowEqual(this.latestExpandedRows, expandedRowKeys)) {
         this.latestExpandedRows = expandedRowKeys;
-        this.__emit("expandedRowsChange", expandedRowKeys);
+        this.__emit('expandedRowsChange', expandedRowKeys);
       }
 
       if (!destroy) {
-        this.__emit("expand", expanded, record);
+        this.__emit('expand', expanded, record);
       }
     },
 
     renderExpandIndentCell(rows, fixed) {
       const { prefixCls, expandIconAsCell } = this;
-      if (!expandIconAsCell || fixed === "right" || !rows.length) {
+      if (!expandIconAsCell || fixed === 'right' || !rows.length) {
         return;
       }
 
       const iconColumn = {
-        key: "rc-table-expand-icon-cell",
+        key: 'rc-table-expand-icon-cell',
         className: `${prefixCls}-expand-icon-th`,
-        title: "",
-        rowSpan: rows.length
+        title: '',
+        rowSpan: rows.length,
       };
 
       rows[0].unshift({ ...iconColumn, column: iconColumn });
     },
 
-    renderExpandedRow(
-      record,
-      index,
-      expandedRowRender,
-      className,
-      ancestorKeys,
-      indent,
-      fixed
-    ) {
+    renderExpandedRow(record, index, expandedRowRender, className, ancestorKeys, indent, fixed) {
       const { prefixCls, expandIconAsCell, indentSize } = this;
       const parentKey = ancestorKeys[ancestorKeys.length - 1];
       const rowKey = `${parentKey}-extra-row`;
       const components = {
         body: {
-          row: "tr",
-          cell: "td"
-        }
+          row: 'tr',
+          cell: 'td',
+        },
       };
       let colCount;
-      if (fixed === "left") {
+      if (fixed === 'left') {
         colCount = this.columnManager.leftLeafColumns().length;
-      } else if (fixed === "right") {
+      } else if (fixed === 'right') {
         colCount = this.columnManager.rightLeafColumns().length;
       } else {
         colCount = this.columnManager.leafColumns().length;
       }
       const columns = [
         {
-          key: "extra-row",
+          key: 'extra-row',
           customRender: () => {
             const { expandedRowKeys } = this.store;
             const expanded = expandedRowKeys.includes(parentKey);
             return {
               attrs: {
-                colSpan: colCount
+                colSpan: colCount,
               },
               children:
-                fixed !== "right"
-                  ? expandedRowRender(record, index, indent, expanded)
-                  : "&nbsp;"
+                fixed !== 'right' ? expandedRowRender(record, index, indent, expanded) : '&nbsp;',
             };
-          }
-        }
+          },
+        },
       ];
-      if (expandIconAsCell && fixed !== "right") {
+      if (expandIconAsCell && fixed !== 'right') {
         columns.unshift({
-          key: "expand-icon-placeholder",
-          customRender: () => null
+          key: 'expand-icon-placeholder',
+          customRender: () => null,
         });
       }
 
@@ -213,21 +196,8 @@ const ExpandableTable = {
       );
     },
 
-    renderRows(
-      renderRows,
-      rows,
-      record,
-      index,
-      indent,
-      fixed,
-      parentKey,
-      ancestorKeys
-    ) {
-      const {
-        expandedRowClassName,
-        expandedRowRender,
-        childrenColumnName
-      } = this;
+    renderRows(renderRows, rows, record, index, indent, fixed, parentKey, ancestorKeys) {
+      const { expandedRowClassName, expandedRowRender, childrenColumnName } = this;
       const childrenData = record[childrenColumnName];
       const nextAncestorKeys = [...ancestorKeys, parentKey];
       const nextIndent = indent + 1;
@@ -241,15 +211,15 @@ const ExpandableTable = {
             expandedRowClassName(record, index, indent),
             nextAncestorKeys,
             nextIndent,
-            fixed
-          )
+            fixed,
+          ),
         );
       }
 
       if (childrenData) {
         rows.push(...renderRows(childrenData, nextIndent, nextAncestorKeys));
       }
-    }
+    },
   },
 
   render() {
@@ -265,10 +235,10 @@ const ExpandableTable = {
         needIndentSpaced,
         renderRows: this.renderRows,
         handleExpandChange: this.handleExpandChange,
-        renderExpandIndentCell: this.renderExpandIndentCell
+        renderExpandIndentCell: this.renderExpandIndentCell,
       })
     );
-  }
+  },
 };
 
 export default ExpandableTable;

@@ -1,16 +1,16 @@
-import PropTypes from "../../_util/vue-types";
-import BaseMixin from "../../_util/BaseMixin";
-import classNames from "classnames";
-import getUid from "./uid";
-import warning from "../../_util/warning";
+import PropTypes from '../../_util/vue-types';
+import BaseMixin from '../../_util/BaseMixin';
+import classNames from 'classnames';
+import getUid from './uid';
+import warning from '../../_util/warning';
 
 const IFRAME_STYLE = {
-  position: "absolute",
+  position: 'absolute',
   top: 0,
   opacity: 0,
-  filter: "alpha(opacity=0)",
+  filter: 'alpha(opacity=0)',
   left: 0,
-  zIndex: 9999
+  zIndex: 9999,
 };
 
 // diferent from AjaxUpload, can only upload on at one time, serial seriously
@@ -28,12 +28,12 @@ const IframeUploader = {
     // children: PropTypes.any,
     data: PropTypes.oneOfType([PropTypes.object, PropTypes.func]),
     action: PropTypes.oneOfType([PropTypes.string, PropTypes.func]),
-    name: PropTypes.string
+    name: PropTypes.string,
   },
   data() {
     this.file = {};
     return {
-      uploading: false
+      uploading: false,
     };
   },
   methods: {
@@ -45,19 +45,19 @@ const IframeUploader = {
       let response;
       try {
         const doc = this.getIframeDocument();
-        const script = doc.getElementsByTagName("script")[0];
+        const script = doc.getElementsByTagName('script')[0];
         if (script && script.parentNode === doc.body) {
           doc.body.removeChild(script);
         }
         response = doc.body.innerHTML;
-        this.$emit("success", response, file);
+        this.$emit('success', response, file);
       } catch (err) {
         warning(
           false,
-          "cross domain error for Upload. Maybe server should return document.domain script. see Note from https://github.com/react-component/upload"
+          'cross domain error for Upload. Maybe server should return document.domain script. see Note from https://github.com/react-component/upload',
         );
-        response = "cross-domain";
-        this.$emit("error", err, null, file);
+        response = 'cross-domain';
+        this.$emit('error', err, null, file);
       }
       this.endUpload();
     },
@@ -69,10 +69,7 @@ const IframeUploader = {
         uid: getUid(),
         name:
           target.value &&
-          target.value.substring(
-            target.value.lastIndexOf("\\") + 1,
-            target.value.length
-          )
+          target.value.substring(target.value.lastIndexOf('\\') + 1, target.value.length),
       });
       this.startUpload();
       const { $props: props } = this;
@@ -87,7 +84,7 @@ const IframeUploader = {
           },
           () => {
             this.endUpload();
-          }
+          },
         );
       } else if (before !== false) {
         this.post(file);
@@ -102,22 +99,22 @@ const IframeUploader = {
       return this.getIframeNode().contentDocument;
     },
     getFormNode() {
-      return this.getIframeDocument().getElementById("form");
+      return this.getIframeDocument().getElementById('form');
     },
     getFormInputNode() {
-      return this.getIframeDocument().getElementById("input");
+      return this.getIframeDocument().getElementById('input');
     },
     getFormDataNode() {
-      return this.getIframeDocument().getElementById("data");
+      return this.getIframeDocument().getElementById('data');
     },
     getFileForMultiple(file) {
       return this.multiple ? [file] : file;
     },
     getIframeHTML(domain) {
-      let domainScript = "";
-      let domainInput = "";
+      let domainScript = '';
+      let domainInput = '';
       if (domain) {
-        const script = "script";
+        const script = 'script';
         domainScript = `<${script}>document.domain="${domain}";</${script}>`;
         domainInput = `<input name="_documentDomain" value="${domain}" />`;
       }
@@ -161,7 +158,7 @@ const IframeUploader = {
       const iframeNode = this.getIframeNode();
       let win = iframeNode.contentWindow;
       let doc;
-      this.domain = this.domain || "";
+      this.domain = this.domain || '';
       this.initIframeSrc();
       try {
         doc = win.document;
@@ -171,7 +168,7 @@ const IframeUploader = {
         win = iframeNode.contentWindow;
         doc = win.document;
       }
-      doc.open("text/html", "replace");
+      doc.open('text/html', 'replace');
       doc.write(this.getIframeHTML(this.domain));
       doc.close();
       this.getFormInputNode().onchange = this.onChange;
@@ -182,7 +179,7 @@ const IframeUploader = {
         // hack avoid batch
         this.uploading = false;
         this.setState({
-          uploading: false
+          uploading: false,
         });
         this.initIframe();
       }
@@ -191,7 +188,7 @@ const IframeUploader = {
       if (!this.uploading) {
         this.uploading = true;
         this.setState({
-          uploading: true
+          uploading: true,
         });
       }
     },
@@ -218,14 +215,14 @@ const IframeUploader = {
       const formNode = this.getFormNode();
       const dataSpan = this.getFormDataNode();
       let { data } = this.$props;
-      if (typeof data === "function") {
+      if (typeof data === 'function') {
         data = data(file);
       }
       const inputs = document.createDocumentFragment();
       for (const key in data) {
         if (data.hasOwnProperty(key)) {
-          const input = document.createElement("input");
-          input.setAttribute("name", key);
+          const input = document.createElement('input');
+          input.setAttribute('name', key);
           input.value = data[key];
           inputs.appendChild(input);
         }
@@ -233,17 +230,17 @@ const IframeUploader = {
       dataSpan.appendChild(inputs);
       new Promise(resolve => {
         const { action } = this;
-        if (typeof action === "function") {
+        if (typeof action === 'function') {
           return resolve(action(file));
         }
         resolve(action);
       }).then(action => {
-        formNode.setAttribute("action", action);
+        formNode.setAttribute('action', action);
         formNode.submit();
-        dataSpan.innerHTML = "";
-        this.$emit("start", file);
+        dataSpan.innerHTML = '';
+        this.$emit('start', file);
       });
-    }
+    },
   },
   mounted() {
     this.$nextTick(() => {
@@ -261,20 +258,20 @@ const IframeUploader = {
     const { componentTag: Tag, disabled, prefixCls } = this.$props;
     const iframeStyle = {
       ...IFRAME_STYLE,
-      display: this.uploading || disabled ? "none" : ""
+      display: this.uploading || disabled ? 'none' : '',
     };
     const cls = classNames({
       [prefixCls]: true,
-      [`${prefixCls}-disabled`]: disabled
+      [`${prefixCls}-disabled`]: disabled,
     });
 
     return (
-      <Tag className={cls} style={{ position: "relative", zIndex: 0 }}>
+      <Tag className={cls} style={{ position: 'relative', zIndex: 0 }}>
         <iframe ref="iframeRef" onLoad={this.onLoad} style={iframeStyle} />
         {this.$slots.default}
       </Tag>
     );
-  }
+  },
 };
 
 export default IframeUploader;

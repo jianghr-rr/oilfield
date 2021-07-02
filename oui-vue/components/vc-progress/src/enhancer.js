@@ -14,16 +14,16 @@ function enhancer(Component) {
 
         updated = true;
         const pathStyle = path.style;
-        pathStyle.transitionDuration = ".3s, .3s, .3s, .06s";
+        pathStyle.transitionDuration = '.3s, .3s, .3s, .06s';
 
         if (this.prevTimeStamp && now - this.prevTimeStamp < 100) {
-          pathStyle.transitionDuration = "0s, 0s";
+          pathStyle.transitionDuration = '0s, 0s';
         }
       });
       if (updated) {
         this.prevTimeStamp = Date.now();
       }
-    }
+    },
   };
 }
 

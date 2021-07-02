@@ -1,5 +1,5 @@
-import DateTHead from "./DateTHead";
-import DateTBody from "./DateTBody";
+import DateTHead from './DateTHead';
+import DateTBody from './DateTBody';
 
 export default {
   functional: true,
@@ -8,7 +8,7 @@ export default {
     const prefixCls = props.prefixCls;
     const bodyProps = {
       props,
-      on: listeners
+      on: listeners,
     };
     return (
       <table class={`${prefixCls}-table`} cellSpacing="0" role="grid">
@@ -16,5 +16,5 @@ export default {
         <DateTBody {...bodyProps} />
       </table>
     );
-  }
+  },
 };

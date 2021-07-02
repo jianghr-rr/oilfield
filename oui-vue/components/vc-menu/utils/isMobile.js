@@ -20,21 +20,20 @@ function match(regex, userAgent) {
 }
 
 function isMobile(userAgent) {
-  let ua =
-    userAgent || (typeof navigator !== "undefined" ? navigator.userAgent : "");
+  let ua = userAgent || (typeof navigator !== 'undefined' ? navigator.userAgent : '');
 
   // Facebook mobile app's integrated browser adds a bunch of strings that
   // match everything. Strip it out if it exists.
-  let tmp = ua.split("[FBAN");
-  if (typeof tmp[1] !== "undefined") {
+  let tmp = ua.split('[FBAN');
+  if (typeof tmp[1] !== 'undefined') {
     [ua] = tmp;
   }
 
   // Twitter mobile app's integrated browser on iPad adds a "Twitter for
   // iPhone" string. Same probably happens on other tablet platforms.
   // This will confuse detection so strip it out if it exists.
-  tmp = ua.split("Twitter");
-  if (typeof tmp[1] !== "undefined") {
+  tmp = ua.split('Twitter');
+  if (typeof tmp[1] !== 'undefined') {
     [ua] = tmp;
   }
 
@@ -42,20 +41,15 @@ function isMobile(userAgent) {
     apple: {
       phone: match(applePhone, ua) && !match(windowsPhone, ua),
       ipod: match(appleIpod, ua),
-      tablet:
-        !match(applePhone, ua) &&
-        match(appleTablet, ua) &&
-        !match(windowsPhone, ua),
+      tablet: !match(applePhone, ua) && match(appleTablet, ua) && !match(windowsPhone, ua),
       device:
-        (match(applePhone, ua) ||
-          match(appleIpod, ua) ||
-          match(appleTablet, ua)) &&
-        !match(windowsPhone, ua)
+        (match(applePhone, ua) || match(appleIpod, ua) || match(appleTablet, ua)) &&
+        !match(windowsPhone, ua),
     },
     amazon: {
       phone: match(amazonPhone, ua),
       tablet: !match(amazonPhone, ua) && match(amazonTablet, ua),
-      device: match(amazonPhone, ua) || match(amazonTablet, ua)
+      device: match(amazonPhone, ua) || match(amazonTablet, ua),
     },
     android: {
       phone:
@@ -72,12 +66,12 @@ function isMobile(userAgent) {
             match(amazonTablet, ua) ||
             match(androidPhone, ua) ||
             match(androidTablet, ua))) ||
-        match(/\bokhttp\b/i, ua)
+        match(/\bokhttp\b/i, ua),
     },
     windows: {
       phone: match(windowsPhone, ua),
       tablet: match(windowsTablet, ua),
-      device: match(windowsPhone, ua) || match(windowsTablet, ua)
+      device: match(windowsPhone, ua) || match(windowsTablet, ua),
     },
     other: {
       blackberry: match(otherBlackberry, ua),
@@ -90,32 +84,27 @@ function isMobile(userAgent) {
         match(otherBlackberry10, ua) ||
         match(otherOpera, ua) ||
         match(otherFirefox, ua) ||
-        match(otherChrome, ua)
+        match(otherChrome, ua),
     },
 
     // Additional
     any: null,
     phone: null,
-    tablet: null
+    tablet: null,
   };
   result.any =
-    result.apple.device ||
-    result.android.device ||
-    result.windows.device ||
-    result.other.device;
+    result.apple.device || result.android.device || result.windows.device || result.other.device;
 
   // excludes 'other' devices and ipods, targeting touchscreen phones
-  result.phone =
-    result.apple.phone || result.android.phone || result.windows.phone;
-  result.tablet =
-    result.apple.tablet || result.android.tablet || result.windows.tablet;
+  result.phone = result.apple.phone || result.android.phone || result.windows.phone;
+  result.tablet = result.apple.tablet || result.android.tablet || result.windows.tablet;
 
   return result;
 }
 
 const defaultResult = {
   ...isMobile(),
-  isMobile
+  isMobile,
 };
 
 export default defaultResult;

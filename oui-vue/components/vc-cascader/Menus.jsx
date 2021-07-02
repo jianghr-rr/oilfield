@@ -1,24 +1,24 @@
-import { getComponentFromProp } from "../_util/props-util";
-import PropTypes from "../_util/vue-types";
-import arrayTreeFilter from "array-tree-filter";
-import BaseMixin from "../_util/BaseMixin";
+import { getComponentFromProp } from '../_util/props-util';
+import PropTypes from '../_util/vue-types';
+import arrayTreeFilter from 'array-tree-filter';
+import BaseMixin from '../_util/BaseMixin';
 
 export default {
-  name: "CascaderMenus",
+  name: 'CascaderMenus',
   mixins: [BaseMixin],
   props: {
     value: PropTypes.array.def([]),
     activeValue: PropTypes.array.def([]),
     options: PropTypes.array,
-    prefixCls: PropTypes.string.def("rc-cascader-menus"),
-    expandTrigger: PropTypes.string.def("click"),
+    prefixCls: PropTypes.string.def('rc-cascader-menus'),
+    expandTrigger: PropTypes.string.def('click'),
     // onSelect: PropTypes.func,
     visible: PropTypes.bool.def(false),
     dropdownMenuColumnStyle: PropTypes.object,
     defaultFieldNames: PropTypes.object,
     fieldNames: PropTypes.object,
     expandIcon: PropTypes.any,
-    loadingIcon: PropTypes.any
+    loadingIcon: PropTypes.any,
   },
   data() {
     this.menuItems = {};
@@ -31,7 +31,7 @@ export default {
           this.scrollActiveItemToView();
         });
       }
-    }
+    },
   },
   mounted() {
     this.$nextTick(() => {
@@ -46,49 +46,41 @@ export default {
     },
     getOption(option, menuIndex) {
       const { prefixCls, expandTrigger } = this;
-      const loadingIcon = getComponentFromProp(this, "loadingIcon");
-      const expandIcon = getComponentFromProp(this, "expandIcon");
+      const loadingIcon = getComponentFromProp(this, 'loadingIcon');
+      const expandIcon = getComponentFromProp(this, 'expandIcon');
       const onSelect = e => {
-        this.__emit("select", option, menuIndex, e);
+        this.__emit('select', option, menuIndex, e);
       };
       const onItemDoubleClick = e => {
-        this.__emit("itemDoubleClick", option, menuIndex, e);
+        this.__emit('itemDoubleClick', option, menuIndex, e);
       };
-      const key = option[this.getFieldName("value")];
+      const key = option[this.getFieldName('value')];
       const expandProps = {
         attrs: {
-          role: "menuitem"
+          role: 'menuitem',
         },
         on: {
           click: onSelect,
           dblclick: onItemDoubleClick,
-          mousedown: e => e.preventDefault()
+          mousedown: e => e.preventDefault(),
         },
-        key: Array.isArray(key) ? key.join("__ant__") : key
+        key: Array.isArray(key) ? key.join('__ant__') : key,
       };
       let menuItemCls = `${prefixCls}-menu-item`;
       let expandIconNode = null;
       const hasChildren =
-        option[this.getFieldName("children")] &&
-        option[this.getFieldName("children")].length > 0;
+        option[this.getFieldName('children')] && option[this.getFieldName('children')].length > 0;
       if (hasChildren || option.isLeaf === false) {
         menuItemCls += ` ${prefixCls}-menu-item-expand`;
         if (!option.loading) {
-          expandIconNode = (
-            <span class={`${prefixCls}-menu-item-expand-icon`}>
-              {expandIcon}
-            </span>
-          );
+          expandIconNode = <span class={`${prefixCls}-menu-item-expand-icon`}>{expandIcon}</span>;
         }
       }
-      if (
-        expandTrigger === "hover" &&
-        (hasChildren || option.isLeaf === false)
-      ) {
+      if (expandTrigger === 'hover' && (hasChildren || option.isLeaf === false)) {
         expandProps.on = {
           mouseenter: this.delayOnSelect.bind(this, onSelect),
           mouseleave: this.delayOnSelect.bind(this),
-          click: onSelect
+          click: onSelect,
         };
       }
       if (this.isActiveOption(option, menuIndex)) {
@@ -103,17 +95,17 @@ export default {
         menuItemCls += ` ${prefixCls}-menu-item-loading`;
         loadingIconNode = loadingIcon || null;
       }
-      let title = "";
+      let title = '';
       if (option.title) {
         title = option.title;
-      } else if (typeof option[this.getFieldName("label")] === "string") {
-        title = option[this.getFieldName("label")];
+      } else if (typeof option[this.getFieldName('label')] === 'string') {
+        title = option[this.getFieldName('label')];
       }
       expandProps.attrs.title = title;
       expandProps.class = menuItemCls;
       return (
         <li {...expandProps}>
-          {option[this.getFieldName("label")]}
+          {option[this.getFieldName('label')]}
           {expandIconNode}
           {loadingIconNode}
         </li>
@@ -125,15 +117,15 @@ export default {
       const options = this.options;
       return arrayTreeFilter(
         options,
-        (o, level) => o[this.getFieldName("value")] === activeValue[level],
-        { childrenKeyName: this.getFieldName("children") }
+        (o, level) => o[this.getFieldName('value')] === activeValue[level],
+        { childrenKeyName: this.getFieldName('children') },
       );
     },
 
     getShowOptions() {
       const { options } = this;
       const result = this.getActiveOptions()
-        .map(activeOption => activeOption[this.getFieldName("children")])
+        .map(activeOption => activeOption[this.getFieldName('children')])
         .filter(activeOption => !!activeOption);
       result.unshift(options);
       return result;
@@ -144,7 +136,7 @@ export default {
         clearTimeout(this.delayTimer);
         this.delayTimer = null;
       }
-      if (typeof onSelect === "function") {
+      if (typeof onSelect === 'function') {
         this.delayTimer = setTimeout(() => {
           onSelect(args);
           this.delayTimer = null;
@@ -166,12 +158,12 @@ export default {
 
     isActiveOption(option, menuIndex) {
       const { activeValue = [] } = this;
-      return activeValue[menuIndex] === option[this.getFieldName("value")];
+      return activeValue[menuIndex] === option[this.getFieldName('value')];
     },
 
     getMenuItemRef(index) {
       return `menuItems_${index}`;
-    }
+    },
   },
 
   render() {
@@ -179,15 +171,11 @@ export default {
     return (
       <div>
         {this.getShowOptions().map((options, menuIndex) => (
-          <ul
-            class={`${prefixCls}-menu`}
-            key={menuIndex}
-            style={dropdownMenuColumnStyle}
-          >
+          <ul class={`${prefixCls}-menu`} key={menuIndex} style={dropdownMenuColumnStyle}>
             {options.map(option => this.getOption(option, menuIndex))}
           </ul>
         ))}
       </div>
     );
-  }
+  },
 };

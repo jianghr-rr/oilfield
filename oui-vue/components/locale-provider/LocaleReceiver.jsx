@@ -1,28 +1,26 @@
-import PropTypes from "../_util/vue-types";
-import defaultLocaleData from "./default";
+import PropTypes from '../_util/vue-types';
+import defaultLocaleData from './default';
 
 export default {
-  name: "LocaleReceiver",
+  name: 'LocaleReceiver',
   props: {
-    componentName: PropTypes.string.def("global"),
+    componentName: PropTypes.string.def('global'),
     defaultLocale: PropTypes.oneOfType([PropTypes.object, PropTypes.func]),
-    children: PropTypes.func
+    children: PropTypes.func,
   },
   inject: {
-    localeData: { default: () => ({}) }
+    localeData: { default: () => ({}) },
   },
   methods: {
     getLocale() {
       const { componentName, defaultLocale } = this;
-      const locale =
-        defaultLocale || defaultLocaleData[componentName || "global"];
+      const locale = defaultLocale || defaultLocaleData[componentName || 'global'];
       const { antLocale } = this.localeData;
 
-      const localeFromContext =
-        componentName && antLocale ? antLocale[componentName] : {};
+      const localeFromContext = componentName && antLocale ? antLocale[componentName] : {};
       return {
-        ...(typeof locale === "function" ? locale() : locale),
-        ...(localeFromContext || {})
+        ...(typeof locale === 'function' ? locale() : locale),
+        ...(localeFromContext || {}),
       };
     },
 
@@ -34,12 +32,12 @@ export default {
         return defaultLocaleData.locale;
       }
       return localeCode;
-    }
+    },
   },
   render() {
     const { $scopedSlots } = this;
     const children = this.children || $scopedSlots.default;
     const { antLocale } = this.localeData;
     return children(this.getLocale(), this.getLocaleCode(), antLocale);
-  }
+  },
 };

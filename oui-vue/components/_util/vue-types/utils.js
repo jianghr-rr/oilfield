@@ -1,4 +1,4 @@
-import isPlainObject from "lodash/isPlainObject";
+import isPlainObject from 'lodash/isPlainObject';
 
 const ObjProto = Object.prototype;
 const toString = ObjProto.toString;
@@ -8,8 +8,7 @@ const FN_MATCH_REGEXP = /^\s*function (\w+)/;
 
 // https://github.com/vuejs/vue/blob/dev/src/core/util/props.js#L159
 export const getType = fn => {
-  const type =
-    fn !== null && fn !== undefined ? (fn.type ? fn.type : fn) : null;
+  const type = fn !== null && fn !== undefined ? (fn.type ? fn.type : fn) : null;
   const match = type && type.toString().match(FN_MATCH_REGEXP);
   return match && match[1];
 };
@@ -43,11 +42,7 @@ export const has = (obj, prop) => hasOwn.call(obj, prop);
 export const isInteger =
   Number.isInteger ||
   function(value) {
-    return (
-      typeof value === "number" &&
-      isFinite(value) &&
-      Math.floor(value) === value
-    );
+    return typeof value === 'number' && isFinite(value) && Math.floor(value) === value;
   };
 
 /**
@@ -59,7 +54,7 @@ export const isInteger =
 export const isArray =
   Array.isArray ||
   function(value) {
-    return toString.call(value) === "[object Array]";
+    return toString.call(value) === '[object Array]';
   };
 
 /**
@@ -68,7 +63,7 @@ export const isArray =
  * @param {any} value - Value to check
  * @returns {boolean}
  */
-export const isFunction = value => toString.call(value) === "[object Function]";
+export const isFunction = value => toString.call(value) === '[object Function]';
 
 /**
  * Adds a `def` method to the object returning a new object with passed in argument as `default` property
@@ -76,7 +71,7 @@ export const isFunction = value => toString.call(value) === "[object Function]";
  * @param {object} type - Object to enhance
  */
 export const withDefault = function(type) {
-  Object.defineProperty(type, "def", {
+  Object.defineProperty(type, 'def', {
     value(def) {
       if (def === undefined && this.default === undefined) {
         this.default = undefined;
@@ -96,7 +91,7 @@ export const withDefault = function(type) {
       return this;
     },
     enumerable: false,
-    writable: false
+    writable: false,
   });
 };
 
@@ -106,12 +101,12 @@ export const withDefault = function(type) {
  * @param {object} type - Object to enhance
  */
 export const withRequired = function(type) {
-  Object.defineProperty(type, "isRequired", {
+  Object.defineProperty(type, 'isRequired', {
     get() {
       this.required = true;
       return this;
     },
-    enumerable: false
+    enumerable: false,
   });
 };
 
@@ -123,10 +118,10 @@ export const withRequired = function(type) {
  * @returns {object}
  */
 export const toType = (name, obj) => {
-  Object.defineProperty(obj, "_vueTypes_name", {
+  Object.defineProperty(obj, '_vueTypes_name', {
     enumerable: false,
     writable: false,
-    value: name
+    value: name,
   });
   withRequired(obj);
   withDefault(obj);
@@ -152,26 +147,24 @@ export const validateType = (type, value, silent = false) => {
   if (!isPlainObject(type)) {
     typeToCheck = { type };
   }
-  const namePrefix = typeToCheck._vueTypes_name
-    ? typeToCheck._vueTypes_name + " - "
-    : "";
+  const namePrefix = typeToCheck._vueTypes_name ? typeToCheck._vueTypes_name + ' - ' : '';
 
-  if (hasOwn.call(typeToCheck, "type") && typeToCheck.type !== null) {
+  if (hasOwn.call(typeToCheck, 'type') && typeToCheck.type !== null) {
     if (isArray(typeToCheck.type)) {
       valid = typeToCheck.type.some(type => validateType(type, value, true));
-      expectedType = typeToCheck.type.map(type => getType(type)).join(" or ");
+      expectedType = typeToCheck.type.map(type => getType(type)).join(' or ');
     } else {
       expectedType = getType(typeToCheck);
 
-      if (expectedType === "Array") {
+      if (expectedType === 'Array') {
         valid = isArray(value);
-      } else if (expectedType === "Object") {
+      } else if (expectedType === 'Object') {
         valid = isPlainObject(value);
       } else if (
-        expectedType === "String" ||
-        expectedType === "Number" ||
-        expectedType === "Boolean" ||
-        expectedType === "Function"
+        expectedType === 'String' ||
+        expectedType === 'Number' ||
+        expectedType === 'Boolean' ||
+        expectedType === 'Function'
       ) {
         valid = getNativeType(value) === expectedType;
       } else {
@@ -181,18 +174,13 @@ export const validateType = (type, value, silent = false) => {
   }
 
   if (!valid) {
-    silent === false &&
-      warn(`${namePrefix}value "${value}" should be of type "${expectedType}"`);
+    silent === false && warn(`${namePrefix}value "${value}" should be of type "${expectedType}"`);
     return false;
   }
 
-  if (
-    hasOwn.call(typeToCheck, "validator") &&
-    isFunction(typeToCheck.validator)
-  ) {
+  if (hasOwn.call(typeToCheck, 'validator') && isFunction(typeToCheck.validator)) {
     valid = typeToCheck.validator(value);
-    if (!valid && silent === false)
-      warn(`${namePrefix}custom validation failed`);
+    if (!valid && silent === false) warn(`${namePrefix}custom validation failed`);
     return valid;
   }
   return valid;
@@ -200,8 +188,8 @@ export const validateType = (type, value, silent = false) => {
 
 let warn = noop;
 
-if (process.env.NODE_ENV !== "production") {
-  const hasConsole = typeof console !== "undefined";
+if (process.env.NODE_ENV !== 'production') {
+  const hasConsole = typeof console !== 'undefined';
   warn = msg => {
     if (hasConsole) {
       console.warn(`[VueTypes warn]: ${msg}`);

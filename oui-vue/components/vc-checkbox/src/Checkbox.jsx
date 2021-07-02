@@ -1,21 +1,21 @@
-import PropTypes from "../../_util/vue-types";
-import classNames from "classnames";
+import PropTypes from '../../_util/vue-types';
+import classNames from 'classnames';
 import {
   getOptionProps,
   hasProp,
   initDefaultProps,
   getAttrs,
-  getListeners
-} from "../../_util/props-util";
-import BaseMixin from "../../_util/BaseMixin";
+  getListeners,
+} from '../../_util/props-util';
+import BaseMixin from '../../_util/BaseMixin';
 
 export default {
-  name: "Checkbox",
+  name: 'Checkbox',
   mixins: [BaseMixin],
   inheritAttrs: false,
   model: {
-    prop: "checked",
-    event: "change"
+    prop: 'checked',
+    event: 'change',
   },
   props: initDefaultProps(
     {
@@ -33,26 +33,24 @@ export default {
       tabIndex: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
       readOnly: PropTypes.bool,
       autoFocus: PropTypes.bool,
-      value: PropTypes.any
+      value: PropTypes.any,
     },
     {
-      prefixCls: "rc-checkbox",
-      type: "checkbox",
-      defaultChecked: false
-    }
+      prefixCls: 'rc-checkbox',
+      type: 'checkbox',
+      defaultChecked: false,
+    },
   ),
   data() {
-    const checked = hasProp(this, "checked")
-      ? this.checked
-      : this.defaultChecked;
+    const checked = hasProp(this, 'checked') ? this.checked : this.defaultChecked;
     return {
-      sChecked: checked
+      sChecked: checked,
     };
   },
   watch: {
     checked(val) {
       this.sChecked = val;
-    }
+    },
   },
   mounted() {
     this.$nextTick(() => {
@@ -75,15 +73,15 @@ export default {
       if (props.disabled) {
         return;
       }
-      if (!("checked" in props)) {
+      if (!('checked' in props)) {
         this.sChecked = e.target.checked;
       }
       this.$forceUpdate(); // change前，维持现有状态
       e.shiftKey = this.eventShiftKey;
-      this.__emit("change", {
+      this.__emit('change', {
         target: {
           ...props,
-          checked: e.target.checked
+          checked: e.target.checked,
         },
         stopPropagation() {
           e.stopPropagation();
@@ -91,19 +89,19 @@ export default {
         preventDefault() {
           e.preventDefault();
         },
-        nativeEvent: e
+        nativeEvent: e,
       });
       this.eventShiftKey = false;
       // fix https://github.com/vueComponent/ant-design-vue/issues/3047
-      if ("checked" in props) {
+      if ('checked' in props) {
         this.$refs.input.checked = props.checked;
       }
     },
     onClick(e) {
-      this.__emit("click", e);
+      this.__emit('click', e);
       // onChange没能获取到shiftKey，使用onClick hack
       this.eventShiftKey = e.shiftKey;
-    }
+    },
   },
 
   render() {
@@ -120,24 +118,17 @@ export default {
       ...others
     } = getOptionProps(this);
     const attrs = getAttrs(this);
-    const globalProps = Object.keys({ ...others, ...attrs }).reduce(
-      (prev, key) => {
-        if (
-          key.substr(0, 5) === "aria-" ||
-          key.substr(0, 5) === "data-" ||
-          key === "role"
-        ) {
-          prev[key] = others[key];
-        }
-        return prev;
-      },
-      {}
-    );
+    const globalProps = Object.keys({ ...others, ...attrs }).reduce((prev, key) => {
+      if (key.substr(0, 5) === 'aria-' || key.substr(0, 5) === 'data-' || key === 'role') {
+        prev[key] = others[key];
+      }
+      return prev;
+    }, {});
 
     const { sChecked } = this;
     const classString = classNames(prefixCls, {
       [`${prefixCls}-checked`]: sChecked,
-      [`${prefixCls}-disabled`]: disabled
+      [`${prefixCls}-disabled`]: disabled,
     });
 
     return (
@@ -159,12 +150,12 @@ export default {
             on: {
               ...getListeners(this),
               change: this.handleChange,
-              click: this.onClick
-            }
+              click: this.onClick,
+            },
           }}
         />
         <span class={`${prefixCls}-inner`} />
       </span>
     );
-  }
+  },
 };

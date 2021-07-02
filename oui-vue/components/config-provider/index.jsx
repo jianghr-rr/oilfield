@@ -1,10 +1,10 @@
-import Vue from "vue";
-import PropTypes from "../_util/vue-types";
-import { filterEmpty, getComponentFromProp } from "../_util/props-util";
-import defaultRenderEmpty from "./renderEmpty";
-import Base from "../base";
-import LocaleProvider, { ANT_MARK } from "../locale-provider";
-import LocaleReceiver from "../locale-provider/LocaleReceiver";
+import Vue from 'vue';
+import PropTypes from '../_util/vue-types';
+import { filterEmpty, getComponentFromProp } from '../_util/props-util';
+import defaultRenderEmpty from './renderEmpty';
+import Base from '../base';
+import LocaleProvider, { ANT_MARK } from '../locale-provider';
+import LocaleReceiver from '../locale-provider/LocaleReceiver';
 
 function getWatch(keys = []) {
   const watch = {};
@@ -17,7 +17,7 @@ function getWatch(keys = []) {
 }
 
 const ConfigProvider = {
-  name: "AConfigProvider",
+  name: 'AConfigProvider',
   props: {
     getPopupContainer: PropTypes.func,
     prefixCls: PropTypes.string,
@@ -26,7 +26,7 @@ const ConfigProvider = {
     autoInsertSpaceInButton: PropTypes.bool,
     locale: PropTypes.object,
     pageHeader: PropTypes.object,
-    transformCellText: PropTypes.func
+    transformCellText: PropTypes.func,
   },
   provide() {
     const _self = this;
@@ -35,57 +35,51 @@ const ConfigProvider = {
         return {
           ..._self.$props,
           getPrefixCls: _self.getPrefixCls,
-          renderEmpty: _self.renderEmptyComponent
+          renderEmpty: _self.renderEmptyComponent,
         };
-      }
+      },
     });
     return {
-      configProvider: this._proxyVm._data
+      configProvider: this._proxyVm._data,
     };
   },
   watch: {
     ...getWatch([
-      "prefixCls",
-      "csp",
-      "autoInsertSpaceInButton",
-      "locale",
-      "pageHeader",
-      "transformCellText"
-    ])
+      'prefixCls',
+      'csp',
+      'autoInsertSpaceInButton',
+      'locale',
+      'pageHeader',
+      'transformCellText',
+    ]),
   },
   methods: {
     renderEmptyComponent(h, name) {
       const renderEmpty =
-        getComponentFromProp(this, "renderEmpty", {}, false) ||
-        defaultRenderEmpty;
+        getComponentFromProp(this, 'renderEmpty', {}, false) || defaultRenderEmpty;
       return renderEmpty(h, name);
     },
     getPrefixCls(suffixCls, customizePrefixCls) {
-      const { prefixCls = "ant" } = this.$props;
+      const { prefixCls = 'ant' } = this.$props;
       if (customizePrefixCls) return customizePrefixCls;
       return suffixCls ? `${prefixCls}-${suffixCls}` : prefixCls;
     },
     renderProvider(legacyLocale) {
       return (
-        <LocaleProvider
-          locale={this.locale || legacyLocale}
-          _ANT_MARK__={ANT_MARK}
-        >
+        <LocaleProvider locale={this.locale || legacyLocale} _ANT_MARK__={ANT_MARK}>
           {this.$slots.default ? filterEmpty(this.$slots.default)[0] : null}
         </LocaleProvider>
       );
-    }
+    },
   },
 
   render() {
     return (
       <LocaleReceiver
-        scopedSlots={{
-          default: (_, __, legacyLocale) => this.renderProvider(legacyLocale)
-        }}
+        scopedSlots={{ default: (_, __, legacyLocale) => this.renderProvider(legacyLocale) }}
       />
     );
-  }
+  },
 };
 
 /* istanbul ignore next */

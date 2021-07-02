@@ -1,15 +1,15 @@
-import isPlainObject from "lodash/isPlainObject";
-import classNames from "classnames";
+import isPlainObject from 'lodash/isPlainObject';
+import classNames from 'classnames';
 function getType(fn) {
   const match = fn && fn.toString().match(/^\s*function (\w+)/);
-  return match ? match[1] : "";
+  return match ? match[1] : '';
 }
 
 const camelizeRE = /-(\w)/g;
 const camelize = str => {
-  return str.replace(camelizeRE, (_, c) => (c ? c.toUpperCase() : ""));
+  return str.replace(camelizeRE, (_, c) => (c ? c.toUpperCase() : ''));
 };
-const parseStyleText = (cssText = "", camel) => {
+const parseStyleText = (cssText = '', camel) => {
   const res = {};
   const listDelimiter = /;(?![^(]*\))/g;
   const propertyDelimiter = /:(.+)/;
@@ -58,18 +58,16 @@ const getSlots = ele => {
   const slots = {};
   children.forEach(child => {
     if (!isEmptyElement(child)) {
-      const name = (child.data && child.data.slot) || "default";
+      const name = (child.data && child.data.slot) || 'default';
       slots[name] = slots[name] || [];
       slots[name].push(child);
     }
   });
   return { ...slots, ...getScopedSlots(ele) };
 };
-const getSlot = (self, name = "default", options = {}) => {
+const getSlot = (self, name = 'default', options = {}) => {
   return (
-    (self.$scopedSlots &&
-      self.$scopedSlots[name] &&
-      self.$scopedSlots[name](options)) ||
+    (self.$scopedSlots && self.$scopedSlots[name] && self.$scopedSlots[name](options)) ||
     self.$slots[name] ||
     []
   );
@@ -103,9 +101,7 @@ const getOptionProps = instance => {
       const def = v.default;
       if (def !== undefined) {
         res[k] =
-          typeof def === "function" && getType(v.type) !== "Function"
-            ? def.call(instance)
-            : def;
+          typeof def === 'function' && getType(v.type) !== 'Function' ? def.call(instance) : def;
       }
     }
     return { ...res, ...propsData };
@@ -114,22 +110,15 @@ const getOptionProps = instance => {
   return filterProps($props, $options.propsData);
 };
 
-const getComponentFromProp = (
-  instance,
-  prop,
-  options = instance,
-  execute = true
-) => {
+const getComponentFromProp = (instance, prop, options = instance, execute = true) => {
   if (instance.$createElement) {
     const h = instance.$createElement;
     const temp = instance[prop];
     if (temp !== undefined) {
-      return typeof temp === "function" && execute ? temp(h, options) : temp;
+      return typeof temp === 'function' && execute ? temp(h, options) : temp;
     }
     return (
-      (instance.$scopedSlots[prop] &&
-        execute &&
-        instance.$scopedSlots[prop](options)) ||
+      (instance.$scopedSlots[prop] && execute && instance.$scopedSlots[prop](options)) ||
       instance.$scopedSlots[prop] ||
       instance.$slots[prop] ||
       undefined
@@ -138,13 +127,11 @@ const getComponentFromProp = (
     const h = instance.context.$createElement;
     const temp = getPropsData(instance)[prop];
     if (temp !== undefined) {
-      return typeof temp === "function" && execute ? temp(h, options) : temp;
+      return typeof temp === 'function' && execute ? temp(h, options) : temp;
     }
     const slotScope = getScopedSlots(instance)[prop];
     if (slotScope !== undefined) {
-      return typeof slotScope === "function" && execute
-        ? slotScope(h, options)
-        : slotScope;
+      return typeof slotScope === 'function' && execute ? slotScope(h, options) : slotScope;
     }
     const slotsProp = [];
     const componentOptions = instance.componentOptions || {};
@@ -153,7 +140,7 @@ const getComponentFromProp = (
         if (child.data.attrs) {
           delete child.data.attrs.slot;
         }
-        if (child.tag === "template") {
+        if (child.tag === 'template') {
           slotsProp.push(child.children);
         } else {
           slotsProp.push(child);
@@ -223,11 +210,7 @@ export function getDataEvents(child) {
 // use getListeners instead this.$listeners
 // https://github.com/vueComponent/ant-design-vue/issues/1705
 export function getListeners(context) {
-  return (
-    (context.$vnode
-      ? context.$vnode.componentOptions.listeners
-      : context.$listeners) || {}
-  );
+  return (context.$vnode ? context.$vnode.componentOptions.listeners : context.$listeners) || {};
 }
 export function getClass(ele) {
   let data = {};
@@ -240,16 +223,16 @@ export function getClass(ele) {
   const staticClass = data.staticClass;
   let cls = {};
   staticClass &&
-    staticClass.split(" ").forEach(c => {
+    staticClass.split(' ').forEach(c => {
       cls[c.trim()] = true;
     });
-  if (typeof tempCls === "string") {
-    tempCls.split(" ").forEach(c => {
+  if (typeof tempCls === 'string') {
+    tempCls.split(' ').forEach(c => {
       cls[c.trim()] = true;
     });
   } else if (Array.isArray(tempCls)) {
     classNames(tempCls)
-      .split(" ")
+      .split(' ')
       .forEach(c => {
         cls[c.trim()] = true;
       });
@@ -266,7 +249,7 @@ export function getStyle(ele, camel) {
     data = ele.$vnode.data;
   }
   let style = data.style || data.staticStyle;
-  if (typeof style === "string") {
+  if (typeof style === 'string') {
     style = parseStyleText(style, camel);
   } else if (camel && style) {
     // 驼峰化
@@ -282,7 +265,7 @@ export function getComponentName(opts) {
 }
 
 export function isEmptyElement(c) {
-  return !(c.tag || (c.text && c.text.trim() !== ""));
+  return !(c.tag || (c.text && c.text.trim() !== ''));
 }
 
 export function isStringElement(c) {
@@ -322,9 +305,9 @@ export function mergeProps() {
 function isValidElement(element) {
   return (
     element &&
-    typeof element === "object" &&
-    "componentOptions" in element &&
-    "context" in element &&
+    typeof element === 'object' &&
+    'componentOptions' in element &&
+    'context' in element &&
     element.tag !== undefined
   ); // remove text node
 }
@@ -347,6 +330,6 @@ export {
   getSlots,
   getSlot,
   getAllProps,
-  getAllChildren
+  getAllChildren,
 };
 export default hasProp;

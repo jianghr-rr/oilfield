@@ -1,13 +1,13 @@
-import PropTypes from "../../_util/vue-types";
-import classNames from "classnames";
-import ColGroup from "./ColGroup";
-import TableHeader from "./TableHeader";
-import TableRow from "./TableRow";
-import ExpandableRow from "./ExpandableRow";
-import { mergeProps, getListeners } from "../../_util/props-util";
+import PropTypes from '../../_util/vue-types';
+import classNames from 'classnames';
+import ColGroup from './ColGroup';
+import TableHeader from './TableHeader';
+import TableRow from './TableRow';
+import ExpandableRow from './ExpandableRow';
+import { mergeProps, getListeners } from '../../_util/props-util';
 function noop() {}
 const BaseTable = {
-  name: "BaseTable",
+  name: 'BaseTable',
   props: {
     fixed: PropTypes.oneOfType([PropTypes.string, PropTypes.bool]),
     columns: PropTypes.array.isRequired,
@@ -16,11 +16,11 @@ const BaseTable = {
     hasBody: PropTypes.bool.isRequired,
     expander: PropTypes.object.isRequired,
     getRowKey: PropTypes.func,
-    isAnyColumnsFixed: PropTypes.bool
+    isAnyColumnsFixed: PropTypes.bool,
   },
   inject: {
     table: { default: () => ({}) },
-    store: { from: "table-store", default: () => ({}) }
+    store: { from: 'table-store', default: () => ({}) },
   },
   methods: {
     getColumns(cols) {
@@ -31,11 +31,8 @@ const BaseTable = {
         ...column,
         className:
           !!column.fixed && !fixed
-            ? classNames(
-                `${prefixCls}-fixed-columns-in-body`,
-                column.className || column.class
-              )
-            : column.className || column.class
+            ? classNames(`${prefixCls}-fixed-columns-in-body`, column.className || column.class)
+            : column.className || column.class,
       }));
     },
     handleRowHover(isHover, key) {
@@ -49,14 +46,14 @@ const BaseTable = {
         prefixCls,
         childrenColumnName,
         rowClassName,
-        customRow = noop
+        customRow = noop,
       } = this.table;
       const {
         rowClick: onRowClick = noop,
         rowDoubleclick: onRowDoubleClick = noop,
         rowContextmenu: onRowContextMenu = noop,
         rowMouseenter: onRowMouseEnter = noop,
-        rowMouseleave: onRowMouseLeave = noop
+        rowMouseleave: onRowMouseLeave = noop,
       } = getListeners(this.table);
       const { getRowKey, fixed, expander, isAnyColumnsFixed } = this;
 
@@ -66,9 +63,7 @@ const BaseTable = {
         const record = renderData[i];
         const key = getRowKey(record, i);
         const className =
-          typeof rowClassName === "string"
-            ? rowClassName
-            : rowClassName(record, i, indent);
+          typeof rowClassName === 'string' ? rowClassName : rowClassName(record, i, indent);
 
         const onHoverProps = {};
         if (columnManager.isAnyColumnsFixed()) {
@@ -76,9 +71,9 @@ const BaseTable = {
         }
 
         let leafColumns;
-        if (fixed === "left") {
+        if (fixed === 'left') {
           leafColumns = columnManager.leftLeafColumns();
-        } else if (fixed === "right") {
+        } else if (fixed === 'right') {
           leafColumns = columnManager.rightLeafColumns();
         } else {
           leafColumns = this.getColumns(columnManager.leafColumns());
@@ -94,13 +89,13 @@ const BaseTable = {
             prefixCls: rowPrefixCls,
             record,
             rowKey: key,
-            needIndentSpaced: expander.needIndentSpaced
+            needIndentSpaced: expander.needIndentSpaced,
           },
           key,
           on: {
             // ...expander.on,
             rowClick: onRowClick,
-            expandedChange: expander.handleExpandChange
+            expandedChange: expander.handleExpandChange,
           },
           scopedSlots: {
             default: expandableRow => {
@@ -118,91 +113,63 @@ const BaseTable = {
                     ancestorKeys,
                     components,
                     isAnyColumnsFixed,
-                    customRow
+                    customRow,
                   },
                   on: {
                     rowDoubleclick: onRowDoubleClick,
                     rowContextmenu: onRowContextMenu,
                     rowMouseenter: onRowMouseEnter,
                     rowMouseleave: onRowMouseLeave,
-                    ...onHoverProps
+                    ...onHoverProps,
                   },
                   class: className,
-                  ref: `row_${i}_${indent}`
+                  ref: `row_${i}_${indent}`,
                 },
-                expandableRow
+                expandableRow,
               );
               return <TableRow {...tableRowProps} />;
-            }
-          }
+            },
+          },
         };
         const row = <ExpandableRow {...expandableRowProps} />;
 
         rows.push(row);
-        expander.renderRows(
-          this.renderRows,
-          rows,
-          record,
-          i,
-          indent,
-          fixed,
-          key,
-          ancestorKeys
-        );
+        expander.renderRows(this.renderRows, rows, record, i, indent, fixed, key, ancestorKeys);
       }
       return rows;
-    }
+    },
   },
 
   render() {
-    const {
-      sComponents: components,
-      prefixCls,
-      scroll,
-      data,
-      getBodyWrapper
-    } = this.table;
-    const {
-      expander,
-      tableClassName,
-      hasHead,
-      hasBody,
-      fixed,
-      isAnyColumnsFixed
-    } = this.$props;
+    const { sComponents: components, prefixCls, scroll, data, getBodyWrapper } = this.table;
+    const { expander, tableClassName, hasHead, hasBody, fixed, isAnyColumnsFixed } = this.$props;
     const columns = this.getColumns();
     const tableStyle = {};
 
     if (!fixed && scroll.x) {
       // 当有固定列时，width auto 会导致 body table 的宽度撑不开，从而固定列无法对齐
       // 详情见：https://github.com/ant-design/ant-design/issues/22160
-      const tableWidthScrollX = isAnyColumnsFixed ? "max-content" : "auto";
+      const tableWidthScrollX = isAnyColumnsFixed ? 'max-content' : 'auto';
       // not set width, then use content fixed width
       tableStyle.width = scroll.x === true ? tableWidthScrollX : scroll.x;
       tableStyle.width =
-        typeof tableStyle.width === "number"
-          ? `${tableStyle.width}px`
-          : tableStyle.width;
+        typeof tableStyle.width === 'number' ? `${tableStyle.width}px` : tableStyle.width;
     }
     if (fixed) {
       const width = columns.reduce((sum, { width: w }) => {
         return sum + parseFloat(w, 10);
       }, 0);
       if (width > 0) {
-        tableStyle.width = width + "px";
+        tableStyle.width = width + 'px';
       }
     }
 
-    const Table = hasBody ? components.table : "table";
+    const Table = hasBody ? components.table : 'table';
     const BodyWrapper = components.body.wrapper;
 
     let body;
     if (hasBody) {
-      body = (
-        <BodyWrapper class={`${prefixCls}-tbody`}>
-          {this.renderRows(data, 0)}
-        </BodyWrapper>
-      );
+      body = <BodyWrapper class={`${prefixCls}-tbody`}>{this.renderRows(data, 0)}</BodyWrapper>;
       if (getBodyWrapper) {
         body = getBodyWrapper(body);
       }
@@ -210,13 +177,11 @@ const BaseTable = {
     return (
       <Table class={tableClassName} style={tableStyle} key="table">
         <ColGroup columns={columns} fixed={fixed} />
-        {hasHead && (
-          <TableHeader expander={expander} columns={columns} fixed={fixed} />
-        )}
+        {hasHead && <TableHeader expander={expander} columns={columns} fixed={fixed} />}
         {body}
       </Table>
     );
-  }
+  },
 };
 
 export default BaseTable;

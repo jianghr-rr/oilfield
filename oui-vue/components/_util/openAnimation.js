@@ -1,19 +1,19 @@
-import cssAnimation from "./css-animation";
-import raf from "raf";
-import Vue from "vue";
+import cssAnimation from './css-animation';
+import raf from 'raf';
+import Vue from 'vue';
 
 function animate(node, show, done) {
   let height;
   let requestAnimationFrameId;
   let appearRequestAnimationFrameId;
-  return cssAnimation(node, "ant-motion-collapse-legacy", {
+  return cssAnimation(node, 'ant-motion-collapse-legacy', {
     start() {
       if (appearRequestAnimationFrameId) {
         raf.cancel(appearRequestAnimationFrameId);
       }
       if (!show) {
         node.style.height = `${node.offsetHeight}px`;
-        node.style.opacity = "1";
+        node.style.opacity = '1';
       } else {
         height = node.offsetHeight;
         // not get offsetHeight when appear
@@ -21,12 +21,12 @@ function animate(node, show, done) {
         if (height === 0) {
           appearRequestAnimationFrameId = raf(() => {
             height = node.offsetHeight;
-            node.style.height = "0px";
-            node.style.opacity = "0";
+            node.style.height = '0px';
+            node.style.opacity = '0';
           });
         } else {
-          node.style.height = "0px";
-          node.style.opacity = "0";
+          node.style.height = '0px';
+          node.style.opacity = '0';
         }
       }
     },
@@ -36,7 +36,7 @@ function animate(node, show, done) {
       }
       requestAnimationFrameId = raf(() => {
         node.style.height = `${show ? height : 0}px`;
-        node.style.opacity = show ? "1" : "0";
+        node.style.opacity = show ? '1' : '0';
       });
     },
     end() {
@@ -46,10 +46,10 @@ function animate(node, show, done) {
       if (requestAnimationFrameId) {
         raf.cancel(requestAnimationFrameId);
       }
-      node.style.height = "";
-      node.style.opacity = "";
+      node.style.height = '';
+      node.style.opacity = '';
       done && done();
-    }
+    },
   });
 }
 
@@ -61,7 +61,7 @@ const animation = {
   },
   leave(node, done) {
     return animate(node, false, done);
-  }
+  },
 };
 
 export default animation;

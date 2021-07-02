@@ -1,9 +1,9 @@
-import { mount } from "@vue/test-utils";
-import Card from "../index";
-import Button from "../../button/index";
-import mountTest from "../../../tests/shared/mountTest";
+import { mount } from '@vue/test-utils';
+import Card from '../index';
+import Button from '../../button/index';
+import mountTest from '../../../tests/shared/mountTest';
 
-describe("Card", () => {
+describe('Card', () => {
   mountTest(Card);
   beforeAll(() => {
     jest.useFakeTimers();
@@ -12,7 +12,7 @@ describe("Card", () => {
   afterAll(() => {
     jest.useRealTimers();
   });
-  it("should still have padding when card which set padding to 0 is loading", () => {
+  it('should still have padding when card which set padding to 0 is loading', () => {
     const wrapper = mount({
       render() {
         return (
@@ -20,38 +20,34 @@ describe("Card", () => {
             xxx
           </Card>
         );
-      }
+      },
     });
     expect(wrapper.html()).toMatchSnapshot();
   });
 
-  it("title should be vertically aligned", () => {
+  it('title should be vertically aligned', () => {
     const wrapper = mount({
       render() {
         return (
-          <Card
-            title="Card title"
-            extra={<Button>Button</Button>}
-            style={{ width: "300px" }}
-          >
+          <Card title="Card title" extra={<Button>Button</Button>} style={{ width: '300px' }}>
             <p>Card content</p>
           </Card>
         );
-      }
+      },
     });
     expect(wrapper.html()).toMatchSnapshot();
   });
 
-  it("onTabChange should work", () => {
+  it('onTabChange should work', () => {
     const tabList = [
       {
-        key: "tab1",
-        tab: "tab1"
+        key: 'tab1',
+        tab: 'tab1',
       },
       {
-        key: "tab2",
-        tab: "tab2"
-      }
+        key: 'tab2',
+        tab: 'tab2',
+      },
     ];
     const onTabChange = jest.fn();
     const wrapper = mount(
@@ -62,20 +58,20 @@ describe("Card", () => {
               xxx
             </Card>
           );
-        }
+        },
       },
       {
-        sync: false
-      }
+        sync: false,
+      },
     );
     wrapper
-      .findAll(".ant-tabs-tab")
+      .findAll('.ant-tabs-tab')
       .at(1)
-      .trigger("click");
-    expect(onTabChange).toHaveBeenCalledWith("tab2");
+      .trigger('click');
+    expect(onTabChange).toHaveBeenCalledWith('tab2');
   });
 
-  it("should not render when actions is number", () => {
+  it('should not render when actions is number', () => {
     const wrapper = mount({
       render() {
         return (
@@ -83,8 +79,8 @@ describe("Card", () => {
             <p>Card content</p>
           </Card>
         );
-      }
+      },
     });
-    expect(wrapper.findAll(".ant-card-actions").length).toBe(0);
+    expect(wrapper.findAll('.ant-card-actions').length).toBe(0);
   });
 });

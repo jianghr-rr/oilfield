@@ -1,4 +1,4 @@
-import cssAnimation from "../../_util/css-animation";
+import cssAnimation from '../../_util/css-animation';
 
 function animate(node, show, transitionName, done) {
   let height;
@@ -15,9 +15,9 @@ function animate(node, show, transitionName, done) {
       node.style.height = `${show ? height : 0}px`;
     },
     end() {
-      node.style.height = "";
+      node.style.height = '';
       done();
-    }
+    },
   });
 }
 
@@ -28,7 +28,7 @@ function animation(prefixCls) {
     },
     leave(node, done) {
       return animate(node, false, `${prefixCls}-anim`, done);
-    }
+    },
   };
 }
 

@@ -7,13 +7,13 @@ export function getBeforeSelectionText(input) {
 }
 
 function lower(char) {
-  return (char || "").toLowerCase();
+  return (char || '').toLowerCase();
 }
 
 /**
  * Find the last match prefix index
  */
-export function getLastMeasureIndex(text, prefix = "") {
+export function getLastMeasureIndex(text, prefix = '') {
   const prefixList = Array.isArray(prefix) ? prefix : [prefix];
   return prefixList.reduce(
     (lastMatch, prefixStr) => {
@@ -21,12 +21,12 @@ export function getLastMeasureIndex(text, prefix = "") {
       if (lastIndex > lastMatch.location) {
         return {
           location: lastIndex,
-          prefix: prefixStr
+          prefix: prefixStr,
         };
       }
       return lastMatch;
     },
-    { location: -1, prefix: "" }
+    { location: -1, prefix: '' },
   );
 }
 
@@ -58,21 +58,12 @@ function reduceText(text, targetText, split) {
  *  => little @light test
  */
 export function replaceWithMeasure(text, measureConfig) {
-  const {
-    measureLocation,
-    prefix,
-    targetText,
-    selectionStart,
-    split
-  } = measureConfig;
+  const { measureLocation, prefix, targetText, selectionStart, split } = measureConfig;
 
   // Before text will append one space if have other text
   let beforeMeasureText = text.slice(0, measureLocation);
   if (beforeMeasureText[beforeMeasureText.length - split.length] === split) {
-    beforeMeasureText = beforeMeasureText.slice(
-      0,
-      beforeMeasureText.length - split.length
-    );
+    beforeMeasureText = beforeMeasureText.slice(0, beforeMeasureText.length - split.length);
   }
   if (beforeMeasureText) {
     beforeMeasureText = `${beforeMeasureText}${split}`;
@@ -82,7 +73,7 @@ export function replaceWithMeasure(text, measureConfig) {
   let restText = reduceText(
     text.slice(selectionStart),
     targetText.slice(selectionStart - measureLocation - prefix.length),
-    split
+    split,
   );
   if (restText.slice(0, split.length) === split) {
     restText = restText.slice(split.length);
@@ -92,7 +83,7 @@ export function replaceWithMeasure(text, measureConfig) {
 
   return {
     text: `${connectedStartText}${restText}`,
-    selectionLocation: connectedStartText.length
+    selectionLocation: connectedStartText.length,
   };
 }
 
@@ -107,12 +98,12 @@ export function setInputSelection(input, location) {
   input.focus();
 }
 
-export function validateSearch(text = "", props = {}) {
+export function validateSearch(text = '', props = {}) {
   const { split } = props;
   return !split || text.indexOf(split) === -1;
 }
 
-export function filterOption(input = "", { value = "" } = {}) {
+export function filterOption(input = '', { value = '' } = {}) {
   const lowerCase = input.toLowerCase();
   return value.toLowerCase().indexOf(lowerCase) !== -1;
 }

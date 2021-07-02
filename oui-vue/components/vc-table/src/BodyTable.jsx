@@ -1,9 +1,9 @@
-import PropTypes from "../../_util/vue-types";
-import { measureScrollbar } from "./utils";
-import BaseTable from "./BaseTable";
+import PropTypes from '../../_util/vue-types';
+import { measureScrollbar } from './utils';
+import BaseTable from './BaseTable';
 
 export default {
-  name: "BodyTable",
+  name: 'BodyTable',
   props: {
     fixed: PropTypes.oneOfType([PropTypes.string, PropTypes.bool]),
     columns: PropTypes.array.isRequired,
@@ -12,10 +12,10 @@ export default {
     handleWheel: PropTypes.func.isRequired,
     getRowKey: PropTypes.func.isRequired,
     expander: PropTypes.object.isRequired,
-    isAnyColumnsFixed: PropTypes.bool
+    isAnyColumnsFixed: PropTypes.bool,
   },
   inject: {
-    table: { default: () => ({}) }
+    table: { default: () => ({}) },
   },
   render() {
     const { prefixCls, scroll } = this.table;
@@ -27,38 +27,38 @@ export default {
       handleBodyScroll,
       handleWheel,
       expander,
-      isAnyColumnsFixed
+      isAnyColumnsFixed,
     } = this;
     let { useFixedHeader, saveRef } = this.table;
     const bodyStyle = { ...this.table.bodyStyle };
     const innerBodyStyle = {};
 
     if (scroll.x || fixed) {
-      bodyStyle.overflowX = bodyStyle.overflowX || "scroll";
+      bodyStyle.overflowX = bodyStyle.overflowX || 'scroll';
       // Fix weired webkit render bug
       // https://github.com/ant-design/ant-design/issues/7783
-      bodyStyle.WebkitTransform = "translate3d (0, 0, 0)";
+      bodyStyle.WebkitTransform = 'translate3d (0, 0, 0)';
     }
 
     if (scroll.y) {
       // maxHeight will make fixed-Table scrolling not working
       // so we only set maxHeight to body-Table here
       let maxHeight = bodyStyle.maxHeight || scroll.y;
-      maxHeight = typeof maxHeight === "number" ? `${maxHeight}px` : maxHeight;
+      maxHeight = typeof maxHeight === 'number' ? `${maxHeight}px` : maxHeight;
       if (fixed) {
         innerBodyStyle.maxHeight = maxHeight;
-        innerBodyStyle.overflowY = bodyStyle.overflowY || "scroll";
+        innerBodyStyle.overflowY = bodyStyle.overflowY || 'scroll';
       } else {
         bodyStyle.maxHeight = maxHeight;
       }
-      bodyStyle.overflowY = bodyStyle.overflowY || "scroll";
+      bodyStyle.overflowY = bodyStyle.overflowY || 'scroll';
       useFixedHeader = true;
 
       // Add negative margin bottom for scroll bar overflow bug
-      const scrollbarWidth = measureScrollbar({ direction: "vertical" });
+      const scrollbarWidth = measureScrollbar({ direction: 'vertical' });
       if (scrollbarWidth > 0 && fixed) {
         bodyStyle.marginBottom = `-${scrollbarWidth}px`;
-        bodyStyle.paddingBottom = "0px";
+        bodyStyle.paddingBottom = '0px';
       }
     }
 
@@ -77,29 +77,25 @@ export default {
 
     if (fixed && columns.length) {
       let refName;
-      if (columns[0].fixed === "left" || columns[0].fixed === true) {
-        refName = "fixedColumnsBodyLeft";
-      } else if (columns[0].fixed === "right") {
-        refName = "fixedColumnsBodyRight";
+      if (columns[0].fixed === 'left' || columns[0].fixed === true) {
+        refName = 'fixedColumnsBodyLeft';
+      } else if (columns[0].fixed === 'right') {
+        refName = 'fixedColumnsBodyRight';
       }
       delete bodyStyle.overflowX;
       delete bodyStyle.overflowY;
       return (
-        <div
-          key="bodyTable"
-          class={`${prefixCls}-body-outer`}
-          style={{ ...bodyStyle }}
-        >
+        <div key="bodyTable" class={`${prefixCls}-body-outer`} style={{ ...bodyStyle }}>
           <div
             class={`${prefixCls}-body-inner`}
             style={innerBodyStyle}
             {...{
               directives: [
                 {
-                  name: "ant-ref",
-                  value: saveRef(refName)
-                }
-              ]
+                  name: 'ant-ref',
+                  value: saveRef(refName),
+                },
+              ],
             }}
             onWheel={handleWheel}
             onScroll={handleBodyScroll}
@@ -121,10 +117,10 @@ export default {
         {...{
           directives: [
             {
-              name: "ant-ref",
-              value: saveRef("bodyTable")
-            }
-          ]
+              name: 'ant-ref',
+              value: saveRef('bodyTable'),
+            },
+          ],
         }}
         onWheel={handleWheel}
         onScroll={handleBodyScroll}
@@ -132,5 +128,5 @@ export default {
         {baseTable}
       </div>
     );
-  }
+  },
 };

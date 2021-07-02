@@ -3,12 +3,7 @@ export default {
   PRESENTED_IMAGE_DEFAULT: true,
   render() {
     return (
-      <svg
-        width="184"
-        height="152"
-        viewBox="0 0 184 152"
-        xmlns="http://www.w3.org/2000/svg"
-      >
+      <svg width="184" height="152" viewBox="0 0 184 152" xmlns="http://www.w3.org/2000/svg">
         <g fill="none" fillRule="evenodd">
           <g transform="translate(24 31.67)">
             <ellipse
@@ -48,5 +43,5 @@ export default {
         </g>
       </svg>
     );
-  }
+  },
 };

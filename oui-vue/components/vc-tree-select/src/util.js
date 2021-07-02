@@ -1,13 +1,13 @@
-import warning from "warning";
-import omit from "omit.js";
+import warning from 'warning';
+import omit from 'omit.js';
 import {
   convertDataToTree as vcConvertDataToTree,
   convertTreeToEntities as vcConvertTreeToEntities,
-  conductCheck as rcConductCheck
-} from "../../vc-tree/src/util";
-import { hasClass } from "../../vc-util/Dom/class";
-import { SHOW_CHILD, SHOW_PARENT } from "./strategies";
-import { getSlots, getPropsData, isEmptyElement } from "../../_util/props-util";
+  conductCheck as rcConductCheck,
+} from '../../vc-tree/src/util';
+import { hasClass } from '../../vc-util/Dom/class';
+import { SHOW_CHILD, SHOW_PARENT } from './strategies';
+import { getSlots, getPropsData, isEmptyElement } from '../../_util/props-util';
 
 let warnDeprecatedLabel = false;
 
@@ -26,7 +26,7 @@ export function findPopupContainer(node, prefixClass) {
 
 // =================== MISC ====================
 export function toTitle(title) {
-  if (typeof title === "string") {
+  if (typeof title === 'string') {
     return title;
   }
   return null;
@@ -47,12 +47,12 @@ export function createRef() {
 
 // =============== Legacy ===============
 export const UNSELECTABLE_STYLE = {
-  userSelect: "none",
-  WebkitUserSelect: "none"
+  userSelect: 'none',
+  WebkitUserSelect: 'none',
 };
 
 export const UNSELECTABLE_ATTRIBUTE = {
-  unselectable: "unselectable"
+  unselectable: 'unselectable',
 };
 
 /**
@@ -71,7 +71,7 @@ export function flatToHierarchy(positionList) {
   const parsedList = positionList.slice().map(entity => {
     const clone = {
       ...entity,
-      fields: entity.pos.split("-")
+      fields: entity.pos.split('-'),
     };
     delete clone.children;
     return clone;
@@ -87,7 +87,7 @@ export function flatToHierarchy(positionList) {
 
   // Create the hierarchy
   parsedList.forEach(entity => {
-    const parentPos = entity.fields.slice(0, -1).join("-");
+    const parentPos = entity.fields.slice(0, -1).join('-');
     const parentEntity = posMap[parentPos];
 
     if (!parentEntity) {
@@ -166,8 +166,8 @@ export function parseSimpleTreeData(treeData, { id, pId, rootPId }) {
  * e.g. 1-2 not related with 1-21
  */
 export function isPosRelated(pos1, pos2) {
-  const fields1 = pos1.split("-");
-  const fields2 = pos2.split("-");
+  const fields1 = pos1.split('-');
+  const fields2 = pos2.split('-');
 
   const minLen = Math.min(fields1.length, fields2.length);
   for (let i = 0; i < minLen; i += 1) {
@@ -187,7 +187,7 @@ export function isPosRelated(pos1, pos2) {
 export function cleanEntity({ node, pos, children }) {
   const instance = {
     node,
-    pos
+    pos,
   };
 
   if (children) {
@@ -203,14 +203,7 @@ export function cleanEntity({ node, pos, children }) {
  * we have to convert `treeNodes > data > treeNodes` to keep the key.
  * Such performance hungry!
  */
-export function getFilterTree(
-  h,
-  treeNodes,
-  searchValue,
-  filterFunc,
-  valueEntities,
-  Component
-) {
+export function getFilterTree(h, treeNodes, searchValue, filterFunc, valueEntities, Component) {
   if (!searchValue) {
     return null;
   }
@@ -223,15 +216,12 @@ export function getFilterTree(
       match = true;
     }
     let children = getSlots(node).default;
-    children = ((typeof children === "function" ? children() : children) || [])
+    children = ((typeof children === 'function' ? children() : children) || [])
       .map(mapFilteredNodeToData)
       .filter(n => n);
     if (children.length || match) {
       return (
-        <Component
-          {...node.data}
-          key={valueEntities[getPropsData(node).value].key}
-        >
+        <Component {...node.data} key={valueEntities[getPropsData(node).value].key}>
           {children}
         </Component>
       );
@@ -252,10 +242,10 @@ export function formatInternalValue(value, props) {
   // Parse label in value
   if (isLabelInValue(props)) {
     return valueList.map(val => {
-      if (typeof val !== "object" || !val) {
+      if (typeof val !== 'object' || !val) {
         return {
-          value: "",
-          label: ""
+          value: '',
+          label: '',
         };
       }
 
@@ -264,7 +254,7 @@ export function formatInternalValue(value, props) {
   }
 
   return valueList.map(val => ({
-    value: val
+    value: val,
   }));
 }
 
@@ -292,12 +282,7 @@ export function getLabel(wrappedValue, entity, treeNodeLabelProp) {
  * `allCheckedNodes` is used for `treeCheckStrictly`
  */
 export function formatSelectorValue(valueList, props, valueEntities) {
-  const {
-    treeNodeLabelProp,
-    treeCheckable,
-    treeCheckStrictly,
-    showCheckedStrategy
-  } = props;
+  const { treeNodeLabelProp, treeCheckable, treeCheckStrictly, showCheckedStrategy } = props;
 
   // Will hide some value if `showCheckedStrategy` is set
   if (treeCheckable && !treeCheckStrictly) {
@@ -305,21 +290,15 @@ export function formatSelectorValue(valueList, props, valueEntities) {
     valueList.forEach(wrappedValue => {
       values[wrappedValue.value] = wrappedValue;
     });
-    const hierarchyList = flatToHierarchy(
-      valueList.map(({ value }) => valueEntities[value])
-    );
+    const hierarchyList = flatToHierarchy(valueList.map(({ value }) => valueEntities[value]));
 
     if (showCheckedStrategy === SHOW_PARENT) {
       // Only get the parent checked value
       return hierarchyList.map(({ node }) => {
         const value = getPropsData(node).value;
         return {
-          label: getLabel(
-            values[value],
-            valueEntities[value],
-            treeNodeLabelProp
-          ),
-          value
+          label: getLabel(values[value], valueEntities[value], treeNodeLabelProp),
+          value,
         };
       });
     }
@@ -332,12 +311,8 @@ export function formatSelectorValue(valueList, props, valueEntities) {
         const value = getPropsData(node).value;
         if (!children || children.length === 0) {
           targetValueList.push({
-            label: getLabel(
-              values[value],
-              valueEntities[value],
-              treeNodeLabelProp
-            ),
-            value
+            label: getLabel(values[value], valueEntities[value], treeNodeLabelProp),
+            value,
           });
           return;
         }
@@ -356,12 +331,8 @@ export function formatSelectorValue(valueList, props, valueEntities) {
   }
 
   return valueList.map(wrappedValue => ({
-    label: getLabel(
-      wrappedValue,
-      valueEntities[wrappedValue.value],
-      treeNodeLabelProp
-    ),
-    value: wrappedValue.value
+    label: getLabel(wrappedValue, valueEntities[wrappedValue.value], treeNodeLabelProp),
+    value: wrappedValue.value,
   }));
 }
 
@@ -376,19 +347,16 @@ function processProps(props) {
     key = value;
   }
   const p = {
-    props: omit(props, ["on", "key", "class", "className", "style"]),
+    props: omit(props, ['on', 'key', 'class', 'className', 'style']),
     on,
     class: cls || props.className,
     style,
-    key
+    key,
   };
   // Warning user not to use deprecated label prop.
   if (label && !title) {
     if (!warnDeprecatedLabel) {
-      warning(
-        false,
-        "'label' in treeData is deprecated. Please use 'title' instead."
-      );
+      warning(false, "'label' in treeData is deprecated. Please use 'title' instead.");
       warnDeprecatedLabel = true;
     }
 
@@ -409,7 +377,7 @@ export function convertDataToTree(h, treeData) {
 function initWrapper(wrapper) {
   return {
     ...wrapper,
-    valueEntities: {}
+    valueEntities: {},
   };
 }
 
@@ -422,7 +390,7 @@ function processEntity(entity, wrapper) {
   if (currentEntity) {
     warning(
       false,
-      `Conflict! value of node '${entity.key}' (${value}) has already used by node '${currentEntity.key}'.`
+      `Conflict! value of node '${entity.key}' (${value}) has already used by node '${currentEntity.key}'.`,
     );
   }
   wrapper.valueEntities[value] = entity;
@@ -431,7 +399,7 @@ function processEntity(entity, wrapper) {
 export function convertTreeToEntities(treeNodes) {
   return vcConvertTreeToEntities(treeNodes, {
     initWrapper,
-    processEntity
+    processEntity,
   });
 }
 

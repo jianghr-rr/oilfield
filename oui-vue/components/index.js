@@ -2,15 +2,15 @@
 // this file is not used if use https://github.com/ant-design/babel-plugin-import
 const ENV = process.env.NODE_ENV;
 if (
-  ENV !== "production" &&
-  ENV !== "test" &&
-  typeof console !== "undefined" &&
+  ENV !== 'production' &&
+  ENV !== 'test' &&
+  typeof console !== 'undefined' &&
   console.warn &&
-  typeof window !== "undefined"
+  typeof window !== 'undefined'
 ) {
   console.warn(
-    "You are using a whole package of antd, " +
-      "please use https://www.npmjs.com/package/babel-plugin-import to reduce app bundle size."
+    'You are using a whole package of antd, ' +
+      'please use https://www.npmjs.com/package/babel-plugin-import to reduce app bundle size.',
   );
 }
 /* @remove-on-es-build-end */
@@ -21,7 +21,7 @@ if (
 
 // import { default as AutoComplete } from './auto-complete';
 
-import { default as Alert } from "./alert";
+import { default as Alert } from './alert';
 
 // import { default as Avatar } from './avatar';
 
@@ -149,7 +149,7 @@ const components = [
   // Affix,
   // Anchor,
   // AutoComplete,
-  Alert
+  Alert,
   // Avatar,
   // BackTop,
   // Badge,
@@ -227,7 +227,7 @@ const install = function(Vue) {
 };
 
 /* istanbul ignore if */
-if (typeof window !== "undefined" && window.Vue) {
+if (typeof window !== 'undefined' && window.Vue) {
   install(window.Vue);
 }
 
@@ -240,7 +240,7 @@ export {
   // Affix,
   // Anchor,
   // AutoComplete,
-  Alert
+  Alert,
   // Avatar,
   // BackTop,
   // Badge,
@@ -304,5 +304,5 @@ export {
 
 export default {
   // version,
-  install
+  install,
 };

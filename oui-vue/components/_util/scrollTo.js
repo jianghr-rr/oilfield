@@ -1,6 +1,6 @@
-import raf from "raf";
-import getScroll from "./getScroll";
-import { easeInOutCubic } from "./easings";
+import raf from 'raf';
+import getScroll from './getScroll';
+import { easeInOutCubic } from './easings';
 
 // interface ScrollToOptions {
 //   /** Scroll container, default as window */
@@ -21,12 +21,7 @@ export default function scrollTo(y, options = {}) {
   const frameFunc = () => {
     const timestamp = Date.now();
     const time = timestamp - startTime;
-    const nextScrollTop = easeInOutCubic(
-      time > duration ? duration : time,
-      scrollTop,
-      y,
-      duration
-    );
+    const nextScrollTop = easeInOutCubic(time > duration ? duration : time, scrollTop, y, duration);
     if (container === window) {
       window.scrollTo(window.pageXOffset, nextScrollTop);
     } else {
@@ -34,7 +29,7 @@ export default function scrollTo(y, options = {}) {
     }
     if (time < duration) {
       raf(frameFunc);
-    } else if (typeof callback === "function") {
+    } else if (typeof callback === 'function') {
       callback();
     }
   };

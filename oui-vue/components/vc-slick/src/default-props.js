@@ -1,4 +1,4 @@
-import PropTypes from "../../_util/vue-types";
+import PropTypes from '../../_util/vue-types';
 
 const defaultProps = {
   accessibility: PropTypes.bool.def(true),
@@ -10,13 +10,13 @@ const defaultProps = {
   autoplaySpeed: PropTypes.number.def(3000),
   beforeChange: PropTypes.any.def(null),
   centerMode: PropTypes.bool.def(false),
-  centerPadding: PropTypes.string.def("50px"),
-  cssEase: PropTypes.string.def("ease"),
+  centerPadding: PropTypes.string.def('50px'),
+  cssEase: PropTypes.string.def('ease'),
   dots: PropTypes.bool.def(false),
-  dotsClass: PropTypes.string.def("slick-dots"),
+  dotsClass: PropTypes.string.def('slick-dots'),
   draggable: PropTypes.bool.def(true),
   unslick: PropTypes.bool.def(false),
-  easing: PropTypes.string.def("linear"),
+  easing: PropTypes.string.def('linear'),
   edgeFriction: PropTypes.number.def(0.35),
   fade: PropTypes.bool.def(false),
   focusOnSelect: PropTypes.bool.def(false),
@@ -34,7 +34,7 @@ const defaultProps = {
   responsive: PropTypes.array,
   rows: PropTypes.number.def(1),
   rtl: PropTypes.bool.def(false),
-  slide: PropTypes.string.def("div"),
+  slide: PropTypes.string.def('div'),
   slidesPerRow: PropTypes.number.def(1),
   slidesToScroll: PropTypes.number.def(1),
   slidesToShow: PropTypes.number.def(1),
@@ -50,7 +50,7 @@ const defaultProps = {
   vertical: PropTypes.bool.def(false),
   waitForAnimate: PropTypes.bool.def(true),
   children: PropTypes.array,
-  __propsSymbol__: PropTypes.any
+  __propsSymbol__: PropTypes.any,
 };
 
 export default defaultProps;

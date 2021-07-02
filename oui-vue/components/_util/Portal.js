@@ -1,12 +1,12 @@
-import PropTypes from "./vue-types";
-import { cloneElement } from "./vnode";
+import PropTypes from './vue-types';
+import { cloneElement } from './vnode';
 
 export default {
-  name: "Portal",
+  name: 'Portal',
   props: {
     getContainer: PropTypes.func.isRequired,
     children: PropTypes.any.isRequired,
-    didUpdate: PropTypes.func
+    didUpdate: PropTypes.func,
   },
   mounted() {
     this.createContainer();
@@ -32,7 +32,7 @@ export default {
       if (this._container && this._container.parentNode) {
         this._container.parentNode.removeChild(this._container);
       }
-    }
+    },
   },
 
   render() {
@@ -40,12 +40,12 @@ export default {
       return cloneElement(this.$props.children, {
         directives: [
           {
-            name: "ant-portal",
-            value: this._container
-          }
-        ]
+            name: 'ant-portal',
+            value: this._container,
+          },
+        ],
       });
     }
     return null;
-  }
+  },
 };

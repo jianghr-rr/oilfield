@@ -1,24 +1,18 @@
-import PropTypes from "../_util/vue-types";
-import { alignElement, alignPoint } from "dom-align";
-import addEventListener from "../vc-util/Dom/addEventListener";
-import {
-  isWindow,
-  buffer,
-  isSamePoint,
-  isSimilarValue,
-  restoreFocus
-} from "./util";
-import { cloneElement } from "../_util/vnode.js";
-import clonedeep from "lodash/cloneDeep";
-import { getSlot, getListeners } from "../_util/props-util";
+import PropTypes from '../_util/vue-types';
+import { alignElement, alignPoint } from 'dom-align';
+import addEventListener from '../vc-util/Dom/addEventListener';
+import { isWindow, buffer, isSamePoint, isSimilarValue, restoreFocus } from './util';
+import { cloneElement } from '../_util/vnode.js';
+import clonedeep from 'lodash/cloneDeep';
+import { getSlot, getListeners } from '../_util/props-util';
 
 function getElement(func) {
-  if (typeof func !== "function" || !func) return null;
+  if (typeof func !== 'function' || !func) return null;
   return func();
 }
 
 function getPoint(point) {
-  if (typeof point !== "object" || !point) return null;
+  if (typeof point !== 'object' || !point) return null;
   return point;
 }
 
@@ -26,12 +20,10 @@ export default {
   props: {
     childrenProps: PropTypes.object,
     align: PropTypes.object.isRequired,
-    target: PropTypes.oneOfType([PropTypes.func, PropTypes.object]).def(
-      () => window
-    ),
+    target: PropTypes.oneOfType([PropTypes.func, PropTypes.object]).def(() => window),
     monitorBufferTime: PropTypes.number.def(50),
     monitorWindowResize: PropTypes.bool.def(false),
-    disabled: PropTypes.bool.def(false)
+    disabled: PropTypes.bool.def(false),
   },
   data() {
     this.aligned = false;
@@ -108,15 +100,8 @@ export default {
   methods: {
     startMonitorWindowResize() {
       if (!this.resizeHandler) {
-        this.bufferMonitor = buffer(
-          this.forceAlign,
-          this.$props.monitorBufferTime
-        );
-        this.resizeHandler = addEventListener(
-          window,
-          "resize",
-          this.bufferMonitor
-        );
+        this.bufferMonitor = buffer(this.forceAlign, this.$props.monitorBufferTime);
+        this.resizeHandler = addEventListener(window, 'resize', this.bufferMonitor);
       }
     },
 
@@ -150,7 +135,7 @@ export default {
         this.aligned = true;
         listeners.align && listeners.align(source, result);
       }
-    }
+    },
   },
 
   render() {
@@ -160,5 +145,5 @@ export default {
       return cloneElement(child, { props: childrenProps });
     }
     return child;
-  }
+  },
 };

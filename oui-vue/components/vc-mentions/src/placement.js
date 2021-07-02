@@ -1,1 +1,1 @@
-export const PlaceMent = ["top", "bottom"];
+export const PlaceMent = ['top', 'bottom'];

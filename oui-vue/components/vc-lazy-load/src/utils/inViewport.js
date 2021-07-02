@@ -1,4 +1,4 @@
-import getElementPosition from "./getElementPosition";
+import getElementPosition from './getElementPosition';
 
 const isHidden = element => element.offsetParent === null;
 
@@ -12,7 +12,7 @@ export default function inViewport(element, container, customOffset) {
   let left;
   let right;
 
-  if (typeof container === "undefined" || container === window) {
+  if (typeof container === 'undefined' || container === window) {
     top = window.pageYOffset;
     left = window.pageXOffset;
     bottom = top + window.innerHeight;

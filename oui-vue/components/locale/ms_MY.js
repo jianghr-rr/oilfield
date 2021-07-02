@@ -1,63 +1,63 @@
-import Pagination from "../vc-pagination/locale/ms_MY";
-import DatePicker from "../date-picker/locale/ms_MY";
-import TimePicker from "../time-picker/locale/ms_MY";
-import Calendar from "../calendar/locale/ms_MY";
+import Pagination from '../vc-pagination/locale/ms_MY';
+import DatePicker from '../date-picker/locale/ms_MY';
+import TimePicker from '../time-picker/locale/ms_MY';
+import Calendar from '../calendar/locale/ms_MY';
 
 export default {
-  locale: "ms-my",
+  locale: 'ms-my',
   Pagination,
   DatePicker,
   TimePicker,
   Calendar,
   global: {
-    placeholder: "Sila pilih"
+    placeholder: 'Sila pilih',
   },
   PageHeader: {
-    back: "Kembali"
+    back: 'Kembali',
   },
   Text: {
-    edit: "Sunting",
-    copy: "Salin",
-    copied: "Berjaya menyalin",
-    expand: "Kembang"
+    edit: 'Sunting',
+    copy: 'Salin',
+    copied: 'Berjaya menyalin',
+    expand: 'Kembang',
   },
   Empty: {
-    description: "Tiada data"
+    description: 'Tiada data',
   },
   Table: {
-    filterTitle: "Cari dengan tajuk",
-    filterConfirm: "Ok",
-    filterReset: "Menetapkan semula",
-    emptyText: "Tiada data",
-    selectAll: "Pilih semua",
-    selectInvert: "Terbalikkan"
+    filterTitle: 'Cari dengan tajuk',
+    filterConfirm: 'Ok',
+    filterReset: 'Menetapkan semula',
+    emptyText: 'Tiada data',
+    selectAll: 'Pilih semua',
+    selectInvert: 'Terbalikkan',
   },
   Modal: {
-    okText: "OK",
-    cancelText: "Batal",
-    justOkText: "OK"
+    okText: 'OK',
+    cancelText: 'Batal',
+    justOkText: 'OK',
   },
   Popconfirm: {
-    okText: "OK",
-    cancelText: "Batal"
+    okText: 'OK',
+    cancelText: 'Batal',
   },
   Transfer: {
-    notFoundContent: "Tidak dijumpai",
-    searchPlaceholder: "Carian di sini",
-    itemUnit: "item",
-    itemsUnit: "item"
+    notFoundContent: 'Tidak dijumpai',
+    searchPlaceholder: 'Carian di sini',
+    itemUnit: 'item',
+    itemsUnit: 'item',
   },
   Icon: {
-    icon: "ikon"
+    icon: 'ikon',
   },
   Select: {
-    notFoundContent: "Tidak Dijumpai"
+    notFoundContent: 'Tidak Dijumpai',
   },
   Upload: {
-    uploading: "Sedang memuat naik...",
-    removeFile: "Buang fail",
-    uploadError: "Masalah muat naik",
-    previewFile: "Tengok fail",
-    downloadFile: "Muat turun fail"
-  }
+    uploading: 'Sedang memuat naik...',
+    removeFile: 'Buang fail',
+    uploadError: 'Masalah muat naik',
+    previewFile: 'Tengok fail',
+    downloadFile: 'Muat turun fail',
+  },
 };

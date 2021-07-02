@@ -1,14 +1,14 @@
-import PropTypes from "../../../_util/vue-types";
-import BaseMixin from "../../../_util/BaseMixin";
-import { getListeners } from "../../../_util/props-util";
+import PropTypes from '../../../_util/vue-types';
+import BaseMixin from '../../../_util/BaseMixin';
+import { getListeners } from '../../../_util/props-util';
 const ROW = 4;
 const COL = 3;
 function noop() {}
 function goYear(direction) {
   const value = this.sValue.clone();
-  value.add(direction, "year");
+  value.add(direction, 'year');
   this.setState({
-    sValue: value
+    sValue: value,
   });
 }
 
@@ -17,7 +17,7 @@ function chooseYear(year) {
   value.year(year);
   value.month(this.sValue.month());
   this.sValue = value;
-  this.__emit("select", value);
+  this.__emit('select', value);
 }
 
 export default {
@@ -27,19 +27,19 @@ export default {
     value: PropTypes.object,
     defaultValue: PropTypes.object,
     locale: PropTypes.object,
-    renderFooter: PropTypes.func
+    renderFooter: PropTypes.func,
   },
   data() {
     this.nextDecade = goYear.bind(this, 10);
     this.previousDecade = goYear.bind(this, -10);
     return {
-      sValue: this.value || this.defaultValue
+      sValue: this.value || this.defaultValue,
     };
   },
   watch: {
     value(val) {
       this.sValue = val;
-    }
+    },
   },
   methods: {
     years() {
@@ -57,13 +57,13 @@ export default {
           years[rowIndex][colIndex] = {
             content,
             year,
-            title: content
+            title: content,
           };
           index++;
         }
       }
       return years;
-    }
+    },
   },
 
   render() {
@@ -81,7 +81,7 @@ export default {
           [`${prefixCls}-cell`]: 1,
           [`${prefixCls}-selected-cell`]: yearData.year === currentYear,
           [`${prefixCls}-last-decade-cell`]: yearData.year < startYear,
-          [`${prefixCls}-next-decade-cell`]: yearData.year > endYear
+          [`${prefixCls}-next-decade-cell`]: yearData.year > endYear,
         };
         let clickHandler = noop;
         if (yearData.year < startYear) {
@@ -109,7 +109,7 @@ export default {
         </tr>
       );
     });
-    const footer = renderFooter && renderFooter("year");
+    const footer = renderFooter && renderFooter('year');
     return (
       <div class={prefixCls}>
         <div>
@@ -148,5 +148,5 @@ export default {
         </div>
       </div>
     );
-  }
+  },
 };

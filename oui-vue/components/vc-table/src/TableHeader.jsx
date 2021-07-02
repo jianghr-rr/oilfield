@@ -1,12 +1,7 @@
-import PropTypes from "../../_util/vue-types";
-import TableHeaderRow from "./TableHeaderRow";
+import PropTypes from '../../_util/vue-types';
+import TableHeaderRow from './TableHeaderRow';
 
-function getHeaderRows({
-  columns = [],
-  currentRow = 0,
-  rows = [],
-  isLast = true
-}) {
+function getHeaderRows({ columns = [], currentRow = 0, rows = [], isLast = true }) {
   rows = rows || [];
   rows[currentRow] = rows[currentRow] || [];
 
@@ -19,23 +14,23 @@ function getHeaderRows({
     const cellIsLast = isLast && i === columns.length - 1;
     const cell = {
       key: column.key,
-      className: column.className || column.class || "",
+      className: column.className || column.class || '',
       children: column.title,
       isLast: cellIsLast,
-      column
+      column,
     };
     if (column.children) {
       getHeaderRows({
         columns: column.children,
         currentRow: currentRow + 1,
         rows,
-        isLast: cellIsLast
+        isLast: cellIsLast,
       });
     }
-    if ("colSpan" in column) {
+    if ('colSpan' in column) {
       cell.colSpan = column.colSpan;
     }
-    if ("rowSpan" in column) {
+    if ('rowSpan' in column) {
       cell.rowSpan = column.rowSpan;
     }
     if (cell.colSpan !== 0) {
@@ -46,23 +41,18 @@ function getHeaderRows({
 }
 
 export default {
-  name: "TableHeader",
+  name: 'TableHeader',
   props: {
     fixed: PropTypes.string,
     columns: PropTypes.array.isRequired,
-    expander: PropTypes.object.isRequired
+    expander: PropTypes.object.isRequired,
   },
   inject: {
-    table: { default: () => ({}) }
+    table: { default: () => ({}) },
   },
 
   render() {
-    const {
-      sComponents: components,
-      prefixCls,
-      showHeader,
-      customHeaderRow
-    } = this.table;
+    const { sComponents: components, prefixCls, showHeader, customHeaderRow } = this.table;
     const { expander, columns, fixed } = this;
 
     if (!showHeader) {
@@ -92,5 +82,5 @@ export default {
         ))}
       </HeaderWrapper>
     );
-  }
+  },
 };

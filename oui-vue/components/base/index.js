@@ -1,4 +1,4 @@
-import antDirective from "../_util/antDirective";
+import antDirective from '../_util/antDirective';
 const base = {};
 const install = function(Vue) {
   base.Vue = Vue;

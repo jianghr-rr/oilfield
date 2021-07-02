@@ -1,5 +1,5 @@
-import { cloneElement } from "../../_util/vnode";
-import { canGoNext } from "./utils/innerSliderUtils";
+import { cloneElement } from '../../_util/vnode';
+import { canGoNext } from './utils/innerSliderUtils';
 
 function noop() {}
 
@@ -13,40 +13,34 @@ export const PrevArrow = {
   },
   render(createElement, context) {
     const { props } = context;
-    const {
-      clickHandler,
-      infinite,
-      currentSlide,
-      slideCount,
-      slidesToShow
-    } = props;
-    const prevClasses = { "slick-arrow": true, "slick-prev": true };
+    const { clickHandler, infinite, currentSlide, slideCount, slidesToShow } = props;
+    const prevClasses = { 'slick-arrow': true, 'slick-prev': true };
     let prevHandler = function(e) {
       if (e) {
         e.preventDefault();
       }
-      clickHandler({ message: "previous" });
+      clickHandler({ message: 'previous' });
     };
 
     if (!infinite && (currentSlide === 0 || slideCount <= slidesToShow)) {
-      prevClasses["slick-disabled"] = true;
+      prevClasses['slick-disabled'] = true;
       prevHandler = noop;
     }
 
     const prevArrowProps = {
-      key: "0",
+      key: '0',
       domProps: {
-        "data-role": "none"
+        'data-role': 'none',
       },
       class: prevClasses,
-      style: { display: "block" },
+      style: { display: 'block' },
       on: {
-        click: prevHandler
-      }
+        click: prevHandler,
+      },
     };
     const customProps = {
       currentSlide,
-      slideCount
+      slideCount,
     };
     let prevArrow;
 
@@ -55,29 +49,29 @@ export const PrevArrow = {
         props.prevArrow({
           ...prevArrowProps,
           ...{
-            props: customProps
-          }
+            props: customProps,
+          },
         }),
         {
-          key: "0",
+          key: '0',
           class: prevClasses,
-          style: { display: "block" },
+          style: { display: 'block' },
           on: {
-            click: prevHandler
-          }
-        }
+            click: prevHandler,
+          },
+        },
       );
     } else {
       prevArrow = (
         <button key="0" type="button" {...prevArrowProps}>
-          {" "}
+          {' '}
           Previous
         </button>
       );
     }
 
     return prevArrow;
-  }
+  },
 };
 
 export const NextArrow = {
@@ -92,32 +86,32 @@ export const NextArrow = {
     const { props } = context;
     const { clickHandler, currentSlide, slideCount } = props;
 
-    const nextClasses = { "slick-arrow": true, "slick-next": true };
+    const nextClasses = { 'slick-arrow': true, 'slick-next': true };
     let nextHandler = function(e) {
       if (e) {
         e.preventDefault();
       }
-      clickHandler({ message: "next" });
+      clickHandler({ message: 'next' });
     };
     if (!canGoNext(props)) {
-      nextClasses["slick-disabled"] = true;
+      nextClasses['slick-disabled'] = true;
       nextHandler = noop;
     }
 
     const nextArrowProps = {
-      key: "1",
+      key: '1',
       domProps: {
-        "data-role": "none"
+        'data-role': 'none',
       },
       class: nextClasses,
-      style: { display: "block" },
+      style: { display: 'block' },
       on: {
-        click: nextHandler
-      }
+        click: nextHandler,
+      },
     };
     const customProps = {
       currentSlide,
-      slideCount
+      slideCount,
     };
     let nextArrow;
 
@@ -126,27 +120,27 @@ export const NextArrow = {
         props.nextArrow({
           ...nextArrowProps,
           ...{
-            props: customProps
-          }
+            props: customProps,
+          },
         }),
         {
-          key: "1",
+          key: '1',
           class: nextClasses,
-          style: { display: "block" },
+          style: { display: 'block' },
           on: {
-            click: nextHandler
-          }
-        }
+            click: nextHandler,
+          },
+        },
       );
     } else {
       nextArrow = (
         <button key="1" type="button" {...nextArrowProps}>
-          {" "}
+          {' '}
           Next
         </button>
       );
     }
 
     return nextArrow;
-  }
+  },
 };

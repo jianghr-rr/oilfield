@@ -1,47 +1,47 @@
-import Pagination from "../vc-pagination/locale/fr_BE";
-import DatePicker from "../date-picker/locale/fr_BE";
-import TimePicker from "../time-picker/locale/fr_BE";
-import Calendar from "../calendar/locale/fr_BE";
+import Pagination from '../vc-pagination/locale/fr_BE';
+import DatePicker from '../date-picker/locale/fr_BE';
+import TimePicker from '../time-picker/locale/fr_BE';
+import Calendar from '../calendar/locale/fr_BE';
 
 export default {
-  locale: "fr",
+  locale: 'fr',
   Pagination,
   DatePicker,
   TimePicker,
   Calendar,
   Table: {
-    filterTitle: "Filtrer",
-    filterConfirm: "OK",
-    filterReset: "Réinitialiser"
+    filterTitle: 'Filtrer',
+    filterConfirm: 'OK',
+    filterReset: 'Réinitialiser',
   },
   Modal: {
-    okText: "OK",
-    cancelText: "Annuler",
-    justOkText: "OK"
+    okText: 'OK',
+    cancelText: 'Annuler',
+    justOkText: 'OK',
   },
   Popconfirm: {
-    okText: "OK",
-    cancelText: "Annuler"
+    okText: 'OK',
+    cancelText: 'Annuler',
   },
   Transfer: {
-    searchPlaceholder: "Recherche",
-    itemUnit: "élément",
-    itemsUnit: "éléments"
+    searchPlaceholder: 'Recherche',
+    itemUnit: 'élément',
+    itemsUnit: 'éléments',
   },
   Upload: {
-    uploading: "Téléchargement...",
-    removeFile: "Effacer le fichier",
-    uploadError: "Erreur de téléchargement",
-    previewFile: "Fichier de prévisualisation",
-    downloadFile: "Télécharger un fichier"
+    uploading: 'Téléchargement...',
+    removeFile: 'Effacer le fichier',
+    uploadError: 'Erreur de téléchargement',
+    previewFile: 'Fichier de prévisualisation',
+    downloadFile: 'Télécharger un fichier',
   },
   Empty: {
-    description: "Aucune donnée"
+    description: 'Aucune donnée',
   },
   Text: {
-    edit: "éditer",
-    copy: "copier",
-    copied: "copie effectuée",
-    expand: "développer"
-  }
+    edit: 'éditer',
+    copy: 'copier',
+    copied: 'copie effectuée',
+    expand: 'développer',
+  },
 };

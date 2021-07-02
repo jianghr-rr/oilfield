@@ -1,64 +1,53 @@
-import Vue from "vue";
-import ref from "vue-ref";
-import PropTypes from "../../_util/vue-types";
-import { initDefaultProps } from "../../_util/props-util";
-import enhancer from "./enhancer";
-import { propTypes, defaultProps } from "./types";
+import Vue from 'vue';
+import ref from 'vue-ref';
+import PropTypes from '../../_util/vue-types';
+import { initDefaultProps } from '../../_util/props-util';
+import enhancer from './enhancer';
+import { propTypes, defaultProps } from './types';
 
 const circlePropTypes = {
   ...propTypes,
-  gapPosition: PropTypes.oneOf(["top", "bottom", "left", "right"]),
-  gapDegree: PropTypes.oneOfType([
-    PropTypes.number,
-    PropTypes.string,
-    PropTypes.bool
-  ])
+  gapPosition: PropTypes.oneOf(['top', 'bottom', 'left', 'right']),
+  gapDegree: PropTypes.oneOfType([PropTypes.number, PropTypes.string, PropTypes.bool]),
 };
 
 const circleDefaultProps = {
   ...defaultProps,
-  gapPosition: "top"
+  gapPosition: 'top',
 };
 
-Vue.use(ref, { name: "ant-ref" });
+Vue.use(ref, { name: 'ant-ref' });
 
 let gradientSeed = 0;
 
 function stripPercentToNumber(percent) {
-  return +percent.replace("%", "");
+  return +percent.replace('%', '');
 }
 
 function toArray(symArray) {
   return Array.isArray(symArray) ? symArray : [symArray];
 }
 
-function getPathStyles(
-  offset,
-  percent,
-  strokeColor,
-  strokeWidth,
-  gapDegree = 0,
-  gapPosition
-) {
+function getPathStyles(offset, percent, strokeColor, strokeWidth, gapDegree = 0, gapPosition) {
   const radius = 50 - strokeWidth / 2;
   let beginPositionX = 0;
   let beginPositionY = -radius;
   let endPositionX = 0;
   let endPositionY = -2 * radius;
   switch (gapPosition) {
-    case "left":
+    case 'left':
       beginPositionX = -radius;
       beginPositionY = 0;
       endPositionX = 2 * radius;
       endPositionY = 0;
       break;
-    case "right":
+    case 'right':
       beginPositionX = radius;
       beginPositionY = 0;
       endPositionX = -2 * radius;
       endPositionY = 0;
       break;
-    case "bottom":
+    case 'bottom':
       beginPositionY = radius;
       endPositionY = 2 * radius;
       break;
@@ -72,15 +61,14 @@ function getPathStyles(
   const pathStyle = {
     stroke: strokeColor,
     strokeDasharray: `${(percent / 100) * (len - gapDegree)}px ${len}px`,
-    strokeDashoffset: `-${gapDegree / 2 +
-      (offset / 100) * (len - gapDegree)}px`,
+    strokeDashoffset: `-${gapDegree / 2 + (offset / 100) * (len - gapDegree)}px`,
     transition:
-      "stroke-dashoffset .3s ease 0s, stroke-dasharray .3s ease 0s, stroke .3s, stroke-width .06s ease .3s, opacity .3s ease 0s" // eslint-disable-line
+      'stroke-dashoffset .3s ease 0s, stroke-dasharray .3s ease 0s, stroke .3s, stroke-width .06s ease .3s, opacity .3s ease 0s', // eslint-disable-line
   };
 
   return {
     pathString,
-    pathStyle
+    pathStyle,
   };
 }
 
@@ -100,26 +88,25 @@ const Circle = {
         strokeWidth,
         strokeLinecap,
         gapDegree,
-        gapPosition
+        gapPosition,
       } = this.$props;
       const percentList = toArray(percent);
       const strokeColorList = toArray(strokeColor);
 
       let stackPtg = 0;
       return percentList.map((ptg, index) => {
-        const color =
-          strokeColorList[index] || strokeColorList[strokeColorList.length - 1];
+        const color = strokeColorList[index] || strokeColorList[strokeColorList.length - 1];
         const stroke =
-          Object.prototype.toString.call(color) === "[object Object]"
+          Object.prototype.toString.call(color) === '[object Object]'
             ? `url(#${prefixCls}-gradient-${this.gradientId})`
-            : "";
+            : '';
         const { pathString, pathStyle } = getPathStyles(
           stackPtg,
           ptg,
           color,
           strokeWidth,
           gapDegree,
-          gapPosition
+          gapPosition,
         );
 
         stackPtg += ptg;
@@ -129,25 +116,25 @@ const Circle = {
           attrs: {
             d: pathString,
             stroke,
-            "stroke-linecap": strokeLinecap,
-            "stroke-width": strokeWidth,
+            'stroke-linecap': strokeLinecap,
+            'stroke-width': strokeWidth,
             opacity: ptg === 0 ? 0 : 1,
-            "fill-opacity": "0"
+            'fill-opacity': '0',
           },
           class: `${prefixCls}-circle-path`,
           style: pathStyle,
           directives: [
             {
-              name: "ant-ref",
+              name: 'ant-ref',
               value: c => {
                 this.paths[index] = c;
-              }
-            }
-          ]
+              },
+            },
+          ],
         };
         return <path {...pathProps} />;
       });
-    }
+    },
   },
 
   render() {
@@ -168,23 +155,23 @@ const Circle = {
       trailColor,
       strokeWidth,
       gapDegree,
-      gapPosition
+      gapPosition,
     );
     delete restProps.percent;
     const strokeColorList = toArray(strokeColor);
     const gradient = strokeColorList.find(
-      color => Object.prototype.toString.call(color) === "[object Object]"
+      color => Object.prototype.toString.call(color) === '[object Object]',
     );
     const pathFirst = {
       attrs: {
         d: pathString,
         stroke: trailColor,
-        "stroke-linecap": strokeLinecap,
-        "stroke-width": trailWidth || strokeWidth,
-        "fill-opacity": "0"
+        'stroke-linecap': strokeLinecap,
+        'stroke-width': trailWidth || strokeWidth,
+        'fill-opacity': '0',
       },
       class: `${prefixCls}-circle-trail`,
-      style: pathStyle
+      style: pathStyle,
     };
 
     return (
@@ -199,9 +186,7 @@ const Circle = {
               y2="0%"
             >
               {Object.keys(gradient)
-                .sort(
-                  (a, b) => stripPercentToNumber(a) - stripPercentToNumber(b)
-                )
+                .sort((a, b) => stripPercentToNumber(a) - stripPercentToNumber(b))
                 .map((key, index) => (
                   <stop key={index} offset={key} stop-color={gradient[key]} />
                 ))}
@@ -212,7 +197,7 @@ const Circle = {
         {this.getStokeList().reverse()}
       </svg>
     );
-  }
+  },
 };
 
 export default enhancer(Circle);

@@ -1,7 +1,7 @@
-import PropTypes from "../_util/vue-types";
-import BaseMixin from "../_util/BaseMixin";
-import classnames from "classnames";
-import raf from "raf";
+import PropTypes from '../_util/vue-types';
+import BaseMixin from '../_util/BaseMixin';
+import classnames from 'classnames';
+import raf from 'raf';
 
 function noop() {}
 const scrollTo = (element, to, duration) => {
@@ -28,13 +28,13 @@ const Select = {
     prefixCls: PropTypes.string,
     options: PropTypes.array,
     selectedIndex: PropTypes.number,
-    type: PropTypes.string
+    type: PropTypes.string,
     // onSelect: PropTypes.func,
     // onMouseEnter: PropTypes.func,
   },
   data() {
     return {
-      active: false
+      active: false,
     };
   },
 
@@ -50,22 +50,22 @@ const Select = {
         // smooth scroll to selected option
         this.scrollToSelected(120);
       });
-    }
+    },
   },
   methods: {
     onSelect(value) {
       const { type } = this;
-      this.__emit("select", type, value);
+      this.__emit('select', type, value);
     },
     onEsc(e) {
-      this.__emit("esc", e);
+      this.__emit('esc', e);
     },
     getOptions() {
       const { options, selectedIndex, prefixCls } = this;
       return options.map((item, index) => {
         const cls = classnames({
           [`${prefixCls}-select-option-selected`]: selectedIndex === index,
-          [`${prefixCls}-select-option-disabled`]: item.disabled
+          [`${prefixCls}-select-option-disabled`]: item.disabled,
         });
         const onClick = item.disabled
           ? noop
@@ -94,7 +94,7 @@ const Select = {
 
     handleMouseEnter(e) {
       this.setState({ active: true });
-      this.__emit("mouseenter", e);
+      this.__emit('mouseenter', e);
     },
 
     handleMouseLeave() {
@@ -115,7 +115,7 @@ const Select = {
       const topOption = list.children[index];
       const to = topOption.offsetTop;
       scrollTo(select, to, duration);
-    }
+    },
   },
 
   render() {
@@ -126,19 +126,15 @@ const Select = {
 
     const cls = {
       [`${prefixCls}-select`]: 1,
-      [`${prefixCls}-select-active`]: active
+      [`${prefixCls}-select-active`]: active,
     };
 
     return (
-      <div
-        class={cls}
-        onMouseenter={this.handleMouseEnter}
-        onMouseleave={this.handleMouseLeave}
-      >
+      <div class={cls} onMouseenter={this.handleMouseEnter} onMouseleave={this.handleMouseLeave}>
         <ul ref="list">{this.getOptions()}</ul>
       </div>
     );
-  }
+  },
 };
 
 export default Select;

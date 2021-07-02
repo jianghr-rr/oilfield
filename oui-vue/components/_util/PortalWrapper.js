@@ -1,11 +1,11 @@
-import PropTypes from "./vue-types";
-import switchScrollingEffect from "./switchScrollingEffect";
-import setStyle from "./setStyle";
-import Portal from "./Portal";
+import PropTypes from './vue-types';
+import switchScrollingEffect from './switchScrollingEffect';
+import setStyle from './setStyle';
+import Portal from './Portal';
 
 let openCount = 0;
 const windowIsUndefined = !(
-  typeof window !== "undefined" &&
+  typeof window !== 'undefined' &&
   window.document &&
   window.document.createElement
 );
@@ -14,13 +14,13 @@ const windowIsUndefined = !(
 let cacheOverflow = {};
 
 export default {
-  name: "PortalWrapper",
+  name: 'PortalWrapper',
   props: {
     wrapperClassName: PropTypes.string,
     forceRender: PropTypes.bool,
     getContainer: PropTypes.any,
     children: PropTypes.func,
-    visible: PropTypes.bool
+    visible: PropTypes.bool,
   },
   data() {
     const { visible } = this.$props;
@@ -36,8 +36,7 @@ export default {
     },
     getContainer(getContainer, prevGetContainer) {
       const getContainerIsFunc =
-        typeof getContainer === "function" &&
-        typeof prevGetContainer === "function";
+        typeof getContainer === 'function' && typeof prevGetContainer === 'function';
       if (
         getContainerIsFunc
           ? getContainer.toString() !== prevGetContainer.toString()
@@ -45,7 +44,7 @@ export default {
       ) {
         this.removeCurrentContainer(false);
       }
-    }
+    },
   },
   beforeDestroy() {
     const { visible } = this.$props;
@@ -57,16 +56,13 @@ export default {
     getParent() {
       const { getContainer } = this.$props;
       if (getContainer) {
-        if (typeof getContainer === "string") {
+        if (typeof getContainer === 'string') {
           return document.querySelectorAll(getContainer)[0];
         }
-        if (typeof getContainer === "function") {
+        if (typeof getContainer === 'function') {
           return getContainer();
         }
-        if (
-          typeof getContainer === "object" &&
-          getContainer instanceof window.HTMLElement
-        ) {
+        if (typeof getContainer === 'object' && getContainer instanceof window.HTMLElement) {
           return getContainer;
         }
       }
@@ -78,7 +74,7 @@ export default {
         return null;
       }
       if (!this.container) {
-        this.container = document.createElement("div");
+        this.container = document.createElement('div');
         const parent = this.getParent();
         if (parent) {
           parent.appendChild(this.container);
@@ -90,11 +86,7 @@ export default {
 
     setWrapperClassName() {
       const { wrapperClassName } = this.$props;
-      if (
-        this.container &&
-        wrapperClassName &&
-        wrapperClassName !== this.container.className
-      ) {
+      if (this.container && wrapperClassName && wrapperClassName !== this.container.className) {
         this.container.className = wrapperClassName;
       }
     },
@@ -123,16 +115,16 @@ export default {
         switchScrollingEffect();
         // Must be set after switchScrollingEffect
         cacheOverflow = setStyle({
-          overflow: "hidden",
-          overflowX: "hidden",
-          overflowY: "hidden"
+          overflow: 'hidden',
+          overflowX: 'hidden',
+          overflowY: 'hidden',
         });
       } else if (!openCount) {
         setStyle(cacheOverflow);
         cacheOverflow = {};
         switchScrollingEffect(true);
       }
-    }
+    },
   },
 
   render() {
@@ -141,7 +133,7 @@ export default {
     const childProps = {
       getOpenCount: () => openCount,
       getContainer: this.getDomContainer,
-      switchScrollingEffect: this.switchScrollingEffect
+      switchScrollingEffect: this.switchScrollingEffect,
     };
     if (forceRender || visible || this._component) {
       portal = (
@@ -151,14 +143,14 @@ export default {
           {...{
             directives: [
               {
-                name: "ant-ref",
-                value: this.savePortal
-              }
-            ]
+                name: 'ant-ref',
+                value: this.savePortal,
+              },
+            ],
           }}
         ></Portal>
       );
     }
     return portal;
-  }
+  },
 };

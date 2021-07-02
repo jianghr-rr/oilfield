@@ -1,3 +1,3 @@
-import locale from "../locale/ga_IE";
+import locale from '../locale/ga_IE';
 
 export default locale;

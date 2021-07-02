@@ -1,5 +1,5 @@
-import { filterEmpty, parseStyleText } from "./props-util";
-import classNames from "classnames";
+import { filterEmpty, parseStyleText } from './props-util';
+import classNames from 'classnames';
 
 export function cloneVNode(vnode, deep) {
   const componentOptions = vnode.componentOptions;
@@ -23,7 +23,7 @@ export function cloneVNode(vnode, deep) {
     vnode.elm,
     vnode.context,
     componentOptions ? { ...componentOptions, listeners } : componentOptions,
-    vnode.asyncFactory
+    vnode.asyncFactory,
   );
   cloned.ns = vnode.ns;
   cloned.isStatic = vnode.isStatic;
@@ -67,14 +67,7 @@ export function cloneElement(n, nodeProps = {}, deep) {
   //   !(node.fnOptions && node.fnOptions.functional),
   //   `can not use cloneElement for functional component (${node.fnOptions && node.fnOptions.name})`,
   // );
-  const {
-    props = {},
-    key,
-    on = {},
-    nativeOn = {},
-    children,
-    directives = []
-  } = nodeProps;
+  const { props = {}, key, on = {}, nativeOn = {}, children, directives = [] } = nodeProps;
   const data = node.data || {};
   let cls = {};
   let style = {};
@@ -84,35 +77,35 @@ export function cloneElement(n, nodeProps = {}, deep) {
     domProps = {},
     style: tempStyle = {},
     class: tempCls = {},
-    scopedSlots = {}
+    scopedSlots = {},
   } = nodeProps;
 
-  if (typeof data.style === "string") {
+  if (typeof data.style === 'string') {
     style = parseStyleText(data.style);
   } else {
     style = { ...data.style, ...style };
   }
-  if (typeof tempStyle === "string") {
+  if (typeof tempStyle === 'string') {
     style = { ...style, ...parseStyleText(style) };
   } else {
     style = { ...style, ...tempStyle };
   }
 
-  if (typeof data.class === "string" && data.class.trim() !== "") {
-    data.class.split(" ").forEach(c => {
+  if (typeof data.class === 'string' && data.class.trim() !== '') {
+    data.class.split(' ').forEach(c => {
       cls[c.trim()] = true;
     });
   } else if (Array.isArray(data.class)) {
     classNames(data.class)
-      .split(" ")
+      .split(' ')
       .forEach(c => {
         cls[c.trim()] = true;
       });
   } else {
     cls = { ...data.class, ...cls };
   }
-  if (typeof tempCls === "string" && tempCls.trim() !== "") {
-    tempCls.split(" ").forEach(c => {
+  if (typeof tempCls === 'string' && tempCls.trim() !== '') {
+    tempCls.split(' ').forEach(c => {
       cls[c.trim()] = true;
     });
   } else {
@@ -124,20 +117,14 @@ export function cloneElement(n, nodeProps = {}, deep) {
     class: cls,
     domProps: { ...data.domProps, ...domProps },
     scopedSlots: { ...data.scopedSlots, ...scopedSlots },
-    directives: [...(data.directives || []), ...directives]
+    directives: [...(data.directives || []), ...directives],
   });
 
   if (node.componentOptions) {
     node.componentOptions.propsData = node.componentOptions.propsData || {};
     node.componentOptions.listeners = node.componentOptions.listeners || {};
-    node.componentOptions.propsData = {
-      ...node.componentOptions.propsData,
-      ...props
-    };
-    node.componentOptions.listeners = {
-      ...node.componentOptions.listeners,
-      ...on
-    };
+    node.componentOptions.propsData = { ...node.componentOptions.propsData, ...props };
+    node.componentOptions.listeners = { ...node.componentOptions.listeners, ...on };
     if (children) {
       node.componentOptions.children = children;
     }
@@ -153,7 +140,7 @@ export function cloneElement(n, nodeProps = {}, deep) {
     node.key = key;
     node.data.key = key;
   }
-  if (typeof ref === "string") {
+  if (typeof ref === 'string') {
     node.data.ref = ref;
   }
   return node;

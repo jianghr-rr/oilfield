@@ -1,3 +1,3 @@
-import locale from "../locale/en_GB";
+import locale from '../locale/en_GB';
 
 export default locale;

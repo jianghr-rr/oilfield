@@ -1,8 +1,8 @@
-import scrollIntoView from "dom-scroll-into-view";
-import has from "lodash/has";
-import createBaseForm from "./createBaseForm";
-import { mixin as formMixin } from "./createForm";
-import { getParams } from "./utils";
+import scrollIntoView from 'dom-scroll-into-view';
+import has from 'lodash/has';
+import createBaseForm from './createBaseForm';
+import { mixin as formMixin } from './createForm';
+import { getParams } from './utils';
 
 function computedStyle(el, prop) {
   const getComputedStyle = window.getComputedStyle;
@@ -32,19 +32,19 @@ function getScrollableContainer(n) {
   let node = n;
   let nodeName;
   /* eslint no-cond-assign:0 */
-  while ((nodeName = node.nodeName.toLowerCase()) !== "body") {
-    const overflowY = computedStyle(node, "overflowY");
+  while ((nodeName = node.nodeName.toLowerCase()) !== 'body') {
+    const overflowY = computedStyle(node, 'overflowY');
     // https://stackoverflow.com/a/36900407/3040605
     if (
       node !== n &&
-      (overflowY === "auto" || overflowY === "scroll") &&
+      (overflowY === 'auto' || overflowY === 'scroll') &&
       node.scrollHeight > node.clientHeight
     ) {
       return node;
     }
     node = node.parentNode;
   }
-  return nodeName === "body" ? node.ownerDocument : node;
+  return nodeName === 'body' ? node.ownerDocument : node;
 }
 
 const mixin = {
@@ -52,7 +52,7 @@ const mixin = {
     getForm() {
       return {
         ...formMixin.methods.getForm.call(this),
-        validateFieldsAndScroll: this.validateFieldsAndScroll
+        validateFieldsAndScroll: this.validateFieldsAndScroll,
       };
     },
 
@@ -70,10 +70,7 @@ const mixin = {
               if (instance) {
                 const node = instance.$el || instance.elm;
                 const top = node.getBoundingClientRect().top;
-                if (
-                  node.type !== "hidden" &&
-                  (firstTop === undefined || firstTop > top)
-                ) {
+                if (node.type !== 'hidden' && (firstTop === undefined || firstTop > top)) {
                   firstTop = top;
                   firstNode = node;
                 }
@@ -85,27 +82,27 @@ const mixin = {
             const c = options.container || getScrollableContainer(firstNode);
             scrollIntoView(firstNode, c, {
               onlyScrollIfNeeded: true,
-              ...options.scroll
+              ...options.scroll,
             });
           }
         }
 
-        if (typeof callback === "function") {
+        if (typeof callback === 'function') {
           callback(error, values);
         }
       };
 
       return this.validateFields(names, options, newCb);
-    }
-  }
+    },
+  },
 };
 
 function createDOMForm(option) {
   return createBaseForm(
     {
-      ...option
+      ...option,
     },
-    [mixin]
+    [mixin],
   );
 }
 

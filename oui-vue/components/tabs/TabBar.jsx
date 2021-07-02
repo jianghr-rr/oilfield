@@ -1,24 +1,24 @@
-import Icon from "../icon";
-import ScrollableInkTabBar from "../vc-tabs/src/ScrollableInkTabBar";
-import { cloneElement } from "../_util/vnode";
-import PropTypes from "../_util/vue-types";
-import { getListeners } from "../_util/props-util";
+import Icon from '../icon';
+import ScrollableInkTabBar from '../vc-tabs/src/ScrollableInkTabBar';
+import { cloneElement } from '../_util/vnode';
+import PropTypes from '../_util/vue-types';
+import { getListeners } from '../_util/props-util';
 const TabBar = {
-  name: "TabBar",
+  name: 'TabBar',
   inheritAttrs: false,
   props: {
     prefixCls: PropTypes.string,
     tabBarStyle: PropTypes.object,
     tabBarExtraContent: PropTypes.any,
-    type: PropTypes.oneOf(["line", "card", "editable-card"]),
-    tabPosition: PropTypes.oneOf(["top", "right", "bottom", "left"]).def("top"),
-    tabBarPosition: PropTypes.oneOf(["top", "right", "bottom", "left"]),
-    size: PropTypes.oneOf(["default", "small", "large"]),
+    type: PropTypes.oneOf(['line', 'card', 'editable-card']),
+    tabPosition: PropTypes.oneOf(['top', 'right', 'bottom', 'left']).def('top'),
+    tabBarPosition: PropTypes.oneOf(['top', 'right', 'bottom', 'left']),
+    size: PropTypes.oneOf(['default', 'small', 'large']),
     animated: PropTypes.oneOfType([PropTypes.bool, PropTypes.object]),
     renderTabBar: PropTypes.func,
     panels: PropTypes.array.def([]),
     activeKey: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
-    tabBarGutter: PropTypes.number
+    tabBarGutter: PropTypes.number,
   },
   render() {
     const {
@@ -28,15 +28,14 @@ const TabBar = {
       tabBarExtraContent,
       tabPosition,
       prefixCls,
-      type = "line",
-      size
+      type = 'line',
+      size,
     } = this.$props;
-    const inkBarAnimated =
-      typeof animated === "object" ? animated.inkBar : animated;
+    const inkBarAnimated = typeof animated === 'object' ? animated.inkBar : animated;
 
-    const isVertical = tabPosition === "left" || tabPosition === "right";
-    const prevIconType = isVertical ? "up" : "left";
-    const nextIconType = isVertical ? "down" : "right";
+    const isVertical = tabPosition === 'left' || tabPosition === 'right';
+    const prevIconType = isVertical ? 'up' : 'left';
+    const nextIconType = isVertical ? 'down' : 'right';
     const prevIcon = (
       <span class={`${prefixCls}-tab-prev-icon`}>
         <Icon type={prevIconType} class={`${prefixCls}-tab-prev-icon-target`} />
@@ -52,7 +51,7 @@ const TabBar = {
     const cls = {
       [`${prefixCls}-${tabPosition}-bar`]: true,
       [`${prefixCls}-${size}-bar`]: !!size,
-      [`${prefixCls}-card-bar`]: type && type.indexOf("card") >= 0
+      [`${prefixCls}-card-bar`]: type && type.indexOf('card') >= 0,
     };
 
     const renderProps = {
@@ -62,11 +61,11 @@ const TabBar = {
         inkBarAnimated,
         extraContent: tabBarExtraContent,
         prevIcon,
-        nextIcon
+        nextIcon,
       },
       style: tabBarStyle,
       on: getListeners(this),
-      class: cls
+      class: cls,
     };
 
     let RenderTabBar;
@@ -78,7 +77,7 @@ const TabBar = {
     } else {
       return <ScrollableInkTabBar {...renderProps} />;
     }
-  }
+  },
 };
 
 export default TabBar;

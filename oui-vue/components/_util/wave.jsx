@@ -1,26 +1,26 @@
-import TransitionEvents from "./css-animation/Event";
-import raf from "./raf";
-import { ConfigConsumerProps } from "../config-provider/configConsumerProps";
+import TransitionEvents from './css-animation/Event';
+import raf from './raf';
+import { ConfigConsumerProps } from '../config-provider/configConsumerProps';
 let styleForPesudo;
 
 // Where el is the DOM element you'd like to test for visibility
 function isHidden(element) {
-  if (process.env.NODE_ENV === "test") {
+  if (process.env.NODE_ENV === 'test') {
     return false;
   }
   return !element || element.offsetParent === null;
 }
 function isNotGrey(color) {
   // eslint-disable-next-line no-useless-escape
-  const match = (color || "").match(/rgba?\((\d*), (\d*), (\d*)(, [\.\d]*)?\)/);
+  const match = (color || '').match(/rgba?\((\d*), (\d*), (\d*)(, [\.\d]*)?\)/);
   if (match && match[1] && match[2] && match[3]) {
     return !(match[1] === match[2] && match[2] === match[3]);
   }
   return true;
 }
 export default {
-  name: "Wave",
-  props: ["insertExtraNode"],
+  name: 'Wave',
+  props: ['insertExtraNode'],
   mounted() {
     this.$nextTick(() => {
       const node = this.$el;
@@ -31,7 +31,7 @@ export default {
     });
   },
   inject: {
-    configProvider: { default: () => ConfigConsumerProps }
+    configProvider: { default: () => ConfigConsumerProps },
   },
   beforeDestroy() {
     if (this.instance) {
@@ -44,25 +44,25 @@ export default {
   },
   methods: {
     onClick(node, waveColor) {
-      if (!node || isHidden(node) || node.className.indexOf("-leave") >= 0) {
+      if (!node || isHidden(node) || node.className.indexOf('-leave') >= 0) {
         return;
       }
       const { insertExtraNode } = this.$props;
-      this.extraNode = document.createElement("div");
+      this.extraNode = document.createElement('div');
       const extraNode = this.extraNode;
-      extraNode.className = "ant-click-animating-node";
+      extraNode.className = 'ant-click-animating-node';
       const attributeName = this.getAttributeName();
       node.removeAttribute(attributeName);
-      node.setAttribute(attributeName, "true");
+      node.setAttribute(attributeName, 'true');
       // Not white or transparent or grey
-      styleForPesudo = styleForPesudo || document.createElement("style");
+      styleForPesudo = styleForPesudo || document.createElement('style');
       if (
         waveColor &&
-        waveColor !== "#ffffff" &&
-        waveColor !== "rgb(255, 255, 255)" &&
+        waveColor !== '#ffffff' &&
+        waveColor !== 'rgb(255, 255, 255)' &&
         isNotGrey(waveColor) &&
         !/rgba\(\d*, \d*, \d*, 0\)/.test(waveColor) && // any transparent rgba color
-        waveColor !== "transparent"
+        waveColor !== 'transparent'
       ) {
         // Add nonce if CSP exist
         if (this.csp && this.csp.nonce) {
@@ -96,41 +96,36 @@ export default {
       }
     },
     onTransitionEnd(e) {
-      if (!e || e.animationName !== "fadeEffect") {
+      if (!e || e.animationName !== 'fadeEffect') {
         return;
       }
       this.resetEffect(e.target);
     },
     getAttributeName() {
       const { insertExtraNode } = this.$props;
-      return insertExtraNode
-        ? "ant-click-animating"
-        : "ant-click-animating-without-extra-node";
+      return insertExtraNode ? 'ant-click-animating' : 'ant-click-animating-without-extra-node';
     },
     bindAnimationEvent(node) {
       if (
         !node ||
         !node.getAttribute ||
-        node.getAttribute("disabled") ||
-        node.className.indexOf("disabled") >= 0
+        node.getAttribute('disabled') ||
+        node.className.indexOf('disabled') >= 0
       ) {
         return;
       }
       const onClick = e => {
         // Fix radio button click twice
-        if (e.target.tagName === "INPUT" || isHidden(e.target)) {
+        if (e.target.tagName === 'INPUT' || isHidden(e.target)) {
           return;
         }
         this.resetEffect(node);
         // Get wave color from target
         const waveColor =
-          getComputedStyle(node).getPropertyValue("border-top-color") || // Firefox Compatible
-          getComputedStyle(node).getPropertyValue("border-color") ||
-          getComputedStyle(node).getPropertyValue("background-color");
-        this.clickWaveTimeoutId = window.setTimeout(
-          () => this.onClick(node, waveColor),
-          0
-        );
+          getComputedStyle(node).getPropertyValue('border-top-color') || // Firefox Compatible
+          getComputedStyle(node).getPropertyValue('border-color') ||
+          getComputedStyle(node).getPropertyValue('background-color');
+        this.clickWaveTimeoutId = window.setTimeout(() => this.onClick(node, waveColor), 0);
         raf.cancel(this.animationStartId);
         this.animationStart = true;
 
@@ -139,11 +134,11 @@ export default {
           this.animationStart = false;
         }, 10);
       };
-      node.addEventListener("click", onClick, true);
+      node.addEventListener('click', onClick, true);
       return {
         cancel: () => {
-          node.removeEventListener("click", onClick, true);
-        }
+          node.removeEventListener('click', onClick, true);
+        },
       };
     },
 
@@ -153,16 +148,16 @@ export default {
       }
       const { insertExtraNode } = this.$props;
       const attributeName = this.getAttributeName();
-      node.setAttribute(attributeName, "false"); // edge has bug on `removeAttribute` #14466
+      node.setAttribute(attributeName, 'false'); // edge has bug on `removeAttribute` #14466
       if (styleForPesudo) {
-        styleForPesudo.innerHTML = "";
+        styleForPesudo.innerHTML = '';
       }
       if (insertExtraNode && this.extraNode && node.contains(this.extraNode)) {
         node.removeChild(this.extraNode);
       }
       TransitionEvents.removeStartEventListener(node, this.onTransitionStart);
       TransitionEvents.removeEndEventListener(node, this.onTransitionEnd);
-    }
+    },
   },
 
   render() {
@@ -170,5 +165,5 @@ export default {
       this.csp = this.configProvider.csp;
     }
     return this.$slots.default && this.$slots.default[0];
-  }
+  },
 };

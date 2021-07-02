@@ -424,7 +424,7 @@ const KeyCode = {
   /**
    * WIN_IME
    */
-  WIN_IME: 229
+  WIN_IME: 229,
 };
 
 /*
@@ -490,7 +490,7 @@ KeyCode.isCharacterKey = function isCharacterKey(keyCode) {
   }
 
   // Safari sends zero key code for non-latin characters.
-  if (window.navigation.userAgent.indexOf("WebKit") !== -1 && keyCode === 0) {
+  if (window.navigation.userAgent.indexOf('WebKit') !== -1 && keyCode === 0) {
     return true;
   }
 

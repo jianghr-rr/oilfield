@@ -1,10 +1,10 @@
-import PropTypes from "../../_util/vue-types";
-import { initDefaultProps } from "../../_util/props-util";
+import PropTypes from '../../_util/vue-types';
+import { initDefaultProps } from '../../_util/props-util';
 import {
   filterOption as defaultFilterOption,
-  validateSearch as defaultValidateSearch
-} from "./util";
-import { PlaceMent } from "./placement";
+  validateSearch as defaultValidateSearch,
+} from './util';
+import { PlaceMent } from './placement';
 
 export const mentionsProps = {
   autoFocus: PropTypes.bool,
@@ -21,19 +21,19 @@ export const mentionsProps = {
   characterRender: PropTypes.func,
   filterOption: PropTypes.func,
   validateSearch: PropTypes.func,
-  getPopupContainer: PropTypes.func
+  getPopupContainer: PropTypes.func,
 };
 
 export const vcMentionsProps = {
   ...mentionsProps,
-  children: PropTypes.any
+  children: PropTypes.any,
 };
 
 export const defaultProps = {
-  prefix: "@",
-  split: " ",
+  prefix: '@',
+  split: ' ',
   validateSearch: defaultValidateSearch,
-  filterOption: defaultFilterOption
+  filterOption: defaultFilterOption,
 };
 
 export default initDefaultProps(vcMentionsProps, defaultProps);

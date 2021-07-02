@@ -1,9 +1,9 @@
-import PropTypes from "../../_util/vue-types";
+import PropTypes from '../../_util/vue-types';
 
 export default {
-  name: "ColumnGroup",
+  name: 'ColumnGroup',
   props: {
-    title: PropTypes.any
+    title: PropTypes.any,
   },
-  isTableColumnGroup: true
+  isTableColumnGroup: true,
 };

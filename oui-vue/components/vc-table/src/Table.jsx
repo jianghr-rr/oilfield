@@ -1,29 +1,25 @@
 /* eslint-disable camelcase */
-import shallowequal from "shallowequal";
-import merge from "lodash/merge";
-import classes from "component-classes";
-import classNames from "classnames";
-import PropTypes from "../../_util/vue-types";
-import { debounce } from "./utils";
-import warning from "../../_util/warning";
-import addEventListener from "../../vc-util/Dom/addEventListener";
-import ColumnManager from "./ColumnManager";
-import HeadTable from "./HeadTable";
-import BodyTable from "./BodyTable";
-import ExpandableTable from "./ExpandableTable";
-import {
-  initDefaultProps,
-  getOptionProps,
-  getListeners
-} from "../../_util/props-util";
-import BaseMixin from "../../_util/BaseMixin";
-import Vue from "vue";
+import shallowequal from 'shallowequal';
+import merge from 'lodash/merge';
+import classes from 'component-classes';
+import classNames from 'classnames';
+import PropTypes from '../../_util/vue-types';
+import { debounce } from './utils';
+import warning from '../../_util/warning';
+import addEventListener from '../../vc-util/Dom/addEventListener';
+import ColumnManager from './ColumnManager';
+import HeadTable from './HeadTable';
+import BodyTable from './BodyTable';
+import ExpandableTable from './ExpandableTable';
+import { initDefaultProps, getOptionProps, getListeners } from '../../_util/props-util';
+import BaseMixin from '../../_util/BaseMixin';
+import Vue from 'vue';
 
 export default {
-  name: "Table",
+  name: 'Table',
   mixins: [BaseMixin],
   provide() {
-    return { "table-store": this.store, table: this };
+    return { 'table-store': this.store, table: this };
   },
   props: initDefaultProps(
     {
@@ -54,13 +50,13 @@ export default {
         header: PropTypes.shape({
           wrapper: PropTypes.any,
           row: PropTypes.any,
-          cell: PropTypes.any
+          cell: PropTypes.any,
         }),
         body: PropTypes.shape({
           wrapper: PropTypes.any,
           row: PropTypes.any,
-          cell: PropTypes.any
-        })
+          cell: PropTypes.any,
+        }),
       }),
       expandIconAsCell: PropTypes.bool,
       expandedRowKeys: PropTypes.array,
@@ -74,21 +70,21 @@ export default {
       expandRowByClick: PropTypes.bool,
       expandIcon: PropTypes.func,
       tableLayout: PropTypes.string,
-      transformCellText: PropTypes.func
+      transformCellText: PropTypes.func,
     },
     {
       data: [],
       useFixedHeader: false,
-      rowKey: "key",
-      rowClassName: () => "",
-      prefixCls: "rc-table",
+      rowKey: 'key',
+      rowClassName: () => '',
+      prefixCls: 'rc-table',
       bodyStyle: {},
       showHeader: true,
       scroll: {},
       rowRef: () => null,
-      emptyText: () => "No Data",
-      customHeaderRow: () => {}
-    }
+      emptyText: () => 'No Data',
+      customHeaderRow: () => {},
+    },
   ),
   data() {
     this.preData = [...this.data];
@@ -97,45 +93,45 @@ export default {
       fixedColumnsHeadRowsHeight: [],
       fixedColumnsBodyRowsHeight: {},
       expandedRowsHeight: {},
-      expandedRowKeys: []
+      expandedRowKeys: [],
     });
     return {
       columnManager: new ColumnManager(this.columns),
       sComponents: merge(
         {
-          table: "table",
+          table: 'table',
           header: {
-            wrapper: "thead",
-            row: "tr",
-            cell: "th"
+            wrapper: 'thead',
+            row: 'tr',
+            cell: 'th',
           },
           body: {
-            wrapper: "tbody",
-            row: "tr",
-            cell: "td"
-          }
+            wrapper: 'tbody',
+            row: 'tr',
+            cell: 'td',
+          },
         },
-        this.components
-      )
+        this.components,
+      ),
     };
   },
   watch: {
     components() {
       this._components = merge(
         {
-          table: "table",
+          table: 'table',
           header: {
-            wrapper: "thead",
-            row: "tr",
-            cell: "th"
+            wrapper: 'thead',
+            row: 'tr',
+            cell: 'th',
           },
           body: {
-            wrapper: "tbody",
-            row: "tr",
-            cell: "td"
-          }
+            wrapper: 'tbody',
+            row: 'tr',
+            cell: 'td',
+          },
         },
-        this.components
+        this.components,
       );
     },
     columns(val) {
@@ -149,7 +145,7 @@ export default {
           this.resetScrollX();
         });
       }
-    }
+    },
   },
 
   // static childContextTypes = {
@@ -158,25 +154,21 @@ export default {
   // },
 
   created() {
-    [
-      "rowClick",
-      "rowDoubleclick",
-      "rowContextmenu",
-      "rowMouseenter",
-      "rowMouseleave"
-    ].forEach(name => {
-      warning(
-        getListeners(this)[name] === undefined,
-        `${name} is deprecated, please use customRow instead.`
-      );
-    });
+    ['rowClick', 'rowDoubleclick', 'rowContextmenu', 'rowMouseenter', 'rowMouseleave'].forEach(
+      name => {
+        warning(
+          getListeners(this)[name] === undefined,
+          `${name} is deprecated, please use customRow instead.`,
+        );
+      },
+    );
 
     warning(
       this.getBodyWrapper === undefined,
-      "getBodyWrapper is deprecated, please use custom components instead."
+      'getBodyWrapper is deprecated, please use custom components instead.',
     );
 
-    this.setScrollPosition("left");
+    this.setScrollPosition('left');
 
     this.debouncedWindowResize = debounce(this.handleWindowResize, 150);
   },
@@ -185,11 +177,7 @@ export default {
     this.$nextTick(() => {
       if (this.columnManager.isAnyColumnsFixed()) {
         this.handleWindowResize();
-        this.resizeEvent = addEventListener(
-          window,
-          "resize",
-          this.debouncedWindowResize
-        );
+        this.resizeEvent = addEventListener(window, 'resize', this.debouncedWindowResize);
       }
       // https://github.com/ant-design/ant-design/issues/11635
       if (this.ref_headTable) {
@@ -206,11 +194,7 @@ export default {
       if (this.columnManager.isAnyColumnsFixed()) {
         this.handleWindowResize();
         if (!this.resizeEvent) {
-          this.resizeEvent = addEventListener(
-            window,
-            "resize",
-            this.debouncedWindowResize
-          );
+          this.resizeEvent = addEventListener(window, 'resize', this.debouncedWindowResize);
         }
       }
     });
@@ -227,12 +211,11 @@ export default {
   methods: {
     getRowKey(record, index) {
       const rowKey = this.rowKey;
-      const key =
-        typeof rowKey === "function" ? rowKey(record, index) : record[rowKey];
+      const key = typeof rowKey === 'function' ? rowKey(record, index) : record[rowKey];
       warning(
         key !== undefined,
-        "Each record in table should have a unique `key` prop," +
-          "or set `rowKey` to an unique primary key."
+        'Each record in table should have a unique `key` prop,' +
+          'or set `rowKey` to an unique primary key.',
       );
       return key === undefined ? index : key;
     },
@@ -241,7 +224,7 @@ export default {
       this.scrollPosition = position;
       if (this.tableNode) {
         const { prefixCls } = this;
-        if (position === "both") {
+        if (position === 'both') {
           classes(this.tableNode)
             .remove(new RegExp(`^${prefixCls}-scroll-position-.+$`))
             .add(`${prefixCls}-scroll-position-left`)
@@ -259,28 +242,22 @@ export default {
       const scrollToLeft = node.scrollLeft === 0;
       const scrollToRight =
         node.scrollLeft + 1 >=
-        node.children[0].getBoundingClientRect().width -
-          node.getBoundingClientRect().width;
+        node.children[0].getBoundingClientRect().width - node.getBoundingClientRect().width;
       if (scrollToLeft && scrollToRight) {
-        this.setScrollPosition("both");
+        this.setScrollPosition('both');
       } else if (scrollToLeft) {
-        this.setScrollPosition("left");
+        this.setScrollPosition('left');
       } else if (scrollToRight) {
-        this.setScrollPosition("right");
-      } else if (this.scrollPosition !== "middle") {
-        this.setScrollPosition("middle");
+        this.setScrollPosition('right');
+      } else if (this.scrollPosition !== 'middle') {
+        this.setScrollPosition('middle');
       }
     },
 
     isTableLayoutFixed() {
-      const {
-        tableLayout,
-        columns = [],
-        useFixedHeader,
-        scroll = {}
-      } = this.$props;
-      if (typeof tableLayout !== "undefined") {
-        return tableLayout === "fixed";
+      const { tableLayout, columns = [], useFixedHeader, scroll = {} } = this.$props;
+      if (typeof tableLayout !== 'undefined') {
+        return tableLayout === 'fixed';
       }
       // if one column is ellipsis, use fixed table layout to fix align issue
       if (columns.some(({ ellipsis }) => !!ellipsis)) {
@@ -292,7 +269,7 @@ export default {
       }
       // if scroll.x is number/px/% width value, we should fixed table layout
       // to avoid long word layout broken issue
-      if (scroll.x && scroll.x !== true && scroll.x !== "max-content") {
+      if (scroll.x && scroll.x !== true && scroll.x !== 'max-content') {
         return true;
       }
       return false;
@@ -312,38 +289,29 @@ export default {
       }
       const { prefixCls } = this;
       const headRows = this.ref_headTable
-        ? this.ref_headTable.querySelectorAll("thead")
-        : this.ref_bodyTable.querySelectorAll("thead");
-      const bodyRows =
-        this.ref_bodyTable.querySelectorAll(`.${prefixCls}-row`) || [];
+        ? this.ref_headTable.querySelectorAll('thead')
+        : this.ref_bodyTable.querySelectorAll('thead');
+      const bodyRows = this.ref_bodyTable.querySelectorAll(`.${prefixCls}-row`) || [];
       const fixedColumnsHeadRowsHeight = [].map.call(headRows, row =>
-        row.getBoundingClientRect().height
-          ? row.getBoundingClientRect().height - 0.5
-          : "auto"
+        row.getBoundingClientRect().height ? row.getBoundingClientRect().height - 0.5 : 'auto',
       );
       const state = this.store;
       const fixedColumnsBodyRowsHeight = [].reduce.call(
         bodyRows,
         (acc, row) => {
-          const rowKey = row.getAttribute("data-row-key");
+          const rowKey = row.getAttribute('data-row-key');
           const height =
             row.getBoundingClientRect().height ||
             state.fixedColumnsBodyRowsHeight[rowKey] ||
-            "auto";
+            'auto';
           acc[rowKey] = height;
           return acc;
         },
-        {}
+        {},
       );
       if (
-        shallowequal(
-          state.fixedColumnsHeadRowsHeight,
-          fixedColumnsHeadRowsHeight
-        ) &&
-        shallowequal(
-          state.fixedColumnsBodyRowsHeight,
-          fixedColumnsBodyRowsHeight
-        )
+        shallowequal(state.fixedColumnsHeadRowsHeight, fixedColumnsHeadRowsHeight) &&
+        shallowequal(state.fixedColumnsBodyRowsHeight, fixedColumnsBodyRowsHeight)
       ) {
         return;
       }
@@ -362,7 +330,7 @@ export default {
 
     hasScrollX() {
       const { scroll = {} } = this;
-      return "x" in scroll;
+      return 'x' in scroll;
     },
 
     handleBodyScrollLeft(e) {
@@ -396,13 +364,9 @@ export default {
         ref_headTable,
         ref_bodyTable,
         ref_fixedColumnsBodyLeft,
-        ref_fixedColumnsBodyRight
+        ref_fixedColumnsBodyRight,
       } = this;
-      if (
-        target.scrollTop !== this.lastScrollTop &&
-        scroll.y &&
-        target !== ref_headTable
-      ) {
+      if (target.scrollTop !== this.lastScrollTop && scroll.y && target !== ref_headTable) {
         const scrollTop = target.scrollTop;
         if (ref_fixedColumnsBodyLeft && target !== ref_fixedColumnsBodyLeft) {
           ref_fixedColumnsBodyLeft.scrollTop = scrollTop;
@@ -431,7 +395,7 @@ export default {
         const {
           ref_bodyTable: bodyTable,
           ref_fixedColumnsBodyLeft: fixedColumnsBodyLeft,
-          ref_fixedColumnsBodyRight: fixedColumnsBodyRight
+          ref_fixedColumnsBodyRight: fixedColumnsBodyRight,
         } = this;
         let scrollTop = 0;
 
@@ -472,17 +436,13 @@ export default {
       const table = [
         this.renderTable({
           columns: this.columnManager.groupedColumns(),
-          isAnyColumnsFixed
+          isAnyColumnsFixed,
         }),
         this.renderEmptyText(),
-        this.renderFooter()
+        this.renderFooter(),
       ];
 
-      return scrollable ? (
-        <div class={`${prefixCls}-scroll`}>{table}</div>
-      ) : (
-        table
-      );
+      return scrollable ? <div class={`${prefixCls}-scroll`}>{table}</div> : table;
     },
 
     renderLeftFixedTable() {
@@ -492,7 +452,7 @@ export default {
         <div class={`${prefixCls}-fixed-left`}>
           {this.renderTable({
             columns: this.columnManager.leftColumns(),
-            fixed: "left"
+            fixed: 'left',
           })}
         </div>
       );
@@ -504,7 +464,7 @@ export default {
         <div class={`${prefixCls}-fixed-right`}>
           {this.renderTable({
             columns: this.columnManager.rightColumns(),
-            fixed: "right"
+            fixed: 'right',
           })}
         </div>
       );
@@ -513,7 +473,7 @@ export default {
     renderTable(options) {
       const { columns, fixed, isAnyColumnsFixed } = options;
       const { prefixCls, scroll = {} } = this;
-      const tableClassName = scroll.x || fixed ? `${prefixCls}-fixed` : "";
+      const tableClassName = scroll.x || fixed ? `${prefixCls}-fixed` : '';
 
       const headTable = (
         <HeadTable
@@ -569,10 +529,10 @@ export default {
       const emptyClassName = `${prefixCls}-placeholder`;
       return (
         <div class={emptyClassName} key="emptyText">
-          {typeof emptyText === "function" ? emptyText() : emptyText}
+          {typeof emptyText === 'function' ? emptyText() : emptyText}
         </div>
       );
-    }
+    },
   },
 
   render() {
@@ -581,13 +541,11 @@ export default {
     const prefixCls = props.prefixCls;
 
     const tableClassName = classNames(props.prefixCls, {
-      [`${prefixCls}-fixed-header`]:
-        props.useFixedHeader || (props.scroll && props.scroll.y),
+      [`${prefixCls}-fixed-header`]: props.useFixedHeader || (props.scroll && props.scroll.y),
       [`${prefixCls}-scroll-position-left ${prefixCls}-scroll-position-right`]:
-        this.scrollPosition === "both",
-      [`${prefixCls}-scroll-position-${this.scrollPosition}`]:
-        this.scrollPosition !== "both",
-      [`${prefixCls}-layout-fixed`]: this.isTableLayoutFixed()
+        this.scrollPosition === 'both',
+      [`${prefixCls}-scroll-position-${this.scrollPosition}`]: this.scrollPosition !== 'both',
+      [`${prefixCls}-layout-fixed`]: this.isTableLayoutFixed(),
     });
 
     const hasLeftFixed = columnManager.isAnyColumnsLeftFixed();
@@ -597,7 +555,7 @@ export default {
       props: {
         ...props,
         columnManager,
-        getRowKey
+        getRowKey,
       },
       on: getListeners(this),
       scopedSlots: {
@@ -608,10 +566,10 @@ export default {
               {...{
                 directives: [
                   {
-                    name: "ant-ref",
-                    value: this.saveTableNodeRef
-                  }
-                ]
+                    name: 'ant-ref',
+                    value: this.saveTableNodeRef,
+                  },
+                ],
               }}
               class={tableClassName}
               // style={props.style}
@@ -625,9 +583,9 @@ export default {
               </div>
             </div>
           );
-        }
-      }
+        },
+      },
     };
     return <ExpandableTable {...expandableTableProps} />;
-  }
+  },
 };

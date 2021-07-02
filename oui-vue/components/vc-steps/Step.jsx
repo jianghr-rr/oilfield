@@ -1,16 +1,12 @@
-import PropTypes from "../_util/vue-types";
-import {
-  getOptionProps,
-  getComponentFromProp,
-  getListeners
-} from "../_util/props-util";
+import PropTypes from '../_util/vue-types';
+import { getOptionProps, getComponentFromProp, getListeners } from '../_util/props-util';
 
 function isString(str) {
-  return typeof str === "string";
+  return typeof str === 'string';
 }
 function noop() {}
 export default {
-  name: "Step",
+  name: 'Step',
   props: {
     prefixCls: PropTypes.string,
     wrapperStyle: PropTypes.object,
@@ -30,52 +26,38 @@ export default {
     tailContent: PropTypes.any,
     icons: PropTypes.shape({
       finish: PropTypes.any,
-      error: PropTypes.any
-    }).loose
+      error: PropTypes.any,
+    }).loose,
   },
   methods: {
     onClick(...args) {
-      this.$emit("click", ...args);
-      this.$emit("stepClick", this.stepIndex);
+      this.$emit('click', ...args);
+      this.$emit('stepClick', this.stepIndex);
     },
     renderIconNode() {
-      const {
-        prefixCls,
-        stepNumber,
-        status,
-        iconPrefix,
-        icons
-      } = getOptionProps(this);
+      const { prefixCls, stepNumber, status, iconPrefix, icons } = getOptionProps(this);
       let progressDot = this.progressDot;
       if (progressDot === undefined) {
         progressDot = this.$scopedSlots.progressDot;
       }
-      const icon = getComponentFromProp(this, "icon");
-      const title = getComponentFromProp(this, "title");
-      const description = getComponentFromProp(this, "description");
+      const icon = getComponentFromProp(this, 'icon');
+      const title = getComponentFromProp(this, 'title');
+      const description = getComponentFromProp(this, 'description');
       let iconNode;
       const iconClassName = {
         [`${prefixCls}-icon`]: true,
         [`${iconPrefix}icon`]: true,
         [`${iconPrefix}icon-${icon}`]: icon && isString(icon),
-        [`${iconPrefix}icon-check`]:
-          !icon && status === "finish" && icons && !icons.finish,
-        [`${iconPrefix}icon-close`]:
-          !icon && status === "error" && icons && !icons.error
+        [`${iconPrefix}icon-check`]: !icon && status === 'finish' && icons && !icons.finish,
+        [`${iconPrefix}icon-close`]: !icon && status === 'error' && icons && !icons.error,
       };
       const iconDot = <span class={`${prefixCls}-icon-dot`} />;
       // `progressDot` enjoy the highest priority
       if (progressDot) {
-        if (typeof progressDot === "function") {
+        if (typeof progressDot === 'function') {
           iconNode = (
             <span class={`${prefixCls}-icon`}>
-              {progressDot({
-                index: stepNumber - 1,
-                status,
-                title,
-                description,
-                prefixCls
-              })}
+              {progressDot({ index: stepNumber - 1, status, title, description, prefixCls })}
             </span>
           );
         } else {
@@ -83,43 +65,43 @@ export default {
         }
       } else if (icon && !isString(icon)) {
         iconNode = <span class={`${prefixCls}-icon`}>{icon}</span>;
-      } else if (icons && icons.finish && status === "finish") {
+      } else if (icons && icons.finish && status === 'finish') {
         iconNode = <span class={`${prefixCls}-icon`}>{icons.finish}</span>;
-      } else if (icons && icons.error && status === "error") {
+      } else if (icons && icons.error && status === 'error') {
         iconNode = <span class={`${prefixCls}-icon`}>{icons.error}</span>;
-      } else if (icon || status === "finish" || status === "error") {
+      } else if (icon || status === 'finish' || status === 'error') {
         iconNode = <span class={iconClassName} />;
       } else {
         iconNode = <span class={`${prefixCls}-icon`}>{stepNumber}</span>;
       }
       return iconNode;
-    }
+    },
   },
   render() {
     const {
       prefixCls,
       itemWidth,
       active,
-      status = "wait",
+      status = 'wait',
       tailContent,
       adjustMarginRight,
-      disabled
+      disabled,
     } = getOptionProps(this);
 
-    const title = getComponentFromProp(this, "title");
-    const subTitle = getComponentFromProp(this, "subTitle");
-    const description = getComponentFromProp(this, "description");
+    const title = getComponentFromProp(this, 'title');
+    const subTitle = getComponentFromProp(this, 'subTitle');
+    const description = getComponentFromProp(this, 'description');
 
     const classString = {
       [`${prefixCls}-item`]: true,
       [`${prefixCls}-item-${status}`]: true,
-      [`${prefixCls}-item-custom`]: getComponentFromProp(this, "icon"),
+      [`${prefixCls}-item-custom`]: getComponentFromProp(this, 'icon'),
       [`${prefixCls}-item-active`]: active,
-      [`${prefixCls}-item-disabled`]: disabled === true
+      [`${prefixCls}-item-disabled`]: disabled === true,
     };
     const stepProps = {
       class: classString,
-      on: getListeners(this)
+      on: getListeners(this),
     };
     const stepItemStyle = {};
     if (itemWidth) {
@@ -132,11 +114,11 @@ export default {
     const accessibilityProps = {
       attrs: {},
       on: {
-        click: listeners.click || noop
-      }
+        click: listeners.click || noop,
+      },
     };
     if (listeners.stepClick && !disabled) {
-      accessibilityProps.attrs.role = "button";
+      accessibilityProps.attrs.role = 'button';
       accessibilityProps.attrs.tabIndex = 0;
       accessibilityProps.on.click = this.onClick;
     }
@@ -154,12 +136,10 @@ export default {
                 </div>
               )}
             </div>
-            {description && (
-              <div class={`${prefixCls}-item-description`}>{description}</div>
-            )}
+            {description && <div class={`${prefixCls}-item-description`}>{description}</div>}
           </div>
         </div>
       </div>
     );
-  }
+  },
 };

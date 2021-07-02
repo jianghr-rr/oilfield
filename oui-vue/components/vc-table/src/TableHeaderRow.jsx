@@ -1,10 +1,10 @@
-import classNames from "classnames";
-import PropTypes from "../../_util/vue-types";
-import { mergeProps } from "../../_util/props-util";
+import classNames from 'classnames';
+import PropTypes from '../../_util/vue-types';
+import { mergeProps } from '../../_util/props-util';
 
 const TableHeaderRow = {
   inject: {
-    store: { from: "table-store", default: () => ({}) }
+    store: { from: 'table-store', default: () => ({}) },
   },
   props: {
     index: PropTypes.number,
@@ -14,9 +14,9 @@ const TableHeaderRow = {
     row: PropTypes.array,
     components: PropTypes.object,
     customHeaderRow: PropTypes.func,
-    prefixCls: PropTypes.string
+    prefixCls: PropTypes.string,
   },
-  name: "TableHeaderRow",
+  name: 'TableHeaderRow',
   computed: {
     height() {
       const { fixedColumnsHeadRowsHeight } = this.store;
@@ -28,13 +28,13 @@ const TableHeaderRow = {
       }
 
       if (headerHeight && columns) {
-        if (headerHeight === "auto") {
-          return "auto";
+        if (headerHeight === 'auto') {
+          return 'auto';
         }
         return `${headerHeight / rows.length}px`;
       }
       return null;
-    }
+    },
   },
   render(h) {
     const { row, index, height, components, customHeaderRow, prefixCls } = this;
@@ -42,7 +42,7 @@ const TableHeaderRow = {
     const HeaderCell = components.header.cell;
     const rowProps = customHeaderRow(
       row.map(cell => cell.column),
-      index
+      index,
     );
     const customStyle = rowProps ? rowProps.style : {};
     const style = { height, ...customStyle };
@@ -53,26 +53,21 @@ const TableHeaderRow = {
       <HeaderRow {...rowProps} style={style}>
         {row.map((cell, i) => {
           const { column, isLast, children, className, ...cellProps } = cell;
-          const customProps = column.customHeaderCell
-            ? column.customHeaderCell(column)
-            : {};
+          const customProps = column.customHeaderCell ? column.customHeaderCell(column) : {};
           const headerCellProps = mergeProps(
             {
               attrs: {
-                ...cellProps
-              }
+                ...cellProps,
+              },
             },
             {
               ...customProps,
-              key: column.key || column.dataIndex || i
-            }
+              key: column.key || column.dataIndex || i,
+            },
           );
 
           if (column.align) {
-            headerCellProps.style = {
-              ...customProps.style,
-              textAlign: column.align
-            };
+            headerCellProps.style = { ...customProps.style, textAlign: column.align };
           }
 
           headerCellProps.class = classNames(
@@ -84,18 +79,18 @@ const TableHeaderRow = {
               [`${prefixCls}-align-${column.align}`]: !!column.align,
               [`${prefixCls}-row-cell-ellipsis`]: !!column.ellipsis,
               [`${prefixCls}-row-cell-break-word`]: !!column.width,
-              [`${prefixCls}-row-cell-last`]: isLast
-            }
+              [`${prefixCls}-row-cell-last`]: isLast,
+            },
           );
 
-          if (typeof HeaderCell === "function") {
+          if (typeof HeaderCell === 'function') {
             return HeaderCell(h, headerCellProps, children);
           }
           return <HeaderCell {...headerCellProps}>{children}</HeaderCell>;
         })}
       </HeaderRow>
     );
-  }
+  },
 };
 
 export default TableHeaderRow;

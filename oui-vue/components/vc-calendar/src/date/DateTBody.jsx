@@ -1,11 +1,11 @@
-import PropTypes from "../../../_util/vue-types";
-import { getOptionProps, getListeners } from "../../../_util/props-util";
-import cx from "classnames";
-import DateConstants from "./DateConstants";
-import { getTitleString, getTodayTime } from "../util/";
+import PropTypes from '../../../_util/vue-types';
+import { getOptionProps, getListeners } from '../../../_util/props-util';
+import cx from 'classnames';
+import DateConstants from './DateConstants';
+import { getTitleString, getTodayTime } from '../util/';
 function noop() {}
 function isSameDay(one, two) {
-  return one && two && one.isSame(two, "day");
+  return one && two && one.isSame(two, 'day');
 }
 
 function beforeCurrentMonthYear(current, today) {
@@ -32,13 +32,10 @@ const DateTBody = {
     dateRender: PropTypes.func,
     disabledDate: PropTypes.func,
     prefixCls: PropTypes.string,
-    selectedValue: PropTypes.oneOfType([
-      PropTypes.any,
-      PropTypes.arrayOf(PropTypes.any)
-    ]),
+    selectedValue: PropTypes.oneOfType([PropTypes.any, PropTypes.arrayOf(PropTypes.any)]),
     value: PropTypes.object,
     hoverValue: PropTypes.any.def([]),
-    showWeekNumber: PropTypes.bool
+    showWeekNumber: PropTypes.bool,
   },
 
   render() {
@@ -51,7 +48,7 @@ const DateTBody = {
       showWeekNumber,
       dateRender,
       disabledDate,
-      hoverValue
+      hoverValue,
     } = props;
     const { select = noop, dayHover = noop } = getListeners(this);
     let iIndex;
@@ -77,18 +74,17 @@ const DateTBody = {
     const month1 = value.clone();
     month1.date(1);
     const day = month1.day();
-    const lastMonthDiffDay =
-      (day + 7 - value.localeData().firstDayOfWeek()) % 7;
+    const lastMonthDiffDay = (day + 7 - value.localeData().firstDayOfWeek()) % 7;
     // calculate last month
     const lastMonth1 = month1.clone();
-    lastMonth1.add(0 - lastMonthDiffDay, "days");
+    lastMonth1.add(0 - lastMonthDiffDay, 'days');
     let passed = 0;
     for (iIndex = 0; iIndex < DateConstants.DATE_ROW_COUNT; iIndex++) {
       for (jIndex = 0; jIndex < DateConstants.DATE_COL_COUNT; jIndex++) {
         current = lastMonth1;
         if (passed) {
           current = current.clone();
-          current.add(passed, "days");
+          current.add(passed, 'days');
         }
         dateTable.push(current);
         passed++;
@@ -104,11 +100,7 @@ const DateTBody = {
       const dateCells = [];
       if (showWeekNumber) {
         weekNumberCell = (
-          <td
-            key={`week-${dateTable[passed].week()}`}
-            role="gridcell"
-            class={weekNumberCellClass}
-          >
+          <td key={`week-${dateTable[passed].week()}`} role="gridcell" class={weekNumberCellClass}>
             {dateTable[passed].week()}
           </td>
         );
@@ -154,18 +146,15 @@ const DateTBody = {
                 cls += ` ${selectedEndDateClass}`;
               } else if (
                 (startValue === null || startValue === undefined) &&
-                current.isBefore(endValue, "day")
+                current.isBefore(endValue, 'day')
               ) {
                 cls += ` ${inRangeClass}`;
               } else if (
                 (endValue === null || endValue === undefined) &&
-                current.isAfter(startValue, "day")
+                current.isAfter(startValue, 'day')
               ) {
                 cls += ` ${inRangeClass}`;
-              } else if (
-                current.isAfter(startValue, "day") &&
-                current.isBefore(endValue, "day")
-              ) {
+              } else if (current.isAfter(startValue, 'day') && current.isBefore(endValue, 'day')) {
                 cls += ` ${inRangeClass}`;
               }
             }
@@ -190,7 +179,7 @@ const DateTBody = {
         if (
           current
             .clone()
-            .endOf("month")
+            .endOf('month')
             .date() === current.date()
         ) {
           cls += ` ${lastDayOfMonthClass}`;
@@ -222,9 +211,7 @@ const DateTBody = {
         if (dateRender) {
           dateHtml = dateRender(current, value);
         } else {
-          const content = contentRender
-            ? contentRender(current, value)
-            : current.date();
+          const content = contentRender ? contentRender(current, value) : current.date();
           dateHtml = (
             <div
               key={getIdFromDate(current)}
@@ -247,7 +234,7 @@ const DateTBody = {
             class={cls}
           >
             {dateHtml}
-          </td>
+          </td>,
         );
 
         passed++;
@@ -259,16 +246,16 @@ const DateTBody = {
           role="row"
           class={cx({
             [`${prefixCls}-current-week`]: isCurrentWeek,
-            [`${prefixCls}-active-week`]: isActiveWeek
+            [`${prefixCls}-active-week`]: isActiveWeek,
           })}
         >
           {weekNumberCell}
           {dateCells}
-        </tr>
+        </tr>,
       );
     }
     return <tbody class={`${prefixCls}-tbody`}>{tableHtml}</tbody>;
-  }
+  },
 };
 
 export default DateTBody;

@@ -1,4 +1,4 @@
-import raf from "raf";
+import raf from 'raf';
 
 export default function throttleByAnimationFrame(fn) {
   let requestId;
@@ -26,11 +26,7 @@ export function throttleByAnimationFrameDecorator() {
     return {
       configurable: true,
       get() {
-        if (
-          definingProperty ||
-          this === target.prototype ||
-          this.hasOwnProperty(key)
-        ) {
+        if (definingProperty || this === target.prototype || this.hasOwnProperty(key)) {
           return fn;
         }
 
@@ -39,11 +35,11 @@ export function throttleByAnimationFrameDecorator() {
         Object.defineProperty(this, key, {
           value: boundFn,
           configurable: true,
-          writable: true
+          writable: true,
         });
         definingProperty = false;
         return boundFn;
-      }
+      },
     };
   };
 }

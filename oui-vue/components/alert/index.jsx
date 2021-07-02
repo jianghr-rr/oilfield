@@ -1,19 +1,19 @@
-import Icon from "../icon";
-import classNames from "classnames";
-import BaseMixin from "../_util/BaseMixin";
-import PropTypes from "../_util/vue-types";
-import getTransitionProps from "../_util/getTransitionProps";
-import { getComponentFromProp, isValidElement } from "../_util/props-util";
-import { cloneElement } from "../_util/vnode";
-import { ConfigConsumerProps } from "../config-provider/configConsumerProps";
-import Base from "../base";
+import Icon from '../icon';
+import classNames from 'classnames';
+import BaseMixin from '../_util/BaseMixin';
+import PropTypes from '../_util/vue-types';
+import getTransitionProps from '../_util/getTransitionProps';
+import { getComponentFromProp, isValidElement } from '../_util/props-util';
+import { cloneElement } from '../_util/vnode';
+import { ConfigConsumerProps } from '../config-provider/configConsumerProps';
+import Base from '../base';
 
 function noop() {}
 export const AlertProps = {
   /**
    * Type of Alert styles, options:`success`, `info`, `warning`, `error`
    */
-  type: PropTypes.oneOf(["success", "info", "warning", "error"]),
+  type: PropTypes.oneOf(['success', 'info', 'warning', 'error']),
   /** Whether Alert can be closed */
   closable: PropTypes.bool,
   /** Close text to show */
@@ -31,20 +31,20 @@ export const AlertProps = {
   iconType: PropTypes.string,
   prefixCls: PropTypes.string,
   banner: PropTypes.bool,
-  icon: PropTypes.any
+  icon: PropTypes.any,
 };
 
 const Alert = {
-  name: "OAlert",
+  name: 'OAlert',
   props: AlertProps,
   mixins: [BaseMixin],
   inject: {
-    configProvider: { default: () => ConfigConsumerProps }
+    configProvider: { default: () => ConfigConsumerProps },
   },
   data() {
     return {
       closing: false,
-      closed: false
+      closed: false,
     };
   },
   methods: {
@@ -57,56 +57,56 @@ const Alert = {
       dom.style.height = `${dom.offsetHeight}px`;
 
       this.setState({
-        closing: true
+        closing: true,
       });
-      this.$emit("close", e);
+      this.$emit('close', e);
     },
     animationEnd() {
       this.setState({
         closing: false,
-        closed: true
+        closed: true,
       });
       this.afterClose();
-    }
+    },
   },
 
   render() {
     const { prefixCls: customizePrefixCls, banner, closing, closed } = this;
     const getPrefixCls = this.configProvider.getPrefixCls;
-    const prefixCls = getPrefixCls("alert", customizePrefixCls);
+    const prefixCls = getPrefixCls('alert', customizePrefixCls);
 
     let { closable, type, showIcon, iconType } = this;
-    const closeText = getComponentFromProp(this, "closeText");
-    const description = getComponentFromProp(this, "description");
-    const message = getComponentFromProp(this, "message");
-    const icon = getComponentFromProp(this, "icon");
+    const closeText = getComponentFromProp(this, 'closeText');
+    const description = getComponentFromProp(this, 'description');
+    const message = getComponentFromProp(this, 'message');
+    const icon = getComponentFromProp(this, 'icon');
     // banner模式默认有 Icon
     showIcon = banner && showIcon === undefined ? true : showIcon;
     // banner模式默认为警告
-    type = banner && type === undefined ? "warning" : type || "info";
-    let iconTheme = "filled";
+    type = banner && type === undefined ? 'warning' : type || 'info';
+    let iconTheme = 'filled';
 
     if (!iconType) {
       switch (type) {
-        case "success":
-          iconType = "check-circle";
+        case 'success':
+          iconType = 'check-circle';
           break;
-        case "info":
-          iconType = "info-circle";
+        case 'info':
+          iconType = 'info-circle';
           break;
-        case "error":
-          iconType = "close-circle";
+        case 'error':
+          iconType = 'close-circle';
           break;
-        case "warning":
-          iconType = "exclamation-circle";
+        case 'warning':
+          iconType = 'exclamation-circle';
           break;
         default:
-          iconType = "default";
+          iconType = 'default';
       }
 
       // use outline icon in alert with description
       if (description) {
-        iconTheme = "outlined";
+        iconTheme = 'outlined';
       }
     }
 
@@ -121,7 +121,7 @@ const Alert = {
       [`${prefixCls}-with-description`]: !!description,
       [`${prefixCls}-no-icon`]: !showIcon,
       [`${prefixCls}-banner`]: !!banner,
-      [`${prefixCls}-closable`]: closable
+      [`${prefixCls}-closable`]: closable,
     });
 
     const closeIcon = closable ? (
@@ -142,17 +142,15 @@ const Alert = {
     const iconNode = (icon &&
       (isValidElement(icon) ? (
         cloneElement(icon, {
-          class: `${prefixCls}-icon`
+          class: `${prefixCls}-icon`,
         })
       ) : (
         <span class={`${prefixCls}-icon`}>{icon}</span>
-      ))) || (
-      <Icon class={`${prefixCls}-icon`} type={iconType} theme={iconTheme} />
-    );
+      ))) || <Icon class={`${prefixCls}-icon`} type={iconType} theme={iconTheme} />;
 
     const transitionProps = getTransitionProps(`${prefixCls}-slide-up`, {
       appear: false,
-      afterLeave: this.animationEnd
+      afterLeave: this.animationEnd,
     });
     return closed ? null : (
       <transition {...transitionProps}>
@@ -164,7 +162,7 @@ const Alert = {
         </div>
       </transition>
     );
-  }
+  },
 };
 
 /* istanbul ignore next */

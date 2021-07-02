@@ -1,26 +1,23 @@
 // https://github.com/yiminghe/css-animation 1.5.0
 
-import Event from "./Event";
-import classes from "component-classes";
-import {
-  requestAnimationTimeout,
-  cancelAnimationTimeout
-} from "../requestAnimationTimeout";
+import Event from './Event';
+import classes from 'component-classes';
+import { requestAnimationTimeout, cancelAnimationTimeout } from '../requestAnimationTimeout';
 
 const isCssAnimationSupported = Event.endEvents.length !== 0;
 const capitalPrefixes = [
-  "Webkit",
-  "Moz",
-  "O",
+  'Webkit',
+  'Moz',
+  'O',
   // ms is special .... !
-  "ms"
+  'ms',
 ];
-const prefixes = ["-webkit-", "-moz-", "-o-", "ms-", ""];
+const prefixes = ['-webkit-', '-moz-', '-o-', 'ms-', ''];
 
 function getStyleProperty(node, name) {
   // old ff need null, https://developer.mozilla.org/en-US/docs/Web/API/Window/getComputedStyle
   const style = window.getComputedStyle(node, null);
-  let ret = "";
+  let ret = '';
   for (let i = 0; i < prefixes.length; i++) {
     ret = style.getPropertyValue(prefixes[i] + name);
     if (ret) {
@@ -32,18 +29,11 @@ function getStyleProperty(node, name) {
 
 function fixBrowserByTimeout(node) {
   if (isCssAnimationSupported) {
-    const transitionDelay =
-      parseFloat(getStyleProperty(node, "transition-delay")) || 0;
-    const transitionDuration =
-      parseFloat(getStyleProperty(node, "transition-duration")) || 0;
-    const animationDelay =
-      parseFloat(getStyleProperty(node, "animation-delay")) || 0;
-    const animationDuration =
-      parseFloat(getStyleProperty(node, "animation-duration")) || 0;
-    const time = Math.max(
-      transitionDuration + transitionDelay,
-      animationDuration + animationDelay
-    );
+    const transitionDelay = parseFloat(getStyleProperty(node, 'transition-delay')) || 0;
+    const transitionDuration = parseFloat(getStyleProperty(node, 'transition-duration')) || 0;
+    const animationDelay = parseFloat(getStyleProperty(node, 'animation-delay')) || 0;
+    const animationDuration = parseFloat(getStyleProperty(node, 'animation-duration')) || 0;
+    const time = Math.max(transitionDuration + transitionDelay, animationDuration + animationDelay);
     // sometimes, browser bug
     node.rcEndAnimTimeout = setTimeout(() => {
       node.rcEndAnimTimeout = null;
@@ -62,20 +52,15 @@ function clearBrowserBugTimeout(node) {
 }
 
 const cssAnimation = (node, transitionName, endCallback) => {
-  const nameIsObj = typeof transitionName === "object";
+  const nameIsObj = typeof transitionName === 'object';
   const className = nameIsObj ? transitionName.name : transitionName;
-  const activeClassName = nameIsObj
-    ? transitionName.active
-    : `${transitionName}-active`;
+  const activeClassName = nameIsObj ? transitionName.active : `${transitionName}-active`;
   let end = endCallback;
   let start;
   let active;
   const nodeClasses = classes(node);
 
-  if (
-    endCallback &&
-    Object.prototype.toString.call(endCallback) === "[object Object]"
-  ) {
+  if (endCallback && Object.prototype.toString.call(endCallback) === '[object Object]') {
     end = endCallback.end;
     start = endCallback.start;
     active = endCallback.active;
@@ -135,7 +120,7 @@ const cssAnimation = (node, transitionName, endCallback) => {
       if (node.rcEndListener) {
         node.rcEndListener();
       }
-    }
+    },
   };
 };
 
@@ -184,9 +169,9 @@ cssAnimation.setTransition = (node, p, value) => {
   let v = value;
   if (value === undefined) {
     v = property;
-    property = "";
+    property = '';
   }
-  property = property || "";
+  property = property || '';
   capitalPrefixes.forEach(prefix => {
     node.style[`${prefix}Transition${property}`] = v;
   });

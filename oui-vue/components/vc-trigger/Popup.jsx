@@ -1,13 +1,13 @@
-import PropTypes from "../_util/vue-types";
-import Align from "../vc-align";
-import PopupInner from "./PopupInner";
-import LazyRenderBox from "./LazyRenderBox";
-import animate from "../_util/css-animation";
-import BaseMixin from "../_util/BaseMixin";
-import { getListeners } from "../_util/props-util";
+import PropTypes from '../_util/vue-types';
+import Align from '../vc-align';
+import PopupInner from './PopupInner';
+import LazyRenderBox from './LazyRenderBox';
+import animate from '../_util/css-animation';
+import BaseMixin from '../_util/BaseMixin';
+import { getListeners } from '../_util/props-util';
 
 export default {
-  name: "VCTriggerPopup",
+  name: 'VCTriggerPopup',
   mixins: [BaseMixin],
   props: {
     visible: PropTypes.bool,
@@ -28,8 +28,8 @@ export default {
     stretch: PropTypes.string,
     point: PropTypes.shape({
       pageX: PropTypes.number,
-      pageY: PropTypes.number
-    })
+      pageY: PropTypes.number,
+    }),
   },
   data() {
     this.domEl = null;
@@ -37,7 +37,7 @@ export default {
       // Used for stretch
       stretchChecked: false,
       targetWidth: undefined,
-      targetHeight: undefined
+      targetHeight: undefined,
     };
   },
   mounted() {
@@ -102,7 +102,7 @@ export default {
         this.setState({
           stretchChecked: true,
           targetHeight: height,
-          targetWidth: width
+          targetWidth: width,
         });
       }
     },
@@ -140,7 +140,7 @@ export default {
       let transitionName = props.transitionName;
       const animation = props.animation;
       if (!transitionName) {
-        if (typeof animation === "string") {
+        if (typeof animation === 'string') {
           transitionName = `${animation}`;
         } else if (animation && animation.props && animation.props.name) {
           transitionName = animation.props.name;
@@ -164,10 +164,10 @@ export default {
         popupStyle,
         getClassNameFromAlign,
         destroyPopupOnHide,
-        stretch
+        stretch,
       } = props;
       const className = this.getClassName(
-        this.currentAlignClassName || getClassNameFromAlign(align)
+        this.currentAlignClassName || getClassNameFromAlign(align),
       );
       // const hiddenClassName = `${prefixCls}-hidden`
       if (!visible) {
@@ -176,23 +176,16 @@ export default {
       const sizeStyle = {};
       if (stretch) {
         // Stretch with target
-        if (stretch.indexOf("height") !== -1) {
-          sizeStyle.height =
-            typeof targetHeight === "number"
-              ? `${targetHeight}px`
-              : targetHeight;
-        } else if (stretch.indexOf("minHeight") !== -1) {
+        if (stretch.indexOf('height') !== -1) {
+          sizeStyle.height = typeof targetHeight === 'number' ? `${targetHeight}px` : targetHeight;
+        } else if (stretch.indexOf('minHeight') !== -1) {
           sizeStyle.minHeight =
-            typeof targetHeight === "number"
-              ? `${targetHeight}px`
-              : targetHeight;
+            typeof targetHeight === 'number' ? `${targetHeight}px` : targetHeight;
         }
-        if (stretch.indexOf("width") !== -1) {
-          sizeStyle.width =
-            typeof targetWidth === "number" ? `${targetWidth}px` : targetWidth;
-        } else if (stretch.indexOf("minWidth") !== -1) {
-          sizeStyle.minWidth =
-            typeof targetWidth === "number" ? `${targetWidth}px` : targetWidth;
+        if (stretch.indexOf('width') !== -1) {
+          sizeStyle.width = typeof targetWidth === 'number' ? `${targetWidth}px` : targetWidth;
+        } else if (stretch.indexOf('minWidth') !== -1) {
+          sizeStyle.minWidth = typeof targetWidth === 'number' ? `${targetWidth}px` : targetWidth;
         }
         // Delay force align to makes ui smooth
         if (!stretchChecked) {
@@ -207,19 +200,19 @@ export default {
       const popupInnerProps = {
         props: {
           prefixCls,
-          visible
+          visible,
           // hiddenClassName,
         },
         class: className,
         on: getListeners(this),
-        ref: "popupInstance",
-        style: { ...sizeStyle, ...popupStyle, ...this.getZIndexStyle() }
+        ref: 'popupInstance',
+        style: { ...sizeStyle, ...popupStyle, ...this.getZIndexStyle() },
       };
       let transitionProps = {
         props: {
           appear: true,
-          css: false
-        }
+          css: false,
+        },
       };
       const transitionName = getTransitionName();
       let useTransition = !!transitionName;
@@ -246,10 +239,10 @@ export default {
         },
         leave: (el, done) => {
           animate(el, `${transitionName}-leave`, done);
-        }
+        },
       };
 
-      if (typeof animation === "object") {
+      if (typeof animation === 'object') {
         useTransition = true;
         const { on = {}, props = {} } = animation;
         transitionProps.props = { ...transitionProps.props, ...props };
@@ -328,7 +321,7 @@ export default {
         }
       }
       return maskElement;
-    }
+    },
   },
 
   render() {
@@ -339,5 +332,5 @@ export default {
         {getPopupElement()}
       </div>
     );
-  }
+  },
 };

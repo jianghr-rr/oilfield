@@ -1,9 +1,9 @@
-import PropTypes from "../../../_util/vue-types";
-import BaseMixin from "../../../_util/BaseMixin";
-import { getMonthName } from "../util";
+import PropTypes from '../../../_util/vue-types';
+import BaseMixin from '../../../_util/BaseMixin';
+import { getMonthName } from '../util';
 
 const CalendarHeader = {
-  name: "CalendarHeader",
+  name: 'CalendarHeader',
   mixins: [BaseMixin],
   props: {
     value: PropTypes.object,
@@ -16,19 +16,19 @@ const CalendarHeader = {
     prefixCls: PropTypes.string,
     type: PropTypes.string,
     showTypeSwitch: PropTypes.bool,
-    headerComponents: PropTypes.array
+    headerComponents: PropTypes.array,
   },
   methods: {
     onYearChange(year) {
       const newValue = this.value.clone();
       newValue.year(parseInt(year, 10));
-      this.__emit("valueChange", newValue);
+      this.__emit('valueChange', newValue);
     },
 
     onMonthChange(month) {
       const newValue = this.value.clone();
       newValue.month(parseInt(month, 10));
-      this.__emit("valueChange", newValue);
+      this.__emit('valueChange', newValue);
     },
 
     yearSelectElement(year) {
@@ -45,11 +45,7 @@ const CalendarHeader = {
           class={`${prefixCls}-header-year-select`}
           onChange={this.onYearChange}
           dropdownStyle={{ zIndex: 2000 }}
-          dropdownMenuStyle={{
-            maxHeight: "250px",
-            overflow: "auto",
-            fontSize: "12px"
-          }}
+          dropdownMenuStyle={{ maxHeight: '250px', overflow: 'auto', fontSize: '12px' }}
           optionLabelProp="children"
           value={String(year)}
           showSearch={false}
@@ -66,9 +62,7 @@ const CalendarHeader = {
 
       for (let index = 0; index < 12; index++) {
         t.month(index);
-        options.push(
-          <Select.Option key={`${index}`}>{getMonthName(t)}</Select.Option>
-        );
+        options.push(<Select.Option key={`${index}`}>{getMonthName(t)}</Select.Option>);
       }
 
       return (
@@ -76,10 +70,10 @@ const CalendarHeader = {
           class={`${prefixCls}-header-month-select`}
           dropdownStyle={{ zIndex: 2000 }}
           dropdownMenuStyle={{
-            maxHeight: "250px",
-            overflow: "auto",
-            overflowX: "hidden",
-            fontSize: "12px"
+            maxHeight: '250px',
+            overflow: 'auto',
+            overflowX: 'hidden',
+            fontSize: '12px',
           }}
           optionLabelProp="children"
           value={String(month)}
@@ -92,39 +86,31 @@ const CalendarHeader = {
     },
 
     changeTypeToDate() {
-      this.__emit("typeChange", "date");
+      this.__emit('typeChange', 'date');
     },
 
     changeTypeToMonth() {
-      this.__emit("typeChange", "month");
-    }
+      this.__emit('typeChange', 'month');
+    },
   },
 
   render() {
-    const {
-      value,
-      locale,
-      prefixCls,
-      type,
-      showTypeSwitch,
-      headerComponents
-    } = this;
+    const { value, locale, prefixCls, type, showTypeSwitch, headerComponents } = this;
     const year = value.year();
     const month = value.month();
     const yearSelect = this.yearSelectElement(year);
-    const monthSelect =
-      type === "month" ? null : this.monthSelectElement(month);
+    const monthSelect = type === 'month' ? null : this.monthSelectElement(month);
     const switchCls = `${prefixCls}-header-switcher`;
     const typeSwitcher = showTypeSwitch ? (
       <span class={switchCls}>
-        {type === "date" ? (
+        {type === 'date' ? (
           <span class={`${switchCls}-focus`}>{locale.month}</span>
         ) : (
           <span onClick={this.changeTypeToDate} class={`${switchCls}-normal`}>
             {locale.month}
           </span>
         )}
-        {type === "month" ? (
+        {type === 'month' ? (
           <span class={`${switchCls}-focus`}>{locale.year}</span>
         ) : (
           <span onClick={this.changeTypeToMonth} class={`${switchCls}-normal`}>
@@ -142,7 +128,7 @@ const CalendarHeader = {
         {headerComponents}
       </div>
     );
-  }
+  },
 };
 
 export default CalendarHeader;

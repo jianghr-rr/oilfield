@@ -1,13 +1,13 @@
-import PropTypes from "../../../_util/vue-types";
-import BaseMixin from "../../../_util/BaseMixin";
+import PropTypes from '../../../_util/vue-types';
+import BaseMixin from '../../../_util/BaseMixin';
 const ROW = 4;
 const COL = 3;
 function noop() {}
 function goYear(direction) {
   const next = this.sValue.clone();
-  next.add(direction, "years");
+  next.add(direction, 'years');
   this.setState({
-    sValue: next
+    sValue: next,
   });
 }
 
@@ -15,7 +15,7 @@ function chooseDecade(year, event) {
   const next = this.sValue.clone();
   next.year(year);
   next.month(this.sValue.month());
-  this.__emit("select", next);
+  this.__emit('select', next);
   event.preventDefault();
 }
 
@@ -26,19 +26,19 @@ export default {
     value: PropTypes.object,
     defaultValue: PropTypes.object,
     rootPrefixCls: PropTypes.string,
-    renderFooter: PropTypes.func
+    renderFooter: PropTypes.func,
   },
   data() {
     this.nextCentury = goYear.bind(this, 100);
     this.previousCentury = goYear.bind(this, -100);
     return {
-      sValue: this.value || this.defaultValue
+      sValue: this.value || this.defaultValue,
     };
   },
   watch: {
     value(val) {
       this.sValue = val;
-    }
+    },
   },
   render() {
     const value = this.sValue;
@@ -58,13 +58,13 @@ export default {
         const endDecade = preYear + index * 10 + 9;
         decades[rowIndex][colIndex] = {
           startDecade,
-          endDecade
+          endDecade,
         };
         index++;
       }
     }
 
-    const footer = renderFooter && renderFooter("decade");
+    const footer = renderFooter && renderFooter('decade');
     const decadesEls = decades.map((row, decadeIndex) => {
       const tds = row.map(decadeData => {
         const dStartDecade = decadeData.startDecade;
@@ -73,10 +73,9 @@ export default {
         const isNext = dEndDecade > endYear;
         const classNameMap = {
           [`${prefixCls}-cell`]: 1,
-          [`${prefixCls}-selected-cell`]:
-            dStartDecade <= currentYear && currentYear <= dEndDecade,
+          [`${prefixCls}-selected-cell`]: dStartDecade <= currentYear && currentYear <= dEndDecade,
           [`${prefixCls}-last-century-cell`]: isLast,
-          [`${prefixCls}-next-century-cell`]: isNext
+          [`${prefixCls}-next-century-cell`]: isNext,
         };
         const content = `${dStartDecade}-${dEndDecade}`;
         let clickHandler = noop;
@@ -88,12 +87,7 @@ export default {
           clickHandler = chooseDecade.bind(this, dStartDecade);
         }
         return (
-          <td
-            key={dStartDecade}
-            onClick={clickHandler}
-            role="gridcell"
-            class={classNameMap}
-          >
+          <td key={dStartDecade} onClick={clickHandler} role="gridcell" class={classNameMap}>
             <a class={`${prefixCls}-decade`}>{content}</a>
           </td>
         );
@@ -133,5 +127,5 @@ export default {
         {footer && <div class={`${prefixCls}-footer`}>{footer}</div>}
       </div>
     );
-  }
+  },
 };

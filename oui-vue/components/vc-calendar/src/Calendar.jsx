@@ -1,24 +1,18 @@
-import PropTypes from "../../_util/vue-types";
-import BaseMixin from "../../_util/BaseMixin";
-import {
-  getOptionProps,
-  hasProp,
-  getComponentFromProp
-} from "../../_util/props-util";
-import { cloneElement } from "../../_util/vnode";
-import KeyCode from "../../_util/KeyCode";
-import moment from "moment";
-import DateTable from "./date/DateTable";
-import CalendarHeader from "./calendar/CalendarHeader";
-import CalendarFooter from "./calendar/CalendarFooter";
-import CalendarMixin, {
-  getNowByCurrentStateValue
-} from "./mixin/CalendarMixin";
-import CommonMixin from "./mixin/CommonMixin";
-import DateInput from "./date/DateInput";
-import enUs from "./locale/en_US";
-import { getTimeConfig, getTodayTime, syncTime } from "./util";
-import { goStartMonth, goEndMonth, goTime } from "./util/toTime";
+import PropTypes from '../../_util/vue-types';
+import BaseMixin from '../../_util/BaseMixin';
+import { getOptionProps, hasProp, getComponentFromProp } from '../../_util/props-util';
+import { cloneElement } from '../../_util/vnode';
+import KeyCode from '../../_util/KeyCode';
+import moment from 'moment';
+import DateTable from './date/DateTable';
+import CalendarHeader from './calendar/CalendarHeader';
+import CalendarFooter from './calendar/CalendarFooter';
+import CalendarMixin, { getNowByCurrentStateValue } from './mixin/CalendarMixin';
+import CommonMixin from './mixin/CommonMixin';
+import DateInput from './date/DateInput';
+import enUs from './locale/en_US';
+import { getTimeConfig, getTodayTime, syncTime } from './util';
+import { goStartMonth, goEndMonth, goTime } from './util/toTime';
 
 const getMomentObjectIfValid = date => {
   if (moment.isMoment(date) && date.isValid()) {
@@ -28,22 +22,22 @@ const getMomentObjectIfValid = date => {
 };
 
 const Calendar = {
-  name: "Calendar",
+  name: 'Calendar',
   props: {
     locale: PropTypes.object.def(enUs),
     format: PropTypes.oneOfType([
       PropTypes.string,
       PropTypes.arrayOf(PropTypes.string),
-      PropTypes.func
+      PropTypes.func,
     ]),
     visible: PropTypes.bool.def(true),
-    prefixCls: PropTypes.string.def("rc-calendar"),
+    prefixCls: PropTypes.string.def('rc-calendar'),
     // prefixCls: PropTypes.string,
     defaultValue: PropTypes.object,
     value: PropTypes.object,
     selectedValue: PropTypes.object,
     defaultSelectedValue: PropTypes.object,
-    mode: PropTypes.oneOf(["time", "date", "month", "year", "decade"]),
+    mode: PropTypes.oneOf(['time', 'date', 'month', 'year', 'decade']),
     // locale: PropTypes.object,
     showDateInput: PropTypes.bool.def(true),
     showWeekNumber: PropTypes.bool,
@@ -65,7 +59,7 @@ const Calendar = {
     clearIcon: PropTypes.any,
     focusablePanel: PropTypes.bool.def(true),
     inputMode: PropTypes.string,
-    inputReadOnly: PropTypes.bool
+    inputReadOnly: PropTypes.bool,
   },
 
   mixins: [BaseMixin, CommonMixin, CalendarMixin],
@@ -73,12 +67,12 @@ const Calendar = {
   data() {
     const props = this.$props;
     return {
-      sMode: this.mode || "date",
+      sMode: this.mode || 'date',
       sValue:
         getMomentObjectIfValid(props.value) ||
         getMomentObjectIfValid(props.defaultValue) ||
         moment(),
-      sSelectedValue: props.selectedValue || props.defaultSelectedValue
+      sSelectedValue: props.selectedValue || props.defaultSelectedValue,
     };
   },
   watch: {
@@ -90,14 +84,14 @@ const Calendar = {
         sValue:
           getMomentObjectIfValid(val) ||
           getMomentObjectIfValid(this.defaultValue) ||
-          getNowByCurrentStateValue(this.sValue)
+          getNowByCurrentStateValue(this.sValue),
       });
     },
     selectedValue(val) {
       this.setState({
-        sSelectedValue: val
+        sSelectedValue: val,
       });
-    }
+    },
   },
   mounted() {
     this.$nextTick(() => {
@@ -107,13 +101,13 @@ const Calendar = {
   methods: {
     onPanelChange(value, mode) {
       const { sValue } = this;
-      if (!hasProp(this, "mode")) {
+      if (!hasProp(this, 'mode')) {
         this.setState({ sMode: mode });
       }
-      this.__emit("panelChange", value || sValue, mode);
+      this.__emit('panelChange', value || sValue, mode);
     },
     onKeyDown(event) {
-      if (event.target.nodeName.toLowerCase() === "input") {
+      if (event.target.nodeName.toLowerCase() === 'input') {
         return undefined;
       }
       const keyCode = event.keyCode;
@@ -122,26 +116,26 @@ const Calendar = {
       const { disabledDate, sValue: value } = this;
       switch (keyCode) {
         case KeyCode.DOWN:
-          this.goTime(1, "weeks");
+          this.goTime(1, 'weeks');
           event.preventDefault();
           return 1;
         case KeyCode.UP:
-          this.goTime(-1, "weeks");
+          this.goTime(-1, 'weeks');
           event.preventDefault();
           return 1;
         case KeyCode.LEFT:
           if (ctrlKey) {
-            this.goTime(-1, "years");
+            this.goTime(-1, 'years');
           } else {
-            this.goTime(-1, "days");
+            this.goTime(-1, 'days');
           }
           event.preventDefault();
           return 1;
         case KeyCode.RIGHT:
           if (ctrlKey) {
-            this.goTime(1, "years");
+            this.goTime(1, 'years');
           } else {
-            this.goTime(1, "days");
+            this.goTime(1, 'days');
           }
           event.preventDefault();
           return 1;
@@ -154,47 +148,47 @@ const Calendar = {
           event.preventDefault();
           return 1;
         case KeyCode.PAGE_DOWN:
-          this.goTime(1, "month");
+          this.goTime(1, 'month');
           event.preventDefault();
           return 1;
         case KeyCode.PAGE_UP:
-          this.goTime(-1, "month");
+          this.goTime(-1, 'month');
           event.preventDefault();
           return 1;
         case KeyCode.ENTER:
           if (!disabledDate || !disabledDate(value)) {
             this.onSelect(value, {
-              source: "keyboard"
+              source: 'keyboard',
             });
           }
           event.preventDefault();
           return 1;
         default:
-          this.__emit("keydown", event);
+          this.__emit('keydown', event);
           return 1;
       }
     },
 
     onClear() {
       this.onSelect(null);
-      this.__emit("clear");
+      this.__emit('clear');
     },
 
     onOk() {
       const { sSelectedValue } = this;
       if (this.isAllowedDate(sSelectedValue)) {
-        this.__emit("ok", sSelectedValue);
+        this.__emit('ok', sSelectedValue);
       }
     },
 
     onDateInputChange(value) {
       this.onSelect(value, {
-        source: "dateInput"
+        source: 'dateInput',
       });
     },
     onDateInputSelect(value) {
       this.onSelect(value, {
-        source: "dateInputSelect"
+        source: 'dateInputSelect',
       });
     },
     onDateTableSelect(value) {
@@ -212,7 +206,7 @@ const Calendar = {
       const { sValue } = this;
       const now = getTodayTime(sValue);
       this.onSelect(now, {
-        source: "todayButton"
+        source: 'todayButton',
       });
     },
 
@@ -230,7 +224,7 @@ const Calendar = {
           return;
         }
 
-        this.$emit("blur", event);
+        this.$emit('blur', event);
       }, 0);
     },
 
@@ -238,14 +232,14 @@ const Calendar = {
       return this.$el;
     },
     openTimePicker() {
-      this.onPanelChange(null, "time");
+      this.onPanelChange(null, 'time');
     },
     closeTimePicker() {
-      this.onPanelChange(null, "date");
+      this.onPanelChange(null, 'date');
     },
     goTime(direction, unit) {
       this.setValue(goTime(this.sValue, direction, unit));
-    }
+    },
   },
 
   render() {
@@ -265,10 +259,10 @@ const Calendar = {
       inputReadOnly,
       monthCellRender,
       monthCellContentRender,
-      $props: props
+      $props: props,
     } = this;
-    const clearIcon = getComponentFromProp(this, "clearIcon");
-    const showTimePicker = sMode === "time";
+    const clearIcon = getComponentFromProp(this, 'clearIcon');
+    const showTimePicker = sMode === 'time';
     const disabledTimeConfig =
       showTimePicker && disabledTime && timePicker
         ? getTimeConfig(sSelectedValue, disabledTime)
@@ -286,16 +280,15 @@ const Calendar = {
           ...timePickerOriginProps,
           ...disabledTimeConfig,
           value: sSelectedValue,
-          disabledTime
+          disabledTime,
         },
         on: {
-          change: this.onDateInputChange
-        }
+          change: this.onDateInputChange,
+        },
       };
 
       if (timePickerOriginProps.defaultValue !== undefined) {
-        timePickerProps.props.defaultOpenValue =
-          timePickerOriginProps.defaultValue;
+        timePickerProps.props.defaultOpenValue = timePickerOriginProps.defaultValue;
       }
       timePickerEle = cloneElement(timePicker, timePickerProps);
     }
@@ -327,10 +320,7 @@ const Calendar = {
     children.push(
       <div class={`${prefixCls}-panel`} key="panel">
         {dateInputElement}
-        <div
-          tabIndex={props.focusablePanel ? 0 : undefined}
-          class={`${prefixCls}-date-panel`}
-        >
+        <div tabIndex={props.focusablePanel ? 0 : undefined} class={`${prefixCls}-date-panel`}>
           <CalendarHeader
             locale={locale}
             mode={sMode}
@@ -345,9 +335,7 @@ const Calendar = {
           />
           {timePicker && showTimePicker ? (
             <div class={`${prefixCls}-time-picker`}>
-              <div class={`${prefixCls}-time-picker-panel`}>
-                {timePickerEle}
-              </div>
+              <div class={`${prefixCls}-time-picker-panel`}>{timePickerEle}</div>
             </div>
           ) : null}
           <div class={`${prefixCls}-body`}>
@@ -379,8 +367,7 @@ const Calendar = {
             value={sValue}
             disabledDate={disabledDate}
             okDisabled={
-              props.showOk !== false &&
-              (!sSelectedValue || !this.isAllowedDate(sSelectedValue))
+              props.showOk !== false && (!sSelectedValue || !this.isAllowedDate(sSelectedValue))
             }
             onOk={this.onOk}
             onSelect={this.onSelect}
@@ -389,14 +376,14 @@ const Calendar = {
             onCloseTimePicker={this.closeTimePicker}
           />
         </div>
-      </div>
+      </div>,
     );
 
     return this.renderRoot({
       children,
-      class: props.showWeekNumber ? `${prefixCls}-week-number` : ""
+      class: props.showWeekNumber ? `${prefixCls}-week-number` : '',
     });
-  }
+  },
 };
 
 export default Calendar;

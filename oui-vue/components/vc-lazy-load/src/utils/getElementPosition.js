@@ -7,6 +7,6 @@ export default function getElementPosition(element) {
 
   return {
     top: rect.top + window.pageYOffset,
-    left: rect.left + window.pageXOffset
+    left: rect.left + window.pageXOffset,
   };
 }

@@ -1,5 +1,5 @@
-import Mentions from "./src/Mentions";
-import Option from "./src/Option";
+import Mentions from './src/Mentions';
+import Option from './src/Option';
 
 Mentions.Option = Option;
 

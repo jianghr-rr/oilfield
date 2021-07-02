@@ -1,11 +1,11 @@
 function getScroll(w, top) {
   let ret = top ? w.pageYOffset : w.pageXOffset;
-  const method = top ? "scrollTop" : "scrollLeft";
-  if (typeof ret !== "number") {
+  const method = top ? 'scrollTop' : 'scrollLeft';
+  if (typeof ret !== 'number') {
     const d = w.document;
     // ie6,7,8 standard mode
     ret = d.documentElement[method];
-    if (typeof ret !== "number") {
+    if (typeof ret !== 'number') {
       // quirks mode
       ret = d.body[method];
     }
@@ -26,7 +26,7 @@ function getClientPosition(elem) {
   y -= docElem.clientTop || body.clientTop || 0;
   return {
     left: x,
-    top: y
+    top: y,
   };
 }
 

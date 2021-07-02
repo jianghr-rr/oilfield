@@ -1,4 +1,4 @@
-import moment from "moment";
+import moment from 'moment';
 
 const defaultDisabledTime = {
   disabledHours() {
@@ -9,7 +9,7 @@ const defaultDisabledTime = {
   },
   disabledSeconds() {
     return [];
-  }
+  },
 };
 
 export function getTodayTime(value) {
@@ -19,7 +19,7 @@ export function getTodayTime(value) {
 }
 
 export function getTitleString(value) {
-  return value.format("LL");
+  return value.format('LL');
 }
 
 export function getTodayTimeStr(value) {
@@ -30,7 +30,7 @@ export function getTodayTimeStr(value) {
 export function getMonthName(month) {
   const locale = month.locale();
   const localeData = month.localeData();
-  return localeData[locale === "zh-cn" ? "months" : "monthsShort"](month);
+  return localeData[locale === 'zh-cn' ? 'months' : 'monthsShort'](month);
 }
 
 export function syncTime(from, to) {
@@ -45,7 +45,7 @@ export function getTimeConfig(value, disabledTime) {
   let disabledTimeConfig = disabledTime ? disabledTime(value) : {};
   disabledTimeConfig = {
     ...defaultDisabledTime,
-    ...disabledTimeConfig
+    ...disabledTimeConfig,
   };
   return disabledTimeConfig;
 }
@@ -60,10 +60,7 @@ export function isTimeValidByConfig(value, disabledTimeConfig) {
     if (disabledHours.indexOf(hour) === -1) {
       const disabledMinutes = disabledTimeConfig.disabledMinutes(hour);
       if (disabledMinutes.indexOf(minutes) === -1) {
-        const disabledSeconds = disabledTimeConfig.disabledSeconds(
-          hour,
-          minutes
-        );
+        const disabledSeconds = disabledTimeConfig.disabledSeconds(hour, minutes);
         invalidTime = disabledSeconds.indexOf(seconds) !== -1;
       } else {
         invalidTime = true;
@@ -96,19 +93,19 @@ export function isAllowedDate(value, disabledDate, disabledTime) {
 
 export function formatDate(value, format) {
   if (!value) {
-    return "";
+    return '';
   }
 
   if (Array.isArray(format)) {
     format = format[0];
   }
 
-  if (typeof format === "function") {
+  if (typeof format === 'function') {
     const result = format(value);
-    if (typeof result === "string") {
+    if (typeof result === 'string') {
       return result;
     } else {
-      throw new Error("The function of format does not return a string");
+      throw new Error('The function of format does not return a string');
     }
   }
 

@@ -1,13 +1,13 @@
-import PropTypes from "../../_util/vue-types";
-import warning from "../../_util/warning";
-import BaseMixin from "../../_util/BaseMixin";
-import { hasProp } from "../../_util/props-util";
-import Track from "./common/Track";
-import createSlider from "./common/createSlider";
-import * as utils from "./utils";
+import PropTypes from '../../_util/vue-types';
+import warning from '../../_util/warning';
+import BaseMixin from '../../_util/BaseMixin';
+import { hasProp } from '../../_util/props-util';
+import Track from './common/Track';
+import createSlider from './common/createSlider';
+import * as utils from './utils';
 
 const Slider = {
-  name: "Slider",
+  name: 'Slider',
   mixins: [BaseMixin],
   props: {
     defaultValue: PropTypes.number,
@@ -17,26 +17,25 @@ const Slider = {
     tabIndex: PropTypes.number,
     reverse: PropTypes.bool,
     min: PropTypes.number,
-    max: PropTypes.number
+    max: PropTypes.number,
   },
   data() {
-    const defaultValue =
-      this.defaultValue !== undefined ? this.defaultValue : this.min;
+    const defaultValue = this.defaultValue !== undefined ? this.defaultValue : this.min;
     const value = this.value !== undefined ? this.value : defaultValue;
 
     warning(
-      !hasProp(this, "minimumTrackStyle"),
-      "Slider",
-      "minimumTrackStyle will be deprecate, please use trackStyle instead."
+      !hasProp(this, 'minimumTrackStyle'),
+      'Slider',
+      'minimumTrackStyle will be deprecate, please use trackStyle instead.',
     );
     warning(
-      !hasProp(this, "maximumTrackStyle"),
-      "Slider",
-      "maximumTrackStyle will be deprecate, please use railStyle instead."
+      !hasProp(this, 'maximumTrackStyle'),
+      'Slider',
+      'maximumTrackStyle will be deprecate, please use railStyle instead.',
     );
     return {
       sValue: this.trimAlignValue(value),
-      dragging: false
+      dragging: false,
     };
   },
   watch: {
@@ -44,7 +43,7 @@ const Slider = {
       handler(val) {
         this.setChangeValue(val);
       },
-      deep: true
+      deep: true,
     },
     min() {
       const { sValue } = this;
@@ -53,7 +52,7 @@ const Slider = {
     max() {
       const { sValue } = this;
       this.setChangeValue(sValue);
-    }
+    },
   },
   methods: {
     setChangeValue(value) {
@@ -63,24 +62,23 @@ const Slider = {
 
       this.setState({ sValue: nextValue });
       if (utils.isValueOutOfRange(newValue, this.$props)) {
-        this.$emit("change", nextValue);
+        this.$emit('change', nextValue);
       }
     },
     onChange(state) {
-      const isNotControlled = !hasProp(this, "value");
-      const nextState =
-        state.sValue > this.max ? { ...state, sValue: this.max } : state;
+      const isNotControlled = !hasProp(this, 'value');
+      const nextState = state.sValue > this.max ? { ...state, sValue: this.max } : state;
       if (isNotControlled) {
         this.setState(nextState);
       }
 
       const changedValue = nextState.sValue;
-      this.$emit("change", changedValue);
+      this.$emit('change', changedValue);
     },
     onStart(position) {
       this.setState({ dragging: true });
       const { sValue } = this;
-      this.$emit("beforeChange", sValue);
+      this.$emit('beforeChange', sValue);
 
       const value = this.calcValueByPos(position);
 
@@ -95,7 +93,7 @@ const Slider = {
       const { dragging } = this;
       this.removeDocumentEvents();
       if (dragging || force) {
-        this.$emit("afterChange", this.sValue);
+        this.$emit('afterChange', this.sValue);
       }
       this.setState({ dragging: false });
     },
@@ -118,7 +116,7 @@ const Slider = {
         if (value === sValue) return;
 
         this.onChange({ sValue: value });
-        this.$emit("afterChange", value);
+        this.$emit('afterChange', value);
         this.onEnd();
       }
     },
@@ -136,15 +134,7 @@ const Slider = {
       const val = utils.ensureValueInRange(v, mergedProps);
       return utils.ensureValuePrecision(val, mergedProps);
     },
-    getTrack({
-      prefixCls,
-      reverse,
-      vertical,
-      included,
-      offset,
-      minimumTrackStyle,
-      _trackStyle
-    }) {
+    getTrack({ prefixCls, reverse, vertical, included, offset, minimumTrackStyle, _trackStyle }) {
       return (
         <Track
           class={`${prefixCls}-track`}
@@ -155,7 +145,7 @@ const Slider = {
           length={offset}
           style={{
             ...minimumTrackStyle,
-            ..._trackStyle
+            ..._trackStyle,
           }}
         />
       );
@@ -174,7 +164,7 @@ const Slider = {
         max,
         reverse,
         handle,
-        defaultHandle
+        defaultHandle,
       } = this;
       const handleGenerator = handle || defaultHandle;
       const { sValue, dragging } = this;
@@ -195,14 +185,14 @@ const Slider = {
         style: handleStyle[0] || handleStyle,
         directives: [
           {
-            name: "ant-ref",
-            value: h => this.saveHandle(0, h)
-          }
+            name: 'ant-ref',
+            value: h => this.saveHandle(0, h),
+          },
         ],
         on: {
           focus: this.onFocus,
-          blur: this.onBlur
-        }
+          blur: this.onBlur,
+        },
       });
 
       const _trackStyle = trackStyle[0] || trackStyle;
@@ -214,12 +204,12 @@ const Slider = {
           included,
           offset,
           minimumTrackStyle,
-          _trackStyle
+          _trackStyle,
         }),
-        handles
+        handles,
       };
-    }
-  }
+    },
+  },
 };
 
 export default createSlider(Slider);

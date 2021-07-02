@@ -1,10 +1,10 @@
-import TabBarRootNode from "./TabBarRootNode";
-import TabBarTabsNode from "./TabBarTabsNode";
-import SaveRef from "./SaveRef";
-import { getAttrs, getListeners } from "../../_util/props-util";
+import TabBarRootNode from './TabBarRootNode';
+import TabBarTabsNode from './TabBarTabsNode';
+import SaveRef from './SaveRef';
+import { getAttrs, getListeners } from '../../_util/props-util';
 
 export default {
-  name: "TabBar",
+  name: 'TabBar',
   inheritAttrs: false,
   render() {
     const props = getAttrs(this);
@@ -18,5 +18,5 @@ export default {
         )}
       />
     );
-  }
+  },
 };

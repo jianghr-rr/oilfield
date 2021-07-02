@@ -1,4 +1,4 @@
-import PropTypes from "../../_util/vue-types";
+import PropTypes from '../../_util/vue-types';
 
 const formShape = PropTypes.shape({
   getFieldsValue: PropTypes.func,
@@ -18,7 +18,7 @@ const formShape = PropTypes.shape({
   isSubmitting: PropTypes.func,
   submit: PropTypes.func,
   validateFields: PropTypes.func,
-  resetFields: PropTypes.func
+  resetFields: PropTypes.func,
 }).loose;
 
 export default formShape;

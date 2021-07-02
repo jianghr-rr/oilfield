@@ -1,7 +1,7 @@
-import PropTypes from "../../_util/vue-types";
+import PropTypes from '../../_util/vue-types';
 
 export default {
-  name: "Column",
+  name: 'Column',
   props: {
     rowSpan: PropTypes.number,
     colSpan: PropTypes.number,
@@ -9,12 +9,12 @@ export default {
     dataIndex: PropTypes.string,
     width: PropTypes.oneOfType([PropTypes.number, PropTypes.string]),
     ellipsis: PropTypes.bool,
-    fixed: PropTypes.oneOf([true, "left", "right"]),
-    align: PropTypes.oneOf(["left", "center", "right"]),
+    fixed: PropTypes.oneOf([true, 'left', 'right']),
+    align: PropTypes.oneOf(['left', 'center', 'right']),
     customRender: PropTypes.func,
     className: PropTypes.string,
     // onCellClick: PropTypes.func,
     customCell: PropTypes.func,
-    customHeaderCell: PropTypes.func
-  }
+    customHeaderCell: PropTypes.func,
+  },
 };

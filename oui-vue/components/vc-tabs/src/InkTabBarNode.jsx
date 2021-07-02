@@ -1,41 +1,41 @@
-import PropTypes from "../../_util/vue-types";
+import PropTypes from '../../_util/vue-types';
 import {
   setTransform,
   isTransform3dSupported,
   getLeft,
   getStyle,
   getTop,
-  getActiveIndex
-} from "./utils";
-import BaseMixin from "../../_util/BaseMixin";
+  getActiveIndex,
+} from './utils';
+import BaseMixin from '../../_util/BaseMixin';
 
 function componentDidUpdate(component, init) {
   const { styles = {}, panels, activeKey, direction } = component.$props;
-  const rootNode = component.getRef("root");
-  const wrapNode = component.getRef("nav") || rootNode;
-  const inkBarNode = component.getRef("inkBar");
-  const activeTab = component.getRef("activeTab");
+  const rootNode = component.getRef('root');
+  const wrapNode = component.getRef('nav') || rootNode;
+  const inkBarNode = component.getRef('inkBar');
+  const activeTab = component.getRef('activeTab');
   const inkBarNodeStyle = inkBarNode.style;
   const tabBarPosition = component.$props.tabBarPosition;
   const activeIndex = getActiveIndex(panels, activeKey);
   if (init) {
     // prevent mount animation
-    inkBarNodeStyle.display = "none";
+    inkBarNodeStyle.display = 'none';
   }
   if (activeTab) {
     const tabNode = activeTab;
     const transformSupported = isTransform3dSupported(inkBarNodeStyle);
 
     // Reset current style
-    setTransform(inkBarNodeStyle, "");
-    inkBarNodeStyle.width = "";
-    inkBarNodeStyle.height = "";
-    inkBarNodeStyle.left = "";
-    inkBarNodeStyle.top = "";
-    inkBarNodeStyle.bottom = "";
-    inkBarNodeStyle.right = "";
+    setTransform(inkBarNodeStyle, '');
+    inkBarNodeStyle.width = '';
+    inkBarNodeStyle.height = '';
+    inkBarNodeStyle.left = '';
+    inkBarNodeStyle.top = '';
+    inkBarNodeStyle.bottom = '';
+    inkBarNodeStyle.right = '';
 
-    if (tabBarPosition === "top" || tabBarPosition === "bottom") {
+    if (tabBarPosition === 'top' || tabBarPosition === 'bottom') {
       let left = getLeft(tabNode, wrapNode);
       let width = tabNode.offsetWidth;
       // If tabNode'width width equal to wrapNode'width when tabBarPosition is top or bottom
@@ -49,8 +49,8 @@ function componentDidUpdate(component, init) {
           left += (tabNode.offsetWidth - width) / 2;
         }
       }
-      if (direction === "rtl") {
-        left = getStyle(tabNode, "margin-left") - left;
+      if (direction === 'rtl') {
+        left = getStyle(tabNode, 'margin-left') - left;
       }
       // use 3d gpu to optimize render
       if (transformSupported) {
@@ -70,23 +70,23 @@ function componentDidUpdate(component, init) {
       }
       if (transformSupported) {
         setTransform(inkBarNodeStyle, `translate3d(0,${top}px,0)`);
-        inkBarNodeStyle.top = "0";
+        inkBarNodeStyle.top = '0';
       } else {
         inkBarNodeStyle.top = `${top}px`;
       }
       inkBarNodeStyle.height = `${height}px`;
     }
   }
-  inkBarNodeStyle.display = activeIndex !== -1 ? "block" : "none";
+  inkBarNodeStyle.display = activeIndex !== -1 ? 'block' : 'none';
 }
 
 export default {
-  name: "InkTabBarNode",
+  name: 'InkTabBarNode',
   mixins: [BaseMixin],
   props: {
     inkBarAnimated: {
       type: Boolean,
-      default: true
+      default: true,
     },
     direction: PropTypes.string,
     prefixCls: String,
@@ -95,7 +95,7 @@ export default {
     saveRef: PropTypes.func.def(() => {}),
     getRef: PropTypes.func.def(() => {}),
     panels: PropTypes.array,
-    activeKey: PropTypes.oneOfType([PropTypes.string, PropTypes.number])
+    activeKey: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
   },
   updated() {
     this.$nextTick(function() {
@@ -113,9 +113,7 @@ export default {
     const className = `${prefixCls}-ink-bar`;
     const classes = {
       [className]: true,
-      [inkBarAnimated
-        ? `${className}-animated`
-        : `${className}-no-animated`]: true
+      [inkBarAnimated ? `${className}-animated` : `${className}-no-animated`]: true,
     };
     return (
       <div
@@ -125,12 +123,12 @@ export default {
         {...{
           directives: [
             {
-              name: "ant-ref",
-              value: this.saveRef("inkBar")
-            }
-          ]
+              name: 'ant-ref',
+              value: this.saveRef('inkBar'),
+            },
+          ],
         }}
       />
     );
-  }
+  },
 };

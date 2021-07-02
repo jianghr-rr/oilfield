@@ -1,9 +1,9 @@
-import keyCode from "../../_util/KeyCode";
+import keyCode from '../../_util/KeyCode';
 
 export function isEventFromHandle(e, handles) {
   try {
     return Object.keys(handles).some(
-      key => e.target === handles[key].$el || e.target === handles[key]
+      key => e.target === handles[key].$el || e.target === handles[key],
     );
   } catch (error) {
     return false;
@@ -15,10 +15,7 @@ export function isValueOutOfRange(value, { min, max }) {
 }
 
 export function isNotTouchEvent(e) {
-  return (
-    e.touches.length > 1 ||
-    (e.type.toLowerCase() === "touchend" && e.touches.length > 0)
-  );
+  return e.touches.length > 1 || (e.type.toLowerCase() === 'touchend' && e.touches.length > 0);
 }
 
 export function getClosestPoint(val, { marks, step, min, max }) {
@@ -37,8 +34,8 @@ export function getClosestPoint(val, { marks, step, min, max }) {
 export function getPrecision(step) {
   const stepString = step.toString();
   let precision = 0;
-  if (stepString.indexOf(".") >= 0) {
-    precision = stepString.length - stepString.indexOf(".") - 1;
+  if (stepString.indexOf('.') >= 0) {
+    precision = stepString.length - stepString.indexOf('.') - 1;
   }
   return precision;
 }
@@ -46,9 +43,7 @@ export function getPrecision(step) {
 export function getMousePosition(vertical, e) {
   let zoom = 1;
   if (window.visualViewport) {
-    zoom = +(
-      window.visualViewport.width / document.body.getBoundingClientRect().width
-    ).toFixed(2);
+    zoom = +(window.visualViewport.width / document.body.getBoundingClientRect().width).toFixed(2);
   }
   return (vertical ? e.clientY : e.pageX) / zoom;
 }
@@ -56,9 +51,7 @@ export function getMousePosition(vertical, e) {
 export function getTouchPosition(vertical, e) {
   let zoom = 1;
   if (window.visualViewport) {
-    zoom = +(
-      window.visualViewport.width / document.body.getBoundingClientRect().width
-    ).toFixed(2);
+    zoom = +(window.visualViewport.width / document.body.getBoundingClientRect().width).toFixed(2);
   }
   return (vertical ? e.touches[0].clientY : e.touches[0].pageX) / zoom;
 }
@@ -82,12 +75,8 @@ export function ensureValueInRange(val, { max, min }) {
 
 export function ensureValuePrecision(val, props) {
   const { step } = props;
-  const closestPoint = isFinite(getClosestPoint(val, props))
-    ? getClosestPoint(val, props)
-    : 0; // eslint-disable-line
-  return step === null
-    ? closestPoint
-    : parseFloat(closestPoint.toFixed(getPrecision(step)));
+  const closestPoint = isFinite(getClosestPoint(val, props)) ? getClosestPoint(val, props) : 0; // eslint-disable-line
+  return step === null ? closestPoint : parseFloat(closestPoint.toFixed(getPrecision(step)));
 }
 
 export function pauseEvent(e) {
@@ -98,13 +87,10 @@ export function pauseEvent(e) {
 export function calculateNextValue(func, value, props) {
   const operations = {
     increase: (a, b) => a + b,
-    decrease: (a, b) => a - b
+    decrease: (a, b) => a - b,
   };
 
-  const indexToGet = operations[func](
-    Object.keys(props.marks).indexOf(JSON.stringify(value)),
-    1
-  );
+  const indexToGet = operations[func](Object.keys(props.marks).indexOf(JSON.stringify(value)), 1);
   const keyToGet = Object.keys(props.marks)[indexToGet];
 
   if (props.step) {
@@ -116,8 +102,8 @@ export function calculateNextValue(func, value, props) {
 }
 
 export function getKeyboardValueMutator(e, vertical, reverse) {
-  const increase = "increase";
-  const decrease = "decrease";
+  const increase = 'increase';
+  const decrease = 'decrease';
   let method = increase;
   switch (e.keyCode) {
     case keyCode.UP:

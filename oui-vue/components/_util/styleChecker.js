@@ -1,9 +1,5 @@
 const isStyleSupport = styleName => {
-  if (
-    typeof window !== "undefined" &&
-    window.document &&
-    window.document.documentElement
-  ) {
+  if (typeof window !== 'undefined' && window.document && window.document.documentElement) {
     const styleNameList = Array.isArray(styleName) ? styleName : [styleName];
     const { documentElement } = window.document;
 
@@ -12,11 +8,6 @@ const isStyleSupport = styleName => {
   return false;
 };
 
-export const isFlexSupported = isStyleSupport([
-  "flex",
-  "webkitFlex",
-  "Flex",
-  "msFlex"
-]);
+export const isFlexSupported = isStyleSupport(['flex', 'webkitFlex', 'Flex', 'msFlex']);
 
 export default isStyleSupport;

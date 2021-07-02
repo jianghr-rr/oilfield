@@ -1,4 +1,4 @@
-import PropTypes from "../_util/vue-types";
+import PropTypes from '../_util/vue-types';
 
 export const SelectPropTypes = {
   defaultActiveFirstOption: PropTypes.bool,
@@ -49,11 +49,11 @@ export const SelectPropTypes = {
   removeIcon: PropTypes.any,
   menuItemSelectedIcon: PropTypes.any,
   dropdownRender: PropTypes.func,
-  mode: PropTypes.oneOf(["multiple", "tags"]),
+  mode: PropTypes.oneOf(['multiple', 'tags']),
   backfill: PropTypes.bool,
   dropdownAlign: PropTypes.any,
   dropdownMatchSelectWidth: PropTypes.bool,
   dropdownMenuStyle: PropTypes.object,
   notFoundContent: PropTypes.oneOfType([String, Number]),
-  tabIndex: PropTypes.oneOfType([String, Number])
+  tabIndex: PropTypes.oneOfType([String, Number]),
 };

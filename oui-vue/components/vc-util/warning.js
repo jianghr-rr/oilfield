@@ -3,22 +3,14 @@ let warned = {};
 
 export function warning(valid, message) {
   // Support uglify
-  if (
-    process.env.NODE_ENV !== "production" &&
-    !valid &&
-    console !== undefined
-  ) {
+  if (process.env.NODE_ENV !== 'production' && !valid && console !== undefined) {
     console.error(`Warning: ${message}`);
   }
 }
 
 export function note(valid, message) {
   // Support uglify
-  if (
-    process.env.NODE_ENV !== "production" &&
-    !valid &&
-    console !== undefined
-  ) {
+  if (process.env.NODE_ENV !== 'production' && !valid && console !== undefined) {
     console.warn(`Note: ${message}`);
   }
 }

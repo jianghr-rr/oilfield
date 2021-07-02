@@ -1,18 +1,16 @@
-import PropTypes from "../../_util/vue-types";
-import get from "lodash/get";
-import classNames from "classnames";
-import { isValidElement, mergeProps } from "../../_util/props-util";
+import PropTypes from '../../_util/vue-types';
+import get from 'lodash/get';
+import classNames from 'classnames';
+import { isValidElement, mergeProps } from '../../_util/props-util';
 
 function isInvalidRenderCellText(text) {
   return (
-    text &&
-    !isValidElement(text) &&
-    Object.prototype.toString.call(text) === "[object Object]"
+    text && !isValidElement(text) && Object.prototype.toString.call(text) === '[object Object]'
   );
 }
 
 export default {
-  name: "TableCell",
+  name: 'TableCell',
   props: {
     record: PropTypes.object,
     prefixCls: PropTypes.string,
@@ -21,21 +19,21 @@ export default {
     indentSize: PropTypes.number,
     column: PropTypes.object,
     expandIcon: PropTypes.any,
-    component: PropTypes.any
+    component: PropTypes.any,
   },
   inject: {
-    table: { default: () => ({}) }
+    table: { default: () => ({}) },
   },
   methods: {
     handleClick(e) {
       const {
         record,
-        column: { onCellClick }
+        column: { onCellClick },
       } = this;
       if (onCellClick) {
         onCellClick(record, e);
       }
-    }
+    },
   },
 
   render() {
@@ -47,14 +45,14 @@ export default {
       index,
       expandIcon,
       column,
-      component: BodyCell
+      component: BodyCell,
     } = this;
-    const { dataIndex, customRender, className = "" } = column;
+    const { dataIndex, customRender, className = '' } = column;
     const { transformCellText } = this.table;
     // We should return undefined if no dataIndex is specified, but in order to
     // be compatible with object-path's behavior, we return the record object instead.
     let text;
-    if (typeof dataIndex === "number") {
+    if (typeof dataIndex === 'number') {
       text = get(record, dataIndex);
     } else if (!dataIndex || dataIndex.length === 0) {
       text = record;
@@ -65,8 +63,8 @@ export default {
       props: {},
       attrs: {},
       on: {
-        click: this.handleClick
-      }
+        click: this.handleClick,
+      },
     };
     let colSpan;
     let rowSpan;
@@ -115,11 +113,11 @@ export default {
       [`${prefixCls}-cell-ellipsis`]: !!column.ellipsis,
       // 如果有宽度，增加断行处理
       // https://github.com/ant-design/ant-design/issues/13825#issuecomment-449889241
-      [`${prefixCls}-cell-break-word`]: !!column.width
+      [`${prefixCls}-cell-break-word`]: !!column.width,
     });
 
     if (column.ellipsis) {
-      if (typeof text === "string") {
+      if (typeof text === 'string') {
         tdProps.attrs.title = text;
       } else if (text) {
         // const { props: textProps } = text;
@@ -136,5 +134,5 @@ export default {
         {text}
       </BodyCell>
     );
-  }
+  },
 };

@@ -1,10 +1,6 @@
-import PropTypes from "../_util/vue-types";
-import {
-  getStyle,
-  getComponentFromProp,
-  getListeners
-} from "../_util/props-util";
-import BaseMixin from "../_util/BaseMixin";
+import PropTypes from '../_util/vue-types';
+import { getStyle, getComponentFromProp, getListeners } from '../_util/props-util';
+import BaseMixin from '../_util/BaseMixin';
 
 function noop() {}
 
@@ -15,12 +11,12 @@ export default {
     closable: PropTypes.bool,
     prefixCls: PropTypes.string,
     update: PropTypes.bool,
-    closeIcon: PropTypes.any
+    closeIcon: PropTypes.any,
   },
   watch: {
     duration() {
       this.restartCloseTimer();
-    }
+    },
   },
 
   mounted() {
@@ -42,7 +38,7 @@ export default {
         e.stopPropagation();
       }
       this.clearCloseTimer();
-      this.__emit("close");
+      this.__emit('close');
     },
 
     startCloseTimer() {
@@ -63,29 +59,22 @@ export default {
     restartCloseTimer() {
       this.clearCloseTimer();
       this.startCloseTimer();
-    }
+    },
   },
 
   render() {
-    const {
-      prefixCls,
-      closable,
-      clearCloseTimer,
-      startCloseTimer,
-      $slots,
-      close
-    } = this;
+    const { prefixCls, closable, clearCloseTimer, startCloseTimer, $slots, close } = this;
     const componentClass = `${prefixCls}-notice`;
     const className = {
       [`${componentClass}`]: 1,
-      [`${componentClass}-closable`]: closable
+      [`${componentClass}-closable`]: closable,
     };
     const style = getStyle(this);
-    const closeIcon = getComponentFromProp(this, "closeIcon");
+    const closeIcon = getComponentFromProp(this, 'closeIcon');
     return (
       <div
         class={className}
-        style={style || { right: "50%" }}
+        style={style || { right: '50%' }}
         onMouseenter={clearCloseTimer}
         onMouseleave={startCloseTimer}
         onClick={getListeners(this).click || noop}
@@ -98,5 +87,5 @@ export default {
         ) : null}
       </div>
     );
-  }
+  },
 };

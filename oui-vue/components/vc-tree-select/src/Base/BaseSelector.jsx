@@ -5,15 +5,11 @@
  *
  * So this file named as Selector to avoid confuse.
  */
-import { createRef } from "../util";
-import PropTypes from "../../../_util/vue-types";
-import classNames from "classnames";
-import {
-  initDefaultProps,
-  getComponentFromProp,
-  getListeners
-} from "../../../_util/props-util";
-import BaseMixin from "../../../_util/BaseMixin";
+import { createRef } from '../util';
+import PropTypes from '../../../_util/vue-types';
+import classNames from 'classnames';
+import { initDefaultProps, getComponentFromProp, getListeners } from '../../../_util/props-util';
+import BaseMixin from '../../../_util/BaseMixin';
 export const selectorPropTypes = () => ({
   prefixCls: PropTypes.string,
   className: PropTypes.string,
@@ -33,13 +29,13 @@ export const selectorPropTypes = () => ({
   removeIcon: PropTypes.any,
   placeholder: PropTypes.any,
   disabled: PropTypes.bool,
-  focused: PropTypes.bool
+  focused: PropTypes.bool,
 });
 
 function noop() {}
 export default function(modeName) {
   const BaseSelector = {
-    name: "BaseSelector",
+    name: 'BaseSelector',
     mixins: [BaseMixin],
     props: initDefaultProps(
       {
@@ -48,14 +44,14 @@ export default function(modeName) {
         // Pass by HOC
         renderSelection: PropTypes.func.isRequired,
         renderPlaceholder: PropTypes.func,
-        tabIndex: PropTypes.number
+        tabIndex: PropTypes.number,
       },
       {
-        tabIndex: 0
-      }
+        tabIndex: 0,
+      },
     ),
     inject: {
-      vcTreeSelect: { default: () => ({}) }
+      vcTreeSelect: { default: () => ({}) },
     },
     created() {
       this.domRef = createRef();
@@ -64,23 +60,23 @@ export default function(modeName) {
       onFocus(e) {
         const { focused } = this.$props;
         const {
-          vcTreeSelect: { onSelectorFocus }
+          vcTreeSelect: { onSelectorFocus },
         } = this;
 
         if (!focused) {
           onSelectorFocus();
         }
-        this.__emit("focus", e);
+        this.__emit('focus', e);
       },
 
       onBlur(e) {
         const {
-          vcTreeSelect: { onSelectorBlur }
+          vcTreeSelect: { onSelectorBlur },
         } = this;
 
         // TODO: Not trigger when is inner component get focused
         onSelectorBlur();
-        this.__emit("blur", e);
+        this.__emit('blur', e);
       },
 
       focus() {
@@ -94,23 +90,15 @@ export default function(modeName) {
       renderClear() {
         const { prefixCls, allowClear, selectorValueList } = this.$props;
         const {
-          vcTreeSelect: { onSelectorClear }
+          vcTreeSelect: { onSelectorClear },
         } = this;
 
-        if (
-          !allowClear ||
-          !selectorValueList.length ||
-          !selectorValueList[0].value
-        ) {
+        if (!allowClear || !selectorValueList.length || !selectorValueList[0].value) {
           return null;
         }
-        const clearIcon = getComponentFromProp(this, "clearIcon");
+        const clearIcon = getComponentFromProp(this, 'clearIcon');
         return (
-          <span
-            key="clear"
-            class={`${prefixCls}-selection__clear`}
-            onClick={onSelectorClear}
-          >
+          <span key="clear" class={`${prefixCls}-selection__clear`} onClick={onSelectorClear}>
             {clearIcon}
           </span>
         );
@@ -121,17 +109,13 @@ export default function(modeName) {
         if (!showArrow) {
           return null;
         }
-        const inputIcon = getComponentFromProp(this, "inputIcon");
+        const inputIcon = getComponentFromProp(this, 'inputIcon');
         return (
-          <span
-            key="arrow"
-            class={`${prefixCls}-arrow`}
-            style={{ outline: "none" }}
-          >
+          <span key="arrow" class={`${prefixCls}-arrow`} style={{ outline: 'none' }}>
             {inputIcon}
           </span>
         );
-      }
+      },
     },
 
     render() {
@@ -146,10 +130,10 @@ export default function(modeName) {
         ariaId,
         renderSelection,
         renderPlaceholder,
-        tabIndex
+        tabIndex,
       } = this.$props;
       const {
-        vcTreeSelect: { onSelectorKeyDown }
+        vcTreeSelect: { onSelectorKeyDown },
       } = this;
 
       let myTabIndex = tabIndex;
@@ -166,15 +150,15 @@ export default function(modeName) {
             [`${prefixCls}-focused`]: open || focused,
             [`${prefixCls}-disabled`]: disabled,
             [`${prefixCls}-enabled`]: !disabled,
-            [`${prefixCls}-allow-clear`]: allowClear
+            [`${prefixCls}-allow-clear`]: allowClear,
           })}
           {...{
             directives: [
               {
-                name: "ant-ref",
-                value: this.domRef
-              }
-            ]
+                name: 'ant-ref',
+                value: this.domRef,
+              },
+            ],
           }}
           role="combobox"
           aria-expanded={open}
@@ -189,10 +173,7 @@ export default function(modeName) {
         >
           <span
             key="selection"
-            class={classNames(
-              `${prefixCls}-selection`,
-              `${prefixCls}-selection--${modeName}`
-            )}
+            class={classNames(`${prefixCls}-selection`, `${prefixCls}-selection--${modeName}`)}
           >
             {renderSelection()}
             {this.renderClear()}
@@ -202,7 +183,7 @@ export default function(modeName) {
           </span>
         </span>
       );
-    }
+    },
   };
 
   return BaseSelector;

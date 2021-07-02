@@ -1,5 +1,5 @@
-import classnames from "classnames";
-import { cloneElement } from "../../_util/vnode";
+import classnames from 'classnames';
+import { cloneElement } from '../../_util/vnode';
 
 const getDotCount = function(spec) {
   let dots;
@@ -7,9 +7,7 @@ const getDotCount = function(spec) {
   if (spec.infinite) {
     dots = Math.ceil(spec.slideCount / spec.slidesToScroll);
   } else {
-    dots =
-      Math.ceil((spec.slideCount - spec.slidesToShow) / spec.slidesToScroll) +
-      1;
+    dots = Math.ceil((spec.slideCount - spec.slidesToShow) / spec.slidesToScroll) + 1;
   }
 
   return dots;
@@ -28,13 +26,13 @@ export default {
       appendDots,
       customPaging,
       clickHandler,
-      dotsClass
+      dotsClass,
     } = props;
     const dotCount = getDotCount({
       slideCount,
       slidesToScroll,
       slidesToShow,
-      infinite
+      infinite,
     });
 
     // Apply join & split to Array to pre-fill it for IE8
@@ -45,20 +43,20 @@ export default {
     const dots = Array.apply(
       null,
       Array(dotCount + 1)
-        .join("0")
-        .split("")
+        .join('0')
+        .split(''),
     ).map((x, i) => {
       const leftBound = i * slidesToScroll;
       const rightBound = i * slidesToScroll + (slidesToScroll - 1);
       const className = classnames({
-        "slick-active": currentSlide >= leftBound && currentSlide <= rightBound
+        'slick-active': currentSlide >= leftBound && currentSlide <= rightBound,
       });
 
       const dotOptions = {
-        message: "dots",
+        message: 'dots',
         index: i,
         slidesToScroll,
-        currentSlide
+        currentSlide,
       };
       function onClick(e) {
         // In Autoplay the focus stays on clicked button even after transition
@@ -72,8 +70,8 @@ export default {
         <li key={i} class={className}>
           {cloneElement(customPaging({ i }), {
             on: {
-              click: onClick
-            }
+              click: onClick,
+            },
           })}
         </li>
       );
@@ -82,8 +80,8 @@ export default {
     return cloneElement(appendDots({ dots }), {
       class: dotsClass,
       on: {
-        ...mouseEvents
-      }
+        ...mouseEvents,
+      },
     });
-  }
+  },
 };

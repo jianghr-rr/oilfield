@@ -1,8 +1,8 @@
-import PropTypes from "../../../_util/vue-types";
-import BaseMixin from "../../../_util/BaseMixin";
-import { hasProp } from "../../../_util/props-util";
-import moment from "moment";
-import { isAllowedDate, getTodayTime } from "../util/index";
+import PropTypes from '../../../_util/vue-types';
+import BaseMixin from '../../../_util/BaseMixin';
+import { hasProp } from '../../../_util/props-util';
+import moment from 'moment';
+import { isAllowedDate, getTodayTime } from '../util/index';
 function noop() {}
 
 export function getNowByCurrentStateValue(value) {
@@ -17,8 +17,7 @@ export function getNowByCurrentStateValue(value) {
 function isMoment(value) {
   if (Array.isArray(value)) {
     return (
-      value.length === 0 ||
-      value.findIndex(val => val === undefined || moment.isMoment(val)) !== -1
+      value.length === 0 || value.findIndex(val => val === undefined || moment.isMoment(val)) !== -1
     );
   } else {
     return value === undefined || moment.isMoment(value);
@@ -27,34 +26,32 @@ function isMoment(value) {
 const MomentType = PropTypes.custom(isMoment);
 const CalendarMixin = {
   mixins: [BaseMixin],
-  name: "CalendarMixinWrapper",
+  name: 'CalendarMixinWrapper',
   props: {
     value: MomentType,
-    defaultValue: MomentType
+    defaultValue: MomentType,
   },
 
   data() {
     const props = this.$props;
-    const sValue =
-      props.value || props.defaultValue || getNowByCurrentStateValue();
+    const sValue = props.value || props.defaultValue || getNowByCurrentStateValue();
     return {
       sValue,
-      sSelectedValue: props.selectedValue || props.defaultSelectedValue
+      sSelectedValue: props.selectedValue || props.defaultSelectedValue,
     };
   },
   watch: {
     value(val) {
-      const sValue =
-        val || this.defaultValue || getNowByCurrentStateValue(this.sValue);
+      const sValue = val || this.defaultValue || getNowByCurrentStateValue(this.sValue);
       this.setState({
-        sValue
+        sValue,
       });
     },
     selectedValue(val) {
       this.setState({
-        sSelectedValue: val
+        sSelectedValue: val,
       });
-    }
+    },
   },
   methods: {
     onSelect(value, cause) {
@@ -72,7 +69,7 @@ const CalendarMixin = {
         [prefixCls]: 1,
         [`${prefixCls}-hidden`]: !props.visible,
         // [props.className]: !!props.className,
-        [newProps.class]: !!newProps.class
+        [newProps.class]: !!newProps.class,
       };
       return (
         <div
@@ -89,20 +86,20 @@ const CalendarMixin = {
 
     setSelectedValue(selectedValue, cause) {
       // if (this.isAllowedDate(selectedValue)) {
-      if (!hasProp(this, "selectedValue")) {
+      if (!hasProp(this, 'selectedValue')) {
         this.setState({
-          sSelectedValue: selectedValue
+          sSelectedValue: selectedValue,
         });
       }
-      this.__emit("select", selectedValue, cause);
+      this.__emit('select', selectedValue, cause);
       // }
     },
 
     setValue(value) {
       const originalValue = this.sValue;
-      if (!hasProp(this, "value")) {
+      if (!hasProp(this, 'value')) {
         this.setState({
-          sValue: value
+          sValue: value,
         });
       }
       if (
@@ -110,7 +107,7 @@ const CalendarMixin = {
         (!originalValue && value) ||
         (originalValue && !value)
       ) {
-        this.__emit("change", value);
+        this.__emit('change', value);
       }
     },
 
@@ -118,8 +115,8 @@ const CalendarMixin = {
       const disabledDate = this.disabledDate;
       const disabledTime = this.disabledTime;
       return isAllowedDate(value, disabledDate, disabledTime);
-    }
-  }
+    },
+  },
 };
 
 export default CalendarMixin;

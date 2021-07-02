@@ -1,15 +1,10 @@
 // based on rc-input-number 4.5.5
-import PropTypes from "../../_util/vue-types";
-import BaseMixin from "../../_util/BaseMixin";
-import {
-  initDefaultProps,
-  hasProp,
-  getOptionProps,
-  getListeners
-} from "../../_util/props-util";
-import classNames from "classnames";
-import KeyCode from "../../_util/KeyCode";
-import InputHandler from "./InputHandler";
+import PropTypes from '../../_util/vue-types';
+import BaseMixin from '../../_util/BaseMixin';
+import { initDefaultProps, hasProp, getOptionProps, getListeners } from '../../_util/props-util';
+import classNames from 'classnames';
+import KeyCode from '../../_util/KeyCode';
+import InputHandler from './InputHandler';
 
 function noop() {}
 
@@ -18,7 +13,7 @@ function preventDefault(e) {
 }
 
 function defaultParser(input) {
-  return input.replace(/[^\w\.-]+/g, "");
+  return input.replace(/[^\w\.-]+/g, '');
 }
 
 /**
@@ -41,8 +36,8 @@ const isValidProps = value => value !== undefined && value !== null;
 
 const isEqual = (oldValue, newValue) =>
   newValue === oldValue ||
-  (typeof newValue === "number" &&
-    typeof oldValue === "number" &&
+  (typeof newValue === 'number' &&
+    typeof oldValue === 'number' &&
     isNaN(newValue) &&
     isNaN(oldValue));
 
@@ -80,31 +75,31 @@ const inputNumberProps = {
   autoComplete: PropTypes.string,
   title: PropTypes.string,
   name: PropTypes.string,
-  id: PropTypes.string
+  id: PropTypes.string,
 };
 
 export default {
-  name: "VCInputNumber",
+  name: 'VCInputNumber',
   mixins: [BaseMixin],
   model: {
-    prop: "value",
-    event: "change"
+    prop: 'value',
+    event: 'change',
   },
   props: initDefaultProps(inputNumberProps, {
     focusOnUpDown: true,
     useTouch: false,
-    prefixCls: "rc-input-number",
+    prefixCls: 'rc-input-number',
     min: -MAX_SAFE_INTEGER,
     step: 1,
     parser: defaultParser,
     required: false,
-    autoComplete: "off"
+    autoComplete: 'off',
   }),
   data() {
     const props = getOptionProps(this);
     this.prevProps = { ...props };
     let value;
-    if ("value" in props) {
+    if ('value' in props) {
       value = this.value;
     } else {
       value = this.defaultValue;
@@ -113,7 +108,7 @@ export default {
     return {
       inputValue: this.toPrecisionAsStep(validValue),
       sValue: validValue,
-      focused: this.autoFocus
+      focused: this.autoFocus,
     };
   },
   mounted() {
@@ -148,30 +143,30 @@ export default {
         this.setState({
           // eslint-disable-line
           sValue: validValue,
-          inputValue: nextInputValue
+          inputValue: nextInputValue,
         });
       }
 
       // Trigger onChange when max or min change
       // https://github.com/ant-design/ant-design/issues/11574
-      const nextValue = "value" in props ? value : this.sValue;
+      const nextValue = 'value' in props ? value : this.sValue;
       // ref: null < 20 === true
       // https://github.com/ant-design/ant-design/issues/14277
       if (
-        "max" in props &&
+        'max' in props &&
         prevProps.max !== max &&
-        typeof nextValue === "number" &&
+        typeof nextValue === 'number' &&
         nextValue > max
       ) {
-        this.$emit("change", max);
+        this.$emit('change', max);
       }
       if (
-        "min" in props &&
+        'min' in props &&
         prevProps.min !== min &&
-        typeof nextValue === "number" &&
+        typeof nextValue === 'number' &&
         nextValue < min
       ) {
-        this.$emit("change", min);
+        this.$emit('change', min);
       }
     }
     this.prevProps = { ...props };
@@ -255,19 +250,19 @@ export default {
         this.down(e, ratio);
         this.stop();
       } else if (e.keyCode === KeyCode.ENTER) {
-        this.$emit("pressEnter", e);
+        this.$emit('pressEnter', e);
       }
       // Trigger user key down
       this.recordCursorPosition();
       this.lastKeyCode = e.keyCode;
-      this.$emit("keydown", e, ...args);
+      this.$emit('keydown', e, ...args);
     },
     onKeyUp(e, ...args) {
       this.stop();
 
       this.recordCursorPosition();
 
-      this.$emit("keyup", e, ...args);
+      this.$emit('keyup', e, ...args);
     },
     onChange(e) {
       if (this.focused) {
@@ -275,36 +270,33 @@ export default {
       }
       this.rawInput = this.parser(this.getValueFromEvent(e));
       this.setState({ inputValue: this.rawInput });
-      this.$emit("change", this.toNumber(this.rawInput)); // valid number or invalid string
+      this.$emit('change', this.toNumber(this.rawInput)); // valid number or invalid string
     },
     onFocus(...args) {
       this.setState({
-        focused: true
+        focused: true,
       });
-      this.$emit("focus", ...args);
+      this.$emit('focus', ...args);
     },
     onBlur(...args) {
       this.inputting = false;
       this.setState({
-        focused: false
+        focused: false,
       });
       const value = this.getCurrentValidValue(this.inputValue);
       const newValue = this.setValue(value);
       if (this.$listeners.blur) {
         const originValue = this.$refs.inputRef.value;
-        const inputValue = this.getInputDisplayValue({
-          focused: false,
-          sValue: newValue
-        });
+        const inputValue = this.getInputDisplayValue({ focused: false, sValue: newValue });
         this.$refs.inputRef.value = inputValue;
-        this.$emit("blur", ...args);
+        this.$emit('blur', ...args);
         this.$refs.inputRef.value = originValue;
       }
     },
     getCurrentValidValue(value) {
       let val = value;
-      if (val === "") {
-        val = "";
+      if (val === '') {
+        val = '';
       } else if (!this.isNotCompleteNumber(parseFloat(val, 10))) {
         val = this.getValidValue(val);
       } else {
@@ -324,10 +316,10 @@ export default {
     getValueFromEvent(e) {
       // optimize for chinese input expierence
       // https://github.com/ant-design/ant-design/issues/8196
-      let value = e.target.value.trim().replace(/。/g, ".");
+      let value = e.target.value.trim().replace(/。/g, '.');
 
       if (isValidProps(this.decimalSeparator)) {
-        value = value.replace(this.decimalSeparator, ".");
+        value = value.replace(this.decimalSeparator, '.');
       }
 
       return value;
@@ -349,37 +341,32 @@ export default {
     setValue(v, callback) {
       // trigger onChange
       const { precision } = this.$props;
-      const newValue = this.isNotCompleteNumber(parseFloat(v, 10))
-        ? null
-        : parseFloat(v, 10);
+      const newValue = this.isNotCompleteNumber(parseFloat(v, 10)) ? null : parseFloat(v, 10);
       const { sValue: value = null, inputValue = null } = this.$data;
       // https://github.com/ant-design/ant-design/issues/7363
       // https://github.com/ant-design/ant-design/issues/16622
       const newValueInString =
-        typeof newValue === "number"
-          ? newValue.toFixed(precision)
-          : `${newValue}`;
-      const changed =
-        newValue !== value || newValueInString !== `${inputValue}`;
-      if (!hasProp(this, "value")) {
+        typeof newValue === 'number' ? newValue.toFixed(precision) : `${newValue}`;
+      const changed = newValue !== value || newValueInString !== `${inputValue}`;
+      if (!hasProp(this, 'value')) {
         this.setState(
           {
             sValue: newValue,
-            inputValue: this.toPrecisionAsStep(v)
+            inputValue: this.toPrecisionAsStep(v),
           },
-          callback
+          callback,
         );
       } else {
         // always set input value same as value
         this.setState(
           {
-            inputValue: this.toPrecisionAsStep(this.sValue)
+            inputValue: this.toPrecisionAsStep(this.sValue),
           },
-          callback
+          callback,
         );
       }
       if (changed) {
-        this.$emit("change", newValue);
+        this.$emit('change', newValue);
       }
       return newValue;
     },
@@ -388,12 +375,12 @@ export default {
         return this.precision;
       }
       const valueString = value.toString();
-      if (valueString.indexOf("e-") >= 0) {
-        return parseInt(valueString.slice(valueString.indexOf("e-") + 2), 10);
+      if (valueString.indexOf('e-') >= 0) {
+        return parseInt(valueString.slice(valueString.indexOf('e-') + 2), 10);
       }
       let precision = 0;
-      if (valueString.indexOf(".") >= 0) {
-        precision = valueString.length - valueString.indexOf(".") - 1;
+      if (valueString.indexOf('.') >= 0) {
+        precision = valueString.length - valueString.indexOf('.') - 1;
       }
       return precision;
     },
@@ -429,14 +416,14 @@ export default {
       }
 
       if (inputDisplayValue === undefined || inputDisplayValue === null) {
-        inputDisplayValue = "";
+        inputDisplayValue = '';
       }
 
       let inputDisplayValueFormat = this.formatWrapper(inputDisplayValue);
       if (isValidProps(this.$props.decimalSeparator)) {
         inputDisplayValueFormat = inputDisplayValueFormat
           .toString()
-          .replace(".", this.$props.decimalSeparator);
+          .replace('.', this.$props.decimalSeparator);
       }
 
       return inputDisplayValueFormat;
@@ -532,7 +519,7 @@ export default {
       return num;
     },
     toPrecisionAsStep(num) {
-      if (this.isNotCompleteNumber(num) || num === "") {
+      if (this.isNotCompleteNumber(num) || num === '') {
         return num;
       }
       const precision = Math.abs(this.getMaxPrecision(num));
@@ -545,9 +532,9 @@ export default {
     isNotCompleteNumber(num) {
       return (
         isNaN(num) ||
-        num === "" ||
+        num === '' ||
         num === null ||
-        (num && num.toString().indexOf(".") === num.toString().length - 1)
+        (num && num.toString().indexOf('.') === num.toString().length - 1)
       );
     },
     toNumber(num) {
@@ -559,9 +546,7 @@ export default {
         return num;
       }
       if (isValidProps(precision)) {
-        return (
-          Math.round(num * Math.pow(10, precision)) / Math.pow(10, precision)
-        );
+        return Math.round(num * Math.pow(10, precision)) / Math.pow(10, precision);
       }
       return Number(num);
     },
@@ -608,7 +593,7 @@ export default {
       }
       this.setValue(val);
       this.setState({
-        focused: true
+        focused: true,
       });
       if (outOfRange) {
         return;
@@ -617,7 +602,7 @@ export default {
         () => {
           this[type](e, ratio, true);
         },
-        recursive ? SPEED : DELAY
+        recursive ? SPEED : DELAY,
       );
     },
     stop() {
@@ -627,15 +612,15 @@ export default {
     },
     down(e, ratio, recursive) {
       this.pressingUpOrDown = true;
-      this.stepFn("down", e, ratio, recursive);
+      this.stepFn('down', e, ratio, recursive);
     },
     up(e, ratio, recursive) {
       this.pressingUpOrDown = true;
-      this.stepFn("up", e, ratio, recursive);
+      this.stepFn('up', e, ratio, recursive);
     },
     handleInputClick() {
-      this.$emit("click");
-    }
+      this.$emit('click');
+    },
   },
   render() {
     const {
@@ -645,15 +630,15 @@ export default {
       useTouch,
       autoComplete,
       upHandler,
-      downHandler
+      downHandler,
     } = this.$props;
     const classes = classNames({
       [prefixCls]: true,
       [`${prefixCls}-disabled`]: disabled,
-      [`${prefixCls}-focused`]: this.focused
+      [`${prefixCls}-focused`]: this.focused,
     });
-    let upDisabledClass = "";
-    let downDisabledClass = "";
+    let upDisabledClass = '';
+    let downDisabledClass = '';
     const { sValue } = this;
     if (sValue || sValue === 0) {
       if (!isNaN(sValue)) {
@@ -681,22 +666,22 @@ export default {
     if (useTouch) {
       upEvents = {
         touchstart: editable && !upDisabledClass ? this.up : noop,
-        touchend: this.stop
+        touchend: this.stop,
       };
       downEvents = {
         touchstart: editable && !downDisabledClass ? this.down : noop,
-        touchend: this.stop
+        touchend: this.stop,
       };
     } else {
       upEvents = {
         mousedown: editable && !upDisabledClass ? this.up : noop,
         mouseup: this.stop,
-        mouseleave: this.stop
+        mouseleave: this.stop,
       };
       downEvents = {
         mousedown: editable && !downDisabledClass ? this.down : noop,
         mouseup: this.stop,
-        mouseleave: this.stop
+        mouseleave: this.stop,
       };
     }
     const isUpDisabled = !!upDisabledClass || disabled || readOnly;
@@ -705,42 +690,42 @@ export default {
       mouseenter = noop,
       mouseleave = noop,
       mouseover = noop,
-      mouseout = noop
+      mouseout = noop,
     } = getListeners(this);
     const contentProps = {
       on: { mouseenter, mouseleave, mouseover, mouseout },
       class: classes,
-      attrs: { title: this.$props.title }
+      attrs: { title: this.$props.title },
     };
     const upHandlerProps = {
       props: {
         disabled: isUpDisabled,
-        prefixCls
+        prefixCls,
       },
       attrs: {
-        unselectable: "unselectable",
-        role: "button",
-        "aria-label": "Increase Value",
-        "aria-disabled": !!isUpDisabled
+        unselectable: 'unselectable',
+        role: 'button',
+        'aria-label': 'Increase Value',
+        'aria-disabled': !!isUpDisabled,
       },
       class: `${prefixCls}-handler ${prefixCls}-handler-up ${upDisabledClass}`,
       on: upEvents,
-      ref: "up"
+      ref: 'up',
     };
     const downHandlerProps = {
       props: {
         disabled: isDownDisabled,
-        prefixCls
+        prefixCls,
       },
       attrs: {
-        unselectable: "unselectable",
-        role: "button",
-        "aria-label": "Decrease Value",
-        "aria-disabled": !!isDownDisabled
+        unselectable: 'unselectable',
+        role: 'button',
+        'aria-label': 'Decrease Value',
+        'aria-disabled': !!isDownDisabled,
       },
       class: `${prefixCls}-handler ${prefixCls}-handler-down ${downDisabledClass}`,
       on: downEvents,
-      ref: "down"
+      ref: 'down',
     };
     // ref for test
     return (
@@ -798,5 +783,5 @@ export default {
         </div>
       </div>
     );
-  }
+  },
 };

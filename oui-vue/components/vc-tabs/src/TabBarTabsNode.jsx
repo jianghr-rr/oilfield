@@ -1,23 +1,23 @@
-import warning from "warning";
-import PropTypes from "../../_util/vue-types";
-import BaseMixin from "../../_util/BaseMixin";
-import { getOptionProps, getComponentFromProp } from "../../_util/props-util";
-import { isVertical } from "./utils";
+import warning from 'warning';
+import PropTypes from '../../_util/vue-types';
+import BaseMixin from '../../_util/BaseMixin';
+import { getOptionProps, getComponentFromProp } from '../../_util/props-util';
+import { isVertical } from './utils';
 function noop() {}
 export default {
-  name: "TabBarTabsNode",
+  name: 'TabBarTabsNode',
   mixins: [BaseMixin],
   props: {
     activeKey: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
     panels: PropTypes.any.def([]),
-    prefixCls: PropTypes.string.def(""),
+    prefixCls: PropTypes.string.def(''),
     tabBarGutter: PropTypes.any.def(null),
     onTabClick: PropTypes.func,
     saveRef: PropTypes.func.def(noop),
     getRef: PropTypes.func.def(noop),
     renderTabBarNode: PropTypes.func,
     tabBarPosition: PropTypes.string,
-    direction: PropTypes.string
+    direction: PropTypes.string,
   },
   render() {
     const {
@@ -27,52 +27,47 @@ export default {
       tabBarGutter,
       saveRef,
       tabBarPosition,
-      direction
+      direction,
     } = this.$props;
     const rst = [];
-    const renderTabBarNode =
-      this.renderTabBarNode || this.$scopedSlots.renderTabBarNode;
+    const renderTabBarNode = this.renderTabBarNode || this.$scopedSlots.renderTabBarNode;
     children.forEach((child, index) => {
       if (!child) {
         return;
       }
       const props = getOptionProps(child);
       const key = child.key;
-      let cls = activeKey === key ? `${prefixCls}-tab-active` : "";
+      let cls = activeKey === key ? `${prefixCls}-tab-active` : '';
       cls += ` ${prefixCls}-tab`;
       const events = { on: {} };
-      const disabled = props.disabled || props.disabled === "";
+      const disabled = props.disabled || props.disabled === '';
       if (disabled) {
         cls += ` ${prefixCls}-tab-disabled`;
       } else {
         events.on.click = () => {
-          this.__emit("tabClick", key);
+          this.__emit('tabClick', key);
         };
       }
       const directives = [];
       if (activeKey === key) {
         directives.push({
-          name: "ant-ref",
-          value: saveRef("activeTab")
+          name: 'ant-ref',
+          value: saveRef('activeTab'),
         });
       }
-      const tab = getComponentFromProp(child, "tab");
-      let gutter =
-        tabBarGutter && index === children.length - 1 ? 0 : tabBarGutter;
-      gutter = typeof gutter === "number" ? `${gutter}px` : gutter;
-      const marginProperty = direction === "rtl" ? "marginLeft" : "marginRight";
+      const tab = getComponentFromProp(child, 'tab');
+      let gutter = tabBarGutter && index === children.length - 1 ? 0 : tabBarGutter;
+      gutter = typeof gutter === 'number' ? `${gutter}px` : gutter;
+      const marginProperty = direction === 'rtl' ? 'marginLeft' : 'marginRight';
       const style = {
-        [isVertical(tabBarPosition) ? "marginBottom" : marginProperty]: gutter
+        [isVertical(tabBarPosition) ? 'marginBottom' : marginProperty]: gutter,
       };
-      warning(
-        tab !== undefined,
-        "There must be `tab` property or slot on children of Tabs."
-      );
+      warning(tab !== undefined, 'There must be `tab` property or slot on children of Tabs.');
       let node = (
         <div
           role="tab"
-          aria-disabled={disabled ? "true" : "false"}
-          aria-selected={activeKey === key ? "true" : "false"}
+          aria-disabled={disabled ? 'true' : 'false'}
+          aria-selected={activeKey === key ? 'true' : 'false'}
           {...events}
           class={cls}
           key={key}
@@ -94,14 +89,14 @@ export default {
         {...{
           directives: [
             {
-              name: "ant-ref",
-              value: this.saveRef("navTabsContainer")
-            }
-          ]
+              name: 'ant-ref',
+              value: this.saveRef('navTabsContainer'),
+            },
+          ],
         }}
       >
         {rst}
       </div>
     );
-  }
+  },
 };

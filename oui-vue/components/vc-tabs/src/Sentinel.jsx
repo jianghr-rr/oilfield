@@ -1,18 +1,13 @@
-import PropTypes from "../../_util/vue-types";
-import KeyCode from "../../_util/KeyCode";
+import PropTypes from '../../_util/vue-types';
+import KeyCode from '../../_util/KeyCode';
 
-const sentinelStyle = {
-  width: 0,
-  height: 0,
-  overflow: "hidden",
-  position: "absolute"
-};
+const sentinelStyle = { width: 0, height: 0, overflow: 'hidden', position: 'absolute' };
 export default {
-  name: "Sentinel",
+  name: 'Sentinel',
   props: {
     setRef: PropTypes.func,
     prevElement: PropTypes.any,
-    nextElement: PropTypes.any
+    nextElement: PropTypes.any,
   },
   methods: {
     onKeyDown({ target, which, shiftKey }) {
@@ -28,7 +23,7 @@ export default {
       if (shiftKey && prevElement) {
         prevElement.focus();
       }
-    }
+    },
   },
   render() {
     const { setRef } = this.$props;
@@ -39,10 +34,10 @@ export default {
         {...{
           directives: [
             {
-              name: "ant-ref",
-              value: setRef
-            }
-          ]
+              name: 'ant-ref',
+              value: setRef,
+            },
+          ],
         }}
         style={sentinelStyle}
         onKeydown={this.onKeyDown}
@@ -51,5 +46,5 @@ export default {
         {this.$slots.default}
       </div>
     );
-  }
+  },
 };

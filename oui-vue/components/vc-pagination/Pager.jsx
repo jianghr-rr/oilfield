@@ -1,8 +1,8 @@
-import PropTypes from "../_util/vue-types";
-import classNames from "classnames";
+import PropTypes from '../_util/vue-types';
+import classNames from 'classnames';
 
 export default {
-  name: "Pager",
+  name: 'Pager',
   props: {
     rootPrefixCls: PropTypes.string,
     page: PropTypes.number,
@@ -12,23 +12,23 @@ export default {
     showTitle: PropTypes.bool,
     itemRender: {
       type: Function,
-      default: () => {}
-    }
+      default: () => {},
+    },
   },
   methods: {
     handleClick() {
-      this.$emit("click", this.page);
+      this.$emit('click', this.page);
     },
     handleKeyPress(event) {
-      this.$emit("keypress", event, this.handleClick, this.page);
-    }
+      this.$emit('keypress', event, this.handleClick, this.page);
+    },
   },
   render() {
     const props = this.$props;
     const prefixCls = `${props.rootPrefixCls}-item`;
     const cls = classNames(prefixCls, `${prefixCls}-${props.page}`, {
       [`${prefixCls}-active`]: props.active,
-      [`${prefixCls}-disabled`]: !props.page
+      [`${prefixCls}-disabled`]: !props.page,
     });
 
     return (
@@ -39,8 +39,8 @@ export default {
         title={this.showTitle ? this.page : null}
         tabIndex="0"
       >
-        {this.itemRender(this.page, "page", <a>{this.page}</a>)}
+        {this.itemRender(this.page, 'page', <a>{this.page}</a>)}
       </li>
     );
-  }
+  },
 };

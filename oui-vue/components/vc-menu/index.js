@@ -1,9 +1,9 @@
 // based on rc-menu 7.5.5
-import Menu from "./Menu";
-import SubMenu from "./SubMenu";
-import MenuItem, { menuItemProps } from "./MenuItem";
-import MenuItemGroup from "./MenuItemGroup";
-import Divider from "./Divider";
+import Menu from './Menu';
+import SubMenu from './SubMenu';
+import MenuItem, { menuItemProps } from './MenuItem';
+import MenuItemGroup from './MenuItemGroup';
+import Divider from './Divider';
 
 export {
   SubMenu,
@@ -12,7 +12,7 @@ export {
   MenuItem,
   MenuItemGroup,
   MenuItemGroup as ItemGroup,
-  Divider
+  Divider,
 };
 
 export default Menu;

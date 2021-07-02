@@ -7,7 +7,7 @@ export default {
     const { closeTimePicker = noop, openTimePicker = noop } = listeners;
     const className = {
       [`${prefixCls}-time-picker-btn`]: true,
-      [`${prefixCls}-time-picker-btn-disabled`]: timePickerDisabled
+      [`${prefixCls}-time-picker-btn-disabled`]: timePickerDisabled,
     };
     let onClick = noop;
     if (!timePickerDisabled) {
@@ -18,5 +18,5 @@ export default {
         {showTimePicker ? locale.dateSelect : locale.timeSelect}
       </a>
     );
-  }
+  },
 };

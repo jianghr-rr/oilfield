@@ -1,9 +1,9 @@
-import isMobile from "./utils/isMobile";
+import isMobile from './utils/isMobile';
 
 export function noop() {}
 
 export function getKeyFromChildrenIndex(child, menuEventKey, index) {
-  const prefix = menuEventKey || "";
+  const prefix = menuEventKey || '';
   return child.key === undefined ? `${prefix}item_${index}` : child.key;
 }
 
@@ -34,15 +34,12 @@ export function loopMenuItemRecursively(children, keys, ret) {
     if (ret.find) {
       return;
     }
-    if (c.data && c.data.slot && c.data.slot !== "default") {
+    if (c.data && c.data.slot && c.data.slot !== 'default') {
       return;
     }
     if (c && c.componentOptions) {
       const options = c.componentOptions.Ctor.options;
-      if (
-        !options ||
-        !(options.isSubMenu || options.isMenuItem || options.isMenuItemGroup)
-      ) {
+      if (!options || !(options.isSubMenu || options.isMenuItem || options.isMenuItemGroup)) {
         return;
       }
       if (keys.indexOf(c.key) !== -1) {
@@ -56,65 +53,65 @@ export function loopMenuItemRecursively(children, keys, ret) {
 
 export const menuAllProps = {
   props: [
-    "defaultSelectedKeys",
-    "selectedKeys",
-    "defaultOpenKeys",
-    "openKeys",
-    "mode",
-    "getPopupContainer",
-    "openTransitionName",
-    "openAnimation",
-    "subMenuOpenDelay",
-    "subMenuCloseDelay",
-    "forceSubMenuRender",
-    "triggerSubMenuAction",
-    "level",
-    "selectable",
-    "multiple",
-    "visible",
-    "focusable",
-    "defaultActiveFirst",
-    "prefixCls",
-    "inlineIndent",
-    "parentMenu",
-    "title",
-    "rootPrefixCls",
-    "eventKey",
-    "active",
-    "popupAlign",
-    "popupOffset",
-    "isOpen",
-    "renderMenuItem",
-    "manualRef",
-    "subMenuKey",
-    "disabled",
-    "index",
-    "isSelected",
-    "store",
-    "activeKey",
-    "builtinPlacements",
-    "overflowedIndicator",
+    'defaultSelectedKeys',
+    'selectedKeys',
+    'defaultOpenKeys',
+    'openKeys',
+    'mode',
+    'getPopupContainer',
+    'openTransitionName',
+    'openAnimation',
+    'subMenuOpenDelay',
+    'subMenuCloseDelay',
+    'forceSubMenuRender',
+    'triggerSubMenuAction',
+    'level',
+    'selectable',
+    'multiple',
+    'visible',
+    'focusable',
+    'defaultActiveFirst',
+    'prefixCls',
+    'inlineIndent',
+    'parentMenu',
+    'title',
+    'rootPrefixCls',
+    'eventKey',
+    'active',
+    'popupAlign',
+    'popupOffset',
+    'isOpen',
+    'renderMenuItem',
+    'manualRef',
+    'subMenuKey',
+    'disabled',
+    'index',
+    'isSelected',
+    'store',
+    'activeKey',
+    'builtinPlacements',
+    'overflowedIndicator',
 
     // the following keys found need to be removed from test regression
-    "attribute",
-    "value",
-    "popupClassName",
-    "inlineCollapsed",
-    "menu",
-    "theme",
-    "itemIcon",
-    "expandIcon"
+    'attribute',
+    'value',
+    'popupClassName',
+    'inlineCollapsed',
+    'menu',
+    'theme',
+    'itemIcon',
+    'expandIcon',
   ],
   on: [
-    "select",
-    "deselect",
-    "destroy",
-    "openChange",
-    "itemHover",
-    "titleMouseenter",
-    "titleMouseleave",
-    "titleClick"
-  ]
+    'select',
+    'deselect',
+    'destroy',
+    'openChange',
+    'itemHover',
+    'titleMouseenter',
+    'titleMouseleave',
+    'titleClick',
+  ],
 };
 
 // ref: https://github.com/ant-design/ant-design/issues/14007
@@ -124,9 +121,7 @@ export const menuAllProps = {
 // unify their behavior
 export const getWidth = elem => {
   let width =
-    elem &&
-    typeof elem.getBoundingClientRect === "function" &&
-    elem.getBoundingClientRect().width;
+    elem && typeof elem.getBoundingClientRect === 'function' && elem.getBoundingClientRect().width;
   if (width) {
     width = +width.toFixed(6);
   }
@@ -134,7 +129,7 @@ export const getWidth = elem => {
 };
 
 export const setStyle = (elem, styleProperty, value) => {
-  if (elem && typeof elem.style === "object") {
+  if (elem && typeof elem.style === 'object') {
     elem.style[styleProperty] = value;
   }
 };

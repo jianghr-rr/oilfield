@@ -1,6 +1,6 @@
 const style = (element, prop) => {
-  let styleVal = "";
-  if (typeof getComputedStyle !== "undefined") {
+  let styleVal = '';
+  if (typeof getComputedStyle !== 'undefined') {
     styleVal = window.getComputedStyle(element, null).getPropertyValue(prop);
   } else {
     styleVal = element.style[prop];
@@ -9,9 +9,7 @@ const style = (element, prop) => {
 };
 
 const overflow = element =>
-  style(element, "overflow") +
-  style(element, "overflow-y") +
-  style(element, "overflow-x");
+  style(element, 'overflow') + style(element, 'overflow-y') + style(element, 'overflow-x');
 
 const scrollParent = element => {
   if (!(element instanceof window.HTMLElement)) {

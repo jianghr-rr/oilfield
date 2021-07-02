@@ -1,11 +1,11 @@
-import shallowEqual from "shallowequal";
-import omit from "omit.js";
-import { getOptionProps, getListeners } from "../props-util";
-import PropTypes from "../vue-types";
-import proxyComponent from "../proxyComponent";
+import shallowEqual from 'shallowequal';
+import omit from 'omit.js';
+import { getOptionProps, getListeners } from '../props-util';
+import PropTypes from '../vue-types';
+import proxyComponent from '../proxyComponent';
 
 function getDisplayName(WrappedComponent) {
-  return WrappedComponent.name || "Component";
+  return WrappedComponent.name || 'Component';
 }
 
 const defaultMapStateToProps = () => ({});
@@ -13,9 +13,9 @@ export default function connect(mapStateToProps) {
   const shouldSubscribe = !!mapStateToProps;
   const finalMapStateToProps = mapStateToProps || defaultMapStateToProps;
   return function wrapWithConnect(WrappedComponent) {
-    const tempProps = omit(WrappedComponent.props || {}, ["store"]);
+    const tempProps = omit(WrappedComponent.props || {}, ['store']);
     const props = {
-      __propsSymbol__: PropTypes.any
+      __propsSymbol__: PropTypes.any,
     };
     Object.keys(tempProps).forEach(k => {
       props[k] = { ...tempProps[k], required: false };
@@ -24,24 +24,21 @@ export default function connect(mapStateToProps) {
       name: `Connect_${getDisplayName(WrappedComponent)}`,
       props,
       inject: {
-        storeContext: { default: () => ({}) }
+        storeContext: { default: () => ({}) },
       },
       data() {
         this.store = this.storeContext.store;
-        this.preProps = omit(getOptionProps(this), ["__propsSymbol__"]);
+        this.preProps = omit(getOptionProps(this), ['__propsSymbol__']);
         return {
-          subscribed: finalMapStateToProps(this.store.getState(), this.$props)
+          subscribed: finalMapStateToProps(this.store.getState(), this.$props),
         };
       },
       watch: {
         __propsSymbol__() {
           if (mapStateToProps && mapStateToProps.length === 2) {
-            this.subscribed = finalMapStateToProps(
-              this.store.getState(),
-              this.$props
-            );
+            this.subscribed = finalMapStateToProps(this.store.getState(), this.$props);
           }
-        }
+        },
       },
       mounted() {
         this.trySubscribe();
@@ -55,11 +52,8 @@ export default function connect(mapStateToProps) {
           if (!this.unsubscribe) {
             return;
           }
-          const props = omit(getOptionProps(this), ["__propsSymbol__"]);
-          const nextSubscribed = finalMapStateToProps(
-            this.store.getState(),
-            props
-          );
+          const props = omit(getOptionProps(this), ['__propsSymbol__']);
+          const nextSubscribed = finalMapStateToProps(this.store.getState(), props);
           if (
             !shallowEqual(this.preProps, props) ||
             !shallowEqual(this.subscribed, nextSubscribed)
@@ -83,20 +77,20 @@ export default function connect(mapStateToProps) {
         },
         getWrappedInstance() {
           return this.$refs.wrappedInstance;
-        }
+        },
       },
       render() {
         const { $slots = {}, $scopedSlots, subscribed, store } = this;
         const props = getOptionProps(this);
-        this.preProps = { ...omit(props, ["__propsSymbol__"]) };
+        this.preProps = { ...omit(props, ['__propsSymbol__']) };
         const wrapProps = {
           props: {
             ...props,
             ...subscribed,
-            store
+            store,
           },
           on: getListeners(this),
-          scopedSlots: $scopedSlots
+          scopedSlots: $scopedSlots,
         };
         return (
           <WrappedComponent {...wrapProps} ref="wrappedInstance">
@@ -105,7 +99,7 @@ export default function connect(mapStateToProps) {
             })}
           </WrappedComponent>
         );
-      }
+      },
     };
     return proxyComponent(Connect);
   };

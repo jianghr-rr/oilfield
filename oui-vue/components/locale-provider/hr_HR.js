@@ -1,3 +1,3 @@
-import locale from "../locale/hr_HR";
+import locale from '../locale/hr_HR';
 
 export default locale;

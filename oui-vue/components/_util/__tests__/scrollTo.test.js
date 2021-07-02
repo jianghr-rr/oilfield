@@ -1,6 +1,6 @@
-import scrollTo from "../scrollTo";
+import scrollTo from '../scrollTo';
 
-describe("Test ScrollTo function", () => {
+describe('Test ScrollTo function', () => {
   let dateNowMock;
 
   beforeAll(() => {
@@ -13,7 +13,7 @@ describe("Test ScrollTo function", () => {
 
   beforeEach(() => {
     dateNowMock = jest
-      .spyOn(Date, "now")
+      .spyOn(Date, 'now')
       .mockImplementationOnce(() => 0)
       .mockImplementationOnce(() => 1000);
   });
@@ -22,13 +22,11 @@ describe("Test ScrollTo function", () => {
     dateNowMock.mockRestore();
   });
 
-  it("test scrollTo", async () => {
-    const scrollToSpy = jest
-      .spyOn(window, "scrollTo")
-      .mockImplementation((x, y) => {
-        window.scrollY = y;
-        window.pageYOffset = y;
-      });
+  it('test scrollTo', async () => {
+    const scrollToSpy = jest.spyOn(window, 'scrollTo').mockImplementation((x, y) => {
+      window.scrollY = y;
+      window.pageYOffset = y;
+    });
 
     scrollTo(1000);
 
@@ -38,19 +36,19 @@ describe("Test ScrollTo function", () => {
     scrollToSpy.mockRestore();
   });
 
-  it("test callback - option", async () => {
+  it('test callback - option', async () => {
     const cbMock = jest.fn();
     scrollTo(1000, {
-      callback: cbMock
+      callback: cbMock,
     });
     jest.runAllTimers();
     expect(cbMock).toHaveBeenCalledTimes(1);
   });
 
-  it("test getContainer - option", async () => {
-    const div = document.createElement("div");
+  it('test getContainer - option', async () => {
+    const div = document.createElement('div');
     scrollTo(1000, {
-      getContainer: () => div
+      getContainer: () => div,
     });
     jest.runAllTimers();
     expect(div.scrollTop).toBe(1000);

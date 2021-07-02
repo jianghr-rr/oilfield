@@ -1,6 +1,6 @@
 import getRequestAnimationFrame, {
-  cancelRequestAnimationFrame as caf
-} from "./getRequestAnimationFrame";
+  cancelRequestAnimationFrame as caf,
+} from './getRequestAnimationFrame';
 const raf = getRequestAnimationFrame();
 
 export const cancelAnimationTimeout = frame => caf(frame.id);
@@ -16,7 +16,7 @@ export const requestAnimationTimeout = (callback, delay) => {
   }
 
   const frame = {
-    id: raf(timeout)
+    id: raf(timeout),
   };
 
   return frame;

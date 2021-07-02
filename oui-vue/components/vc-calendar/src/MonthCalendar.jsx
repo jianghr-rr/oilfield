@@ -1,19 +1,19 @@
-import moment from "moment";
-import PropTypes from "../../_util/vue-types";
-import BaseMixin from "../../_util/BaseMixin";
-import KeyCode from "../../_util/KeyCode";
-import CalendarHeader from "./calendar/CalendarHeader";
-import CalendarFooter from "./calendar/CalendarFooter";
-import CalendarMixin from "./mixin/CalendarMixin";
-import CommonMixin from "./mixin/CommonMixin";
-import enUs from "./locale/en_US";
+import moment from 'moment';
+import PropTypes from '../../_util/vue-types';
+import BaseMixin from '../../_util/BaseMixin';
+import KeyCode from '../../_util/KeyCode';
+import CalendarHeader from './calendar/CalendarHeader';
+import CalendarFooter from './calendar/CalendarFooter';
+import CalendarMixin from './mixin/CalendarMixin';
+import CommonMixin from './mixin/CommonMixin';
+import enUs from './locale/en_US';
 const MonthCalendar = {
-  name: "MonthCalendar",
+  name: 'MonthCalendar',
   props: {
     locale: PropTypes.object.def(enUs),
     format: PropTypes.string,
     visible: PropTypes.bool.def(true),
-    prefixCls: PropTypes.string.def("rc-calendar"),
+    prefixCls: PropTypes.string.def('rc-calendar'),
     monthCellRender: PropTypes.func,
     value: PropTypes.object,
     defaultValue: PropTypes.object,
@@ -22,16 +22,16 @@ const MonthCalendar = {
     disabledDate: PropTypes.func,
     monthCellContentRender: PropTypes.func,
     renderFooter: PropTypes.func.def(() => null),
-    renderSidebar: PropTypes.func.def(() => null)
+    renderSidebar: PropTypes.func.def(() => null),
   },
   mixins: [BaseMixin, CommonMixin, CalendarMixin],
 
   data() {
     const props = this.$props;
     return {
-      mode: "month",
+      mode: 'month',
       sValue: props.value || props.defaultValue || moment(),
-      sSelectedValue: props.selectedValue || props.defaultSelectedValue
+      sSelectedValue: props.selectedValue || props.defaultSelectedValue,
     };
   },
   methods: {
@@ -44,26 +44,26 @@ const MonthCalendar = {
       switch (keyCode) {
         case KeyCode.DOWN:
           value = stateValue.clone();
-          value.add(3, "months");
+          value.add(3, 'months');
           break;
         case KeyCode.UP:
           value = stateValue.clone();
-          value.add(-3, "months");
+          value.add(-3, 'months');
           break;
         case KeyCode.LEFT:
           value = stateValue.clone();
           if (ctrlKey) {
-            value.add(-1, "years");
+            value.add(-1, 'years');
           } else {
-            value.add(-1, "months");
+            value.add(-1, 'months');
           }
           break;
         case KeyCode.RIGHT:
           value = stateValue.clone();
           if (ctrlKey) {
-            value.add(1, "years");
+            value.add(1, 'years');
           } else {
-            value.add(1, "months");
+            value.add(1, 'months');
           }
           break;
         case KeyCode.ENTER:
@@ -83,17 +83,16 @@ const MonthCalendar = {
     },
 
     handlePanelChange(_, mode) {
-      if (mode !== "date") {
+      if (mode !== 'date') {
         this.setState({ mode });
       }
-    }
+    },
   },
 
   render() {
     const { mode, sValue: value, $props: props, $scopedSlots } = this;
     const { prefixCls, locale, disabledDate } = props;
-    const monthCellRender =
-      this.monthCellRender || $scopedSlots.monthCellRender;
+    const monthCellRender = this.monthCellRender || $scopedSlots.monthCellRender;
     const monthCellContentRender =
       this.monthCellContentRender || $scopedSlots.monthCellContentRender;
     const renderFooter = this.renderFooter || $scopedSlots.renderFooter;
@@ -118,9 +117,9 @@ const MonthCalendar = {
     );
     return this.renderRoot({
       class: `${props.prefixCls}-month-calendar`,
-      children
+      children,
     });
-  }
+  },
 };
 
 export default MonthCalendar;

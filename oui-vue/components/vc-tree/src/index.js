@@ -1,5 +1,5 @@
-import ProxyTree, { Tree } from "./Tree";
-import TreeNode from "./TreeNode";
+import ProxyTree, { Tree } from './Tree';
+import TreeNode from './TreeNode';
 Tree.TreeNode = TreeNode;
 ProxyTree.TreeNode = TreeNode;
 

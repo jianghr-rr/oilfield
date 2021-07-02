@@ -1,6 +1,6 @@
-import PropTypes from "../_util/vue-types";
-import KEYCODE from "./KeyCode";
-import BaseMixin from "../_util/BaseMixin";
+import PropTypes from '../_util/vue-types';
+import KEYCODE from './KeyCode';
+import BaseMixin from '../_util/BaseMixin';
 
 export default {
   mixins: [BaseMixin],
@@ -10,17 +10,17 @@ export default {
     quickGo: PropTypes.func,
     selectComponentClass: PropTypes.any,
     current: PropTypes.number,
-    pageSizeOptions: PropTypes.array.def(["10", "20", "30", "40"]),
+    pageSizeOptions: PropTypes.array.def(['10', '20', '30', '40']),
     pageSize: PropTypes.number,
     buildOptionText: PropTypes.func,
     locale: PropTypes.object,
     rootPrefixCls: PropTypes.string,
     selectPrefixCls: PropTypes.string,
-    goButton: PropTypes.any
+    goButton: PropTypes.any,
   },
   data() {
     return {
-      goInputText: ""
+      goInputText: '',
     };
   },
   methods: {
@@ -35,7 +35,7 @@ export default {
       const { value, composing } = e.target;
       if (e.isComposing || composing || this.goInputText === value) return;
       this.setState({
-        goInputText: value
+        goInputText: value,
       });
     },
     handleBlur(e) {
@@ -54,17 +54,17 @@ export default {
     },
     go(e) {
       const { goInputText } = this;
-      if (goInputText === "") {
+      if (goInputText === '') {
         return;
       }
-      if (e.keyCode === KEYCODE.ENTER || e.type === "click") {
+      if (e.keyCode === KEYCODE.ENTER || e.type === 'click') {
         // https://github.com/vueComponent/ant-design-vue/issues/1316
         this.quickGo(this.getValidValue());
         this.setState({
-          goInputText: ""
+          goInputText: '',
         });
       }
-    }
+    },
   },
   render() {
     const {
@@ -79,7 +79,7 @@ export default {
       pageSize,
       pageSizeOptions,
       goInputText,
-      disabled
+      disabled,
     } = this;
     const prefixCls = `${rootPrefixCls}-options`;
     let changeSelect = null;
@@ -118,13 +118,8 @@ export default {
     if (quickGo) {
       if (goButton) {
         gotoButton =
-          typeof goButton === "boolean" ? (
-            <button
-              type="button"
-              onClick={this.go}
-              onKeyup={this.go}
-              disabled={disabled}
-            >
+          typeof goButton === 'boolean' ? (
+            <button type="button" onClick={this.go} onKeyup={this.go} disabled={disabled}>
               {locale.jump_to_confirm}
             </button>
           ) : (
@@ -146,9 +141,9 @@ export default {
             {...{
               directives: [
                 {
-                  name: "ant-input"
-                }
-              ]
+                  name: 'ant-input',
+                },
+              ],
             }}
           />
           {locale.page}
@@ -163,5 +158,5 @@ export default {
         {goInput}
       </li>
     );
-  }
+  },
 };

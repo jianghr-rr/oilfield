@@ -1,8 +1,8 @@
-import PropTypes from "../../_util/vue-types";
+import PropTypes from '../../_util/vue-types';
 
 export default {
   props: {
-    children: PropTypes.func.def(() => null)
+    children: PropTypes.func.def(() => null),
   },
   methods: {
     getRef(name) {
@@ -15,7 +15,7 @@ export default {
           this[name] = node;
         }
       };
-    }
+    },
   },
 
   render() {
@@ -23,5 +23,5 @@ export default {
     const saveRef = name => this.saveRef(name);
     const getRef = name => this.getRef(name);
     return this.children(saveRef, getRef);
-  }
+  },
 };

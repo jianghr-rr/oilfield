@@ -1,5 +1,5 @@
-import classNames from "classnames";
-import { isValidElement } from "../../../_util/props-util";
+import classNames from 'classnames';
+import { isValidElement } from '../../../_util/props-util';
 
 const Marks = {
   functional: true,
@@ -13,7 +13,7 @@ const Marks = {
       upperBound,
       lowerBound,
       max,
-      min
+      min,
     } = context.props;
     const { clickLabel } = context.listeners;
     const marksKeys = Object.keys(marks);
@@ -23,10 +23,8 @@ const Marks = {
       .map(parseFloat)
       .sort((a, b) => a - b)
       .map(point => {
-        const markPoint =
-          typeof marks[point] === "function" ? marks[point](h) : marks[point];
-        const markPointIsObject =
-          typeof markPoint === "object" && !isValidElement(markPoint);
+        const markPoint = typeof marks[point] === 'function' ? marks[point](h) : marks[point];
+        const markPointIsObject = typeof markPoint === 'object' && !isValidElement(markPoint);
         const markLabel = markPointIsObject ? markPoint.label : markPoint;
         if (!markLabel && markLabel !== 0) {
           return null;
@@ -37,26 +35,24 @@ const Marks = {
           (included && point <= upperBound && point >= lowerBound);
         const markClassName = classNames({
           [`${className}-text`]: true,
-          [`${className}-text-active`]: isActive
+          [`${className}-text-active`]: isActive,
         });
 
         const bottomStyle = {
-          marginBottom: "-50%",
-          [reverse ? "top" : "bottom"]: `${((point - min) / range) * 100}%`
+          marginBottom: '-50%',
+          [reverse ? 'top' : 'bottom']: `${((point - min) / range) * 100}%`,
         };
 
         const leftStyle = {
           transform: `translateX(-50%)`,
           msTransform: `translateX(-50%)`,
-          [reverse ? "right" : "left"]: reverse
+          [reverse ? 'right' : 'left']: reverse
             ? `${((point - min / 4) / range) * 100}%`
-            : `${((point - min) / range) * 100}%`
+            : `${((point - min) / range) * 100}%`,
         };
 
         const style = vertical ? bottomStyle : leftStyle;
-        const markStyle = markPointIsObject
-          ? { ...style, ...markPoint.style }
-          : style;
+        const markStyle = markPointIsObject ? { ...style, ...markPoint.style } : style;
         return (
           <span
             class={markClassName}
@@ -71,7 +67,7 @@ const Marks = {
       });
 
     return <div class={className}>{elements}</div>;
-  }
+  },
 };
 
 export default Marks;

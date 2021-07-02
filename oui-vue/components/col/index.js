@@ -1,5 +1,5 @@
-import { Col } from "../grid";
-import Base from "../base";
+import { Col } from '../grid';
+import Base from '../base';
 /* istanbul ignore next */
 Col.install = function(Vue) {
   Vue.use(Base);

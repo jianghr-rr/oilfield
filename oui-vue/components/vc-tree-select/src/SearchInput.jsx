@@ -5,11 +5,11 @@
  * Move the code as a SearchInput for easy management.
  */
 
-import PropTypes from "../../_util/vue-types";
-import { createRef } from "./util";
+import PropTypes from '../../_util/vue-types';
+import { createRef } from './util';
 
 const SearchInput = {
-  name: "SearchInput",
+  name: 'SearchInput',
   props: {
     open: PropTypes.bool,
     searchValue: PropTypes.string,
@@ -17,20 +17,20 @@ const SearchInput = {
     disabled: PropTypes.bool,
     renderPlaceholder: PropTypes.func,
     needAlign: PropTypes.bool,
-    ariaId: PropTypes.string
+    ariaId: PropTypes.string,
   },
   inject: {
-    vcTreeSelect: { default: () => ({}) }
+    vcTreeSelect: { default: () => ({}) },
   },
   data() {
     return {
-      mirrorSearchValue: this.searchValue
+      mirrorSearchValue: this.searchValue,
     };
   },
   watch: {
     searchValue(val) {
       this.mirrorSearchValue = val;
-    }
+    },
   },
   created() {
     this.inputRef = createRef();
@@ -70,8 +70,8 @@ const SearchInput = {
      *  clientWidth 0 when mounted in vue. why?
      */
     alignInputWidth() {
-      this.inputRef.current.style.width = `${this.mirrorInputRef.current
-        .clientWidth || this.mirrorInputRef.current.offsetWidth}px`;
+      this.inputRef.current.style.width = `${this.mirrorInputRef.current.clientWidth ||
+        this.mirrorInputRef.current.offsetWidth}px`;
     },
 
     /**
@@ -97,28 +97,21 @@ const SearchInput = {
     },
     handleInputChange(e) {
       const { value, composing } = e.target;
-      const { searchValue = "" } = this;
+      const { searchValue = '' } = this;
       if (e.isComposing || composing || searchValue === value) {
         this.mirrorSearchValue = value;
         return;
       }
       this.vcTreeSelect.onSearchInputChange(e);
-    }
+    },
   },
 
   render() {
-    const {
-      searchValue,
-      prefixCls,
-      disabled,
-      renderPlaceholder,
-      open,
-      ariaId
-    } = this.$props;
+    const { searchValue, prefixCls, disabled, renderPlaceholder, open, ariaId } = this.$props;
     const {
       vcTreeSelect: { onSearchInputKeyDown },
       handleInputChange,
-      mirrorSearchValue
+      mirrorSearchValue,
     } = this;
     return (
       <span class={`${prefixCls}-search__field__wrap`}>
@@ -127,13 +120,13 @@ const SearchInput = {
           {...{
             directives: [
               {
-                name: "ant-ref",
-                value: this.inputRef
+                name: 'ant-ref',
+                value: this.inputRef,
               },
               {
-                name: "ant-input"
-              }
-            ]
+                name: 'ant-input',
+              },
+            ],
           }}
           onInput={handleInputChange}
           onKeydown={onSearchInputKeyDown}
@@ -149,10 +142,10 @@ const SearchInput = {
           {...{
             directives: [
               {
-                name: "ant-ref",
-                value: this.mirrorInputRef
-              }
-            ]
+                name: 'ant-ref',
+                value: this.mirrorInputRef,
+              },
+            ],
           }}
           class={`${prefixCls}-search__field__mirror`}
         >
@@ -161,7 +154,7 @@ const SearchInput = {
         {renderPlaceholder && !mirrorSearchValue ? renderPlaceholder() : null}
       </span>
     );
-  }
+  },
 };
 
 export default SearchInput;

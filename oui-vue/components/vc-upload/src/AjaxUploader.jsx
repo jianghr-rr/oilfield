@@ -1,12 +1,12 @@
-import PropTypes from "../../_util/vue-types";
-import BaseMixin from "../../_util/BaseMixin";
-import partition from "lodash/partition";
-import classNames from "classnames";
-import defaultRequest from "./request";
-import getUid from "./uid";
-import attrAccept from "./attr-accept";
-import traverseFileTree from "./traverseFileTree";
-import { getListeners } from "../../_util/props-util";
+import PropTypes from '../../_util/vue-types';
+import BaseMixin from '../../_util/BaseMixin';
+import partition from 'lodash/partition';
+import classNames from 'classnames';
+import defaultRequest from './request';
+import getUid from './uid';
+import attrAccept from './attr-accept';
+import traverseFileTree from './traverseFileTree';
+import { getListeners } from '../../_util/props-util';
 
 const upLoadPropTypes = {
   componentTag: PropTypes.string,
@@ -29,18 +29,18 @@ const upLoadPropTypes = {
   withCredentials: PropTypes.bool,
   openFileDialogOnClick: PropTypes.bool,
   transformFile: PropTypes.func,
-  method: PropTypes.string
+  method: PropTypes.string,
 };
 
 const AjaxUploader = {
   inheritAttrs: false,
-  name: "ajaxUploader",
+  name: 'ajaxUploader',
   mixins: [BaseMixin],
   props: upLoadPropTypes,
   data() {
     this.reqs = {};
     return {
-      uid: getUid()
+      uid: getUid(),
     };
   },
   mounted() {
@@ -64,24 +64,23 @@ const AjaxUploader = {
       el.click();
     },
     onKeyDown(e) {
-      if (e.key === "Enter") {
+      if (e.key === 'Enter') {
         this.onClick();
       }
     },
     onFileDrop(e) {
       const { multiple } = this.$props;
       e.preventDefault();
-      if (e.type === "dragover") {
+      if (e.type === 'dragover') {
         return;
       }
       if (this.directory) {
         traverseFileTree(e.dataTransfer.items, this.uploadFiles, _file =>
-          attrAccept(_file, this.accept)
+          attrAccept(_file, this.accept),
         );
       } else {
-        let files = partition(
-          Array.prototype.slice.call(e.dataTransfer.files),
-          file => attrAccept(file, this.accept)
+        let files = partition(Array.prototype.slice.call(e.dataTransfer.files), file =>
+          attrAccept(file, this.accept),
         );
         let successFiles = files[0];
         const errorFiles = files[1];
@@ -91,7 +90,7 @@ const AjaxUploader = {
         this.uploadFiles(successFiles);
 
         if (errorFiles.length) {
-          this.$emit("reject", errorFiles);
+          this.$emit('reject', errorFiles);
         }
       }
     },
@@ -116,13 +115,8 @@ const AjaxUploader = {
       if (before && before.then) {
         before
           .then(processedFile => {
-            const processedFileType = Object.prototype.toString.call(
-              processedFile
-            );
-            if (
-              processedFileType === "[object File]" ||
-              processedFileType === "[object Blob]"
-            ) {
+            const processedFileType = Object.prototype.toString.call(processedFile);
+            if (processedFileType === '[object File]' || processedFileType === '[object Blob]') {
               return this.post(processedFile);
             }
             return this.post(file);
@@ -144,7 +138,7 @@ const AjaxUploader = {
 
       new Promise(resolve => {
         const { action } = this;
-        if (typeof action === "function") {
+        if (typeof action === 'function') {
           return resolve(action(file));
         }
         resolve(action);
@@ -155,7 +149,7 @@ const AjaxUploader = {
           console.error(e); // eslint-disable-line no-console
         });
         transform.then(transformedFile => {
-          if (typeof data === "function") {
+          if (typeof data === 'function') {
             data = data(file);
           }
 
@@ -166,27 +160,27 @@ const AjaxUploader = {
             file: transformedFile,
             headers: this.headers,
             withCredentials: this.withCredentials,
-            method: props.method || "post",
+            method: props.method || 'post',
             onProgress: e => {
-              this.$emit("progress", e, file);
+              this.$emit('progress', e, file);
             },
             onSuccess: (ret, xhr) => {
               delete this.reqs[uid];
-              this.$emit("success", ret, file, xhr);
+              this.$emit('success', ret, file, xhr);
             },
             onError: (err, ret) => {
               delete this.reqs[uid];
-              this.$emit("error", err, ret, file);
-            }
+              this.$emit('error', err, ret, file);
+            },
           };
           this.reqs[uid] = request(requestOption);
-          this.$emit("start", file);
+          this.$emit('start', file);
         });
       });
     },
     reset() {
       this.setState({
-        uid: getUid()
+        uid: getUid(),
       });
     },
     abort(file) {
@@ -209,7 +203,7 @@ const AjaxUploader = {
           delete reqs[uid];
         });
       }
-    }
+    },
   },
 
   render() {
@@ -221,11 +215,11 @@ const AjaxUploader = {
       multiple,
       accept,
       directory,
-      openFileDialogOnClick
+      openFileDialogOnClick,
     } = $props;
     const cls = classNames({
       [prefixCls]: true,
-      [`${prefixCls}-disabled`]: disabled
+      [`${prefixCls}-disabled`]: disabled,
     });
     const events = disabled
       ? {}
@@ -233,18 +227,18 @@ const AjaxUploader = {
           click: openFileDialogOnClick ? this.onClick : () => {},
           keydown: openFileDialogOnClick ? this.onKeyDown : () => {},
           drop: this.onFileDrop,
-          dragover: this.onFileDrop
+          dragover: this.onFileDrop,
         };
     const tagProps = {
       on: {
         ...getListeners(this),
-        ...events
+        ...events,
       },
       attrs: {
-        role: "button",
-        tabIndex: disabled ? null : "0"
+        role: 'button',
+        tabIndex: disabled ? null : '0',
       },
-      class: cls
+      class: cls,
     };
     return (
       <Tag {...tagProps}>
@@ -254,17 +248,17 @@ const AjaxUploader = {
           ref="fileInputRef"
           onClick={e => e.stopPropagation()} // https://github.com/ant-design/ant-design/issues/19948
           key={this.uid}
-          style={{ display: "none" }}
+          style={{ display: 'none' }}
           accept={accept}
-          directory={directory ? "directory" : null}
-          webkitdirectory={directory ? "webkitdirectory" : null}
+          directory={directory ? 'directory' : null}
+          webkitdirectory={directory ? 'webkitdirectory' : null}
           multiple={multiple}
           onChange={this.onChange}
         />
         {this.$slots.default}
       </Tag>
     );
-  }
+  },
 };
 
 export default AjaxUploader;

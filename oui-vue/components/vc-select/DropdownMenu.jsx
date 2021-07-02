@@ -1,18 +1,14 @@
-import raf from "raf";
-import PropTypes from "../_util/vue-types";
-import Menu from "../vc-menu";
-import scrollIntoView from "dom-scroll-into-view";
-import { getSelectKeys, preventDefaultEvent } from "./util";
-import { cloneElement } from "../_util/vnode";
-import BaseMixin from "../_util/BaseMixin";
-import {
-  getSlotOptions,
-  getComponentFromProp,
-  getListeners
-} from "../_util/props-util";
+import raf from 'raf';
+import PropTypes from '../_util/vue-types';
+import Menu from '../vc-menu';
+import scrollIntoView from 'dom-scroll-into-view';
+import { getSelectKeys, preventDefaultEvent } from './util';
+import { cloneElement } from '../_util/vnode';
+import BaseMixin from '../_util/BaseMixin';
+import { getSlotOptions, getComponentFromProp, getListeners } from '../_util/props-util';
 
 export default {
-  name: "DropdownMenu",
+  name: 'DropdownMenu',
   mixins: [BaseMixin],
   props: {
     ariaId: PropTypes.string,
@@ -30,7 +26,7 @@ export default {
     visible: PropTypes.bool,
     backfillValue: PropTypes.any,
     firstActiveValue: PropTypes.string,
-    menuItemSelectedIcon: PropTypes.any
+    menuItemSelectedIcon: PropTypes.any,
   },
   watch: {
     visible(val) {
@@ -41,7 +37,7 @@ export default {
           this.scrollActiveItemToView();
         });
       }
-    }
+    },
   },
 
   created() {
@@ -82,7 +78,7 @@ export default {
         return;
       }
       const scrollIntoViewOpts = {
-        onlyScrollIfNeeded: true
+        onlyScrollIfNeeded: true,
       };
       if ((!value || value.length === 0) && firstActiveValue) {
         scrollIntoViewOpts.alignWithTop = true;
@@ -90,11 +86,7 @@ export default {
       // Delay to scroll since current frame item position is not ready when pre view is by filter
       // https://github.com/ant-design/ant-design/issues/11268#issuecomment-406634462
       this.rafInstance = raf(() => {
-        scrollIntoView(
-          itemComponent,
-          this.$refs.menuRef.$el,
-          scrollIntoViewOpts
-        );
+        scrollIntoView(itemComponent, this.$refs.menuRef.$el, scrollIntoViewOpts);
       });
     },
 
@@ -110,12 +102,9 @@ export default {
         firstActiveValue,
         dropdownMenuStyle,
         backfillValue,
-        visible
+        visible,
       } = props;
-      const menuItemSelectedIcon = getComponentFromProp(
-        this,
-        "menuItemSelectedIcon"
-      );
+      const menuItemSelectedIcon = getComponentFromProp(this, 'menuItemSelectedIcon');
       const { menuDeselect, menuSelect, popupScroll } = getListeners(this);
       if (menuItems && menuItems.length) {
         const selectedKeys = getSelectKeys(menuItems, value);
@@ -124,14 +113,14 @@ export default {
             multiple,
             itemIcon: multiple ? menuItemSelectedIcon : null,
             selectedKeys,
-            prefixCls: `${prefixCls}-menu`
+            prefixCls: `${prefixCls}-menu`,
           },
           on: {},
           style: dropdownMenuStyle,
-          ref: "menuRef",
+          ref: 'menuRef',
           attrs: {
-            role: "listbox"
-          }
+            role: 'listbox',
+          },
         };
         if (popupScroll) {
           menuProps.on.scroll = popupScroll;
@@ -162,20 +151,18 @@ export default {
           const clone = item => {
             if (
               (!foundFirst && selectedKeys.indexOf(item.key) !== -1) ||
-              (!foundFirst &&
-                !selectedKeys.length &&
-                firstActiveValue.indexOf(item.key) !== -1)
+              (!foundFirst && !selectedKeys.length && firstActiveValue.indexOf(item.key) !== -1)
             ) {
               foundFirst = true;
               return cloneElement(item, {
                 directives: [
                   {
-                    name: "ant-ref",
+                    name: 'ant-ref',
                     value: ref => {
                       this.firstActiveItem = ref;
-                    }
-                  }
-                ]
+                    },
+                  },
+                ],
               });
             }
             return item;
@@ -197,21 +184,14 @@ export default {
 
         // clear activeKey when inputValue change
         const lastValue = value && value[value.length - 1];
-        if (
-          inputValue !== this.lastInputValue &&
-          (!lastValue || lastValue !== backfillValue)
-        ) {
-          activeKeyProps.activeKey = "";
+        if (inputValue !== this.lastInputValue && (!lastValue || lastValue !== backfillValue)) {
+          activeKeyProps.activeKey = '';
         }
-        menuProps.props = {
-          ...activeKeyProps,
-          ...menuProps.props,
-          defaultActiveFirst
-        };
+        menuProps.props = { ...activeKeyProps, ...menuProps.props, defaultActiveFirst };
         return <Menu {...menuProps}>{clonedMenuItems}</Menu>;
       }
       return null;
-    }
+    },
   },
   render() {
     const renderMenu = this.renderMenu();
@@ -219,8 +199,8 @@ export default {
     return renderMenu ? (
       <div
         style={{
-          overflow: "auto",
-          transform: "translateZ(0)"
+          overflow: 'auto',
+          transform: 'translateZ(0)',
         }}
         id={this.$props.ariaId}
         tabIndex="-1"
@@ -232,5 +212,5 @@ export default {
         {renderMenu}
       </div>
     ) : null;
-  }
+  },
 };

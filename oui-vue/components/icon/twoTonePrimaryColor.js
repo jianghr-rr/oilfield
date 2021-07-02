@@ -1,8 +1,8 @@
-import VueIcon from "@ant-design/icons-vue";
+import VueIcon from '@ant-design/icons-vue';
 
 export function setTwoToneColor(primaryColor) {
   return VueIcon.setTwoToneColors({
-    primaryColor
+    primaryColor,
   });
 }
 

@@ -3,43 +3,41 @@ import {
   getSlotOptions,
   getKey,
   getAttrs,
-  getComponentFromProp
-} from "../_util/props-util";
-import { cloneVNodes } from "../_util/vnode";
+  getComponentFromProp,
+} from '../_util/props-util';
+import { cloneVNodes } from '../_util/vnode';
 
 export function toTitle(title) {
-  if (typeof title === "string") {
+  if (typeof title === 'string') {
     return title.trim();
   }
-  return "";
+  return '';
 }
 export function getValuePropValue(child) {
   if (!child) {
     return null;
   }
   const props = getPropsData(child);
-  if ("value" in props) {
+  if ('value' in props) {
     return props.value;
   }
   if (getKey(child) !== undefined) {
     return getKey(child);
   }
   if (getSlotOptions(child).isSelectOptGroup) {
-    const label = getComponentFromProp(child, "label");
+    const label = getComponentFromProp(child, 'label');
     if (label) {
       return label;
     }
   }
-  throw new Error(
-    `Need at least a key or a value or a label (only for OptGroup) for ${child}`
-  );
+  throw new Error(`Need at least a key or a value or a label (only for OptGroup) for ${child}`);
 }
 
 export function getPropValue(child, prop) {
-  if (prop === "value") {
+  if (prop === 'value') {
     return getValuePropValue(child);
   }
-  if (prop === "children") {
+  if (prop === 'children') {
     const newChild = child.$slots
       ? cloneVNodes(child.$slots.default, true)
       : cloneVNodes(child.componentOptions.children, true);
@@ -128,16 +126,11 @@ export function getSelectKeys(menuItems, value) {
   let selectedKeys = [];
   menuItems.forEach(item => {
     if (getSlotOptions(item).isMenuItemGroup) {
-      selectedKeys = selectedKeys.concat(
-        getSelectKeys(item.componentOptions.children, value)
-      );
+      selectedKeys = selectedKeys.concat(getSelectKeys(item.componentOptions.children, value));
     } else {
       const itemValue = getValuePropValue(item);
       const itemKey = item.key;
-      if (
-        findIndexInValueBySingleValue(value, itemValue) !== -1 &&
-        itemKey !== undefined
-      ) {
+      if (findIndexInValueBySingleValue(value, itemValue) !== -1 && itemKey !== undefined) {
         selectedKeys.push(itemKey);
       }
     }
@@ -146,12 +139,12 @@ export function getSelectKeys(menuItems, value) {
 }
 
 export const UNSELECTABLE_STYLE = {
-  userSelect: "none",
-  WebkitUserSelect: "none"
+  userSelect: 'none',
+  WebkitUserSelect: 'none',
 };
 
 export const UNSELECTABLE_ATTRIBUTE = {
-  unselectable: "on"
+  unselectable: 'on',
 };
 
 export function findFirstMenuItem(children) {
@@ -202,10 +195,10 @@ export function validateOptionValue(value, props) {
   if (isSingleMode(props) || isMultiple(props)) {
     return;
   }
-  if (typeof value !== "string") {
+  if (typeof value !== 'string') {
     throw new Error(
       `Invalid \`value\` of type \`${typeof value}\` supplied to Option, ` +
-        `expected \`string\` when \`tags/combobox\` is \`true\`.`
+        `expected \`string\` when \`tags/combobox\` is \`true\`.`,
     );
   }
 }
@@ -217,14 +210,14 @@ export function saveRef(instance, name) {
 }
 
 export function generateUUID() {
-  if (process.env.NODE_ENV === "test") {
-    return "test-uuid";
+  if (process.env.NODE_ENV === 'test') {
+    return 'test-uuid';
   }
   let d = new Date().getTime();
-  const uuid = "xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx".replace(/[xy]/g, c => {
+  const uuid = 'xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx'.replace(/[xy]/g, c => {
     const r = (d + Math.random() * 16) % 16 | 0;
     d = Math.floor(d / 16);
-    return (c === "x" ? r : (r & 0x7) | 0x8).toString(16);
+    return (c === 'x' ? r : (r & 0x7) | 0x8).toString(16);
   });
   return uuid;
 }

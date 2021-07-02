@@ -1,3 +1,3 @@
-import locale from "../locale/ms_MY";
+import locale from '../locale/ms_MY';
 
 export default locale;

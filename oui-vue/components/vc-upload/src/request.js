@@ -81,7 +81,7 @@ export default function upload(option) {
   xhr.open(option.method, option.action, true);
 
   // Has to be after `.open()`. See https://github.com/enyo/dropzone/issues/179
-  if (option.withCredentials && "withCredentials" in xhr) {
+  if (option.withCredentials && 'withCredentials' in xhr) {
     xhr.withCredentials = true;
   }
 
@@ -89,8 +89,8 @@ export default function upload(option) {
 
   // when set headers['X-Requested-With'] = null , can close default XHR header
   // see https://github.com/react-component/upload/issues/33
-  if (headers["X-Requested-With"] !== null) {
-    xhr.setRequestHeader("X-Requested-With", "XMLHttpRequest");
+  if (headers['X-Requested-With'] !== null) {
+    xhr.setRequestHeader('X-Requested-With', 'XMLHttpRequest');
   }
 
   for (const h in headers) {
@@ -103,6 +103,6 @@ export default function upload(option) {
   return {
     abort() {
       xhr.abort();
-    }
+    },
   };
 }

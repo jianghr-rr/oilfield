@@ -1,54 +1,48 @@
-import Vue from "vue";
-import ref from "vue-ref";
-import PropTypes from "../_util/vue-types";
-import contains from "../vc-util/Dom/contains";
+import Vue from 'vue';
+import ref from 'vue-ref';
+import PropTypes from '../_util/vue-types';
+import contains from '../vc-util/Dom/contains';
 import {
   hasProp,
   getComponentFromProp,
   getEvents,
   filterEmpty,
-  getListeners
-} from "../_util/props-util";
-import {
-  requestAnimationTimeout,
-  cancelAnimationTimeout
-} from "../_util/requestAnimationTimeout";
-import addEventListener from "../vc-util/Dom/addEventListener";
-import warning from "../_util/warning";
-import Popup from "./Popup";
-import { getAlignFromPlacement, getAlignPopupClassName, noop } from "./utils";
-import BaseMixin from "../_util/BaseMixin";
-import { cloneElement } from "../_util/vnode";
-import Portal from "../_util/Portal";
+  getListeners,
+} from '../_util/props-util';
+import { requestAnimationTimeout, cancelAnimationTimeout } from '../_util/requestAnimationTimeout';
+import addEventListener from '../vc-util/Dom/addEventListener';
+import warning from '../_util/warning';
+import Popup from './Popup';
+import { getAlignFromPlacement, getAlignPopupClassName, noop } from './utils';
+import BaseMixin from '../_util/BaseMixin';
+import { cloneElement } from '../_util/vnode';
+import Portal from '../_util/Portal';
 
-Vue.use(ref, { name: "ant-ref" });
+Vue.use(ref, { name: 'ant-ref' });
 
 function returnEmptyString() {
-  return "";
+  return '';
 }
 
 function returnDocument() {
   return window.document;
 }
 const ALL_HANDLERS = [
-  "click",
-  "mousedown",
-  "touchstart",
-  "mouseenter",
-  "mouseleave",
-  "focus",
-  "blur",
-  "contextmenu"
+  'click',
+  'mousedown',
+  'touchstart',
+  'mouseenter',
+  'mouseleave',
+  'focus',
+  'blur',
+  'contextmenu',
 ];
 
 export default {
-  name: "Trigger",
+  name: 'Trigger',
   mixins: [BaseMixin],
   props: {
-    action: PropTypes.oneOfType([
-      PropTypes.string,
-      PropTypes.arrayOf(PropTypes.string)
-    ]).def([]),
+    action: PropTypes.oneOfType([PropTypes.string, PropTypes.arrayOf(PropTypes.string)]).def([]),
     showAction: PropTypes.any.def([]),
     hideAction: PropTypes.any.def([]),
     getPopupClassNameFromAlign: PropTypes.any.def(returnEmptyString),
@@ -56,14 +50,11 @@ export default {
     afterPopupVisibleChange: PropTypes.func.def(noop),
     popup: PropTypes.any,
     popupStyle: PropTypes.object.def(() => ({})),
-    prefixCls: PropTypes.string.def("rc-trigger-popup"),
-    popupClassName: PropTypes.string.def(""),
+    prefixCls: PropTypes.string.def('rc-trigger-popup'),
+    popupClassName: PropTypes.string.def(''),
     popupPlacement: PropTypes.string,
     builtinPlacements: PropTypes.object,
-    popupTransitionName: PropTypes.oneOfType([
-      PropTypes.string,
-      PropTypes.object
-    ]),
+    popupTransitionName: PropTypes.oneOfType([PropTypes.string, PropTypes.object]),
     popupAnimation: PropTypes.any,
     mouseEnterDelay: PropTypes.number.def(0),
     mouseLeaveDelay: PropTypes.number.def(0.1),
@@ -80,28 +71,25 @@ export default {
     popupAlign: PropTypes.object.def(() => ({})),
     popupVisible: PropTypes.bool,
     defaultPopupVisible: PropTypes.bool.def(false),
-    maskTransitionName: PropTypes.oneOfType([
-      PropTypes.string,
-      PropTypes.object
-    ]),
+    maskTransitionName: PropTypes.oneOfType([PropTypes.string, PropTypes.object]),
     maskAnimation: PropTypes.string,
     stretch: PropTypes.string,
-    alignPoint: PropTypes.bool // Maybe we can support user pass position in the future
+    alignPoint: PropTypes.bool, // Maybe we can support user pass position in the future
   },
   provide() {
     return {
-      vcTriggerContext: this
+      vcTriggerContext: this,
     };
   },
   inject: {
     vcTriggerContext: { default: () => ({}) },
     savePopupRef: { default: () => noop },
-    dialogContext: { default: () => null }
+    dialogContext: { default: () => null },
   },
   data() {
     const props = this.$props;
     let popupVisible;
-    if (hasProp(this, "popupVisible")) {
+    if (hasProp(this, 'popupVisible')) {
       popupVisible = !!props.popupVisible;
     } else {
       popupVisible = !!props.defaultPopupVisible;
@@ -114,7 +102,7 @@ export default {
     return {
       prevPopupVisible: popupVisible,
       sPopupVisible: popupVisible,
-      point: null
+      point: null,
     };
   },
   watch: {
@@ -123,7 +111,7 @@ export default {
         this.prevPopupVisible = this.sPopupVisible;
         this.sPopupVisible = val;
       }
-    }
+    },
   },
   deactivated() {
     this.setPopupVisible(false);
@@ -156,15 +144,12 @@ export default {
       // https://github.com/react-component/trigger/issues/50
       if (state.sPopupVisible) {
         let currentDocument;
-        if (
-          !this.clickOutsideHandler &&
-          (this.isClickToHide() || this.isContextmenuToShow())
-        ) {
+        if (!this.clickOutsideHandler && (this.isClickToHide() || this.isContextmenuToShow())) {
           currentDocument = props.getDocument();
           this.clickOutsideHandler = addEventListener(
             currentDocument,
-            "mousedown",
-            this.onDocumentClick
+            'mousedown',
+            this.onDocumentClick,
           );
         }
         // always hide on mobile
@@ -172,8 +157,8 @@ export default {
           currentDocument = currentDocument || props.getDocument();
           this.touchOutsideHandler = addEventListener(
             currentDocument,
-            "touchstart",
-            this.onDocumentClick
+            'touchstart',
+            this.onDocumentClick,
           );
         }
         // close popup when trigger type contains 'onContextmenu' and document is scrolling.
@@ -181,16 +166,16 @@ export default {
           currentDocument = currentDocument || props.getDocument();
           this.contextmenuOutsideHandler1 = addEventListener(
             currentDocument,
-            "scroll",
-            this.onContextmenuClose
+            'scroll',
+            this.onContextmenuClose,
           );
         }
         // close popup when trigger type contains 'onContextmenu' and window is blur.
         if (!this.contextmenuOutsideHandler2 && this.isContextmenuToShow()) {
           this.contextmenuOutsideHandler2 = addEventListener(
             window,
-            "blur",
-            this.onContextmenuClose
+            'blur',
+            this.onContextmenuClose,
           );
         }
       } else {
@@ -199,21 +184,17 @@ export default {
     },
     onMouseenter(e) {
       const { mouseEnterDelay } = this.$props;
-      this.fireEvents("mouseenter", e);
-      this.delaySetPopupVisible(
-        true,
-        mouseEnterDelay,
-        mouseEnterDelay ? null : e
-      );
+      this.fireEvents('mouseenter', e);
+      this.delaySetPopupVisible(true, mouseEnterDelay, mouseEnterDelay ? null : e);
     },
 
     onMouseMove(e) {
-      this.fireEvents("mousemove", e);
+      this.fireEvents('mousemove', e);
       this.setPoint(e);
     },
 
     onMouseleave(e) {
-      this.fireEvents("mouseleave", e);
+      this.fireEvents('mouseleave', e);
       this.delaySetPopupVisible(false, this.$props.mouseLeaveDelay);
     },
 
@@ -236,7 +217,7 @@ export default {
     },
 
     onFocus(e) {
-      this.fireEvents("focus", e);
+      this.fireEvents('focus', e);
       // incase focusin and focusout
       this.clearDelayTimer();
       if (this.isFocusToShow()) {
@@ -246,18 +227,18 @@ export default {
     },
 
     onMousedown(e) {
-      this.fireEvents("mousedown", e);
+      this.fireEvents('mousedown', e);
       this.preClickTime = Date.now();
     },
 
     onTouchstart(e) {
-      this.fireEvents("touchstart", e);
+      this.fireEvents('touchstart', e);
       this.preTouchTime = Date.now();
     },
 
     onBlur(e) {
       if (!contains(e.target, e.relatedTarget || document.activeElement)) {
-        this.fireEvents("blur", e);
+        this.fireEvents('blur', e);
         this.clearDelayTimer();
         if (this.isBlurToHide()) {
           this.delaySetPopupVisible(false, this.$props.blurDelay);
@@ -267,7 +248,7 @@ export default {
 
     onContextmenu(e) {
       e.preventDefault();
-      this.fireEvents("contextmenu", e);
+      this.fireEvents('contextmenu', e);
       this.setPopupVisible(true, e);
     },
 
@@ -278,7 +259,7 @@ export default {
     },
 
     onClick(event) {
-      this.fireEvents("click", event);
+      this.fireEvents('click', event);
       // focus will trigger click
       if (this.focusTime) {
         let preTime;
@@ -311,10 +292,7 @@ export default {
         event.domEvent.preventDefault();
       }
       const nextVisible = !this.$data.sPopupVisible;
-      if (
-        (this.isClickToHide() && !nextVisible) ||
-        (nextVisible && this.isClickToShow())
-      ) {
+      if ((this.isClickToHide() && !nextVisible) || (nextVisible && this.isClickToShow())) {
         this.setPopupVisible(!this.$data.sPopupVisible, event);
       }
     },
@@ -362,33 +340,22 @@ export default {
         builtinPlacements,
         prefixCls,
         alignPoint,
-        getPopupClassNameFromAlign
+        getPopupClassNameFromAlign,
       } = props;
       if (popupPlacement && builtinPlacements) {
-        className.push(
-          getAlignPopupClassName(
-            builtinPlacements,
-            prefixCls,
-            align,
-            alignPoint
-          )
-        );
+        className.push(getAlignPopupClassName(builtinPlacements, prefixCls, align, alignPoint));
       }
       if (getPopupClassNameFromAlign) {
         className.push(getPopupClassNameFromAlign(align));
       }
-      return className.join(" ");
+      return className.join(' ');
     },
 
     getPopupAlign() {
       const props = this.$props;
       const { popupPlacement, popupAlign, builtinPlacements } = props;
       if (popupPlacement && builtinPlacements) {
-        return getAlignFromPlacement(
-          builtinPlacements,
-          popupPlacement,
-          popupAlign
-        );
+        return getAlignFromPlacement(builtinPlacements, popupPlacement, popupAlign);
       }
       return popupAlign;
     },
@@ -407,11 +374,7 @@ export default {
       }
       mouseProps.mousedown = this.onPopupMouseDown;
       mouseProps.touchstart = this.onPopupMouseDown;
-      const {
-        handleGetPopupClassFromAlign,
-        getRootDomNode,
-        getContainer
-      } = self;
+      const { handleGetPopupClassFromAlign, getRootDomNode, getContainer } = self;
       const {
         prefixCls,
         destroyPopupOnHide,
@@ -425,7 +388,7 @@ export default {
         maskTransitionName,
         zIndex,
         stretch,
-        alignPoint
+        alignPoint,
       } = self.$props;
       const { sPopupVisible, point } = this.$data;
       const align = this.getPopupAlign();
@@ -448,33 +411,31 @@ export default {
           maskTransitionName,
           getContainer,
           popupClassName,
-          popupStyle
+          popupStyle,
         },
         on: {
           align: getListeners(this).popupAlign || noop,
-          ...mouseProps
+          ...mouseProps,
         },
         directives: [
           {
-            name: "ant-ref",
-            value: this.savePopup
-          }
-        ]
+            name: 'ant-ref',
+            value: this.savePopup,
+          },
+        ],
       };
-      return (
-        <Popup {...popupProps}>{getComponentFromProp(self, "popup")}</Popup>
-      );
+      return <Popup {...popupProps}>{getComponentFromProp(self, 'popup')}</Popup>;
     },
 
     getContainer() {
       const { $props: props, dialogContext } = this;
-      const popupContainer = document.createElement("div");
+      const popupContainer = document.createElement('div');
       // Make sure default popup container will never cause scrollbar appearing
       // https://github.com/react-component/trigger/issues/41
-      popupContainer.style.position = "absolute";
-      popupContainer.style.top = "0";
-      popupContainer.style.left = "0";
-      popupContainer.style.width = "100%";
+      popupContainer.style.position = 'absolute';
+      popupContainer.style.top = '0';
+      popupContainer.style.left = '0';
+      popupContainer.style.width = '100%';
       const mountNode = props.getPopupContainer
         ? props.getPopupContainer(this.$el, dialogContext)
         : props.getDocument().body;
@@ -487,15 +448,14 @@ export default {
       const { alignPoint, sPopupVisible: prevPopupVisible } = this;
       this.clearDelayTimer();
       if (prevPopupVisible !== sPopupVisible) {
-        if (!hasProp(this, "popupVisible")) {
+        if (!hasProp(this, 'popupVisible')) {
           this.setState({
             sPopupVisible,
-            prevPopupVisible
+            prevPopupVisible,
           });
         }
         const listeners = getListeners(this);
-        listeners.popupVisibleChange &&
-          listeners.popupVisibleChange(sPopupVisible);
+        listeners.popupVisibleChange && listeners.popupVisibleChange(sPopupVisible);
       }
       // Always record the point position since mouseEnterDelay will delay the show
       if (alignPoint && event) {
@@ -510,8 +470,8 @@ export default {
       this.setState({
         point: {
           pageX: point.pageX,
-          pageY: point.pageY
-        }
+          pageY: point.pageY,
+        },
       });
     },
     handlePortalUpdate() {
@@ -574,61 +534,40 @@ export default {
 
     isClickToShow() {
       const { action, showAction } = this.$props;
-      return (
-        action.indexOf("click") !== -1 || showAction.indexOf("click") !== -1
-      );
+      return action.indexOf('click') !== -1 || showAction.indexOf('click') !== -1;
     },
 
     isContextmenuToShow() {
       const { action, showAction } = this.$props;
-      return (
-        action.indexOf("contextmenu") !== -1 ||
-        showAction.indexOf("contextmenu") !== -1
-      );
+      return action.indexOf('contextmenu') !== -1 || showAction.indexOf('contextmenu') !== -1;
     },
 
     isClickToHide() {
       const { action, hideAction } = this.$props;
-      return (
-        action.indexOf("click") !== -1 || hideAction.indexOf("click") !== -1
-      );
+      return action.indexOf('click') !== -1 || hideAction.indexOf('click') !== -1;
     },
 
     isMouseEnterToShow() {
       const { action, showAction } = this.$props;
-      return (
-        action.indexOf("hover") !== -1 ||
-        showAction.indexOf("mouseenter") !== -1
-      );
+      return action.indexOf('hover') !== -1 || showAction.indexOf('mouseenter') !== -1;
     },
 
     isMouseLeaveToHide() {
       const { action, hideAction } = this.$props;
-      return (
-        action.indexOf("hover") !== -1 ||
-        hideAction.indexOf("mouseleave") !== -1
-      );
+      return action.indexOf('hover') !== -1 || hideAction.indexOf('mouseleave') !== -1;
     },
 
     isFocusToShow() {
       const { action, showAction } = this.$props;
-      return (
-        action.indexOf("focus") !== -1 || showAction.indexOf("focus") !== -1
-      );
+      return action.indexOf('focus') !== -1 || showAction.indexOf('focus') !== -1;
     },
 
     isBlurToHide() {
       const { action, hideAction } = this.$props;
-      return (
-        action.indexOf("focus") !== -1 || hideAction.indexOf("blur") !== -1
-      );
+      return action.indexOf('focus') !== -1 || hideAction.indexOf('blur') !== -1;
     },
     forcePopupAlign() {
-      if (
-        this.$data.sPopupVisible &&
-        this._component &&
-        this._component.$refs.alignInstance
-      ) {
+      if (this.$data.sPopupVisible && this._component && this._component.$refs.alignInstance) {
         this._component.$refs.alignInstance.forceAlign();
       }
     },
@@ -641,7 +580,7 @@ export default {
 
     close() {
       this.setPopupVisible(false);
-    }
+    },
   },
   render() {
     const { sPopupVisible } = this;
@@ -649,24 +588,20 @@ export default {
     const { forceRender, alignPoint } = this.$props;
 
     if (children.length > 1) {
-      warning(
-        false,
-        "Trigger $slots.default.length > 1, just support only one default",
-        true
-      );
+      warning(false, 'Trigger $slots.default.length > 1, just support only one default', true);
     }
     const child = children[0];
     this.childOriginEvents = getEvents(child);
     const newChildProps = {
       props: {},
       on: {},
-      key: "trigger"
+      key: 'trigger',
     };
 
     if (this.isContextmenuToShow()) {
       newChildProps.on.contextmenu = this.onContextmenu;
     } else {
-      newChildProps.on.contextmenu = this.createTwoChains("contextmenu");
+      newChildProps.on.contextmenu = this.createTwoChains('contextmenu');
     }
 
     if (this.isClickToHide() || this.isClickToShow()) {
@@ -674,9 +609,9 @@ export default {
       newChildProps.on.mousedown = this.onMousedown;
       newChildProps.on.touchstart = this.onTouchstart;
     } else {
-      newChildProps.on.click = this.createTwoChains("click");
-      newChildProps.on.mousedown = this.createTwoChains("mousedown");
-      newChildProps.on.touchstart = this.createTwoChains("onTouchstart");
+      newChildProps.on.click = this.createTwoChains('click');
+      newChildProps.on.mousedown = this.createTwoChains('mousedown');
+      newChildProps.on.touchstart = this.createTwoChains('onTouchstart');
     }
     if (this.isMouseEnterToShow()) {
       newChildProps.on.mouseenter = this.onMouseenter;
@@ -684,22 +619,22 @@ export default {
         newChildProps.on.mousemove = this.onMouseMove;
       }
     } else {
-      newChildProps.on.mouseenter = this.createTwoChains("mouseenter");
+      newChildProps.on.mouseenter = this.createTwoChains('mouseenter');
     }
     if (this.isMouseLeaveToHide()) {
       newChildProps.on.mouseleave = this.onMouseleave;
     } else {
-      newChildProps.on.mouseleave = this.createTwoChains("mouseleave");
+      newChildProps.on.mouseleave = this.createTwoChains('mouseleave');
     }
 
     if (this.isFocusToShow() || this.isBlurToHide()) {
       newChildProps.on.focus = this.onFocus;
       newChildProps.on.blur = this.onBlur;
     } else {
-      newChildProps.on.focus = this.createTwoChains("focus");
+      newChildProps.on.focus = this.createTwoChains('focus');
       newChildProps.on.blur = e => {
         if (e && (!e.relatedTarget || !contains(e.target, e.relatedTarget))) {
-          this.createTwoChains("blur")(e);
+          this.createTwoChains('blur')(e);
         }
       };
     }
@@ -720,12 +655,11 @@ export default {
     return portal
       ? cloneElement(trigger, {
           children: [
-            ...((trigger.componentOptions
-              ? trigger.componentOptions.children
-              : trigger.children) || []),
-            portal
-          ]
+            ...((trigger.componentOptions ? trigger.componentOptions.children : trigger.children) ||
+              []),
+            portal,
+          ],
         })
       : trigger;
-  }
+  },
 };

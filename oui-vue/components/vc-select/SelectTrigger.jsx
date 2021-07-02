@@ -1,33 +1,33 @@
-import classnames from "classnames";
-import raf from "raf";
-import Trigger from "../vc-trigger";
-import PropTypes from "../_util/vue-types";
-import DropdownMenu from "./DropdownMenu";
-import { isSingleMode, saveRef } from "./util";
-import BaseMixin from "../_util/BaseMixin";
-import { getListeners } from "../_util/props-util";
+import classnames from 'classnames';
+import raf from 'raf';
+import Trigger from '../vc-trigger';
+import PropTypes from '../_util/vue-types';
+import DropdownMenu from './DropdownMenu';
+import { isSingleMode, saveRef } from './util';
+import BaseMixin from '../_util/BaseMixin';
+import { getListeners } from '../_util/props-util';
 
 const BUILT_IN_PLACEMENTS = {
   bottomLeft: {
-    points: ["tl", "bl"],
+    points: ['tl', 'bl'],
     offset: [0, 4],
     overflow: {
       adjustX: 0,
-      adjustY: 1
-    }
+      adjustY: 1,
+    },
   },
   topLeft: {
-    points: ["bl", "tl"],
+    points: ['bl', 'tl'],
     offset: [0, -4],
     overflow: {
       adjustX: 0,
-      adjustY: 1
-    }
-  }
+      adjustY: 1,
+    },
+  },
 };
 
 export default {
-  name: "SelectTrigger",
+  name: 'SelectTrigger',
   mixins: [BaseMixin],
   props: {
     // onPopupFocus: PropTypes.func,
@@ -58,17 +58,17 @@ export default {
     backfillValue: PropTypes.any,
     menuItemSelectedIcon: PropTypes.any,
     dropdownRender: PropTypes.func,
-    ariaId: PropTypes.string
+    ariaId: PropTypes.string,
   },
   data() {
     return {
-      dropdownWidth: 0
+      dropdownWidth: 0,
     };
   },
   created() {
     this.rafInstance = null;
-    this.saveDropdownMenuRef = saveRef(this, "dropdownMenuRef");
-    this.saveTriggerRef = saveRef(this, "triggerRef");
+    this.saveDropdownMenuRef = saveRef(this, 'dropdownMenuRef');
+    this.saveTriggerRef = saveRef(this, 'triggerRef');
   },
 
   mounted() {
@@ -116,7 +116,7 @@ export default {
         dropdownMenuStyle,
         getDropdownPrefixCls,
         backfillValue,
-        menuItemSelectedIcon
+        menuItemSelectedIcon,
       } = this;
       const { menuSelect, menuDeselect, popupScroll } = getListeners(this);
       const props = this.$props;
@@ -132,20 +132,20 @@ export default {
           defaultActiveFirstOption,
           dropdownMenuStyle,
           backfillValue,
-          menuItemSelectedIcon
+          menuItemSelectedIcon,
         },
         on: {
           ...newProps.on,
           menuSelect,
           menuDeselect,
-          popupScroll
+          popupScroll,
         },
         directives: [
           {
-            name: "ant-ref",
-            value: this.saveDropdownMenuRef
-          }
-        ]
+            name: 'ant-ref',
+            value: this.saveDropdownMenuRef,
+          },
+        ],
       };
       const menuNode = <DropdownMenu {...dropdownMenuProps} />;
 
@@ -166,7 +166,7 @@ export default {
 
     getDropdownPrefixCls() {
       return `${this.prefixCls}-dropdown`;
-    }
+    },
   },
 
   render() {
@@ -184,41 +184,36 @@ export default {
       options,
       getPopupContainer,
       showAction,
-      empty
+      empty,
     } = $props;
-    const {
-      mouseenter,
-      mouseleave,
-      popupFocus,
-      dropdownVisibleChange
-    } = getListeners(this);
+    const { mouseenter, mouseleave, popupFocus, dropdownVisibleChange } = getListeners(this);
     const dropdownPrefixCls = this.getDropdownPrefixCls();
     const popupClassName = {
       [dropdownClassName]: !!dropdownClassName,
-      [`${dropdownPrefixCls}--${multiple ? "multiple" : "single"}`]: 1,
-      [`${dropdownPrefixCls}--empty`]: empty
+      [`${dropdownPrefixCls}--${multiple ? 'multiple' : 'single'}`]: 1,
+      [`${dropdownPrefixCls}--empty`]: empty,
     };
     const popupElement = this.getDropdownElement({
       props: {
         menuItems: options,
         multiple,
         inputValue,
-        visible
+        visible,
       },
       on: {
-        popupFocus
-      }
+        popupFocus,
+      },
     });
     let hideAction;
     if (disabled) {
       hideAction = [];
     } else if (isSingleMode($props) && !showSearch) {
-      hideAction = ["click"];
+      hideAction = ['click'];
     } else {
-      hideAction = ["blur"];
+      hideAction = ['blur'];
     }
     const popupStyle = { ...dropdownStyle };
-    const widthProp = dropdownMatchSelectWidth ? "width" : "minWidth";
+    const widthProp = dropdownMatchSelectWidth ? 'width' : 'minWidth';
     if (this.dropdownWidth) {
       popupStyle[widthProp] = `${this.dropdownWidth}px`;
     }
@@ -227,8 +222,8 @@ export default {
         ...$props,
         showAction: disabled ? [] : showAction,
         hideAction,
-        ref: "triggerRef",
-        popupPlacement: "bottomLeft",
+        ref: 'triggerRef',
+        popupPlacement: 'bottomLeft',
         builtinPlacements: BUILT_IN_PLACEMENTS,
         prefixCls: dropdownPrefixCls,
         popupTransitionName: this.getDropdownTransitionName(),
@@ -236,17 +231,17 @@ export default {
         popupVisible: visible,
         getPopupContainer,
         popupClassName: classnames(popupClassName),
-        popupStyle
+        popupStyle,
       },
       on: {
-        popupVisibleChange: dropdownVisibleChange
+        popupVisibleChange: dropdownVisibleChange,
       },
       directives: [
         {
-          name: "ant-ref",
-          value: this.saveTriggerRef
-        }
-      ]
+          name: 'ant-ref',
+          value: this.saveTriggerRef,
+        },
+      ],
     };
     if (mouseenter) {
       triggerProps.on.mouseenter = mouseenter;
@@ -260,5 +255,5 @@ export default {
         <template slot="popup">{popupElement}</template>
       </Trigger>
     );
-  }
+  },
 };

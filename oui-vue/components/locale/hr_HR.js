@@ -1,57 +1,57 @@
-import Pagination from "../vc-pagination/locale/hr_HR";
-import DatePicker from "../date-picker/locale/hr_HR";
-import TimePicker from "../time-picker/locale/hr_HR";
-import Calendar from "../calendar/locale/hr_HR";
+import Pagination from '../vc-pagination/locale/hr_HR';
+import DatePicker from '../date-picker/locale/hr_HR';
+import TimePicker from '../time-picker/locale/hr_HR';
+import Calendar from '../calendar/locale/hr_HR';
 
 export default {
-  locale: "hr",
+  locale: 'hr',
   Pagination,
   DatePicker,
   TimePicker,
   Calendar,
   global: {
-    placeholder: "Molimo označite"
+    placeholder: 'Molimo označite',
   },
   Table: {
-    filterTitle: "Filter meni",
-    filterConfirm: "OK",
-    filterReset: "Reset",
-    selectAll: "Označi trenutnu stranicu",
-    selectInvert: "Invertiraj trenutnu stranicu",
-    sortTitle: "Sortiraj"
+    filterTitle: 'Filter meni',
+    filterConfirm: 'OK',
+    filterReset: 'Reset',
+    selectAll: 'Označi trenutnu stranicu',
+    selectInvert: 'Invertiraj trenutnu stranicu',
+    sortTitle: 'Sortiraj',
   },
   Modal: {
-    okText: "OK",
-    cancelText: "Odustani",
-    justOkText: "OK"
+    okText: 'OK',
+    cancelText: 'Odustani',
+    justOkText: 'OK',
   },
   Popconfirm: {
-    okText: "OK",
-    cancelText: "Odustani"
+    okText: 'OK',
+    cancelText: 'Odustani',
   },
   Transfer: {
-    titles: ["", ""],
-    searchPlaceholder: "Pretraži ovdje",
-    itemUnit: "stavka",
-    itemsUnit: "stavke"
+    titles: ['', ''],
+    searchPlaceholder: 'Pretraži ovdje',
+    itemUnit: 'stavka',
+    itemsUnit: 'stavke',
   },
   Upload: {
-    uploading: "Upload u tijeku...",
-    removeFile: "Makni datoteku",
-    uploadError: "Greška kod uploada",
-    previewFile: "Pogledaj datoteku",
-    downloadFile: "Preuzmi datoteku"
+    uploading: 'Upload u tijeku...',
+    removeFile: 'Makni datoteku',
+    uploadError: 'Greška kod uploada',
+    previewFile: 'Pogledaj datoteku',
+    downloadFile: 'Preuzmi datoteku',
   },
   Empty: {
-    description: "Nema podataka"
+    description: 'Nema podataka',
   },
   Icon: {
-    icon: "ikona"
+    icon: 'ikona',
   },
   Text: {
-    edit: "uredi",
-    copy: "kopiraj",
-    copied: "kopiranje uspješno",
-    expand: "proširi"
-  }
+    edit: 'uredi',
+    copy: 'kopiraj',
+    copied: 'kopiranje uspješno',
+    expand: 'proširi',
+  },
 };

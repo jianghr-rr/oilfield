@@ -1,25 +1,25 @@
-import json2mq from "json2mq";
-import Vue from "vue";
-import ref from "vue-ref";
-import BaseMixin from "../../_util/BaseMixin";
-import { cloneElement } from "../../_util/vnode";
-import { getStyle, getListeners } from "../../_util/props-util";
-import InnerSlider from "./inner-slider";
-import defaultProps from "./default-props";
-import { canUseDOM } from "./utils/innerSliderUtils";
-const enquire = canUseDOM() && require("enquire.js");
+import json2mq from 'json2mq';
+import Vue from 'vue';
+import ref from 'vue-ref';
+import BaseMixin from '../../_util/BaseMixin';
+import { cloneElement } from '../../_util/vnode';
+import { getStyle, getListeners } from '../../_util/props-util';
+import InnerSlider from './inner-slider';
+import defaultProps from './default-props';
+import { canUseDOM } from './utils/innerSliderUtils';
+const enquire = canUseDOM() && require('enquire.js');
 
-Vue.use(ref, { name: "ant-ref" });
+Vue.use(ref, { name: 'ant-ref' });
 
 export default {
   props: {
-    ...defaultProps
+    ...defaultProps,
   },
   mixins: [BaseMixin],
   data() {
     this._responsiveMediaHandlers = [];
     return {
-      breakpoint: null
+      breakpoint: null,
     };
   },
   methods: {
@@ -41,11 +41,11 @@ export default {
       this.innerSlider.slickGoTo(slide, dontAnimate);
     },
     slickPause() {
-      this.innerSlider.pause("paused");
+      this.innerSlider.pause('paused');
     },
     slickPlay() {
-      this.innerSlider.handleAutoPlay("play");
-    }
+      this.innerSlider.handleAutoPlay('play');
+    },
   },
   // handles responsive breakpoints
   beforeMount() {
@@ -67,7 +67,7 @@ export default {
         } else {
           bQuery = json2mq({
             minWidth: breakpoints[index - 1] + 1,
-            maxWidth: breakpoint
+            maxWidth: breakpoint,
           });
         }
         // when not using server side rendering
@@ -97,12 +97,10 @@ export default {
     let settings;
     let newProps;
     if (this.breakpoint) {
-      newProps = this.responsive.filter(
-        resp => resp.breakpoint === this.breakpoint
-      );
+      newProps = this.responsive.filter(resp => resp.breakpoint === this.breakpoint);
       settings =
-        newProps[0].settings === "unslick"
-          ? "unslick"
+        newProps[0].settings === 'unslick'
+          ? 'unslick'
           : { ...this.$props, ...newProps[0].settings };
     } else {
       settings = { ...this.$props };
@@ -110,29 +108,23 @@ export default {
 
     // force scrolling by one if centerMode is on
     if (settings.centerMode) {
-      if (
-        settings.slidesToScroll > 1 &&
-        process.env.NODE_ENV !== "production"
-      ) {
+      if (settings.slidesToScroll > 1 && process.env.NODE_ENV !== 'production') {
         console.warn(
-          `slidesToScroll should be equal to 1 in centerMode, you are using ${settings.slidesToScroll}`
+          `slidesToScroll should be equal to 1 in centerMode, you are using ${settings.slidesToScroll}`,
         );
       }
       settings.slidesToScroll = 1;
     }
     // force showing one slide and scrolling by one if the fade mode is on
     if (settings.fade) {
-      if (settings.slidesToShow > 1 && process.env.NODE_ENV !== "production") {
+      if (settings.slidesToShow > 1 && process.env.NODE_ENV !== 'production') {
         console.warn(
-          `slidesToShow should be equal to 1 when fade is true, you're using ${settings.slidesToShow}`
+          `slidesToShow should be equal to 1 when fade is true, you're using ${settings.slidesToShow}`,
         );
       }
-      if (
-        settings.slidesToScroll > 1 &&
-        process.env.NODE_ENV !== "production"
-      ) {
+      if (settings.slidesToScroll > 1 && process.env.NODE_ENV !== 'production') {
         console.warn(
-          `slidesToScroll should be equal to 1 when fade is true, you're using ${settings.slidesToScroll}`
+          `slidesToScroll should be equal to 1 when fade is true, you're using ${settings.slidesToScroll}`,
         );
       }
       settings.slidesToShow = 1;
@@ -145,35 +137,22 @@ export default {
     // Children may contain false or null, so we should filter them
     // children may also contain string filled with spaces (in certain cases where we use jsx strings)
     children = children.filter(child => {
-      if (typeof child === "string") {
+      if (typeof child === 'string') {
         return !!child.trim();
       }
       return !!child;
     });
 
     // rows and slidesPerRow logic is handled here
-    if (
-      settings.variableWidth &&
-      (settings.rows > 1 || settings.slidesPerRow > 1)
-    ) {
-      console.warn(
-        `variableWidth is not supported in case of rows > 1 or slidesPerRow > 1`
-      );
+    if (settings.variableWidth && (settings.rows > 1 || settings.slidesPerRow > 1)) {
+      console.warn(`variableWidth is not supported in case of rows > 1 or slidesPerRow > 1`);
       settings.variableWidth = false;
     }
     const newChildren = [];
     let currentWidth = null;
-    for (
-      let i = 0;
-      i < children.length;
-      i += settings.rows * settings.slidesPerRow
-    ) {
+    for (let i = 0; i < children.length; i += settings.rows * settings.slidesPerRow) {
       const newSlide = [];
-      for (
-        let j = i;
-        j < i + settings.rows * settings.slidesPerRow;
-        j += settings.slidesPerRow
-      ) {
+      for (let j = i; j < i + settings.rows * settings.slidesPerRow; j += settings.slidesPerRow) {
         const row = [];
         for (let k = j; k < j + settings.slidesPerRow; k += 1) {
           if (settings.variableWidth && getStyle(children[k])) {
@@ -184,13 +163,13 @@ export default {
             cloneElement(children[k], {
               key: 100 * i + 10 * j + k,
               attrs: {
-                tabIndex: -1
+                tabIndex: -1,
               },
               style: {
                 width: `${100 / settings.slidesPerRow}%`,
-                display: "inline-block"
-              }
-            })
+                display: 'inline-block',
+              },
+            }),
           );
         }
         newSlide.push(<div key={10 * i + j}>{row}</div>);
@@ -199,15 +178,15 @@ export default {
         newChildren.push(
           <div key={i} style={{ width: currentWidth }}>
             {newSlide}
-          </div>
+          </div>,
         );
       } else {
         newChildren.push(<div key={i}>{newSlide}</div>);
       }
     }
 
-    if (settings === "unslick") {
-      const className = "regular slider " + (this.className || "");
+    if (settings === 'unslick') {
+      const className = 'regular slider ' + (this.className || '');
       return <div class={className}>{newChildren}</div>;
     } else if (newChildren.length <= settings.slidesToShow) {
       settings.unslick = true;
@@ -216,17 +195,17 @@ export default {
       props: {
         ...settings,
         children: newChildren,
-        __propsSymbol__: Symbol()
+        __propsSymbol__: Symbol(),
       },
       on: getListeners(this),
       directives: [
         {
-          name: "ant-ref",
-          value: this.innerSliderRefHandler
-        }
+          name: 'ant-ref',
+          value: this.innerSliderRefHandler,
+        },
       ],
-      scopedSlots: this.$scopedSlots
+      scopedSlots: this.$scopedSlots,
     };
     return <InnerSlider {...sliderProps} />;
-  }
+  },
 };

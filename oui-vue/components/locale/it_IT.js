@@ -1,56 +1,56 @@
-import Pagination from "../vc-pagination/locale/it_IT";
-import DatePicker from "../date-picker/locale/it_IT";
-import TimePicker from "../time-picker/locale/it_IT";
-import Calendar from "../calendar/locale/it_IT";
+import Pagination from '../vc-pagination/locale/it_IT';
+import DatePicker from '../date-picker/locale/it_IT';
+import TimePicker from '../time-picker/locale/it_IT';
+import Calendar from '../calendar/locale/it_IT';
 
 export default {
-  locale: "it",
+  locale: 'it',
   Pagination,
   DatePicker,
   TimePicker,
   Calendar,
   global: {
-    placeholder: "Selezionare"
+    placeholder: 'Selezionare',
   },
   Table: {
-    filterTitle: "Menù Filtro",
-    filterConfirm: "OK",
-    filterReset: "Reset",
-    selectAll: "Seleziona pagina corrente",
-    selectInvert: "Inverti selezione nella pagina corrente",
-    sortTitle: "Ordina"
+    filterTitle: 'Menù Filtro',
+    filterConfirm: 'OK',
+    filterReset: 'Reset',
+    selectAll: 'Seleziona pagina corrente',
+    selectInvert: 'Inverti selezione nella pagina corrente',
+    sortTitle: 'Ordina',
   },
   Modal: {
-    okText: "OK",
-    cancelText: "Annulla",
-    justOkText: "OK"
+    okText: 'OK',
+    cancelText: 'Annulla',
+    justOkText: 'OK',
   },
   Popconfirm: {
-    okText: "OK",
-    cancelText: "Annulla"
+    okText: 'OK',
+    cancelText: 'Annulla',
   },
   Transfer: {
-    searchPlaceholder: "Cerca qui",
-    itemUnit: "elemento",
-    itemsUnit: "elementi"
+    searchPlaceholder: 'Cerca qui',
+    itemUnit: 'elemento',
+    itemsUnit: 'elementi',
   },
   Upload: {
-    uploading: "Caricamento...",
-    removeFile: "Rimuovi il file",
-    uploadError: "Errore di caricamento",
-    previewFile: "Anteprima file",
-    downloadFile: "Download file"
+    uploading: 'Caricamento...',
+    removeFile: 'Rimuovi il file',
+    uploadError: 'Errore di caricamento',
+    previewFile: 'Anteprima file',
+    downloadFile: 'Download file',
   },
   Empty: {
-    description: "Nessun dato"
+    description: 'Nessun dato',
   },
   Icon: {
-    icon: "icona"
+    icon: 'icona',
   },
   Text: {
-    edit: "modifica",
-    copy: "copia",
-    copied: "copia effettuata",
-    expand: "espandi"
-  }
+    edit: 'modifica',
+    copy: 'copia',
+    copied: 'copia effettuata',
+    expand: 'espandi',
+  },
 };

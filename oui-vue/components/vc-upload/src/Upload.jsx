@@ -1,8 +1,8 @@
-import PropTypes from "../../_util/vue-types";
-import { initDefaultProps, getListeners } from "../../_util/props-util";
-import BaseMixin from "../../_util/BaseMixin";
-import AjaxUpload from "./AjaxUploader";
-import IframeUpload from "./IframeUploader";
+import PropTypes from '../../_util/vue-types';
+import { initDefaultProps, getListeners } from '../../_util/props-util';
+import BaseMixin from '../../_util/BaseMixin';
+import AjaxUpload from './AjaxUploader';
+import IframeUpload from './IframeUploader';
 
 function empty() {}
 
@@ -28,18 +28,18 @@ const uploadProps = {
   withCredentials: PropTypes.bool,
   supportServerRender: PropTypes.bool,
   openFileDialogOnClick: PropTypes.bool,
-  transformFile: PropTypes.func
+  transformFile: PropTypes.func,
 };
 export default {
-  name: "Upload",
+  name: 'Upload',
   mixins: [BaseMixin],
   inheritAttrs: false,
   props: initDefaultProps(uploadProps, {
-    componentTag: "span",
-    prefixCls: "rc-upload",
+    componentTag: 'span',
+    prefixCls: 'rc-upload',
     data: {},
     headers: {},
-    name: "file",
+    name: 'file',
     multipart: false,
     // onReady: empty,
     // onStart: empty,
@@ -49,11 +49,11 @@ export default {
     multiple: false,
     beforeUpload: empty,
     withCredentials: false,
-    openFileDialogOnClick: true
+    openFileDialogOnClick: true,
   }),
   data() {
     return {
-      Component: null
+      Component: null,
     };
   },
   mounted() {
@@ -61,49 +61,41 @@ export default {
       if (this.supportServerRender) {
         this.setState(
           {
-            Component: this.getComponent()
+            Component: this.getComponent(),
           },
           () => {
-            this.$emit("ready");
-          }
+            this.$emit('ready');
+          },
         );
       }
     });
   },
   methods: {
     getComponent() {
-      return typeof File !== "undefined" ? AjaxUpload : IframeUpload;
+      return typeof File !== 'undefined' ? AjaxUpload : IframeUpload;
     },
     abort(file) {
       this.$refs.uploaderRef.abort(file);
-    }
+    },
   },
 
   render() {
     const componentProps = {
       props: {
-        ...this.$props
+        ...this.$props,
       },
       on: getListeners(this),
-      ref: "uploaderRef",
-      attrs: this.$attrs
+      ref: 'uploaderRef',
+      attrs: this.$attrs,
     };
     if (this.supportServerRender) {
       const ComponentUploader = this.Component;
       if (ComponentUploader) {
-        return (
-          <ComponentUploader {...componentProps}>
-            {this.$slots.default}
-          </ComponentUploader>
-        );
+        return <ComponentUploader {...componentProps}>{this.$slots.default}</ComponentUploader>;
       }
       return null;
     }
     const ComponentUploader = this.getComponent();
-    return (
-      <ComponentUploader {...componentProps}>
-        {this.$slots.default}
-      </ComponentUploader>
-    );
-  }
+    return <ComponentUploader {...componentProps}>{this.$slots.default}</ComponentUploader>;
+  },
 };

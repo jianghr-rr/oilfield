@@ -1,4 +1,4 @@
-import raf from "raf";
+import raf from 'raf';
 
 let id = 0;
 const ids = {};
