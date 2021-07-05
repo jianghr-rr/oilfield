@@ -8,7 +8,8 @@
     "site": "node --max_old_space_size=4096 scripts/run.js _site",
     "copy": "node scripts/run.js copy-html",
     "prettier": "prettier -c --write '**/*'",
-    "pretty-quick": "pretty-quick"
+    "pretty-quick": "pretty-quick",
+    "server": "node server/index.js"
   },
   "peerDependencies": {
     "vue": ">=2.6.0",
