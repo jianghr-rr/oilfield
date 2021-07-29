@@ -1,5 +1,5 @@
 // eslint-disable-next-line
-import { UserLayout, BasicLayout, RouteView, BlankLayout, PageView } from '@/layouts'
+import { UserLayout, BasicLayout, RouteView, BlankLayout, PageView, OilView } from '@/layouts'
 import { bxAnaalyse } from '@/core/icons'
 
 export const asyncRouterMap = [
@@ -42,6 +42,23 @@ export const asyncRouterMap = [
             name: 'TestWork',
             component: () => import('@/views/dashboard/TestWork'),
             meta: { title: '测试功能', keepAlive: true, permission: [ 'dashboard' ] }
+          }
+        ]
+      },
+
+      // oil
+      {
+        path: '/oil',
+        name: 'oil',
+        component: OilView,
+        redirect: '/oil/homepage',
+        meta: { title: '油田', keepAlive: true, icon: bxAnaalyse, permission: [ 'dashboard' ] },
+        children: [
+          {
+            path: '/oil/homepage',
+            name: 'OilHomepage',
+            component: () => import(/* webpackChunkName: "oil" */ '@/views/result/Success'),
+            meta: { title: '首页', keepAlive: false, hiddenHeaderContent: true, permission: [ 'result' ] }
           }
         ]
       },

@@ -7,6 +7,8 @@ import App from './App.vue'
 import router from './router'
 import store from './store/'
 import { VueAxios } from './utils/request'
+import Oui from 'oui-vue/lib/'
+import 'oui-vue/lib/style.js'
 
 // mock
 // WARNING: `mockjs` NOT SUPPORT `IE` PLEASE DO NOT USE IN `production` ENV.
@@ -24,6 +26,7 @@ Vue.config.productionTip = false
 // mount axios Vue.$http and this.$http
 Vue.use(VueAxios)
 Vue.use(Dialog)
+Vue.use(Oui)
 
 new Vue({
   router,
