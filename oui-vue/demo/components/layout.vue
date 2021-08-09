@@ -144,7 +144,7 @@ export default {
       return docsMenu;
     },
     resetDocumentTitle(component, name, isCN) {
-      let titleStr = 'Ant Design Vue';
+      let titleStr = 'XinJiang Userty Design';
       if (component) {
         const { subtitle, title } = component;
         const componentName = isCN ? subtitle + ' ' + title : title;

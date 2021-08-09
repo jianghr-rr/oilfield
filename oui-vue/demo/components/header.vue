@@ -2,8 +2,6 @@
 import { isZhCN } from '../utils/util';
 import docsearch from 'docsearch.js';
 import packageInfo from '../../package.json';
-import logo from '../public/logo.svg';
-import antDesignVue from '../public/ant-design-vue.svg';
 
 export default {
   inject: {
@@ -57,9 +55,25 @@ export default {
     const path = this.$route.path;
     const selectedKeys = path === '/jobs/list-cn' ? ['jobs'] : ['components'];
     return (
-      <header id="header" class="header">
-        新疆油田
-      </header>
+      <div id="header" class="header">
+        <div class="header-left">
+          XinJiang Userty Design
+        </div>
+        <div class="header-right">
+          <router-link class="guide" to="/homepage/guide">
+            指南
+          </router-link>
+          <router-link class="theme" to="/homepage/theme">
+            主题
+          </router-link>
+          <router-link class="component" to="/homepage/component">
+            组件
+          </router-link>
+          <router-link class="resource" to="/homepage/resource">
+            设计资源
+          </router-link>
+        </div>
+      </div>
     );
   },
 };
@@ -71,34 +85,5 @@ export default {
   font-size: 24px;
   display: flex;
   align-items: center;
-}
-.adblock-banner {
-  position: relative;
-  z-index: 100;
-  min-width: 1000px;
-  padding: 16px;
-  line-height: 28px;
-  color: #8590a6;
-  text-align: center;
-  background-color: #ebebeb;
-}
-.close-icon {
-  position: absolute;
-  top: 15px;
-  right: 15px;
-}
-.global-notification {
-  text-align: center;
-  background: #001529;
-  padding: 20px 0;
-  font-size: 16px;
-  position: fixed;
-  bottom: 0;
-  width: 100%;
-  color: #fff;
-  z-index: 99;
-}
-.global-notification a {
-  color: #177ddc;
 }
 </style>

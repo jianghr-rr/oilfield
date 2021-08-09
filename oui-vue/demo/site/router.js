@@ -9,9 +9,7 @@ const routes = [
     path: '/components',
     component: Layout,
     props: route => {
-      console.log(route);
       const name = route.path.split('/components/')[1].split('/')[0];
-      console.log(name);
       return { name, showDemo: true };
     },
     children: demoRoutes,
@@ -28,10 +26,10 @@ const routes = [
     })),
   },
   {
-    path: '/',
+    path: '/docs',
     component: Layout,
     props: route => {
-      const name = route.path.split('/docs/vue/')[1].split('/')[0];
+      const name = route.path.split('/vue/')[1].split('/')[0];
       return { name, showApi: true };
     },
     children: [
@@ -64,7 +62,7 @@ const routes = [
       //     component: () => import('../vueDocs/introduce.en-US.md'),
       //   },
       {
-        path: 'docs/vue/introduce-cn',
+        path: '/vue/introduce-cn',
         component: () => import('../vueDocs/introduce.zh-CN.md'),
       },
       //   {
@@ -108,10 +106,11 @@ const routes = [
       //     component: () => import('../../CHANGELOG.zh-CN.md'),
       //   },
       // { path: '', redirect: '/vue/docs/introduce-cn/' },
-      { path: '', redirect: '/docs/vue/introduce-cn/' },
+      // { path: '', redirect: '/docs/vue/introduce-cn/' },
     ],
   },
-  // { path: '/*', redirect: '/docs/vue/introduce-cn/' },
+  ...otherRoutes,
+  // { path: '/*', redirect: '/homepage/guide' },
 ];
 
 export default new VueRouter({

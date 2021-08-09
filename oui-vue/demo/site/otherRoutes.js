@@ -1,56 +1,33 @@
-import UserLayout from '../layouts/UserLayout';
+import HompageLayout from '../layouts/HompageLayout';
 import BaseLayout from '../layouts/BaseLayout';
+
 export default [
   {
-    path: '/vip',
-
-    component: () => import('../views/vip.vue'),
-  },
-  {
-    path: '/jobs',
-    component: BaseLayout,
-    props: () => {
-      return { name: 'list-cn' };
-    },
+    path: '/homepage/',
+    component: HompageLayout,
     children: [
       {
-        path: '/jobs',
-        redirect: '/jobs/list-cn',
+        path: 'guide',
+        name: '指南',
+        component: () => import(/* webpackChunkName: "homepage.guide" */ '../views/guide/index.vue'),
       },
       {
-        path: '/jobs/list-cn',
-        name: 'list-cn',
-        component: () => import(/* webpackChunkName: "jobs" */ '../views/jobs.vue'),
+        path: 'theme',
+        name: '主题',
+        component: () => import(/* webpackChunkName: "homepage.theme" */ '../views/theme/index.vue'),
       },
+      {
+        path: 'component',
+        name: '组件',
+        component: () => import(/* webpackChunkName: "homepage.component" */ '../views/component/index.vue'),
+      },
+      {
+        path: 'resource',
+        name: '设计资源',
+        component: () => import(/* webpackChunkName: "homepage.resource" */ '../views/resource/index.vue'),
+      },
+      { path: '', redirect: 'guide' },
     ],
   },
-  {
-    path: '/user',
-    component: UserLayout,
-    children: [
-      {
-        path: '/user',
-        redirect: '/user/login',
-      },
-      {
-        path: '/user/login',
-        name: 'login',
-        component: () =>
-          import(
-            /* webpackChunkName: "user" */
-            '../views/user/login'
-          ),
-      },
-      {
-        path: '/user/register',
-        name: 'register',
-        component: () => import(/* webpackChunkName: "user" */ '../views/user/register'),
-      },
-      {
-        path: '/user/register-result',
-        name: 'register.result',
-        component: () => import(/* webpackChunkName: "user" */ '../views/user/register-result'),
-      },
-    ],
-  },
+  { path: '/*', redirect: '/homepage' },
 ];
