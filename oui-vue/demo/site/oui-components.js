@@ -9,7 +9,7 @@ import {
   //   Badge,
   //   Breadcrumb,
   //   Button,
-  //   Calendar,
+  Calendar,
   //   Card,
   //   Collapse,
   //   Carousel,
@@ -78,7 +78,8 @@ import {
 // Vue.prototype.$warning = Modal.warning;
 // Vue.prototype.$confirm = Modal.confirm;
 // Vue.prototype.$destroyAll = Modal.destroyAll;
-
+console.log('Alert:::', Alert);
+console.log('Calendar:::', Calendar);
 /* v1.1.3+ registration methods */
 // Vue.use(Base);
 // Vue.use(Affix);
@@ -90,7 +91,7 @@ Vue.use(Alert);
 // Vue.use(Badge);
 // Vue.use(Breadcrumb);
 // Vue.use(Button);
-// Vue.use(Calendar);
+Vue.use(Calendar);
 // Vue.use(Card);
 // Vue.use(Collapse);
 // Vue.use(Carousel);

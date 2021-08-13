@@ -38,7 +38,9 @@ module.exports = function(env) {
             options: {
               lessOptions: {
                 sourceMap: isDev,
-                modifyVars: {},
+                modifyVars: {
+                  'primary-color': '#990F0F'
+                },
                 javascriptEnabled: true,
               },
             },
@@ -76,7 +78,9 @@ module.exports = function(env) {
             options: {
               lessOptions: {
                 sourceMap: isDev,
-                modifyVars: {},
+                modifyVars: {
+                  'primary-color': '#990F0F'
+                },
                 javascriptEnabled: true,
               },
             },
@@ -117,7 +121,9 @@ module.exports = function(env) {
             options: {
               lessOptions: {
                 sourceMap: isDev,
-                modifyVars: {},
+                modifyVars: {
+                  'primary-color': '#990F0F'
+                },
                 javascriptEnabled: true,
               },
             },
@@ -154,7 +160,9 @@ module.exports = function(env) {
             options: {
               lessOptions: {
                 sourceMap: isDev,
-                modifyVars: {},
+                modifyVars: {
+                  'primary-color': '#990F0F'
+                },
                 javascriptEnabled: true,
               },
             },

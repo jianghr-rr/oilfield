@@ -11,7 +11,7 @@
             <router-link class="nav-link theme" to="/homepage/theme">
                 主题
             </router-link>
-            <router-link class="nav-link component" to="/homepage/component">
+            <router-link class="nav-link component" to="/vue/introduce-cn">
                 组件
             </router-link>
             <router-link class="nav-link resource" to="/homepage/resource">

@@ -249,13 +249,13 @@ export default {
   //   title: 'Steps',
   //   cols: 1,
   // },
-  // calendar: {
-  //   category: 'Components',
-  //   subtitle: '日历',
-  //   type: 'Data Display',
-  //   title: 'Calendar',
-  //   cols: 1,
-  // },
+  calendar: {
+    category: 'Components',
+    subtitle: '日历',
+    type: 'Data Display',
+    title: 'Calendar',
+    cols: 1,
+  },
   // datePicker: {
   //   category: 'Components',
   //   subtitle: '日期选择框',

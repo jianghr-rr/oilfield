@@ -1,7 +1,7 @@
 <script>
 import { enquireScreen } from 'enquire-js';
 import AllDemo from '../site/demo';
-import Header from './header';
+import Header from './hompageHeader';
 import Footer from './footer';
 // import Geektime from './geektime';
 import GeektimeAds from './geektime_ads';
@@ -333,11 +333,12 @@ export default {
                     ''
                   )}
                 </section>
-                <Footer ref="footer" isCN={isCN} />
               </a-col>
             </a-row>
           </div>
         </a-config-provider>
+
+        <Footer ref="footer" isCN={isCN} />
       </div>
     );
   },

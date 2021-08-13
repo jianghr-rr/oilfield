@@ -35,7 +35,7 @@ import { default as Alert } from './alert';
 
 // import { default as Button } from './button';
 
-// import { default as Calendar } from './calendar';
+import { default as Calendar } from './calendar';
 
 // import { default as Card } from './card';
 
@@ -155,7 +155,7 @@ const components = [
   // Badge,
   // Breadcrumb,
   // Button,
-  // Calendar,
+  Calendar,
   // Card,
   // Collapse,
   // Carousel,
@@ -246,7 +246,7 @@ export {
   // Badge,
   // Breadcrumb,
   // Button,
-  // Calendar,
+  Calendar,
   // Card,
   // Collapse,
   // Carousel,

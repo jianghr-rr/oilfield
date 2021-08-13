@@ -287,14 +287,14 @@ export default [
   //   path: 'steps-cn',
   //   component: () => import('../docs/steps/demo/index.vue'),
   // },
-  // {
-  //   path: 'calendar',
-  //   component: () => import('../docs/calendar/demo/index.vue'),
-  // },
-  // {
-  //   path: 'calendar-cn',
-  //   component: () => import('../docs/calendar/demo/index.vue'),
-  // },
+  {
+    path: 'calendar',
+    component: () => import('../docs/calendar/demo/index.vue'),
+  },
+  {
+    path: 'calendar-cn',
+    component: () => import('../docs/calendar/demo/index.vue'),
+  },
   // {
   //   path: 'date-picker',
   //   component: () => import('../docs/date-picker/demo/index.vue'),

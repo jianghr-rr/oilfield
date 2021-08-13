@@ -16,9 +16,9 @@ import './oui-components';
 import demoBox from '../components/demoBox';
 import demoContainer from '../components/demoContainer';
 import demoSort from '../components/demoSort';
-import Antd from 'ant-design-vue';
+import Antd from '../node_modules/ant-design-vue';
 import store from '../store/index.js';
-import 'ant-design-vue/dist/antd.css';
+import 'ant-design-vue/dist/antd.less';
 
 const mountedCallback = {
   install: Vue => {
@@ -29,7 +29,7 @@ const mountedCallback = {
     });
   },
 };
-
+console.log('Antd:::', Antd);
 Vue.use(Vuex);
 Vue.use(mountedCallback);
 Vue.use(VueClipboard);

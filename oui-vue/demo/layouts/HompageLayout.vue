@@ -19,10 +19,10 @@ export default {
     props: ['name'],
     beforeCreate() {},
     methods: {
-        mountedCallback() {
+      mountedCallback() {
         NProgress.done();
         document.documentElement.scrollTop = 0;
-        },
+      },
     },
 };
 </script>
