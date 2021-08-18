@@ -31,7 +31,7 @@ export default {
         }
     },
     mounted() {
-        console.log(this.logo);
+        // console.log(this.logo);
     },
     methods: {
     },

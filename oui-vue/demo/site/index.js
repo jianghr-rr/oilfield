@@ -1,5 +1,4 @@
 import 'babel-polyfill';
-// import './style.js';
 import './index.less';
 import 'nprogress/nprogress.css';
 import Vue from 'vue';
@@ -19,6 +18,7 @@ import demoSort from '../components/demoSort';
 import Antd from '../node_modules/ant-design-vue';
 import store from '../store/index.js';
 import 'ant-design-vue/dist/antd.less';
+import '../../components/style.js';
 
 const mountedCallback = {
   install: Vue => {
@@ -29,7 +29,7 @@ const mountedCallback = {
     });
   },
 };
-console.log('Antd:::', Antd);
+
 Vue.use(Vuex);
 Vue.use(mountedCallback);
 Vue.use(VueClipboard);

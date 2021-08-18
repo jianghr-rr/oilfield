@@ -61,89 +61,91 @@ export default {
     padding: 40px 0;
     display: flex;
   }
-  .ant-menu-inline, .ant-menu-vertical, .ant-menu-vertical-left {
-    border: none;
-  }
   .layout-left {
     box-shadow: 1px -2px 4px 0px #F2F2F2;
+
+    .ant-menu-inline, .ant-menu-vertical, .ant-menu-vertical-left {
+      border: none;
+    }
+
+    .ant-menu-inline > .ant-menu-submenu > .ant-menu-submenu-title,
+    .ant-menu-sub.ant-menu-inline > .ant-menu-item,
+    .ant-menu-vertical > .ant-menu-item,
+    .ant-menu-inline > .ant-menu-item {
+      height: 60px;
+      line-height: 60px;
+    }
+    .ant-menu-sub.ant-menu-inline > .ant-menu-item {
+      margin: 0;
+      padding-left: 80px !important;
+    }
+    .ant-menu-submenu-selected {
+      color: #990F0F;
+    }
+    .ant-menu:not(.ant-menu-horizontal) > .ant-menu-item-selected {
+      background: none;
+      color: #990F0F;
+      position: relative;
+      &::before {
+        content: ' ';
+        width: 100%;
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        border-bottom: 2px solid #990F0F;
+      }
+      &::after {
+        display: none;
+      }
+    }
+    .ant-menu:not(.ant-menu-horizontal) .ant-menu-sub .ant-menu-item-selected {
+      background: none;
+      color: #990F0F;
+      position: relative;
+      &::before {
+        content: ' ';
+        width: 100%;
+        position: absolute;
+        bottom: 0;
+        left: 80px;
+        border-bottom: 2px solid #990F0F;
+      }
+      &::after {
+        display: none;
+      }
+    }
+    // .ant-menu-item:hover,
+    // .ant-menu-item-active,
+    // .ant-menu:not(.ant-menu-inline) .ant-menu-submenu-open,
+    // .ant-menu-submenu-active, .ant-menu-submenu-title:hover {
+    //   color: #990F0F;
+    // }
+    .ant-menu-sub.ant-menu-inline {
+      position: relative;
+      padding: 2px 0;
+      &::before {
+        content: ' ';
+        width: 100%;
+        height: 3px;
+        position: absolute;
+        top: 0;
+        left: 0;
+        box-shadow: inset 0px 15px 10px -15px #F2F2F2;
+      }
+      &::after {
+        content: ' ';
+        width: 100%;
+        height: 3px;
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        box-shadow: inset 0px -5px 10px -3px #F2F2F2;
+      }
+      // box-shadow: 0px 0px -3px 0px #F2F2F2;
+    }
   }
   .layout-right {
     flex: 1;
     margin: 0 200px 0 60px;
-  }
-  .ant-menu-inline > .ant-menu-submenu > .ant-menu-submenu-title,
-  .ant-menu-sub.ant-menu-inline > .ant-menu-item,
-  .ant-menu-vertical > .ant-menu-item,
-  .ant-menu-inline > .ant-menu-item {
-    height: 60px;
-    line-height: 60px;
-  }
-  .ant-menu-sub.ant-menu-inline > .ant-menu-item {
-    margin: 0;
-    padding-left: 80px !important;
-  }
-  .ant-menu-submenu-selected {
-    color: #990F0F;
-  }
-  .ant-menu:not(.ant-menu-horizontal) > .ant-menu-item-selected {
-    background: none;
-    color: #990F0F;
-    position: relative;
-    &::before {
-      content: ' ';
-      width: 100%;
-      position: absolute;
-      bottom: 0;
-      left: 0;
-      border-bottom: 2px solid #990F0F;
-    }
-    &::after {
-      display: none;
-    }
-  }
-  .ant-menu:not(.ant-menu-horizontal) .ant-menu-sub .ant-menu-item-selected {
-    background: none;
-    color: #990F0F;
-    position: relative;
-    &::before {
-      content: ' ';
-      width: 100%;
-      position: absolute;
-      bottom: 0;
-      left: 80px;
-      border-bottom: 2px solid #990F0F;
-    }
-    &::after {
-      display: none;
-    }
-  }
-  // .ant-menu-item:hover,
-  // .ant-menu-item-active,
-  // .ant-menu:not(.ant-menu-inline) .ant-menu-submenu-open,
-  // .ant-menu-submenu-active, .ant-menu-submenu-title:hover {
-  //   color: #990F0F;
-  // }
-  .ant-menu-sub.ant-menu-inline {
-    position: relative;
-    padding: 2px 0;
-    &::before {
-      content: ' ';
-      width: 100%;
-      height: 3px;
-      position: absolute;
-      top: 0;
-      left: 0;
-      box-shadow: inset 0px 15px 10px -15px #F2F2F2;
-    }
-    &::after {
-      content: ' ';
-      width: 100%;
-      height: 3px;
-      position: absolute;
-      bottom: 0;
-      left: 0;
-      box-shadow: inset 0px -5px 10px -3px #F2F2F2;
-    }
-    // box-shadow: 0px 0px -3px 0px #F2F2F2;
   }
 </style>

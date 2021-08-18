@@ -1,12 +1,12 @@
 export default [
-  // {
-  //   path: 'avatar',
-  //   component: () => import('../docs/avatar/demo/index.vue'),
-  // },
-  // {
-  //   path: 'avatar-cn',
-  //   component: () => import('../docs/avatar/demo/index.vue'),
-  // },
+  {
+    path: 'avatar',
+    component: () => import('../docs/avatar/demo/index.vue'),
+  },
+  {
+    path: 'avatar-cn',
+    component: () => import('../docs/avatar/demo/index.vue'),
+  },
   // {
   //   path: 'statistic',
   //   component: () => import('../docs/statistic/demo/index.vue'),
@@ -31,22 +31,22 @@ export default [
   //   path: 'breadcrumb-cn',
   //   component: () => import('../docs/breadcrumb/demo/index.vue'),
   // },
-  // {
-  //   path: 'button',
-  //   component: () => import('../docs/button/demo/index.vue'),
-  // },
-  // {
-  //   path: 'button-cn',
-  //   component: () => import('../docs/button/demo/index.vue'),
-  // },
-  // {
-  //   path: 'card',
-  //   component: () => import('../docs/card/demo/index.vue'),
-  // },
-  // {
-  //   path: 'card-cn',
-  //   component: () => import('../docs/card/demo/index.vue'),
-  // },
+  {
+    path: 'button',
+    component: () => import('../docs/button/demo/index.vue'),
+  },
+  {
+    path: 'button-cn',
+    component: () => import('../docs/button/demo/index.vue'),
+  },
+  {
+    path: 'card',
+    component: () => import('../docs/card/demo/index.vue'),
+  },
+  {
+    path: 'card-cn',
+    component: () => import('../docs/card/demo/index.vue'),
+  },
   // {
   //   path: 'checkbox',
   //   component: () => import('../docs/checkbox/demo/index.vue'),
@@ -63,14 +63,14 @@ export default [
   //   path: 'grid-cn',
   //   component: () => import('../docs/grid/demo/index.vue'),
   // },
-  // {
-  //   path: 'icon',
-  //   component: () => import('../docs/icon/demo/index.vue'),
-  // },
-  // {
-  //   path: 'icon-cn',
-  //   component: () => import('../docs/icon/demo/index.vue'),
-  // },
+  {
+    path: 'icon',
+    component: () => import('../docs/icon/demo/index.vue'),
+  },
+  {
+    path: 'icon-cn',
+    component: () => import('../docs/icon/demo/index.vue'),
+  },
   // {
   //   path: 'input',
   //   component: () => import('../docs/input/demo/index.vue'),
@@ -95,22 +95,22 @@ export default [
   //   path: 'select-cn',
   //   component: () => import('../docs/select/demo/index.vue'),
   // },
-  // {
-  //   path: 'menu',
-  //   component: () => import('../docs/menu/demo/index.vue'),
-  // },
-  // {
-  //   path: 'menu-cn',
-  //   component: () => import('../docs/menu/demo/index.vue'),
-  // },
-  // {
-  //   path: 'pagination',
-  //   component: () => import('../docs/pagination/demo/index.vue'),
-  // },
-  // {
-  //   path: 'pagination-cn',
-  //   component: () => import('../docs/pagination/demo/index.vue'),
-  // },
+  {
+    path: 'menu',
+    component: () => import('../docs/menu/demo/index.vue'),
+  },
+  {
+    path: 'menu-cn',
+    component: () => import('../docs/menu/demo/index.vue'),
+  },
+  {
+    path: 'pagination',
+    component: () => import('../docs/pagination/demo/index.vue'),
+  },
+  {
+    path: 'pagination-cn',
+    component: () => import('../docs/pagination/demo/index.vue'),
+  },
   // {
   //   path: 'popconfirm',
   //   component: () => import('../docs/popconfirm/demo/index.vue'),
@@ -135,14 +135,14 @@ export default [
   //   path: 'radio-cn',
   //   component: () => import('../docs/radio/demo/index.vue'),
   // },
-  // {
-  //   path: 'rate',
-  //   component: () => import('../docs/rate/demo/index.vue'),
-  // },
-  // {
-  //   path: 'rate-cn',
-  //   component: () => import('../docs/rate/demo/index.vue'),
-  // },
+  {
+    path: 'rate',
+    component: () => import('../docs/rate/demo/index.vue'),
+  },
+  {
+    path: 'rate-cn',
+    component: () => import('../docs/rate/demo/index.vue'),
+  },
   // {
   //   path: 'tabs',
   //   component: () => import('../docs/tabs/demo/index.vue'),
@@ -151,14 +151,14 @@ export default [
   //   path: 'tabs-cn',
   //   component: () => import('../docs/tabs/demo/index.vue'),
   // },
-  // {
-  //   path: 'tag',
-  //   component: () => import('../docs/tag/demo/index.vue'),
-  // },
-  // {
-  //   path: 'tag-cn',
-  //   component: () => import('../docs/tag/demo/index.vue'),
-  // },
+  {
+    path: 'tag',
+    component: () => import('../docs/tag/demo/index.vue'),
+  },
+  {
+    path: 'tag-cn',
+    component: () => import('../docs/tag/demo/index.vue'),
+  },
   // {
   //   path: 'tooltip',
   //   component: () => import('../docs/tooltip/demo/index.vue'),
@@ -191,30 +191,30 @@ export default [
   //   path: 'collapse-cn',
   //   component: () => import('../docs/collapse/demo/index.vue'),
   // },
-  // {
-  //   path: 'notification',
-  //   component: () => import('../docs/notification/demo/index.vue'),
-  // },
-  // {
-  //   path: 'notification-cn',
-  //   component: () => import('../docs/notification/demo/index.vue'),
-  // },
-  // {
-  //   path: 'message',
-  //   component: () => import('../docs/message/demo/index.vue'),
-  // },
-  // {
-  //   path: 'message-cn',
-  //   component: () => import('../docs/message/demo/index.vue'),
-  // },
-  // {
-  //   path: 'spin',
-  //   component: () => import('../docs/spin/demo/index.vue'),
-  // },
-  // {
-  //   path: 'spin-cn',
-  //   component: () => import('../docs/spin/demo/index.vue'),
-  // },
+  {
+    path: 'notification',
+    component: () => import('../docs/notification/demo/index.vue'),
+  },
+  {
+    path: 'notification-cn',
+    component: () => import('../docs/notification/demo/index.vue'),
+  },
+  {
+    path: 'message',
+    component: () => import('../docs/message/demo/index.vue'),
+  },
+  {
+    path: 'message-cn',
+    component: () => import('../docs/message/demo/index.vue'),
+  },
+  {
+    path: 'spin',
+    component: () => import('../docs/spin/demo/index.vue'),
+  },
+  {
+    path: 'spin-cn',
+    component: () => import('../docs/spin/demo/index.vue'),
+  },
   // {
   //   path: 'switch',
   //   component: () => import('../docs/switch/demo/index.vue'),
@@ -255,14 +255,14 @@ export default [
   //   path: 'back-top-cn',
   //   component: () => import('../docs/back-top/demo/index.vue'),
   // },
-  // {
-  //   path: 'modal',
-  //   component: () => import('../docs/modal/demo/index.vue'),
-  // },
-  // {
-  //   path: 'modal-cn',
-  //   component: () => import('../docs/modal/demo/index.vue'),
-  // },
+  {
+    path: 'modal',
+    component: () => import('../docs/modal/demo/index.vue'),
+  },
+  {
+    path: 'modal-cn',
+    component: () => import('../docs/modal/demo/index.vue'),
+  },
   {
     path: 'alert',
     component: () => import('../docs/alert/demo/index.vue'),
@@ -279,14 +279,14 @@ export default [
   //   path: 'time-picker-cn',
   //   component: () => import('../docs/time-picker/demo/index.vue'),
   // },
-  // {
-  //   path: 'steps',
-  //   component: () => import('../docs/steps/demo/index.vue'),
-  // },
-  // {
-  //   path: 'steps-cn',
-  //   component: () => import('../docs/steps/demo/index.vue'),
-  // },
+  {
+    path: 'steps',
+    component: () => import('../docs/steps/demo/index.vue'),
+  },
+  {
+    path: 'steps-cn',
+    component: () => import('../docs/steps/demo/index.vue'),
+  },
   {
     path: 'calendar',
     component: () => import('../docs/calendar/demo/index.vue'),
@@ -319,30 +319,30 @@ export default [
   //   path: 'slider-cn',
   //   component: () => import('../docs/slider/demo/index.vue'),
   // },
-  // {
-  //   path: 'progress',
-  //   component: () => import('../docs/progress/demo/index.vue'),
-  // },
-  // {
-  //   path: 'progress-cn',
-  //   component: () => import('../docs/progress/demo/index.vue'),
-  // },
-  // {
-  //   path: 'timeline',
-  //   component: () => import('../docs/timeline/demo/index.vue'),
-  // },
-  // {
-  //   path: 'timeline-cn',
-  //   component: () => import('../docs/timeline/demo/index.vue'),
-  // },
-  // {
-  //   path: 'table',
-  //   component: () => import('../docs/table/demo/index.vue'),
-  // },
-  // {
-  //   path: 'table-cn',
-  //   component: () => import('../docs/table/demo/index.vue'),
-  // },
+  {
+    path: 'progress',
+    component: () => import('../docs/progress/demo/index.vue'),
+  },
+  {
+    path: 'progress-cn',
+    component: () => import('../docs/progress/demo/index.vue'),
+  },
+  {
+    path: 'timeline',
+    component: () => import('../docs/timeline/demo/index.vue'),
+  },
+  {
+    path: 'timeline-cn',
+    component: () => import('../docs/timeline/demo/index.vue'),
+  },
+  {
+    path: 'table',
+    component: () => import('../docs/table/demo/index.vue'),
+  },
+  {
+    path: 'table-cn',
+    component: () => import('../docs/table/demo/index.vue'),
+  },
   // {
   //   path: 'input-number',
   //   component: () => import('../docs/input-number/demo/index.vue'),
@@ -351,22 +351,22 @@ export default [
   //   path: 'input-number-cn',
   //   component: () => import('../docs/input-number/demo/index.vue'),
   // },
-  // {
-  //   path: 'transfer',
-  //   component: () => import('../docs/transfer/demo/index.vue'),
-  // },
-  // {
-  //   path: 'transfer-cn',
-  //   component: () => import('../docs/transfer/demo/index.vue'),
-  // },
-  // {
-  //   path: 'upload',
-  //   component: () => import('../docs/upload/demo/index.vue'),
-  // },
-  // {
-  //   path: 'upload-cn',
-  //   component: () => import('../docs/upload/demo/index.vue'),
-  // },
+  {
+    path: 'transfer',
+    component: () => import('../docs/transfer/demo/index.vue'),
+  },
+  {
+    path: 'transfer-cn',
+    component: () => import('../docs/transfer/demo/index.vue'),
+  },
+  {
+    path: 'upload',
+    component: () => import('../docs/upload/demo/index.vue'),
+  },
+  {
+    path: 'upload-cn',
+    component: () => import('../docs/upload/demo/index.vue'),
+  },
   // {
   //   path: 'tree',
   //   component: () => import('../docs/tree/demo/index.vue'),
@@ -391,14 +391,14 @@ export default [
   //   path: 'layout-cn',
   //   component: () => import('../docs/layout/demo/index.vue'),
   // },
-  // {
-  //   path: 'form',
-  //   component: () => import('../docs/form/demo/index.vue'),
-  // },
-  // {
-  //   path: 'form-cn',
-  //   component: () => import('../docs/form/demo/index.vue'),
-  // },
+  {
+    path: 'form',
+    component: () => import('../docs/form/demo/index.vue'),
+  },
+  {
+    path: 'form-cn',
+    component: () => import('../docs/form/demo/index.vue'),
+  },
   // {
   //   path: 'form-model',
   //   component: () => import('../docs/form-model/demo/index.vue'),

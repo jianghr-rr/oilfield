@@ -8,7 +8,7 @@ const rxTwoCNChar = /^[\u4e00-\u9fa5]{2}$/;
 const isTwoCNChar = rxTwoCNChar.test.bind(rxTwoCNChar);
 const props = buttonTypes();
 export default {
-  name: 'AButton',
+  name: 'OButton',
   inheritAttrs: false,
   __ANT_BUTTON: true,
   props,

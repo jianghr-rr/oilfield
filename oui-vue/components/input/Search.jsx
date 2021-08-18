@@ -10,7 +10,7 @@ import { getOptionProps, getComponentFromProp, getListeners } from '../_util/pro
 import { ConfigConsumerProps } from '../config-provider/configConsumerProps';
 
 export default {
-  name: 'AInputSearch',
+  name: 'OInputSearch',
   inheritAttrs: false,
   model: {
     prop: 'value',

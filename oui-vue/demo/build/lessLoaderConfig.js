@@ -40,6 +40,7 @@ module.exports = function(env) {
                 sourceMap: isDev,
                 modifyVars: {
                   'primary-color': '#990F0F'
+                  // 'o-primary-color': '#990F0F'
                 },
                 javascriptEnabled: true,
               },
@@ -80,6 +81,7 @@ module.exports = function(env) {
                 sourceMap: isDev,
                 modifyVars: {
                   'primary-color': '#990F0F'
+                  // 'o-primary-color': '#990F0F'
                 },
                 javascriptEnabled: true,
               },
@@ -123,6 +125,7 @@ module.exports = function(env) {
                 sourceMap: isDev,
                 modifyVars: {
                   'primary-color': '#990F0F'
+                  // 'o-primary-color': '#990F0F'
                 },
                 javascriptEnabled: true,
               },
@@ -162,6 +165,7 @@ module.exports = function(env) {
                 sourceMap: isDev,
                 modifyVars: {
                   'primary-color': '#990F0F'
+                  // 'o-primary-color': '#990F0F'
                 },
                 javascriptEnabled: true,
               },

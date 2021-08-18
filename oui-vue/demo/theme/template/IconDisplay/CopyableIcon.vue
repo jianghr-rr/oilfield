@@ -4,7 +4,7 @@
     v-clipboard:success="onCopied"
     :class="justCopied === type ? 'copied' : ''"
   >
-    <a-icon :type="type" :theme="theme" />
+    <o-icon :type="type" :theme="theme" />
     <span class="anticon-class">
       <a-badge :dot="isNew">
         {{ type }}
@@ -13,8 +13,8 @@
   </li>
 </template>
 <script>
-import { Badge } from 'ant-design-vue';
-import 'ant-design-vue/es/badge/style';
+import { Badge } from '../../../node_modules/ant-design-vue';
+// import 'ant-design-vue/es/badge/style';
 export default {
   components: {
     'a-badge': Badge,
@@ -25,8 +25,8 @@ export default {
     return {
       text:
         theme === 'outlined'
-          ? `<a-icon type="${type}" />`
-          : `<a-icon type="${type}" theme="${theme}" />`,
+          ? `<o-icon type="${type}" />`
+          : `<o-icon type="${type}" theme="${theme}" />`,
     };
   },
   methods: {

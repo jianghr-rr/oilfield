@@ -144,7 +144,7 @@ function renderIcon(h, locale, context) {
 }
 
 const Icon = {
-  name: 'AIcon',
+  name: 'OIcon',
   props: {
     tabIndex: PropTypes.number,
     type: PropTypes.string,

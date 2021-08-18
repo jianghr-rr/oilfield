@@ -2,8 +2,10 @@ import manifest from '@ant-design/icons/lib/manifest';
 import Category from './Category';
 import { FilledIcon, OutlinedIcon, TwoToneIcon } from './themeIcons';
 import categories from './fields';
-import { Radio } from 'ant-design-vue';
-import 'ant-design-vue/es/radio/style';
+import { Radio } from '../../../node_modules/ant-design-vue';
+// import 'ant-design-vue/es/radio/style';
+
+console.log('Radio:::', Radio);
 
 const IconDisplay = {
   cagetories: categories,
@@ -83,13 +85,13 @@ const IconDisplay = {
         <div style={{ display: 'flex', justifyContent: 'space-between' }}>
           <a-radio-group value={this.theme} onChange={this.handleChangeTheme} size="large">
             <a-radio-button value="outlined">
-              <a-icon component={OutlinedIcon} /> {this.$t('app.docs.components.icon.outlined')}
+              <o-icon component={OutlinedIcon} /> {this.$t('app.docs.components.icon.outlined')}
             </a-radio-button>
             <a-radio-button value="filled">
-              <a-icon component={FilledIcon} /> {this.$t('app.docs.components.icon.filled')}
+              <o-icon component={FilledIcon} /> {this.$t('app.docs.components.icon.filled')}
             </a-radio-button>
             <a-radio-button value="twoTone">
-              <a-icon component={TwoToneIcon} /> {this.$t('app.docs.components.icon.two-tone')}
+              <o-icon component={TwoToneIcon} /> {this.$t('app.docs.components.icon.two-tone')}
             </a-radio-button>
           </a-radio-group>
           <a-input-search

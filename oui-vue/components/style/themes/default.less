@@ -8,7 +8,7 @@
 @html-selector: html;
 
 // -------- Colors -----------
-@primary-color: @blue-6;
+@o-primary-color: @blue-6;
 @info-color: @blue-6;
 @success-color: @green-6;
 @processing-color: @blue-6;
@@ -21,18 +21,18 @@
 
 // Color used by default to control hover and active backgrounds and for
 // alert info backgrounds.
-@primary-1: color(~`colorPalette('@{primary-color}', 1) `); // replace tint(@primary-color, 90%)
-@primary-2: color(~`colorPalette('@{primary-color}', 2) `); // replace tint(@primary-color, 80%)
-@primary-3: color(~`colorPalette('@{primary-color}', 3) `); // unused
-@primary-4: color(~`colorPalette('@{primary-color}', 4) `); // unused
+@primary-1: color(~`colorPalette('@{o-primary-color}', 1) `); // replace tint(@o-primary-color, 90%)
+@primary-2: color(~`colorPalette('@{o-primary-color}', 2) `); // replace tint(@o-primary-color, 80%)
+@primary-3: color(~`colorPalette('@{o-primary-color}', 3) `); // unused
+@primary-4: color(~`colorPalette('@{o-primary-color}', 4) `); // unused
 @primary-5: color(
-  ~`colorPalette('@{primary-color}', 5) `
-); // color used to control the text color in many active and hover states, replace tint(@primary-color, 20%)
-@primary-6: @primary-color; // color used to control the text color of active buttons, don't use, use @primary-color
-@primary-7: color(~`colorPalette('@{primary-color}', 7) `); // replace shade(@primary-color, 5%)
-@primary-8: color(~`colorPalette('@{primary-color}', 8) `); // unused
-@primary-9: color(~`colorPalette('@{primary-color}', 9) `); // unused
-@primary-10: color(~`colorPalette('@{primary-color}', 10) `); // unused
+  ~`colorPalette('@{o-primary-color}', 5) `
+); // color used to control the text color in many active and hover states, replace tint(@o-primary-color, 20%)
+@primary-6: @o-primary-color; // color used to control the text color of active buttons, don't use, use @o-primary-color
+@primary-7: color(~`colorPalette('@{o-primary-color}', 7) `); // replace shade(@o-primary-color, 5%)
+@primary-8: color(~`colorPalette('@{o-primary-color}', 8) `); // unused
+@primary-9: color(~`colorPalette('@{o-primary-color}', 9) `); // unused
+@primary-10: color(~`colorPalette('@{o-primary-color}', 10) `); // unused
 
 // Base Scaffolding Variables
 // ---
@@ -54,7 +54,7 @@
 @heading-color-dark: fade(@white, 100%);
 @text-color-dark: fade(@white, 85%);
 @text-color-secondary-dark: fade(@white, 65%);
-@text-selection-bg: @primary-color;
+@text-selection-bg: @o-primary-color;
 @font-variant-base: tabular-nums;
 @font-feature-settings-base: 'tnum';
 @font-size-base: 14px;
@@ -87,7 +87,7 @@
 @iconfont-css-prefix: anticon;
 
 // LINK
-@link-color: @primary-color;
+@link-color: @o-primary-color;
 @link-hover-color: color(~`colorPalette('@{link-color}', 5) `);
 @link-active-color: color(~`colorPalette('@{link-color}', 7) `);
 @link-decoration: none;
@@ -119,7 +119,7 @@
 // Outline
 @outline-blur-size: 0;
 @outline-width: 2px;
-@outline-color: @primary-color;
+@outline-color: @o-primary-color;
 
 @background-color-light: hsv(0, 0, 98%); // background of header and selected item
 @background-color-base: hsv(0, 0, 96%); // Default grey background color
@@ -149,8 +149,8 @@
 @btn-primary-shadow: 0 2px 0 rgba(0, 0, 0, 0.045);
 @btn-text-shadow: 0 -1px 0 rgba(0, 0, 0, 0.12);
 
-@btn-primary-color: #fff;
-@btn-primary-bg: @primary-color;
+@btn-o-primary-color: #fff;
+@btn-primary-bg: @o-primary-color;
 
 @btn-default-color: @text-color;
 @btn-default-bg: @component-background;
@@ -186,7 +186,7 @@
 
 // Checkbox
 @checkbox-size: 16px;
-@checkbox-color: @primary-color;
+@checkbox-color: @o-primary-color;
 @checkbox-check-color: #fff;
 @checkbox-border-width: @border-width-base;
 
@@ -194,14 +194,14 @@
 @descriptions-bg: #fafafa;
 
 // Dropdown
-@dropdown-selected-color: @primary-color;
+@dropdown-selected-color: @o-primary-color;
 
 // Empty
 @empty-font-size: @font-size-base;
 
 // Radio
 @radio-size: 16px;
-@radio-dot-color: @primary-color;
+@radio-dot-color: @o-primary-color;
 
 // Radio buttons
 @radio-button-bg: @btn-default-bg;
@@ -416,7 +416,7 @@
 @menu-bg: @component-background;
 @menu-popup-bg: @component-background;
 @menu-item-color: @text-color;
-@menu-highlight-color: @primary-color;
+@menu-highlight-color: @o-primary-color;
 @menu-item-active-bg: @item-active-bg;
 @menu-item-active-border-width: 3px;
 @menu-item-group-title-color: @text-color-secondary;
@@ -433,7 +433,7 @@
 @menu-dark-arrow-color: #fff;
 @menu-dark-submenu-bg: #000c17;
 @menu-dark-highlight-color: #fff;
-@menu-dark-item-active-bg: @primary-color;
+@menu-dark-item-active-bg: @o-primary-color;
 @menu-dark-selected-item-icon-color: @white;
 @menu-dark-selected-item-text-color: @white;
 @menu-dark-item-hover-bg: transparent;
@@ -522,11 +522,11 @@
 // ---
 @tabs-card-head-background: @background-color-light;
 @tabs-card-height: 40px;
-@tabs-card-active-color: @primary-color;
+@tabs-card-active-color: @o-primary-color;
 @tabs-title-font-size: @font-size-base;
 @tabs-title-font-size-lg: @font-size-lg;
 @tabs-title-font-size-sm: @font-size-base;
-@tabs-ink-bar-color: @primary-color;
+@tabs-ink-bar-color: @o-primary-color;
 @tabs-bar-margin: 0 0 16px 0;
 @tabs-horizontal-margin: 0 32px 0 0;
 @tabs-horizontal-padding: 12px 16px;
@@ -535,7 +535,7 @@
 @tabs-vertical-padding: 8px 24px;
 @tabs-vertical-margin: 0 0 16px 0;
 @tabs-scrolling-size: 32px;
-@tabs-highlight-color: @primary-color;
+@tabs-highlight-color: @o-primary-color;
 @tabs-hover-color: @primary-5;
 @tabs-active-color: @primary-7;
 @tabs-card-gutter: 2px;
@@ -565,7 +565,7 @@
 @switch-sm-height: 16px;
 @switch-sm-checked-margin-left: -(@switch-sm-height - 3px);
 @switch-disabled-opacity: 0.4;
-@switch-color: @primary-color;
+@switch-color: @o-primary-color;
 @switch-shadow-color: fade(#00230b, 20%);
 
 // Pagination
@@ -605,12 +605,12 @@
 @slider-handle-background-color: @component-background;
 @slider-handle-color: @primary-3;
 @slider-handle-color-hover: @primary-4;
-@slider-handle-color-focus: tint(@primary-color, 20%);
-@slider-handle-color-focus-shadow: fade(@primary-color, 20%);
-@slider-handle-color-tooltip-open: @primary-color;
+@slider-handle-color-focus: tint(@o-primary-color, 20%);
+@slider-handle-color-focus-shadow: fade(@o-primary-color, 20%);
+@slider-handle-color-tooltip-open: @o-primary-color;
 @slider-handle-shadow: 0;
 @slider-dot-border-color: @border-color-split;
-@slider-dot-border-color-active: tint(@primary-color, 50%);
+@slider-dot-border-color-active: tint(@o-primary-color, 50%);
 @slider-disabled-color: @disabled-color;
 @slider-disabled-background-color: @component-background;
 
@@ -619,7 +619,7 @@
 @tree-title-height: 24px;
 @tree-child-padding: 18px;
 @tree-directory-selected-color: #fff;
-@tree-directory-selected-bg: @primary-color;
+@tree-directory-selected-bg: @o-primary-color;
 @tree-node-hover-bg: @item-hover-bg;
 @tree-node-selected-bg: @primary-2;
 
@@ -691,7 +691,7 @@
 @timeline-width: 2px;
 @timeline-color: @border-color-split;
 @timeline-dot-border-width: 2px;
-@timeline-dot-color: @primary-color;
+@timeline-dot-color: @o-primary-color;
 @timeline-dot-bg: @component-background;
 
 // Typography
