@@ -15,7 +15,6 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "oui-vue": "^1.0.0",
     "@antv/data-set": "^0.10.2",
     "ant-design-vue": "1.5.0-rc.6",
     "axios": "^0.19.0",
@@ -28,6 +27,7 @@
     "mockjs2": "1.0.8",
     "moment": "^2.24.0",
     "nprogress": "^0.2.0",
+    "oui-vue": "^1.0.0",
     "viser-vue": "^2.4.6",
     "vue": "^2.6.10",
     "vue-clipboard2": "^0.2.1",

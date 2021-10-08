@@ -136,6 +136,7 @@
     "xhr-mock": "^2.5.1"
   },
   "dependencies": {
+    "@ant-design/colors": "^3.2.1",
     "@ant-design/icons": "^2.1.1",
     "@ant-design/icons-vue": "^2.0.0",
     "add-dom-event-listener": "^1.0.2",
@@ -170,6 +171,7 @@
     "shallowequal": "^1.0.2",
     "umi-request": "^1.2.19",
     "vue-ref": "^1.0.4",
-    "warning": "^4.0.0"
+    "warning": "^4.0.0",
+    "webpack-theme-color-replacer": "^1.2.17"
   }
 }

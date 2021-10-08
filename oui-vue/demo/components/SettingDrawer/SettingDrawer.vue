@@ -171,12 +171,12 @@
 </template>
 
 <script>
-import { DetailList } from '@/components'
+import DetailList from '../DetailList'
 import SettingItem from './SettingItem'
-import config from '@/config/defaultSettings'
+import config from '../../config/defaultSettings'
 import { updateTheme, updateColorWeak, colorList } from './settingConfig'
-import { mixin, mixinDevice } from '@/utils/mixin'
-
+import { mixin, mixinDevice } from '../../utils/mixin'
+console.log('mixin', mixin);
 export default {
   components: {
     DetailList,

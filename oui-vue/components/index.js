@@ -128,7 +128,7 @@ import { default as Upload } from './upload';
 
 // import { default as version } from './version';
 
-// import { default as Drawer } from './drawer';
+import { default as Drawer } from './drawer';
 
 // import { default as Skeleton } from './skeleton';
 
@@ -199,7 +199,7 @@ const components = [
   Timeline,
   // Tooltip,
   Upload,
-  // Drawer,
+  Drawer,
   // Skeleton,
   // Comment,
   // // ColorPicker,

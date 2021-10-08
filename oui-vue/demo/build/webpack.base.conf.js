@@ -6,6 +6,7 @@ require('prismjs/components/prism-bash.min.js');
 require('prismjs/components/prism-json.min.js');
 require('prismjs/components/prism-diff.min.js');
 require('prismjs/components/prism-less.min.js');
+const createThemeColorReplacerPlugin = require('./plugin.config');
 const Token = require('markdown-it/lib/token');
 const HardSourceWebpackPlugin = require('hard-source-webpack-plugin');
 const cheerio = require('cheerio');
@@ -222,5 +223,6 @@ module.exports = {
     new VueLoaderPlugin(),
     new WebpackBar(),
     new HardSourceWebpackPlugin(),
+    createThemeColorReplacerPlugin(),
   ],
 };

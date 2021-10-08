@@ -16,6 +16,7 @@ import demoBox from '../components/demoBox';
 import demoContainer from '../components/demoContainer';
 import demoSort from '../components/demoSort';
 import Antd from '../node_modules/ant-design-vue';
+import bootstrap from '../core/bootstrap'
 import store from '../store/index.js';
 import 'ant-design-vue/dist/antd.less';
 import '../../components/style.js';
@@ -68,9 +69,12 @@ router.beforeEach((to, from, next) => {
   next();
 });
 
+console.log('bootstrap:::', bootstrap);
+
 new Vue({
   el: '#app',
   i18n,
   router,
   store,
+  created: bootstrap,
 });
