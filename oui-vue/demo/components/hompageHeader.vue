@@ -56,7 +56,6 @@ export default {
     font-size: 20px;
     font-family: "Source Han Sans CN";
     font-weight: 500;
-    color: #990F0F;
 }
 .header-right {
     flex: 1;
@@ -74,13 +73,8 @@ export default {
         color: #333333;
         padding: 0 35px;
         border-bottom: 2px solid #FFFFFF;
-        &:hover {
-            color: #990F0F;
-        }
     }
     .router-link-active {
-        color: #990F0F;
-        border-bottom: 2px solid #990F0F;
     }
 }
 </style>

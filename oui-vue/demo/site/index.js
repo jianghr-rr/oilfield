@@ -6,6 +6,7 @@ import Vuex from 'vuex';
 import i18n from './i18n';
 import VueRouter from 'vue-router';
 import VueClipboard from 'vue-clipboard2';
+import VueStorage from 'vue-ls'
 import NProgress from 'nprogress';
 import router from './router';
 import Md from '../components/md';
@@ -36,6 +37,11 @@ Vue.use(mountedCallback);
 Vue.use(VueClipboard);
 Vue.use(VueRouter);
 Vue.use(Antd);
+Vue.use(VueStorage, {
+  namespace: 'pro__', // key prefix
+  name: 'ls', // name variable Vue.[ls] or this.[$ls],
+  storage: 'local' 
+})
 Vue.component(Md.name, Md);
 Vue.component(Api.name, Api);
 Vue.component('demo-box', demoBox);

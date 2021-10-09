@@ -80,11 +80,11 @@ export default {
       padding-left: 80px !important;
     }
     .ant-menu-submenu-selected {
-      color: #990F0F;
+      // color: #990F0F;
     }
     .ant-menu:not(.ant-menu-horizontal) > .ant-menu-item-selected {
       background: none;
-      color: #990F0F;
+      // color: #990F0F;
       position: relative;
       &::before {
         content: ' ';
@@ -100,7 +100,6 @@ export default {
     }
     .ant-menu:not(.ant-menu-horizontal) .ant-menu-sub .ant-menu-item-selected {
       background: none;
-      color: #990F0F;
       position: relative;
       &::before {
         content: ' ';

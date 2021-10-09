@@ -49,7 +49,7 @@ export default {};
   font-size: 24px;
   font-family: 'Source Han Sans CN';
   font-weight: 400;
-  color: #990F0F;
+  // color: #990F0F;
   line-height: 24px;
 }
 .title-h2 {
@@ -58,7 +58,7 @@ export default {};
   font-size: 18px;
   font-family: 'Source Han Sans CN';
   font-weight: 400;
-  color: #990F0F;
+  // color: #990F0F;
   line-height: 18px;
 }
 .p-content {

@@ -10,7 +10,7 @@
 }
 
 html {
-  --antd-wave-shadow-color: @o-primary-color;
+  --antd-wave-shadow-color: @primary-color;
 }
 
 [ant-click-animating-without-extra-node='true']::after,
@@ -22,7 +22,7 @@ html {
   left: 0;
   display: block;
   border-radius: inherit;
-  box-shadow: 0 0 0 0 @o-primary-color;
+  box-shadow: 0 0 0 0 @primary-color;
   box-shadow: 0 0 0 0 var(--antd-wave-shadow-color);
   opacity: 0.2;
   animation: fadeEffect 2s @ease-out-circ, waveEffect 0.4s @ease-out-circ;
@@ -33,7 +33,7 @@ html {
 
 @keyframes waveEffect {
   100% {
-    box-shadow: 0 0 0 @o-primary-color;
+    box-shadow: 0 0 0 @primary-color;
     box-shadow: 0 0 0 @wave-animation-width var(--antd-wave-shadow-color);
   }
 }

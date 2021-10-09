@@ -4,7 +4,7 @@
       <router-view v-mountedCallback="mountedCallback" />
     </div>
     <Footer />
-    <setting-drawer v-if="true"></setting-drawer>
+    <setting-drawer></setting-drawer>
   </div>
 </template>
 

@@ -10,11 +10,7 @@ const mixin = {
     ...mapState({
       layoutMode: state => state.app.layout,
       navTheme: state => state.app.theme,
-      primaryColor: state => {
-        console.log('state:::', state);
-        // return state.app.color
-        return '#006699'
-      },
+      primaryColor: state => state.app.color,
       colorWeak: state => state.app.weak,
       fixedHeader: state => state.app.fixedHeader,
       fixSiderbar: state => state.app.fixSiderbar,
