@@ -193,7 +193,6 @@ export default {
 
   },
   mounted () {
-    console.log(this.primaryColor)
     updateTheme(this.primaryColor)
     if (this.colorWeak !== config.colorWeak) {
       updateColorWeak(this.colorWeak)

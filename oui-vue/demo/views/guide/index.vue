@@ -1,6 +1,6 @@
 <template>
   <div class="layout">
-    <div class="layout-left">
+    <div class="layout-left" :style="{'--color': themmeColor}">
       <a-menu mode="inline" :open-keys="openKeys" style="width: 256px" @openChange="onOpenChange">
         <a-sub-menu key="sub1">
           <span slot="title"><span>Userty Design</span></span>
@@ -38,7 +38,18 @@ export default {
     return {
       rootSubmenuKeys: ['sub1', 'sub2', 'sub4'],
       openKeys: ['sub1'],
+      themmeColor: this.$store.getters.color
     };
+  },
+  computed: {
+      getColor() {
+          return this.$store.getters.color
+      }
+  },
+  watch: {
+      getColor(val) {
+          this.themmeColor = val;
+      }
   },
   methods: {
     mountedCallback() {
@@ -92,7 +103,7 @@ export default {
         position: absolute;
         bottom: 0;
         left: 0;
-        border-bottom: 2px solid #990F0F;
+        border-bottom: 2px solid var(--color);
       }
       &::after {
         display: none;
@@ -107,7 +118,7 @@ export default {
         position: absolute;
         bottom: 0;
         left: 80px;
-        border-bottom: 2px solid #990F0F;
+        border-bottom: 2px solid var(--color);
       }
       &::after {
         display: none;

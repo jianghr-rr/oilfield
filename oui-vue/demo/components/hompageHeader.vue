@@ -2,7 +2,7 @@
     <div id="header" class="header">
         <div class="header-left">
             <img class="header-left-img" :src="logo" />
-            <span>XinJiang Userty Design</span>
+            <span :style="titleStyle">XinJiang Userty Design</span>
         </div>
         <div class="header-right">
             <router-link class="nav-link guide" to="/homepage/guide">
@@ -23,18 +23,43 @@
 
 <script>
 import logo from '../assets/logo.png';
+import { mixin } from '../utils/mixin'
 export default {
-    props: ['homepage-header'],
+    name: 'homepage-header',
+    mixins: [mixin],
     data() {
         return {
-            logo: logo
+            logo: logo,
+            titleStyle: {
+                color: this.$store.getters.color
+            }
         }
     },
+    computed: {
+        getColor() {
+            return this.$store.getters.color
+        }
+    },
+    watch: {
+        getColor(val) {
+            this.titleStyle = {
+                color: val
+            }
+        }
+    },
+    // created() {
+    //     this.titleStyle = {
+    //         color: this.getColor
+    //     }
+    // },
     mounted() {
-        // console.log(this.logo);
+        // console.log(this.primaryColor);
+        // this.titleStyle = {
+        //     color: this.primaryColor
+        // }
     },
     methods: {
-    },
+    }
 };
 </script>
 
@@ -75,6 +100,7 @@ export default {
         border-bottom: 2px solid #FFFFFF;
     }
     .router-link-active {
+        // border-bottom: 2px solid #990F0F;
     }
 }
 </style>
