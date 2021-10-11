@@ -1,7 +1,12 @@
 <template>
   <div class="layout">
     <div class="layout-left" :style="{'--color': themmeColor}">
-      <a-menu mode="inline" :open-keys="openKeys" style="width: 256px" @openChange="onOpenChange">
+      <a-menu
+        mode="inline"
+        :open-keys="openKeys"
+        style="width: 256px"
+        @openChange="onOpenChange"
+      >
         <a-sub-menu key="sub1">
           <span slot="title"><span>Userty Design</span></span>
           <a-menu-item key="1">
@@ -38,17 +43,25 @@ export default {
     return {
       rootSubmenuKeys: ['sub1', 'sub2', 'sub4'],
       openKeys: ['sub1'],
+      theme: this.$store.getters.theme,
       themmeColor: this.$store.getters.color
     };
   },
   computed: {
       getColor() {
-          return this.$store.getters.color
+        return this.$store.getters.color
+      },
+      getTheme() {
+        return this.$store.getters.theme
       }
   },
   watch: {
       getColor(val) {
-          this.themmeColor = val;
+        this.themmeColor = val;
+      },
+      getTheme(val) {
+        console.log('theme:::', val);
+        this.theme = val;
       }
   },
   methods: {

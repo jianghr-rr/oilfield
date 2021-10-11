@@ -174,7 +174,7 @@
 import DetailList from '../DetailList'
 import SettingItem from './SettingItem'
 import config from '../../config/defaultSettings'
-import { updateTheme, updateColorWeak, colorList } from './settingConfig'
+import { updateTheme, updateColorWeak, colorList, updateColorDark } from './settingConfig'
 import { mixin, mixinDevice } from '../../utils/mixin'
 console.log('mixin', mixin);
 export default {
@@ -217,6 +217,7 @@ export default {
     },
     handleMenuTheme (theme) {
       this.$store.dispatch('ToggleTheme', theme)
+      updateColorDark(theme)
     },
     doCopy () {
       // get current settings from mixin or this.$store.state.app, pay attention to the property name

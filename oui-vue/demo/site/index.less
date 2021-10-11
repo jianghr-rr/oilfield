@@ -1,5 +1,15 @@
 @import '../theme/static/index.less';
 // @import '../../components/vc-drawer/assets/index.less';
+#app {
+  &.app-dark {
+    filter: invert(1) hue-rotate(180deg);
+    img,
+    video,
+    .exclude {
+      filter: invert(1) hue-rotate(180deg);
+    }
+  }
+}
 .site {
   display: flex;
   flex-direction: column;
