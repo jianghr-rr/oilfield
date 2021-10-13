@@ -75,7 +75,7 @@ router.beforeEach((to, from, next) => {
   next();
 });
 
-console.log('bootstrap:::', bootstrap);
+// console.log('bootstrap:::', bootstrap);
 
 new Vue({
   el: '#app',
