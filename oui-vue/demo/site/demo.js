@@ -402,4 +402,10 @@ export default {
   //   type: 'Data Entry',
   //   title: 'ColorPicker (Beta)',
   // },
+  loginpage: {
+    category: 'Components',
+    subtitle: '登录页',
+    type: 'Other',
+    title: 'Login Page',
+  },
 };

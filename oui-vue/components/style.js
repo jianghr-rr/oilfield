@@ -61,3 +61,4 @@ import './drawer/style';
 // import './page-header/style';
 // import './form-model/style';
 // import './space/style';
+import './loginpage/style';

@@ -144,6 +144,8 @@ import { default as Drawer } from './drawer';
 // import { default as PageHeader } from './page-header';
 // import { default as Space } from './space';
 
+import { default as LoginPage } from './loginpage';
+
 const components = [
   // Base,
   // Affix,
@@ -209,6 +211,7 @@ const components = [
   // Descriptions,
   // PageHeader,
   // Space,
+  LoginPage
 ];
 
 const install = function(Vue) {
@@ -300,6 +303,7 @@ export {
   // Descriptions,
   // PageHeader,
   // Space,
+  LoginPage
 };
 
 export default {

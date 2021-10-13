@@ -511,4 +511,12 @@ export default [
   //   path: 'color-picker-cn',
   //   component: () => import('../docs/color-picker/demo/index.vue'),
   // },
+  {
+    path: 'loginpage',
+    component: () => import('../docs/loginpage/demo/index.vue'),
+  },
+  {
+    path: 'loginpage-cn',
+    component: () => import('../docs/loginpage/demo/index.vue'),
+  }
 ];
