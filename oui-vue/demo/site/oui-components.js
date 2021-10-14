@@ -55,7 +55,7 @@ import {
   Timeline,
   //   Tooltip,
   //   // Mention,
-  Upload,
+  Upload
   //   // version,
   //   Drawer,
   //   Skeleton,
@@ -68,7 +68,6 @@ import {
   //   PageHeader,
   //   Space,
   // ColorPicker,
-  LoginPage
 } from '../../components';
 
 Vue.prototype.$ommessage = message;
@@ -145,4 +144,3 @@ Vue.use(Upload);
 // Vue.use(PageHeader);
 // Vue.use(Space);
 // Vue.use(ColorPicker);
-Vue.use(LoginPage);
