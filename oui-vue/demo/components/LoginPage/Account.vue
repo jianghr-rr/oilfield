@@ -12,6 +12,7 @@
                             ]
                         }
                     ]"
+                    :maxLength="20"
                     placeholder="请输入用户名称"
                 >
                     <a-icon slot="prefix" type="user" style="color:rgba(0,0,0,.25); font-size: 24px;" />
@@ -29,6 +30,7 @@
                         }
                     ]"
                     type="password"
+                    :maxLength="20"
                     placeholder="请输入登录密码"
                 >
                     <a-icon slot="prefix" type="lock" style="color:rgba(0,0,0,.25); font-size: 24px;" />
@@ -43,10 +45,12 @@
                                 'verycode',
                                 {
                                     rules: [
-                                        {required: true, message: '请输入右侧校验码'}
+                                        {required: true, message: '请输入右侧校验码'},
+                                        {validator: handleVeryCode}
                                     ]
                                 }
                             ]"
+                            :maxLength="4"
                             placeholder="请输入右侧校验码"
                         />
                     </o-form-item>
@@ -57,7 +61,7 @@
             </div>
             <div class="oil-form-item oil-checkbox-line">
                 <div
-                    style="width: 350px;display: flex;align-items: center;user-select: none;cursor: pointer"
+                    style="display: flex;align-items: center;width: 100px;user-select: none;cursor: pointer;"
                     @click="isRemember = !isRemember"
                 >
                     <o-input type="checkbox" :checked="isRemember" />
@@ -69,6 +73,7 @@
                     type="primary"
                     html-type="submit"
                     style="width: 100%"
+                    :loading="loading"
                 >
                     登录
                 </o-button>
@@ -89,12 +94,25 @@
 <script>
 export default {
     name: 'Account',
+    props: {
+        loading: {
+            type: Boolean,
+            default: false
+        }
+    },
     data() {
         return {
             form: null,
             veryCode: null,
             isRemember: false
         };
+    },
+    watch: {
+        isRemember: {
+            handler(val) {
+                this.$emit('onRemember', val);
+            }
+        }
     },
     computed: {
         color() {
@@ -111,15 +129,29 @@ export default {
         handleSubmit(e) {
             e.preventDefault();
             this.form.validateFields((err, values) => {
-                console.log('ininin: ', values);
+                if (err) {
+                    this.getVeryCode();
+                }
                 if (!err) {
-                    console.log('Received values of form: ', values);
+                    this.$emit('onLogin', values);
                 }
             });
         },
         getVeryCode() {
             const veryCode = Math.random().toString(36).substr(2, 4);
             this.veryCode = veryCode.toUpperCase();
+        },
+        handleVeryCode(_rule, value, callback){
+            if (!value) {
+                callback();
+            }
+            if (value.length !== 4) {
+                callback('验证码错误');
+            }
+            if (value.length >=4 && value !== this.veryCode) {
+                callback('验证码错误');
+            }
+            callback();
         }
     },
 };

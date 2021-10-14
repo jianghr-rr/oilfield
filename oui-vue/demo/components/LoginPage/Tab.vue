@@ -2,6 +2,7 @@
     <div class="oil-tab">
         <div
             v-for="(item, index) in tabs"
+            v-if="!item.hidden"
             :class="['oil-tab-item', controlIndex === index ? 'selected' : '']"
             :key="item.value"
             @click="$emit('onChange', index)"
@@ -19,15 +20,8 @@ export default {
         controlIndex: {
             type: Number,
             default: 0
-        }
-    },
-    data() {
-        return {
-            tabs: [
-                {title: '账号登录', value: 'login'},
-                {title: '短信登录', value: 'register'}
-            ]
-        }
+        },
+        tabs: Array
     },
     computed: {
         color() {
