@@ -88,6 +88,10 @@ export default {
   .layout-left {
     box-shadow: 1px -2px 4px 0px #F2F2F2;
 
+    .ant-menu{
+      background: none;
+    }
+
     .ant-menu-inline, .ant-menu-vertical, .ant-menu-vertical-left {
       border: none;
     }

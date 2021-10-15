@@ -52,13 +52,24 @@ export default {
       sidebarHeight: document.documentElement.offsetHeight,
       isMobile: false,
       blocked,
+      themmeColor: this.$store.getters.color
     };
+  },
+  computed: {
+    getColor() {
+      console.log(this.$store.getters.color);
+      return this.$store.getters.color
+    }
   },
   watch: {
     '$route.path'() {
       this.store.setState({ currentSubMenu: [] });
       this.addSubMenu();
     },
+    getColor(val) {
+      console.log('val', val);
+      this.themmeColor = val;
+    }
   },
   beforeDestroy() {
     if (this.unsubscribe) {
@@ -142,6 +153,7 @@ export default {
         pagesKey.push({ name: k, url: `/docs/vue/${k}/`, title: isCN ? title : enTitle });
         docsMenu.push(<router-link to={`/docs/vue/${k}/`}>{isCN ? title : enTitle}</router-link>);
       });
+      console.log('docsMenu:::', docsMenu);
       return docsMenu;
     },
     resetDocumentTitle(component, name, isCN) {
@@ -172,12 +184,19 @@ export default {
     const titleMap = {};
     const menuConfig = {
       General: [],
-      Layout: [],
       Navigation: [],
       'Data Entry': [],
       'Data Display': [],
       Feedback: [],
       Other: [],
+    };
+    const menuConfigTitle = {
+      General: '通用',
+      Navigation: '导航',
+      'Data Entry': '数据录入',
+      'Data Display': '数据展示',
+      Feedback: '反馈',
+      Other: '其他组件',
     };
     const pagesKey = [];
     let prevPage = null;
@@ -194,11 +213,13 @@ export default {
     const docsMenu = this.getDocsMenu(isCN, pagesKey);
     const reName = name.replace(/-cn\/?$/, '');
     const MenuGroup = [];
+    let menuKey = '';
+    let defaultOpenKey = '';
     for (const [type, menus] of Object.entries(menuConfig)) {
       const MenuItems = [];
       sortBy(menus, ['title']).forEach(({ title, subtitle, key }) => {
         const linkValue = isCN
-          ? [<span>{title}</span>, <span class="chinese">{subtitle}</span>]
+          ? [<span class="chinese">{subtitle}</span>, '/' , <span>{title}</span>]
           : [<span>{title}</span>];
         if (isCN) {
           key = `${key}-cn`;
@@ -213,13 +234,26 @@ export default {
           subtitle,
           url: `/components/${key}/`,
         });
+        if(key == name) {
+          defaultOpenKey = type
+        }
         MenuItems.push(
-          <a-menu-item key={key}>
+          <a-menu-item
+            key={key}
+            selectedKeys={[name]}
+          >
             <router-link to={`/components/${key}/`}>{linkValue}</router-link>
           </a-menu-item>,
         );
       });
-      MenuGroup.push(<a-menu-item-group title={type}>{MenuItems}</a-menu-item-group>);
+      menuKey = type;
+      // console.log('type:::', type);
+      MenuGroup.push(
+        <a-sub-menu key={type}>
+          <div slot="title"><span>{menuConfigTitle[type]}</span>/<span>{type}</span></div>
+          {MenuItems}
+        </a-sub-menu>
+      );
     }
     pagesKey.forEach((item, index) => {
       if (item.name === name) {
@@ -235,7 +269,7 @@ export default {
     this.resetDocumentTitle(config, reName, isCN);
     const { isMobile, $route } = this;
     return (
-      <div class="page-wrapper">
+      <div class="page-wrapper" style={`--color: ${this.themmeColor}`}>
         <Header searchData={searchData} name={name} />
         <a-config-provider locale={locale}>
           <div class="main-wrapper">
@@ -255,18 +289,14 @@ export default {
                 >
                   <a-affix>
                     <section class="main-menu-inner">
-                      <Sponsors isCN={isCN} />
                       <a-menu
                         class="aside-container menu-site"
                         selectedKeys={[name]}
-                        defaultOpenKeys={['Components']}
+                        defaultOpenKeys={[defaultOpenKey]}
                         inlineIndent={40}
                         mode="inline"
                       >
-                        {docsMenu}
-                        <a-sub-menu title={`Components(${searchData.length})`} key="Components">
-                          {MenuGroup}
-                        </a-sub-menu>
+                        {MenuGroup}
                       </a-menu>
                     </section>
                   </a-affix>
@@ -346,3 +376,100 @@ export default {
   },
 };
 </script>
+
+<style lang="less" scope>
+  .main-menu-inner {
+    box-shadow: 1px -2px 4px 0px #F2F2F2;
+
+    .ant-menu{
+      background: none;
+    }
+
+    .ant-menu-inline, .ant-menu-vertical, .ant-menu-vertical-left {
+      border: none;
+    }
+
+    .ant-menu-inline > .ant-menu-submenu > .ant-menu-submenu-title,
+    .ant-menu-sub.ant-menu-inline > .ant-menu-item,
+    .ant-menu-vertical > .ant-menu-item,
+    .ant-menu-inline > .ant-menu-item {
+      height: 60px;
+      line-height: 60px;
+    }
+    .ant-menu-sub.ant-menu-inline > .ant-menu-item {
+      margin: 0;
+      padding-left: 80px !important;
+    }
+    .ant-menu-submenu-selected {
+      color: var(--color);
+      span {
+        color: var(--color);
+      }
+    }
+    .ant-menu:not(.ant-menu-horizontal) > .ant-menu-item-selected {
+      background: none;
+      // color: #990F0F;
+      span {
+        color: var(--color);
+      }
+      position: relative;
+      &::before {
+        content: ' ';
+        width: 100%;
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        border-bottom: 2px solid var(--color);
+      }
+      &::after {
+        display: none;
+      }
+    }
+    .ant-menu:not(.ant-menu-horizontal) .ant-menu-sub .ant-menu-item-selected {
+      background: none;
+      position: relative;
+      &::before {
+        content: ' ';
+        width: 100%;
+        position: absolute;
+        bottom: 0;
+        left: 80px;
+        border-bottom: 2px solid var(--color);
+      }
+      &::after {
+        display: none;
+      }
+    }
+    .ant-menu-item:hover,
+    .ant-menu-item-active,
+    .ant-menu:not(.ant-menu-inline) .ant-menu-submenu-open,
+    .ant-menu-submenu-active, .ant-menu-submenu-title:hover {
+      span {
+        color: var(--color);
+      }
+    }
+    .ant-menu-sub.ant-menu-inline {
+      position: relative;
+      padding: 2px 0;
+      &::before {
+        content: ' ';
+        width: 100%;
+        height: 3px;
+        position: absolute;
+        top: 0;
+        left: 0;
+        box-shadow: inset 0px 15px 10px -15px #F2F2F2;
+      }
+      &::after {
+        content: ' ';
+        width: 100%;
+        height: 3px;
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        box-shadow: inset 0px -5px 10px -3px #F2F2F2;
+      }
+      // box-shadow: 0px 0px -3px 0px #F2F2F2;
+    }
+  }
+</style>

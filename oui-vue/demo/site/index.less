@@ -1,13 +1,41 @@
 @import '../theme/static/index.less';
 // @import '../../components/vc-drawer/assets/index.less';
+.dark() {
+  filter: invert(1) hue-rotate(180deg);
+  img,
+  video,
+  .exclude {
+    filter: invert(1) hue-rotate(180deg);
+  }
+}
+
 #app {
   &.app-dark {
-    filter: invert(1) hue-rotate(180deg);
-    img,
-    video,
-    .exclude {
-      filter: invert(1) hue-rotate(180deg);
+    .dark;
+    .header {
+      background: #cccccc;
     }
+    .layout {
+      .layout-left {
+        background: #cccccc;
+      }
+    }
+    // .layout {
+    //   background: #000000;
+    //   .layout-left {
+    //     background: #323232;
+    //     box-shadow: none;
+    //     .ant-menu {
+    //       .dark
+    //     }
+    //   }
+    //   .layout-right {
+    //     .dark
+    //   }
+    // }
+    // .footer {
+    //   .dark
+    // }
   }
 }
 .site {
