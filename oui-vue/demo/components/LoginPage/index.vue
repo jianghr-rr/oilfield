@@ -8,11 +8,23 @@
         </div>
         <div class="oil-form">
             <div v-if="currIndex === 2" style="padding: 25px 0;">
-                <Register @onLogin="currIndex = 0" />
+                <Register
+                    :loading="loading"
+                    @onLogin="currIndex = 0"
+                    @onRegister="handleRegister"
+                    @onGetVeryCode="handleGetVeryCode"
+                />
             </div>
             <div v-else>
-                <Tab :controlIndex="currIndex" @onChange="handleTabChange" />
-                <Account v-if="currIndex === 0" @onRegister="currIndex = 2" @onMessage="currIndex = 1" />
+                <Tab :tabs="tabs" :controlIndex="currIndex" @onChange="handleTabChange" />
+                <Account
+                    v-if="currIndex === 0"
+                    :loading="loading"
+                    @onRegister="currIndex = 2"
+                    @onMessage="currIndex = 1"
+                    @onLogin="handleLogin"
+                    @onRemember="handleRemember"
+                />
                 <Message v-else-if="currIndex === 1" />
             </div>
         </div>
@@ -26,6 +38,12 @@ import Account from './Account.vue';
 import Message from './Message.vue';
 import Register from './Register.vue';
 
+const tabs = [
+    {title: '账号登录', value: 'login'},
+    {title: '短信登录', value: 'message'},
+    {title: '注册', value: 'register', hidden: true}
+];
+
 export default {
     name: 'LoginPage',
     components: {
@@ -34,10 +52,41 @@ export default {
         Message,
         Register
     },
+    props: {
+        type: {
+            type: String,
+            default: 'login'
+        },
+        loading: {
+            type: Boolean,
+            default: false
+        }
+    },
     data() {
         return {
             logo,
+            tabs,
             currIndex: 0
+        }
+    },
+    watch: {
+        type: {
+            handler(val) {
+                const currIndex = tabs.findIndex(item => item.value === val);
+                if (currIndex === -1) {
+                    this.currIndex = 0;
+                }
+                else {
+                    this.currIndex = currIndex;
+                }
+            },
+            immediate: true
+        },
+        currIndex: {
+            handler(val) {
+                const type = tabs[val].value;
+                this.$emit('onTypeChange', type);
+            }
         }
     },
     computed: {
@@ -48,6 +97,18 @@ export default {
     methods: {
         handleTabChange(val) {
             this.currIndex = val;
+        },
+        handleRegister(values) {
+            this.$emit('onRegister', values);
+        },
+        handleLogin(values) {
+            this.$emit('onLogin', values)
+        },
+        handleRemember(val) {
+            this.$emit('onRemember', val);
+        },
+        handleGetVeryCode(){
+            this.$emit('onGetVeryCode');
         }
     }
 };

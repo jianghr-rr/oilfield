@@ -1,33 +1,28 @@
+<cn>
+#### 基本用法
+使用 `<login-page/>` 标签创建页面。可以通过不同的回调函数来处理不同的登录事件。
+</cn>
+
+<us>
+#### Basic
+Use tag `<login-page/>` to create an login page. Different login events can be handled through different callback events themes.
+</us>
+
+```vue
 <template>
-    <div>
-        <login-page
-            :type="type"
-            :loading="loading"
-            @onRegister="handleRegister"
-            @onLogin="handleLogin"
-            @onRemember="handleRemember"
-            @onGetVeryCode="handleGetVeryCode"
-            @onTypeChange="handleTypeChange"
-        />
-        <basic />
-        <api>
-            <template slot="cn">
-                <CN />
-            </template>
-             <template slot="us">
-                <US />
-            </template>
-        </api>
-    </div>
+    <login-page
+        :type="type"
+        :loading="loading"
+        @onRegister="handleRegister"
+        @onLogin="handleLogin"
+        @onRemember="handleRemember"
+        @onGetVeryCode="handleGetVeryCode"
+        @onTypeChange="handleTypeChange"
+    />
 </template>
 
 
 <script>
-import LoginPage from '../../../components/LoginPage/index.vue';
-import Basic from './basic.md';
-import CN from '../index.zh-CN.md';
-import US from '../index.en-US.md';
-
 const TYPE = {
     LOGIN: 'login',
     MESSAGE: 'message',
@@ -35,25 +30,14 @@ const TYPE = {
 };
 
 export default {
-    name: 'LoginPageDemo',
-    category: 'Components',
-    cols: 1,
-    type: 'Other',
-    title: 'Login Page',
-    subtitle: '登录页',
-    components: {
-        LoginPage,
-        Basic,
-        CN,
-        US
-    },
     data() {
         return {
-            type: TYPE.LOGIN,
-            loading: false
+            type: TYPE.LOGIN, // page type
+            loading: false // btn loading
         }
     },
     methods: {
+        /* mock request */
         mockRequest() {
             return new Promise(resolve => {
                 setTimeout(() => {
@@ -61,6 +45,7 @@ export default {
                 }, 2000);
             });
         },
+        /* register handler */
         async handleRegister(values) {
             try {
                 this.loading = true;
@@ -72,6 +57,7 @@ export default {
                 this.loading = false;
             }
         },
+        /* login handler */
         async handleLogin(values) {
             try {
                 this.loading = true;
@@ -94,3 +80,5 @@ export default {
     }
 };
 </script>
+
+```
