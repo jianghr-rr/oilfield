@@ -5,22 +5,33 @@
 
 <us>
 #### Basic
-Use tag `<login-page/>` to create an login page. Different login events can be handled through different callback events themes.
+Use tag `<grid-form/>` to create an login page. Different login events can be handled through different callback events themes.
 </us>
+
+## 水平布局
 
 ```vue
 <template>
-    <grid-form :form="form" :options="options" :span="30" :gap="5">
-        <template v-for="{dataIndex} in options.items" :slot="dataIndex" slot-scope="{data}">
-            <!-- or other control -->
-            <o-input v-bind="data" v-decorator="data.decorator"></o-input>
-        </template>
-    </grid-form>
+    <div>
+        <grid-form :form="form" :options="options" :span="30" :gap="5">
+            <template v-for="{dataIndex} in options.items" :slot="dataIndex" slot-scope="{data}">
+                <!-- or other control -->
+                <o-input v-bind="data" v-decorator="data.decorator"></o-input>
+            </template>
+        </grid-form>
+        <o-button type="primary" @click="handleSubmit">submit</o-button>
+    </div>
 </template>
 
 <script>
+
+import GridForm from '../../../components/GridForm/index.vue';
+
 export default {
-    name: 'GridFormPage',
+    name: 'BaseForm',
+    components: {
+        GridForm
+    },
     data() {
         return {
             form: null,
@@ -135,6 +146,11 @@ export default {
             }
         }
     },
+    computed: {
+        color() {
+            return this.$store.getters.color;
+        }
+    },
     mounted() {
         this.$nextTick(() => {
             this.form = this.$form.createForm(this, {name: 'oil_form'});
@@ -151,4 +167,14 @@ export default {
     }
 }
 </script>
+
+<style lang="less" scoped>
+    .view-item{
+        margin-bottom: 20px;
+        box-sizing: border-box;
+        padding: 20px;
+        box-shadow:  0 2px 12px 0 rgba(0, 0, 0, 0.1);
+    }
+</style>
+
 ```

@@ -2,19 +2,28 @@
     <div class="container">
         <o-form
             class="oil-grid-form"
-            :style="{columnGap: `${gap || 0}%`}"
             :form="form"
             :name="options.name"
             @submit="handleSubmit"
         >
-            <div
-                class="oil-grid-form-item"
-                :style="{flexBasis: `${span || 100}%`}"
-                v-for="{control, ...item} in options.items" :key="item.dataIndex"
-            >
-                <o-form-item v-bind="item">
-                    <slot :name="item.dataIndex" :data="control"></slot>
-                </o-form-item>
+            <div class="oil-grid-form-row" >
+                <!-- grid left -->
+                <div v-if="!!options.logo" :class="['oil-grid-form-col', 'col-left']">
+                    <o-form-item v-bind="{...options.logo}">
+                        <slot name="logo" :data="(options.logo || {}).control"></slot>
+                    </o-form-item>
+                </div>
+                <!-- grit right -->
+                <div :class="['oil-grid-form-col', 'oil-grid-form-content', ...(!!options.logo ? ['col-right'] : [])]" :style="{columnGap: `${gap || 0}%`}">
+                    <o-form-item
+                        v-for="{control, ...item} in options.items"
+                        :key="item.dataIndex"
+                        v-bind="item"
+                        :style="{flexBasis: `${item.span ? item.span : (span || 100)}%`}"
+                    >
+                        <slot :name="item.dataIndex" :data="control"></slot>
+                    </o-form-item>
+                </div>
             </div>
         </o-form>
     </div>
@@ -65,14 +74,27 @@ export default {
 <style lang="less" scoped>
     .container{
         width: 100%;
+        position: relative;
         .oil-grid-form{
-            width: 100%;
-            display: flex;
-            flex-wrap: wrap;
-            &-item{
-
+            &-row{
+                display: flex;
+            }
+            &-col{
+                flex: 1;
+                &.col-left{
+                    flex-basis: 40%;
+                }
+              
+                &.col-right{
+                    flex-basis: 60%;
+                   
+                }
+            }
+            &-content{
+                width: 100%;
+                display: flex;
+                flex-wrap: wrap;
             }
         }
     }
-    
 </style>
