@@ -408,4 +408,16 @@ export default {
     type: 'Other',
     title: 'Login Page',
   },
+  stepform: {
+    category: 'Components',
+    subtitle: '分步表单',
+    type: 'Other',
+    title: 'Step Form',
+  },
+  gridform: {
+    category: 'Components',
+    subtitle: '多类型布局表单',
+    type: 'Other',
+    title: 'Grid Form',
+  },
 };

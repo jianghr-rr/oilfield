@@ -518,5 +518,21 @@ export default [
   {
     path: 'loginpage-cn',
     component: () => import('../docs/loginpage/demo/index.vue'),
+  },
+  {
+    path: 'stepform',
+    component: () => import('../docs/stepform/demo/index.vue'),
+  },
+  {
+    path: 'stepform-cn',
+    component: () => import('../docs/stepform/demo/index.vue'),
+  },
+  {
+    path: 'gridform',
+    component: () => import('../docs/gridform/demo/index.vue'),
+  },
+  {
+    path: 'gridform-cn',
+    component: () => import('../docs/gridform/demo/index.vue'),
   }
 ];

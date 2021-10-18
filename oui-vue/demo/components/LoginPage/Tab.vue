@@ -9,7 +9,7 @@
         >
             {{item.title}}
         </div>
-        <div class="oil-tab-bottomline" :style="{left: `${controlIndex * (100 / tabs.length)}%`, backgroundColor: color}"></div>
+        <div class="oil-tab-bottomline" :style="{left: `${controlIndex * (100 / (tabs.length - 1))}%`, backgroundColor: color}"></div>
     </div>
 </template>
 
