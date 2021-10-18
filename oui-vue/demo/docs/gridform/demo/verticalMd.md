@@ -1,10 +1,10 @@
 <cn>
-#### 基本用法
+#### 垂直布局
 使用 `<grid-form/>` 标签创建表单。可以通过不同的参数来快速配置不同的内容。
 </cn>
 
 <us>
-#### Basic
+#### vertical
 Use tag `<grid-form/>` to create an login page. Different login events can be handled through different callback events themes.
 </us>
 

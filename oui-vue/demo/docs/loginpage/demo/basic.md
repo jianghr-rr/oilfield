@@ -30,7 +30,7 @@ const TYPE = {
 };
 
 export default {
-    name: 'LoginPage',
+    name: 'OilLoginPage',
     data() {
         return {
             type: TYPE.LOGIN, // page type
