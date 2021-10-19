@@ -1,25 +1,29 @@
 <cn>
-#### 垂直布局
-最简单的一种布局方式。
+#### 其他自定义布局
+可以在`options`中单独设置`dataIndex`来实现占位效果;
+`span`属性既可以在`<grid-form />`中统一配置，也可以在`options`中单独配置。
 </cn>
 
 <us>
-#### vertical
-The simplest form of layout.
+#### Other
+The `span` attribute can be configured either uniformly in `< grid-form / >` or separately in `options` to achieve other configuration effects.
 </us>
 
-## 垂直布局
+## 其他自定义布局
 
 ```vue
 <template>
     <div>
-        <grid-form :form="form" :options="options" :span="100">
-            <template v-for="{dataIndex} in options.items" :slot="dataIndex" slot-scope="{data}">
+        <grid-form :form="form" :options="options" :span="30" :gap="5">
+            <template v-for="{dataIndex} in options.items" :slot="dataIndex" slot-scope="{data = {}}">
                 <!-- or other control -->
-                <o-input style="width: 600px;" size="large" v-bind="data" v-decorator="data.decorator"></o-input>
+                <div v-if="dataIndex === 'optionsArea'" class="option-area">
+                    <o-button size="large" @click="handleReset">重置</o-button>
+                    <o-button size="large" type="primary" @click="handleSubmit">提交</o-button>
+                </div>
+                <o-input v-else size="large" v-bind="data" v-decorator="data.decorator"></o-input>
             </template>
         </grid-form>
-        <o-button type="primary" @click="handleSubmit">submit</o-button>
     </div>
 </template>
 
@@ -28,7 +32,7 @@ The simplest form of layout.
 import GridForm from '../../../components/GridForm/index.vue';
 
 export default {
-    name: 'VerticalForm',
+    name: 'OtherForm',
     components: {
         GridForm
     },
@@ -39,100 +43,87 @@ export default {
                 name: 'oilForm',
                 items: [
                     {
-                        dataIndex: 'company',
-                        label: '公司名称',
+                        dataIndex: 'projectName',
+                        label: '项目名称',
                         control: {
                             decorator: [
-                                'company',
+                                'projectName',
                                 {
                                     rules: [
-                                        {required: true, message: '请输入公司名称'}
+                                        {required: true, message: '请输入项目名称'}
                                     ]
                                 }
                             ],
                             maxLength: 20,
-                            placeholder: '请输入公司名称'
+                            placeholder: '请输入项目名称'
                         }
                     },
                     {
-                        dataIndex: 'Invoice',
-                        label: '发票抬头',
+                        dataIndex: 'desc',
+                        label: '描述',
                         control: {
                             decorator: [
-                                'Invoice',
+                                'desc',
                                 {
                                     rules: [
-                                        {required: true, message: '请输入发票抬头'}
+                                        {required: true, message: '请输入描述'}
                                     ]
                                 }
                             ],
                             maxLength: 20,
-                            placeholder: '请输入发票抬头'
+                            placeholder: '请输入描述'
                         }
                     },
                     {
-                        dataIndex: 'bank',
-                        label: '开户银行',
+                        dataIndex: 'handover',
+                        label: '交接人',
                         control: {
                             decorator: [
-                                'bank',
+                                'handover',
                                 {
                                     rules: [
-                                        {required: true, message: '请输入开户银行'}
+                                        {required: true, message: '请输入交接人'}
                                     ]
                                 }
                             ],
                             maxLength: 20,
-                            placeholder: '请输入开户银行'
+                            placeholder: '请输入交接人'
                         }
                     },
                     {
-                        dataIndex: 'account',
-                        label: '银行账号',
+                        dataIndex: 'status',
+                        label: '状态',
                         control: {
                             decorator: [
-                                'account',
+                                'status',
                                 {
                                     rules: [
-                                        {required: true, message: '请输入银行账号'}
+                                        {required: true, message: '请输入状态'}
                                     ]
                                 }
                             ],
                             maxLength: 20,
-                            placeholder: '请输入银行账号'
+                            placeholder: '请输入状态'
                         }
                     },
                     {
-                        dataIndex: 'tel',
-                        label: '电话号码',
+                        dataIndex: 'date',
+                        label: '交接日期',
                         control: {
                             decorator: [
-                                'tel',
+                                'date',
                                 {
                                     rules: [
-                                        {required: true, message: '请输入电话号码'}
+                                        {required: true, message: '请输入交接日期'}
                                     ]
                                 }
                             ],
                             maxLength: 20,
-                            placeholder: '请输入电话号码'
+                            placeholder: '请输入交接日期'
                         }
                     },
                     {
-                        dataIndex: 'address',
-                        label: '单位地址',
-                        control: {
-                            decorator: [
-                                'address',
-                                {
-                                    rules: [
-                                        {required: true, message: '请输入单位地址'}
-                                    ]
-                                }
-                            ],
-                            maxLength: 20,
-                            placeholder: '请输入单位地址'
-                        }
+                        dataIndex: 'optionsArea'
                     }
                 ]
             }
@@ -144,6 +135,9 @@ export default {
         });
     },
     methods: {
+        handleReset() {
+            this.form.resetFields();
+        },
         handleSubmit() {
             this.form.validateFields((err, values) => {
                 if (!err) {
@@ -155,4 +149,14 @@ export default {
 }
 </script>
 
+<style>
+    .option-area{
+        position: relative;
+        top: 40px;
+        float: right;
+    }
+    button {
+        margin-left: 10px;
+    }
+</style>
 ```

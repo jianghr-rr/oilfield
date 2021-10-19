@@ -1,11 +1,12 @@
 <cn>
 #### 水平布局
-使用 `<grid-form/>` 标签创建表单。可以通过不同的参数来快速配置不同的内容。
+从堆叠到水平排列。
+使用单`span`、`gap`属性，就可以创建一个基本的栅格系统。
 </cn>
 
 <us>
 #### horizontal
-Use tag `<grid-form/>` to create an login page. Different login events can be handled through different callback events themes.
+Using a single `span` and `gap` attributes, you can create a basic grid system.
 </us>
 
 ## 水平布局
@@ -16,7 +17,7 @@ Use tag `<grid-form/>` to create an login page. Different login events can be ha
         <grid-form :form="form" :options="options" :span="30" :gap="5">
             <template v-for="{dataIndex} in options.items" :slot="dataIndex" slot-scope="{data}">
                 <!-- or other control -->
-                <o-input v-bind="data" v-decorator="data.decorator"></o-input>
+                <o-input size="large" v-bind="data" v-decorator="data.decorator"></o-input>
             </template>
         </grid-form>
         <o-button type="primary" @click="handleSubmit">submit</o-button>
@@ -28,7 +29,7 @@ Use tag `<grid-form/>` to create an login page. Different login events can be ha
 import GridForm from '../../../components/GridForm/index.vue';
 
 export default {
-    name: 'BaseForm',
+    name: 'HorizontalForm',
     components: {
         GridForm
     },
@@ -153,7 +154,7 @@ export default {
     },
     mounted() {
         this.$nextTick(() => {
-            this.form = this.$form.createForm(this, {name: 'oil_form'});
+            this.form = this.$form.createForm(this, {name: 'oil_form', onValuesChange: (props, values) => console.log('values: ', values)});
         });
     },
     methods: {

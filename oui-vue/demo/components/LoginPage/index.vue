@@ -45,7 +45,7 @@ const tabs = [
 ];
 
 export default {
-    name: 'LoginPage',
+    name: 'OLoginPage',
     components: {
         Tab,
         Account,

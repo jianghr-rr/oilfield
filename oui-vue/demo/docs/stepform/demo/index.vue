@@ -1,17 +1,18 @@
 <template>
-    <div>
-        <step-form />
+    <div class="container">
+        <h1>分布表单</h1>
+        <test />
     </div>
 </template>
 
 <script>
 
-import StepForm from '../../../components/StepForm/index.vue';
+import Test from './Test.vue';
 
 export default {
     name: 'StepFormPage',
     components: {
-        StepForm
+        Test
     }
 }
 </script>

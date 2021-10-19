@@ -1,14 +1,6 @@
 <template>
     <div>
-        <login-page
-            :type="type"
-            :loading="loading"
-            @onRegister="handleRegister"
-            @onLogin="handleLogin"
-            @onRemember="handleRemember"
-            @onGetVeryCode="handleGetVeryCode"
-            @onTypeChange="handleTypeChange"
-        />
+        <h1>登录页</h1>
         <basic />
         <api>
             <template slot="cn">
@@ -21,9 +13,7 @@
     </div>
 </template>
 
-
 <script>
-import LoginPage from '../../../components/LoginPage/index.vue';
 import Basic from './basic.md';
 import CN from '../index.zh-CN.md';
 import US from '../index.en-US.md';
@@ -35,14 +25,8 @@ const TYPE = {
 };
 
 export default {
-    name: 'LoginPageDemo',
-    category: 'Components',
-    cols: 1,
-    type: 'Other',
-    title: 'Login Page',
-    subtitle: '登录页',
+    name: 'LoginPageMain',
     components: {
-        LoginPage,
         Basic,
         CN,
         US

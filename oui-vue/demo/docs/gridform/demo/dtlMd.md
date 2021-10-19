@@ -1,11 +1,12 @@
 <cn>
 #### 左右栏布局
-使用 `<grid-form/>` 标签创建表单。可以通过不同的参数来快速配置不同的内容。
+左右并列布局。
+添加`left`配置可以快速添加左侧布局。
 </cn>
 
 <us>
 #### Basic
-Use tag `<grid-form/>` to create an login page. Different login events can be handled through different callback events themes.
+Add a `left` configuration to quickly add a left layout.
 </us>
 
 ## 左右栏布局
@@ -14,7 +15,7 @@ Use tag `<grid-form/>` to create an login page. Different login events can be ha
 <template>
     <div>
         <grid-form :form="form" :options="options" :span="45" :gap="5">
-            <template slot="logo" slot-scope="{data}">
+            <template slot="left" slot-scope="{data}">
                 <o-upload
                     v-decorator="data.decorator"
                     name="avatar"
@@ -36,7 +37,7 @@ Use tag `<grid-form/>` to create an login page. Different login events can be ha
             </template>
             <template v-for="{dataIndex} in options.items" :slot="dataIndex" slot-scope="{data}">
                 <!-- or other control -->
-                <o-input v-bind="data" v-decorator="data.decorator"></o-input>
+                <o-input size="large" v-bind="data" v-decorator="data.decorator"></o-input>
             </template>
         </grid-form>
         <o-button type="primary" @click="handleSubmit">submit</o-button>
@@ -65,7 +66,7 @@ export default {
             imageUrl: '',
             options:{
                 name: 'oilForm',
-                logo: {
+                left: {
                     dataIndex: 'logo',
                     label: '公司logo',
                     control: {

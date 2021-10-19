@@ -4,24 +4,23 @@
             class="oil-grid-form"
             :form="form"
             :name="options.name"
-            @submit="handleSubmit"
         >
             <div class="oil-grid-form-row" >
                 <!-- grid left -->
-                <div v-if="!!options.logo" :class="['oil-grid-form-col', 'col-left']">
-                    <o-form-item v-bind="{...options.logo}">
-                        <slot name="logo" :data="(options.logo || {}).control"></slot>
+                <div v-if="!!options.left" :class="['oil-grid-form-col', 'col-left']">
+                    <o-form-item v-bind="{...options.left}">
+                        <slot name="left" :data="(options.left || {}).control"></slot>
                     </o-form-item>
                 </div>
                 <!-- grit right -->
-                <div :class="['oil-grid-form-col', 'oil-grid-form-content', ...(!!options.logo ? ['col-right'] : [])]" :style="{columnGap: `${gap || 0}%`}">
+                <div :class="['oil-grid-form-col', 'oil-grid-form-content', ...(!!options.left ? ['col-right'] : [])]" :style="{columnGap: `${gap || 0}%`}">
                     <o-form-item
                         v-for="{control, ...item} in options.items"
                         :key="item.dataIndex"
                         v-bind="item"
                         :style="{flexBasis: `${item.span ? item.span : (span || 100)}%`}"
                     >
-                        <slot :name="item.dataIndex" :data="control"></slot>
+                        <slot :name="item.dataIndex" :data="{dataIndex: item.dataIndex, ...control}"></slot>
                     </o-form-item>
                 </div>
             </div>
@@ -33,7 +32,7 @@
 import logo from '../../assets/logo.png';
 
 export default {
-    name: 'GridForm',
+    name: 'OGridForm',
     props: {
         form: {
             type: Object,
@@ -61,11 +60,6 @@ export default {
     computed: {
         color() {
             return this.$store.getters.color;
-        }
-    },
-    methods: {
-        handleSubmit() {
-
         }
     }
 };
