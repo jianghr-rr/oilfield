@@ -1,3 +1,16 @@
+<cn>
+#### 用法
+步骤条 + 自定义内容。
+</cn>
+
+<us>
+#### Useage
+Step bar + custom content.
+</us>
+
+## 用例
+
+```vue
 <template>
     <step-form :steps="steps" :current="current">
         <!-- step1 -->
@@ -343,11 +356,11 @@
     }
 </script>
 
-<style lang="less" scoped>
+<style scoped>
     .avatar-uploader > .ant-upload {
         width: 128px;
         height: 128px;
-        }
+    }
     .ant-upload-select-picture-card i {
         font-size: 32px;
         color: #999;
@@ -362,58 +375,53 @@
         display: flex;
         flex-direction: column;
         align-items: center;
-        .title {
-            font-family: 'SourceHanSansCN-Normal', 'Source Han Sans CN Normal', 'Source Han Sans CN', sans-serif;
-            font-weight: 400;
-            font-style: normal;
-            font-size: 26px;
-            letter-spacing: 0.5px;
-            text-align: center;
-            margin: 20px 0 30px;
-        }
-        .btns {
-            button {
-                margin: 0 20px;
-                margin-bottom: 30px;
-            }
-        }
-        .card {
-            width: 363px;
-            min-height: 242px;
-            background-color: rgba(242, 242, 242, 1);
-            box-sizing: border-box;
-            padding: 20px 20px 20px 100px;
-            position: relative;
-            &-fix{
-                position: absolute;
-                left: 30px;
-                top: 40px;
-                width: 30px;
-                height: 30px;
-                border-radius: 50%;
-                font-family: 'SourceHanSansCN-Normal', 'Source Han Sans CN Normal', 'Source Han Sans CN', sans-serif;
-                font-weight: 400;
-                font-style: normal;
-                font-size: 20px;
-                color: #FFFFFF;
-                text-align: center;
-                line-height: 32px;
-            }
-            &-item {
-                font-family: 'SourceHanSansCN-Normal', 'Source Han Sans CN Normal', 'Source Han Sans CN', sans-serif;
-                font-weight: 400;
-                font-style: normal;
-                font-size: 12px;
-                margin: 20px 0;
-                label {
-                    &::after {
-                        content: ":";
-                    }
-                }
-                span {
-
-                }
-            }
-        }
+    }
+    .oil-step-success > .title {
+        font-family: 'SourceHanSansCN-Normal', 'Source Han Sans CN Normal', 'Source Han Sans CN', sans-serif;
+        font-weight: 400;
+        font-style: normal;
+        font-size: 26px;
+        letter-spacing: 0.5px;
+        text-align: center;
+        margin: 20px 0 30px;
+    }
+    .oil-step-success > .btns > button{
+        margin: 0 20px;
+        margin-bottom: 30px;
+    }
+    .oil-step-success > .card {
+        width: 363px;
+        min-height: 242px;
+        background-color: rgba(242, 242, 242, 1);
+        box-sizing: border-box;
+        padding: 20px 20px 20px 100px;
+        position: relative;
+    }
+    .oil-step-success .card-fix{
+        position: absolute;
+        left: 30px;
+        top: 40px;
+        width: 30px;
+        height: 30px;
+        border-radius: 50%;
+        font-family: 'SourceHanSansCN-Normal', 'Source Han Sans CN Normal', 'Source Han Sans CN', sans-serif;
+        font-weight: 400;
+        font-style: normal;
+        font-size: 20px;
+        color: #FFFFFF;
+        text-align: center;
+        line-height: 32px;
+    }
+    .oil-step-success .card-item{
+        font-family: 'SourceHanSansCN-Normal', 'Source Han Sans CN Normal', 'Source Han Sans CN', sans-serif;
+        font-weight: 400;
+        font-style: normal;
+        font-size: 12px;
+        margin: 20px 0;
+    }
+    .oil-step-success .card-item > label::after{
+        content: ":";
     }
 </style>
+
+```
