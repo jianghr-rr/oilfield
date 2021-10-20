@@ -1,161 +1,54 @@
 <template>
     <div class="container">
-        <h1 :style="{color}">多类型布局表单</h1>
-        <div class="view-item">
-            <grid-form :form="form" :options="options" :span="30" :gap="5">
-                <template v-for="{dataIndex} in options.items" :slot="dataIndex" slot-scope="{data}">
-                    <!-- or other control -->
-                    <o-input v-bind="data" v-decorator="data.decorator"></o-input>
-                </template>
-            </grid-form>
-            <o-button type="primary" @click="handleSubmit">submit</o-button>
-        </div>
-        <Basic />
+        <h1>多类型布局表单</h1>
+        <md :cn="md.cn" :us="md.us" />
+        <horizontal-md />
+        <dtl-md />
+        <vertical-md />
+        <other-md />
+        <api>
+            <template slot="cn">
+                <CN />
+            </template>
+             <template slot="us">
+                <US />
+            </template>
+        </api>
     </div>
 </template>
 
 <script>
+import BasicMd from './basic.md';
+import HorizontalMd from './horizontalMd.md';
+import DtlMd from './dtlMd.md';
+import VerticalMd from './verticalMd.md';
+import OtherMd from './Other.md';
 
-import GridForm from '../../../components/GridForm/index.vue';
-import Basic from './basic.md';
+import CN from '../index.zh-CN.md';
+import US from '../index.en-US.md';
 
 export default {
-    name: 'GridFormPage',
+    name: 'GridFormMain',
     components: {
-        GridForm,
-        Basic
+        BasicMd,
+        HorizontalMd,
+        DtlMd,
+        VerticalMd,
+        OtherMd,
+        CN,
+        US
     },
     data() {
         return {
-            form: null,
-            options:{
-                name: 'oilForm',
-                items: [
-                    {
-                        dataIndex: 'company',
-                        label: '公司名称',
-                        control: {
-                            decorator: [
-                                'company',
-                                {
-                                    rules: [
-                                        {required: true, message: '请输入公司名称'}
-                                    ]
-                                }
-                            ],
-                            maxLength: 20,
-                            placeholder: '请输入公司名称'
-                        }
-                    },
-                    {
-                        dataIndex: 'industry',
-                        label: '行业类型',
-                        control: {
-                            decorator: [
-                                'industry'
-                            ],
-                            maxLength: 20,
-                            placeholder: '请输入行业类型'
-                        }
-                    },
-                    {
-                        dataIndex: 'area',
-                        label: '所在区域',
-                        control: {
-                            decorator: [
-                                'area'
-                            ],
-                            maxLength: 20,
-                            placeholder: '请输入公司名称'
-                        }
-                    },
-                    {
-                        dataIndex: 'message',
-                        label: '邮编',
-                        control: {
-                            decorator: [
-                                'message'
-                            ],
-                            maxLength: 20,
-                            placeholder: '请输入邮编'
-                        }
-                    },
-                    {
-                        dataIndex: 'connector',
-                        label: '联系人',
-                        control: {
-                            decorator: [
-                                'connector'
-                            ],
-                            maxLength: 20,
-                            placeholder: '请输入联系人'
-                        }
-                    },
-                    {
-                        dataIndex: 'position',
-                        label: '职位',
-                        control: {
-                            decorator: [
-                                'position'
-                            ],
-                            maxLength: 20,
-                            placeholder: '请输入职位'
-                        }
-                    },
-                    {
-                        dataIndex: 'connector2',
-                        label: '联系人',
-                        control: {
-                            decorator: [
-                                'connector2'
-                            ],
-                            maxLength: 20,
-                            placeholder: '请输入联系人'
-                        }
-                    },
-                    {
-                        dataIndex: 'phone',
-                        label: '手机号码',
-                        control: {
-                            decorator: [
-                                'phone'
-                            ],
-                            maxLength: 20,
-                            placeholder: '请输入手机号码'
-                        }
-                    },
-                    {
-                        dataIndex: 'qq',
-                        label: 'QQ',
-                        control: {
-                            decorator: [
-                                'qq'
-                            ],
-                            maxLength: 20,
-                            placeholder: '请输入QQ'
-                        }
-                    }
-                ]
-            }
-        }
+            md: {
+                cn: "使用 `<grid-form/>` 标签创建表单。可以通过不同的参数来快速配置不同的内容。",
+                us: "Create a form using the `< grid-form/ >` tag. You can quickly configure different content with different parameters."
+            }  
+        };
     },
     computed: {
         color() {
             return this.$store.getters.color;
-        }
-    },
-    mounted() {
-        this.$nextTick(() => {
-            this.form = this.$form.createForm(this, {name: 'oil_form'});
-        });
-    },
-    methods: {
-        handleSubmit() {
-            this.form.validateFields((err, values) => {
-                if (!err) {
-                    this.$ommessage.info(`表单校验成功: ${JSON.stringify(values)}`);
-                }
-            });
         }
     }
 }

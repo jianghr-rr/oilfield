@@ -23,6 +23,8 @@ Use tag `<login-page/>` to create an login page. Different login events can be h
 
 
 <script>
+import LoginPage from '../../../components/LoginPage/index.vue';
+
 const TYPE = {
     LOGIN: 'login',
     MESSAGE: 'message',
@@ -30,6 +32,10 @@ const TYPE = {
 };
 
 export default {
+    name: 'LoginPageDemo',
+    components: {
+        LoginPage
+    },
     data() {
         return {
             type: TYPE.LOGIN, // page type
