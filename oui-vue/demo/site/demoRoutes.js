@@ -534,5 +534,13 @@ export default [
   {
     path: 'gridform-cn',
     component: () => import('../docs/gridform/demo/index.vue'),
+  },
+  {
+    path: 'searchtable',
+    component: () => import('../docs/searchtable/demo/index.vue'),
+  },
+  {
+    path: 'searchtable-cn',
+    component: () => import('../docs/searchtable/demo/index.vue'),
   }
 ];

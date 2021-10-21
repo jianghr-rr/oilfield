@@ -420,4 +420,10 @@ export default {
     type: 'Other',
     title: 'Grid Form',
   },
+  searchtable: {
+    category: 'Components',
+    subtitle: '查询表格',
+    type: 'Other',
+    title: 'Search Table',
+  },
 };
