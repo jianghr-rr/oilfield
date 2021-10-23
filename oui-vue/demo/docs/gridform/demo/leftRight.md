@@ -1,12 +1,11 @@
 <cn>
 #### 左右栏布局
 左右并列布局。
-添加`left`配置可以快速添加左侧布局。
 </cn>
 
 <us>
-#### Basic
-Add a `left` configuration to quickly add a left layout.
+#### Left and right column layout
+Left and right side-by-side layout.
 </us>
 
 ## 左右栏布局
@@ -45,11 +44,10 @@ Add a `left` configuration to quickly add a left layout.
                 </o-form-item>
             </o-col>
             <o-col :span="16">
-                <o-row>
+                <o-row :gutter="16">
                     <o-col :span="12">
                         <o-form-item label="详细地址">
                             <o-input
-                                :style="style.controlStyle"
                             	placeholder="请输入详细地址"
                                 v-decorator="[
                                     'address',
@@ -65,7 +63,6 @@ Add a `left` configuration to quickly add a left layout.
                     <o-col :span="12">
                         <o-form-item label="电话">
                             <o-input
-                                :style="style.controlStyle"
                                 placeholder="请输入电话"
                                 v-decorator="[
                                     'tel',
@@ -79,11 +76,10 @@ Add a `left` configuration to quickly add a left layout.
                         </o-form-item>
     				</o-col>
     			</o-row>
-                <o-row>
+                <o-row :gutter="16">
     				<o-col :span="12">
                         <o-form-item label="传真">
                             <o-input
-                                :style="style.controlStyle"
                                 placeholder="请输入传真"
                                 v-decorator="[
                                     'fax',
@@ -99,7 +95,6 @@ Add a `left` configuration to quickly add a left layout.
                     <o-col :span="12">
     					<o-form-item label="网址">
                             <o-input
-                                :style="style.controlStyle"
                                 placeholder="请输入网址"
                                 v-decorator="[
                                     'website',
@@ -114,12 +109,11 @@ Add a `left` configuration to quickly add a left layout.
     				</o-col>
     			</o-row>
                 <o-form-item label="可替换内容">
-                    <o-textarea style="width: 90%;" rows="4" placeholder="请输入可替换内容"/>
+                    <o-textarea rows="4" placeholder="请输入可替换内容"/>
                 </o-form-item>
             </o-col>
         </o-row>
     </o-form>
-    <o-button type="primary" @click="handleSubmit">提交</o-button>
 </template>
 
 <script>
@@ -130,19 +124,12 @@ function getBase64(img, callback) {
     reader.readAsDataURL(img);
 }
 
-const style = {
-    controlStyle: {
-        width: '80%'
-    }
-};
-
 const action = window.location.href;
 
 export default {
     name: 'Step1',
     data () {
         return {
-            style,
             form: null,
             loading: false,
             imageUrl: '',
@@ -178,13 +165,6 @@ export default {
                 this.$message.error('Image must smaller than 2MB!');
             }
             return isJpgOrPng && isLt2M;
-        },
-        handleSubmit() {
-            this.form.validateFields((err, values) => {
-                if (!err) {
-                    this.$ommessage.info(`表单校验成功: ${JSON.stringify(values)}`);
-                }
-            });
         }
     }
 }
@@ -194,7 +174,7 @@ export default {
     .avatar-uploader > .ant-upload {
         width: 128px;
         height: 128px;
-        }
+    }
     .ant-upload-select-picture-card i {
         font-size: 32px;
         color: #999;

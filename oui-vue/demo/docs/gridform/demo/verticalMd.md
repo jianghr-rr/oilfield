@@ -92,15 +92,18 @@ The simplest form of layout.
             />
        </o-form-item>
     </o-form>
-	<o-button style="display: block;margin: 0 auto;" type="primary" @click="handleSubmit">提交</o-button>
 </template>
 
 <script>
 
 const layout = {
-    labelCol: { span: 8 },
-    wrapperCol: { span: 16 },
+    labelCol: { span: 4 },
+    wrapperCol: { span: 20 },
+    style: {
+        width: '500px'
+    }
 };
+
 export default {
     name: 'VerticalForm',
     data() {
@@ -113,15 +116,6 @@ export default {
         this.$nextTick(() => {
             this.form = this.$form.createForm(this, {name: 'oil_form'});
         });
-    },
-    methods: {
-        handleSubmit() {
-            this.form.validateFields((err, values) => {
-                if (!err) {
-                    this.$ommessage.info(`表单校验成功: ${JSON.stringify(values)}`);
-                }
-            });
-        }
     }
 }
 </script>

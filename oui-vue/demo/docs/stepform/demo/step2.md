@@ -1,3 +1,15 @@
+<cn>
+#### Step2 步骤2
+</cn>
+
+<us>
+#### Step2
+</us>
+## 用例
+
+## Step2组件
+
+```vue
 <template>
     <div>
         <o-form style="max-width: 500px; margin: 40px auto 0;" v-bind="layout">
@@ -41,7 +53,14 @@ export default {
         values: {
             type: Object,
             default: () => {
-                return {};
+                return {
+                    batchCode: 'code_1',
+                    address: '北京市 xxx区 xxx街道',
+                    projectName: '新疆油田xxx开发',
+                    orderName: '张三',
+                    replaceItem: "可替代的内容balabalabala",
+                    orderDate: ['2020-12-12', '2021-01-31']
+                };
             }
         }
     },
@@ -77,3 +96,5 @@ export default {
     }
   }
 </style>
+
+```

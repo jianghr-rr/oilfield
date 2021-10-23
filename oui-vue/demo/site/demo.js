@@ -426,4 +426,10 @@ export default {
     type: 'Other',
     title: 'Search Table',
   },
+  cardlist: {
+    category: 'Components',
+    subtitle: '卡片列表',
+    type: 'Other',
+    title: 'Card List',
+  },
 };

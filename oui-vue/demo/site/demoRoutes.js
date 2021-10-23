@@ -542,5 +542,13 @@ export default [
   {
     path: 'searchtable-cn',
     component: () => import('../docs/searchtable/demo/index.vue'),
+  },
+  {
+    path: 'cardlist',
+    component: () => import('../docs/cardList/demo/index.vue'),
+  },
+  {
+    path: 'cardlist-cn',
+    component: () => import('../docs/cardList/demo/index.vue'),
   }
 ];

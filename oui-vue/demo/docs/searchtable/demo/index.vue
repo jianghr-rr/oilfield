@@ -1,12 +1,13 @@
-<<template>
+<template>
     <div>
         <md :cn="md.cn" :us="md.us" />
-        <test />
+        <basic-md />
+        <search-filters-md />
+        <search-list-md />
     </div>
 </template>
 
 <script>
-import Test from '../Test.vue';
 
 const md = {
   cn: `# Search Table 查询表格
@@ -26,10 +27,16 @@ and so on.
 `,
 };
 
+import BasicMd from './basic.md';
+import SearchFiltersMd from './searchFilters.md';
+import SearchListMd from './searchList.md';
+
 export default {
     name: 'SearchTablePage',
     components: {
-        Test
+        BasicMd,
+        SearchFiltersMd,
+        SearchListMd
     },
     data() {
         return {

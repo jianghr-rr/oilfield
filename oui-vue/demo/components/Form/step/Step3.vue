@@ -1,21 +1,28 @@
 <template>
   <div style="max-width: 500px; margin: 40px auto 0; text-align: center">
-    <result title="支付完成" :is-success="true" description="预计两小时内到账">
-        <p>付款账户: ant-design@alipay.com</p>
-        <p>收款账户: test@example.com</p>
-        <p>收款人姓名: Alex</p>
-        <p>转账金额: 500.00元</p>
-    </result>
-    <o-button type="primary" @click="doOnceAgin">再转一笔</o-button>
-    <o-button style="margin-left: 8px">查看账单</o-button>
+    <o-result title="交接完成" :is-success="true" description="将在指定时间内交接完毕">
+        <p>样品批号: {{values.batchCode}}</p>
+        <p>地址: {{values.address}}</p>
+        <p>项目名称: {{values.projectName}}</p>
+        <p>交接人姓名: {{values.orderName}}</p>
+        <p>交接日期: {{(values.orderDate || []).join('~')}}</p>
+    </o-result>
+    <o-button type="primary" @click="doOnceAgin">再处理一笔</o-button>
+    <o-button style="margin-left: 8px">查看信息</o-button>
   </div>
 </template>
 
 <script>
-import Result from './Result.vue'
 export default {
   name: 'Step3',
-  components: {Result},
+  props: {
+      values: {
+          type: Object,
+          default: () => {
+              return {};
+          }
+      }
+  },
   methods: {
     doOnceAgin () {
       this.$emit('finish')

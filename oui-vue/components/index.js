@@ -66,7 +66,7 @@ import { default as InputNumber } from './input-number';
 
 // import { default as Layout } from './layout';
 
-// import { default as List } from './list';
+import { default as List } from './list/index.jsx';
 
 // import { default as LocaleProvider } from './locale-provider';
 
@@ -138,7 +138,7 @@ import { default as Drawer } from './drawer';
 
 // import { default as Empty } from './empty';
 
-// import { default as Result } from './result';
+import { default as Result } from './result';
 
 // import { default as Descriptions } from './descriptions';
 // import { default as PageHeader } from './page-header';
@@ -171,7 +171,7 @@ const components = [
   Input,
   InputNumber,
   // Layout,
-  // List,
+  List,
   // LocaleProvider,
   Menu,
   // Mentions,
@@ -205,7 +205,7 @@ const components = [
   // // ColorPicker,
   // ConfigProvider,
   // Empty,
-  // Result,
+  Result,
   // Descriptions,
   // PageHeader,
   // Space,
@@ -262,7 +262,7 @@ export {
   Input,
   InputNumber,
   // Layout,
-  // List,
+  List,
   // LocaleProvider,
   Menu,
   // Mentions,
@@ -289,14 +289,14 @@ export {
   // TimePicker,
   Timeline,
   // Tooltip,
-  Upload
+  Upload,
   // Drawer,
   // Skeleton,
   // Comment,
   // // ColorPicker,
   // ConfigProvider,
   // Empty,
-  // Result,
+  Result,
   // Descriptions,
   // PageHeader,
   // Space,

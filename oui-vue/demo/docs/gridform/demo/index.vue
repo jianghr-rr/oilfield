@@ -1,9 +1,8 @@
 <template>
     <div class="container">
-        <h1>多类型布局表单</h1>
         <md :cn="md.cn" :us="md.us" />
         <horizontal-md />
-        <dtl-md />
+        <left-right-md />
         <vertical-md />
         <other-md />
         <api>
@@ -20,19 +19,27 @@
 <script>
 import BasicMd from './basic.md';
 import HorizontalMd from './horizontalMd.md';
-import DtlMd from './dtlMd.md';
+import LeftRightMd from './leftRight.md';
 import VerticalMd from './verticalMd.md';
 import OtherMd from './Other.md';
 
 import CN from '../index.zh-CN.md';
 import US from '../index.en-US.md';
 
+const md = {
+  cn: `# StepForm 分布表单
+        使用内置的栅格系统搭配\`<o-form />\`标签来创建多种布局的表单。可以快速配置出你想要的内容。
+        ## 代码演示`,
+  us: `# StepForm
+       Use the built-in grid system with the \`< o-form / >\` tag to create forms with multiple layouts. You can quickly configure what you want.`
+};
+
 export default {
     name: 'GridFormMain',
     components: {
         BasicMd,
         HorizontalMd,
-        DtlMd,
+        LeftRightMd,
         VerticalMd,
         OtherMd,
         CN,
@@ -40,10 +47,7 @@ export default {
     },
     data() {
         return {
-            md: {
-                cn: "使用 `<grid-form/>` 标签创建表单。可以通过不同的参数来快速配置不同的内容。",
-                us: "Create a form using the `< grid-form/ >` tag. You can quickly configure different content with different parameters."
-            }  
+            md  
         };
     },
     computed: {

@@ -25,7 +25,7 @@ import {
   Input,
   InputNumber,
   //   Layout,
-  //   List,
+  List,
   //   LocaleProvider,
   message,
   Menu,
@@ -63,7 +63,7 @@ import {
   //   ConfigProvider,
   //   Empty,
   //   Base,
-  //   Result,
+  Result,
   //   Descriptions,
   //   PageHeader,
   //   Space,
@@ -107,7 +107,7 @@ Vue.use(Icon);
 Vue.use(Input);
 Vue.use(InputNumber);
 // Vue.use(Layout);
-// Vue.use(List);
+Vue.use(List);
 // Vue.use(LocaleProvider);
 Vue.use(Menu);
 // Vue.use(Mentions);
@@ -139,7 +139,7 @@ Vue.use(Upload);
 // Vue.use(Comment);
 // Vue.use(ConfigProvider);
 // Vue.use(Empty);
-// Vue.use(Result);
+Vue.use(Result);
 // Vue.use(Descriptions);
 // Vue.use(PageHeader);
 // Vue.use(Space);

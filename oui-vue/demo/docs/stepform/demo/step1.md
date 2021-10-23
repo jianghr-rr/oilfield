@@ -1,3 +1,15 @@
+<cn>
+#### Step1 步骤1
+</cn>
+
+<us>
+#### Step1
+</us>
+## 用例
+
+## Step1组件
+
+```vue
 <template>
     <o-form style="max-width: 700px; margin: 40px auto 0;" :form="form">
         <o-row>
@@ -220,5 +232,4 @@ export default {
         object-fit: cover;
     }
 </style>
-
-
+```

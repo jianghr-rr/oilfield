@@ -2,12 +2,18 @@
     <div class="container">
         <md :cn="md.cn" :us="md.us" />
         <basic-md />
+        <step1-md />
+        <step2-md />
+        <step3-md />
     </div>
 </template>
 
 <script>
 
 import BasicMd from './basic.md';
+import Step1Md from './step1.md';
+import Step2Md from './step2.md';
+import Step3Md from './step3.md';
 
 const md = {
   cn: `# StepForm 分布表单
@@ -21,7 +27,10 @@ const md = {
 export default {
     name: 'StepFormPage',
     components: {
-        BasicMd
+        BasicMd,
+        Step1Md,
+        Step2Md,
+        Step3Md
     },
     data() {
         return {
