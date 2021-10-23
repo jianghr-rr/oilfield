@@ -1,19 +1,5 @@
-<cn>
-#### 左右栏布局
-左右并列布局。
-添加`left`配置可以快速添加左侧布局。
-</cn>
-
-<us>
-#### Basic
-Add a `left` configuration to quickly add a left layout.
-</us>
-
-## 左右栏布局
-
-```vue
 <template>
-    <o-form :form="form">
+    <o-form style="max-width: 700px; margin: 40px auto 0;" :form="form">
         <o-row>
             <o-col :span="8">
                 <o-form-item label="公司Logo">
@@ -44,82 +30,88 @@ Add a `left` configuration to quickly add a left layout.
                     </o-upload>
                 </o-form-item>
             </o-col>
-            <o-col :span="16">
-                <o-row>
-                    <o-col :span="12">
-                        <o-form-item label="详细地址">
-                            <o-input
-                                :style="style.controlStyle"
-                            	placeholder="请输入详细地址"
-                                v-decorator="[
-                                    'address',
-                                    {
-                                        rules: [
-                                            {required: true, message: '请输入详细地址'}
-                                        ]
-                                    }
-                                ]"
-                             />
-                        </o-form-item>
-    				</o-col>
-                    <o-col :span="12">
-                        <o-form-item label="电话">
-                            <o-input
-                                :style="style.controlStyle"
-                                placeholder="请输入电话"
-                                v-decorator="[
-                                    'tel',
-                                    {
-                                        rules: [
-                                            {required: true, message: '请输入电话'}
-                                        ]
-                                    }
-                                ]"
-                            />
-                        </o-form-item>
-    				</o-col>
-    			</o-row>
-                <o-row>
-    				<o-col :span="12">
-                        <o-form-item label="传真">
-                            <o-input
-                                :style="style.controlStyle"
-                                placeholder="请输入传真"
-                                v-decorator="[
-                                    'fax',
-                                    {
-                                        rules: [
-                                            {required: true, message: '请输入传真'}
-                                        ]
-                                    }
-                                ]"
-                            />
-                        </o-form-item>
-                    </o-col>
-                    <o-col :span="12">
-    					<o-form-item label="网址">
-                            <o-input
-                                :style="style.controlStyle"
-                                placeholder="请输入网址"
-                                v-decorator="[
-                                    'website',
-                                    {
-                                        rules: [
-                                            {required: true, message: '请输入网址'}
-                                        ]
-                                    }
-                                ]"
-                            />
-                        </o-form-item>
-    				</o-col>
-    			</o-row>
+            <o-col :span="14">
+                <o-form-item label="样品批号" :required="true">
+                    <o-select
+                        :style="style.controlStyle"
+                        mode="multiple"
+                        placeholder="请选择样品批号"
+                        v-decorator="[
+                            'batchCode',
+                            {
+                                rules: [
+                                    {required: true, message: '请选择样品批号'}
+                                ]
+                            }
+                        ]"
+                    >
+                        <o-select-option value="1">code_1</o-select-option>
+                        <o-select-option value="2">code_2</o-select-option>
+                        <o-select-option value="3">code_3</o-select-option>
+                    </o-select>
+                </o-form-item>
+                <o-form-item label="地址">
+                    <o-input
+                        :style="style.controlStyle"
+                        v-decorator="[
+                            'address',
+                            {
+                                rules: [
+                                    {required: true, message: '请输入地址'}
+                                ]
+                            }
+                        ]"
+                    placeholder="请输入地址"/>
+                </o-form-item>
+                <o-form-item :style="style.controlStyle" label="项目名称">
+                    <o-input
+                        v-decorator="[
+                            'projectName',
+                            {
+                                rules: [
+                                    {required: true, message: '请输入项目名称'}
+                                ]
+                            }
+                        ]"
+                        placeholder="请输入项目名称"
+                    />
+                </o-form-item>
+                <o-form-item label="交接人姓名">
+                    <o-input
+                        :style="style.controlStyle"
+                        placeholder="请输入交接人姓名"
+                        v-decorator="[
+                            'orderName',
+                            {
+                                rules: [
+                                    {required: true, message: '请输入交接人姓名'}
+                                ]
+                            }
+                        ]"
+                    />
+                </o-form-item>
+                <o-form-item label="交接日期">
+                    <o-range-picker
+                        :style="style.controlStyle"
+                        v-decorator="[
+                            'orderDate',
+                            {
+                                rules: [
+                                    {required: true, message: '请选择交接日期'}
+                                ]
+                            }
+                        ]"
+                    />
+                </o-form-item>
                 <o-form-item label="可替换内容">
-                    <o-textarea style="width: 90%;" rows="4" placeholder="请输入可替换内容"/>
+                    <o-textarea :style="style.controlStyle" rows="4" placeholder="请输入可替换内容"/>
                 </o-form-item>
             </o-col>
         </o-row>
+        <o-form-item :wrapperCol="{span: 17, offset: 7}">
+            <o-button type="primary" @click="handleSubmit">下一步</o-button>
+        </o-form-item>
     </o-form>
-    <o-button type="primary" @click="handleSubmit">提交</o-button>
 </template>
 
 <script>
@@ -183,6 +175,7 @@ export default {
             this.form.validateFields((err, values) => {
                 if (!err) {
                     this.$ommessage.info(`表单校验成功: ${JSON.stringify(values)}`);
+                    this.$emit('nextStep');
                 }
             });
         }
@@ -207,5 +200,3 @@ export default {
 </style>
 
 
-
-```

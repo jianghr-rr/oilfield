@@ -13,143 +13,173 @@ Using a single `span` and `gap` attributes, you can create a basic grid system.
 
 ```vue
 <template>
-    <div>
-        <grid-form :form="form" :options="options" :span="30" :gap="5">
-            <template v-for="{dataIndex} in options.items" :slot="dataIndex" slot-scope="{data}">
-                <!-- or other control -->
-                <o-input size="large" v-bind="data" v-decorator="data.decorator"></o-input>
-            </template>
-        </grid-form>
-        <o-button type="primary" @click="handleSubmit">submit</o-button>
-    </div>
+    <o-form :form="form">
+        <o-row>
+            <o-col :span="8">
+                <o-form-item label="公司名称">
+                    <o-input
+                        :style="style.controlStyle"
+                    	placeholder="请输入公司名称"
+                        v-decorator="[
+                            'company',
+                            {
+                                rules: [
+                                    {required: true, message: '请输入公司名称'}
+                                ]
+                            }
+                        ]"
+                     />
+                </o-form-item>
+    		</o-col>
+            <o-col :span="8">
+                <o-form-item label="行业类型">
+                    <o-input
+                        :style="style.controlStyle"
+                        placeholder="请输入行业类型"
+                        v-decorator="[
+                            'industry',
+                            {
+                                rules: [
+                                    {required: true, message: '请输入行业类型'}
+                                ]
+                            }
+                        ]"
+                    />
+                </o-form-item>
+    		</o-col>
+            <o-col :span="8">
+                <o-form-item label="所在区域">
+                    <o-input
+                        :style="style.controlStyle"
+                        placeholder="请输入所在区域"
+                        v-decorator="[
+                            'area',
+                            {
+                                rules: [
+                                    {required: true, message: '请输入所在区域'}
+                                ]
+                            }
+                        ]"
+                    />
+                </o-form-item>
+            </o-col>
+    	</o-row>
+        <o-row>
+            <o-col :span="8">
+    			<o-form-item label="邮编">
+                    <o-input
+                        :style="style.controlStyle"
+                        placeholder="请输入邮编"
+                        v-decorator="[
+                            'email',
+                            {
+                                rules: [
+                                    {required: true, message: '请输入邮编'}
+                                ]
+                            }
+                        ]"
+                    />
+                </o-form-item>
+    		</o-col>
+            <o-col :span="8">
+    			<o-form-item label="联系人">
+                    <o-input
+                        :style="style.controlStyle"
+                        placeholder="请输入联系人"
+                        v-decorator="[
+                            'connector',
+                            {
+                                rules: [
+                                    {required: true, message: '请输入联系人'}
+                                ]
+                            }
+                        ]"
+                    />
+                </o-form-item>
+    		</o-col>
+            <o-col :span="8">
+    			<o-form-item label="职位">
+                    <o-input
+                        :style="style.controlStyle"
+                        placeholder="请输入职位"
+                        v-decorator="[
+                            'position',
+                            {
+                                rules: [
+                                    {required: true, message: '请输入职位'}
+                                ]
+                            }
+                        ]"
+                    />
+                </o-form-item>
+    		</o-col>
+    	</o-row>
+        <o-row>
+            <o-col :span="8">
+    			<o-form-item label="联系人">
+                    <o-input
+                        :style="style.controlStyle"
+                        placeholder="请输入联系人"
+                        v-decorator="[
+                            'connector2',
+                            {
+                                rules: [
+                                    {required: true, message: '请输入联系人'}
+                                ]
+                            }
+                        ]"
+                    />
+                </o-form-item>
+    		</o-col>
+            <o-col :span="8">
+    			<o-form-item label="手机号码">
+                    <o-input
+                        :style="style.controlStyle"
+                        placeholder="请输入手机号码"
+                        v-decorator="[
+                            'tel',
+                            {
+                                rules: [
+                                    {required: true, message: '请输入手机号码'}
+                                ]
+                            }
+                        ]"
+                    />
+                </o-form-item>
+    		</o-col>
+            <o-col :span="8">
+    			<o-form-item label="QQ">
+                    <o-input
+                        :style="style.controlStyle"
+                        placeholder="请输入QQ"
+                        v-decorator="[
+                            'qq',
+                            {
+                                rules: [
+                                    {required: true, message: '请输入QQ'}
+                                ]
+                            }
+                        ]"
+                    />
+                </o-form-item>
+    		</o-col>
+    	</o-row>
+    </o-form>
+    <o-button type="primary" @click="handleSubmit">提交</o-button>
 </template>
 
 <script>
-
-import GridForm from '../../../components/GridForm/index.vue';
-
+const style = {
+    controlStyle: {
+        width: '80%'
+    }
+};
 export default {
     name: 'HorizontalForm',
-    components: {
-        GridForm
-    },
     data() {
         return {
             form: null,
-            options:{
-                name: 'oilForm',
-                items: [
-                    {
-                        dataIndex: 'company',
-                        label: '公司名称',
-                        control: {
-                            decorator: [
-                                'company',
-                                {
-                                    rules: [
-                                        {required: true, message: '请输入公司名称'}
-                                    ]
-                                }
-                            ],
-                            maxLength: 20,
-                            placeholder: '请输入公司名称'
-                        }
-                    },
-                    {
-                        dataIndex: 'industry',
-                        label: '行业类型',
-                        control: {
-                            decorator: [
-                                'industry'
-                            ],
-                            maxLength: 20,
-                            placeholder: '请输入行业类型'
-                        }
-                    },
-                    {
-                        dataIndex: 'area',
-                        label: '所在区域',
-                        control: {
-                            decorator: [
-                                'area'
-                            ],
-                            maxLength: 20,
-                            placeholder: '请输入公司名称'
-                        }
-                    },
-                    {
-                        dataIndex: 'message',
-                        label: '邮编',
-                        control: {
-                            decorator: [
-                                'message'
-                            ],
-                            maxLength: 20,
-                            placeholder: '请输入邮编'
-                        }
-                    },
-                    {
-                        dataIndex: 'connector',
-                        label: '联系人',
-                        control: {
-                            decorator: [
-                                'connector'
-                            ],
-                            maxLength: 20,
-                            placeholder: '请输入联系人'
-                        }
-                    },
-                    {
-                        dataIndex: 'position',
-                        label: '职位',
-                        control: {
-                            decorator: [
-                                'position'
-                            ],
-                            maxLength: 20,
-                            placeholder: '请输入职位'
-                        }
-                    },
-                    {
-                        dataIndex: 'connector2',
-                        label: '联系人',
-                        control: {
-                            decorator: [
-                                'connector2'
-                            ],
-                            maxLength: 20,
-                            placeholder: '请输入联系人'
-                        }
-                    },
-                    {
-                        dataIndex: 'phone',
-                        label: '手机号码',
-                        control: {
-                            decorator: [
-                                'phone'
-                            ],
-                            maxLength: 20,
-                            placeholder: '请输入手机号码'
-                        }
-                    },
-                    {
-                        dataIndex: 'qq',
-                        label: 'QQ',
-                        control: {
-                            decorator: [
-                                'qq'
-                            ],
-                            maxLength: 20,
-                            placeholder: '请输入QQ'
-                        }
-                    }
-                ]
-            }
-        }
-    },
-    computed: {
-        color() {
-            return this.$store.getters.color;
+            style
         }
     },
     mounted() {
@@ -169,13 +199,7 @@ export default {
 }
 </script>
 
-<style lang="less" scoped>
-    .view-item{
-        margin-bottom: 20px;
-        box-sizing: border-box;
-        padding: 20px;
-        box-shadow:  0 2px 12px 0 rgba(0, 0, 0, 0.1);
-    }
+<style scoped>
 </style>
 
 ```

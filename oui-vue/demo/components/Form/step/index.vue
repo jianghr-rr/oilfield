@@ -1,20 +1,8 @@
-<cn>
-#### 基础用法
-</cn>
-
-<us>
-#### Useage
-Step bar + custom content.
-</us>
-
-## 用例
-
-```vue
 <template>
   <a-card :bordered="false">
     <a-steps class="steps" :current="current">
       <a-step title="样品交接" />
-      <a-step title="二次交接" />
+      <a-step title="一次交接" />
       <a-step title="完成" />
     </a-steps>
     <div class="content">
@@ -26,9 +14,9 @@ Step bar + custom content.
 </template>
 
 <script>
-import Step1 from '../../../components/Form/step/Step1.vue';
-import Step2 from '../../../components/Form/step/Step2.vue';
-import Step3 from '../../../components/Form/step/Step3.vue';
+import Step1 from './Step1'
+import Step2 from './Step2'
+import Step3 from './Step3'
 
 export default {
   name: 'StepForm',
@@ -67,5 +55,3 @@ export default {
     margin: 16px auto;
   }
 </style>
-
-```

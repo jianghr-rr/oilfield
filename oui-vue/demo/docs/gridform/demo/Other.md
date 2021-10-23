@@ -13,120 +13,123 @@ The `span` attribute can be configured either uniformly in `< grid-form / >` or 
 
 ```vue
 <template>
-    <div>
-        <grid-form :form="form" :options="options" :span="30" :gap="5">
-            <template v-for="{dataIndex} in options.items" :slot="dataIndex" slot-scope="{data = {}}">
-                <!-- or other control -->
-                <div v-if="dataIndex === 'optionsArea'" class="option-area">
-                    <o-button size="large" @click="handleReset">重置</o-button>
-                    <o-button size="large" type="primary" @click="handleSubmit">提交</o-button>
+   <o-form :form="form" v-bind="layout">
+        <o-row>
+            <o-col :span="8">
+                <o-form-item label="项目名称">
+                    <o-input
+                        :style="style.controlStyle"
+                    	placeholder="请输入项目名称"
+                        v-decorator="[
+                            'projectName',
+                            {
+                                rules: [
+                                    {required: true, message: '请输入项目名称'}
+                                ]
+                            }
+                        ]"
+                     />
+                </o-form-item>
+    		</o-col>
+            <o-col :span="8">
+                <o-form-item label="描述">
+                    <o-input
+                        :style="style.controlStyle"
+                        placeholder="请输入描述"
+                        v-decorator="[
+                            'desc',
+                            {
+                                rules: [
+                                    {required: true, message: '请输入描述'}
+                                ]
+                            }
+                        ]"
+                    />
+                </o-form-item>
+    		</o-col>
+            <o-col :span="8">
+                <o-form-item label="交接人">
+                    <o-input
+                        :style="style.controlStyle"
+                        placeholder="请输入交接人"
+                        v-decorator="[
+                            'handover',
+                            {
+                                rules: [
+                                    {required: true, message: '请输入交接人'}
+                                ]
+                            }
+                        ]"
+                    />
+                </o-form-item>
+            </o-col>
+    	</o-row>
+        <o-row>
+            <o-col :span="8">
+    			<o-form-item label="状态">
+                    <o-input
+                        :style="style.controlStyle"
+                        placeholder="请输入状态"
+                        v-decorator="[
+                            'status',
+                            {
+                                rules: [
+                                    {required: true, message: '请输入状态'}
+                                ]
+                            }
+                        ]"
+                    />
+                </o-form-item>
+    		</o-col>
+            <o-col :span="8">
+    			<o-form-item label="交接日期">
+                    <o-input
+                        :style="style.controlStyle"
+                        placeholder="请输入交接日期"
+                        v-decorator="[
+                            'connectDate',
+                            {
+                                rules: [
+                                    {required: true, message: '请输入交接日期'}
+                                ]
+                            }
+                        ]"
+                    />
+                </o-form-item>
+    		</o-col>
+            <o-col :span="8">
+                <div style="display: flex;justifyContent: flex-end;margin-top: 5px;">
+                    <o-button style="margin-right: 15px;" @click="handleReset">重置</o-button>
+                    <o-button type="primary" @click="handleSubmit">提交</o-button>
                 </div>
-                <o-input v-else size="large" v-bind="data" v-decorator="data.decorator"></o-input>
-            </template>
-        </grid-form>
-    </div>
+    		</o-col>
+    	</o-row>
+    </o-form>
 </template>
 
 <script>
-
-import GridForm from '../../../components/GridForm/index.vue';
+    
+const layout = {
+    labelCol: { span: 8 },
+    wrapperCol: { span: 16 },
+};
+    
+const style = {
+    controlStyle: {
+        width: '80%'
+    },
+    btn: {
+        marinRight: '20px'
+    }
+};
 
 export default {
     name: 'OtherForm',
-    components: {
-        GridForm
-    },
     data() {
         return {
             form: null,
-            options:{
-                name: 'oilForm',
-                items: [
-                    {
-                        dataIndex: 'projectName',
-                        label: '项目名称',
-                        control: {
-                            decorator: [
-                                'projectName',
-                                {
-                                    rules: [
-                                        {required: true, message: '请输入项目名称'}
-                                    ]
-                                }
-                            ],
-                            maxLength: 20,
-                            placeholder: '请输入项目名称'
-                        }
-                    },
-                    {
-                        dataIndex: 'desc',
-                        label: '描述',
-                        control: {
-                            decorator: [
-                                'desc',
-                                {
-                                    rules: [
-                                        {required: true, message: '请输入描述'}
-                                    ]
-                                }
-                            ],
-                            maxLength: 20,
-                            placeholder: '请输入描述'
-                        }
-                    },
-                    {
-                        dataIndex: 'handover',
-                        label: '交接人',
-                        control: {
-                            decorator: [
-                                'handover',
-                                {
-                                    rules: [
-                                        {required: true, message: '请输入交接人'}
-                                    ]
-                                }
-                            ],
-                            maxLength: 20,
-                            placeholder: '请输入交接人'
-                        }
-                    },
-                    {
-                        dataIndex: 'status',
-                        label: '状态',
-                        control: {
-                            decorator: [
-                                'status',
-                                {
-                                    rules: [
-                                        {required: true, message: '请输入状态'}
-                                    ]
-                                }
-                            ],
-                            maxLength: 20,
-                            placeholder: '请输入状态'
-                        }
-                    },
-                    {
-                        dataIndex: 'date',
-                        label: '交接日期',
-                        control: {
-                            decorator: [
-                                'date',
-                                {
-                                    rules: [
-                                        {required: true, message: '请输入交接日期'}
-                                    ]
-                                }
-                            ],
-                            maxLength: 20,
-                            placeholder: '请输入交接日期'
-                        }
-                    },
-                    {
-                        dataIndex: 'optionsArea'
-                    }
-                ]
-            }
+            style,
+            layout
         }
     },
     mounted() {
@@ -149,14 +152,6 @@ export default {
 }
 </script>
 
-<style>
-    .option-area{
-        position: relative;
-        top: 40px;
-        float: right;
-    }
-    button {
-        margin-left: 10px;
-    }
+<style scoped>
 </style>
 ```

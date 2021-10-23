@@ -27,7 +27,7 @@ export default {
   // };
 
   // private input: any;
-  name: 'AWeekPicker',
+  name: 'OWeekPicker',
   mixins: [BaseMixin],
   model: {
     prop: 'value',

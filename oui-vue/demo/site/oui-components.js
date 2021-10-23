@@ -15,8 +15,8 @@ import {
   //   Carousel,
   //   Cascader,
   //   Checkbox,
-  //   Col,
-  //   DatePicker,
+  Col,
+  DatePicker,
   //   Divider,
   Dropdown,
   Form,
@@ -36,10 +36,10 @@ import {
   //   Popconfirm,
   //   Popover,
   Progress,
-  //   Radio,
+  Radio,
   Rate,
-  //   Row,
-  //   Select,
+  Row,
+  Select,
   //   Slider,
   Spin,
   //   Statistic,
@@ -55,7 +55,7 @@ import {
   Timeline,
   //   Tooltip,
   //   // Mention,
-  Upload
+  Upload,
   //   // version,
   //   Drawer,
   //   Skeleton,
@@ -96,8 +96,8 @@ Vue.use(Card);
 // Vue.use(Carousel);
 // Vue.use(Cascader);
 // Vue.use(Checkbox);
-// Vue.use(Col);
-// Vue.use(DatePicker);
+Vue.use(Col);
+Vue.use(DatePicker);
 // Vue.use(Divider);
 // Vue.use(Drawer);
 Vue.use(Dropdown);
@@ -116,9 +116,9 @@ Vue.use(Pagination);
 // Vue.use(Popconfirm);
 // Vue.use(Popover);
 Vue.use(Progress);
-// Vue.use(Radio);
+Vue.use(Radio);
 Vue.use(Rate);
-// Vue.use(Row);
+Vue.use(Row);
 // Vue.use(Select);
 // Vue.use(Slider);
 Vue.use(Spin);
@@ -144,3 +144,6 @@ Vue.use(Upload);
 // Vue.use(PageHeader);
 // Vue.use(Space);
 // Vue.use(ColorPicker);
+Vue.use(Select);
+Vue.use(Select.Option);
+Vue.use(Select.OptGroup);

@@ -8,13 +8,13 @@ import { DatePickerProps, MonthPickerProps, WeekPickerProps, RangePickerProps } 
 import Base from '../base';
 
 const DatePicker = wrapPicker(
-  { ...createPicker(VcCalendar, DatePickerProps()), name: 'ADatePicker' },
+  { ...createPicker(VcCalendar, DatePickerProps()), name: 'ODatePicker' },
   DatePickerProps(),
   'date',
 );
 
 const MonthPicker = wrapPicker(
-  { ...createPicker(MonthCalendar, MonthPickerProps()), name: 'AMonthPicker' },
+  { ...createPicker(MonthCalendar, MonthPickerProps()), name: 'OMonthPicker' },
   MonthPickerProps(),
   'month',
 );
