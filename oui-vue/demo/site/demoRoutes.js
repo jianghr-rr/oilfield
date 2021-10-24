@@ -550,5 +550,13 @@ export default [
   {
     path: 'cardlist-cn',
     component: () => import('../docs/cardList/demo/index.vue'),
+  },
+  {
+    path: 'messagepanel',
+    component: () => import('../docs/messagepanel/demo/index.vue'),
+  },
+  {
+    path: 'messagepanel-cn',
+    component: () => import('../docs/messagepanel/demo/index.vue'),
   }
 ];

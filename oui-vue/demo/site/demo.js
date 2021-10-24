@@ -432,4 +432,10 @@ export default {
     type: 'Other',
     title: 'Card List',
   },
+  messagepanel: {
+    category: 'Components',
+    subtitle: '消息面板',
+    type: 'Other',
+    title: 'Message Panel',
+  },
 };
