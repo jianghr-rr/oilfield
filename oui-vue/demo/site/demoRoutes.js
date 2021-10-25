@@ -534,5 +534,29 @@ export default [
   {
     path: 'gridform-cn',
     component: () => import('../docs/gridform/demo/index.vue'),
+  },
+  {
+    path: 'searchtable',
+    component: () => import('../docs/searchtable/demo/index.vue'),
+  },
+  {
+    path: 'searchtable-cn',
+    component: () => import('../docs/searchtable/demo/index.vue'),
+  },
+  {
+    path: 'cardlist',
+    component: () => import('../docs/cardList/demo/index.vue'),
+  },
+  {
+    path: 'cardlist-cn',
+    component: () => import('../docs/cardList/demo/index.vue'),
+  },
+  {
+    path: 'messagepanel',
+    component: () => import('../docs/messagepanel/demo/index.vue'),
+  },
+  {
+    path: 'messagepanel-cn',
+    component: () => import('../docs/messagepanel/demo/index.vue'),
   }
 ];

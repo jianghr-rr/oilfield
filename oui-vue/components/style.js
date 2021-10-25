@@ -56,7 +56,7 @@ import './drawer/style';
 // import './config-provider/style';
 // import './empty/style';
 // import './statistic/style';
-// import './result/style';
+import './result/style';
 // import './descriptions/style';
 // import './page-header/style';
 // import './form-model/style';

@@ -13,7 +13,7 @@ const TextAreaProps = {
 };
 
 export default {
-  name: 'ATextarea',
+  name: 'OTextarea',
   inheritAttrs: false,
   model: {
     prop: 'value',

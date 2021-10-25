@@ -47,9 +47,9 @@ import { default as Card } from './card';
 
 // import { default as Checkbox } from './checkbox';
 
-// import { default as Col } from './col';
+import { default as Col } from './col';
 
-// import { default as DatePicker } from './date-picker';
+import { default as DatePicker } from './date-picker';
 
 // import { default as Divider } from './divider';
 
@@ -66,7 +66,7 @@ import { default as InputNumber } from './input-number';
 
 // import { default as Layout } from './layout';
 
-// import { default as List } from './list';
+import { default as List } from './list/index.jsx';
 
 // import { default as LocaleProvider } from './locale-provider';
 
@@ -88,13 +88,13 @@ import { default as Pagination } from './pagination';
 
 import { default as Progress } from './progress';
 
-// import { default as Radio } from './radio';
+import { default as Radio } from './radio';
 
 import { default as Rate } from './rate';
 
-// import { default as Row } from './row';
+import { default as Row } from './row';
 
-// import { default as Select } from './select';
+import { default as Select } from './select';
 
 // import { default as Slider } from './slider';
 
@@ -138,7 +138,7 @@ import { default as Drawer } from './drawer';
 
 // import { default as Empty } from './empty';
 
-// import { default as Result } from './result';
+import { default as Result } from './result';
 
 // import { default as Descriptions } from './descriptions';
 // import { default as PageHeader } from './page-header';
@@ -161,8 +161,8 @@ const components = [
   // Carousel,
   // Cascader,
   // Checkbox,
-  // Col,
-  // DatePicker,
+  Col,
+  DatePicker,
   // Divider,
   Dropdown,
   Form,
@@ -171,7 +171,7 @@ const components = [
   Input,
   InputNumber,
   // Layout,
-  // List,
+  List,
   // LocaleProvider,
   Menu,
   // Mentions,
@@ -180,10 +180,10 @@ const components = [
   // Popconfirm,
   // Popover,
   Progress,
-  // Radio,
+  Radio,
   Rate,
-  // Row,
-  // Select,
+  Row,
+  Select,
   // Slider,
   Spin,
   // Statistic,
@@ -199,13 +199,13 @@ const components = [
   Timeline,
   // Tooltip,
   Upload,
-  Drawer
+  Drawer,
   // Skeleton,
   // Comment,
   // // ColorPicker,
   // ConfigProvider,
   // Empty,
-  // Result,
+  Result,
   // Descriptions,
   // PageHeader,
   // Space,
@@ -252,8 +252,8 @@ export {
   // Carousel,
   // Cascader,
   // Checkbox,
-  // Col,
-  // DatePicker,
+  Col,
+  DatePicker,
   // Divider,
   Dropdown,
   Form,
@@ -262,7 +262,7 @@ export {
   Input,
   InputNumber,
   // Layout,
-  // List,
+  List,
   // LocaleProvider,
   Menu,
   // Mentions,
@@ -271,10 +271,10 @@ export {
   // Popconfirm,
   // Popover,
   Progress,
-  // Radio,
+  Radio,
   Rate,
-  // Row,
-  // Select,
+  Row,
+  Select,
   // Slider,
   Spin,
   // Statistic,
@@ -289,14 +289,14 @@ export {
   // TimePicker,
   Timeline,
   // Tooltip,
-  Upload
+  Upload,
   // Drawer,
   // Skeleton,
   // Comment,
   // // ColorPicker,
   // ConfigProvider,
   // Empty,
-  // Result,
+  Result,
   // Descriptions,
   // PageHeader,
   // Space,
