@@ -7,16 +7,16 @@
     text-align: center;
     width: 72%;
     margin: 0 auto;
-    .icon{
-      font-size: 72px;
-      line-height: 72px;
-      margin-bottom: 24px;
-    }
     .success {
-      color: #52C41A;
+      color: @success-color;
     }
     .error {
-      color: #F5222D;
+      color: @error-color;
+    }
+    .icon{
+      line-height: 72px;
+      margin-bottom: 24px;
+      .iconfont-size-under-12px(72px, -12deg);
     }
     &-title{
       font-size: 24px;

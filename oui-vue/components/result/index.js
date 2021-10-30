@@ -19,15 +19,10 @@ const Result = {
     const getPrefixCls = this.configProvider.getPrefixCls;
     const prefixCls = getPrefixCls('result', customizePrefixCls);
 
-    const iconProps = {
-        class: `${this.isSuccess ? 'success' : 'error'} icon`,
-        type: this.isSuccess ? 'check-circle' : 'close-circle'
-    };
-
     return (
         <div class={prefixCls}>
             <div>
-                <Icon class={`${this.isSuccess ? 'success' : 'error'} icon`} type={this.isSuccess ? 'check-circle' : 'close-circle'} />
+                <Icon class={`${this.isSuccess ? 'success' : 'error'} icon`} type={this.isSuccess ? 'check' : 'close'} />
             </div>
             {this.title && <div class={`${prefixCls}-title`}>{this.title}</div>}
             {this.description && <div class={`${prefixCls}-title-desc`}>{this.description}</div>}

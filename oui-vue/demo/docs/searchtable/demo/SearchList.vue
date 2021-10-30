@@ -1,14 +1,3 @@
-<cn>
-#### 列表部组件
-</cn>
-
-<us>
-#### Components of the table section
-</us>
-
-## 列表部组件
-
-```vue
 <template>
     <o-table
         :loading="loading"
@@ -75,7 +64,6 @@ const HANDLE_TYPE = {
     warning: '二次交接',
     error: '交接异常'
 };
-
 export default {
     name: 'SearchList',
     props: {
@@ -86,14 +74,7 @@ export default {
         dataSource: {
             type: Array,
             default: () => {
-                return new Array(30).fill('').map((_item, index) => ({
-                    key: index,
-                    batchNo: `【样品批号】2020-${index}`,
-                    desc: '这是一段描述',
-                    projectName: '沉积岩粘土矿物X衍射分析',
-                    status: ['success', 'warning', 'error'][index] || 'success',
-                    datetime: '2021-08-25 10:49:28'
-                }));
+                return [];
             }
         }
     },
@@ -164,5 +145,3 @@ export default {
         background-color: #f5222d;
     }
 </style>
-
-```
