@@ -1,6 +1,6 @@
 /*!
  * 
- * oui-vue v1.0.3
+ * oui-vue v1.0.6
  * 
  * Copyright 2017-present, ant-design-vue.
  * All rights reserved.

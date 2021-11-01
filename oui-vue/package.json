@@ -1,6 +1,6 @@
 {
   "name": "oui-vue",
-  "version": "1.0.6",
+  "version": "1.0.7",
   "description": "油田vue组件库",
   "main": "lib/index.js",
   "module": "es/index.js",
@@ -10,7 +10,7 @@
     "start": "cross-env NODE_ENV=development webpack-dev-server --config webpack.config.js",
     "test": "cross-env NODE_ENV=test jest --config .jest.js",
     "compile": "node tools/cli/run.js compile",
-    "dist": "node antd-tools/cli/run.js dist"
+    "dist": "node tools/cli/run.js dist"
   },
   "author": "",
   "license": "ISC",
