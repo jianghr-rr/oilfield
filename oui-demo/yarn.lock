@@ -9578,9 +9578,9 @@ os-tmpdir@^1.0.1, os-tmpdir@~1.0.2:
   integrity sha1-u+Z0BseaqFxc/sdm/lc0VV36EnQ=
 
 oui-vue@^1.0.0:
-  version "1.0.9"
-  resolved "http://81.70.148.10:4873/oui-vue/-/oui-vue-1.0.9.tgz#fe18e977576cad9d19756e45ba7b56beff66d6e9"
-  integrity sha512-inCv4GS+7qpwfMjggOxH1AAfnJLBXsnbGZNFHQ1T6sno61sLu1LwE5YeYNia0/LY0RYiwcNZ4ZqAG3AQojA9YQ==
+  version "1.0.11"
+  resolved "http://81.70.148.10:4873/oui-vue/-/oui-vue-1.0.11.tgz#1d746cf8d9ea3e9f831ed3653f4cef9263eb661f"
+  integrity sha512-ZYj6xLOZV87rD09mAE0muT0ocsP7rfQonjdqZLjjwszlOpXdX+XamDRmPFDFVVi8kl0plo6VkERrFjQX0W4Iyw==
   dependencies:
     "@ant-design/icons" "^2.1.1"
     "@ant-design/icons-vue" "^2.0.0"
