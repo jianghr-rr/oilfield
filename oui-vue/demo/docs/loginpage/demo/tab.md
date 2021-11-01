@@ -1,3 +1,15 @@
+<cn>
+#### Tab 切换组件
+</cn>
+
+<us>
+#### Tab 
+</us>
+## 用例
+
+## Tab 切换组件
+
+```vue
 <template>
     <div class="oil-tab">
         <div
@@ -5,7 +17,7 @@
             v-if="!item.hidden"
             :class="['oil-tab-item', controlIndex === index ? 'selected' : '']"
             :key="item.value"
-            @click="$emit('onChange', index)"
+            @click="$emit('update:controlIndex', index)"
         >
             {{item.title}}
         </div>
@@ -21,7 +33,16 @@ export default {
             type: Number,
             default: 0
         },
-        tabs: Array
+        tabs: {
+            type: Array,
+            default: () => {
+                return [
+                    {title: '账号登录', value: 'login'},
+                    {title: '短信登录', value: 'message'},
+                    {title: '注册', value: 'register', hidden: true}
+                ];
+            }
+        }
     },
     computed: {
         color() {
@@ -31,11 +52,13 @@ export default {
 }
 </script>
 
-<style lang="less" scoped>
+<style lang="less">
     .oil-tab{
-        display: flex;
+        width: 316px;
         height: 78px;
+        display: flex;
         position: relative;
+        margin-bottom: 20px;
         &-item{
             flex: 1;
             display: flex;
@@ -59,3 +82,4 @@ export default {
         }
     }
 </style>
+```

@@ -14,7 +14,7 @@ Step bar + custom content.
   <a-card :bordered="false">
     <a-steps class="steps" :current="current">
       <a-step title="样品交接" />
-      <a-step title="二次交接" />
+      <a-step title="确认交接内容" />
       <a-step title="完成" />
     </a-steps>
     <div class="content">
@@ -26,39 +26,38 @@ Step bar + custom content.
 </template>
 
 <script>
-import Step1 from '../../../components/Form/step/Step1.vue';
-import Step2 from '../../../components/Form/step/Step2.vue';
-import Step3 from '../../../components/Form/step/Step3.vue';
+import Step1 from './Step1.vue';
+import Step2 from './Step2.vue';
+import Step3 from './Step3.vue';
 
 export default {
-      name: 'StepForm',
-      components: {Step1, Step2, Step3},
-      data () {
-      	return {
-      		current: 0,
-      		step1Values: null
-      	}
-      },
-      computed: {
-      	desc() {
-      		return "将一个冗长或用户不熟悉的表单任务分成多个步骤，指导用户完成。"
-      	}
-      },
-      methods: {
+    name: 'StepForm',
+    components: {
+        Step1,
+        Step2,
+        Step3
+    },
+    data () {
+        return {
+            current: 0,
+            step1Values: null
+        }
+    },
+    methods: {
         nextStep (values) {
-        	if (this.current < 2) {
-        		this.current += 1;
-        	}
+            if (this.current < 2) {
+                this.current += 1;
+            }
         },
         prevStep () {
-        	if (this.current > 0) {
-        		this.current -= 1
-        	}
+            if (this.current > 0) {
+                this.current -= 1
+            }
         },
         finish () {
-        	this.current = 0
+            this.current = 0
         }
-      }
+    }
 }
 </script>
 

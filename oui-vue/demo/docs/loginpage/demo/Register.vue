@@ -169,6 +169,7 @@ export default {
 
 <style lang="less">
     .oil-register{
+        width: 316px;
         &-title{
             margin-bottom: 15px;
             font-family: 'SourceHanSansCN-Normal', 'Source Han Sans CN Normal', 'Source Han Sans CN', sans-serif;

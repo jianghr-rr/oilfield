@@ -39,24 +39,25 @@ Step bar + custom content.
 </template>
 
 <script>
-const dataSource = []
-dataSource.push({
-  add: true
-})
-for (let i = 0; i < 11; i++) {
-  dataSource.push({
-    title: 'XinJiang Userty Design',
-    avatar: 'https://gw.alipayobjects.com/zos/rmsportal/siCrBXXhmvTQGWPNLBow.png',
-    content: '一个长期迭代多人合作的系统或多个系统中，为解决因不同系统需求，会出现不同的设计规范和实现方式，但其中往往存在很多类似的页面和组件，这些类似的组件会被抽离成一套标准规范。'
-  })
-}
+const icons = [
+  'https://gw.alipayobjects.com/zos/rmsportal/ComBAopevLwENQdKWiIn.png',
+  'https://gw.alipayobjects.com/zos/rmsportal/kZzEzemZyKLKFsojXItE.png',
+  'https://gw.alipayobjects.com/zos/rmsportal/nxkuOJlFJuAUhzlMTCEe.png',
+  'https://gw.alipayobjects.com/zos/rmsportal/zOsKZmFRdUtvpqCImOVY.png',
+  'https://gw.alipayobjects.com/zos/rmsportal/siCrBXXhmvTQGWPNLBow.png'
+];
+const dataSource = [{add: true}, ...(
+  new Array(5).fill('').map((_item, index) => ({
+      title: 'XinJiang Userty Design',
+      avatar: icons[index],
+      content: '一个长期迭代多人合作的系统或多个系统中，为解决因不同系统需求，会出现不同的设计规范和实现方式，但其中往往存在很多类似的页面和组件，这些类似的组件会被抽离成一套标准规范。'
+  }))
+)];
 
 export default {
   name: 'CardList',
   data () {
     return {
-      desc: '段落示意：蚂蚁金服务设计平台 ant.design，用最小的工作量，无缝接入蚂蚁金服生态， 提供跨越设计与开发的体验解决方案。',
-      extraImage: 'https://gw.alipayobjects.com/zos/rmsportal/RzwpdLnhmvDJToTdfDPe.png',
       dataSource
     }
   }

@@ -33,7 +33,7 @@ Step bar + custom content.
         <div :style="style.time">2021-09-01</div>
     </o-timeline-item>
     <o-timeline-item>
-        <o-card :style="style.card">此条表示提示</o-card>
+        <o-card hoverable :style="style.card">此条表示提示</o-card>
     </o-timeline-item>
     <o-timeline-item>
         <o-card hoverable :style="style.card">

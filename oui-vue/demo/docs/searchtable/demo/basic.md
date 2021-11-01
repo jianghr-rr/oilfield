@@ -15,8 +15,10 @@
 </template>
 
 <script>
-import SearchFilters from '../../../components/SearchTable/SearchFilters.vue';
-import SearchList from '../../../components/SearchTable/SearchList.vue';
+import SearchFilters from './SearchFilters.vue';
+import SearchList from './SearchList.vue';
+
+const TYPE = ['success', 'warning', 'error'];
 
 export default {
     name: 'SearchTablePage',
@@ -42,7 +44,7 @@ export default {
                         batchNo: `【样品批号】2020-${index}`,
                         desc: '这是一段描述',
                         projectName: '沉积岩粘土矿物X衍射分析',
-                        status: '二次交接',
+                        status: TYPE[index] || 'success',
                         datetime: '2021-08-25 10:49:28'
                     }));
                     resolve(res);

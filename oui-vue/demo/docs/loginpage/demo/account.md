@@ -1,3 +1,15 @@
+<cn>
+#### Account 登录表单
+</cn>
+
+<us>
+#### Account 
+</us>
+## 用例
+
+## Account 登录表单
+
+```vue
 <template>
     <div class="oil-account-login">
         <o-form :form="form" @submit="handleSubmit">
@@ -159,8 +171,7 @@ export default {
 
 <style lang="less">
     .oil-account-login{
-        margin-top: 20px;
-        
+        width: 316px;
         .ant-btn {
             width: 100%;
         }
@@ -232,3 +243,4 @@ export default {
        
     }
 </style>
+```
