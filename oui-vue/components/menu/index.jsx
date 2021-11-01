@@ -44,7 +44,7 @@ const Menu = {
   props: menuProps,
   Divider: { ...Divider, name: 'OMenuDivider' },
   Item: { ...Item, name: 'OMenuItem' },
-  SubMenu: { ...SubMenu, name: 'ASubMenu' },
+  SubMenu: { ...SubMenu, name: 'OSubMenu' },
   ItemGroup: { ...ItemGroup, name: 'OMenuItemGroup' },
   provide() {
     return {
