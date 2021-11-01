@@ -19,7 +19,7 @@ var _classnames2 = _interopRequireDefault(_classnames);
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { 'default': obj }; }
 
 exports['default'] = {
-  name: 'ASubMenu',
+  name: 'OSubMenu',
   isSubMenu: true,
   props: (0, _extends3['default'])({}, _vcMenu.SubMenu.props),
   inject: {

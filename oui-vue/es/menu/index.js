@@ -40,7 +40,7 @@ var Menu = {
   props: menuProps,
   Divider: _extends({}, Divider, { name: 'OMenuDivider' }),
   Item: _extends({}, Item, { name: 'OMenuItem' }),
-  SubMenu: _extends({}, SubMenu, { name: 'ASubMenu' }),
+  SubMenu: _extends({}, SubMenu, { name: 'OSubMenu' }),
   ItemGroup: _extends({}, ItemGroup, { name: 'OMenuItemGroup' }),
   provide: function provide() {
     return {

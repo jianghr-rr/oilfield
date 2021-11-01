@@ -4,7 +4,7 @@ import { getListeners } from '../_util/props-util';
 import classNames from 'classnames';
 
 export default {
-  name: 'ASubMenu',
+  name: 'OSubMenu',
   isSubMenu: true,
   props: _extends({}, VcSubMenu.props),
   inject: {

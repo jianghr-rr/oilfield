@@ -90,7 +90,7 @@ var Menu = {
   props: menuProps,
   Divider: (0, _extends3['default'])({}, _vcMenu.Divider, { name: 'OMenuDivider' }),
   Item: (0, _extends3['default'])({}, _MenuItem2['default'], { name: 'OMenuItem' }),
-  SubMenu: (0, _extends3['default'])({}, _SubMenu2['default'], { name: 'ASubMenu' }),
+  SubMenu: (0, _extends3['default'])({}, _SubMenu2['default'], { name: 'OSubMenu' }),
   ItemGroup: (0, _extends3['default'])({}, _vcMenu.ItemGroup, { name: 'OMenuItemGroup' }),
   provide: function provide() {
     return {

@@ -4,6 +4,8 @@ require('./button/style');
 
 require('./icon/style');
 
+require('./grid/style');
+
 require('./tag/style');
 
 require('./rate/style');

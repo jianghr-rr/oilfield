@@ -110,12 +110,14 @@ function compile(modules) {
     .pipe(
       through2.obj(function(file, encoding, next) {
         this.push(file.clone());
+        console.log('file.path.match(/\/style\/index\.less$/)', file.path.match(/\/style\/index\.less$/));
         if (
           file.path.match(/\/style\/index\.less$/) ||
           file.path.match(/\/style\/v2-compatible-reset\.less$/)
         ) {
           transformLess(file.path)
             .then(css => {
+              console.log('css', css);
               file.contents = Buffer.from(css);
               file.path = file.path.replace(/\.less$/, '.css');
               this.push(file);
