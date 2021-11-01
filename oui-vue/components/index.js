@@ -290,7 +290,7 @@ export {
   Timeline,
   // Tooltip,
   Upload,
-  // Drawer,
+  Drawer,
   // Skeleton,
   // Comment,
   // // ColorPicker,
