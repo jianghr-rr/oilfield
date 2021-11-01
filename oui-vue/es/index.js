@@ -50,7 +50,7 @@ import { default as InputNumber } from './input-number';
 
 // import { default as Layout } from './layout';
 
-import { default as List } from './list/index.jsx';
+import { default as List } from './list';
 
 // import { default as LocaleProvider } from './locale-provider';
 
@@ -239,8 +239,7 @@ Tag,
 // TimePicker,
 Timeline,
 // Tooltip,
-Upload,
-// Drawer,
+Upload, Drawer,
 // Skeleton,
 // Comment,
 // // ColorPicker,

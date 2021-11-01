@@ -3,7 +3,7 @@
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
-exports.Result = exports.Upload = exports.Timeline = exports.Tag = exports.Transfer = exports.Table = exports.Switch = exports.Steps = exports.Spin = exports.Select = exports.Row = exports.Rate = exports.Radio = exports.Progress = exports.Pagination = exports.Modal = exports.Menu = exports.List = exports.InputNumber = exports.Input = exports.Icon = exports.Form = exports.Dropdown = exports.DatePicker = exports.Col = exports.Card = exports.Calendar = exports.Button = exports.Avatar = exports.Alert = exports.notification = exports.message = undefined;
+exports.Result = exports.Drawer = exports.Upload = exports.Timeline = exports.Tag = exports.Transfer = exports.Table = exports.Switch = exports.Steps = exports.Spin = exports.Select = exports.Row = exports.Rate = exports.Radio = exports.Progress = exports.Pagination = exports.Modal = exports.Menu = exports.List = exports.InputNumber = exports.Input = exports.Icon = exports.Form = exports.Dropdown = exports.DatePicker = exports.Col = exports.Card = exports.Calendar = exports.Button = exports.Avatar = exports.Alert = exports.notification = exports.message = undefined;
 
 var _alert = require('./alert');
 
@@ -53,9 +53,9 @@ var _inputNumber = require('./input-number');
 
 var _inputNumber2 = _interopRequireDefault(_inputNumber);
 
-var _index = require('./list/index.jsx');
+var _list = require('./list');
 
-var _index2 = _interopRequireDefault(_index);
+var _list2 = _interopRequireDefault(_list);
 
 var _message = require('./message');
 
@@ -231,7 +231,7 @@ _dropdown2['default'], _form2['default'],
 // FormModel,
 _icon2['default'], _input2['default'], _inputNumber2['default'],
 // Layout,
-_index2['default'],
+_list2['default'],
 // LocaleProvider,
 _menu2['default'],
 // Mentions,
@@ -294,7 +294,7 @@ exports.Form = _form2['default'];
 exports.Icon = _icon2['default'];
 exports.Input = _input2['default'];
 exports.InputNumber = _inputNumber2['default'];
-exports.List = _index2['default'];
+exports.List = _list2['default'];
 exports.Menu = _menu2['default'];
 exports.Modal = _modal2['default'];
 exports.Pagination = _pagination2['default'];
@@ -311,6 +311,7 @@ exports.Transfer = _transfer2['default'];
 exports.Tag = _tag2['default'];
 exports.Timeline = _timeline2['default'];
 exports.Upload = _upload2['default'];
+exports.Drawer = _drawer2['default'];
 exports.Result = _result2['default'];
 exports['default'] = {
   // version,
