@@ -59,9 +59,9 @@ typings/
 .env
 .idea
 .DS_Store
-dist
-lib
-es
+# dist
+# lib
+# es
 _site
 yarn.lock
 package-lock.json
