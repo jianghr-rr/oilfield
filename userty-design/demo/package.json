@@ -9,7 +9,7 @@
     "copy": "node scripts/run.js copy-html",
     "prettier": "prettier -c --write '**/*'",
     "pretty-quick": "pretty-quick",
-    "server": "node server/index.js"
+    "serverp": "node server/index-p.js"
   },
   "peerDependencies": {
     "vue": ">=2.6.0",

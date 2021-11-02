@@ -3,7 +3,7 @@
     {
       "name": "package",
       "script": "npm",
-      "args": "server"
+      "args": "serverp"
     }
   ]
 }
