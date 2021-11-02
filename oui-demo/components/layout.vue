@@ -11,7 +11,7 @@ import zhCN from 'ant-design-vue/es/locale-provider/zh_CN';
 import enUS from 'ant-design-vue/es/locale-provider/default';
 import sortBy from 'lodash/sortBy';
 import { isZhCN } from '../utils/util';
-import { Provider, create } from '../../components/_util/store';
+import { Provider, create } from '../tempComp/_util/store';
 import NProgress from 'nprogress';
 import SettingDrawer from './SettingDrawer'
 // import MobileMenu from '../../components/vc-drawer/src';
@@ -57,6 +57,7 @@ export default {
   },
   computed: {
     getColor() {
+      console.log(this.$store.getters.color);
       return this.$store.getters.color
     }
   },
@@ -135,14 +136,14 @@ export default {
       const lis = [];
       currentSubMenu.forEach(({ cnTitle, usTitle, id }, index) => {
         const title = isCN ? cnTitle : usTitle;
-        lis.push(<o-anchor-link key={id + index} href={`#${id}`} title={title} />);
+        lis.push(<a-anchor-link key={id + index} href={`#${id}`} title={title} />);
       });
       const showApi = this.$route.path.indexOf('/components/') !== -1;
       return (
-        <o-anchor offsetTop={100} class="demo-anchor">
+        <a-anchor offsetTop={100} class="demo-anchor">
           {lis}
-          {showApi ? <o-anchor-link key="API" title="API" href="#API" /> : ''}
-        </o-anchor>
+          {showApi ? <a-anchor-link key="API" title="API" href="#API" /> : ''}
+        </a-anchor>
       );
     },
     getDocsMenu(isCN, pagesKey) {
@@ -237,21 +238,21 @@ export default {
           defaultOpenKey = type
         }
         MenuItems.push(
-          <o-menu-item
+          <a-menu-item
             key={key}
             selectedKeys={[name]}
           >
             <router-link to={`/components/${key}/`}>{linkValue}</router-link>
-          </o-menu-item>,
+          </a-menu-item>,
         );
       });
       menuKey = type;
       // console.log('type:::', type);
       MenuGroup.push(
-        <o-sub-menu key={type}>
+        <a-sub-menu key={type}>
           <div slot="title"><span>{menuConfigTitle[type]}</span>/<span>{type}</span></div>
           {MenuItems}
-        </o-sub-menu>
+        </a-sub-menu>
       );
     }
     pagesKey.forEach((item, index) => {
@@ -270,13 +271,13 @@ export default {
     return (
       <div class="page-wrapper" style={`--color: ${this.themmeColor}`}>
         <Header searchData={searchData} name={name} />
-        <o-config-provider locale={locale}>
+        <a-config-provider locale={locale}>
           <div class="main-wrapper">
-            <o-row>
+            <a-row>
               {isMobile ? (
                 <div>123</div>
               ) : (
-                <o-col
+                <a-col
                   ref="sidebar"
                   class="site-sidebar main-menu"
                   xxl={4}
@@ -286,9 +287,9 @@ export default {
                   sm={8}
                   xs={12}
                 >
-                  <o-affix>
+                  <a-affix>
                     <section class="main-menu-inner">
-                      <o-menu
+                      <a-menu
                         class="aside-container menu-site"
                         selectedKeys={[name]}
                         defaultOpenKeys={[defaultOpenKey]}
@@ -296,12 +297,12 @@ export default {
                         mode="inline"
                       >
                         {MenuGroup}
-                      </o-menu>
+                      </a-menu>
                     </section>
-                  </o-affix>
-                </o-col>
+                  </a-affix>
+                </a-col>
               )}
-              <o-col xxl={20} xl={19} lg={19} md={18} sm={24} xs={24}>
+              <a-col xxl={20} xl={19} lg={19} md={18} sm={24} xs={24}>
                 <section class="main-container main-container-component">
                   <TopAd isCN={isCN} />
                   {showAd ? <GeektimeAds isMobile={isMobile} /> : null}
@@ -348,7 +349,7 @@ export default {
                 <section class="prev-next-nav">
                   {prevPage ? (
                     <router-link class="prev-page" to={`${prevPage.url}`}>
-                      <o-icon type="left" />
+                      <a-icon type="left" />
                       &nbsp;&nbsp;{prevPage.title}
                     </router-link>
                   ) : (
@@ -357,18 +358,18 @@ export default {
                   {nextPage ? (
                     <router-link class="next-page" to={`${nextPage.url}`}>
                       {nextPage.title}&nbsp;&nbsp;
-                      <o-icon type="right" />
+                      <a-icon type="right" />
                     </router-link>
                   ) : (
                     ''
                   )}
                 </section>
-              </o-col>
-            </o-row>
+              </a-col>
+            </a-row>
           </div>
-        </o-config-provider>
-
-        <SettingDrawer />
+        </a-config-provider>
+        {/* TODO */}
+        {/* <SettingDrawer /> */}
         <Footer ref="footer" isCN={isCN} />
       </div>
     );
@@ -376,7 +377,7 @@ export default {
 };
 </script>
 
-<style lang="less" scope>
+<style lang="less" scoped>
   .main-menu-inner {
     box-shadow: 1px -2px 4px 0px #F2F2F2;
 

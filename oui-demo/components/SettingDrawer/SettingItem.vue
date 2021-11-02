@@ -2,7 +2,7 @@
   <div class="setting-drawer-index-item">
     <h3 class="setting-drawer-index-title">{{ title }}</h3>
     <slot></slot>
-    <o-divider v-if="divider"/>
+    <!-- <o-divider v-if="divider"/> -->
   </div>
 </template>
 
