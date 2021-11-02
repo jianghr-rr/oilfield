@@ -8,7 +8,7 @@
         "transform-object-rest-spread",
         "transform-class-properties",
         "transform-runtime",
-        ["import", { "libraryName": "oui-vue", "libraryDirectory": "es", "style": "css" }]
+        ["import", { "libraryName": "userty-design", "libraryDirectory": "es", "style": "css" }]
       ]
     }
   }

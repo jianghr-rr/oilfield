@@ -68,7 +68,7 @@ import {
   //   PageHeader,
   //   Space,
   // ColorPicker,
-} from 'oui-vue/components';
+} from 'userty-design/components';
 
 Vue.prototype.$ommessage = message;
 Vue.prototype.$omnotification = notification;

@@ -8,7 +8,7 @@
 </template>
 
 <script>
-import { Col } from 'oui-vue/es/grid/'
+import { Col } from 'userty-design/es/grid/';
 
 const Item = {
   name: 'DetailListItem',

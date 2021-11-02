@@ -5,7 +5,7 @@ const path = require('path');
 const utils = require('./utils');
 // const contentRouter = require('./content');
 
-let staticDir = path.resolve(__dirname, '../_site/');
+let staticDir = path.resolve(__dirname, '/public/');
 let templateRootDir = path.resolve(__dirname, '../_site/');
 
 function init() {
@@ -35,7 +35,7 @@ function init() {
       });
   });
 
-  app.listen(8181);
+  app.listen(80);
 }
 
 module.exports.init = init;

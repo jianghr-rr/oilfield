@@ -1,4 +1,4 @@
-import { message } from 'oui-vue/es';
+import { message } from 'userty-design/es';
 // import defaultSettings from '../defaultSettings';
 import themeColor from './themeColor.js';
 // let lessNodesAppended

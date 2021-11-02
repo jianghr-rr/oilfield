@@ -8,10 +8,10 @@ import VueClipboard from 'vue-clipboard2';
 import VueStorage from 'vue-ls';
 import NProgress from 'nprogress';
 import router from './router';
-import Oui from '../node_modules/oui-vue';
+import Oui from '../node_modules/userty-design';
 import bootstrap from '../core/bootstrap';
 import store from '../store/index.js';
-import 'oui-vue/dist/antd.css';
+import 'userty-design/dist/usertyd.css';
 
 const mountedCallback = {
   install: Vue => {
