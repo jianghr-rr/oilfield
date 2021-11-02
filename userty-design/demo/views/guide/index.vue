@@ -4,29 +4,27 @@
       <a-menu
         mode="inline"
         :open-keys="openKeys"
+        :default-selected-keys="defaultSelectedKeys"
         style="width: 256px"
         @openChange="onOpenChange"
       >
-        <a-sub-menu key="sub1">
+        <a-sub-menu key="/homepage/guide/">
           <span slot="title"><span>Userty Design</span></span>
-          <a-menu-item key="1">
+          <a-menu-item key="/homepage/guide/introduce">
             <router-link to="/homepage/guide/introduce">介绍</router-link>
           </a-menu-item>
-          <a-menu-item key="2">
+          <a-menu-item key="/homepage/guide/designpr">
             <router-link to="/homepage/guide/designpr">设计原则</router-link>
           </a-menu-item>
           <a-menu-item key="3">
             设计规范
           </a-menu-item>
         </a-sub-menu>
-        <a-menu-item key="sub2">
+        <a-menu-item key="/homepage/theme/">
           <span>使用说明</span>
         </a-menu-item>
-        <a-menu-item key="sub4">
+        <a-menu-item key="/homepage/resource/">
           <span>常见问题</span>
-        </a-menu-item>
-        <a-menu-item key="sub5">
-          <span>发布内容</span>
         </a-menu-item>
       </a-menu>
     </div>
@@ -41,8 +39,9 @@ import NProgress from 'nprogress';
 export default {
   data() {
     return {
-      rootSubmenuKeys: ['sub1', 'sub2', 'sub4'],
-      openKeys: ['sub1'],
+      rootSubmenuKeys: ['/homepage/guide', '/homepage/theme', '/homepage/resource'],
+      openKeys: [],
+      defaultSelectedKeys: [this.$route.fullPath],
       theme: this.$store.getters.theme,
       themmeColor: this.$store.getters.color
     };
@@ -77,7 +76,20 @@ export default {
         this.openKeys = latestOpenKey ? [latestOpenKey] : [];
       }
     },
-  }
+  },
+  mounted() {
+    const arr = this.$route.fullPath.split('/');
+    let openKey = '';
+    for (let i = 0; i < arr.length - 1; i++) {
+      openKey += arr[i] + '/';
+    }
+    console.log('openKey:::', openKey);
+    this.openKeys = [openKey];
+      // console.log(this.primaryColor);
+      // this.titleStyle = {
+      //     color: this.primaryColor
+      // }
+  },
 };
 </script>
 <style lang="less" scope>

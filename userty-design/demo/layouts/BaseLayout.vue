@@ -4,19 +4,16 @@
       <router-view v-mountedCallback="mountedCallback" />
     </div>
     <Footer />
-    <setting-drawer></setting-drawer>
   </div>
 </template>
 
 <script>
 import Header from '../components/header';
 import Footer from '../components/footer';
-import SettingDrawer from '../components/SettingDrawer'
 import NProgress from 'nprogress';
 export default {
   components: {
     Header,
-    SettingDrawer,
     Footer,
   },
   props: ['name'],
@@ -25,7 +22,6 @@ export default {
     mountedCallback() {
       NProgress.done();
       document.documentElement.scrollTop = 0;
-      console.log('SettingDrawer:::', SettingDrawer);
     },
   },
 };

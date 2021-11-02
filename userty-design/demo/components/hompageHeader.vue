@@ -29,16 +29,16 @@ export default {
     mixins: [mixin],
     data() {
         return {
-            logo: logo,
+            logo,
             titleStyle: {
                 color: this.$store.getters.color
-            }
-        }
+            },
+        };
     },
     computed: {
         getColor() {
             return this.$store.getters.color
-        }
+        },
     },
     watch: {
         getColor(val) {
@@ -52,14 +52,8 @@ export default {
     //         color: this.getColor
     //     }
     // },
-    mounted() {
-        // console.log(this.primaryColor);
-        // this.titleStyle = {
-        //     color: this.primaryColor
-        // }
-    },
     methods: {
-    }
+    },
 };
 </script>
 
