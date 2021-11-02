@@ -5,7 +5,7 @@ const path = require('path');
 const utils = require('./utils');
 // const contentRouter = require('./content');
 
-let staticDir = path.resolve(__dirname, '/public/');
+let staticDir = path.resolve(__dirname, '../_site/');
 let templateRootDir = path.resolve(__dirname, '../_site/');
 
 function init() {
