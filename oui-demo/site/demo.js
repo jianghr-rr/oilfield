@@ -420,4 +420,22 @@ export default {
     type: 'Other',
     title: 'Grid Form',
   },
+  searchtable: {
+    category: 'Components',
+    subtitle: '查询表格',
+    type: 'Other',
+    title: 'Search Table',
+  },
+  cardlist: {
+    category: 'Components',
+    subtitle: '卡片列表',
+    type: 'Other',
+    title: 'Card List',
+  },
+  messagepanel: {
+    category: 'Components',
+    subtitle: '消息面板',
+    type: 'Other',
+    title: 'Message Panel',
+  },
 };
