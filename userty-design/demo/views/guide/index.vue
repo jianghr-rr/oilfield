@@ -26,6 +26,9 @@
         <a-menu-item key="/homepage/resource/">
           <span>常见问题</span>
         </a-menu-item>
+        <a-menu-item key="/homepage/resource/">
+          <span>发布内容</span>
+        </a-menu-item>
       </a-menu>
     </div>
     <div class="layout-right">
@@ -59,9 +62,8 @@ export default {
         this.themmeColor = val;
       },
       getTheme(val) {
-        console.log('theme:::', val);
         this.theme = val;
-      }
+      },
   },
   methods: {
     mountedCallback() {
@@ -83,7 +85,6 @@ export default {
     for (let i = 0; i < arr.length - 1; i++) {
       openKey += arr[i] + '/';
     }
-    console.log('openKey:::', openKey);
     this.openKeys = [openKey];
       // console.log(this.primaryColor);
       // this.titleStyle = {

@@ -23,7 +23,7 @@
 
 <script>
 import logo from '../assets/logo.png';
-import { mixin } from '../utils/mixin'
+import { mixin } from '../utils/mixin';
 export default {
     name: 'homepage-header',
     mixins: [mixin],
