@@ -19,13 +19,13 @@ Table with editable cells.
         <editable-cell :text="text" @change="onCellChange(record.key, 'name', $event)" />
       </template>
       <template slot="operation" slot-scope="text, record">
-        <a-popconfirm
+        <o-popconfirm
           v-if="dataSource.length"
           title="Sure to delete?"
           @confirm="() => onDelete(record.key)"
         >
           <a href="javascript:;">Delete</a>
-        </a-popconfirm>
+        </o-popconfirm>
       </template>
     </o-table>
   </div>

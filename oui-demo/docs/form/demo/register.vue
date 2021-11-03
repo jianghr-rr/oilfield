@@ -71,9 +71,9 @@ Fill in this form to create a new account for you.
     <o-form-item v-bind="formItemLayout">
       <span slot="label">
         Nickname&nbsp;
-        <a-tooltip title="What do you want others to call you?">
-          <a-icon type="question-circle-o" />
-        </a-tooltip>
+        <o-tooltip title="What do you want others to call you?">
+          <o-icon type="question-circle-o" />
+        </o-tooltip>
       </span>
       <o-input
         v-decorator="[
@@ -85,7 +85,7 @@ Fill in this form to create a new account for you.
       />
     </o-form-item>
     <o-form-item v-bind="formItemLayout" label="Habitual Residence">
-      <a-cascader
+      <o-cascader
         v-decorator="[
           'residence',
           {
@@ -108,60 +108,60 @@ Fill in this form to create a new account for you.
         ]"
         style="width: 100%"
       >
-        <a-select
+        <o-select
           slot="addonBefore"
           v-decorator="['prefix', { initialValue: '86' }]"
           style="width: 70px"
         >
-          <a-select-option value="86">
+          <o-select-option value="86">
             +86
-          </a-select-option>
-          <a-select-option value="87">
+          </o-select-option>
+          <o-select-option value="87">
             +87
-          </a-select-option>
-        </a-select>
+          </o-select-option>
+        </o-select>
       </o-input>
     </o-form-item>
     <o-form-item v-bind="formItemLayout" label="Website">
-      <a-auto-complete
+      <o-auto-complete
         v-decorator="['website', { rules: [{ required: true, message: 'Please input website!' }] }]"
         placeholder="website"
         @change="handleWebsiteChange"
       >
         <template slot="dataSource">
-          <a-select-option v-for="website in autoCompleteResult" :key="website">
+          <o-select-option v-for="website in autoCompleteResult" :key="website">
             {{ website }}
-          </a-select-option>
+          </o-select-option>
         </template>
         <o-input />
-      </a-auto-complete>
+      </o-auto-complete>
     </o-form-item>
     <o-form-item
       v-bind="formItemLayout"
       label="Captcha"
       extra="We must make sure that your are a human."
     >
-      <a-row :gutter="8">
-        <a-col :span="12">
+      <o-row :gutter="8">
+        <o-col :span="12">
           <o-input
             v-decorator="[
               'captcha',
               { rules: [{ required: true, message: 'Please input the captcha you got!' }] },
             ]"
           />
-        </a-col>
-        <a-col :span="12">
+        </o-col>
+        <o-col :span="12">
           <o-button>Get captcha</o-button>
-        </a-col>
-      </a-row>
+        </o-col>
+      </o-row>
     </o-form-item>
     <o-form-item v-bind="tailFormItemLayout">
-      <a-checkbox v-decorator="['agreement', { valuePropName: 'checked' }]">
+      <o-checkbox v-decorator="['agreement', { valuePropName: 'checked' }]">
         I have read the
         <a href="">
           agreement
         </a>
-      </a-checkbox>
+      </o-checkbox>
     </o-form-item>
     <o-form-item v-bind="tailFormItemLayout">
       <o-button type="primary" html-type="submit">

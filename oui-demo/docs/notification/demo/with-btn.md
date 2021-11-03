@@ -10,9 +10,9 @@ To customize the style or font of the close button.
 
 ```vue
 <template>
-  <a-button type="primary" @click="openNotification">
+  <o-button type="primary" @click="openNotification">
     Open the notification box
-  </a-button>
+  </o-button>
 </template>
 <script>
 const close = () => {

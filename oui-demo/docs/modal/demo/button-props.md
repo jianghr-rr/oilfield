@@ -11,9 +11,9 @@ Passing `okButtonProps` and `cancelButtonProps` can customize the ok button and 
 ```vue
 <template>
   <div>
-    <a-button type="primary" @click="showModal">
+    <o-button type="primary" @click="showModal">
       Open Modal with customized button props
-    </a-button>
+    </o-button>
     <o-modal
       v-model="visible"
       title="Basic Modal"

@@ -14,19 +14,19 @@ Simple table with actions.
     <a slot="name" slot-scope="text">{{ text }}</a>
     <span slot="customTitle"><o-icon type="smile-o" /> Name</span>
     <span slot="tags" slot-scope="tags">
-      <a-tag
+      <o-tag
         v-for="tag in tags"
         :key="tag"
         :color="tag === 'loser' ? 'volcano' : tag.length > 5 ? 'geekblue' : 'green'"
       >
         {{ tag.toUpperCase() }}
-      </a-tag>
+      </o-tag>
     </span>
     <span slot="action" slot-scope="text, record">
       <a>Invite 一 {{ record.name }}</a>
-      <a-divider type="vertical" />
+      <o-divider type="vertical" />
       <a>Delete</a>
-      <a-divider type="vertical" />
+      <o-divider type="vertical" />
       <a class="ant-dropdown-link"> More actions <o-icon type="down" /> </a>
     </span>
   </o-table>

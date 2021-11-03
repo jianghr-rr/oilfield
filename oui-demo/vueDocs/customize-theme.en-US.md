@@ -1,6 +1,6 @@
 # Customize Theme
 
-The structure and styles of ant-design-vue are exactly the same as those of Antd. You can refer to the Antd React customization mode for configuration.
+The structure and styles of userty-design are exactly the same as those of Antd. You can refer to the Antd React customization mode for configuration.
 
 Ant Design allows you to customize some basic design aspects in order to meet the needs of UI diversity from business and brand, including primary color, border radius, border color, etc.
 
@@ -10,7 +10,7 @@ Ant Design allows you to customize some basic design aspects in order to meet th
 
 We are using [Less](http://lesscss.org/) as the development language for styling. A set of less variables are defined for each design aspect that can be customized to your needs.
 
-There are some major variables below, all less variables could be found in [Default Variables](https://github.com/vueComponent/ant-design-vue/blob/master/components/style/themes/default.less).
+There are some major variables below, all less variables could be found in [Default Variables](https://github.com/vueComponent/userty-design/blob/master/components/style/themes/default.less).
 
 ```less
 @primary-color: #1890ff; // primary color for all components
@@ -116,7 +116,7 @@ module.exports = {
 Another approach to customize theme is creating a `less` file within variables to override `antd.less`.
 
 ```css
-@import '~ant-design-vue/dist/antd.less'; // Import Ant Design Vue styles by less entry
+@import '~userty-design/dist/antd.less'; // Import Ant Design Vue styles by less entry
 @import 'your-theme-file.less'; // variables to override above
 ```
 
@@ -124,7 +124,7 @@ Note: This way will load the styles of all components, regardless of your demand
 
 ## How to avoid modifying global styles?
 
-Currently ant-design-vue is designed as a whole experience and modify global styles (eg `body` etc). If you need to integrate ant-design-vue as a part of an existing website, it's likely you want to prevent ant-design-vue to override global styles.
+Currently userty-design is designed as a whole experience and modify global styles (eg `body` etc). If you need to integrate userty-design as a part of an existing website, it's likely you want to prevent userty-design to override global styles.
 
 While there's no canonical way to do it, you can take one of the following paths :
 
@@ -133,9 +133,9 @@ While there's no canonical way to do it, you can take one of the following paths
 It's possible to configure webpack to load an alternate less file:
 
 ```js
-new webpack.NormalModuleReplacementPlugin( /node_modules\/ant-design-vue\/lib\/style\/index\.less/, path.resolve(rootDir, 'src/myStylesReplacement.less') )
+new webpack.NormalModuleReplacementPlugin( /node_modules\/userty-design\/lib\/style\/index\.less/, path.resolve(rootDir, 'src/myStylesReplacement.less') )
 
-#antd { @import '~ant-design-vue/lib/style/core/index.less'; @import '~ant-design-vue/lib/style/themes/default.less'; }
+#antd { @import '~userty-design/lib/style/core/index.less'; @import '~userty-design/lib/style/themes/default.less'; }
 ```
 
 Where the src/myStylesReplacement.less file loads the same files as the index.less file, but loads them within the scope of a top-level selector : the result is that all of the "global" styles are being applied with the #antd scope.
@@ -149,7 +149,7 @@ See an example of usage with gulp and [postcss-prefixwrap](https://github.com/db
 You must import styles as less format. A common mistake would be importing multiple copied of styles that some of them are css format to override the less styles.
 
 - If you import styles by specifying the `style` option of [babel-plugin-import](https://github.com/ant-design/babel-plugin-import), change it from `'css'` to `true`, which will import the `less` version of antd.
-- If you import styles from `'ant-design-vue/dist/antd.css'`, change it to `ant-design-vue/dist/antd.less`.
+- If you import styles from `'userty-design/dist/antd.css'`, change it to `userty-design/dist/antd.less`.
 
 ## Related Articles
 

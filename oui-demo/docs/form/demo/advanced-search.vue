@@ -13,8 +13,8 @@ Because the width of label is not fixed, you may need to adjust it by customizin
 <template>
   <div id="components-form-demo-advanced-search">
     <o-form class="ant-advanced-search-form" :form="form" @submit="handleSearch">
-      <a-row :gutter="24">
-        <a-col
+      <o-row :gutter="24">
+        <o-col
           v-for="i in 10"
           :key="i"
           :span="8"
@@ -36,10 +36,10 @@ Because the width of label is not fixed, you may need to adjust it by customizin
               placeholder="placeholder"
             />
           </o-form-item>
-        </a-col>
-      </a-row>
-      <a-row>
-        <a-col :span="24" :style="{ textAlign: 'right' }">
+        </o-col>
+      </o-row>
+      <o-row>
+        <o-col :span="24" :style="{ textAlign: 'right' }">
           <o-button type="primary" html-type="submit">
             Search
           </o-button>
@@ -47,10 +47,10 @@ Because the width of label is not fixed, you may need to adjust it by customizin
             Clear
           </o-button>
           <a :style="{ marginLeft: '8px', fontSize: '12px' }" @click="toggle">
-            Collapse <a-icon :type="expand ? 'up' : 'down'" />
+            Collapse <o-icon :type="expand ? 'up' : 'down'" />
           </a>
-        </a-col>
-      </a-row>
+        </o-col>
+      </o-row>
     </o-form>
     <div class="search-result-list">
       Search Result List

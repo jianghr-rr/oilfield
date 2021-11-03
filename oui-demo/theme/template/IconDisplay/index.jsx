@@ -2,8 +2,8 @@ import manifest from '@ant-design/icons/lib/manifest';
 import Category from './Category';
 import { FilledIcon, OutlinedIcon, TwoToneIcon } from './themeIcons';
 import categories from './fields';
-// import { Radio } from '../../../node_modules/ant-design-vue';
-// import 'ant-design-vue/es/radio/style';
+// import { Radio } from '../../../node_modules/userty-design';
+// import 'userty-design/es/radio/style';
 
 // console.log('Radio:::', Radio);
 

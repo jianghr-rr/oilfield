@@ -10,10 +10,10 @@ This component can be rendered by using `dateCellRender` and `monthCellRender` w
 
 ```vue
 <template>
-  <a-calendar>
+  <o-calendar>
     <ul slot="dateCellRender" slot-scope="value" class="events">
       <li v-for="item in getListData(value)" :key="item.content">
-        <a-badge :status="item.type" :text="item.content" />
+        <o-badge :status="item.type" :text="item.content" />
       </li>
     </ul>
     <template slot="monthCellRender" slot-scope="value">
@@ -22,7 +22,7 @@ This component can be rendered by using `dateCellRender` and `monthCellRender` w
         <span>Backlog number</span>
       </div>
     </template>
-  </a-calendar>
+  </o-calendar>
 </template>
 <script>
 export default {

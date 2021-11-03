@@ -23,7 +23,7 @@ Customize render list with Tree component.
         slot="children"
         slot-scope="{ props: { direction, selectedKeys }, on: { itemSelect } }"
       >
-        <a-tree
+        <o-tree
           v-if="direction === 'left'"
           blockNode
           checkable

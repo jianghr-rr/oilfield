@@ -21,24 +21,24 @@ Demonstration of validation configuration for form controls which are not shown 
       </span>
     </o-form-item>
     <o-form-item label="Select" has-feedback>
-      <a-select
+      <o-select
         v-decorator="[
           'select',
           { rules: [{ required: true, message: 'Please select your country!' }] },
         ]"
         placeholder="Please select a country"
       >
-        <a-select-option value="china">
+        <o-select-option value="china">
           China
-        </a-select-option>
-        <a-select-option value="usa">
+        </o-select-option>
+        <o-select-option value="usa">
           U.S.A
-        </a-select-option>
-      </a-select>
+        </o-select-option>
+      </o-select>
     </o-form-item>
 
     <o-form-item label="Select[multiple]">
-      <a-select
+      <o-select
         v-decorator="[
           'select-multiple',
           {
@@ -50,16 +50,16 @@ Demonstration of validation configuration for form controls which are not shown 
         mode="multiple"
         placeholder="Please select favourite colors"
       >
-        <a-select-option value="red">
+        <o-select-option value="red">
           Red
-        </a-select-option>
-        <a-select-option value="green">
+        </o-select-option>
+        <o-select-option value="green">
           Green
-        </a-select-option>
-        <a-select-option value="blue">
+        </o-select-option>
+        <o-select-option value="blue">
           Blue
-        </a-select-option>
-      </a-select>
+        </o-select-option>
+      </o-select>
     </o-form-item>
 
     <o-form-item label="InputNumber">
@@ -70,85 +70,85 @@ Demonstration of validation configuration for form controls which are not shown 
     </o-form-item>
 
     <o-form-item label="Switch">
-      <a-switch v-decorator="['switch', { valuePropName: 'checked' }]" />
+      <o-switch v-decorator="['switch', { valuePropName: 'checked' }]" />
     </o-form-item>
 
     <o-form-item label="Slider">
-      <a-slider
+      <o-slider
         v-decorator="['slider']"
         :marks="{ 0: 'A', 20: 'B', 40: 'C', 60: 'D', 80: 'E', 100: 'F' }"
       />
     </o-form-item>
 
     <o-form-item label="Radio.Group">
-      <a-radio-group v-decorator="['radio-group']">
-        <a-radio value="a">
+      <o-radio-group v-decorator="['radio-group']">
+        <o-radio value="a">
           item 1
-        </a-radio>
-        <a-radio value="b">
+        </o-radio>
+        <o-radio value="b">
           item 2
-        </a-radio>
-        <a-radio value="c">
+        </o-radio>
+        <o-radio value="c">
           item 3
-        </a-radio>
-      </a-radio-group>
+        </o-radio>
+      </o-radio-group>
     </o-form-item>
 
     <o-form-item label="Radio.Button">
-      <a-radio-group v-decorator="['radio-button']">
-        <a-radio-button value="a">
+      <o-radio-group v-decorator="['radio-button']">
+        <o-radio-button value="a">
           item 1
-        </a-radio-button>
-        <a-radio-button value="b">
+        </o-radio-button>
+        <o-radio-button value="b">
           item 2
-        </a-radio-button>
-        <a-radio-button value="c">
+        </o-radio-button>
+        <o-radio-button value="c">
           item 3
-        </a-radio-button>
-      </a-radio-group>
+        </o-radio-button>
+      </o-radio-group>
     </o-form-item>
 
     <o-form-item label="Checkbox.Group">
-      <a-checkbox-group
+      <o-checkbox-group
         v-decorator="['checkbox-group', { initialValue: ['A', 'B'] }]"
         style="width: 100%;"
       >
-        <a-row>
-          <a-col :span="8">
-            <a-checkbox value="A">
+        <o-row>
+          <o-col :span="8">
+            <o-checkbox value="A">
               A
-            </a-checkbox>
-          </a-col>
-          <a-col :span="8">
-            <a-checkbox disabled value="B">
+            </o-checkbox>
+          </o-col>
+          <o-col :span="8">
+            <o-checkbox disabled value="B">
               B
-            </a-checkbox>
-          </a-col>
-          <a-col :span="8">
-            <a-checkbox value="C">
+            </o-checkbox>
+          </o-col>
+          <o-col :span="8">
+            <o-checkbox value="C">
               C
-            </a-checkbox>
-          </a-col>
-          <a-col :span="8">
-            <a-checkbox value="D">
+            </o-checkbox>
+          </o-col>
+          <o-col :span="8">
+            <o-checkbox value="D">
               D
-            </a-checkbox>
-          </a-col>
-          <a-col :span="8">
-            <a-checkbox value="E">
+            </o-checkbox>
+          </o-col>
+          <o-col :span="8">
+            <o-checkbox value="E">
               E
-            </a-checkbox>
-          </a-col>
-        </a-row>
-      </a-checkbox-group>
+            </o-checkbox>
+          </o-col>
+        </o-row>
+      </o-checkbox-group>
     </o-form-item>
 
     <o-form-item label="Rate">
-      <a-rate v-decorator="['rate', { initialValue: 3.5 }]" allow-half />
+      <o-rate v-decorator="['rate', { initialValue: 3.5 }]" allow-half />
     </o-form-item>
 
     <o-form-item label="Upload" extra="longgggggggggggggggggggggggggggggggggg">
-      <a-upload
+      <o-upload
         v-decorator="[
           'upload',
           {
@@ -160,13 +160,13 @@ Demonstration of validation configuration for form controls which are not shown 
         action="/upload.do"
         list-type="picture"
       >
-        <o-button> <a-icon type="upload" /> Click to upload </o-button>
-      </a-upload>
+        <o-button> <o-icon type="upload" /> Click to upload </o-button>
+      </o-upload>
     </o-form-item>
 
     <o-form-item label="Dragger">
       <div class="dropbox">
-        <a-upload-dragger
+        <o-upload-dragger
           v-decorator="[
             'dragger',
             {
@@ -178,7 +178,7 @@ Demonstration of validation configuration for form controls which are not shown 
           action="/upload.do"
         >
           <p class="ant-upload-drag-icon">
-            <a-icon type="inbox" />
+            <o-icon type="inbox" />
           </p>
           <p class="ant-upload-text">
             Click or drag file to this area to upload
@@ -186,7 +186,7 @@ Demonstration of validation configuration for form controls which are not shown 
           <p class="ant-upload-hint">
             Support for a single or bulk upload.
           </p>
-        </a-upload-dragger>
+        </o-upload-dragger>
       </div>
     </o-form-item>
 

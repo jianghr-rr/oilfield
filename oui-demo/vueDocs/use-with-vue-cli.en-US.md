@@ -52,18 +52,18 @@ Below is the default directory structure.
 └── yarn.lock
 ```
 
-Now we install `ant-design-vue` from yarn or npm.
+Now we install `userty-design` from yarn or npm.
 
 ```bash
-$ yarn add ant-design-vue
+$ yarn add userty-design
 ```
 
 Modify `src/main.js`, import Button component from `antd`.
 
 ```jsx
 import Vue from 'vue';
-import Button from 'ant-design-vue/lib/button';
-import 'ant-design-vue/dist/antd.css';
+import Button from 'userty-design/lib/button';
+import 'userty-design/dist/antd.css';
 import App from './App';
 
 Vue.component(Button.name, Button);
@@ -123,7 +123,7 @@ Modify `.babelrc`.
 +   "plugins": [
 +     "transform-vue-jsx",
 +     "transform-runtime",
-+     ["import", { "libraryName": "ant-design-vue", "libraryDirectory": "es", "style": "css" }]
++     ["import", { "libraryName": "userty-design", "libraryDirectory": "es", "style": "css" }]
 +   ]
   }
 ```
@@ -138,20 +138,20 @@ Modify `babel.config.js`
 + plugins: [
 +    [
 +      "import",
-+      { libraryName: "ant-design-vue", libraryDirectory: "es", style: true }
++      { libraryName: "userty-design", libraryDirectory: "es", style: true }
 +    ]
 +  ]
 };
 ```
 
-Remove the `import 'ant-design-vue/dist/antd.css';` statement added before because `babel-plugin-import` will import styles and import components like below:
+Remove the `import 'userty-design/dist/antd.css';` statement added before because `babel-plugin-import` will import styles and import components like below:
 
 ```diff
   // src/main.js
   import Vue from 'vue'
-- import Button from 'ant-design-vue/lib/button';
-+ import { Button } from 'ant-design-vue';
-- import 'ant-design-vue/dist/antd.css'
+- import Button from 'userty-design/lib/button';
++ import { Button } from 'userty-design';
+- import 'userty-design/dist/antd.css'
   import App from './App'
 
   Vue.component(Button.name, Button)

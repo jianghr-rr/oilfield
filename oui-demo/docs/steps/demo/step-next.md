@@ -18,19 +18,19 @@ Cooperate with the content and buttons, to represent the progress of a process.
       {{ steps[current].content }}
     </div>
     <div class="steps-action">
-      <a-button v-if="current < steps.length - 1" type="primary" @click="next">
+      <o-button v-if="current < steps.length - 1" type="primary" @click="next">
         Next
-      </a-button>
-      <a-button
+      </o-button>
+      <o-button
         v-if="current == steps.length - 1"
         type="primary"
         @click="$message.success('Processing complete!')"
       >
         Done
-      </a-button>
-      <a-button v-if="current > 0" style="margin-left: 8px" @click="prev">
+      </o-button>
+      <o-button v-if="current > 0" style="margin-left: 8px" @click="prev">
         Previous
-      </a-button>
+      </o-button>
     </div>
   </div>
 </template>

@@ -38,9 +38,9 @@ Following the Ant Design specification, we developed a Vue UI library `antd` tha
 
 ## Version
 
-- Stable: [![npm package](https://img.shields.io/npm/v/ant-design-vue.svg?style=flat-square)](https://www.npmjs.org/package/ant-design-vue)
+- Stable: [![npm package](https://img.shields.io/npm/v/userty-design.svg?style=flat-square)](https://www.npmjs.org/package/userty-design)
 
-You can subscribe to this feed for new version notifications: https://github.com/vueComponent/ant-design-vue/releases.atom
+You can subscribe to this feed for new version notifications: https://github.com/vueComponent/userty-design/releases.atom
 
 ## Installation
 
@@ -49,11 +49,11 @@ You can subscribe to this feed for new version notifications: https://github.com
 **We recommend using npm or yarn to install**，it not only makes development easier，but also allow you to take advantage of the rich ecosystem of Javascript packages and tooling.
 
 ```bash
-$ npm install ant-design-vue --save
+$ npm install userty-design --save
 ```
 
 ```bash
-$ yarn add ant-design-vue
+$ yarn add userty-design
 ```
 
 If you are in a bad network environment，you can try other registries and tools like [cnpm](https://github.com/cnpm/cnpm).
@@ -64,7 +64,7 @@ If you are in a bad network environment，you can try other registries and tools
 
 Add `script` and `link` tags in your browser and use the global variable `antd`.
 
-We provide `antd.js` `antd.css` and `antd.min.js` `antd.min.css` under `ant-design-vue/dist` in antd's npm package. You can also download these files directly from [![jsdelivr](https://data.jsdelivr.com/v1/package/npm/ant-design-vue/badge)](https://www.jsdelivr.com/package/npm/ant-design-vue) or [unpkg](https://unpkg.com/ant-design-vue/dist/).
+We provide `antd.js` `antd.css` and `antd.min.js` `antd.min.css` under `userty-design/dist` in antd's npm package. You can also download these files directly from [![jsdelivr](https://data.jsdelivr.com/v1/package/npm/userty-design/badge)](https://www.jsdelivr.com/package/npm/userty-design) or [unpkg](https://unpkg.com/userty-design/dist/).
 
 > **We strongly discourage loading the entire files** this will add bloat to your application and make it more difficult to receive bugfixes and updates. Antd is intended to be used in conjunction with a build tool, such as [webpack](https://webpack.github.io/), which will make it easy to import only the parts of antd that you are using.
 
@@ -74,14 +74,14 @@ We provide `antd.js` `antd.css` and `antd.min.js` `antd.min.css` under `ant-desi
 
 ```jsx
 import Vue from 'vue';
-import { DatePicker } from 'ant-design-vue';
+import { DatePicker } from 'userty-design';
 Vue.use(DatePicker);
 ```
 
 And import stylesheets manually:
 
 ```jsx
-import 'ant-design-vue/dist/antd.css'; // or 'ant-design-vue/dist/antd.less'
+import 'userty-design/dist/antd.css'; // or 'userty-design/dist/antd.less'
 ```
 
 ### Use modularized antd
@@ -92,7 +92,7 @@ import 'ant-design-vue/dist/antd.css'; // or 'ant-design-vue/dist/antd.less'
   // .babelrc or babel-loader option
   {
     "plugins": [
-      ["import", { "libraryName": "ant-design-vue", "libraryDirectory": "es", "style": "css" }] // `style: true` for less
+      ["import", { "libraryName": "userty-design", "libraryDirectory": "es", "style": "css" }] // `style: true` for less
     ]
   }
   ```
@@ -103,15 +103,15 @@ import 'ant-design-vue/dist/antd.css'; // or 'ant-design-vue/dist/antd.less'
 
   ```jsx
   // import js and css modularly, parsed by babel-plugin-import
-  import { DatePicker } from 'ant-design-vue';
+  import { DatePicker } from 'userty-design';
   ```
 
 - Manually import
 
   ```jsx
-  import DatePicker from 'ant-design-vue/lib/date-picker'; // for js
-  import 'ant-design-vue/lib/date-picker/style/css'; // for css
-  // import 'ant-design-vue/lib/date-picker/style';         // that will import less
+  import DatePicker from 'userty-design/lib/date-picker'; // for js
+  import 'userty-design/lib/date-picker/style/css'; // for css
+  // import 'userty-design/lib/date-picker/style';         // that will import less
   ```
 
 ## Links
@@ -124,19 +124,19 @@ import 'ant-design-vue/dist/antd.css'; // or 'ant-design-vue/dist/antd.less'
 - [Customize Theme](/docs/vue/customize-theme)
 - [FAQ](/docs/vue/faq)
 - [Support US](/docs/vue/sponsor)
-- [Awesome Ant Design](https://github.com/vueComponent/ant-design-vue-awesome)
+- [Awesome Ant Design](https://github.com/vueComponent/userty-design-awesome)
 
 ## Contributing
 
-If you'd like to help us improve antd, just create a [Pull Request](https://github.com/vueComponent/ant-design-vue/pulls). Feel free to report bugs and issues [here](https://vuecomponent.github.io/issue-helper/).
+If you'd like to help us improve antd, just create a [Pull Request](https://github.com/vueComponent/userty-design/pulls). Feel free to report bugs and issues [here](https://vuecomponent.github.io/issue-helper/).
 
 > If you're new to posting issues, we ask that you read [_How To Ask Questions The Smart Way_](http://www.catb.org/~esr/faqs/smart-questions.html) and [How to Ask a Question in Open Source Community](https://github.com/seajs/seajs/issues/545) and [How to Report Bugs Effectively](http://www.chiark.greenend.org.uk/~sgtatham/bugs.html) prior to posting. Well written bug reports help us help you!
 
-## About ant-design-vue
+## About userty-design
 
-As we all know, Ant Design, as a design language, has gone through many years of iteration and accumulation. Its UI design ideas have become a set of de facto standards and are sought after and loved by many front-end developers and enterprises, and it is also a magic weapon in the hands of React developers. I hope that ant-design-vue will allow Vue developers to enjoy the excellent design of Ant Design.
+As we all know, Ant Design, as a design language, has gone through many years of iteration and accumulation. Its UI design ideas have become a set of de facto standards and are sought after and loved by many front-end developers and enterprises, and it is also a magic weapon in the hands of React developers. I hope that userty-design will allow Vue developers to enjoy the excellent design of Ant Design.
 
-The ant-design-vue is the Vue implementation of Ant Design. The style of the component is kept in sync with Ant Design. The html structure and css style of the component are also consistent. The style 0 modification is really achieved, and the component API is kept as consistent as possible.
+The userty-design is the Vue implementation of Ant Design. The style of the component is kept in sync with Ant Design. The html structure and css style of the component are also consistent. The style 0 modification is really achieved, and the component API is kept as consistent as possible.
 
 Ant Design Vue is committed to providing programmers with a ** pleasant ** development experience.
 

@@ -11,18 +11,18 @@ Step bar + custom content.
 
 ```vue
 <template>
-  <a-card :bordered="false">
-    <a-steps class="steps" :current="current">
-      <a-step title="样品交接" />
-      <a-step title="确认交接内容" />
-      <a-step title="完成" />
-    </a-steps>
+  <o-card :bordered="false">
+    <o-steps class="steps" :current="current">
+      <o-step title="样品交接" />
+      <o-step title="确认交接内容" />
+      <o-step title="完成" />
+    </o-steps>
     <div class="content">
       <step1 v-if="current === 0" :values.sync="step1Values" @nextStep="nextStep"></step1>
       <step2 v-if="current === 1" :values="step1Values" @nextStep="nextStep" @prevStep="prevStep"></step2>
       <step3 v-if="current === 2" :values="step1Values" @prevStep="prevStep" @finish="finish"></step3>
     </div>
-  </a-card>
+  </o-card>
 </template>
 
 <script>

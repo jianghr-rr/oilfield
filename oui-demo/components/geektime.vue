@@ -7,7 +7,7 @@
       <img width="150" alt="Vue 实战教程" src="https://qn.antdv.com/geektime-vue.jpeg" />
     </a>
     <div class="close" @click="visible = false">
-      <a-icon type="close" />
+      <o-icon type="close" />
     </div>
   </div>
 </template>

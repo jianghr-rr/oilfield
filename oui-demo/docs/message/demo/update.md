@@ -10,9 +10,9 @@ Update message content with unique `key`.
 
 ```vue
 <template>
-  <a-button type="primary" @click="openMessage">
+  <o-button type="primary" @click="openMessage">
     Open the message box
-  </a-button>
+  </o-button>
 </template>
 <script>
 const key = 'updatable';

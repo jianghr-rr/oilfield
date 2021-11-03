@@ -8,8 +8,8 @@
   </li>
 </template>
 <script>
-// import { Badge } from '../../../node_modules/ant-design-vue';
-// import 'ant-design-vue/es/badge/style';
+// import { Badge } from '../../../node_modules/userty-design';
+// import 'userty-design/es/badge/style';
 export default {
   components: {
     'a-badge': Badge,

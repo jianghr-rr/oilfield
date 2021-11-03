@@ -34,7 +34,7 @@ Add or remove form items dynamically.
         placeholder="passenger name"
         style="width: 60%; margin-right: 8px"
       />
-      <a-icon
+      <o-icon
         v-if="form.getFieldValue('keys').length > 1"
         class="dynamic-delete-button"
         type="minus-circle-o"
@@ -44,7 +44,7 @@ Add or remove form items dynamically.
     </o-form-item>
     <o-form-item v-bind="formItemLayoutWithOutLabel">
       <o-button type="dashed" style="width: 60%" @click="add">
-        <a-icon type="plus" /> Add field
+        <o-icon type="plus" /> Add field
       </o-button>
     </o-form-item>
     <o-form-item v-bind="formItemLayoutWithOutLabel">

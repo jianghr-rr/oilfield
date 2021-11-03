@@ -11,23 +11,23 @@
 ```vue
 <template>
   <div style="background-color: #ececec; padding: 20px;">
-    <a-row :gutter="16">
-      <a-col :span="8">
+    <o-row :gutter="16">
+      <o-col :span="8">
         <o-card title="Card title" :bordered="false">
           <p>card content</p>
         </o-card>
-      </a-col>
-      <a-col :span="8">
+      </o-col>
+      <o-col :span="8">
         <o-card title="Card title" :bordered="false">
           <p>card content</p>
         </o-card>
-      </a-col>
-      <a-col :span="8">
+      </o-col>
+      <o-col :span="8">
         <o-card title="Card title" :bordered="false">
           <p>card content</p>
         </o-card>
-      </a-col>
-    </a-row>
+      </o-col>
+    </o-row>
   </div>
 </template>
 ```

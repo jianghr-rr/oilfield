@@ -11,22 +11,22 @@ In the various types of information modal dialog, only one button to close dialo
 ```vue
 <template>
   <div>
-    <a-button @click="info">
+    <o-button @click="info">
       Info
-    </a-button>
-    <a-button @click="success">
+    </o-button>
+    <o-button @click="success">
       Success
-    </a-button>
-    <a-button @click="error">
+    </o-button>
+    <o-button @click="error">
       Error
-    </a-button>
-    <a-button @click="warning">
+    </o-button>
+    <o-button @click="warning">
       Warning
-    </a-button>
+    </o-button>
   </div>
 </template>
 <script>
-import { Modal } from 'ant-design-vue';
+import { Modal } from 'userty-design';
 export default {
   methods: {
     info() {

@@ -29,19 +29,19 @@ export default {
       }
     });
     return (
-      <a-row gutter={16}>
-        <a-col
+      <o-row gutter={16}>
+        <o-col
           span={isSingleCol ? 24 : 12}
           class={isSingleCol ? 'code-boxes-col-1-1' : 'code-boxes-col-2-1'}
         >
           {leftChildren}
-        </a-col>
+        </o-col>
         {isSingleCol ? null : (
-          <a-col class="code-boxes-col-2-1" span={12}>
+          <o-col class="code-boxes-col-2-1" span={12}>
             {rightChildren}
-          </a-col>
+          </o-col>
         )}
-      </a-row>
+      </o-row>
     );
   },
 };

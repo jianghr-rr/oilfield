@@ -13,7 +13,7 @@ Image, Icon and letter are supported, and the latter two kinds avatar can have c
   <div>
     <o-avatar icon="user" />
     <o-avatar>
-      <a-icon slot="icon" type="user" />
+      <o-icon slot="icon" type="user" />
     </o-avatar>
     <o-avatar>U</o-avatar>
     <o-avatar>USER</o-avatar>

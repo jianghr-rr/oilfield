@@ -10,9 +10,9 @@ Manually updating and destroying a modal from `Modal.method`.
 
 ```vue
 <template>
-  <a-button @click="countDown">
+  <o-button @click="countDown">
     Open modal to close in 5s
-  </a-button>
+  </o-button>
 </template>
 <script>
 export default {

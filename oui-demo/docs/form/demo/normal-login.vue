@@ -23,7 +23,7 @@ Normal login form which can contain more elements.
         ]"
         placeholder="Username"
       >
-        <a-icon slot="prefix" type="user" style="color: rgba(0,0,0,.25)" />
+        <o-icon slot="prefix" type="user" style="color: rgba(0,0,0,.25)" />
       </o-input>
     </o-form-item>
     <o-form-item>
@@ -35,11 +35,11 @@ Normal login form which can contain more elements.
         type="password"
         placeholder="Password"
       >
-        <a-icon slot="prefix" type="lock" style="color: rgba(0,0,0,.25)" />
+        <o-icon slot="prefix" type="lock" style="color: rgba(0,0,0,.25)" />
       </o-input>
     </o-form-item>
     <o-form-item>
-      <a-checkbox
+      <o-checkbox
         v-decorator="[
           'remember',
           {
@@ -49,7 +49,7 @@ Normal login form which can contain more elements.
         ]"
       >
         Remember me
-      </a-checkbox>
+      </o-checkbox>
       <a class="login-form-forgot" href="">
         Forgot password
       </a>

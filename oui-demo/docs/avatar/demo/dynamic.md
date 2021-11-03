@@ -18,13 +18,13 @@ For letter type Avatar, when the letters are too long to display, the font size 
     >
       {{ avatarValue }}
     </o-avatar>
-    <a-button
+    <o-button
       size="small"
       :style="{ marginLeft: 16, verticalAlign: 'middle' }"
       @click="changeValue"
     >
       改变
-    </a-button>
+    </o-button>
   </div>
 </template>
 <script>

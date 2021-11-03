@@ -21,11 +21,11 @@ There are `primary` button, `default` button, `dashed` button , `danger` button 
     <o-button type="danger">
       Danger
     </o-button>
-    <a-config-provider :auto-insert-space-in-button="false">
+    <o-config-provider :auto-insert-space-in-button="false">
       <o-button type="primary">
         按钮
       </o-button>
-    </a-config-provider>
+    </o-config-provider>
     <o-button type="primary">
       按钮
     </o-button>

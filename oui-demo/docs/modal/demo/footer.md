@@ -15,17 +15,17 @@ You could set `footer` to `null` if you don't need default footer buttons.
 ```vue
 <template>
   <div>
-    <a-button type="primary" @click="showModal">
+    <o-button type="primary" @click="showModal">
       Open Modal with customized footer
-    </a-button>
+    </o-button>
     <o-modal v-model="visible" title="Title" on-ok="handleOk">
       <template slot="footer">
-        <a-button key="back" @click="handleCancel">
+        <o-button key="back" @click="handleCancel">
           Return
-        </a-button>
-        <a-button key="submit" type="primary" :loading="loading" @click="handleOk">
+        </o-button>
+        <o-button key="submit" type="primary" :loading="loading" @click="handleOk">
           Submit
-        </a-button>
+        </o-button>
       </template>
       <p>Some contents...</p>
       <p>Some contents...</p>

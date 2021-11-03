@@ -16,7 +16,7 @@ Setting `@change` makes Steps clickable.
       <o-step title="Step 2" description="This is a description." />
       <o-step title="Step 3" description="This is a description." />
     </o-steps>
-    <a-divider />
+    <o-divider />
     <o-steps v-model="current" direction="vertical">
       <o-step title="Step 1" description="This is a description." />
       <o-step title="Step 2" description="This is a description." />

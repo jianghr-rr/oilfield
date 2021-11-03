@@ -32,9 +32,9 @@ Table with editable rows.
       <div class="editable-row-operations">
         <span v-if="record.editable">
           <a @click="() => save(record.key)">Save</a>
-          <a-popconfirm title="Sure to cancel?" @confirm="() => cancel(record.key)">
+          <o-popconfirm title="Sure to cancel?" @confirm="() => cancel(record.key)">
             <a>Cancel</a>
-          </a-popconfirm>
+          </o-popconfirm>
         </span>
         <span v-else>
           <a :disabled="editingKey !== ''" @click="() => edit(record.key)">Edit</a>

@@ -14,19 +14,19 @@
       <slot v-if="isZhCN" name="description" />
       <slot v-else name="us-description" />
       <div class="code-box-actions">
-        <a-tooltip
+        <o-tooltip
           :title="copied ? 'Copied!' : 'Copy code'"
           :visible="copyTooltipVisible"
           @visibleChange="onCopyTooltipVisibleChange"
         >
-          <a-icon
+          <o-icon
             v-clipboard:copy="sourceCode"
             v-clipboard:success="handleCodeCopied"
             :type="copied && copyTooltipVisible ? 'check' : 'copy'"
             class="code-box-code-copy"
           />
-        </a-tooltip>
-        <a-tooltip :title="codeExpand ? 'Hide Code' : 'Show Code'">
+        </o-tooltip>
+        <o-tooltip :title="codeExpand ? 'Hide Code' : 'Show Code'">
           <span class="code-expand-icon">
             <img
               width="16"
@@ -43,7 +43,7 @@
               @click="handleCodeExpand"
             />
           </span>
-        </a-tooltip>
+        </o-tooltip>
       </div>
     </section>
     <transition appear :css="false" @enter="enter" @leave="leave">
@@ -57,8 +57,8 @@
   </section>
 </template>
 <script>
-import animate from 'ant-design-vue/es/_util/openAnimation';
-import BaseMixin from 'ant-design-vue/es/_util/BaseMixin';
+import animate from 'userty-design/es/_util/openAnimation';
+import BaseMixin from 'userty-design/es/_util/BaseMixin';
 import { isZhCN } from '../utils/util';
 import { dev } from '../build/config';
 export default {
@@ -226,5 +226,13 @@ export default {
       transform: rotate(-180deg);
     }
   }
+}
+.code-box-actions>form, .code-box-actions>i, .code-box-actions>span {
+    position: relative;
+    display: inline-block;
+    width: 16px;
+    height: 16px;
+    margin-left: 16px;
+    vertical-align: top;
 }
 </style>

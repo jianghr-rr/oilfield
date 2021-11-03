@@ -206,7 +206,7 @@ module.exports = {
           extensions: ['.js', '.jsx', '.vue', '.md'],
           alias: {
             vue$: 'vue/dist/vue.esm.js',
-            // 'ant-design-vue$': path.join(__dirname, '../../components/index.js'),
+            // 'userty-design$': path.join(__dirname, '../../components/index.js'),
             // 'oui-vue/es': path.join(__dirname, '../../components'),
             // 'oui-vue/lib': path.join(__dirname, '../../components'),
           },

@@ -68,7 +68,7 @@ import {
   PageHeader,
   Space,
   // ColorPicker,
-} from 'ant-design-vue/es';
+} from 'userty-design/es';
 
 Vue.prototype.$message = message;
 Vue.prototype.$notification = notification;

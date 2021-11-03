@@ -14,7 +14,7 @@ The following CodeSandbox demo is the simplest use case, and it's also a good ha
 
 - [![Vue Antd Template](https://codesandbox.io/static/img/play-codesandbox.svg)](https://codesandbox.io/s/2wpk21kzvr)
 
-## Import ant-design-vue
+## Import userty-design
 
 ### 1. Installation
 
@@ -39,16 +39,16 @@ And, setup your vue project configuration.
 ### 3. Use antd's Components
 
 ```bash
-$ npm i --save ant-design-vue
+$ npm i --save userty-design
 ```
 
 **Fully import**
 
 ```jsx
 import Vue from 'vue';
-import Antd from 'ant-design-vue';
+import Antd from 'userty-design';
 import App from './App';
-import 'ant-design-vue/dist/antd.css';
+import 'userty-design/dist/antd.css';
 Vue.config.productionTip = false;
 
 Vue.use(Antd);
@@ -67,7 +67,7 @@ The above imports Antd entirely. Note that CSS file needs to be imported separat
 
 ```jsx
 import Vue from 'vue';
-import { Button, message } from 'ant-design-vue';
+import { Button, message } from 'userty-design';
 import App from './App';
 
 Vue.config.productionTip = false;
@@ -93,7 +93,7 @@ new Vue({
 
 ### 4. Component list
 
-[Component list](https://github.com/vueComponent/ant-design-vue/blob/master/components/index.js)
+[Component list](https://github.com/vueComponent/userty-design/blob/master/components/index.js)
 
 ## Compatibility
 
@@ -107,26 +107,26 @@ If you are using babel, we strongly recommend using [babel-polyfill](https://bab
 
 ## Import on Demand
 
-If you see logs like below screenshot, you might be importing all components by writing `import { Button } from 'ant-design-vue';`. This will affect your app's network performance.
+If you see logs like below screenshot, you might be importing all components by writing `import { Button } from 'userty-design';`. This will affect your app's network performance.
 
 > ![](https://zos.alipayobjects.com/rmsportal/GHIRszVcmjccgZRakJDQ.png)
 
 However, we can import individual components on demand:
 
 ```jsx
-import Button from 'ant-design-vue/lib/button';
-import 'ant-design-vue/lib/button/style'; // or ant-design-vue/lib/button/style/css for css format file
+import Button from 'userty-design/lib/button';
+import 'userty-design/lib/button/style'; // or userty-design/lib/button/style/css for css format file
 ```
 
-We strongly recommend using [babel-plugin-import](https://github.com/ant-design/babel-plugin-import), which can convert the following code to the 'ant-design-vue/lib/xxx' way:
+We strongly recommend using [babel-plugin-import](https://github.com/ant-design/babel-plugin-import), which can convert the following code to the 'userty-design/lib/xxx' way:
 
 ```jsx
-import { Button } from 'ant-design-vue';
+import { Button } from 'userty-design';
 ```
 
 And this plugin can load styles too, read [usage](https://github.com/ant-design/babel-plugin-import#usage) for more details.
 
-> FYI, babel-plugin-import's `style` option will importing some global reset styles, don't use it if you don't need those styles. You can import styles manually via `import 'ant-design-vue/dist/antd.css'` and override the global reset styles.
+> FYI, babel-plugin-import's `style` option will importing some global reset styles, don't use it if you don't need those styles. You can import styles manually via `import 'userty-design/dist/antd.css'` and override the global reset styles.
 
 ## Customization
 

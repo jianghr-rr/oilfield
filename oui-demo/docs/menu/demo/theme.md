@@ -29,32 +29,32 @@ There are two built-in themes: 'light' and 'dark'. The default value is 'light'.
       @click="handleClick"
     >
       <o-menu-item key="1">
-        <a-icon type="mail" />
+        <o-icon type="mail" />
         Navigation One
       </o-menu-item>
       <o-menu-item key="2">
-        <a-icon type="calendar" />
+        <o-icon type="calendar" />
         Navigation Two
       </o-menu-item>
-      <a-sub-menu key="sub1">
-        <span slot="title"><a-icon type="appstore" /><span>Navigation Three</span></span>
+      <o-sub-menu key="sub1">
+        <span slot="title"><o-icon type="appstore" /><span>Navigation Three</span></span>
         <o-menu-item key="3">
           Option 3
         </o-menu-item>
         <o-menu-item key="4">
           Option 4
         </o-menu-item>
-        <a-sub-menu key="sub1-2" title="Submenu">
+        <o-sub-menu key="sub1-2" title="Submenu">
           <o-menu-item key="5">
             Option 5
           </o-menu-item>
           <o-menu-item key="6">
             Option 6
           </o-menu-item>
-        </a-sub-menu>
-      </a-sub-menu>
-      <a-sub-menu key="sub2">
-        <span slot="title"><a-icon type="setting" /><span>Navigation Four</span></span>
+        </o-sub-menu>
+      </o-sub-menu>
+      <o-sub-menu key="sub2">
+        <span slot="title"><o-icon type="setting" /><span>Navigation Four</span></span>
         <o-menu-item key="7">
           Option 7
         </o-menu-item>
@@ -67,7 +67,7 @@ There are two built-in themes: 'light' and 'dark'. The default value is 'light'.
         <o-menu-item key="10">
           Option 10
         </o-menu-item>
-      </a-sub-menu>
+      </o-sub-menu>
     </o-menu>
   </div>
 </template>

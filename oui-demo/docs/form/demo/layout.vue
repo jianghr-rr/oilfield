@@ -15,17 +15,17 @@ There are three layout for form: `horizontal`, `vertical`, `inline`.
       :label-col="formItemLayout.labelCol"
       :wrapper-col="formItemLayout.wrapperCol"
     >
-      <a-radio-group default-value="horizontal" @change="handleFormLayoutChange">
-        <a-radio-button value="horizontal">
+      <o-radio-group default-value="horizontal" @change="handleFormLayoutChange">
+        <o-radio-button value="horizontal">
           Horizontal
-        </a-radio-button>
-        <a-radio-button value="vertical">
+        </o-radio-button>
+        <o-radio-button value="vertical">
           Vertical
-        </a-radio-button>
-        <a-radio-button value="inline">
+        </o-radio-button>
+        <o-radio-button value="inline">
           Inline
-        </a-radio-button>
-      </a-radio-group>
+        </o-radio-button>
+      </o-radio-group>
     </o-form-item>
     <o-form-item
       label="Field A"

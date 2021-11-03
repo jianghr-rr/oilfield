@@ -44,7 +44,7 @@ All the icons will render to `<svg>`. You can still set `style` and `class` for 
 When using the two-tone icons, you can use the static methods `Icon.getTwoToneColor()` and `Icon.setTwoToneColor(colorString)` to spicify the primary color.
 
 ```jsx
-import { Icon } from 'ant-design-vue';
+import { Icon } from 'userty-design';
 
 Icon.setTwoToneColor('#eb2f96');
 Icon.getTwoToneColor(); // #eb2f96
@@ -101,7 +101,7 @@ module.exports = {
 ```
 
 ```jsx
-import { Icon } from 'ant-design-vue';
+import { Icon } from 'userty-design';
 import MessageSvg from 'path/to/message.svg'; // path to your '*.svg' file.
 
 new Vue({

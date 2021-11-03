@@ -11,9 +11,9 @@ Basic modal.
 ```vue
 <template>
   <div>
-    <a-button type="primary" @click="showModal">
+    <o-button type="primary" @click="showModal">
       Open Modal
-    </a-button>
+    </o-button>
     <o-modal v-model="visible" title="Basic Modal" @ok="handleOk">
       <p>Some contents...</p>
       <p>Some contents...</p>

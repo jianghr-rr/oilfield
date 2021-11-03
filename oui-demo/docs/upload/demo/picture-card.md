@@ -25,9 +25,9 @@ After users upload picture, the thumbnail will be shown in list. The upload butt
         </div>
       </div>
     </o-upload>
-    <a-modal :visible="previewVisible" :footer="null" @cancel="handleCancel">
+    <o-modal :visible="previewVisible" :footer="null" @cancel="handleCancel">
       <img alt="example" style="width: 100%" :src="previewImage" />
-    </a-modal>
+    </o-modal>
   </div>
 </template>
 <script>

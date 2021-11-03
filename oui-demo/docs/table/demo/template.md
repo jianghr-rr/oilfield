@@ -25,7 +25,7 @@ Using template style API
     <o-table-column key="tags" title="Tags" data-index="tags">
       <template slot-scope="tags">
         <span>
-          <a-tag v-for="tag in tags" :key="tag" color="blue">{{ tag }}</a-tag>
+          <o-tag v-for="tag in tags" :key="tag" color="blue">{{ tag }}</o-tag>
         </span>
       </template>
     </o-table-column>
@@ -33,7 +33,7 @@ Using template style API
       <template slot-scope="text, record">
         <span>
           <a>Action 一 {{ record.firstName }}</a>
-          <a-divider type="vertical" />
+          <o-divider type="vertical" />
           <a>Delete</a>
         </span>
       </template>

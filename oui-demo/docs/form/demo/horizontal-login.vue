@@ -18,7 +18,7 @@ Inline login form is often used in navigation bar.
         ]"
         placeholder="Username"
       >
-        <a-icon slot="prefix" type="user" style="color:rgba(0,0,0,.25)" />
+        <o-icon slot="prefix" type="user" style="color:rgba(0,0,0,.25)" />
       </o-input>
     </o-form-item>
     <o-form-item :validate-status="passwordError() ? 'error' : ''" :help="passwordError() || ''">
@@ -30,7 +30,7 @@ Inline login form is often used in navigation bar.
         type="password"
         placeholder="Password"
       >
-        <a-icon slot="prefix" type="lock" style="color:rgba(0,0,0,.25)" />
+        <o-icon slot="prefix" type="lock" style="color:rgba(0,0,0,.25)" />
       </o-input>
     </o-form-item>
     <o-form-item>

@@ -10,9 +10,9 @@ The style and className are available to customize Notification.
 
 ```vue
 <template>
-  <a-button type="primary" @click="openNotification">
+  <o-button type="primary" @click="openNotification">
     Open the notification box
-  </a-button>
+  </o-button>
 </template>
 <script>
 export default {

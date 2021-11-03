@@ -11,10 +11,10 @@ import router from './router';
 import Oui from '../node_modules/userty-design';
 import bootstrap from '../core/bootstrap';
 import store from '../store/index.js';
+import Antd from 'userty-design';
 import 'userty-design/dist/usertyd.css';
 
-import Antd from 'ant-design-vue';
-import 'ant-design-vue/dist/antd.less';
+// import 'userty-design/dist/antd.less';
 import Md from '../components/md';
 import Api from '../components/api';
 // import './components';

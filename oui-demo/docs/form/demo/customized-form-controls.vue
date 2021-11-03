@@ -46,14 +46,14 @@ const PriceInput = {
         @change="handleNumberChange"
         style="width: 63%; margin-right: 2%;"
       />
-      <a-select
+      <o-select
         :value="currency"
         style="width: 32%"
         @change="handleCurrencyChange"
       >
-        <a-select-option value='rmb'>RMB</a-select-option>
-        <a-select-option value='dollar'>Dollar</a-select-option>
-      </a-select>
+        <o-select-option value='rmb'>RMB</o-select-option>
+        <o-select-option value='dollar'>Dollar</o-select-option>
+      </o-select>
     </span>
   `,
   data() {

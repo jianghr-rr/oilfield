@@ -27,7 +27,7 @@ Customize render list with Table component.
           on: { itemSelectAll, itemSelect },
         }"
       >
-        <a-table
+        <o-table
           :row-selection="
             getRowSelection({ disabled: listDisabled, selectedKeys, itemSelectAll, itemSelect })
           "

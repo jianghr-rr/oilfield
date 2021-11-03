@@ -6,7 +6,7 @@
       </span>
       <ul>
         <!-- <li class="sponsorsItem">
-          <a href="https://tipe.io/?ref=ant-design-vue" target="_blank">
+          <a href="https://tipe.io/?ref=userty-design" target="_blank">
             <img height="51" src="https://cdn.tipe.io/tipe/tipe-cat-no-text.svg" alt="tipe" />
           </a>
         </li> -->
@@ -17,9 +17,9 @@
           <span style="position: absolute; top: 0px;right: 10px">广告</span>
         </li>
         <!-- <li class="sponsorsItem">
-          <a-button type="primary" ghost style="font-size: 12px" @click="handleClick">
+          <o-button type="primary" ghost style="font-size: 12px" @click="handleClick">
             {{ isCN ? '成为赞助商' : 'Become a Sponsor' }}
-          </a-button>
+          </o-button>
         </li> -->
       </ul>
     </div>
@@ -53,7 +53,7 @@ export default {
       if (this.isCN) {
         this.visible = true;
       } else {
-        window.open('https://opencollective.com/ant-design-vue#sponsor');
+        window.open('https://opencollective.com/userty-design#sponsor');
       }
     },
   },

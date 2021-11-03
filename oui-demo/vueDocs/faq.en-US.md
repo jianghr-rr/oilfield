@@ -36,15 +36,15 @@ The `defaultXxxx` (like `defaultValue`) of `Input`/`Select`(etc...) only works i
 
 Try `defaultValue` or `change` or `v-model` to change `value`.
 
-### ant-design-vue override my global styles!
+### userty-design override my global styles!
 
-Yes, ant-design-vue is designed to develop a complete background application, we override some global styles for styling convenience, and it can't be removed now. More info trace https://github.com/ant-design/ant-design/issues/4331 .
+Yes, userty-design is designed to develop a complete background application, we override some global styles for styling convenience, and it can't be removed now. More info trace https://github.com/ant-design/ant-design/issues/4331 .
 
 Or, follow the instructions in [How to avoid modifying global styles?](docs/react/customize-theme#How-to-avoid-modifying-global-styles-?)
 
-### `ant-design-vue` makes only poor user experience on mobile.
+### `userty-design` makes only poor user experience on mobile.
 
-`ant-design-vue` is not designed for mobile.
+`userty-design` is not designed for mobile.
 
 ### When I set `mode` to DatePicker/RangePicker, I cannot select year or month anymore?
 
@@ -54,4 +54,4 @@ That is because `<DatePicker mode="year" />` do not equal to `YearPicker`, `<Ran
 
 ##### Solution
 
-The following articles are the implementation articles of the react version, the ideas are the same. In [one article](https://juejin.im/post/5cf65c366fb9a07eca6968f9) or [another article](https://www.cnblogs.com/zyl-Tara/p/10197177.html) approach, using methods `mode` and `panelChange` to encapsulate a component such as `YearPicker`. We plan to add more date related components directly in ant-design-vue@2.0 to support these needs.
+The following articles are the implementation articles of the react version, the ideas are the same. In [one article](https://juejin.im/post/5cf65c366fb9a07eca6968f9) or [another article](https://www.cnblogs.com/zyl-Tara/p/10197177.html) approach, using methods `mode` and `panelChange` to encapsulate a component such as `YearPicker`. We plan to add more date related components directly in userty-design@2.0 to support these needs.

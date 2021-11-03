@@ -13,7 +13,7 @@ Step bar + custom content.
 <template>
   <o-timeline mode="left" :style="style.panel">
     <o-timeline-item color="red">
-        <a-icon slot="dot" type="clock-circle-o" style="font-size: 16px;" />
+        <o-icon slot="dot" type="clock-circle-o" style="font-size: 16px;" />
         <o-card hoverable :style="style.card">创建成功</o-card>
         <div :style="style.time">2021-09-01</div>
     </o-timeline-item>

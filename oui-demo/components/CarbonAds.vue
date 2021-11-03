@@ -3,7 +3,7 @@ const carbonUrls = {
   'www.antdv.com': '//cdn.carbonads.com/carbon.js?serve=CK7DL2JW&placement=antdvcom',
   // 'tangjinzhou.gitee.io':
   //   '//cdn.carbonads.com/carbon.js?serve=CK7DL2JN&placement=tangjinzhougiteeio',
-  // 'ant-design-vue.gitee.io':
+  // 'userty-design.gitee.io':
   //   '//cdn.carbonads.com/carbon.js?serve=CK7DL2JN&placement=antdesignvuegiteeio',
   'vue.ant.design': '//cdn.carbonads.com/carbon.js?serve=CK7DL2JW&placement=vueantdesign',
 };

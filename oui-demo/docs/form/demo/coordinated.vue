@@ -16,7 +16,7 @@ Use `setFieldsValue` to set other control's value programmaticly.
       />
     </o-form-item>
     <o-form-item label="Gender">
-      <a-select
+      <o-select
         v-decorator="[
           'gender',
           { rules: [{ required: true, message: 'Please select your gender!' }] },
@@ -24,13 +24,13 @@ Use `setFieldsValue` to set other control's value programmaticly.
         placeholder="Select a option and change input text above"
         @change="handleSelectChange"
       >
-        <a-select-option value="male">
+        <o-select-option value="male">
           male
-        </a-select-option>
-        <a-select-option value="female">
+        </o-select-option>
+        <o-select-option value="female">
           female
-        </a-select-option>
-      </a-select>
+        </o-select-option>
+      </o-select>
     </o-form-item>
     <o-form-item :wrapper-col="{ span: 12, offset: 5 }">
       <o-button type="primary" html-type="submit">

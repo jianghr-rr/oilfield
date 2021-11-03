@@ -12,19 +12,19 @@ Decent icon make information more clear and more friendly.
 <template>
   <div>
     <o-alert message="showIcon = false" type="success">
-      <a-icon slot="icon" type="smile" />
+      <o-icon slot="icon" type="smile" />
     </o-alert>
     <o-alert message="Success Tips" type="success" show-icon>
-      <a-icon slot="icon" type="smile" />
+      <o-icon slot="icon" type="smile" />
     </o-alert>
     <o-alert message="Informational Notes" type="info" show-icon>
-      <a-icon slot="icon" type="smile" />
+      <o-icon slot="icon" type="smile" />
     </o-alert>
     <o-alert message="Warning" type="warning" show-icon>
-      <a-icon slot="icon" type="smile" />
+      <o-icon slot="icon" type="smile" />
     </o-alert>
     <o-alert message="Error" type="error" show-icon>
-      <a-icon slot="icon" type="smile" />
+      <o-icon slot="icon" type="smile" />
     </o-alert>
     <o-alert
       message="Success Tips"
@@ -32,7 +32,7 @@ Decent icon make information more clear and more friendly.
       type="success"
       show-icon
     >
-      <a-icon slot="icon" type="smile" />
+      <o-icon slot="icon" type="smile" />
     </o-alert>
     <o-alert
       message="Informational Notes"
@@ -40,7 +40,7 @@ Decent icon make information more clear and more friendly.
       type="info"
       show-icon
     >
-      <a-icon slot="icon" type="smile" />
+      <o-icon slot="icon" type="smile" />
     </o-alert>
     <o-alert
       message="Warning"
@@ -48,7 +48,7 @@ Decent icon make information more clear and more friendly.
       type="warning"
       show-icon
     >
-      <a-icon slot="icon" type="smile" />
+      <o-icon slot="icon" type="smile" />
     </o-alert>
     <o-alert
       message="Error"
@@ -56,7 +56,7 @@ Decent icon make information more clear and more friendly.
       type="error"
       show-icon
     >
-      <a-icon slot="icon" type="smile" />
+      <o-icon slot="icon" type="smile" />
     </o-alert>
   </div>
 </template>

@@ -12,10 +12,10 @@ A dynamic progress bar is better.
 <template>
   <div>
     <o-progress :percent="percent" />
-    <a-button-group>
-      <a-button icon="minus" @click="decline" />
-      <a-button icon="plus" @click="increase" />
-    </a-button-group>
+    <o-button-group>
+      <o-button icon="minus" @click="decline" />
+      <o-button icon="plus" @click="increase" />
+    </o-button-group>
   </div>
 </template>
 <script>

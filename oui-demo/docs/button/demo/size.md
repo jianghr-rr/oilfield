@@ -13,17 +13,17 @@ If a large or small button is desired, set the `size` property to either `large`
 ```vue
 <template>
   <div>
-    <a-radio-group :value="size" @change="handleSizeChange">
-      <a-radio-button value="large">
+    <o-radio-group :value="size" @change="handleSizeChange">
+      <o-radio-button value="large">
         Large
-      </a-radio-button>
-      <a-radio-button value="default">
+      </o-radio-button>
+      <o-radio-button value="default">
         Default
-      </a-radio-button>
-      <a-radio-button value="small">
+      </o-radio-button>
+      <o-radio-button value="small">
         Small
-      </a-radio-button>
-    </a-radio-group>
+      </o-radio-button>
+    </o-radio-group>
     <br><br>
     <o-button type="primary" :size="size">
       Primary
@@ -51,10 +51,10 @@ If a large or small button is desired, set the `size` property to either `large`
     <br>
     <o-button-group :size="size">
       <o-button type="primary">
-        <a-icon type="left" />Backward
+        <o-icon type="left" />Backward
       </o-button>
       <o-button type="primary">
-        Forward<a-icon type="right" />
+        Forward<o-icon type="right" />
       </o-button>
     </o-button-group>
   </div>

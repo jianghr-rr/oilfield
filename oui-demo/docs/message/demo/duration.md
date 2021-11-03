@@ -10,9 +10,9 @@ Customize message display duration from default `3s` to `10s`.
 
 ```vue
 <template>
-  <a-button @click="success">
+  <o-button @click="success">
     Customized display duration
-  </a-button>
+  </o-button>
 </template>
 <script>
 export default {

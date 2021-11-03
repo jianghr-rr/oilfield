@@ -15,7 +15,7 @@
                     :maxLength="20"
                     placeholder="请输入用户名称"
                 >
-                    <a-icon slot="prefix" type="user" style="color:rgba(0,0,0,.25); font-size: 24px;" />
+                    <o-icon slot="prefix" type="user" style="color:rgba(0,0,0,.25); font-size: 24px;" />
                 </o-input>
             </o-form-item>
             <o-form-item>
@@ -33,7 +33,7 @@
                     :maxLength="20"
                     placeholder="请输入登录密码"
                 >
-                    <a-icon slot="prefix" type="lock" style="color:rgba(0,0,0,.25); font-size: 24px;" />
+                    <o-icon slot="prefix" type="lock" style="color:rgba(0,0,0,.25); font-size: 24px;" />
                 </o-input>
             </o-form-item>
             <div class="oil-very oil-form-item">
@@ -228,6 +228,6 @@ export default {
                 }
             }
         }
-       
+
     }
 </style>

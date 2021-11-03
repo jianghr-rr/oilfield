@@ -18,10 +18,10 @@ Vertical menu with inline submenus.
       mode="inline"
       @click="handleClick"
     >
-      <a-sub-menu key="sub1" @titleClick="titleClick">
-        <span slot="title"><a-icon type="mail" /><span>Navigation One</span></span>
+      <o-sub-menu key="sub1" @titleClick="titleClick">
+        <span slot="title"><o-icon type="mail" /><span>Navigation One</span></span>
         <o-menu-item-group key="g1">
-          <template slot="title"> <a-icon type="qq" /><span>Item 1</span> </template>
+          <template slot="title"> <o-icon type="qq" /><span>Item 1</span> </template>
           <o-menu-item key="1">
             Option 1
           </o-menu-item>
@@ -37,26 +37,26 @@ Vertical menu with inline submenus.
             Option 4
           </o-menu-item>
         </o-menu-item-group>
-      </a-sub-menu>
-      <a-sub-menu key="sub2" @titleClick="titleClick">
-        <span slot="title"><a-icon type="appstore" /><span>Navigation Two</span></span>
+      </o-sub-menu>
+      <o-sub-menu key="sub2" @titleClick="titleClick">
+        <span slot="title"><o-icon type="appstore" /><span>Navigation Two</span></span>
         <o-menu-item key="5">
           Option 5
         </o-menu-item>
         <o-menu-item key="6">
           Option 6
         </o-menu-item>
-        <a-sub-menu key="sub3" title="Submenu">
+        <o-sub-menu key="sub3" title="Submenu">
           <o-menu-item key="7">
             Option 7
           </o-menu-item>
           <o-menu-item key="8">
             Option 8
           </o-menu-item>
-        </a-sub-menu>
-      </a-sub-menu>
-      <a-sub-menu key="sub4">
-        <span slot="title"><a-icon type="setting" /><span>Navigation Three</span></span>
+        </o-sub-menu>
+      </o-sub-menu>
+      <o-sub-menu key="sub4">
+        <span slot="title"><o-icon type="setting" /><span>Navigation Three</span></span>
         <o-menu-item key="9">
           Option 9
         </o-menu-item>
@@ -69,7 +69,7 @@ Vertical menu with inline submenus.
         <o-menu-item key="12">
           Option 12
         </o-menu-item>
-      </a-sub-menu>
+      </o-sub-menu>
     </o-menu>
   </div>
 </template>

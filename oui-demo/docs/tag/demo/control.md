@@ -12,11 +12,11 @@ Generating a set of Tags by array, you can add and remove dynamically.
 <template>
   <div>
     <template v-for="(tag, index) in tags">
-      <a-tooltip v-if="tag.length > 20" :key="tag" :title="tag">
+      <o-tooltip v-if="tag.length > 20" :key="tag" :title="tag">
         <o-tag :key="tag" :closable="index !== 0" @close="() => handleClose(tag)">
           {{ `${tag.slice(0, 20)}...` }}
         </o-tag>
-      </a-tooltip>
+      </o-tooltip>
       <o-tag v-else :key="tag" :closable="index !== 0" @close="() => handleClose(tag)">
         {{ tag }}
       </o-tag>

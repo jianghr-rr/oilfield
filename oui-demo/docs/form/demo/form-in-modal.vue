@@ -29,7 +29,7 @@ const CollectionCreateForm = {
     this.form = this.$form.createForm(this, { name: 'form_in_modal' });
   },
   template: `
-    <a-modal
+    <o-modal
       :visible="visible"
       title='Create a new collection'
       okText='Create'
@@ -54,7 +54,7 @@ const CollectionCreateForm = {
           />
         </o-form-item>
         <o-form-item class='collection-create-form_last-form-item'>
-          <a-radio-group
+          <o-radio-group
             v-decorator="[
               'modifier',
               {
@@ -62,12 +62,12 @@ const CollectionCreateForm = {
               }
             ]"
           >
-              <a-radio value='public'>Public</a-radio>
-              <a-radio value='private'>Private</a-radio>
-            </a-radio-group>
+              <o-radio value='public'>Public</o-radio>
+              <o-radio value='private'>Private</o-radio>
+            </o-radio-group>
         </o-form-item>
       </o-form>
-    </a-modal>
+    </o-modal>
   `,
 };
 

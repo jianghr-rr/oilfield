@@ -22,7 +22,7 @@
       <o-icon key="ellipsis" type="ellipsis" />
     </template>
     <o-card-meta title="Card title" description="This is the description">
-      <a-avatar
+      <o-avatar
         slot="avatar"
         src="https://zos.alipayobjects.com/rmsportal/ODTLcjxAfvqbxHnVXCYX.png"
       />

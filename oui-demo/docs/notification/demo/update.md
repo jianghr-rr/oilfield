@@ -10,9 +10,9 @@ Update content with unique key.
 
 ```vue
 <template>
-  <a-button type="primary" @click="openNotification">
+  <o-button type="primary" @click="openNotification">
     Open the notification box
-  </a-button>
+  </o-button>
 </template>
 <script>
 const key = 'updatable';

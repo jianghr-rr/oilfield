@@ -14,7 +14,7 @@ Ant Design Vue 致力于提供给程序员**愉悦**的开发体验。
 
 - [![Vue Antd Template](https://codesandbox.io/static/img/play-codesandbox.svg)](https://codesandbox.io/s/2wpk21kzvr)
 
-## 引入 ant-design-vue
+## 引入 userty-design
 
 ### 1. 安装脚手架工具
 
@@ -41,16 +41,16 @@ $ vue create antd-demo
 ### 3. 使用组件
 
 ```bash
-$ npm i --save ant-design-vue
+$ npm i --save userty-design
 ```
 
 **完整引入**
 
 ```jsx
 import Vue from 'vue';
-import Antd from 'ant-design-vue';
+import Antd from 'userty-design';
 import App from './App';
-import 'ant-design-vue/dist/antd.css';
+import 'userty-design/dist/antd.css';
 Vue.config.productionTip = false;
 
 Vue.use(Antd);
@@ -69,7 +69,7 @@ new Vue({
 
 ```jsx
 import Vue from 'vue';
-import { Button, message } from 'ant-design-vue';
+import { Button, message } from 'userty-design';
 import App from './App';
 
 Vue.config.productionTip = false;
@@ -95,7 +95,7 @@ new Vue({
 
 ### 4. 组件列表
 
-[完整组件列表](https://github.com/vueComponent/ant-design-vue/blob/master/components/index.js)
+[完整组件列表](https://github.com/vueComponent/userty-design/blob/master/components/index.js)
 
 ## 兼容性
 
@@ -109,26 +109,26 @@ Ant Design Vue 支持所有的现代浏览器和 IE9+。
 
 ## 按需加载
 
-如果你在开发环境的控制台看到下面的提示，那么你可能使用了 `import { Button } from 'ant-design-vue';` 的写法引入了 antd 下所有的模块，这会影响应用的网络性能。
+如果你在开发环境的控制台看到下面的提示，那么你可能使用了 `import { Button } from 'userty-design';` 的写法引入了 antd 下所有的模块，这会影响应用的网络性能。
 
 > ![](https://zos.alipayobjects.com/rmsportal/GHIRszVcmjccgZRakJDQ.png)
 
 可以通过以下的写法来按需加载组件。
 
 ```jsx
-import Button from 'ant-design-vue/lib/button';
-import 'ant-design-vue/lib/button/style'; // 或者 ant-design-vue/lib/button/style/css 加载 css 文件
+import Button from 'userty-design/lib/button';
+import 'userty-design/lib/button/style'; // 或者 userty-design/lib/button/style/css 加载 css 文件
 ```
 
 如果你使用了 babel，那么可以使用 [babel-plugin-import](https://github.com/ant-design/babel-plugin-import) 来进行按需加载，加入这个插件后。你可以仍然这么写：
 
 ```jsx
-import { Button } from 'ant-design-vue';
+import { Button } from 'userty-design';
 ```
 
-插件会帮你转换成 `ant-design-vue/lib/xxx` 的写法。另外此插件配合 [style](https://github.com/ant-design/babel-plugin-import#usage) 属性可以做到模块样式的按需自动加载。
+插件会帮你转换成 `userty-design/lib/xxx` 的写法。另外此插件配合 [style](https://github.com/ant-design/babel-plugin-import#usage) 属性可以做到模块样式的按需自动加载。
 
-> 注意，babel-plugin-import 的 `style` 属性除了引入对应组件的样式，也会引入一些必要的全局样式。如果你不需要它们，建议不要使用此属性。你可以 `import 'ant-design-vue/dist/antd.css` 手动引入，并覆盖全局样式。
+> 注意，babel-plugin-import 的 `style` 属性除了引入对应组件的样式，也会引入一些必要的全局样式。如果你不需要它们，建议不要使用此属性。你可以 `import 'userty-design/dist/antd.css` 手动引入，并覆盖全局样式。
 
 ## 配置主题和字体
 

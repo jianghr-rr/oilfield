@@ -6,10 +6,10 @@
 // 默认语言为 en-US，所以如果需要使用其他语言，推荐在入口文件全局设置 locale // import moment from
 'moment'; // import 'moment/locale/zh-cn'; // moment.locale('zh-cn');
 
-<a-calendar @panelChange="onPanelChange" @select="onSelect">
+<o-calendar @panelChange="onPanelChange" @select="onSelect">
   <template slot="dateCellRender" slot-scope="value"></template>
   <template slot="monthCellRender" slot-scope="value"></template>
-</a-calendar>
+</o-calendar>
 ```
 
 | 参数 | 说明 | 类型 | 默认值 | 版本 |
@@ -19,7 +19,7 @@
 | defaultValue | 默认展示的日期 | [moment](http://momentjs.com/) | 默认日期 |  |
 | disabledDate | 不可选择的日期 | (currentDate: moment) => boolean | 无 |  |
 | fullscreen | 是否全屏显示 | boolean | true |  |
-| locale | 国际化配置 | object | [默认配置](https://github.com/vueComponent/ant-design-vue/blob/master/components/date-picker/locale/example.json) |  |
+| locale | 国际化配置 | object | [默认配置](https://github.com/vueComponent/userty-design/blob/master/components/date-picker/locale/example.json) |  |
 | mode | 初始模式，`month/year` | string | month |  |
 | monthCellRender | 作用域插槽，自定义渲染月单元格，返回内容会被追加到单元格 | function(date: moment) | 无 |  |
 | monthFullCellRender | 作用域插槽，自定义渲染月单元格，返回内容覆盖单元格 | function(date: moment) | 无 |  |

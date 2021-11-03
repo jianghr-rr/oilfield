@@ -2,7 +2,7 @@
   <div id="right-bottom">
     <img v-if="isCN" width="150" alt="官方公众号" src="https://qn.antdv.com/wechat.jpeg" />
     <div v-if="isMobile" class="close" @click="visible = false">
-      <a-icon type="close" />
+      <o-icon type="close" />
     </div>
     <!-- <span v-if="isCN">广告</span> -->
   </div>

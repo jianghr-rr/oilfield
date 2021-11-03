@@ -12,7 +12,7 @@ Inline menu could be collapsed.
 <template>
   <div style="width: 256px">
     <o-button type="primary" style="margin-bottom: 16px" @click="toggleCollapsed">
-      <a-icon :type="collapsed ? 'menu-unfold' : 'menu-fold'" />
+      <o-icon :type="collapsed ? 'menu-unfold' : 'menu-fold'" />
     </o-button>
     <o-menu
       :default-selected-keys="['1']"
@@ -22,19 +22,19 @@ Inline menu could be collapsed.
       :inline-collapsed="collapsed"
     >
       <o-menu-item key="1">
-        <a-icon type="pie-chart" />
+        <o-icon type="pie-chart" />
         <span>Option 1</span>
       </o-menu-item>
       <o-menu-item key="2">
-        <a-icon type="desktop" />
+        <o-icon type="desktop" />
         <span>Option 2</span>
       </o-menu-item>
       <o-menu-item key="3">
-        <a-icon type="inbox" />
+        <o-icon type="inbox" />
         <span>Option 3</span>
       </o-menu-item>
-      <a-sub-menu key="sub1">
-        <span slot="title"><a-icon type="mail" /><span>Navigation One</span></span>
+      <o-sub-menu key="sub1">
+        <span slot="title"><o-icon type="mail" /><span>Navigation One</span></span>
         <o-menu-item key="5">
           Option 5
         </o-menu-item>
@@ -47,24 +47,24 @@ Inline menu could be collapsed.
         <o-menu-item key="8">
           Option 8
         </o-menu-item>
-      </a-sub-menu>
-      <a-sub-menu key="sub2">
-        <span slot="title"><a-icon type="appstore" /><span>Navigation Two</span></span>
+      </o-sub-menu>
+      <o-sub-menu key="sub2">
+        <span slot="title"><o-icon type="appstore" /><span>Navigation Two</span></span>
         <o-menu-item key="9">
           Option 9
         </o-menu-item>
         <o-menu-item key="10">
           Option 10
         </o-menu-item>
-        <a-sub-menu key="sub3" title="Submenu">
+        <o-sub-menu key="sub3" title="Submenu">
           <o-menu-item key="11">
             Option 11
           </o-menu-item>
           <o-menu-item key="12">
             Option 12
           </o-menu-item>
-        </a-sub-menu>
-      </a-sub-menu>
+        </o-sub-menu>
+      </o-sub-menu>
     </o-menu>
   </div>
 </template>

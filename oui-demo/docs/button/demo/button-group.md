@@ -44,8 +44,8 @@ The `size` can be set to `large`, `small` or left unset resulting in a default s
 
     <h4>With Icon</h4>
     <o-button-group>
-      <o-button type="primary"> <a-icon type="left" />Go back </o-button>
-      <o-button type="primary"> Go forward<a-icon type="right" /> </o-button>
+      <o-button type="primary"> <o-icon type="left" />Go back </o-button>
+      <o-button type="primary"> Go forward<o-icon type="right" /> </o-button>
     </o-button-group>
     <o-button-group>
       <o-button type="primary" icon="cloud" />

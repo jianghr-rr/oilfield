@@ -37,9 +37,9 @@ Perform different check rules according to different situations.
       />
     </o-form-item>
     <o-form-item :label-col="formTailLayout.labelCol" :wrapper-col="formTailLayout.wrapperCol">
-      <a-checkbox :checked="checkNick" @change="handleChange">
+      <o-checkbox :checked="checkNick" @change="handleChange">
         Nickname is required
-      </a-checkbox>
+      </o-checkbox>
     </o-form-item>
     <o-form-item :label-col="formTailLayout.labelCol" :wrapper-col="formTailLayout.wrapperCol">
       <o-button type="primary" @click="check">

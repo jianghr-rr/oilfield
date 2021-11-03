@@ -11,30 +11,30 @@ The `value` of time-related components is a `moment` object, which we need to pr
 <template>
   <o-form v-bind="formItemLayout" :form="form" @submit="handleSubmit">
     <o-form-item label="DatePicker">
-      <a-date-picker v-decorator="['date-picker', config]" />
+      <o-date-picker v-decorator="['date-picker', config]" />
     </o-form-item>
     <o-form-item label="DatePicker[showTime]">
-      <a-date-picker
+      <o-date-picker
         v-decorator="['date-time-picker', config]"
         show-time
         format="YYYY-MM-DD HH:mm:ss"
       />
     </o-form-item>
     <o-form-item label="MonthPicker">
-      <a-month-picker v-decorator="['month-picker', config]" />
+      <o-month-picker v-decorator="['month-picker', config]" />
     </o-form-item>
     <o-form-item label="RangePicker">
-      <a-range-picker v-decorator="['range-picker', rangeConfig]" />
+      <o-range-picker v-decorator="['range-picker', rangeConfig]" />
     </o-form-item>
     <o-form-item label="RangePicker[showTime]">
-      <a-range-picker
+      <o-range-picker
         v-decorator="['range-time-picker', rangeConfig]"
         show-time
         format="YYYY-MM-DD HH:mm:ss"
       />
     </o-form-item>
     <o-form-item label="TimePicker">
-      <a-time-picker v-decorator="['time-picker', config]" />
+      <o-time-picker v-decorator="['time-picker', config]" />
     </o-form-item>
     <o-form-item
       :wrapper-col="{

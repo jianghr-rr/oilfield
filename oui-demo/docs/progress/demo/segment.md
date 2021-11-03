@@ -11,15 +11,15 @@ A standard progress bar.
 ```vue
 <template>
   <div>
-    <a-tooltip title="3 done / 3 in progress / 4 to do">
+    <o-tooltip title="3 done / 3 in progress / 4 to do">
       <o-progress :percent="60" :success-percent="30" />
-    </a-tooltip>
-    <a-tooltip title="3 done / 3 in progress / 4 to do">
+    </o-tooltip>
+    <o-tooltip title="3 done / 3 in progress / 4 to do">
       <o-progress :percent="60" :success-percent="30" type="circle" />
-    </a-tooltip>
-    <a-tooltip title="3 done / 3 in progress / 4 to do">
+    </o-tooltip>
+    <o-tooltip title="3 done / 3 in progress / 4 to do">
       <o-progress :percent="60" :success-percent="30" type="dashboard" />
-    </a-tooltip>
+    </o-tooltip>
   </div>
 </template>
 ```

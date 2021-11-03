@@ -52,18 +52,18 @@ $ npm run serve
 └── yarn.lock
 ```
 
-现在从 yarn 或 npm 安装并引入 ant-design-vue。
+现在从 yarn 或 npm 安装并引入 userty-design。
 
 ```bash
-$ yarn add ant-design-vue
+$ yarn add userty-design
 ```
 
 修改 `src/main.js`，引入 antd 的按钮组件以及全部样式文件。
 
 ```jsx
 import Vue from 'vue';
-import Button from 'ant-design-vue/lib/button';
-import 'ant-design-vue/dist/antd.css';
+import Button from 'userty-design/lib/button';
+import 'userty-design/dist/antd.css';
 import App from './App';
 
 Vue.component(Button.name, Button);
@@ -122,7 +122,7 @@ $ yarn add babel-plugin-import --dev
 +   "plugins": [
 +     "transform-vue-jsx",
 +     "transform-runtime",
-+     ["import", { "libraryName": "ant-design-vue", "libraryDirectory": "es", "style": "css" }]
++     ["import", { "libraryName": "userty-design", "libraryDirectory": "es", "style": "css" }]
 +   ]
   }
 ```
@@ -137,20 +137,20 @@ $ yarn add babel-plugin-import --dev
 +  plugins: [
 +    [
 +      "import",
-+      { libraryName: "ant-design-vue", libraryDirectory: "es", style: true }
++      { libraryName: "userty-design", libraryDirectory: "es", style: true }
 +    ]
 +  ]
 };
 ```
 
-然后移除前面在 `src/main.js` 里全量添加的 `import 'ant-design-vue/dist/antd.css';` 样式代码，并且按下面的格式引入模块。
+然后移除前面在 `src/main.js` 里全量添加的 `import 'userty-design/dist/antd.css';` 样式代码，并且按下面的格式引入模块。
 
 ```diff
   // src/main.js
   import Vue from 'vue'
-- import Button from 'ant-design-vue/lib/button';
-+ import { Button } from 'ant-design-vue';
-- import 'ant-design-vue/dist/antd.css'
+- import Button from 'userty-design/lib/button';
++ import { Button } from 'userty-design';
+- import 'userty-design/dist/antd.css'
   import App from './App'
 
   Vue.component(Button.name, Button)

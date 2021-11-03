@@ -19,11 +19,11 @@ Showing more detailed info of every row.
       :data-source="innerData"
       :pagination="false"
     >
-      <span slot="status" slot-scope="text"> <a-badge status="success" />Finished </span>
+      <span slot="status" slot-scope="text"> <o-badge status="success" />Finished </span>
       <span slot="operation" slot-scope="text" class="table-operation">
         <a>Pause</a>
         <a>Stop</a>
-        <a-dropdown>
+        <o-dropdown>
           <o-menu slot="overlay">
             <o-menu-item>
               Action 1
@@ -33,7 +33,7 @@ Showing more detailed info of every row.
             </o-menu-item>
           </o-menu>
           <a> More <o-icon type="down" /> </a>
-        </a-dropdown>
+        </o-dropdown>
       </span>
     </o-table>
   </o-table>

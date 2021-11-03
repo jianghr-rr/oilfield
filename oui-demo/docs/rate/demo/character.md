@@ -12,7 +12,7 @@ Replace the default star to other character like alphabet, digit, iconfont or ev
 <template>
   <div>
     <o-rate allow-half>
-      <a-icon slot="character" type="heart" />
+      <o-icon slot="character" type="heart" />
     </o-rate>
     <br />
     <o-rate character="A" allow-half style="fontSize: 36px" />

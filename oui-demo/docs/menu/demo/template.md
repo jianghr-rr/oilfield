@@ -14,7 +14,7 @@ Before v2.0,  The properties of `a-sub-menu` are dynamically changed inside the 
 <template>
   <div style="width: 256px">
     <o-button type="primary" style="margin-bottom: 16px" @click="toggleCollapsed">
-      <a-icon :type="collapsed ? 'menu-unfold' : 'menu-fold'" />
+      <o-icon :type="collapsed ? 'menu-unfold' : 'menu-fold'" />
     </o-button>
     <o-menu
       :default-selected-keys="['1']"
@@ -25,7 +25,7 @@ Before v2.0,  The properties of `a-sub-menu` are dynamically changed inside the 
     >
       <template v-for="item in list">
         <o-menu-item v-if="!item.children" :key="item.key">
-          <a-icon type="pie-chart" />
+          <o-icon type="pie-chart" />
           <span>{{ item.title }}</span>
         </o-menu-item>
         <sub-menu v-else :key="item.key" :menu-info="item" />
@@ -37,37 +37,37 @@ Before v2.0,  The properties of `a-sub-menu` are dynamically changed inside the 
 <script>
 // recommend use functional component
 // <template functional>
-//   <a-sub-menu :key="props.menuInfo.key">
+//   <o-sub-menu :key="props.menuInfo.key">
 //     <span slot="title">
-//       <a-icon type="mail" /><span>{{ props.menuInfo.title }}</span>
+//       <o-icon type="mail" /><span>{{ props.menuInfo.title }}</span>
 //     </span>
 //     <template v-for="item in props.menuInfo.children">
 //       <o-menu-item v-if="!item.children" :key="item.key">
-//         <a-icon type="pie-chart" />
+//         <o-icon type="pie-chart" />
 //         <span>{{ item.title }}</span>
 //       </o-menu-item>
 //       <sub-menu v-else :key="item.key" :menu-info="item" />
 //     </template>
-//   </a-sub-menu>
+//   </o-sub-menu>
 // </template>
 // export default {
 //   props: ['menuInfo'],
 // };
-import { Menu } from 'ant-design-vue';
+import { Menu } from 'userty-design';
 const SubMenu = {
   template: `
-      <a-sub-menu :key="menuInfo.key" v-bind="$props" v-on="$listeners">
+      <o-sub-menu :key="menuInfo.key" v-bind="$props" v-on="$listeners">
         <span slot="title">
-          <a-icon type="mail" /><span>{{ menuInfo.title }}</span>
+          <o-icon type="mail" /><span>{{ menuInfo.title }}</span>
         </span>
         <template v-for="item in menuInfo.children">
           <o-menu-item v-if="!item.children" :key="item.key">
-            <a-icon type="pie-chart" />
+            <o-icon type="pie-chart" />
             <span>{{ item.title }}</span>
           </o-menu-item>
           <sub-menu v-else :key="item.key" :menu-info="item" />
         </template>
-      </a-sub-menu>
+      </o-sub-menu>
     `,
   name: 'SubMenu',
   // must add isSubMenu: true

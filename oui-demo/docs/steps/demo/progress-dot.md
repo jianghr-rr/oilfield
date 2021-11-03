@@ -16,7 +16,7 @@ Steps with progress dot style.
       <o-step title="In Progress" description="This is a description." />
       <o-step title="Waiting" description="This is a description." />
     </o-steps>
-    <a-divider />
+    <o-divider />
     <o-steps progress-dot :current="1" direction="vertical">
       <o-step title="Finished" description="This is a description. This is a description." />
       <o-step title="Finished" description="This is a description. This is a description." />

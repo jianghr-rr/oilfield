@@ -11,7 +11,7 @@ A basic calendar component with Year/Month switch.
 ```vue
 <template>
   <div>
-    <a-alert
+    <o-alert
       :message="`You selected date: ${selectedValue && selectedValue.format('YYYY-MM-DD')}`"
     />
     <div
@@ -22,7 +22,7 @@ A basic calendar component with Year/Month switch.
         borderRadius: '4px',
       }"
     >
-      <a-calendar :value="value" @select="onSelect" @panelChange="onPanelChange" />
+      <o-calendar :value="value" @select="onSelect" @panelChange="onPanelChange" />
     </div>
     <div
       :style="{
@@ -33,7 +33,7 @@ A basic calendar component with Year/Month switch.
         borderRadius: '4px',
       }"
     >
-      <a-calendar v-model="value1" />
+      <o-calendar v-model="value1" />
     </div>
   </div>
 </template>

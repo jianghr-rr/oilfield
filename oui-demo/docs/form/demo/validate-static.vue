@@ -49,23 +49,23 @@ We provide properties like `validateStatus` `help` `hasFeedback` to customize yo
       <o-input id="error2" placeholder="unavailable choice" />
     </o-form-item>
     <o-form-item label="Success" has-feedback validate-status="success">
-      <a-date-picker style="width: 100%" />
+      <o-date-picker style="width: 100%" />
     </o-form-item>
     <o-form-item label="Warning" has-feedback validate-status="warning">
-      <a-time-picker style="width: 100%" />
+      <o-time-picker style="width: 100%" />
     </o-form-item>
     <o-form-item label="Error" has-feedback validate-status="error">
-      <a-select default-value="1">
-        <a-select-option value="1">
+      <o-select default-value="1">
+        <o-select-option value="1">
           Option 1
-        </a-select-option>
-        <a-select-option value="2">
+        </o-select-option>
+        <o-select-option value="2">
           Option 2
-        </a-select-option>
-        <a-select-option value="3">
+        </o-select-option>
+        <o-select-option value="3">
           Option 3
-        </a-select-option>
-      </a-select>
+        </o-select-option>
+      </o-select>
     </o-form-item>
     <o-form-item
       label="Validating"
@@ -73,7 +73,7 @@ We provide properties like `validateStatus` `help` `hasFeedback` to customize yo
       validate-status="validating"
       help="The information is being validated..."
     >
-      <a-cascader :default-value="['1']" :options="[]" />
+      <o-cascader :default-value="['1']" :options="[]" />
     </o-form-item>
     <o-form-item label="inline" style="margin-bottom:0;">
       <o-form-item
@@ -81,13 +81,13 @@ We provide properties like `validateStatus` `help` `hasFeedback` to customize yo
         help="Please select the correct date"
         :style="{ display: 'inline-block', width: 'calc(50% - 12px)' }"
       >
-        <a-date-picker style="width: 100%" />
+        <o-date-picker style="width: 100%" />
       </o-form-item>
       <span :style="{ display: 'inline-block', width: '24px', textAlign: 'center' }">
         -
       </span>
       <o-form-item :style="{ display: 'inline-block', width: 'calc(50% - 12px)' }">
-        <a-date-picker style="width: 100%" />
+        <o-date-picker style="width: 100%" />
       </o-form-item>
     </o-form-item>
     <o-form-item label="Success" has-feedback validate-status="success">

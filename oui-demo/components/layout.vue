@@ -7,8 +7,8 @@ import Footer from './footer';
 import GeektimeAds from './geektime_ads';
 import RightBottomAd from './right_bottom_ad';
 import Sponsors from './sponsors';
-import zhCN from 'ant-design-vue/es/locale-provider/zh_CN';
-import enUS from 'ant-design-vue/es/locale-provider/default';
+// import zhCN from 'userty-design/es/locale-provider/zh_CN';
+// import enUS from 'userty-design/es/locale-provider/default';
 import sortBy from 'lodash/sortBy';
 import { isZhCN } from '../utils/util';
 import { Provider, create } from '../tempComp/_util/store';
@@ -136,14 +136,14 @@ export default {
       const lis = [];
       currentSubMenu.forEach(({ cnTitle, usTitle, id }, index) => {
         const title = isCN ? cnTitle : usTitle;
-        lis.push(<a-anchor-link key={id + index} href={`#${id}`} title={title} />);
+        lis.push(<o-anchor-link key={id + index} href={`#${id}`} title={title} />);
       });
       const showApi = this.$route.path.indexOf('/components/') !== -1;
       return (
-        <a-anchor offsetTop={100} class="demo-anchor">
+        <o-anchor offsetTop={100} class="demo-anchor">
           {lis}
-          {showApi ? <a-anchor-link key="API" title="API" href="#API" /> : ''}
-        </a-anchor>
+          {showApi ? <o-anchor-link key="API" title="API" href="#API" /> : ''}
+        </o-anchor>
       );
     },
     getDocsMenu(isCN, pagesKey) {
@@ -238,21 +238,21 @@ export default {
           defaultOpenKey = type
         }
         MenuItems.push(
-          <a-menu-item
+          <o-menu-item
             key={key}
             selectedKeys={[name]}
           >
             <router-link to={`/components/${key}/`}>{linkValue}</router-link>
-          </a-menu-item>,
+          </o-menu-item>,
         );
       });
       menuKey = type;
       // console.log('type:::', type);
       MenuGroup.push(
-        <a-sub-menu key={type}>
+        <o-sub-menu key={type}>
           <div slot="title"><span>{menuConfigTitle[type]}</span>/<span>{type}</span></div>
           {MenuItems}
-        </a-sub-menu>
+        </o-sub-menu>
       );
     }
     pagesKey.forEach((item, index) => {
@@ -261,23 +261,23 @@ export default {
         nextPage = pagesKey[index + 1];
       }
     });
-    let locale = zhCN;
-    if (!isCN) {
-      locale = enUS;
-    }
+    // let locale = zhCN;
+    // if (!isCN) {
+    //   locale = enUS;
+    // }
     const config = AllDemo[titleMap[reName]];
     this.resetDocumentTitle(config, reName, isCN);
     const { isMobile, $route } = this;
     return (
       <div class="page-wrapper" style={`--color: ${this.themmeColor}`}>
         <Header searchData={searchData} name={name} />
-        <a-config-provider locale={locale}>
+        <o-config-provider>
           <div class="main-wrapper">
-            <a-row>
+            <o-row>
               {isMobile ? (
                 <div>123</div>
               ) : (
-                <a-col
+                <o-col
                   ref="sidebar"
                   class="site-sidebar main-menu"
                   xxl={4}
@@ -287,9 +287,9 @@ export default {
                   sm={8}
                   xs={12}
                 >
-                  <a-affix>
+                  <o-affix>
                     <section class="main-menu-inner">
-                      <a-menu
+                      <o-menu
                         class="aside-container menu-site"
                         selectedKeys={[name]}
                         defaultOpenKeys={[defaultOpenKey]}
@@ -297,12 +297,12 @@ export default {
                         mode="inline"
                       >
                         {MenuGroup}
-                      </a-menu>
+                      </o-menu>
                     </section>
-                  </a-affix>
-                </a-col>
+                  </o-affix>
+                </o-col>
               )}
-              <a-col xxl={20} xl={19} lg={19} md={18} sm={24} xs={24}>
+              <o-col xxl={20} xl={19} lg={19} md={18} sm={24} xs={24}>
                 <section class="main-container main-container-component">
                   <TopAd isCN={isCN} />
                   {showAd ? <GeektimeAds isMobile={isMobile} /> : null}
@@ -349,7 +349,7 @@ export default {
                 <section class="prev-next-nav">
                   {prevPage ? (
                     <router-link class="prev-page" to={`${prevPage.url}`}>
-                      <a-icon type="left" />
+                      <o-icon type="left" />
                       &nbsp;&nbsp;{prevPage.title}
                     </router-link>
                   ) : (
@@ -358,16 +358,16 @@ export default {
                   {nextPage ? (
                     <router-link class="next-page" to={`${nextPage.url}`}>
                       {nextPage.title}&nbsp;&nbsp;
-                      <a-icon type="right" />
+                      <o-icon type="right" />
                     </router-link>
                   ) : (
                     ''
                   )}
                 </section>
-              </a-col>
-            </a-row>
+              </o-col>
+            </o-row>
           </div>
-        </a-config-provider>
+        </o-config-provider>
         {/* TODO */}
         {/* <SettingDrawer /> */}
         <Footer ref="footer" isCN={isCN} />

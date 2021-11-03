@@ -1,14 +1,14 @@
 <template>
   <div>
-    <template v-if="ads.length">
-      <a-carousel autoplay>
+    <!-- <template v-if="ads.length">
+      <o-carousel autoplay>
         <template v-for="ad in ads">
           <a :key="ad.href" :href="ad.href" target="_blank">
             <img style="width: 100%; max-width: 1200px;" :alt="ad.alt || ''" :src="ad.img" />
           </a>
         </template>
-      </a-carousel>
-    </template>
+      </o-carousel>
+    </template> -->
   </div>
 </template>
 
