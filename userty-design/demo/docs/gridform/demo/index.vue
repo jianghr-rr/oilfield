@@ -27,10 +27,10 @@ import CN from '../index.zh-CN.md';
 import US from '../index.en-US.md';
 
 const md = {
-  cn: `# StepForm 分布表单
+  cn: `# GridForm 多类型布局表单
         使用内置的栅格系统搭配\`<o-form />\`标签来创建多种布局的表单。可以快速配置出你想要的内容。
         ## 代码演示`,
-  us: `# StepForm
+  us: `# GridForm
        Use the built-in grid system with the \`< o-form / >\` tag to create forms with multiple layouts. You can quickly configure what you want.`
 };
 

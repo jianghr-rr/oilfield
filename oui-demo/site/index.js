@@ -13,6 +13,16 @@ import bootstrap from '../core/bootstrap';
 import store from '../store/index.js';
 import 'userty-design/dist/usertyd.css';
 
+import Antd from 'ant-design-vue';
+import 'ant-design-vue/dist/antd.less';
+import Md from '../components/md';
+import Api from '../components/api';
+// import './components';
+// import './oui-components';
+import demoBox from '../components/demoBox';
+import demoContainer from '../components/demoContainer';
+import demoSort from '../components/demoSort';
+
 const mountedCallback = {
   install: Vue => {
     Vue.directive('mountedCallback', {
@@ -53,12 +63,28 @@ Vue.component('tempVar', {
 //     [zhCN.locale]: { message: zhCN.messages },
 //   },
 // });
+Vue.use(Antd);
+Vue.component(Md.name, Md);
+Vue.component(Api.name, Api);
+Vue.component('demo-box', demoBox);
+Vue.component('demo-container', demoContainer);
+Vue.component('demo-sort', demoSort);
 
 router.beforeEach((to, from, next) => {
   if (to.path !== from.path) {
     NProgress.start();
   }
-  next();
+  if (to.meta.requireAuth) {
+      const isLocalLogin = localStorage.getItem('login');
+      const isSessionLogin = sessionStorage.getItem('login');
+      if (isSessionLogin || isLocalLogin) {
+          next();
+      } else {
+          next('/login');
+      }
+  } else {
+    next()
+  }
 });
 
 // console.log('bootstrap:::', bootstrap);

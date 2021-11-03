@@ -1,7 +1,8 @@
 export default [
   {
     path: 'avatar',
-    component: () => import('../docs/avatar/demo/index.vue'),
+    // component: () => import('../docs/avatar/demo/index.vue'),
+    component: () => import('../docs/avatar/demo/index.vue')
   },
   {
     path: 'avatar-cn',

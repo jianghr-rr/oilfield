@@ -1,7 +1,7 @@
 <script>
 import { isZhCN } from '../utils/util';
 import docsearch from 'docsearch.js';
-// import packageInfo from '../../package.json';
+import packageInfo from '../../package.json';
 
 export default {
   inject: {
