@@ -21,6 +21,11 @@ export default [
             name: '设计原则',
             component: () => import(/* webpackChunkName: "homepage.guide" */ '../pages/guide/design-principles.vue'),
           },
+          {
+            path: 'designspec',
+            name: '设计规范',
+            component: () => import(/* webpackChunkName: "homepage.guide" */ '../pages/guide/design-spec.vue'),
+          },
           { path: '', redirect: 'introduce' },
         ]
       },

@@ -16,8 +16,8 @@
           <a-menu-item key="/homepage/guide/designpr">
             <router-link to="/homepage/guide/designpr">设计原则</router-link>
           </a-menu-item>
-          <a-menu-item key="3">
-            设计规范
+          <a-menu-item key="/homepage/guide/designspec">
+            <router-link to="/homepage/guide/designspec">设计规范</router-link>
           </a-menu-item>
         </a-sub-menu>
         <a-menu-item key="/homepage/theme/">
