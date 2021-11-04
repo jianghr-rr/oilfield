@@ -20,8 +20,8 @@
             <router-link to="/homepage/guide/designspec">设计规范</router-link>
           </a-menu-item>
         </a-sub-menu>
-        <a-menu-item key="/homepage/theme/">
-          <span>使用说明</span>
+        <a-menu-item key="/homepage/instructions/main">
+          <router-link to="/homepage/instructions/main">使用说明</router-link>
         </a-menu-item>
         <a-menu-item key="/homepage/resource/">
           <span>常见问题</span>

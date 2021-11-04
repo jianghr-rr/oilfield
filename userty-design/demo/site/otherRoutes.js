@@ -27,7 +27,19 @@ export default [
             component: () => import(/* webpackChunkName: "homepage.guide" */ '../pages/guide/design-spec.vue'),
           },
           { path: '', redirect: 'introduce' },
-        ]
+        ],
+      },
+      {
+        path: 'instructions/',
+        name: '使用说明',
+        component: () => import(/* webpackChunkName: "homepage.theme" */ '../views/guide/index.vue'),
+        children: [
+          {
+            path: 'main',
+            name: '使用说明',
+            component: () => import(/* webpackChunkName: "homepage.guide" */ '../pages/instructions/index.vue'),
+          },
+        ],
       },
       {
         path: 'theme/',

@@ -1,3 +1,10 @@
+img {
+  margin: 0 auto;
+}
+pre > code[class*='lang-'], pre > code[class*='language-'] {
+  background: #FAFAFA;
+  padding: 20px;
+}
 .h1-title-d(@color) {
   font-size: 24px;
   font-family: 'Source Han Sans CN';
@@ -74,14 +81,14 @@
   .img-conter {
     flex-grow: 1;
     text-align: left;
-    border: 1px dashed #E5E5E5;
+    // border: 1px dashed #E5E5E5;
     padding: 5px;
     img {
       display: block;
     }
   }
   .img-title {
-    width: 480px;
+    width: 50%;
     flex-shrink: 0;
     font-size: 12px;
     font-family: 'Source Han Sans CN';
@@ -90,4 +97,11 @@
     line-height: 20px;
     padding: 0 0 0 20px;
   }
+}
+.link-d {
+  font-size: 14px;
+  font-family: 'Source Han Sans CN';
+  font-weight: 400;
+  color: #0060E5;
+  margin: 0 0 20px 0;
 }
