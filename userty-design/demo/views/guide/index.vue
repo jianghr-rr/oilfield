@@ -23,11 +23,11 @@
         <a-menu-item key="/homepage/instructions/main">
           <router-link to="/homepage/instructions/main">使用说明</router-link>
         </a-menu-item>
-        <a-menu-item key="/homepage/resource/">
-          <span>常见问题</span>
+        <a-menu-item key="/homepage/fag/main">
+          <router-link to="/homepage/fag/main">常见问题</router-link>
         </a-menu-item>
-        <a-menu-item key="/homepage/resource/">
-          <span>发布内容</span>
+        <a-menu-item key="/homepage/introduce/main">
+          <router-link to="/homepage/introduce/main">发布内容</router-link>
         </a-menu-item>
       </a-menu>
     </div>

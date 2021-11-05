@@ -1,5 +1,5 @@
 <template>
-    <div id="header" class="header">
+    <div id="header" class="header" :style="{'--color': themmeColor}">
         <div class="header-left">
             <img class="header-left-img" :src="logo" />
             <span :style="titleStyle">XinJiang Userty Design</span>
@@ -11,10 +11,10 @@
             <router-link class="nav-link theme" to="/homepage/theme">
                 主题
             </router-link>
-            <router-link class="nav-link component" to="/vue/introduce-cn">
+            <router-link class="nav-link component" to="/components/button-cn/">
                 组件
             </router-link>
-            <router-link class="nav-link resource" to="/homepage/resource">
+            <router-link class="nav-link resource" to="/homepage/resource/main">
                 设计资源
             </router-link>
         </div>
@@ -31,8 +31,9 @@ export default {
         return {
             logo,
             titleStyle: {
-                color: this.$store.getters.color
+                color: this.$store.getters.color,
             },
+            themmeColor: this.$store.getters.color
         };
     },
     computed: {
@@ -43,9 +44,10 @@ export default {
     watch: {
         getColor(val) {
             this.titleStyle = {
-                color: val
-            }
-        }
+                color: val,
+            };
+            this.themmeColor = val;
+        },
     },
     // created() {
     //     this.titleStyle = {
@@ -94,7 +96,8 @@ export default {
         border-bottom: 2px solid #FFFFFF;
     }
     .router-link-active {
-        // border-bottom: 2px solid #990F0F;
+      color: var(--color);
+      border-bottom: 2px solid var(--color);
     }
 }
 </style>

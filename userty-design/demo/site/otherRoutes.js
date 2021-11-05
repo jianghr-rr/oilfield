@@ -42,9 +42,45 @@ export default [
         ],
       },
       {
+        path: 'fag/',
+        name: '常见问题',
+        component: () => import(/* webpackChunkName: "homepage.theme" */ '../views/guide/index.vue'),
+        children: [
+          {
+            path: 'main',
+            name: '常见问题',
+            component: () => import(/* webpackChunkName: "homepage.guide" */ '../pages/fag/index.vue'),
+          },
+        ],
+      },
+      {
+        path: 'introduce/',
+        name: '常见问题',
+        component: () => import(/* webpackChunkName: "homepage.theme" */ '../views/guide/index.vue'),
+        children: [
+          {
+            path: 'main',
+            name: '常见问题',
+            component: () => import(/* webpackChunkName: "homepage.guide" */ '../pages/introduce/index.vue'),
+          },
+        ],
+      },
+      {
         path: 'theme/',
         name: '主题',
         component: () => import(/* webpackChunkName: "homepage.theme" */ '../views/theme/index.vue'),
+        children: [
+          {
+            path: 'main',
+            name: '定制主题',
+            component: () => import(/* webpackChunkName: "homepage.guide" */ '../pages/theme/main.vue'),
+          },
+          {
+            path: 'use',
+            name: '定制使用',
+            component: () => import(/* webpackChunkName: "homepage.guide" */ '../pages/theme/use.vue'),
+          },
+        ],
       },
       // {
       //   path: 'component',
@@ -54,7 +90,13 @@ export default [
       {
         path: 'resource/',
         name: '设计资源',
-        component: () => import(/* webpackChunkName: "homepage.resource" */ '../views/resource/index.vue'),
+        component: () => import(/* webpackChunkName: "homepage.resource" */ '../views/resource/index.vue'),children: [
+          {
+            path: 'main',
+            name: '设计资源',
+            component: () => import(/* webpackChunkName: "homepage.guide" */ '../pages/resource/main.vue'),
+          },
+        ],
       },
       { path: '', redirect: 'guide' },
     ],

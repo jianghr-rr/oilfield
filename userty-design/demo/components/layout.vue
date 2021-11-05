@@ -13,7 +13,7 @@ import sortBy from 'lodash/sortBy';
 import { isZhCN } from '../utils/util';
 import { Provider, create } from '../../components/_util/store';
 import NProgress from 'nprogress';
-import SettingDrawer from './SettingDrawer'
+// import SettingDrawer from './SettingDrawer'
 // import MobileMenu from '../../components/vc-drawer/src';
 import TopAd from './top_ad';
 import GoogleAds from './GoogleAds';
@@ -369,7 +369,6 @@ export default {
           </div>
         </a-config-provider>
 
-        <SettingDrawer />
         <Footer ref="footer" isCN={isCN} />
       </div>
     );
