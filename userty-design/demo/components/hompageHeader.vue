@@ -8,7 +8,7 @@
             <router-link class="nav-link guide" to="/homepage/guide">
                 指南
             </router-link>
-            <router-link class="nav-link theme" to="/homepage/theme">
+            <router-link class="nav-link theme" to="/homepage/theme/main">
                 主题
             </router-link>
             <router-link class="nav-link component" to="/components/button-cn/">
