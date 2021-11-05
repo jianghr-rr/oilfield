@@ -101,5 +101,5 @@ export default [
       { path: '', redirect: 'guide' },
     ],
   },
-  { path: '/*', redirect: '/homepage' },
+  // { path: '/*', redirect: '/homepage' },
 ];

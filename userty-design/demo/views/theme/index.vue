@@ -1,5 +1,5 @@
 <template>
-  <div class="layout">
+  <div class="layout-theme">
     <div class="layout-left" :style="{'--color': themmeColor}">
       <a-menu
         mode="inline"
@@ -8,7 +8,7 @@
         style="width: 256px"
         @openChange="onOpenChange"
       >
-        <a-sub-menu key="/homepage/theme/">
+        <a-sub-menu key="/homepage/theme">
           <a-menu-item key="/homepage/theme/main">
             <router-link to="/homepage/theme/main">定制主题</router-link>
           </a-menu-item>
@@ -81,19 +81,19 @@ export default {
 };
 </script>
 <style lang="less" scope>
-  .layout {
+  .layout-theme {
     padding: 40px 0;
     display: flex;
+
+    .ant-menu-submenu-title {
+      display: none;
+    }
   }
   .layout-left {
     box-shadow: 1px -2px 4px 0px #F2F2F2;
 
     .ant-menu{
       background: none;
-    }
-
-    .ant-menu-submenu-title {
-      display: none;
     }
 
     .ant-menu-inline, .ant-menu-vertical, .ant-menu-vertical-left {
