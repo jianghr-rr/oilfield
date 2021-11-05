@@ -80,7 +80,7 @@ export default [
             name: '定制使用',
             component: () => import(/* webpackChunkName: "homepage.guide" */ '../pages/theme/use.vue'),
           },
-          { path: '', redirect: 'guide' },
+          { path: '', redirect: 'main' },
         ],
       },
       // {
