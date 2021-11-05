@@ -46,7 +46,15 @@
                                 {
                                     rules: [
                                         {required: true, message: '请输入右侧校验码'},
-                                        {validator: handleVeryCode}
+                                        {validator: (_rule, value, callback) => {
+                                            if (!value) {
+                                                callback();
+                                            }
+                                            if (value !== this.veryCode) {
+                                                callback('验证码错误');
+                                            }
+                                            callback();
+                                        }}
                                     ]
                                 }
                             ]"
@@ -128,7 +136,7 @@ export default {
     methods: {
         handleSubmit(e) {
             e.preventDefault();
-            this.form.validateFields((err, values) => {
+            this.form.validateFields({force: true}, (err, values) => {
                 if (err) {
                     this.getVeryCode();
                 }
@@ -141,14 +149,11 @@ export default {
             const veryCode = Math.random().toString(36).substr(2, 4);
             this.veryCode = veryCode.toUpperCase();
         },
-        handleVeryCode(_rule, value, callback){
+        handleVeryCode(_rule, value, callback) {
             if (!value) {
                 callback();
             }
-            if (value.length !== 4) {
-                callback('验证码错误');
-            }
-            if (value.length >=4 && value !== this.veryCode) {
+            if (value !== this.veryCode) {
                 callback('验证码错误');
             }
             callback();

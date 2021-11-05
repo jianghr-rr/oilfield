@@ -127,7 +127,7 @@ export default {
     .oil-row{
         height: 100vh;
         box-sizing: border-box;
-        padding: 0 80px;
+        padding: 0 calc((100vw - 651px - 350px) / 2);
     }
     .oil-col{
         display: flex;
