@@ -30,7 +30,7 @@ export default {
   data() {
     return {
       rootSubmenuKeys: ['/homepage/theme'],
-      openKeys: [],
+      openKeys: ['/homepage/theme'],
       defaultSelectedKeys: [this.$route.fullPath],
       theme: this.$store.getters.theme,
       themmeColor: this.$store.getters.color
@@ -67,12 +67,12 @@ export default {
     },
   },
   mounted() {
-    const arr = this.$route.fullPath.split('/');
-    let openKey = '';
-    for (let i = 0; i < arr.length - 1; i++) {
-      openKey += arr[i] + '/';
-    }
-    this.openKeys = [openKey];
+    // const arr = this.$route.fullPath.split('/');
+    // let openKey = '';
+    // for (let i = 0; i < arr.length - 1; i++) {
+    //   openKey += arr[i] + '/';
+    // }
+    // this.openKeys = [openKey];
       // console.log(this.primaryColor);
       // this.titleStyle = {
       //     color: this.primaryColor

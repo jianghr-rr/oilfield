@@ -63,7 +63,7 @@ export default {
           <router-link class="guide" to="/homepage/guide">
             指南
           </router-link>
-          <router-link class="theme" to="/homepage/theme">
+          <router-link class="theme" to="/homepage/theme/main">
             主题
           </router-link>
           <router-link class="component" to="/homepage/component">
