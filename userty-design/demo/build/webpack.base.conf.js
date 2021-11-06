@@ -203,7 +203,7 @@ module.exports = {
               {
                   loader: "file-loader",
                   options: {
-                      name: "[name]_[hash:8][ext]",
+                      name: "[name]_[hash:8].[ext]",
                   },
               },
           ],
