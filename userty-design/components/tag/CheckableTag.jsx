@@ -2,7 +2,7 @@ import PropTypes from '../_util/vue-types';
 import { ConfigConsumerProps } from '../config-provider/configConsumerProps';
 
 export default {
-  name: 'ACheckableTag',
+  name: 'OCheckableTag',
   model: {
     prop: 'checked',
   },

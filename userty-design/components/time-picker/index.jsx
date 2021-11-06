@@ -71,7 +71,7 @@ export const TimePickerProps = () => ({
 });
 
 const TimePicker = {
-  name: 'ATimePicker',
+  name: 'OTimePicker',
   mixins: [BaseMixin],
   props: initDefaultProps(TimePickerProps(), {
     align: {
