@@ -197,6 +197,17 @@ module.exports = {
           name: '[name].[ext]?[hash]',
         },
       },
+      {
+          test: /.(woff|woff2|eot|ttf|otf)$/,
+          use: [
+              {
+                  loader: "file-loader",
+                  options: {
+                      name: "[name]_[hash:8][ext]",
+                  },
+              },
+          ],
+      },
     ],
   },
   resolve:
