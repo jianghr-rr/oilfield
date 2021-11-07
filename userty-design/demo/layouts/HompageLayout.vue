@@ -30,7 +30,7 @@ export default {
 <style scope>
 .page-wraper {
   width: auto;
-  min-width: 1280px;
-  background: #ffffff;
+  min-width: 974px;
+  /* background: #ffffff; */
 }
 </style>
