@@ -1,0 +1,31 @@
+{
+  "name": "userty-design",
+  "version": "1.0.1",
+  "description": "An enterprise-class UI design language and Vue-based implementation",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/JC96821/oilfield.git"
+  },
+  "keywords": [
+    "design",
+    "design",
+    "userty-design",
+    "vue",
+    "vueComponent",
+    "component",
+    "components",
+    "ui",
+    "framework",
+    "frontend"
+  ],
+  "author": "jc",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/JC96821/oilfield/issues"
+  },
+  "homepage": "https://github.com/JC96821/oilfield#readme"
+}

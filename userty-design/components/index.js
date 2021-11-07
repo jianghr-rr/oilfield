@@ -51,7 +51,7 @@ import { default as Col } from './col';
 
 import { default as DatePicker } from './date-picker';
 
-// import { default as Divider } from './divider';
+import { default as Divider } from './divider';
 
 import { default as Dropdown } from './dropdown';
 
@@ -64,7 +64,7 @@ import { default as Input } from './input';
 
 import { default as InputNumber } from './input-number';
 
-// import { default as Layout } from './layout';
+import { default as Layout } from './layout';
 
 import { default as List } from './list';
 
@@ -122,7 +122,7 @@ import { default as Tag } from './tag';
 
 import { default as Timeline } from './timeline';
 
-// import { default as Tooltip } from './tooltip';
+import { default as Tooltip } from './tooltip';
 
 import { default as Upload } from './upload';
 
@@ -134,7 +134,7 @@ import { default as Drawer } from './drawer';
 
 // import { default as Comment } from './comment';
 
-// import { default as ConfigProvider } from './config-provider';
+import { default as ConfigProvider } from './config-provider';
 
 // import { default as Empty } from './empty';
 
@@ -163,14 +163,14 @@ const components = [
   // Checkbox,
   Col,
   DatePicker,
-  // Divider,
+  Divider,
   Dropdown,
   Form,
   // FormModel,
   Icon,
   Input,
   InputNumber,
-  // Layout,
+  Layout,
   List,
   // LocaleProvider,
   Menu,
@@ -197,13 +197,13 @@ const components = [
   Tag,
   // TimePicker,
   Timeline,
-  // Tooltip,
+  Tooltip,
   Upload,
   Drawer,
   // Skeleton,
   // Comment,
   // // ColorPicker,
-  // ConfigProvider,
+  ConfigProvider,
   // Empty,
   Result,
   // Descriptions,
@@ -254,14 +254,14 @@ export {
   // Checkbox,
   Col,
   DatePicker,
-  // Divider,
+  Divider,
   Dropdown,
   Form,
   // FormModel,
   Icon,
   Input,
   InputNumber,
-  // Layout,
+  Layout,
   List,
   // LocaleProvider,
   Menu,
@@ -288,13 +288,13 @@ export {
   Tag,
   // TimePicker,
   Timeline,
-  // Tooltip,
+  Tooltip,
   Upload,
   Drawer,
   // Skeleton,
   // Comment,
   // // ColorPicker,
-  // ConfigProvider,
+  ConfigProvider,
   // Empty,
   Result,
   // Descriptions,

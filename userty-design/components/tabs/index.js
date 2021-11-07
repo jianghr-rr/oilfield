@@ -5,8 +5,8 @@ import TabPane from '../vc-tabs/src/TabPane';
 import TabContent from '../vc-tabs/src/TabContent';
 import Base from '../base';
 
-Tabs.TabPane = { ...TabPane, name: 'ATabPane', __ANT_TAB_PANE: true };
-Tabs.TabContent = { ...TabContent, name: 'ATabContent' };
+Tabs.TabPane = { ...TabPane, name: 'OTabPane', __ANT_TAB_PANE: true };
+Tabs.TabContent = { ...TabContent, name: 'OTabContent' };
 Vue.use(ref, { name: 'ant-ref' });
 
 /* istanbul ignore next */
