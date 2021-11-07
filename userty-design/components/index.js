@@ -45,7 +45,7 @@ import { default as Card } from './card';
 
 // import { default as Cascader } from './cascader';
 
-// import { default as Checkbox } from './checkbox';
+import { default as Checkbox } from './checkbox';
 
 import { default as Col } from './col';
 
@@ -114,7 +114,7 @@ import { default as Transfer } from './transfer';
 
 // import { default as TreeSelect } from './tree-select';
 
-// import { default as Tabs } from './tabs';
+import { default as Tabs } from './tabs';
 
 import { default as Tag } from './tag';
 
@@ -160,7 +160,7 @@ const components = [
   // Collapse,
   // Carousel,
   // Cascader,
-  // Checkbox,
+  Checkbox,
   Col,
   DatePicker,
   Divider,
@@ -193,7 +193,7 @@ const components = [
   Transfer,
   // Tree,
   // TreeSelect,
-  // Tabs,
+  Tabs,
   Tag,
   // TimePicker,
   Timeline,
@@ -251,7 +251,7 @@ export {
   // Collapse,
   // Carousel,
   // Cascader,
-  // Checkbox,
+  Checkbox,
   Col,
   DatePicker,
   Divider,
@@ -284,7 +284,7 @@ export {
   Transfer,
   // Tree,
   // TreeSelect,
-  // Tabs,
+  Tabs,
   Tag,
   // TimePicker,
   Timeline,
