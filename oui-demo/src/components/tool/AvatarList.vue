@@ -6,8 +6,8 @@
 </template>
 
 <script>
-import AAvatar from 'ant-design-vue/es/avatar/Avatar'
-import ATooltip from 'ant-design-vue/es/tooltip/Tooltip'
+import AAvatar from 'userty-design/es/avatar/Avatar'
+import ATooltip from 'userty-design/es/tooltip/Tooltip'
 const Item = {
   name: 'AvatarListItem',
   props: {

@@ -31,8 +31,8 @@
  *   }
  * }
  **/
-import Menu from 'ant-design-vue/es/menu'
-import Icon from 'ant-design-vue/es/icon'
+import Menu from 'userty-design/es/menu'
+import Icon from 'userty-design/es/icon'
 import fastEqual from 'fast-deep-equal'
 import {getI18nKey} from '@/utils/routerUtil'
 
