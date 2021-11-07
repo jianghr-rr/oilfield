@@ -19,7 +19,7 @@ if (
 
 // import { default as Anchor } from './anchor';
 
-// import { default as AutoComplete } from './auto-complete';
+import { default as AutoComplete } from './auto-complete';
 
 import { default as Alert } from './alert';
 
@@ -27,11 +27,11 @@ import { default as Avatar } from './avatar';
 
 // import { default as BackTop } from './back-top';
 
-// import { default as Badge } from './badge';
+import { default as Badge } from './badge';
 
 // import { default as Base } from './base';
 
-// import { default as Breadcrumb } from './breadcrumb';
+import { default as Breadcrumb } from './breadcrumb';
 
 import { default as Button } from './button';
 
@@ -84,7 +84,7 @@ import { default as Pagination } from './pagination';
 
 // import { default as Popconfirm } from './popconfirm';
 
-// import { default as Popover } from './popover';
+import { default as Popover } from './popover';
 
 import { default as Progress } from './progress';
 
@@ -118,7 +118,7 @@ import { default as Tabs } from './tabs';
 
 import { default as Tag } from './tag';
 
-// import { default as TimePicker } from './time-picker';
+import { default as TimePicker } from './time-picker';
 
 import { default as Timeline } from './timeline';
 
@@ -148,12 +148,12 @@ const components = [
   // Base,
   // Affix,
   // Anchor,
-  // AutoComplete,
+  AutoComplete,
   Alert,
   Avatar,
   // BackTop,
-  // Badge,
-  // Breadcrumb,
+  Badge,
+  Breadcrumb,
   Button,
   Calendar,
   Card,
@@ -178,7 +178,7 @@ const components = [
   Modal,
   Pagination,
   // Popconfirm,
-  // Popover,
+  Popover,
   Progress,
   Radio,
   Rate,
@@ -189,13 +189,13 @@ const components = [
   // Statistic,
   Steps,
   Switch,
-  // Table,
+  Table,
   Transfer,
   // Tree,
   // TreeSelect,
   Tabs,
   Tag,
-  // TimePicker,
+  TimePicker,
   Timeline,
   Tooltip,
   Upload,
@@ -239,12 +239,12 @@ export {
   notification,
   // Affix,
   // Anchor,
-  // AutoComplete,
+  AutoComplete,
   Alert,
   Avatar,
   // BackTop,
-  // Badge,
-  // Breadcrumb,
+  Badge,
+  Breadcrumb,
   Button,
   Calendar,
   Card,
@@ -269,7 +269,7 @@ export {
   Modal,
   Pagination,
   // Popconfirm,
-  // Popover,
+  Popover,
   Progress,
   Radio,
   Rate,
@@ -286,7 +286,7 @@ export {
   // TreeSelect,
   Tabs,
   Tag,
-  // TimePicker,
+  TimePicker,
   Timeline,
   Tooltip,
   Upload,

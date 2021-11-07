@@ -2,12 +2,12 @@ import Vue from 'vue';
 import {
   //   Affix,
   //   Anchor,
-  //   AutoComplete,
+  AutoComplete,
   Alert,
   Avatar,
   //   BackTop,
-  //   Badge,
-  //   Breadcrumb,
+  Badge,
+  Breadcrumb,
   Button,
   Calendar,
   Card,
@@ -34,7 +34,7 @@ import {
   notification,
   Pagination,
   //   Popconfirm,
-  //   Popover,
+  Popover,
   Progress,
   Radio,
   Rate,
@@ -51,7 +51,7 @@ import {
   //   TreeSelect,
   Tabs,
   Tag,
-  //   TimePicker,
+  TimePicker,
   Timeline,
   Tooltip,
   //   // Mention,
@@ -66,7 +66,7 @@ import {
   Result,
   //   Descriptions,
   //   PageHeader,
-  //   Space,
+  // Space,
   // ColorPicker,
 } from '../../components';
 
@@ -83,12 +83,12 @@ Vue.prototype.$omdestroyAll = Modal.destroyAll;
 // Vue.use(Base);
 // Vue.use(Affix);
 // Vue.use(Anchor);
-// Vue.use(AutoComplete);
+Vue.use(AutoComplete);
 Vue.use(Alert);
 Vue.use(Avatar);
 // Vue.use(BackTop);
-// Vue.use(Badge);
-// Vue.use(Breadcrumb);
+Vue.use(Badge);
+Vue.use(Breadcrumb);
 Vue.use(Button);
 Vue.use(Calendar);
 Vue.use(Card);
@@ -114,7 +114,7 @@ Vue.use(Menu);
 Vue.use(Modal);
 Vue.use(Pagination);
 // Vue.use(Popconfirm);
-// Vue.use(Popover);
+Vue.use(Popover);
 Vue.use(Progress);
 Vue.use(Radio);
 Vue.use(Rate);
@@ -131,7 +131,7 @@ Vue.use(Transfer);
 // Vue.use(TreeSelect);
 Vue.use(Tabs);
 Vue.use(Tag);
-// Vue.use(TimePicker);
+Vue.use(TimePicker);
 Vue.use(Timeline);
 Vue.use(Tooltip);
 Vue.use(Upload);
