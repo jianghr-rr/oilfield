@@ -35,8 +35,8 @@
                     :maxLength="20"
                     placeholder="请输入短信验证码"
                 >
-                    <span slot="addonAfter" style="user-select: none;cursor: pointer;" @click="$emit('onGetVeryCode')">
-                        <span :style="{color}">获取验证码</span>
+                    <span slot="addonAfter" style="user-select: none;cursor: pointer;" @click="handleGetVeryCode">
+                        <span :style="{color}">{{tips}}</span>
                     </span>
                 </o-input>
             </o-form-item>
@@ -104,8 +104,12 @@
 </template>
 
 <script>
+import {mapState} from 'vuex'
+import very from './very';
+
 export default {
     name: 'Register',
+    mixins: [very],
     props: {
         loading: {
             type: Boolean,
@@ -121,13 +125,13 @@ export default {
         };
     },
     computed: {
-        color() {
-            return this.$store.getters.color;
-        }
+         ...mapState({
+            color: state => state.setting.theme.color
+        })
     },
     mounted() {
         this.$nextTick(() => {
-            this.form = this.$form.createForm(this, {name: 'register'});
+            this.form = this.$form.createForm(this, {name: 'oil_login'});
             this.getVeryCode();
         });
     },
@@ -138,6 +142,12 @@ export default {
                 if (!err) {
                     this.$emit('onRegister', values);
                 }
+            });
+        },
+        handleGetVeryCode() {
+            this.$emit('onGetVeryCode');
+            this.form.validateFields(['phone']).then(tel => {
+                this.getVeryCd(tel);
             });
         },
         getVeryCode() {

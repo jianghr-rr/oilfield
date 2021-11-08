@@ -29,9 +29,15 @@
                             @onLogin="handleLogin"
                             @onRemember="handleRemember"
                         />
-                        <div v-else-if="currIndex === messageIndex">
-                            message form
-                        </div>
+                        <Message
+                            v-else-if="currIndex === messageIndex"
+                            :loading="loading"
+                            @onRegister="currIndex = registerIndex"
+                            @onGetVeryCode="handleGetVeryCode"
+                            @onMessage="currIndex = messageIndex"
+                            @onLogin="handleLogin"
+                            @onRemember="handleRemember"
+                        />
                     </div>
                 </div>
             </o-col>
@@ -44,6 +50,7 @@
 import Tab from './Tab.vue';
 import Account from './Account.vue';
 import Register from './Register.vue';
+import Message from './Message.vue';
 
 import {mapState} from 'vuex'
 
@@ -64,6 +71,7 @@ export default {
     components: {
         Tab,
         Account,
+        Message,
         Register
     },
     data() {

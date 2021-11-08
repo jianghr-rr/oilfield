@@ -1,8 +1,7 @@
 <template>
-    <div class="oil-register">
-        <div class="oil-register-title">用户注册</div>
+    <div class="oil-account-login">
         <o-form :form="form" @submit="handleSubmit">
-            <o-form-item class="oil-form-item">
+            <o-form-item>
                 <o-input
                     class="oil-input"
                     v-decorator="[
@@ -17,21 +16,22 @@
                             ]
                         }
                     ]"
-                    :maxLength="11"
+                    :maxLength="20"
                     placeholder="请输入手机号码"
                 />
             </o-form-item>
-            <o-form-item class="oil-form-item oil-very-line">
+            <o-form-item class="oil-very-line">
                 <o-input
                     class="oil-input"
                     v-decorator="[
-                        'verycode',
+                        'code',
                         {
                             rules: [
                                 {required: true, message: '请输入短信验证码'}
                             ]
                         }
                     ]"
+                    type="code"
                     :maxLength="20"
                     placeholder="请输入短信验证码"
                 >
@@ -40,65 +40,56 @@
                     </span>
                 </o-input>
             </o-form-item>
-             <o-form-item class="oil-form-item">
-                <o-input
-                    class="oil-input"
-                    v-decorator="[
-                        'password',
-                        {
-                            rules: [
-                                {required: true, message: '设置6-20位登陆密码'},
-                                {min: 6, message: '设置6-20位登陆密码'},
-                                {max: 20, message: '设置6-20位登陆密码'},
-                                {validator: validateToNextPassword}
-                            ]
-                        }
-                    ]"
-                    :maxLength="20"
-                    type="password"
-                    placeholder="设置6-20位登陆密码"
-                />
-            </o-form-item>
-             <o-form-item class="oil-form-item">
-                <o-input
-                    class="oil-input"
-                    v-decorator="[
-                        'confirm',
-                        {
-                            rules: [
-                                {required: true, message: '再次请输入登录密码'},
-                                {validator: compareToFirstPassword}
-                            ]
-                        }
-                    ]"
-                    type="password"
-                    placeholder="再次请输入登录密码"
-                    @blur="handleConfirmBlur"
-                />
-            </o-form-item>
-            <div class="oil-form-item oil-checkbox-line">
-                <div
-                    style="width: 150px;display: flex;align-items: center;user-select: none;cursor: pointer"
-                    @click="isRemember = !isRemember"
-                >
-                    <o-input type="checkbox" :checked="isRemember" />
-                    <div style="margin-left: 10px;">勾选同意《保密协议》</div>
+            <div class="oil-very oil-form-item">
+                <div class="oil-very-item">
+                    <o-form-item>
+                        <o-input
+                            class="oil-input"
+                            v-decorator="[
+                                'verycode',
+                                {
+                                    rules: [
+                                        {required: true, message: '请输入右侧校验码'},
+                                        {validator: (_rule, value, callback) => {
+                                            if (!value) {
+                                                callback();
+                                            }
+                                            if (value !== this.veryCode) {
+                                                callback('验证码错误');
+                                            }
+                                            callback();
+                                        }}
+                                    ]
+                                }
+                            ]"
+                            :maxLength="4"
+                            placeholder="请输入右侧校验码"
+                        />
+                    </o-form-item>
                 </div>
+                <div class="oil-very-item" @click="getVeryCode">
+                    {{veryCode}}
+                </div>
+            </div>
+            <div class="oil-form-item">
+                <o-checkbox @change="handleRemember">记住登陆状态</o-checkbox>
             </div>
             <o-form-item style="margin-bottom: 10px;">
                 <o-button
                     type="primary"
                     html-type="submit"
                     style="width: 100%"
-                    :disabled="!isRemember"
                     :loading="loading"
                 >
-                    注册
+                    登录
                 </o-button>
             </o-form-item>
         </o-form>
-        <div class="oil-register-footer">
-            <a :style="{color}" @click="$emit('onLogin')">已有账号，立即登录</a>
+        <div class="oil-account-login-footer">
+            <div @click="$emit('onRegister')">
+                <span>还没有账号?</span>
+                <a :style="{color}">立即注册</a>
+            </div>
         </div>
     </div>
 </template>
@@ -108,7 +99,7 @@ import {mapState} from 'vuex'
 import very from './very';
 
 export default {
-    name: 'Register',
+    name: 'Account',
     mixins: [very],
     props: {
         loading: {
@@ -120,8 +111,7 @@ export default {
         return {
             form: null,
             veryCode: null,
-            isRemember: false,
-            confirmDirty: false
+            isRemember: false
         };
     },
     computed: {
@@ -136,64 +126,49 @@ export default {
         });
     },
     methods: {
-        handleSubmit(e) {
-            e.preventDefault();
-            this.form.validateFields((err, values) => {
-                if (!err) {
-                    this.$emit('onRegister', values);
-                }
-            });
-        },
         handleGetVeryCode() {
             this.$emit('onGetVeryCode');
             this.form.validateFields(['phone']).then(tel => {
                 this.getVeryCd(tel);
             });
         },
+        handleRemember(e) {
+            const checked = e.target.checked;
+            this.$emit('onRemember', checked);
+        },
+        handleSubmit(e) {
+            e.preventDefault();
+            this.form.validateFields({force: true}, (err, values) => {
+                if (err) {
+                    this.getVeryCode();
+                }
+                if (!err) {
+                    this.$emit('onLogin', values);
+                }
+            });
+        },
         getVeryCode() {
             const veryCode = Math.random().toString(36).substr(2, 4);
             this.veryCode = veryCode.toUpperCase();
         },
-        handleConfirmBlur(e) {
-            const value = e.target.value;
-            this.confirmDirty = this.confirmDirty || !!value;
-        },
-        compareToFirstPassword(_rule, value, callback) {
-            const form = this.form;
-            if (value && value !== form.getFieldValue('password')) {
-                callback('请检查两次输入的密码是否正确');
-            } else {
+        handleVeryCode(_rule, value, callback) {
+            if (!value) {
                 callback();
             }
-        },
-        validateToNextPassword(_rule, value, callback) {
-            const form = this.form;
-            if (value && this.confirmDirty) {
-                form.validateFields(['confirm'], { force: true });
+            if (value !== this.veryCode) {
+                callback('验证码错误');
             }
             callback();
-        },
+        }
     },
 };
 </script>
 
 <style lang="less">
-    .oil-register{
+    .oil-account-login{
         width: 316px;
-        &-title{
-            margin-bottom: 15px;
-            font-family: 'SourceHanSansCN-Normal', 'Source Han Sans CN Normal', 'Source Han Sans CN', sans-serif;
-            font-weight: 400;
-            font-style: normal;
-            font-size: 14px;
-            color: #555555;
-        }
         .ant-btn {
             width: 100%;
-        }
-        .ant-input-group-addon{
-            background-color: #FFF;
-            border-left: none !important;
         }
         .oil-input, .ant-btn {
             height: 60px;
@@ -203,7 +178,9 @@ export default {
             }
         }
         .oil-form-item{
+            display: flex;
             margin-bottom: 15px;
+            align-items: center;
         }
         .oil-very{
             justify-content: space-between;
@@ -231,14 +208,9 @@ export default {
                 }
             }
         }
-        .oil-checkbox-line{
-            display: flex;
-            align-items: center;
-            font-family: 'SourceHanSansCN-Normal', 'Source Han Sans CN Normal', 'Source Han Sans CN', sans-serif;
-            font-weight: 400;
-            font-style: normal;
-            font-size: 12px;
-            color: #AAAAAA;
+        .ant-input-group-addon{
+            background-color: #FFF;
+            border-left: none !important;
         }
         .oil-very-line{
              .oil-input {
@@ -251,17 +223,20 @@ export default {
                 }
             }
         }
-
         &-footer{
             display: flex;
-            justify-content: center;
-            a {
-                cursor: pointer;
+            justify-content: space-between;
+            align-items: center;
+            div {
                 font-family: 'SourceHanSansCN-Normal', 'Source Han Sans CN Normal', 'Source Han Sans CN', sans-serif;
                 font-weight: 400;
                 font-style: normal;
                 font-size: 12px;
+                color: #AAAAAA;
                 user-select: none;
+                a {
+                    cursor: pointer;
+                }
             }
         }
        

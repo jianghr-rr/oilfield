@@ -29,9 +29,15 @@
                             @onLogin="handleLogin"
                             @onRemember="handleRemember"
                         />
-                        <div v-else-if="currIndex === messageIndex">
-                            message form
-                        </div>
+                        <Message
+                            v-else-if="currIndex === messageIndex"
+                            :loading="loading"
+                            @onRegister="currIndex = registerIndex"
+                            @onGetVeryCode="handleGetVeryCode"
+                            @onMessage="currIndex = messageIndex"
+                            @onLogin="handleLogin"
+                            @onRemember="handleRemember"
+                        />
                     </div>
                 </div>
             </o-col>
@@ -44,6 +50,7 @@
 import Tab from './Tab.vue';
 import Account from './Account.vue';
 import Register from './Register.vue';
+import Message from './Message.vue';
 
 import CommonLayout from '@/layouts/CommonLayout'
 import {login, getRoutesConfig} from '@/services/user'
@@ -69,6 +76,7 @@ export default {
         CommonLayout,
         Tab,
         Account,
+        Message,
         Register
     },
     data() {
@@ -89,10 +97,10 @@ export default {
     methods: {
         ...mapMutations('account', ['setUser', 'setPermissions', 'setRoles']),
         async handleLogin(values) {
-            const {userName, password} = values;
+            const {userName, password, tel, code} = values;
             try {
                 this.loading = true;
-                const res = await login(userName, password);
+                const res = await login(userName || tel, password || code);
                 this.afterLogin(res);
             }
             finally {
