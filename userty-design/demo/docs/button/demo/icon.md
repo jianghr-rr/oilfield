@@ -13,24 +13,38 @@ If you want specific control over the positioning and placement of the `Icon`, t
 ```vue
 <template>
   <div>
-    <o-button type="primary" shape="circle" icon="search" />
-    <o-button type="primary" shape="circle">
-      A
+    <o-button type="primary" icon="edit" />
+    <o-button type="primary" icon="edit">
+      编辑文本
     </o-button>
-    <o-button type="primary" icon="search">
-      Search
+    <o-button type="primary" icon="edit" :style="{boxShadow: '3px 3px 4px 0px #E6E6E6'}" />
+    <o-button type="primary" icon="edit" :style="{boxShadow: '3px 3px 4px 0px #E6E6E6'}">
+      编辑文本
     </o-button>
-    <o-button shape="circle" icon="search" />
-    <o-button icon="search">
-      Search
+    <br/>
+    <o-button type="primary" shape="circle" icon="edit"/>
+    <o-button type="primary" icon="edit" :style="{
+      borderRadius: '18px'
+    }">
+      编辑文本
     </o-button>
-    <o-button shape="circle" icon="search" />
-    <o-button icon="search">
-      Search
+    <o-button type="primary" shape="circle" icon="edit" :style="{boxShadow: '3px 3px 4px 0px #E6E6E6'}" />
+    <o-button type="primary" icon="edit" :style="{boxShadow: '3px 3px 4px 0px #E6E6E6', borderRadius: '18px'}">
+      编辑文本
     </o-button>
-    <o-button type="dashed" shape="circle" icon="search" />
-    <o-button type="dashed" icon="search">
-      Search
+    <br/>
+    <o-button icon="edit"/>
+    <o-button icon="edit">
+      编辑文本
+    </o-button>
+    <o-button shape="circle" icon="edit" :style="{boxShadow: '3px 3px 4px 0px #E6E6E6'}" />
+    <o-button icon="edit" :style="{boxShadow: '3px 3px 4px 0px #E6E6E6', borderRadius: '18px'}">
+      编辑文本
+    </o-button>
+    <br/>
+    <o-button type="dashed" icon="edit"/>
+    <o-button icon="edit" type="dashed">
+      编辑文本
     </o-button>
   </div>
 </template>

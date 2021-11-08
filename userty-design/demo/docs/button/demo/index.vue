@@ -1,6 +1,7 @@
 <script>
 import Basic from './basic';
-import ButtonGroup from './button-group';
+import Basic2 from './basic-2';
+// import ButtonGroup from './button-group';
 import Disabled from './disabled';
 import Ghost from './ghost';
 import Icon from './icon';
@@ -45,14 +46,11 @@ export default {
         <md cn={md.cn} us={md.us} />
         <demo-sort>
           <Basic />
-          <ButtonGroup />
           <Disabled />
-          <Ghost />
           <Icon />
           <Loading />
-          <Multiple />
-          <Size />
           <Block />
+          <Basic2 />
         </demo-sort>
         <api>
           <CN slot="cn" />
