@@ -117,7 +117,7 @@ export default {
     },
     mounted() {
         this.$nextTick(() => {
-            this.form = this.$form.createForm(this, {name: 'oil_login'});
+            this.form = this.$form.createForm(this, {name: 'login'});
             this.getVeryCode();
         });
     },
