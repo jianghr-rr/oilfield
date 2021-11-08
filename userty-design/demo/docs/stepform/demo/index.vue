@@ -5,6 +5,7 @@
         <step1-md />
         <step2-md />
         <step3-md />
+        <result-md />
     </div>
 </template>
 
@@ -14,6 +15,7 @@ import BasicMd from './basic.md';
 import Step1Md from './step1.md';
 import Step2Md from './step2.md';
 import Step3Md from './step3.md';
+import ResultMd from './result.md';
 
 const md = {
   cn: `# StepForm 分布表单
@@ -30,7 +32,8 @@ export default {
         BasicMd,
         Step1Md,
         Step2Md,
-        Step3Md
+        Step3Md,
+        ResultMd
     },
     data() {
         return {
