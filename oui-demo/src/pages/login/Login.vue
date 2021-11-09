@@ -1,48 +1,46 @@
 <template>
-    <common-layout>
-        <o-row type="flex">
-            <o-col :flex="1">
-                <div class="oil-img">
-                    <img src="@/assets/img/logo.png" />
-                    <div class="oil-title" :style="{color}">
-                        XinJiang  Userty Design
-                    </div>
+    <o-row type="flex">
+        <o-col :flex="1">
+            <div class="oil-img">
+                <img src="@/assets/img/logo.png" />
+                <div class="oil-title" :style="{color}">
+                    XinJiang  Userty Design
                 </div>
-            </o-col>
-            <o-col :flex="1">
-                <div class="oil-form">
-                    <div v-if="currIndex === registerIndex" style="padding: 25px 0;">
-                        <Register
-                            :loading="loading"
-                            @onLogin="currIndex = loginIndex"
-                            @onRegister="handleRegister"
-                            @onGetVeryCode="handleGetVeryCode"
-                        />
-                    </div>
-                    <div v-else>
-                        <Tab :tabs="tabs" :controlIndex.sync="currIndex" />
-                        <Account
-                            v-if="currIndex === loginIndex"
-                            :loading="loading"
-                            @onRegister="currIndex = registerIndex"
-                            @onMessage="currIndex = messageIndex"
-                            @onLogin="handleLogin"
-                            @onRemember="handleRemember"
-                        />
-                        <Message
-                            v-else-if="currIndex === messageIndex"
-                            :loading="loading"
-                            @onRegister="currIndex = registerIndex"
-                            @onGetVeryCode="handleGetVeryCode"
-                            @onMessage="currIndex = messageIndex"
-                            @onLogin="handleLogin"
-                            @onRemember="handleRemember"
-                        />
-                    </div>
+            </div>
+        </o-col>
+        <o-col :flex="1">
+            <div class="oil-form">
+                <div v-if="currIndex === registerIndex" style="padding: 25px 0;">
+                    <Register
+                        :loading="loading"
+                        @onLogin="currIndex = loginIndex"
+                        @onRegister="handleRegister"
+                        @onGetVeryCode="handleGetVeryCode"
+                    />
                 </div>
-            </o-col>
-        </o-row>
-    </common-layout>
+                <div v-else>
+                    <Tab :tabs="tabs" :controlIndex.sync="currIndex" />
+                    <Account
+                        v-if="currIndex === loginIndex"
+                        :loading="loading"
+                        @onRegister="currIndex = registerIndex"
+                        @onMessage="currIndex = messageIndex"
+                        @onLogin="handleLogin"
+                        @onRemember="handleRemember"
+                    />
+                    <Message
+                        v-else-if="currIndex === messageIndex"
+                        :loading="loading"
+                        @onRegister="currIndex = registerIndex"
+                        @onGetVeryCode="handleGetVeryCode"
+                        @onMessage="currIndex = messageIndex"
+                        @onLogin="handleLogin"
+                        @onRemember="handleRemember"
+                    />
+                </div>
+            </div>
+        </o-col>
+    </o-row>
 </template>
 
 <script>
@@ -52,7 +50,6 @@ import Account from './Account.vue';
 import Register from './Register.vue';
 import Message from './Message.vue';
 
-import CommonLayout from '@/layouts/CommonLayout'
 import {login, getRoutesConfig} from '@/services/user'
 import {setAuthorization} from '@/utils/request'
 import {loadRoutes} from '@/utils/routerUtil'
@@ -73,7 +70,6 @@ const REGISTER_INDEX = getIndex('rgister');
 export default {
     name: 'OLoginPage',
     components: {
-        CommonLayout,
         Tab,
         Account,
         Message,

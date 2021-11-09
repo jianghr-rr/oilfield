@@ -78,6 +78,7 @@ export default {
     position: fixed;
     transition: all 0.5s;
     height: 100vh;
+    top: 0;
     z-index: 100;
     &.left{
       left: 0px;

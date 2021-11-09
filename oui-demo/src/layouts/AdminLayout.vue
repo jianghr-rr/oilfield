@@ -1,63 +1,54 @@
 <template>
-  <o-layout :class="['admin-layout', 'beauty-scroll']">
-    <drawer v-if="isMobile" v-model="drawerOpen">
-      <side-menu
-        :theme="theme.mode"
-        :menuData="menuData"
-        :collapsed="false"
-        :collapsible="false"
-        @menuSelect="onMenuSelect"
-      />
-    </drawer>
-    <side-menu
-      :class="[fixedSideBar ? 'fixed-side' : '']"
-      :theme="theme.mode"
-      v-else-if="layout === 'side' || layout === 'mix'"
-      :menuData="sideMenuData"
+  <div>
+    <admin-header
+      :class="[{ 'fixed-tabs': fixedTabs, 'fixed-header': fixedHeader, 'multi-page': multiPage }]"
+      :style="headerStyle"
+      :menuData="headMenuData"
       :collapsed="collapsed"
-      :collapsible="true"
+      @toggleCollapse="toggleCollapse"
     />
-    <div
-      v-if="fixedSideBar && !isMobile"
-      :style="`width: ${sideMenuWidth}; min-width: ${sideMenuWidth};max-width: ${sideMenuWidth};`"
-      class="virtual-side"
-    ></div>
-    <drawer v-if="!hideSetting" v-model="showSetting" placement="right">
-      <div class="setting" slot="handler">
-        <o-icon :type="showSetting ? 'close' : 'setting'" />
-      </div>
-      <setting />
-    </drawer>
-    <o-layout class="admin-layout-main beauty-scroll">
-      <admin-header
-        :class="[{ 'fixed-tabs': fixedTabs, 'fixed-header': fixedHeader, 'multi-page': multiPage }]"
-        :style="headerStyle"
-        :menuData="headMenuData"
+    <o-layout :class="['admin-layout', 'beauty-scroll']">
+      <drawer v-if="isMobile" v-model="drawerOpen">
+        <side-menu
+          :theme="theme.mode"
+          :menuData="menuData"
+          :collapsed="false"
+          :collapsible="false"
+          @menuSelect="onMenuSelect"
+        />
+      </drawer>
+      <side-menu
+        :class="[fixedSideBar ? 'fixed-side' : '']"
+        :theme="theme.mode"
+        v-else-if="layout === 'side' || layout === 'mix'"
+        :menuData="sideMenuData"
         :collapsed="collapsed"
-        @toggleCollapse="toggleCollapse"
+        :collapsible="true"
       />
-      <o-layout-header
-        :class="['virtual-header', { 'fixed-tabs': fixedTabs, 'fixed-header': fixedHeader, 'multi-page': multiPage }]"
-        v-show="fixedHeader"
-      ></o-layout-header>
-      <o-layout-content class="admin-layout-content" :style="`min-height: ${minHeight}px;`">
-        <div style="position: relative">
-          <slot></slot>
+      <drawer v-if="!hideSetting" v-model="showSetting" placement="right">
+        <div class="setting" slot="handler">
+          <o-icon :type="showSetting ? 'close' : 'setting'" />
         </div>
-      </o-layout-content>
-      <o-layout-footer style="padding: 0px">
-        <page-footer :link-list="footerLinks" :copyright="copyright" />
-      </o-layout-footer>
+        <setting />
+      </drawer>
+      <o-layout class="admin-layout-main beauty-scroll">
+        <o-layout-content class="admin-layout-content" :style="`min-height: ${minHeight}px;`">
+          <div style="position: relative">
+            <slot></slot>
+          </div>
+        </o-layout-content>
+      </o-layout>
     </o-layout>
-  </o-layout>
+    <page-footer :link-list="footerLinks" :copyright="copyright" />
+  </div>
 </template>
 
 <script>
 import AdminHeader from './header/AdminHeader'
 import PageFooter from './footer/PageFooter'
 import Drawer from '../components/tool/Drawer'
-import SideMenu from '../components/menu/SideMenu'
 import Setting from '../components/setting/Setting'
+import SideMenu from '../components/menu/SideMenu'
 import { mapState, mapMutations, mapGetters } from 'vuex'
 
 // const minHeight = window.innerHeight - 64 - 122
@@ -146,12 +137,11 @@ export default {
 
 <style lang="less" scoped>
 .admin-layout {
+  margin-top: 40px;
+  background: #FFF;
   .side-menu {
     &.fixed-side {
-      position: fixed;
-      height: 100vh;
-      left: 0;
-      top: 0;
+    
     }
   }
   .virtual-side {
@@ -165,6 +155,7 @@ export default {
     }
   }
   .admin-layout-main {
+    background: #FFF;
     .admin-header {
       top: 0;
       right: 0;
@@ -176,7 +167,7 @@ export default {
     }
   }
   .admin-layout-content {
-    padding: 24px 24px 0;
+    padding: 24px 64px 0 64px;
     /*overflow-x: hidden;*/
     /*min-height: calc(100vh - 64px - 122px);*/
   }

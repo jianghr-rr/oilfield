@@ -1,14 +1,9 @@
 <template>
   <o-layout-header :class="[headerTheme, 'admin-header']">
     <div :class="['admin-header-wide', layout, pageWidth]">
-      <router-link v-if="isMobile || layout === 'head'" to="/" :class="['logo', isMobile ? null : 'pc', headerTheme]">
+      <div class="admin-header-left">
         <img width="32" src="@/assets/img/logo.png" />
-        <h1 v-if="!isMobile">{{systemName}}</h1>
-      </router-link>
-      <o-divider v-if="isMobile" type="vertical" />
-      <o-icon v-if="layout !== 'head'" class="trigger" :type="collapsed ? 'menu-unfold' : 'menu-fold'" @click="toggleCollapse"/>
-      <div v-if="layout !== 'side' && !isMobile" class="admin-header-menu" :style="`width: ${menuWidth};`">
-        <i-menu class="head-menu" :theme="headerTheme" mode="horizontal" :options="menuData" @select="onSelect"/>
+        <h1 :style="{color}">{{systemName}}</h1>
       </div>
       <div :class="['admin-header-right', headerTheme]">
           <header-avatar class="header-item"/>
@@ -19,34 +14,27 @@
 
 <script>
 import HeaderAvatar from './HeaderAvatar'
-import IMenu from '@/components/menu/menu'
 import {mapState, mapMutations} from 'vuex'
 
 export default {
   name: 'AdminHeader',
-  components: {IMenu, HeaderAvatar},
+  components: {HeaderAvatar},
   props: ['collapsed', 'menuData'],
   data() {
     return {
-      langList: [
-        {key: 'CN', name: '简体中文', alias: '简体'},
-        {key: 'HK', name: '繁體中文', alias: '繁體'},
-        {key: 'US', name: 'English', alias: 'English'}
-      ],
       searchActive: false
     }
   },
   computed: {
     ...mapState('setting', ['theme', 'isMobile', 'layout', 'systemName', 'lang', 'pageWidth']),
+    ...mapState({
+        color: state => state.setting.theme.color
+    }),
     headerTheme () {
       if (this.layout == 'side' && this.theme.mode == 'dark' && !this.isMobile) {
         return 'light'
       }
       return this.theme.mode
-    },
-    langAlias() {
-      let lang = this.langList.find(item => item.key == this.lang)
-      return lang.alias
     },
     menuWidth() {
       const {layout, searchActive} = this
@@ -58,9 +46,6 @@ export default {
   methods: {
     toggleCollapse () {
       this.$emit('toggleCollapse')
-    },
-    onSelect (obj) {
-      this.$emit('menuSelect', obj)
     },
     ...mapMutations('setting', ['setLang'])
   }

@@ -1,9 +1,13 @@
 .admin-header{
   padding: 0;
-  z-index: 2;
-  box-shadow: @shadow-down;
+  z-index: 10;
   position: relative;
   background: @base-bg-color;
+  height: 88px;
+  box-shadow: 0 2px 8px #f0f1f2;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
   .head-menu{
     height: 64px;
     line-height: 64px;
@@ -20,7 +24,11 @@
     }
   }
   .admin-header-wide{
-    padding-left: 24px;
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0 30px;
     &.head.fixed{
       max-width: 1400px;
       margin: auto;
@@ -37,7 +45,6 @@
       padding: 0 12px 0 24px;
       cursor: pointer;
       font-size: 20px;
-      color: inherit;
       &.pc{
         padding: 0 12px 0 0;
       }
@@ -45,7 +52,7 @@
         vertical-align: middle;
       }
       h1{
-        color: inherit;
+        color:  @primary-color;
         display: inline-block;
         font-size: 16px;
       }
@@ -62,6 +69,21 @@
     }
     .admin-header-menu{
       display: inline-block;
+    }
+    .admin-header-left{
+      width: 400px;
+      display: flex;
+      align-items: center;
+      img {
+        width: 40px;
+        height: 40px;
+        margin-right: 20px;
+      }
+      h1{
+        margin: 0;
+        font-weight: 400;
+        font-size: 20px;
+      }
     }
     .admin-header-right{
       float: right;

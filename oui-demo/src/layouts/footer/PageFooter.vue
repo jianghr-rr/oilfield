@@ -1,46 +1,28 @@
 <template>
-  <div class="footer">
-    <div class="links">
-      <a target="_blank" :key="index" :href="item.link ? item.link : 'javascript: void(0)'" v-for="(item, index) in linkList">
-        <o-icon v-if="item.icon" :type="item.icon"/>
-        {{item.name}}
-      </a>
-    </div>
-    <div class="copyright">
-      Copyright<o-icon type="copyright" />{{copyright}}
-    </div>
+  <div class="footer" :style="{background: color}">
+      备案号: 京 XJ Userty Design 备 20210726 号
   </div>
 </template>
 
 <script>
+import {mapState} from 'vuex'
+
 export default {
   name: 'PageFooter',
-  props: ['copyright', 'linkList']
+  props: ['copyright', 'linkList'],
+  computed: {
+       ...mapState({
+          color: state => state.setting.theme.color
+      })
+  }
 }
 </script>
 
 <style lang="less" scoped>
   .footer{
-    padding: 48px 16px 24px;
-    /*margin: 48px 0 24px;*/
+    height: 120px;
+    line-height: 120px;
     text-align: center;
-    .copyright{
-      color: @text-color-second;
-      font-size: 14px;
-      i {
-          margin: 0 4px;
-      }
-    }
-    .links{
-      margin-bottom: 8px;
-      a:not(:last-child) {
-        margin-right: 40px;
-      }
-      a{
-        color: @text-color-second;
-        -webkit-transition: all .3s;
-        transition: all .3s;
-      }
-    }
+    color: #ffffff;
   }
 </style>

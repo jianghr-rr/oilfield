@@ -1,12 +1,12 @@
 <template>
-  <o-layout-sider :theme="sideTheme" :class="['side-menu', 'beauty-scroll', isMobile ? null : 'shadow']" width="256px" :collapsible="collapsible" v-model="collapsed" :trigger="null">
-	<div :class="['logo', theme]">
-      <router-link to="/dashboard/login">
-        <img src="@/assets/img/logo.png">
-        <h1>{{systemName}}</h1>
-      </router-link>
-    </div>
-    <i-menu :theme="theme" :collapsed="collapsed" :options="menuData" @select="onSelect" class="menu"/>
+  <o-layout-sider
+    :theme="sideTheme"
+    :class="['side-menu', 'beauty-scroll', isMobile ? null : 'shadow']"
+    :collapsible="collapsible"
+    v-model="collapsed"
+    :trigger="null"
+  >
+    <i-menu :theme="theme" :collapsed="collapsed" :options="menuData" @select="onSelect" class="menu" style="width: 321px"/>
   </o-layout-sider>
 </template>
 
