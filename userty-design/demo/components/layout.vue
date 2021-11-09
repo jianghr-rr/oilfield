@@ -289,15 +289,17 @@ export default {
                 >
                   <a-affix>
                     <section class="main-menu-inner">
-                      <a-menu
-                        class="aside-container menu-site"
-                        selectedKeys={[name]}
-                        defaultOpenKeys={[defaultOpenKey]}
-                        inlineIndent={40}
-                        mode="inline"
-                      >
-                        {MenuGroup}
-                      </a-menu>
+                      <a-affix>
+                        <a-menu
+                          class="aside-container menu-site"
+                          selectedKeys={[name]}
+                          defaultOpenKeys={[defaultOpenKey]}
+                          inlineIndent={40}
+                          mode="inline"
+                        >
+                          {MenuGroup}
+                        </a-menu>
+                      </a-affix>
                     </section>
                   </a-affix>
                 </a-col>
@@ -394,23 +396,25 @@ export default {
     .ant-menu-inline > .ant-menu-item {
       height: 60px;
       line-height: 60px;
+      padding-left: 60px !important;
     }
     .ant-menu-sub.ant-menu-inline > .ant-menu-item {
       margin: 0;
       padding-left: 80px !important;
-    }
-    .ant-menu-submenu-selected {
-      color: var(--color);
-      span {
-        color: var(--color);
+      & * {
+        font-size: 12px;
       }
+    }
+    .ant-menu-submenu-inline > .ant-menu-submenu-title .ant-menu-submenu-arrow {
+      right: 20px;
+    }
+    .ant-menu-submenu-inline > .ant-menu-submenu-title .ant-menu-submenu-arrow::before,
+    .ant-menu-submenu-inline > .ant-menu-submenu-title .ant-menu-submenu-arrow::after {
+      width: 6px;
     }
     .ant-menu:not(.ant-menu-horizontal) > .ant-menu-item-selected {
       background: none;
       // color: #990F0F;
-      span {
-        color: var(--color);
-      }
       position: relative;
       &::before {
         content: ' ';
@@ -439,14 +443,12 @@ export default {
         display: none;
       }
     }
-    .ant-menu-item:hover,
-    .ant-menu-item-active,
-    .ant-menu:not(.ant-menu-inline) .ant-menu-submenu-open,
-    .ant-menu-submenu-active, .ant-menu-submenu-title:hover {
-      span {
-        color: var(--color);
-      }
-    }
+    // .ant-menu-item:hover,
+    // .ant-menu-item-active,
+    // .ant-menu:not(.ant-menu-inline) .ant-menu-submenu-open,
+    // .ant-menu-submenu-active, .ant-menu-submenu-title:hover {
+    //   color: #990F0F;
+    // }
     .ant-menu-sub.ant-menu-inline {
       position: relative;
       padding: 2px 0;

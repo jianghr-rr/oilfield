@@ -1,35 +1,37 @@
 <template>
   <div class="layout">
     <div class="layout-left" :style="{'--color': themmeColor}">
-      <a-menu
-        mode="inline"
-        :open-keys="openKeys"
-        :default-selected-keys="defaultSelectedKeys"
-        style="width: 256px"
-        @openChange="onOpenChange"
-      >
-        <a-sub-menu key="/homepage/guide/">
-          <span slot="title"><span>Userty Design</span></span>
-          <a-menu-item key="/homepage/guide/introduce">
-            <router-link to="/homepage/guide/introduce">介绍</router-link>
+      <a-affix>
+        <a-menu
+          mode="inline"
+          :open-keys="openKeys"
+          :default-selected-keys="defaultSelectedKeys"
+          style="width: 256px"
+          @openChange="onOpenChange"
+        >
+          <a-sub-menu key="/homepage/guide/">
+            <span slot="title"><span>Userty Design</span></span>
+            <a-menu-item key="/homepage/guide/introduce">
+              <router-link to="/homepage/guide/introduce">介绍</router-link>
+            </a-menu-item>
+            <a-menu-item key="/homepage/guide/designpr">
+              <router-link to="/homepage/guide/designpr">设计原则</router-link>
+            </a-menu-item>
+            <a-menu-item key="/homepage/guide/designspec">
+              <router-link to="/homepage/guide/designspec">设计规范</router-link>
+            </a-menu-item>
+          </a-sub-menu>
+          <a-menu-item key="/homepage/instructions/main">
+            <router-link to="/homepage/instructions/main">使用说明</router-link>
           </a-menu-item>
-          <a-menu-item key="/homepage/guide/designpr">
-            <router-link to="/homepage/guide/designpr">设计原则</router-link>
+          <a-menu-item key="/homepage/fag/main">
+            <router-link to="/homepage/fag/main">常见问题</router-link>
           </a-menu-item>
-          <a-menu-item key="/homepage/guide/designspec">
-            <router-link to="/homepage/guide/designspec">设计规范</router-link>
+          <a-menu-item key="/homepage/introduce/main">
+            <router-link to="/homepage/introduce/main">发布内容</router-link>
           </a-menu-item>
-        </a-sub-menu>
-        <a-menu-item key="/homepage/instructions/main">
-          <router-link to="/homepage/instructions/main">使用说明</router-link>
-        </a-menu-item>
-        <a-menu-item key="/homepage/fag/main">
-          <router-link to="/homepage/fag/main">常见问题</router-link>
-        </a-menu-item>
-        <a-menu-item key="/homepage/introduce/main">
-          <router-link to="/homepage/introduce/main">发布内容</router-link>
-        </a-menu-item>
-      </a-menu>
+        </a-menu>
+      </a-affix>
     </div>
     <div class="layout-right">
       <router-view v-mountedCallback="mountedCallback" />
@@ -115,13 +117,21 @@ export default {
     .ant-menu-inline > .ant-menu-item {
       height: 60px;
       line-height: 60px;
+      padding-left: 60px !important;
     }
     .ant-menu-sub.ant-menu-inline > .ant-menu-item {
       margin: 0;
       padding-left: 80px !important;
+      & * {
+        font-size: 12px;
+      }
     }
-    .ant-menu-submenu-selected {
-      // color: #990F0F;
+    .ant-menu-submenu-inline > .ant-menu-submenu-title .ant-menu-submenu-arrow {
+      right: 20px;
+    }
+    .ant-menu-submenu-inline > .ant-menu-submenu-title .ant-menu-submenu-arrow::before,
+    .ant-menu-submenu-inline > .ant-menu-submenu-title .ant-menu-submenu-arrow::after {
+      width: 6px;
     }
     .ant-menu:not(.ant-menu-horizontal) > .ant-menu-item-selected {
       background: none;
@@ -187,5 +197,6 @@ export default {
   .layout-right {
     flex: 1;
     margin: 0 200px 0 60px;
+    padding: 8px 0 0 0;
   }
 </style>

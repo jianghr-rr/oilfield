@@ -31,6 +31,7 @@ export default {
 .page-wraper {
   width: auto;
   min-width: 974px;
+  /* padding: 0 0 100px 0; */
   /* background: #ffffff; */
 }
 </style>

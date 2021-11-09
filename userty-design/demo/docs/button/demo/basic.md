@@ -11,26 +11,32 @@ There are `primary` button, `default` button, `dashed` button , `danger` button 
 ```vue
 <template>
   <div>
-    <o-button type="primary">
-      Primary123
-    </o-button>
-    <o-button>Default</o-button>
-    <o-button type="dashed">
-      Dashed
-    </o-button>
-    <o-button type="danger">
-      Danger
-    </o-button>
-    <a-config-provider :auto-insert-space-in-button="false">
-      <o-button type="primary">
-        按钮
-      </o-button>
-    </a-config-provider>
-    <o-button type="primary">
+    <o-button type="primary" :style="{padding: '0 30px'}">
       按钮
     </o-button>
+    <o-button type="primary" :style="{padding: '0 30px', boxShadow: '3px 3px 4px 0px #E6E6E6'}">
+      按钮
+    </o-button>
+    <o-button :style="{padding: '0 30px'}">
+      按钮
+    </o-button>
+    <o-button type="primary" :style="{padding: '0 30px', borderRadius: '18px'}">
+      按钮
+    </o-button>
+    <o-button type="primary" :style="{padding: '0 30px', borderRadius: '18px', boxShadow: '3px 3px 4px 0px #E6E6E6'}">
+      按钮
+    </o-button>
+    <o-button :style="{padding: '0 30px', borderRadius: '18px'}">
+      按钮
+    </o-button>
+    <o-button type="dashed" :style="{padding: '0 30px'}">
+      按钮
+    </o-button>
+    <o-button :style="{border: 'none'}">
+      文本按钮
+    </o-button>
     <o-button type="link">
-      Link
+      链接按钮
     </o-button>
   </div>
 </template>

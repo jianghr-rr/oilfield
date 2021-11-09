@@ -64,7 +64,7 @@ export default {
     height: 88px;
     display: flex;
     align-items: center;
-    padding: 0 24px;
+    padding: 0 30px;
 }
 .header-left {
     display: flex;
@@ -92,7 +92,7 @@ export default {
         font-family: "Source Han Sans CN";
         font-weight: 400;
         color: #333333;
-        padding: 0 35px;
+        padding: 0 30px;
         border-bottom: 2px solid #FFFFFF;
     }
     .router-link-active {
