@@ -11,7 +11,7 @@ Usually used for reminders and notifications.
 ```vue
 <template>
   <div>
-    <o-avatar :size="80" src="../../../assets/avatar-3.png" style="backgroundColor: #D7D7D7; padding: 10px;" />
+    <o-avatar :size="80" src="/avatar-3.png" style="backgroundColor: #D7D7D7; padding: 10px;" />
   </div>
 </template>
 ```

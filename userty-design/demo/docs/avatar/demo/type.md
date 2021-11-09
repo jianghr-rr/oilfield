@@ -27,8 +27,8 @@ Image, Icon and letter are supported, and the latter two kinds avatar can have c
     <o-avatar :size="30" style="color: #fff; backgroundColor: #990F0F; marginRight: 10px">
       新
     </o-avatar>
-    <o-avatar :size="30" src="../../../assets/avatar-2.png" style="backgroundColor: #BDE9FF; marginRight: 10px" />
-    <o-avatar :size="30" src="../../../assets/avatar-1.png" style="backgroundColor: #BDE9FF; marginRight: 10px" />
+    <o-avatar :size="30" src="/avatar-2.png" style="backgroundColor: #BDE9FF; marginRight: 10px" />
+    <o-avatar :size="30" src="/avatar-1.png" style="backgroundColor: #BDE9FF; marginRight: 10px" />
   </div>
 </template>
 ```
