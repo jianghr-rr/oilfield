@@ -1,5 +1,6 @@
 <script>
 import Basic from './basic';
+import Basic1 from './badge-1';
 import Badge from './badge';
 import Type from './type';
 import Dynamic from './dynamic';
@@ -30,9 +31,10 @@ export default {
         <md cn={md.cn} us={md.us} />
         <demo-sort>
           <Basic />
-          <Badge />
           <Type />
           <Dynamic />
+          <Badge />
+          <Basic1 />
         </demo-sort>
         <api>
           <template slot="cn">

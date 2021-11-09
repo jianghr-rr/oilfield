@@ -12,18 +12,16 @@ For letter type Avatar, when the letters are too long to display, the font size 
 <template>
   <div>
     <o-avatar
-      shape="square"
-      size="large"
-      :style="{ backgroundColor: color, verticalAlign: 'middle' }"
+      size="30"
+      style="color: #fff; backgroundColor: #990F0F"
     >
       {{ avatarValue }}
     </o-avatar>
     <a-button
-      size="small"
-      :style="{ marginLeft: 16, verticalAlign: 'middle' }"
+      :style="{ marginLeft: 30, verticalAlign: 'middle' }"
       @click="changeValue"
     >
-      改变
+      更改用户
     </a-button>
   </div>
 </template>

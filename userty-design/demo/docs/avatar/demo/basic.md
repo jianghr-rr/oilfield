@@ -12,17 +12,17 @@ Three sizes and two shapes are available.
 <template>
   <div>
     <div>
-      <o-avatar :size="64" icon="user" />
-      <o-avatar size="large" icon="user" />
-      <o-avatar icon="user" />
-      <o-avatar size="small" icon="user" />
+      <o-avatar :size="50" icon="user" :style="{marginRight: '10px'}" />
+      <o-avatar :size="40" icon="user" :style="{marginRight: '10px'}"/>
+      <o-avatar :size="30" icon="user" :style="{marginRight: '10px'}"/>
+      <o-avatar :size="20" icon="user" :style="{marginRight: '10px'}"/>
     </div>
     <br />
     <div>
-      <o-avatar shape="square" :size="64" icon="user" />
-      <o-avatar shape="square" size="large" icon="user" />
-      <o-avatar shape="square" icon="user" />
-      <o-avatar shape="square" size="small" icon="user" />
+      <o-avatar shape="square" :size="50" icon="user" :style="{marginRight: '10px'}"/>
+      <o-avatar shape="square" :size="40" icon="user" :style="{marginRight: '10px'}"/>
+      <o-avatar shape="square" :size="30" icon="user" :style="{marginRight: '10px'}"/>
+      <o-avatar shape="square" :size="20" icon="user" :style="{marginRight: '10px'}"/>
     </div>
   </div>
 </template>

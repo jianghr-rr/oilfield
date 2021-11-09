@@ -11,17 +11,24 @@ Image, Icon and letter are supported, and the latter two kinds avatar can have c
 ```vue
 <template>
   <div>
-    <o-avatar icon="user" />
-    <o-avatar>
+    <o-avatar :size="40" :style="{marginRight: '10px'}">USER</o-avatar>
+    <o-avatar :size="30" :style="{marginRight: '10px'}">U</o-avatar>
+    <o-avatar :size="30" :style="{marginRight: '10px'}">新</o-avatar>
+    <o-avatar :size="30" :style="{marginRight: '10px'}">
       <a-icon slot="icon" type="user" />
     </o-avatar>
-    <o-avatar>U</o-avatar>
-    <o-avatar>USER</o-avatar>
-    <o-avatar src="https://zos.alipayobjects.com/rmsportal/ODTLcjxAfvqbxHnVXCYX.png" />
-    <o-avatar style="color: #f56a00; backgroundColor: #fde3cf">
+    <p :style="{width: '100%', height: '1PX',marginBottom: '10px'}"/>
+    <o-avatar :size="30" style="color: #990F0F; backgroundColor: #F5E7E7; marginRight: 10px">
       U
     </o-avatar>
-    <o-avatar style="backgroundColor:#87d068" icon="user" />
+    <o-avatar :size="30" style="color: #990F0F; backgroundColor: #F5E7E7; marginRight: 10px">
+      新
+    </o-avatar>
+    <o-avatar :size="30" style="color: #fff; backgroundColor: #990F0F; marginRight: 10px">
+      新
+    </o-avatar>
+    <o-avatar :size="30" src="../../../assets/avatar-2.png" style="backgroundColor: #BDE9FF; marginRight: 10px" />
+    <o-avatar :size="30" src="../../../assets/avatar-1.png" style="backgroundColor: #BDE9FF; marginRight: 10px" />
   </div>
 </template>
 ```
