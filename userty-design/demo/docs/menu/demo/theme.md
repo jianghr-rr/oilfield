@@ -36,7 +36,7 @@ There are two built-in themes: 'light' and 'dark'. The default value is 'light'.
         <a-icon type="calendar" />
         Navigation Two
       </o-menu-item>
-      <a-sub-menu key="sub1">
+      <o-sub-menu key="sub1">
         <span slot="title"><a-icon type="appstore" /><span>Navigation Three</span></span>
         <o-menu-item key="3">
           Option 3
@@ -44,16 +44,16 @@ There are two built-in themes: 'light' and 'dark'. The default value is 'light'.
         <o-menu-item key="4">
           Option 4
         </o-menu-item>
-        <a-sub-menu key="sub1-2" title="Submenu">
+        <o-sub-menu key="sub1-2" title="Submenu">
           <o-menu-item key="5">
             Option 5
           </o-menu-item>
           <o-menu-item key="6">
             Option 6
           </o-menu-item>
-        </a-sub-menu>
-      </a-sub-menu>
-      <a-sub-menu key="sub2">
+        </o-sub-menu>
+      </o-sub-menu>
+      <o-sub-menu key="sub2">
         <span slot="title"><a-icon type="setting" /><span>Navigation Four</span></span>
         <o-menu-item key="7">
           Option 7
@@ -67,7 +67,7 @@ There are two built-in themes: 'light' and 'dark'. The default value is 'light'.
         <o-menu-item key="10">
           Option 10
         </o-menu-item>
-      </a-sub-menu>
+      </o-sub-menu>
     </o-menu>
   </div>
 </template>

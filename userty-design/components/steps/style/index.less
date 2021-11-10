@@ -47,6 +47,16 @@
 
   &-container {
     outline: none;
+    &::after {
+      position: absolute;
+      top: @steps-icon-size / 2;
+      left: @steps-icon-size;
+      display: block;
+      width: 9999px;
+      height: 1px;
+      background: @wait-tail-color;
+      content: '';
+    }
   }
 
   &:last-child {
@@ -58,10 +68,13 @@
     display: none;
   }
 
-  &-icon,
-  &-content {
+  &-icon{
     display: inline-block;
     vertical-align: top;
+  }
+
+  &-content {
+    display: block;
   }
 
   &-icon {
@@ -107,14 +120,14 @@
     font-size: @font-size-lg;
     line-height: @steps-icon-size;
     &::after {
-      position: absolute;
-      top: @steps-icon-size / 2;
-      left: 100%;
-      display: block;
-      width: 9999px;
-      height: 1px;
-      background: @wait-tail-color;
-      content: '';
+      // position: absolute;
+      // top: @steps-icon-size / 2;
+      // left: 100%;
+      // display: block;
+      // width: 9999px;
+      // height: 1px;
+      // background: @wait-tail-color;
+      // content: '';
     }
   }
   &-subtitle {
@@ -190,7 +203,7 @@
 
 .@{steps-prefix-cls}-horizontal:not(.@{steps-prefix-cls}-label-vertical) {
   .@{steps-prefix-cls}-item {
-    margin-right: 16px;
+    // margin-right: 16px;
     white-space: nowrap;
     &:last-child {
       margin-right: 0;
@@ -223,6 +236,7 @@
       }
     }
   }
+  &-@{status} > &-container,
   &-@{status} > &-container > &-content > &-title {
     color: @@title-color;
     &::after {

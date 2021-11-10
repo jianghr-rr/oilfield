@@ -19,7 +19,7 @@ import demoSort from '../components/demoSort';
 import Antd from '../node_modules/ant-design-vue';
 import bootstrap from '../core/bootstrap'
 import store from '../store/index.js';
-import 'ant-design-vue/dist/antd.less';
+// import 'ant-design-vue/dist/antd.less';
 import '../../components/style.js';
 
 const mountedCallback = {
@@ -40,7 +40,7 @@ Vue.use(Antd);
 Vue.use(VueStorage, {
   namespace: 'pro__', // key prefix
   name: 'ls', // name variable Vue.[ls] or this.[$ls],
-  storage: 'local' 
+  storage: 'local'
 })
 Vue.component(Md.name, Md);
 Vue.component(Api.name, Api);

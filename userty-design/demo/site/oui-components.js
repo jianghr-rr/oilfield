@@ -1,7 +1,7 @@
 import Vue from 'vue';
 import {
-  //   Affix,
-  //   Anchor,
+  Affix,
+  Anchor,
   //   AutoComplete,
   Alert,
   Avatar,
@@ -44,7 +44,7 @@ import {
   Spin,
   //   Statistic,
   Steps,
-  Switch, 
+  Switch,
   Table,
   Transfer,
   //   Tree,
@@ -81,8 +81,8 @@ Vue.prototype.$omdestroyAll = Modal.destroyAll;
 
 /* v1.1.3+ registration methods */
 // Vue.use(Base);
-// Vue.use(Affix);
-// Vue.use(Anchor);
+Vue.use(Affix);
+Vue.use(Anchor);
 // Vue.use(AutoComplete);
 Vue.use(Alert);
 Vue.use(Avatar);

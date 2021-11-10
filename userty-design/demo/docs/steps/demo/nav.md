@@ -13,35 +13,30 @@ Navigation steps.
   <div>
     <o-steps v-model="current" type="navigation" size="small" :style="stepStyle">
       <o-step
-        title="Step 1"
-        sub-title="00:00:05"
+        title="已完成"
         status="finish"
         description="This is a description."
       />
       <o-step
-        title="Step 2"
-        sub-title="00:01:02"
+        title="进行中"
         status="process"
         description="This is a description."
       />
       <o-step
-        title="Step 3"
-        sub-title="waiting for longlong time"
+        title="等待中"
         status="wait"
         description="This is a description."
       />
     </o-steps>
     <o-steps v-model="current" type="navigation" :style="stepStyle">
-      <o-step status="finish" title="Step 1" />
-      <o-step status="process" title="Step 2" />
-      <o-step status="wait" title="Step 3" />
-      <o-step status="wait" title="Step 4" />
+      <o-step status="finish" title="已完成" />
+      <o-step status="process" title="进行中" />
+      <o-step status="wait" title="等待中" />
     </o-steps>
     <o-steps v-model="current" type="navigation" size="small" :style="stepStyle">
-      <o-step status="finish" title="finish 1" />
-      <o-step status="finish" title="finish 2" />
-      <o-step status="process" title="current process" />
-      <o-step status="wait" title="wait" disabled />
+      <o-step status="finish" title="已完成" />
+      <o-step status="process" title="进行中" />
+      <o-step status="wait" title="等待中" />
     </o-steps>
   </div>
 </template>

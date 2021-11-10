@@ -14,12 +14,12 @@ The most basic step bar.
     <o-step>
       <!-- <span slot="title">Finished</span> -->
       <template slot="title">
-        Finished
+        已完成
       </template>
-      <span slot="description">This is a description.</span>
+      <span slot="description">这是一个步骤说明。</span>
     </o-step>
-    <o-step title="In Progress" sub-title="Left 00:00:08" description="This is a description." />
-    <o-step title="Waiting" description="This is a description." />
+    <o-step title="进行中" description="这是一个步骤说明。" />
+    <o-step title="等待中" description="这是一个步骤说明。" />
   </o-steps>
 </template>
 ```

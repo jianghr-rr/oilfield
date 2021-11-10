@@ -11,7 +11,7 @@ A standard progress bar.
 ```vue
 <template>
   <div>
-    <o-progress type="dashboard" :percent="75" />
+    <o-progress type="dashboard" :percent="75" strokeColor="#990F0F"/>
   </div>
 </template>
 ```

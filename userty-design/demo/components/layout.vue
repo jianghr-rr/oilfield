@@ -136,14 +136,14 @@ export default {
       const lis = [];
       currentSubMenu.forEach(({ cnTitle, usTitle, id }, index) => {
         const title = isCN ? cnTitle : usTitle;
-        lis.push(<a-anchor-link key={id + index} href={`#${id}`} title={title} />);
+        lis.push(<o-anchor-link key={id + index} href={`#${id}`} title={title} />);
       });
       const showApi = this.$route.path.indexOf('/components/') !== -1;
       return (
-        <a-anchor offsetTop={100} class="demo-anchor">
+        <o-anchor offsetTop={100} class="demo-anchor">
           {lis}
-          {showApi ? <a-anchor-link key="API" title="API" href="#API" /> : ''}
-        </a-anchor>
+          {showApi ? <o-anchor-link key="API" title="API" href="#API" /> : ''}
+        </o-anchor>
       );
     },
     getDocsMenu(isCN, pagesKey) {
@@ -273,7 +273,7 @@ export default {
         <Header searchData={searchData} name={name} />
           <div class="layout">
             <div class="layout-left">
-                <a-affix style={'height: 100%, overflow: auto'}>
+                <o-affix style={'height: 100%, overflow: auto'}>
                   <a-menu
                     class="aside-container menu-site"
                     selectedKeys={[name]}
@@ -283,7 +283,7 @@ export default {
                   >
                     {MenuGroup}
                   </a-menu>
-                </a-affix>
+                </o-affix>
               </div>
               <div class="layout-right layout-right-doc">
                 <section class="main-container main-container-component">

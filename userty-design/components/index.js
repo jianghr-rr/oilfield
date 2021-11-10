@@ -15,9 +15,9 @@ if (
 }
 /* @remove-on-es-build-end */
 
-// import { default as Affix } from './affix';
+import { default as Affix } from './affix';
 
-// import { default as Anchor } from './anchor';
+import { default as Anchor } from './anchor';
 
 // import { default as AutoComplete } from './auto-complete';
 
@@ -146,8 +146,8 @@ import { default as Result } from './result';
 
 const components = [
   // Base,
-  // Affix,
-  // Anchor,
+  Affix,
+  Anchor,
   // AutoComplete,
   Alert,
   Avatar,
@@ -237,8 +237,8 @@ export {
   // install,
   message,
   notification,
-  // Affix,
-  // Anchor,
+  Affix,
+  Anchor,
   // AutoComplete,
   Alert,
   Avatar,

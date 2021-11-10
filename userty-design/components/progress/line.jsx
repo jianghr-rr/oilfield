@@ -73,14 +73,14 @@ const Line = {
     }
     const percentStyle = {
       width: `${validProgress(percent)}%`,
-      height: `${strokeWidth || (size === 'small' ? 6 : 8)}px`,
+      height: `${strokeWidth || (size === 'small' ? 8 : 10)}px`,
       background: strokeColor,
       borderRadius: strokeLinecap === 'square' ? 0 : '100px',
       ...backgroundProps,
     };
     const successPercentStyle = {
       width: `${validProgress(successPercent)}%`,
-      height: `${strokeWidth || (size === 'small' ? 6 : 8)}px`,
+      height: `${strokeWidth || (size === 'small' ? 8 : 10)}px`,
       borderRadius: strokeLinecap === 'square' ? 0 : '',
     };
     const successSegment =

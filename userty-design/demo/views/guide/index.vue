@@ -1,7 +1,7 @@
 <template>
   <div class="layout">
     <div class="layout-left" :style="{'--color': themmeColor}">
-      <a-affix>
+      <o-affix>
         <a-menu
           mode="inline"
           :open-keys="openKeys"
@@ -31,7 +31,7 @@
             <router-link to="/homepage/introduce/main">发布内容</router-link>
           </a-menu-item>
         </a-menu>
-      </a-affix>
+      </o-affix>
     </div>
     <div class="layout-right">
       <router-view v-mountedCallback="mountedCallback" />

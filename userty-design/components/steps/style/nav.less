@@ -20,6 +20,9 @@
       padding-bottom: 12px;
       text-align: left;
       transition: opacity 0.3s;
+      &::after {
+        display: none;
+      }
 
       .@{steps-prefix-cls}-item-content {
         max-width: @steps-nav-content-max-width;
@@ -36,6 +39,10 @@
           display: none;
         }
       }
+    }
+    &-content{
+      display: inline-block;
+      vertical-align: top;
     }
 
     &:not(.@{steps-prefix-cls}-item-active) {

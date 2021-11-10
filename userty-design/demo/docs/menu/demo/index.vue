@@ -33,17 +33,12 @@ export default {
   subtitle: '导航菜单',
   render() {
     return (
-      <div>
+      <div class="smenu">
         <md cn={md.cn} us={md.us} />
         <demo-sort cols={1}>
           <Horizontal />
           <Inline />
-          <InlineCollapsed />
-          <SiderCurrent />
-          <Vertical />
-          <Theme />
           <SwitchMode />
-          <Template />
         </demo-sort>
         <api>
           <CN slot="cn" />
@@ -54,4 +49,5 @@ export default {
   },
 };
 </script>
-<style></style>
+<style lang="less">
+</style>
