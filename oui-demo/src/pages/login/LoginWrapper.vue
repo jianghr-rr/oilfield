@@ -3,7 +3,7 @@
         <login />
         <drawer v-if="!hideSetting" v-model="showSetting" placement="right">
             <div class="setting" slot="handler">
-            <o-icon :type="showSetting ? 'close' : 'setting'" />
+                <o-icon :type="showSetting ? 'close' : 'setting'" />
             </div>
             <setting />
         </drawer>

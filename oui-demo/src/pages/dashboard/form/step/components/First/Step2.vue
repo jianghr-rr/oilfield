@@ -6,11 +6,15 @@
             <o-button style="margin-left: 8px" @click="$emit('nextStep')">查看信息</o-button>
         </div>
         <div slot="content">
-            <p>样品批号: {{values.batchCode}}</p>
-            <p>地址: {{values.address}}</p>
-            <p>项目名称: {{values.projectName}}</p>
-            <p>交接人姓名: {{values.orderName}}</p>
-            <p>交接日期: {{(values.orderDate || []).join('~')}}</p>
+            <div class="inner">
+              <div>
+                <p>样品批号: {{values.batchCode}}</p>
+                <p>地址: {{values.address}}</p>
+                <p>项目名称: {{values.projectName}}</p>
+                <p>交接人姓名: {{values.orderName}}</p>
+                <p>交接日期: {{(values.orderDate || []).join('~')}}</p>
+              </div>
+            </div>
         </div>
     </result>
   </div>
@@ -31,3 +35,25 @@ export default {
   },
 }
 </script>
+
+<style lang="less" scoped>
+  .inner{
+    position: relative;
+    box-sizing: border-box;
+    padding-left: 60px;
+    &::before{
+      content: "研";
+      width: 30px;
+      height: 30px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      color: @gray-1;
+      background: @primary-color;
+      border-radius: 50%;
+      position: absolute;
+      left: 0px;
+      top: 0px;
+    }
+  }
+</style>
