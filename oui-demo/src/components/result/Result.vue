@@ -5,11 +5,11 @@
     </div>
     <div class="title" v-if="title">{{title}}</div>
     <div class="desc" v-if="description">{{description}}</div>
-    <div class="content">
-      <slot></slot>
-    </div>
     <div class="action">
       <slot name="action"></slot>
+    </div>
+    <div class="content">
+      <slot name="content"></slot>
     </div>
   </div>
 </template>
@@ -50,15 +50,16 @@ export default {
       color: @text-color-second;
       margin-bottom: 24px;
     }
+    .action{
+      margin: 25px 0;
+    }
     .content{
       background-color: @background-color-light;
       padding: 24px 40px;
       border-radius: 2px;
       text-align: left;
     }
-    .action{
-      margin-top: 32px;
-    }
+
   }
 
 </style>

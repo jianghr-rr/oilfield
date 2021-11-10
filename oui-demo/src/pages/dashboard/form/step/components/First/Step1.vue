@@ -106,7 +106,6 @@
             </o-col>
         </o-row>
         <o-form-item :wrapperCol="{span: 17, offset: 8}">
-            <o-button style="margin-right: 8px"  @click="handleReset">重置</o-button>
             <o-button type="primary" @click="handleSubmit">下一步</o-button>
         </o-form-item>
     </o-form>
@@ -183,9 +182,6 @@ export default {
                 this.$message.error('Image must smaller than 2MB!');
             }
             return isJpgOrPng && isLt2M;
-        },
-        handleReset() {
-            this.form.resetFields();
         },
         handleSubmit() {
             this.form.validateFields((err, values) => {

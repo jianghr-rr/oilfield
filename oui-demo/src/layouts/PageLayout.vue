@@ -5,7 +5,7 @@
       <slot slot="content" name="headerContent"></slot>
       <slot v-if="this.$slots.extra" slot="extra" name="extra"></slot>
     </page-header>
-    <div ref="page" :class="['page-content', layout, pageWidth]" >
+    <div ref="page" :class="['page-content', layout, pageWidth]">
       <slot></slot>
     </div>
   </div>
