@@ -1,16 +1,8 @@
 <template>
   <div class="page-layout">
-    <page-header ref="pageHeader" :style="`margin-top: ${multiPage ? 0 : -24}px`" :breadcrumb="breadcrumb" :title="pageTitle" :logo="logo" :avatar="avatar">
+    <page-header ref="pageHeader" :style="`margin-top: ${multiPage ? 0 : -24}px`" :title="pageTitle" :logo="logo" :avatar="avatar">
       <slot name="action"  slot="action"></slot>
       <slot slot="content" name="headerContent"></slot>
-      <div slot="content" v-if="!this.$slots.headerContent && desc">
-        <p>{{desc}}</p>
-        <div v-if="this.linkList" class="link">
-          <template  v-for="link in linkList">
-            <a :key="link" :href="link.href"><o-icon :type="link.icon" />{{link.title}}</a>
-          </template>
-        </div>
-      </div>
       <slot v-if="this.$slots.extra" slot="extra" name="extra"></slot>
     </page-header>
     <div ref="page" :class="['page-content', layout, pageWidth]" >
@@ -27,7 +19,7 @@ import {getI18nKey} from '@/utils/routerUtil'
 export default {
   name: 'PageLayout',
   components: {PageHeader},
-  props: ['desc', 'logo', 'title', 'avatar', 'linkList', 'extraImage'],
+  props: ['logo', 'title', 'avatar', 'extraImage'],
   data () {
     return {
       page: {},
@@ -54,7 +46,7 @@ export default {
     this.updatePageHeight()
   },
   created() {
-    this.page = this.$route.meta.page
+    this.page = this.$route.meta
   },
   beforeDestroy() {
     this.updatePageHeight(0)
@@ -68,19 +60,6 @@ export default {
     routeName() {
       const route = this.$route
       return this.$t(getI18nKey(route.matched[route.matched.length - 1].path))
-    },
-    breadcrumb() {
-      let page = this.page
-      let breadcrumb = page && page.breadcrumb
-      if (breadcrumb) {
-        let i18nBreadcrumb = []
-        breadcrumb.forEach(item => {
-          i18nBreadcrumb.push(this.$t(item))
-        })
-        return i18nBreadcrumb
-      } else {
-        return this.getRouteBreadcrumb()
-      }
     },
     marginCorrect() {
       return this.multiPage ? 24 : 0
@@ -133,9 +112,7 @@ export default {
   }
   .page-content{
     position: relative;
-    padding: 24px 0 0;
-    &.side{
-    }
+    padding-bottom: 20px;
     &.head.fixed{
       margin: 0 auto;
       max-width: 1400px;

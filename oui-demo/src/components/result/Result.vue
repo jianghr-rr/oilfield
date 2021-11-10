@@ -1,7 +1,7 @@
 <template>
   <div class="result">
     <div >
-      <o-icon :class="[isSuccess ? 'success' : 'error' ,'icon']" :type="isSuccess ? 'check-circle' : 'close-circle'" />
+      <o-icon :class="[isSuccess ? 'success' : 'error' ,'icon']" :type="isSuccess ? 'check' : 'close'" :rotate="-15" />
     </div>
     <div class="title" v-if="title">{{title}}</div>
     <div class="desc" v-if="description">{{description}}</div>
@@ -32,7 +32,7 @@ export default {
       margin-bottom: 24px;
     }
     .success {
-      color: @success-color;
+      color: @primary-color;
     }
     .error {
       color: @error-color;

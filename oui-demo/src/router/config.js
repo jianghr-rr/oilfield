@@ -23,33 +23,13 @@ const options = {
       path: '/',
       name: '首页',
       component: TabsView,
-      redirect: '/dashboard/login',
+      redirect: '/form/grid',
       children: [
         {
-          path: 'dashboard',
-          name: '登录页',
-          meta: {
-            icon: 'dashboard'
-          },
-          component: PageView,
-          children: [
-            {
-              path: 'login',
-              name: '登录页-登录页',
-              meta: {
-                page: {
-                  closable: false
-                }
-              },
-              component: () => import('@/pages/dashboard/login'),
-            }
-          ]
-        },
-        {
           path: 'form',
-          name: '表单页',
+          name: '表单页 / Form Page',
           meta: {
-            icon: 'form',
+            // icon: 'form',
             page: {
               cacheAble: false
             }
@@ -70,15 +50,15 @@ const options = {
         },
         {
           path: 'list',
-          name: '表格页',
+          name: '表格页 / Sheet Page',
           meta: {
-            icon: 'table'
+            // icon: 'table'
           },
           component: PageView,
           children: [
             {
               path: 'query',
-              name: '表格页-查询表格',
+              name: '可搜索查询表格',
               meta: {
                 authority: 'queryForm',
               },
@@ -88,30 +68,30 @@ const options = {
         },
         {
           path: 'cardlist',
-          name: '列表页',
+          name: '列表页 / List Page',
           meta: {
-            icon: 'profile'
+            // icon: 'profile'
           },
           component: PageView,
           children: [
             {
               path: 'basic',
-              name: '列表页-卡片列表',
+              name: '卡片列表页',
               component: () => import('@/pages/dashboard/cardlist')
             }
           ]
         },
         {
           path: 'message',
-          name: '消息页',
+          name: '消息页 / Message Page',
           meta: {
-            icon: 'check-circle-o',
+            // icon: 'check-circle-o',
           },
           component: PageView,
           children: [
             {
               path: 'panel',
-              name: '消息页-消息面板',
+              name: '消息面板',
               component: () => import('@/pages/dashboard/messagePanel')
             }
           ]

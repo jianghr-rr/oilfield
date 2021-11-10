@@ -1,17 +1,26 @@
 <template>
-    <o-card :bordered="false">
-        <div class="title">水平布局</div>
-        <horizontal-form></horizontal-form>
-        <o-divider></o-divider>
-        <div class="title">垂直布局</div>
-        <vertical-form></vertical-form>
-        <o-divider></o-divider>
-        <div class="title">左右布局</div>
-        <between-form></between-form>
-        <o-divider></o-divider>
-        <div class="title">其他布局</div>
-        <other-form></other-form>
-    </o-card>
+    <div>
+        <p>
+            XinJiang Userty Design Pro为新疆油田相关系统产品的界面设计、用户体验问题给予的设计方案。
+            XinJiang Userty Design Pro为新疆油田相关系统产品的界面设计、用户体验问题给予的设计方案。
+        </p>
+        <o-card class="card" :hoverable="true">
+            <div class="title">水平布局</div>
+            <horizontal-form></horizontal-form>
+        </o-card>
+        <o-card class="card" :hoverable="true">
+            <div class="title">垂直布局</div>
+            <vertical-form></vertical-form>
+        </o-card>
+        <o-card class="card" :hoverable="true">
+            <div class="title">左右布局</div>
+            <between-form></between-form>
+        </o-card>
+        <o-card class="card" :hoverable="true">
+            <div class="title">其他布局</div>
+            <other-form></other-form>
+        </o-card>
+    </div>
 </template>
 
 <script>
@@ -33,9 +42,17 @@ export default {
 
 <style lang="less" scoped>
     .title {
-        color: @title-color;
+        color: @primary-color;
         font-size: 16px;
         font-weight: 500;
         margin-bottom: 16px;
+        font-family: Source Han Sans CN;
+        font-weight: 500;
+    }
+    .card{
+        margin-bottom: 20px;
+    }
+    p{
+        margin: 10px 0 20px;
     }
 </style>

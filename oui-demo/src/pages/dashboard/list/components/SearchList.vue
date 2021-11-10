@@ -4,6 +4,7 @@
         :columns="columns"
         :data-source="dataSource"
         :row-selection="{ onChange, onSelect, onSelectAll }"
+        :scroll="{x: 'max-content'}"
         @change="$event => $emit('change', $event)"
     >
         <template slot="status" slot-scope="type">
@@ -25,28 +26,37 @@ const columns = [
         dataIndex: 'batchNo',
         key: 'batchNo',
         fixed: 'left',
-        width: 200
+        width: 200,
+        ellipsis: true
     },
     {
         title: '描述',
         dataIndex: 'desc',
-        key: 'desc'
+        key: 'desc',
+        width: 200,
+        ellipsis: true
     },
     {
         title: '项目名称',
         dataIndex: 'projectName',
-        key: 'projectName'
+        key: 'projectName',
+        width: 200,
+        ellipsis: true
     },
     {
         title: '状态',
         dataIndex: 'status',
         key: 'status',
+        width: 150,
+        ellipsis: true,
         scopedSlots: { customRender: 'status' }
     },
     {
         title: '日期',
         dataIndex: 'datetime',
-        key: 'datetime'
+        key: 'datetime',
+        width: 200,
+        ellipsis: true
     },
     {
         title: '操作',
@@ -54,6 +64,7 @@ const columns = [
         key: 'operate',
         fixed: 'right',
         width: 200,
+        ellipsis: true,
         scopedSlots: { customRender: 'operate' }
     }
 ];

@@ -115,7 +115,7 @@ export default {
                 const result = await getRoutesConfig();
                 const routesConfig = result.data.data
                 loadRoutes(routesConfig);
-                this.$router.push('/dashboard/login');
+                this.$router.push('/form/grid');
                 this.$omnotification['success']({
                     message
                 });

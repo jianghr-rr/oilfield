@@ -1,13 +1,6 @@
 <template>
   <div :class="['page-header', layout, pageWidth]">
     <div class="page-header-wide">
-      <div class="breadcrumb">
-        <o-breadcrumb>
-          <o-breadcrumb-item :key="index" v-for="(item, index) in breadcrumb">
-            <span>{{item}}</span>
-          </o-breadcrumb-item>
-        </o-breadcrumb>
-      </div>
       <div class="detail">
         <div class="main">
           <div class="row">
@@ -34,10 +27,6 @@ export default {
   props: {
     title: {
       type: [String, Boolean],
-      required: false
-    },
-    breadcrumb: {
-      type: Array,
       required: false
     },
     logo: {
