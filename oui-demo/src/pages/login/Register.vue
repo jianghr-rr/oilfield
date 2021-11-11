@@ -76,14 +76,8 @@
                     @blur="handleConfirmBlur"
                 />
             </o-form-item>
-            <div class="oil-form-item oil-checkbox-line">
-                <div
-                    style="width: 150px;display: flex;align-items: center;user-select: none;cursor: pointer"
-                    @click="isRemember = !isRemember"
-                >
-                    <o-input type="checkbox" :checked="isRemember" />
-                    <div style="margin-left: 10px;">勾选同意《保密协议》</div>
-                </div>
+            <div class="oil-form-item">
+                <o-checkbox @change="isRemember = !isRemember">勾选同意《保密协议》</o-checkbox>
             </div>
             <o-form-item style="margin-bottom: 10px;">
                 <o-button
@@ -230,15 +224,6 @@ export default {
                     cursor: pointer;
                 }
             }
-        }
-        .oil-checkbox-line{
-            display: flex;
-            align-items: center;
-            font-family: 'SourceHanSansCN-Normal', 'Source Han Sans CN Normal', 'Source Han Sans CN', sans-serif;
-            font-weight: 400;
-            font-style: normal;
-            font-size: 12px;
-            color: #AAAAAA;
         }
         .oil-very-line{
              .oil-input {

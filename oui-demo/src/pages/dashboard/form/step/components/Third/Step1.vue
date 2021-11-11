@@ -119,7 +119,7 @@ function getBase64(img, callback) {
     reader.readAsDataURL(img);
 }
 
-const action = window.location.href;
+const action = 'https://www.mocky.io/v2/5cc8019d300000980a055e76';
 
 export default {
     name: 'Step1',
@@ -127,7 +127,7 @@ export default {
         return {
             form: null,
             loading: false,
-            imageUrl: '',
+            imageUrl: 'https://i.loli.net/2021/10/23/BXS4msaMvqWlG7H.jpg',
             action
         }
     },
@@ -155,7 +155,6 @@ export default {
                 orderName: '张三',
                 replaceItem: "可替代的内容balabalabala"
             });
-            this.imageUrl = 'https://i.loli.net/2021/10/23/BXS4msaMvqWlG7H.jpg';
         });
     },
     methods: {
@@ -197,13 +196,16 @@ export default {
 </script>
 
 <style lang="less" scoped>
-    .avatar-uploader > .ant-upload {
-        width: 128px;
-        height: 128px;
+    .avatar-uploader {
+        .ant-upload {
+            width: 128px;
+            height: 128px;
         }
-    .ant-upload-select-picture-card i {
-        font-size: 32px;
-        color: #999;
+        img {
+            width: 108px;
+            height: 108px;
+            object-fit: cover;
+        }
     }
 
     .ant-upload-select-picture-card .ant-upload-text {

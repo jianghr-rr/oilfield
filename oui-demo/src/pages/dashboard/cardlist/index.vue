@@ -25,7 +25,7 @@
 <script>
 const titles = ['Xinjiang Userty Design', 'Vue', 'React', 'Webpack', 'Angular', 'Bootstrap'];
 const icons = [
-  '@/assets/preview.png',
+  'https://i.loli.net/2021/11/10/8HVg9aflzD5poGe.png',
   'https://gw.alipayobjects.com/zos/rmsportal/ComBAopevLwENQdKWiIn.png',
   'https://gw.alipayobjects.com/zos/rmsportal/kZzEzemZyKLKFsojXItE.png',
   'https://gw.alipayobjects.com/zos/rmsportal/nxkuOJlFJuAUhzlMTCEe.png',
