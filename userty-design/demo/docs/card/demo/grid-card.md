@@ -10,30 +10,15 @@ Grid style card content.
 
 ```vue
 <template>
-  <o-card title="Card Title">
-    <o-card-grid style="width:25%;text-align:center">
-      Content
+  <o-card :bordered="false">
+    <o-card-grid style="width:30%;text-align:center;box-shadow:0 2px 8px rgb(0 0 0 / 15%)" :hoverable="false">
+      总是显示
     </o-card-grid>
-    <o-card-grid style="width:25%;text-align:center" :hoverable="false">
-      Content
+    <o-card-grid style="width:30%;text-align:center;margin:0 10px" :hoverable="false">
+      从不显示
     </o-card-grid>
-    <o-card-grid style="width:25%;text-align:center">
-      Content
-    </o-card-grid>
-    <o-card-grid style="width:25%;text-align:center">
-      Content
-    </o-card-grid>
-    <o-card-grid style="width:25%;text-align:center">
-      Content
-    </o-card-grid>
-    <o-card-grid style="width:25%;text-align:center">
-      Content
-    </o-card-grid>
-    <o-card-grid style="width:25%;text-align:center">
-      Content
-    </o-card-grid>
-    <o-card-grid style="width:25%;text-align:center">
-      Content
+    <o-card-grid style="width:30%;text-align:center">
+      鼠标悬浮时显示
     </o-card-grid>
   </o-card>
 </template>

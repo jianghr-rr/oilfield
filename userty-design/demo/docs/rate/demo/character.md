@@ -11,14 +11,9 @@ Replace the default star to other character like alphabet, digit, iconfont or ev
 ```vue
 <template>
   <div>
-    <o-rate allow-half>
-      <a-icon slot="character" type="heart" />
+    <o-rate allow-half :default-value="3.5">
+      <o-icon slot="character" type="smile" />
     </o-rate>
-    <br />
-    <o-rate character="A" allow-half style="fontSize: 36px" />
-    <br />
-    <o-rate character="好" allow-half />
-    <br />
   </div>
 </template>
 ```

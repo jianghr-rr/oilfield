@@ -18,6 +18,7 @@ Customize render list with Table component.
       :show-search="showSearch"
       :filter-option="(inputValue, item) => item.title.indexOf(inputValue) !== -1"
       :show-select-all="false"
+      :locale="{itemUnit: '项', itemsUnit: '项', notFoundContent: '列表为空', searchPlaceholder: '请输入搜索内容'}"
       @change="onChange"
     >
       <template
@@ -27,7 +28,7 @@ Customize render list with Table component.
           on: { itemSelectAll, itemSelect },
         }"
       >
-        <a-table
+        <o-table
           :row-selection="
             getRowSelection({ disabled: listDisabled, selectedKeys, itemSelectAll, itemSelect })
           "
@@ -49,15 +50,15 @@ Customize render list with Table component.
       </template>
     </o-transfer>
     <o-switch
-      un-checked-children="disabled"
-      checked-children="disabled"
+      un-checked-children="禁止"
+      checked-children="启用"
       :checked="disabled"
       style="margin-top: 16px"
       @change="triggerDisable"
     />
     <o-switch
-      un-checked-children="showSearch"
-      checked-children="showSearch"
+      un-checked-children="隐藏搜索"
+      checked-children="显示搜索"
       :checked="showSearch"
       style="margin-top: 16px"
       @change="triggerShowSearch"
@@ -70,8 +71,8 @@ const mockData = [];
 for (let i = 0; i < 20; i++) {
   mockData.push({
     key: i.toString(),
-    title: `content${i + 1}`,
-    description: `description of content${i + 1}`,
+    title: `内容${i + 1}`,
+    description: `描述${i + 1}`,
     disabled: i % 4 === 0,
   });
 }
@@ -81,17 +82,17 @@ const originTargetKeys = mockData.filter(item => +item.key % 3 > 1).map(item => 
 const leftTableColumns = [
   {
     dataIndex: 'title',
-    title: 'Name',
+    title: '名称',
   },
   {
     dataIndex: 'description',
-    title: 'Description',
+    title: '内容描述',
   },
 ];
 const rightTableColumns = [
   {
     dataIndex: 'title',
-    title: 'Name',
+    title: '名称',
   },
 ];
 

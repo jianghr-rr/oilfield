@@ -17,13 +17,14 @@ Customize render list with Tree component.
       :target-keys="targetKeys"
       :render="item => item.title"
       :show-select-all="false"
+      :locale="{itemUnit: '项', itemsUnit: '项', notFoundContent: '列表为空', searchPlaceholder: '请输入搜索内容'}"
       @change="onChange"
     >
       <template
         slot="children"
         slot-scope="{ props: { direction, selectedKeys }, on: { itemSelect } }"
       >
-        <a-tree
+        <o-tree
           v-if="direction === 'left'"
           blockNode
           checkable

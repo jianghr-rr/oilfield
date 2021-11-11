@@ -26,7 +26,7 @@ import {
   InputNumber,
   //   Layout,
   List,
-  //   LocaleProvider,
+  LocaleProvider,
   message,
   Menu,
   //   Mentions,
@@ -47,7 +47,7 @@ import {
   Switch,
   Table,
   Transfer,
-  //   Tree,
+  Tree,
   //   TreeSelect,
   //   Tabs,
   Tag,
@@ -60,9 +60,9 @@ import {
   //   Drawer,
   //   Skeleton,
   //   Comment,
-  //   ConfigProvider,
+  ConfigProvider,
   //   Empty,
-  //   Base,
+  Base,
   Result,
   //   Descriptions,
   //   PageHeader,
@@ -80,7 +80,7 @@ Vue.prototype.$omconfirm = Modal.confirm;
 Vue.prototype.$omdestroyAll = Modal.destroyAll;
 
 /* v1.1.3+ registration methods */
-// Vue.use(Base);
+Vue.use(Base);
 Vue.use(Affix);
 Vue.use(Anchor);
 // Vue.use(AutoComplete);
@@ -108,7 +108,7 @@ Vue.use(Input);
 Vue.use(InputNumber);
 // Vue.use(Layout);
 Vue.use(List);
-// Vue.use(LocaleProvider);
+Vue.use(LocaleProvider);
 Vue.use(Menu);
 // Vue.use(Mentions);
 Vue.use(Modal);
@@ -127,7 +127,7 @@ Vue.use(Steps);
 Vue.use(Switch);
 Vue.use(Table);
 Vue.use(Transfer);
-// Vue.use(Tree);
+Vue.use(Tree);
 // Vue.use(TreeSelect);
 // Vue.use(Tabs);
 Vue.use(Tag);
@@ -137,7 +137,7 @@ Vue.use(Timeline);
 Vue.use(Upload);
 // Vue.use(Skeleton);
 // Vue.use(Comment);
-// Vue.use(ConfigProvider);
+Vue.use(ConfigProvider);
 // Vue.use(Empty);
 Vue.use(Result);
 // Vue.use(Descriptions);

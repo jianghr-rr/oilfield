@@ -13,18 +13,11 @@ Supports two sizes: `default` and `small`.
 ```vue
 <template>
   <div>
-    <o-card title="Default size card" style="width: 300px">
-      <a slot="extra" href="#">more</a>
-      <p>card content</p>
-      <p>card content</p>
-      <p>card content</p>
-    </o-card>
-    <br />
-    <o-card size="small" title="Small size card" style="width: 300px">
-      <a slot="extra" href="#">more</a>
-      <p>card content</p>
-      <p>card content</p>
-      <p>card content</p>
+    <o-card title="卡片名称" style="width: 300px">
+      <a slot="extra" href="#">操作按钮</a>
+      <p>列表内容 1</p>
+      <p>列表内容 2</p>
+      <p>列表内容 3</p>
     </o-card>
   </div>
 </template>

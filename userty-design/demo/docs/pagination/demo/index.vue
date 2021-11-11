@@ -47,14 +47,10 @@ export default {
         <demo-sort cols={1}>
           <Basic />
           <More />
-          <Changer />
           <CustomChanger />
           <Jump />
           <Mini />
           <Simple />
-          <Controlled />
-          <Total />
-          <ItemRender />
         </demo-sort>
         <api>
           <template slot="cn">

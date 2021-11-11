@@ -11,13 +11,14 @@ A basic calendar component with Year/Month switch.
 ```vue
 <template>
   <div>
-    <a-alert
+    <o-alert
       :message="`You selected date: ${selectedValue && selectedValue.format('YYYY-MM-DD')}`"
+      :style="{border: '1px solid #990F0F', background: '#F5E7E7'}"
     />
     <div
       :style="{
         display: 'inline-block',
-        width: '500px',
+        width: '48%',
         border: '1px solid #d9d9d9',
         borderRadius: '4px',
       }"
@@ -27,7 +28,7 @@ A basic calendar component with Year/Month switch.
     <div
       :style="{
         display: 'inline-block',
-        width: '500px',
+        width: '48%',
         marginLeft: '20px',
         border: '1px solid #d9d9d9',
         borderRadius: '4px',

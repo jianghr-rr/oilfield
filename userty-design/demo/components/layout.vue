@@ -18,6 +18,10 @@ import NProgress from 'nprogress';
 import TopAd from './top_ad';
 import GoogleAds from './GoogleAds';
 
+import moment from 'moment';
+import 'moment/locale/zh-cn';
+moment.locale('zh-cn');
+
 const docsList = [];
 
 const isGitee = window.location.host.indexOf('gitee.io') > -1;
@@ -153,7 +157,6 @@ export default {
         pagesKey.push({ name: k, url: `/docs/vue/${k}/`, title: isCN ? title : enTitle });
         docsMenu.push(<router-link to={`/docs/vue/${k}/`}>{isCN ? title : enTitle}</router-link>);
       });
-      console.log('docsMenu:::', docsMenu);
       return docsMenu;
     },
     resetDocumentTitle(component, name, isCN) {
@@ -262,15 +265,16 @@ export default {
       }
     });
     let locale = zhCN;
-    if (!isCN) {
-      locale = enUS;
-    }
+    // if (!isCN) {
+    //   locale = enUS;
+    // }
     const config = AllDemo[titleMap[reName]];
     this.resetDocumentTitle(config, reName, isCN);
     const { isMobile, $route } = this;
     return (
       <div class="" style={`--color: ${this.themmeColor}`}>
         <Header searchData={searchData} name={name} />
+        <o-config-provider locale={locale}>
           <div class="layout">
             <div class="layout-left">
                 <o-affix style={'height: 100%, overflow: auto'}>
@@ -349,7 +353,7 @@ export default {
                 </section>
               </div>
           </div>
-
+          </o-config-provider>
         <Footer ref="footer" isCN={isCN} />
       </div>
     );

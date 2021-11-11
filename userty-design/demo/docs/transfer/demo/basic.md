@@ -13,18 +13,19 @@ The most basic usage of `Transfer` involves providing the source data and target
   <div>
     <o-transfer
       :data-source="mockData"
-      :titles="['Source', 'Target']"
+      :titles="['来源', '目标']"
       :target-keys="targetKeys"
       :selected-keys="selectedKeys"
       :render="item => item.title"
       :disabled="disabled"
+      :locale="{itemUnit: '项', itemsUnit: '项', notFoundContent: '列表为空', searchPlaceholder: '请输入搜索内容'}"
       @change="handleChange"
       @selectChange="handleSelectChange"
       @scroll="handleScroll"
     />
     <o-switch
-      un-checked-children="enabled"
-      checked-children="disabled"
+      un-checked-children="禁止"
+      checked-children="启用"
       :checked="disabled"
       style="margin-top: 16px"
       @change="handleDisable"
@@ -38,8 +39,8 @@ export default {
     for (let i = 0; i < 20; i++) {
       mockData.push({
         key: i.toString(),
-        title: `content${i + 1}`,
-        description: `description of content${i + 1}`,
+        title: `内容${i + 1}`,
+        description: `内容${i + 1}`,
         disabled: i % 3 < 1,
       });
     }

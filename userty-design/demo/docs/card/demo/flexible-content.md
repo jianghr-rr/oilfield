@@ -10,17 +10,28 @@
 
 ```vue
 <template>
-  <o-card hoverable style="width: 240px">
+  <o-card hoverable style="width: 300px">
     <img
       slot="cover"
       alt="example"
-      src="https://os.alipayobjects.com/rmsportal/QBnOOoLaAfKPirc.png"
+      :src="logo"
     />
-    <o-card-meta title="Europe Street beat">
+    <o-card-meta title="新疆油田实景拍照">
       <template slot="description">
-        www.instagram.com
+        www.Xinjiang Userty Design.com
       </template>
     </o-card-meta>
   </o-card>
 </template>
+
+<script>
+import logo from '../../../assets/img-1.png';
+export default {
+    data() {
+        return {
+            logo
+        };
+    },
+};
+</script>
 ```

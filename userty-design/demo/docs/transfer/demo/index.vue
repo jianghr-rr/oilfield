@@ -49,8 +49,6 @@ export default {
         <demo-sort cols={1}>
           <Basic />
           <Search />
-          <Advanced />
-          <CustomItem />
           <TableTransfer />
           <TreeTransfer />
         </demo-sort>
