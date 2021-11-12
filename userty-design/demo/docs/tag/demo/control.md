@@ -33,7 +33,7 @@ Generating a set of Tags by array, you can add and remove dynamically.
       @keyup.enter="handleInputConfirm"
     />
     <o-tag v-else style="background: #fff; borderStyle: dashed;" @click="showInput">
-      <o-icon type="plus" /> New Tag
+      <o-icon type="plus" /> 添加标签
     </o-tag>
   </div>
 </template>
@@ -41,7 +41,7 @@ Generating a set of Tags by array, you can add and remove dynamically.
 export default {
   data() {
     return {
-      tags: ['Unremovable', 'Tag 2', 'Tag 3Tag 3Tag 3Tag 3Tag 3Tag 3Tag 3'],
+      tags: ['不可移除标签', '标签 1'],
       inputVisible: false,
       inputValue: '',
     };

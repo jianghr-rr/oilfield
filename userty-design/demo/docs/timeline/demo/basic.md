@@ -11,10 +11,9 @@ Basic timeline.
 ```vue
 <template>
   <o-timeline>
-    <o-timeline-item>Create a services site 2015-09-01</o-timeline-item>
-    <o-timeline-item>Solve initial network problems 2015-09-01</o-timeline-item>
-    <o-timeline-item>Technical testing 2015-09-01</o-timeline-item>
-    <o-timeline-item>Network problems being solved 2015-09-01</o-timeline-item>
+    <o-timeline-item>创建成功</o-timeline-item>
+    <o-timeline-item>通过审核</o-timeline-item>
+    <o-timeline-item>活动按期开始</o-timeline-item>
   </o-timeline>
 </template>
 ```

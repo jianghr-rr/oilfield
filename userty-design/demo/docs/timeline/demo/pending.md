@@ -1,6 +1,6 @@
 <cn>
-#### 最后一个及排序
-当任务状态正在发生，还在记录过程中，可用幽灵节点来表示当前的时间节点，当 pending 为真值时展示幽灵节点，如果 pending 是 React 元素可用于定制该节点内容，同时 pendingDot 将可以用于定制其轴点。reverse 属性用于控制节点排序，为 false 时按正序排列，为 true 时按倒序排列。
+#### 自定义时间卡片
+当内容在垂直方向上过高时，可将时间卡片置于内容之上。
 </cn>
 
 <us>
@@ -12,14 +12,29 @@ When the timeline is incomplete and ongoing, put a ghost node at last. Set `pend
 ```vue
 <template>
   <div>
-    <o-timeline pending="Recording..." :reverse="reverse">
-      <o-timeline-item>Create a services site 2015-09-01</o-timeline-item>
-      <o-timeline-item>Solve initial network problems 2015-09-01</o-timeline-item>
-      <o-timeline-item>Technical testing 2015-09-01</o-timeline-item>
+    <o-timeline>
+      <o-timeline-item>
+        <p>2021-11-06</p>
+        <div class="card">
+          <p>更新 Xinjiang Userty</p>
+          <p class="p1">江小新 提交于 2021-11-12 14:27</p>
+        </div>
+      </o-timeline-item>
+      <o-timeline-item>
+        <p>2021-11-06</p>
+        <div class="card">
+          <p>更新 Xinjiang Userty</p>
+          <p class="p1">江小新 提交于 2021-11-12 14:27</p>
+        </div>
+      </o-timeline-item>
+      <o-timeline-item>
+        <p>2021-11-06</p>
+        <div class="card">
+          <p>更新 Xinjiang Userty</p>
+          <p class="p1">江小新 提交于 2021-11-12 14:27</p>
+        </div>
+      </o-timeline-item>
     </o-timeline>
-    <o-button type="primary" style="margin-top: 16px" @click="handleClick">
-      Toggle Reverse
-    </o-button>
   </div>
 </template>
 <script>
@@ -36,4 +51,19 @@ export default {
   },
 };
 </script>
+<style lang="less">
+  .card {
+    width: 330px;
+    background: #FFFFFF;
+    border: 1px solid #FAFAFA;
+    box-shadow: 0px 0px 9px 1px rgba(215, 215, 215, 0.35);
+    padding: 20px 20px 10px 20px;
+    p {
+      line-height: 14px
+    }
+    .p1 {
+      color: #AAAAAA;
+    }
+  }
+</style>
 ```

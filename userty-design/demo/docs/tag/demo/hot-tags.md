@@ -11,16 +11,17 @@ Select your favourite topics.
 ```vue
 <template>
   <div>
-    <span :style="{ marginRight: 8 }">Categories:</span>
-    <template v-for="tag in tags">
-      <a-checkable-tag
-        :key="tag"
-        :checked="selectedTags.indexOf(tag) > -1"
-        @change="checked => handleChange(tag, checked)"
-      >
-        {{ tag }}
-      </a-checkable-tag>
-    </template>
+    <a-checkable-tag
+    >
+      <o-icon type="plus-circle" /> 标签 1
+    </a-checkable-tag>
+    <a-checkable-tag
+    >
+      <o-icon type="minus-circle" /> 标签 2
+    </a-checkable-tag>
+    <o-tag closable @close="log">
+      关闭标签
+    </o-tag>
   </div>
 </template>
 <script>
@@ -30,7 +31,7 @@ export default {
       checked1: false,
       checked2: false,
       checked3: false,
-      tags: ['Movies', 'Books', 'Music', 'Sports'],
+      tags: ['Movies', 'Books'],
       selectedTags: [],
     };
   },
