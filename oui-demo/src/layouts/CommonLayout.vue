@@ -22,8 +22,6 @@ export default {
 
 <style scoped lang="less">
 .common-layout{
-  display: flex;
-  flex-direction: column;
   min-width: 970px;
   height: 100vh;
   overflow: auto;
@@ -33,12 +31,13 @@ export default {
   background-position-x: center;
   background-position-y: 110px;
   background-size: 100%;
+  display: flex;
+  flex-direction: column;
   .content{
-    padding: 32px 0;
     flex: 1;
-    @media (min-width: 768px){
-      padding: 112px 0 24px;
-    }
+    display: flex;
+    justify-content: center;
+    align-items: center;
   }
 }
 </style>
