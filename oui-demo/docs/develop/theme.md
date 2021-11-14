@@ -8,9 +8,9 @@ lang: zh-CN
 ### 主题色
 我们内置了一个色盘供您选择 
 
-<color color="#fa541c"/>
-<color color="#fadb14"/>
-<color color="#3eaf7c"/>
+<color color="#001D73"/>
+<color color="#0060E5"/>
+<color color="#99DDFF"/>
 <color color="#13c2c2"/>
 <color color="#1890ff"/>
 <color color="#722ed1"/>
@@ -41,8 +41,8 @@ module.exports = {
 除了主题色，系统还有一些功能性颜色，分别为：成功色、警告色和错误色。默认色值分别为：
 |名称|success   |warning  |error  |
 |:-:|:--------:|:-------:|:-----:|
-|色值|``#52c41a``|``#faad14``|``#f5222d``|
-|颜色|<color color="#52c41a"/>|<color color="#faad14"/>|<color color="#f5222d" />|
+|色值|``#52c41a``|``#faad14``|``#990F0F``|
+|颜色|<color color="#52c41a"/>|<color color="#faad14"/>|<color color="#990F0F" />|
 |less变量|@success-color|@warning-color|@error-color|
 
 你也可以在 src/config/config.js 重新定义这些功能色
@@ -53,7 +53,7 @@ module.exports = {
     mode: 'night',
     success: '#52c41a', //定义成功色，支持 hex 色值
     warning: '#faad14', //定义警告色，支持 hex 色值
-    error: '#f5222d'    //定义错误色，支持 hex 色值
+    error: '#990F0F'    //定义错误色，支持 hex 色值
   },
   multiPage: true,
   animate: {
@@ -277,7 +277,7 @@ module.exports = {
     <td>色盘</td>
     <td>
       <color-list
-       :colors="['#fff1f0', '#ffccc7', '#ffa39e', '#ff7875', '#ff4d4f', '#f5222d', '#cf1322', '#a8071a', '#820014', '#5c0011']" 
+       :colors="['#fff1f0', '#ffccc7', '#ffa39e', '#ff7875', '#ff4d4f', '#990F0F', '#cf1322', '#a8071a', '#820014', '#5c0011']" 
       />
     </td>
   </tr>
@@ -313,7 +313,7 @@ module.exports = {
     <td>色盘</td>
     <td>
       <color-list
-       :colors="['#feffe6', '#ffffb8', '#fffb8f', '#fff566', '#ffec3d', '#fadb14', '#d4b106', '#ad8b00', '#876800', '#614700']" 
+       :colors="['#feffe6', '#ffffb8', '#fffb8f', '#fff566', '#ffec3d', '#0060E5', '#d4b106', '#ad8b00', '#876800', '#614700']" 
       />
     </td>
   </tr>
@@ -331,7 +331,7 @@ module.exports = {
     <td>色盘</td>
     <td>
       <color-list
-       :colors="['#fff2e8', '#ffd8bf', '#ffbb96', '#ff9c6e', '#ff7a45', '#fa541c', '#d4380d', '#ad2102', '#871400', '#610b00']" 
+       :colors="['#fff2e8', '#ffd8bf', '#ffbb96', '#ff9c6e', '#ff7a45', '#001D73', '#d4380d', '#ad2102', '#871400', '#610b00']" 
       />
     </td>
   </tr>

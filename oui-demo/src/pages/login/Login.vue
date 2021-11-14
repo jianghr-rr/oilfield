@@ -1,46 +1,42 @@
 <template>
-    <o-row type="flex">
-        <o-col :flex="1">
-            <div class="oil-img">
-                <img src="@/assets/img/logo.png" />
-                <div class="oil-title" :style="{color}">
-                    XinJiang  Userty Design
-                </div>
+    <div class="oil-layout">
+        <div class="oil-img">
+            <img src="@/assets/img/logo.png" />
+            <div class="oil-title" :style="{color}">
+                XinJiang  Userty Design
             </div>
-        </o-col>
-        <o-col :flex="1">
-            <div class="oil-form">
-                <div v-if="currIndex === registerIndex" style="padding: 25px 0;">
-                    <Register
-                        :loading="loading"
-                        @onLogin="currIndex = loginIndex"
-                        @onRegister="handleRegister"
-                        @onGetVeryCode="handleGetVeryCode"
-                    />
-                </div>
-                <div v-else>
-                    <Tab :tabs="tabs" :controlIndex.sync="currIndex" />
-                    <Account
-                        v-if="currIndex === loginIndex"
-                        :loading="loading"
-                        @onRegister="currIndex = registerIndex"
-                        @onMessage="currIndex = messageIndex"
-                        @onLogin="handleLogin"
-                        @onRemember="handleRemember"
-                    />
-                    <Message
-                        v-else-if="currIndex === messageIndex"
-                        :loading="loading"
-                        @onRegister="currIndex = registerIndex"
-                        @onGetVeryCode="handleGetVeryCode"
-                        @onMessage="currIndex = messageIndex"
-                        @onLogin="handleLogin"
-                        @onRemember="handleRemember"
-                    />
-                </div>
+        </div>
+        <div class="oil-form">
+            <div v-if="currIndex === registerIndex" style="padding: 25px 0;">
+                <Register
+                    :loading="loading"
+                    @onLogin="currIndex = loginIndex"
+                    @onRegister="handleRegister"
+                    @onGetVeryCode="handleGetVeryCode"
+                />
             </div>
-        </o-col>
-    </o-row>
+            <div v-else>
+                <Tab :tabs="tabs" :controlIndex.sync="currIndex" />
+                <Account
+                    v-if="currIndex === loginIndex"
+                    :loading="loading"
+                    @onRegister="currIndex = registerIndex"
+                    @onMessage="currIndex = messageIndex"
+                    @onLogin="handleLogin"
+                    @onRemember="handleRemember"
+                />
+                <Message
+                    v-else-if="currIndex === messageIndex"
+                    :loading="loading"
+                    @onRegister="currIndex = registerIndex"
+                    @onGetVeryCode="handleGetVeryCode"
+                    @onMessage="currIndex = messageIndex"
+                    @onLogin="handleLogin"
+                    @onRemember="handleRemember"
+                />
+            </div>
+        </div>
+    </div>
 </template>
 
 <script>
@@ -141,15 +137,19 @@ export default {
 </script>
 
 <style lang="less" scoped>
+    .oil-layout{
+        display: flex;
+        justify-content: center;
+        column-gap: 300px;
+    }
     .oil-img{
-        width: 100%;
-        height: 482px;
+        height: 492px;
         display: flex;
         flex-direction: column;
         justify-content: center;
         align-items: center;
         img{
-            width: 176px;
+            width: 170px;
             height: 170px;
             margin-bottom: 40px;
         }
@@ -163,10 +163,9 @@ export default {
         }
     }
     .oil-form{
+        display: flex;
         border-width: 0px;
-        margin: 0 auto;
         width: 376px;
-        min-height: 482px;
         background: inherit;
         background-color: rgba(255, 255, 255, 1);
         border: none;

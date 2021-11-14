@@ -1,119 +1,28 @@
 <template>
   <div class="side-setting">
-    <setting-item>
+    <!-- <setting-item>
       <o-button @click="saveSetting" type="primary" icon="save">{{$t('save')}}</o-button>
       <o-button @click="resetSetting" type="dashed" icon="redo" style="float: right">{{$t('reset')}}</o-button>
     </setting-item>
-    <o-divider></o-divider>
+    <o-divider></o-divider> -->
     <setting-item :title="$t('theme.title')">
       <img-checkbox-group
         @change="values => setTheme({...theme, mode: values[0]})"
         :default-values="[theme.mode]"
       >
-        <!-- <img-checkbox :title="$t('theme.dark')" img="https://gw.alipayobjects.com/zos/rmsportal/LCkqqYNmvBEbokSDscrm.svg" value="dark"/> -->
         <img-checkbox :title="$t('theme.light')" img="https://gw.alipayobjects.com/zos/rmsportal/jpRkZQMyYRryryPNtyIC.svg" value="light"/>
         <img-checkbox :title="$t('theme.night')" img="https://gw.alipayobjects.com/zos/antfincdn/hmKaLQvmY2/LCkqqYNmvBEbokSDscrm.svg" value="night"/>
       </img-checkbox-group>
     </setting-item>
     <setting-item :title="$t('theme.color')">
       <color-checkbox-group
+        style="display: flex; column-gap: 10px;"
         @change="(values, colors) => setTheme({...theme, color: colors[0]})"
         :defaultValues="[palettes.indexOf(theme.color)]" :multiple="false"
       >
         <color-checkbox v-for="(color, index) in palettes" :key="index" :color="color" :value="index" />
       </color-checkbox-group>
     </setting-item>
-    <!-- <o-divider/>
-    <setting-item :title="$t('navigate.title')">
-      <img-checkbox-group
-        @change="values => setLayout(values[0])"
-        :default-values="[layout]"
-      >
-        <img-checkbox :title="$t('navigate.side')" img="https://gw.alipayobjects.com/zos/rmsportal/JopDzEhOqwOjeNTXkoje.svg" value="side"/>
-        <img-checkbox :title="$t('navigate.head')" img="https://gw.alipayobjects.com/zos/rmsportal/KDNDBbriJhLwuqMoxcAr.svg" value="head"/>
-        <img-checkbox :title="$t('navigate.mix')" img="https://gw.alipayobjects.com/zos/antfincdn/x8Ob%26B8cy8/LCkqqYNmvBEbokSDscrm.svg" value="mix"/>
-      </img-checkbox-group>
-    </setting-item>
-    <setting-item>
-      <o-list :split="false">
-        <o-list-item>
-          {{$t('navigate.content.title')}}
-          <o-select
-            :getPopupContainer="getPopupContainer"
-            :value="pageWidth"
-            @change="setPageWidth"
-            class="select-item" size="small" slot="actions"
-          >
-            <o-select-option value="fluid">{{$t('navigate.content.fluid')}}</o-select-option>
-            <o-select-option value="fixed">{{$t('navigate.content.fixed')}}</o-select-option>
-          </o-select>
-        </o-list-item>
-        <o-list-item>
-          {{$t('navigate.fixedHeader')}}
-          <o-switch :checked="fixedHeader" slot="actions" size="small" @change="setFixedHeader" />
-        </o-list-item>
-        <o-list-item>
-          {{$t('navigate.fixedSideBar')}}
-          <o-switch :checked="fixedSideBar" slot="actions" size="small" @change="setFixedSideBar" />
-        </o-list-item>
-      </o-list>
-    </setting-item>
-    <o-divider />
-    <setting-item :title="$t('other.title')">
-      <o-list :split="false">
-        <o-list-item>
-          {{$t('other.weekMode')}}
-          <o-switch :checked="weekMode" slot="actions" size="small" @change="setWeekMode" />
-        </o-list-item>
-        <o-list-item>
-          {{$t('other.multiPages')}}
-          <o-switch :checked="multiPage" slot="actions" size="small" @change="setMultiPage" />
-        </o-list-item>
-        <o-list-item>
-          {{$t('other.hideSetting')}}
-          <o-switch :checked="hideSetting" slot="actions" size="small" @change="setHideSetting" />
-        </o-list-item>
-      </o-list>
-    </setting-item>
-    <o-divider />
-    <setting-item :title="$t('animate.title')">
-      <o-list :split="false">
-        <o-list-item>
-          {{$t('animate.disable')}}
-          <o-switch :checked="animate.disabled" slot="actions" size="small" @change="val => setAnimate({...animate, disabled: val})" />
-        </o-list-item>
-        <o-list-item>
-          {{$t('animate.effect')}}
-          <o-select
-            :value="animate.name"
-            :getPopupContainer="getPopupContainer"
-            @change="val => setAnimate({...animate, name: val})"
-            class="select-item" size="small" slot="actions"
-          >
-            <o-select-option :key="index" :value="item.name" v-for="(item, index) in animates">{{item.alias}}</o-select-option>
-          </o-select>
-        </o-list-item>
-        <o-list-item>
-          {{$t('animate.direction')}}
-          <o-select
-            :value="animate.direction"
-            :getPopupContainer="getPopupContainer"
-            @change="val => setAnimate({...animate, direction: val})"
-            class="select-item" size="small" slot="actions"
-          >
-            <o-select-option :key="index" :value="item" v-for="(item, index) in directions">{{item}}</o-select-option>
-          </o-select>
-        </o-list-item>
-      </o-list>
-    </setting-item>
-    <o-alert
-      v-if="isDev"
-      style="max-width: 240px; margin: -16px 0 8px; word-break: break-all"
-      type="warning"
-      :message="$t('alert')"
-    >
-    </o-alert>
-    <o-button v-if="isDev" id="copyBtn" :data-clipboard-text="copyConfig" @click="copyCode" style="width: 100%" icon="copy" >{{$t('copy')}}</o-button> -->
   </div>
 </template>
 
@@ -205,9 +114,10 @@ export default {
 
 <style lang="less" scoped>
   .side-setting{
+    width: 300px;
     min-height: 100%;
     background-color: @base-bg-color;
-    padding: 24px;
+    padding: 50px 24px 24px 24px;
     font-size: 14px;
     line-height: 1.5;
     word-wrap: break-word;

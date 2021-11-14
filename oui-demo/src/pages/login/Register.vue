@@ -185,6 +185,14 @@ export default {
         .ant-btn {
             width: 100%;
         }
+        .ant-checkbox + span{
+            padding-left: 10px;
+            color: #aaa;
+        }
+        .ant-checkbox > .ant-checkbox-inner{
+            width: 20px;
+            height: 20px;
+        }
         .ant-input-group-addon{
             background-color: #FFF;
             border-left: none !important;
@@ -193,7 +201,7 @@ export default {
             height: 60px;
             input, .ant-input {
                 height: 60px;
-                padding-left: 50px;
+                padding-left: 40px;
             }
         }
         .oil-form-item{

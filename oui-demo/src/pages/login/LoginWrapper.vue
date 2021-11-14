@@ -1,7 +1,11 @@
 <template>
     <common-layout>
         <login />
-        <drawer v-if="!hideSetting" v-model="showSetting" placement="right">
+        <drawer
+            v-if="!hideSetting"
+            v-model="showSetting"
+            placement="right"
+        >
             <div class="setting" slot="handler">
                 <o-icon :type="showSetting ? 'close' : 'setting'" />
             </div>

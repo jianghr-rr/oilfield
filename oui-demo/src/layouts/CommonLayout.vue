@@ -24,10 +24,11 @@ export default {
 .common-layout{
   display: flex;
   flex-direction: column;
+  min-width: 970px;
   height: 100vh;
   overflow: auto;
-  background-color: @layout-body-background;
-  background-image: url('https://gw.alipayobjects.com/zos/rmsportal/TVYTbAXWheQpRcWDaDMu.svg');
+  // background-color: @layout-body-background;
+  // background-image: url('https://gw.alipayobjects.com/zos/rmsportal/TVYTbAXWheQpRcWDaDMu.svg');
   background-repeat: no-repeat;
   background-position-x: center;
   background-position-y: 110px;
@@ -36,7 +37,6 @@ export default {
     padding: 32px 0;
     flex: 1;
     @media (min-width: 768px){
-
       padding: 112px 0 24px;
     }
   }

@@ -74,7 +74,7 @@
             <div class="oil-form-item">
                 <o-checkbox @change="handleRemember">记住登陆状态</o-checkbox>
             </div>
-            <o-form-item style="margin-bottom: 10px;">
+            <o-form-item>
                 <o-button
                     type="primary"
                     html-type="submit"
@@ -87,7 +87,7 @@
         </o-form>
         <div class="oil-account-login-footer">
             <div @click="$emit('onRegister')">
-                <span>还没有账号?</span>
+                <span>还没有账号?</span>&nbsp;
                 <a :style="{color}">立即注册</a>
             </div>
         </div>
@@ -165,80 +165,5 @@ export default {
 </script>
 
 <style lang="less">
-    .oil-account-login{
-        width: 316px;
-        .ant-btn {
-            width: 100%;
-        }
-        .oil-input, .ant-btn {
-            height: 60px;
-            input, .ant-input {
-                height: 60px;
-                padding-left: 50px;
-            }
-        }
-        .oil-form-item{
-            display: flex;
-            margin-bottom: 15px;
-            align-items: center;
-        }
-        .oil-very{
-            justify-content: space-between;
-            &-item{
-                height: 60px;
-                &:nth-child(1) {
-                    width: 186px;
-                }
-                &:nth-child(2) {
-                    width: 110px;
-                    background-color: rgba(255, 255, 255, 1);
-                    box-sizing: border-box;
-                    border: 1px solid rgba(215, 215, 215, 1);
-                    border-radius: 4px;
-                    font-family: 'SourceHanSansCN-Normal', 'Source Han Sans CN Normal', 'Source Han Sans CN', sans-serif;
-                    font-weight: 400;
-                    font-style: normal;
-                    font-size: 28px;
-                    letter-spacing: 3px;
-                    color: #555555;
-                    text-align: center;
-                    line-height: 60px;
-                    user-select: none;
-                    cursor: pointer;
-                }
-            }
-        }
-        .ant-input-group-addon{
-            background-color: #FFF;
-            border-left: none !important;
-        }
-        .oil-very-line{
-             .oil-input {
-                input, .ant-input {
-                    border-right: none;
-                    padding-left: 11px;
-                    &:focus{
-                        border-right: 1px solid #d9d9d9;
-                    }
-                }
-            }
-        }
-        &-footer{
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            div {
-                font-family: 'SourceHanSansCN-Normal', 'Source Han Sans CN Normal', 'Source Han Sans CN', sans-serif;
-                font-weight: 400;
-                font-style: normal;
-                font-size: 12px;
-                color: #AAAAAA;
-                user-select: none;
-                a {
-                    cursor: pointer;
-                }
-            }
-        }
-       
-    }
+    @import './index.less';
 </style>

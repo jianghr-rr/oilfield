@@ -39,10 +39,11 @@ export default {
 <style lang="less">
     .oil-tab{
         width: 316px;
-        height: 78px;
+        height: 70px;
         display: flex;
         position: relative;
         margin-bottom: 20px;
+        border-bottom: 1px solid #ccc;
         &-item{
             flex: 1;
             display: flex;
@@ -60,7 +61,7 @@ export default {
             width: 50%;
             height: 2px;
             position: absolute;
-            bottom: 0;
+            bottom: -1px;
             left: 0;
             transition: left .1s linear;
         }
