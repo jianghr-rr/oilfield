@@ -1,7 +1,6 @@
 <cn>
-#### 自定义页脚
-更复杂的例子，自定义了页脚的按钮，点击提交后进入 loading 状态，完成后关闭。
-不需要默认确定取消按钮时，你可以把 `footer` 设为 `null`。
+#### 居中布局
+标题和底部导航可在水平居中。
 </cn>
 
 <us>
@@ -15,23 +14,21 @@ You could set `footer` to `null` if you don't need default footer buttons.
 ```vue
 <template>
   <div>
-    <a-button type="primary" @click="showModal">
-      Open Modal with customized footer
-    </a-button>
-    <o-modal v-model="visible" title="Title" on-ok="handleOk">
+    <o-button type="primary" @click="showModal">
+      打开对话框
+    </o-button>
+    <o-modal v-model="visible" title="提示" on-ok="handleOk">
       <template slot="footer">
-        <a-button key="back" @click="handleCancel">
-          Return
-        </a-button>
-        <a-button key="submit" type="primary" :loading="loading" @click="handleOk">
-          Submit
-        </a-button>
+        <div style="text-align: center">
+          <o-button key="back" @click="handleCancel">
+            取消
+          </o-button>
+          <o-button key="submit" type="primary" :loading="loading" @click="handleOk">
+            确定
+          </o-button>
+        </div>
       </template>
-      <p>Some contents...</p>
-      <p>Some contents...</p>
-      <p>Some contents...</p>
-      <p>Some contents...</p>
-      <p>Some contents...</p>
+      <p>这是一段文字信息</p>
     </o-modal>
   </div>
 </template>

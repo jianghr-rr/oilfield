@@ -11,7 +11,7 @@ Update message content with unique `key`.
 ```vue
 <template>
   <a-button type="primary" @click="openMessage">
-    Open the message box
+    打开消息框
   </a-button>
 </template>
 <script>
@@ -19,9 +19,9 @@ const key = 'updatable';
 export default {
   methods: {
     openMessage() {
-      this.$ommessage.loading({ content: 'Loading...', key });
+      this.$ommessage.loading({ content: '正在进行中...', key });
       setTimeout(() => {
-        this.$ommessage.success({ content: 'Loaded!', key, duration: 2 });
+        this.$ommessage.success({ content: '加载已完成！', key, duration: 2 });
       }, 1000);
     },
   },

@@ -1,6 +1,7 @@
 <script>
 import Async from './async';
 import Basic from './basic';
+import Basic2 from './basic-2';
 import ConfirmPromise from './confirm-promise';
 import Confirm from './confirm';
 import Footer from './footer';
@@ -41,17 +42,10 @@ export default {
       <div id="components-modal-demo">
         <md cn={md.cn} us={md.us} />
         <demo-sort>
-          <Async />
           <Basic />
-          <ConfirmPromise />
-          <Confirm />
-          <Footer />
+          <Basic2 />
           <Info />
-          <Locale />
-          <Manual />
-          <Position />
-          <ButtonProps />
-          <ConfirmRouter />
+          <Footer />
         </demo-sort>
         <api>
           <CN slot="cn" />

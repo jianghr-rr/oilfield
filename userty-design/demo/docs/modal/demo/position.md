@@ -11,9 +11,9 @@ You can use `centered`,`dialogStyle.top` or other styles to set position of moda
 ```vue
 <template>
   <div id="components-modal-demo-position">
-    <a-button type="primary" @click="() => setModal1Visible(true)">
+    <o-button type="primary" @click="() => setModal1Visible(true)">
       Display a modal dialog at 20px to Top
-    </a-button>
+    </o-button>
     <o-modal
       title="20px to Top"
       :dialog-style="{ top: '20px' }"
@@ -26,9 +26,9 @@ You can use `centered`,`dialogStyle.top` or other styles to set position of moda
       <p>some contents...</p>
     </o-modal>
     <br /><br />
-    <a-button type="primary" @click="() => (modal2Visible = true)">
+    <o-button type="primary" @click="() => (modal2Visible = true)">
       Vertically centered modal dialog
-    </a-button>
+    </o-button>
     <o-modal
       v-model="modal2Visible"
       title="Vertically centered modal dialog"

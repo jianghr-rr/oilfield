@@ -11,7 +11,7 @@
 ```vue
 <template>
   <a-button @click="success">
-    Display a sequence of message
+    显示消息提醒序列
   </a-button>
 </template>
 <script>
@@ -19,9 +19,9 @@ export default {
   methods: {
     success() {
       this.$ommessage
-        .loading('Action in progress..', 2.5)
-        .then(() => this.$ommessage.success('Loading finished', 2.5))
-        .then(() => this.$ommessage.info('Loading finished is finished', 2.5));
+        .loading('正在进行中...', 2.5)
+        .then(() => this.$ommessage.success('加载已完成！', 2.5))
+        .then(() => this.$ommessage.info('加载已结束！', 2.5));
     },
   },
 };

@@ -35,7 +35,6 @@ function getMessageInstance(callback) {
 }
 
 // type NoticeType = 'info' | 'success' | 'error' | 'warning' | 'loading';
-
 function notice(args) {
   const duration = args.duration !== undefined ? args.duration : defaultDuration;
   const iconType = {
@@ -61,7 +60,7 @@ function notice(args) {
         style: {},
         content: h => {
           const iconNode = (
-            <Icon type={iconType} theme={iconType === 'loading' ? 'outlined' : 'filled'} />
+            <Icon type={iconType} theme={'outlined'} />
           );
           const switchIconNode = iconType ? iconNode : '';
           return (

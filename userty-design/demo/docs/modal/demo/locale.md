@@ -11,9 +11,9 @@ To customize the text of the buttons, you need to set `okText` and `cancelText` 
 ```vue
 <template>
   <div>
-    <a-button type="primary" @click="showModal">
+    <o-button type="primary" @click="showModal">
       Modal
-    </a-button>
+    </o-button>
     <o-modal v-model="visible" title="Modal" ok-text="确认" cancel-text="取消" @ok="hideModal">
       <p>Bla bla ...</p>
       <p>Bla bla ...</p>
@@ -21,9 +21,9 @@ To customize the text of the buttons, you need to set `okText` and `cancelText` 
     </o-modal>
     <br />
     <br />
-    <a-button @click="confirm">
+    <o-button @click="confirm">
       Confirm
-    </a-button>
+    </o-button>
   </div>
 </template>
 <script>

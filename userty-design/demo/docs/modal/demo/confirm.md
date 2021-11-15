@@ -11,15 +11,15 @@ To use `confirm()` to show a confirmation modal dialog.
 ```vue
 <template>
   <div>
-    <a-button @click="showConfirm">
+    <o-button @click="showConfirm">
       Confirm
-    </a-button>
-    <a-button type="dashed" @click="showDeleteConfirm">
+    </o-button>
+    <o-button type="dashed" @click="showDeleteConfirm">
       Delete
-    </a-button>
-    <a-button type="dashed" @click="showPropsConfirm">
+    </o-button>
+    <o-button type="dashed" @click="showPropsConfirm">
       With extra props
-    </a-button>
+    </o-button>
   </div>
 </template>
 <script>

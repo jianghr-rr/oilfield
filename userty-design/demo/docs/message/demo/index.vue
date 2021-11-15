@@ -34,11 +34,10 @@ export default {
         <md cn={md.cn} us={md.us} />
         <demo-sort>
           <Info />
-          <Duration />
           <Loading />
           <Other />
-          <Thenable />
           <Update />
+          <Thenable />
         </demo-sort>
         <api>
           <CN slot="cn" />

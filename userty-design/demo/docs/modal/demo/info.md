@@ -11,44 +11,31 @@ In the various types of information modal dialog, only one button to close dialo
 ```vue
 <template>
   <div>
-    <a-button @click="info">
-      Info
-    </a-button>
-    <a-button @click="success">
-      Success
-    </a-button>
-    <a-button @click="error">
-      Error
-    </a-button>
-    <a-button @click="warning">
-      Warning
-    </a-button>
+    <o-button type="primary" @click="success">
+      成功对话框
+    </o-button>
+    <o-button type="primary" @click="warning">
+      警告对话框
+    </o-button>
+    <o-button type="primary" @click="error">
+      提示对话框
+    </o-button>
   </div>
 </template>
 <script>
 import { Modal } from 'ant-design-vue';
 export default {
   methods: {
-    info() {
-      const h = this.$createElement;
-      this.$ominfo({
-        title: 'This is a notification message',
-        content: h('div', {}, [
-          h('p', 'some messages...some messages...'),
-          h('p', 'some messages...some messages...'),
-        ]),
-        onOk() {},
-      });
-    },
 
     success() {
       this.$omsuccess({
-        title: 'This is a success message',
+        title: '这是一条成功的信息',
         // JSX support
         content: (
           <div>
-            <p>some messages...some messages...</p>
-            <p>some messages...some messages...</p>
+            <p>这是一段文字信息</p>
+            <p>这是一段文字信息</p>
+            <p>这是一段文字信息</p>
           </div>
         ),
       });
@@ -56,15 +43,27 @@ export default {
 
     error() {
       this.$omerror({
-        title: 'This is an error message',
-        content: 'some messages...some messages...',
+        title: '这是一条错误的信息',
+        content: (
+          <div>
+            <p>这是一段文字信息</p>
+            <p>这是一段文字信息</p>
+            <p>这是一段文字信息</p>
+          </div>
+        ),
       });
     },
 
     warning() {
       this.$omwarning({
-        title: 'This is a warning message',
-        content: 'some messages...some messages...',
+        title: '这是一条警告的信息',
+        content: (
+          <div>
+            <p>这是一段文字信息</p>
+            <p>这是一段文字信息</p>
+            <p>这是一段文字信息</p>
+          </div>
+        ),
       });
     },
   },

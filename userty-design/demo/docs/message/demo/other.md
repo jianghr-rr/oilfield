@@ -11,28 +11,28 @@ Messages of success, error and warning types.
 ```vue
 <template>
   <div>
-    <a-button @click="success">
-      Success
-    </a-button>
-    <a-button @click="error">
-      Error
-    </a-button>
-    <a-button @click="warning">
-      Warning
-    </a-button>
+    <o-button type="primary" @click="success">
+      成功信息提醒
+    </o-button>
+    <o-button type="primary" @click="warning">
+      警告信息提醒
+    </o-button>
+    <o-button type="primary" @click="error">
+      错误信息提醒
+    </o-button>
   </div>
 </template>
 <script>
 export default {
   methods: {
     success() {
-      this.$ommessage.success('This is a success message');
+      this.$ommessage.success('这是一条成功信息');
     },
     error() {
-      this.$ommessage.error('This is an error message');
+      this.$ommessage.error('这是一条错误信息');
     },
     warning() {
-      this.$ommessage.warning('This is a warning message');
+      this.$ommessage.warning('这是一条警告信息');
     },
   },
 };

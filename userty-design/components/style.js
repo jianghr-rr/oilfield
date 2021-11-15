@@ -21,7 +21,7 @@ import './card/style';
 // import './collapse/style';
 // import './carousel/style';
 // import './notification/style';
-// import './message/style';
+import './message/style';
 import './spin/style';
 // import './select/style';
 import './switch/style';

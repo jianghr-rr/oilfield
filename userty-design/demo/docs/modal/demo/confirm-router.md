@@ -10,9 +10,9 @@
 
 ```vue
 <template>
-  <a-button @click="showConfirm">
+  <o-button @click="showConfirm">
     Confirm
-  </a-button>
+  </o-button>
 </template>
 <script>
 export default {

@@ -12,9 +12,9 @@ you can use this pattern when you submit a form.
 ```vue
 <template>
   <div>
-    <a-button type="primary" @click="showModal">
-      Open Modal with async logic
-    </a-button>
+    <o-button type="primary" @click="showModal">
+      打开对话框
+    </o-button>
     <o-modal
       title="Title"
       :visible="visible"
