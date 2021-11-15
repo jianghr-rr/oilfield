@@ -19,7 +19,7 @@ import { default as Affix } from './affix';
 
 import { default as Anchor } from './anchor';
 
-// import { default as AutoComplete } from './auto-complete';
+import { default as AutoComplete } from './auto-complete';
 
 import { default as Alert } from './alert';
 
@@ -27,11 +27,11 @@ import { default as Avatar } from './avatar';
 
 // import { default as BackTop } from './back-top';
 
-// import { default as Badge } from './badge';
+import { default as Badge } from './badge';
 
 import { default as Base } from './base';
 
-// import { default as Breadcrumb } from './breadcrumb';
+import { default as Breadcrumb } from './breadcrumb';
 
 import { default as Button } from './button';
 
@@ -45,7 +45,7 @@ import { default as Card } from './card';
 
 // import { default as Cascader } from './cascader';
 
-// import { default as Checkbox } from './checkbox';
+import { default as Checkbox } from './checkbox';
 
 import { default as Col } from './col';
 
@@ -84,7 +84,7 @@ import { default as Pagination } from './pagination';
 
 // import { default as Popconfirm } from './popconfirm';
 
-// import { default as Popover } from './popover';
+import { default as Popover } from './popover';
 
 import { default as Progress } from './progress';
 
@@ -114,11 +114,11 @@ import { default as Tree } from './tree';
 
 // import { default as TreeSelect } from './tree-select';
 
-// import { default as Tabs } from './tabs';
+import { default as Tabs } from './tabs';
 
 import { default as Tag } from './tag';
 
-// import { default as TimePicker } from './time-picker';
+import { default as TimePicker } from './time-picker';
 
 import { default as Timeline } from './timeline';
 
@@ -152,15 +152,15 @@ const components = [
   Alert,
   Avatar,
   // BackTop,
-  // Badge,
-  // Breadcrumb,
+  Badge,
+  Breadcrumb,
   Button,
   Calendar,
   Card,
   // Collapse,
   // Carousel,
   // Cascader,
-  // Checkbox,
+  Checkbox,
   Col,
   DatePicker,
   Divider,
@@ -178,7 +178,7 @@ const components = [
   Modal,
   Pagination,
   // Popconfirm,
-  // Popover,
+  Popover,
   Progress,
   Radio,
   Rate,
@@ -189,13 +189,13 @@ const components = [
   // Statistic,
   Steps,
   Switch,
-  // Table,
+  Table,
   Transfer,
   Tree,
   // TreeSelect,
-  // Tabs,
+  Tabs,
   Tag,
-  // TimePicker,
+  TimePicker,
   Timeline,
   Tooltip,
   Upload,
@@ -243,15 +243,15 @@ export {
   Alert,
   Avatar,
   // BackTop,
-  // Badge,
-  // Breadcrumb,
+  Badge,
+  Breadcrumb,
   Button,
   Calendar,
   Card,
   // Collapse,
   // Carousel,
   // Cascader,
-  // Checkbox,
+  Checkbox,
   Col,
   DatePicker,
   Divider,
@@ -269,7 +269,7 @@ export {
   Modal,
   Pagination,
   // Popconfirm,
-  // Popover,
+  Popover,
   Progress,
   Radio,
   Rate,
@@ -284,9 +284,9 @@ export {
   Transfer,
   Tree,
   // TreeSelect,
-  // Tabs,
+  Tabs,
   Tag,
-  // TimePicker,
+  TimePicker,
   Timeline,
   Tooltip,
   Upload,

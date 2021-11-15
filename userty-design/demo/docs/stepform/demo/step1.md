@@ -202,7 +202,7 @@ export default {
         handleSubmit() {
             this.form.validateFields((err, values) => {
                 if (!err) {
-                    this.$ommessage.info(`表单校验成功: ${JSON.stringify(values)}`);
+                    console.log(values);
                     this.$emit("update:values", values);
                     this.$emit('nextStep', values);
                 }

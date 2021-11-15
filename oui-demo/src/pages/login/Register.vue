@@ -35,8 +35,8 @@
                     :maxLength="20"
                     placeholder="请输入短信验证码"
                 >
-                    <span slot="addonAfter" style="user-select: none;cursor: pointer;" @click="$emit('onGetVeryCode')">
-                        <span :style="{color}">获取验证码</span>
+                    <span slot="addonAfter" style="user-select: none;cursor: pointer;" @click="handleGetVeryCode">
+                        <span :style="{color}">{{tips}}</span>
                     </span>
                 </o-input>
             </o-form-item>
@@ -76,14 +76,8 @@
                     @blur="handleConfirmBlur"
                 />
             </o-form-item>
-            <div class="oil-form-item oil-checkbox-line">
-                <div
-                    style="width: 150px;display: flex;align-items: center;user-select: none;cursor: pointer"
-                    @click="isRemember = !isRemember"
-                >
-                    <o-input type="checkbox" :checked="isRemember" />
-                    <div style="margin-left: 10px;">勾选同意《保密协议》</div>
-                </div>
+            <div class="oil-form-item">
+                <o-checkbox @change="isRemember = !isRemember">勾选同意《保密协议》</o-checkbox>
             </div>
             <o-form-item style="margin-bottom: 10px;">
                 <o-button
@@ -104,8 +98,12 @@
 </template>
 
 <script>
+import {mapState} from 'vuex'
+import very from './very';
+
 export default {
     name: 'Register',
+    mixins: [very],
     props: {
         loading: {
             type: Boolean,
@@ -121,9 +119,9 @@ export default {
         };
     },
     computed: {
-        color() {
-            return this.$store.getters.color;
-        }
+         ...mapState({
+            color: state => state.setting.theme.color
+        })
     },
     mounted() {
         this.$nextTick(() => {
@@ -138,6 +136,12 @@ export default {
                 if (!err) {
                     this.$emit('onRegister', values);
                 }
+            });
+        },
+        handleGetVeryCode() {
+            this.$emit('onGetVeryCode');
+            this.form.validateFields(['phone']).then(tel => {
+                this.getVeryCd(tel);
             });
         },
         getVeryCode() {
@@ -181,6 +185,14 @@ export default {
         .ant-btn {
             width: 100%;
         }
+        .ant-checkbox + span{
+            padding-left: 10px;
+            color: #aaa;
+        }
+        .ant-checkbox > .ant-checkbox-inner{
+            width: 20px;
+            height: 20px;
+        }
         .ant-input-group-addon{
             background-color: #FFF;
             border-left: none !important;
@@ -189,7 +201,7 @@ export default {
             height: 60px;
             input, .ant-input {
                 height: 60px;
-                padding-left: 50px;
+                padding-left: 40px;
             }
         }
         .oil-form-item{
@@ -220,15 +232,6 @@ export default {
                     cursor: pointer;
                 }
             }
-        }
-        .oil-checkbox-line{
-            display: flex;
-            align-items: center;
-            font-family: 'SourceHanSansCN-Normal', 'Source Han Sans CN Normal', 'Source Han Sans CN', sans-serif;
-            font-weight: 400;
-            font-style: normal;
-            font-size: 12px;
-            color: #AAAAAA;
         }
         .oil-very-line{
              .oil-input {
