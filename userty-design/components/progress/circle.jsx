@@ -35,13 +35,13 @@ const Circle = {
       gapDegree,
       type,
     } = props;
-    const circleSize = width || 120;
+    const circleSize = width || 100;
     const circleStyle = {
       width: typeof circleSize === 'number' ? `${circleSize}px` : circleSize,
       height: typeof circleSize === 'number' ? `${circleSize}px` : circleSize,
-      fontSize: circleSize * 0.15 + 6,
+      fontSize: circleSize * 1.5 + 6,
     };
-    const circleWidth = strokeWidth || 6;
+    const circleWidth = strokeWidth || 8;
     const gapPos = gapPosition || (type === 'dashboard' && 'bottom') || 'top';
     const gapDeg = gapDegree || (type === 'dashboard' && 75);
     const strokeColor = getStrokeColor(props);

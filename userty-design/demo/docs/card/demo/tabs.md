@@ -13,13 +13,13 @@
   <div>
     <o-card
       style="width:100%"
-      title="Card title"
+      title="卡片名称"
       :tab-list="tabList"
       :active-tab-key="key"
       @tabChange="key => onTabChange(key, 'key')"
     >
-      <span slot="customRender" slot-scope="item"> <o-icon type="home" />{{ item.key }} </span>
-      <a slot="extra" href="#">More</a>
+      <span slot="customRender" slot-scope="item">{{ item.key }} </span>
+      <a slot="extra" href="#">操作按钮</a>
       {{ contentList[key] }}
     </o-card>
     <br /><br />
@@ -29,16 +29,15 @@
       :active-tab-key="noTitleKey"
       @tabChange="key => onTabChange(key, 'noTitleKey')"
     >
-      <p v-if="noTitleKey === 'article'">
-        article content
+      <p v-if="noTitleKey === '文章'">
+        文章 内容
       </p>
       <p v-else-if="noTitleKey === 'app'">
-        app content
+        app 内容
       </p>
-      <p v-else="noTitleKey === 'project'">
-        project content
+      <p v-else="noTitleKey === '项目名称'">
+        项目 内容
       </p>
-      <a slot="tabBarExtraContent" href="#">More</a>
     </o-card>
   </div>
 </template>
@@ -49,31 +48,31 @@ export default {
     return {
       tabList: [
         {
-          key: 'tab1',
+          key: '标签 1',
           // tab: 'tab1',
           scopedSlots: { tab: 'customRender' },
         },
         {
-          key: 'tab2',
+          key: '标签 2',
           tab: 'tab2',
         },
       ],
       contentList: {
-        tab1: 'content1',
-        tab2: 'content2',
+        tab1: '标签 1 内容 ',
+        tab2: '标签 2 内容 ',
       },
       tabListNoTitle: [
         {
-          key: 'article',
-          tab: 'article',
+          key: '文章',
+          tab: '文章',
         },
         {
           key: 'app',
           tab: 'app',
         },
         {
-          key: 'project',
-          tab: 'project',
+          key: '项目名称',
+          tab: '项目名称',
         },
       ],
       key: 'tab1',

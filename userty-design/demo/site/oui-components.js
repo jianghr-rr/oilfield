@@ -1,8 +1,8 @@
 import Vue from 'vue';
 import {
-  //   Affix,
-  //   Anchor,
-  AutoComplete,
+  Affix,
+  Anchor,
+  //   AutoComplete,
   Alert,
   Avatar,
   //   BackTop,
@@ -26,7 +26,7 @@ import {
   InputNumber,
   Layout,
   List,
-  //   LocaleProvider,
+  LocaleProvider,
   message,
   Menu,
   //   Mentions,
@@ -44,10 +44,10 @@ import {
   Spin,
   //   Statistic,
   Steps,
-  Switch, 
+  Switch,
   Table,
   Transfer,
-  //   Tree,
+  Tree,
   //   TreeSelect,
   Tabs,
   Tag,
@@ -62,7 +62,7 @@ import {
   //   Comment,
   ConfigProvider,
   //   Empty,
-  //   Base,
+  Base,
   Result,
   //   Descriptions,
   //   PageHeader,
@@ -80,10 +80,10 @@ Vue.prototype.$omconfirm = Modal.confirm;
 Vue.prototype.$omdestroyAll = Modal.destroyAll;
 
 /* v1.1.3+ registration methods */
-// Vue.use(Base);
-// Vue.use(Affix);
-// Vue.use(Anchor);
-Vue.use(AutoComplete);
+Vue.use(Base);
+Vue.use(Affix);
+Vue.use(Anchor);
+// Vue.use(AutoComplete);
 Vue.use(Alert);
 Vue.use(Avatar);
 // Vue.use(BackTop);
@@ -108,7 +108,7 @@ Vue.use(Input);
 Vue.use(InputNumber);
 Vue.use(Layout);
 Vue.use(List);
-// Vue.use(LocaleProvider);
+Vue.use(LocaleProvider);
 Vue.use(Menu);
 // Vue.use(Mentions);
 Vue.use(Modal);
@@ -127,7 +127,7 @@ Vue.use(Steps);
 Vue.use(Switch);
 Vue.use(Table);
 Vue.use(Transfer);
-// Vue.use(Tree);
+Vue.use(Tree);
 // Vue.use(TreeSelect);
 Vue.use(Tabs);
 Vue.use(Tag);

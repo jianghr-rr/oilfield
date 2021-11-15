@@ -15,9 +15,9 @@ if (
 }
 /* @remove-on-es-build-end */
 
-// import { default as Affix } from './affix';
+import { default as Affix } from './affix';
 
-// import { default as Anchor } from './anchor';
+import { default as Anchor } from './anchor';
 
 import { default as AutoComplete } from './auto-complete';
 
@@ -29,7 +29,7 @@ import { default as Avatar } from './avatar';
 
 import { default as Badge } from './badge';
 
-// import { default as Base } from './base';
+import { default as Base } from './base';
 
 import { default as Breadcrumb } from './breadcrumb';
 
@@ -68,7 +68,7 @@ import { default as Layout } from './layout';
 
 import { default as List } from './list';
 
-// import { default as LocaleProvider } from './locale-provider';
+import { default as LocaleProvider } from './locale-provider';
 
 import { default as message } from './message';
 
@@ -110,7 +110,7 @@ import { default as Table } from './table';
 
 import { default as Transfer } from './transfer';
 
-// import { default as Tree } from './tree';
+import { default as Tree } from './tree';
 
 // import { default as TreeSelect } from './tree-select';
 
@@ -145,10 +145,10 @@ import { default as Result } from './result';
 // import { default as Space } from './space';
 
 const components = [
-  // Base,
-  // Affix,
-  // Anchor,
-  AutoComplete,
+  Base,
+  Affix,
+  Anchor,
+  // AutoComplete,
   Alert,
   Avatar,
   // BackTop,
@@ -172,7 +172,7 @@ const components = [
   InputNumber,
   Layout,
   List,
-  // LocaleProvider,
+  LocaleProvider,
   Menu,
   // Mentions,
   Modal,
@@ -191,7 +191,7 @@ const components = [
   Switch,
   Table,
   Transfer,
-  // Tree,
+  Tree,
   // TreeSelect,
   Tabs,
   Tag,
@@ -232,14 +232,14 @@ if (typeof window !== 'undefined' && window.Vue) {
 }
 
 export {
-  // Base,
+  Base,
   // version,
   // install,
   message,
   notification,
-  // Affix,
-  // Anchor,
-  AutoComplete,
+  Affix,
+  Anchor,
+  // AutoComplete,
   Alert,
   Avatar,
   // BackTop,
@@ -263,7 +263,7 @@ export {
   InputNumber,
   Layout,
   List,
-  // LocaleProvider,
+  LocaleProvider,
   Menu,
   // Mentions,
   Modal,
@@ -282,7 +282,7 @@ export {
   Switch,
   Table,
   Transfer,
-  // Tree,
+  Tree,
   // TreeSelect,
   Tabs,
   Tag,

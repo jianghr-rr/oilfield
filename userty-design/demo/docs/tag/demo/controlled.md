@@ -12,11 +12,11 @@ By using the `visible` prop, you can control the close state of Tag.
 <template>
   <div>
     <o-tag v-model="visible" closable>
-      Movies
+      标签 1
     </o-tag>
     <br />
     <o-button size="small" @click="visible = !visible">
-      Toggle
+      切换
     </o-button>
   </div>
 </template>

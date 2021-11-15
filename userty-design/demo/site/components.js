@@ -146,7 +146,7 @@ Vue.use(Space);
 // Vue.use(ColorPicker);
 
 /* v1.1.2 registration methods */
-// Vue.component(Affix.name, Affix) // a-affix
+// Vue.component(Affix.name, Affix) // o-affix
 // Vue.component(Anchor.name, Anchor)
 // Vue.component(Anchor.Link.name, Anchor.Link)
 // Vue.component(AutoComplete.name, AutoComplete)

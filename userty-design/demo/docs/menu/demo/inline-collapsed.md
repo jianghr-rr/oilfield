@@ -33,7 +33,7 @@ Inline menu could be collapsed.
         <a-icon type="inbox" />
         <span>Option 3</span>
       </o-menu-item>
-      <a-sub-menu key="sub1">
+      <o-sub-menu key="sub1">
         <span slot="title"><a-icon type="mail" /><span>Navigation One</span></span>
         <o-menu-item key="5">
           Option 5
@@ -47,8 +47,8 @@ Inline menu could be collapsed.
         <o-menu-item key="8">
           Option 8
         </o-menu-item>
-      </a-sub-menu>
-      <a-sub-menu key="sub2">
+      </o-sub-menu>
+      <o-sub-menu key="sub2">
         <span slot="title"><a-icon type="appstore" /><span>Navigation Two</span></span>
         <o-menu-item key="9">
           Option 9
@@ -56,15 +56,15 @@ Inline menu could be collapsed.
         <o-menu-item key="10">
           Option 10
         </o-menu-item>
-        <a-sub-menu key="sub3" title="Submenu">
+        <o-sub-menu key="sub3" title="Submenu">
           <o-menu-item key="11">
             Option 11
           </o-menu-item>
           <o-menu-item key="12">
             Option 12
           </o-menu-item>
-        </a-sub-menu>
-      </a-sub-menu>
+        </o-sub-menu>
+      </o-sub-menu>
     </o-menu>
   </div>
 </template>

@@ -49,6 +49,7 @@ export default {
           className += ` ${prefixCls}-focused`;
         }
       }
+      className += ` ${prefixCls}-${index}`;
       return className;
     },
   },

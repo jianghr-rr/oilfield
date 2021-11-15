@@ -44,8 +44,8 @@ export default {
           <Checkable />
           <Colorful />
           <Control />
-          <HotTags />
           <Controlled />
+          <HotTags />
         </demo-sort>
         <api>
           <template slot="cn">

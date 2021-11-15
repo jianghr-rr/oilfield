@@ -4,9 +4,9 @@
 <template>
   <o-menu>
     <o-menu-item>菜单项</o-menu-item>
-    <a-sub-menu title="子菜单">
+    <o-sub-menu title="子菜单">
       <o-menu-item>子菜单项</o-menu-item>
-    </a-sub-menu>
+    </o-sub-menu>
   </o-menu>
 </template>
 ```

@@ -11,9 +11,9 @@ Show the dynamic switching mode (between 'inline' and 'vertical').
 ```vue
 <template>
   <div>
-    <o-switch :default-checked="false" @change="changeMode" /> Change Mode
+    <o-switch :default-checked="false" @change="changeMode" /> 更改模式
     <span className="ant-divider" style="margin: 0 1em" />
-    <o-switch :default-checked="false" @change="changeTheme" /> Change Theme
+    <o-switch :default-checked="false" @change="changeTheme" /> 更改主题
     <br />
     <br />
     <o-menu
@@ -31,7 +31,7 @@ Show the dynamic switching mode (between 'inline' and 'vertical').
         <a-icon type="calendar" />
         Navigation Two
       </o-menu-item>
-      <a-sub-menu key="sub1">
+      <o-sub-menu key="sub1">
         <span slot="title"><a-icon type="appstore" /><span>Navigation Three</span></span>
         <o-menu-item key="3">
           Option 3
@@ -39,16 +39,16 @@ Show the dynamic switching mode (between 'inline' and 'vertical').
         <o-menu-item key="4">
           Option 4
         </o-menu-item>
-        <a-sub-menu key="sub1-2" title="Submenu">
+        <o-sub-menu key="sub1-2" title="Submenu">
           <o-menu-item key="5">
             Option 5
           </o-menu-item>
           <o-menu-item key="6">
             Option 6
           </o-menu-item>
-        </a-sub-menu>
-      </a-sub-menu>
-      <a-sub-menu key="sub2">
+        </o-sub-menu>
+      </o-sub-menu>
+      <o-sub-menu key="sub2">
         <span slot="title"><a-icon type="setting" /><span>Navigation Four</span></span>
         <o-menu-item key="7">
           Option 7
@@ -62,7 +62,7 @@ Show the dynamic switching mode (between 'inline' and 'vertical').
         <o-menu-item key="10">
           Option 10
         </o-menu-item>
-      </a-sub-menu>
+      </o-sub-menu>
     </o-menu>
   </div>
 </template>

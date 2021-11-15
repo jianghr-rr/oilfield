@@ -18,6 +18,10 @@ import NProgress from 'nprogress';
 import TopAd from './top_ad';
 import GoogleAds from './GoogleAds';
 
+import moment from 'moment';
+import 'moment/locale/zh-cn';
+moment.locale('zh-cn');
+
 const docsList = [];
 
 const isGitee = window.location.host.indexOf('gitee.io') > -1;
@@ -136,14 +140,14 @@ export default {
       const lis = [];
       currentSubMenu.forEach(({ cnTitle, usTitle, id }, index) => {
         const title = isCN ? cnTitle : usTitle;
-        lis.push(<a-anchor-link key={id + index} href={`#${id}`} title={title} />);
+        lis.push(<o-anchor-link key={id + index} href={`#${id}`} title={title} />);
       });
       const showApi = this.$route.path.indexOf('/components/') !== -1;
       return (
-        <a-anchor offsetTop={100} class="demo-anchor">
+        <o-anchor offsetTop={100} class="demo-anchor">
           {lis}
-          {showApi ? <a-anchor-link key="API" title="API" href="#API" /> : ''}
-        </a-anchor>
+          {showApi ? <o-anchor-link key="API" title="API" href="#API" /> : ''}
+        </o-anchor>
       );
     },
     getDocsMenu(isCN, pagesKey) {
@@ -153,7 +157,6 @@ export default {
         pagesKey.push({ name: k, url: `/docs/vue/${k}/`, title: isCN ? title : enTitle });
         docsMenu.push(<router-link to={`/docs/vue/${k}/`}>{isCN ? title : enTitle}</router-link>);
       });
-      console.log('docsMenu:::', docsMenu);
       return docsMenu;
     },
     resetDocumentTitle(component, name, isCN) {
@@ -262,49 +265,31 @@ export default {
       }
     });
     let locale = zhCN;
-    if (!isCN) {
-      locale = enUS;
-    }
+    // if (!isCN) {
+    //   locale = enUS;
+    // }
     const config = AllDemo[titleMap[reName]];
     this.resetDocumentTitle(config, reName, isCN);
     const { isMobile, $route } = this;
     return (
-      <div class="page-wrapper" style={`--color: ${this.themmeColor}`}>
+      <div class="" style={`--color: ${this.themmeColor}`}>
         <Header searchData={searchData} name={name} />
-        <a-config-provider locale={locale}>
-          <div class="main-wrapper">
-            <a-row>
-              {isMobile ? (
-                <div>123</div>
-              ) : (
-                <a-col
-                  ref="sidebar"
-                  class="site-sidebar main-menu"
-                  xxl={4}
-                  xl={5}
-                  lg={5}
-                  md={6}
-                  sm={8}
-                  xs={12}
-                >
-                  <a-affix>
-                    <section class="main-menu-inner">
-                      <a-affix>
-                        <a-menu
-                          class="aside-container menu-site"
-                          selectedKeys={[name]}
-                          defaultOpenKeys={[defaultOpenKey]}
-                          inlineIndent={40}
-                          mode="inline"
-                        >
-                          {MenuGroup}
-                        </a-menu>
-                      </a-affix>
-                    </section>
-                  </a-affix>
-                </a-col>
-              )}
-              <a-col xxl={20} xl={19} lg={19} md={18} sm={24} xs={24}>
+        <o-config-provider locale={locale}>
+          <div class="layout">
+            <div class="layout-left">
+                <o-affix style={'height: 100%, overflow: auto'}>
+                  <a-menu
+                    class="aside-container menu-site"
+                    selectedKeys={[name]}
+                    defaultOpenKeys={[defaultOpenKey]}
+                    inlineIndent={40}
+                    mode="inline"
+                  >
+                    {MenuGroup}
+                  </a-menu>
+                </o-affix>
+              </div>
+              <div class="layout-right layout-right-doc">
                 <section class="main-container main-container-component">
                   <TopAd isCN={isCN} />
                   {showAd ? <GeektimeAds isMobile={isMobile} /> : null}
@@ -366,11 +351,9 @@ export default {
                     ''
                   )}
                 </section>
-              </a-col>
-            </a-row>
+              </div>
           </div>
-        </a-config-provider>
-
+          </o-config-provider>
         <Footer ref="footer" isCN={isCN} />
       </div>
     );
@@ -379,7 +362,14 @@ export default {
 </script>
 
 <style lang="less" scope>
-  .main-menu-inner {
+  // .main-menu {
+  //   width: 300px;
+  // }
+  .layout {
+    padding: 40px 0;
+    display: flex;
+  }
+  .layout-left {
     box-shadow: 1px -2px 4px 0px #F2F2F2;
 
     .ant-menu{
@@ -473,4 +463,112 @@ export default {
       // box-shadow: 0px 0px -3px 0px #F2F2F2;
     }
   }
+  .layout-right {
+    flex: 1;
+    margin: 0 200px 0 60px;
+    padding: 8px 0 0 0;
+    .main-container {
+      margin: 0;
+      padding: 0;
+    }
+  }
+  .layout-right-doc * {
+    font-family: Avenir, 'Helvetica Neue', Arial, Helvetica, sans-serif !important;
+  }
+  // .main-menu-inner {
+  //   box-shadow: 1px -2px 4px 0px #F2F2F2;
+  //   height: 100%;
+  //   overflow: auto;
+  //   background: #FFFFFF;
+  //   .ant-menu{
+  //     background: none;
+  //   }
+
+  //   .ant-menu-inline, .ant-menu-vertical, .ant-menu-vertical-left {
+  //     border: none;
+  //   }
+
+  //   .ant-menu-inline > .ant-menu-submenu > .ant-menu-submenu-title,
+  //   .ant-menu-sub.ant-menu-inline > .ant-menu-item,
+  //   .ant-menu-vertical > .ant-menu-item,
+  //   .ant-menu-inline > .ant-menu-item {
+  //     height: 60px;
+  //     line-height: 60px;
+  //     padding-left: 60px !important;
+  //   }
+  //   .ant-menu-sub.ant-menu-inline > .ant-menu-item {
+  //     margin: 0;
+  //     padding-left: 80px !important;
+  //     & * {
+  //       font-size: 12px;
+  //     }
+  //   }
+  //   .ant-menu-submenu-inline > .ant-menu-submenu-title .ant-menu-submenu-arrow {
+  //     right: 20px;
+  //   }
+  //   .ant-menu-submenu-inline > .ant-menu-submenu-title .ant-menu-submenu-arrow::before,
+  //   .ant-menu-submenu-inline > .ant-menu-submenu-title .ant-menu-submenu-arrow::after {
+  //     width: 6px;
+  //   }
+  //   .ant-menu:not(.ant-menu-horizontal) > .ant-menu-item-selected {
+  //     background: none;
+  //     // color: #990F0F;
+  //     position: relative;
+  //     &::before {
+  //       content: ' ';
+  //       width: 100%;
+  //       position: absolute;
+  //       bottom: 0;
+  //       left: 0;
+  //       border-bottom: 2px solid var(--color);
+  //     }
+  //     &::after {
+  //       display: none;
+  //     }
+  //   }
+  //   .ant-menu:not(.ant-menu-horizontal) .ant-menu-sub .ant-menu-item-selected {
+  //     background: none;
+  //     position: relative;
+  //     &::before {
+  //       content: ' ';
+  //       width: 100%;
+  //       position: absolute;
+  //       bottom: 0;
+  //       left: 80px;
+  //       border-bottom: 2px solid var(--color);
+  //     }
+  //     &::after {
+  //       display: none;
+  //     }
+  //   }
+  //   // .ant-menu-item:hover,
+  //   // .ant-menu-item-active,
+  //   // .ant-menu:not(.ant-menu-inline) .ant-menu-submenu-open,
+  //   // .ant-menu-submenu-active, .ant-menu-submenu-title:hover {
+  //   //   color: #990F0F;
+  //   // }
+  //   .ant-menu-sub.ant-menu-inline {
+  //     position: relative;
+  //     padding: 2px 0;
+  //     &::before {
+  //       content: ' ';
+  //       width: 100%;
+  //       height: 3px;
+  //       position: absolute;
+  //       top: 0;
+  //       left: 0;
+  //       box-shadow: inset 0px 15px 10px -15px #F2F2F2;
+  //     }
+  //     &::after {
+  //       content: ' ';
+  //       width: 100%;
+  //       height: 3px;
+  //       position: absolute;
+  //       bottom: 0;
+  //       left: 0;
+  //       box-shadow: inset 0px -5px 10px -3px #F2F2F2;
+  //     }
+  //     // box-shadow: 0px 0px -3px 0px #F2F2F2;
+  //   }
+  // }
 </style>

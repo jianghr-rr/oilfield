@@ -10,17 +10,14 @@
 
 ```vue
 <template>
-  <o-card title="Card title">
-    <p style="fontSize: 14px;color: rgba(0, 0, 0, 0.85); marginBottom: 16px;fontWeight: 500">
-      Group title
-    </p>
-    <o-card title="Inner card title">
-      <a slot="extra" href="#">More</a>
-      Inner Card content
+  <o-card title="卡片名称">
+    <o-card title="内部卡片 1">
+      <a slot="extra" href="#">操作按钮</a>
+      卡片内容 1
     </o-card>
-    <o-card title="Inner card title" :style="{ marginTop: '16px' }">
-      <a slot="extra" href="#">More</a>
-      Inner Card content
+    <o-card title="内部卡片 1" :style="{ marginTop: '16px' }">
+      <a slot="extra" href="#">操作按钮</a>
+      卡片内容 1
     </o-card>
   </o-card>
 </template>

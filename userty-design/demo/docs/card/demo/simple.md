@@ -11,9 +11,9 @@ A simple card only containing a content area.
 ```vue
 <template>
   <o-card style="width: 300px">
-    <p>Card content</p>
-    <p>Card content</p>
-    <p>Card content</p>
+    <p>列表内容 1</p>
+    <p>列表内容 2</p>
+    <p>列表内容 3</p>
   </o-card>
 </template>
 ```

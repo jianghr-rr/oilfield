@@ -1,5 +1,10 @@
 .steps-vertical() {
   display: block;
+  .@{steps-prefix-cls}-item-container {
+    &::after {
+      display: none;
+    }
+  }
   .@{steps-prefix-cls}-item {
     display: block;
     overflow: visible;
@@ -28,7 +33,7 @@
     left: 16px;
     width: 1px;
     height: 100%;
-    padding: @steps-icon-size + 6px 0 6px;
+    padding: @steps-icon-size 0 0 0;
     &::after {
       width: 1px;
       height: 100%;
@@ -55,7 +60,7 @@
       position: absolute;
       top: 0;
       left: 12px;
-      padding: @steps-small-icon-size + 6px 0 6px;
+      padding: @steps-small-icon-size 0 0 0;
     }
     .@{steps-prefix-cls}-item-title {
       line-height: @steps-small-icon-size;

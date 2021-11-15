@@ -18,58 +18,58 @@ Vertical menu with inline submenus.
       mode="inline"
       @click="handleClick"
     >
-      <a-sub-menu key="sub1" @titleClick="titleClick">
-        <span slot="title"><a-icon type="mail" /><span>Navigation One</span></span>
+      <o-sub-menu key="sub1" @titleClick="titleClick">
+        <span slot="title"><o-icon type="mail" /><span>分组 1</span></span>
         <o-menu-item-group key="g1">
-          <template slot="title"> <a-icon type="qq" /><span>Item 1</span> </template>
+          <template slot="title"><span>Item 1</span> </template>
           <o-menu-item key="1">
-            Option 1
+            选择 1
           </o-menu-item>
           <o-menu-item key="2">
-            Option 2
+            选择 2
           </o-menu-item>
         </o-menu-item-group>
         <o-menu-item-group key="g2" title="Item 2">
           <o-menu-item key="3">
-            Option 3
+            选择 3
           </o-menu-item>
           <o-menu-item key="4">
-            Option 4
+            选择 4
           </o-menu-item>
         </o-menu-item-group>
-      </a-sub-menu>
-      <a-sub-menu key="sub2" @titleClick="titleClick">
-        <span slot="title"><a-icon type="appstore" /><span>Navigation Two</span></span>
+      </o-sub-menu>
+      <o-sub-menu key="sub2" @titleClick="titleClick">
+        <span slot="title"><o-icon type="appstore" /><span>分组 2</span></span>
         <o-menu-item key="5">
-          Option 5
+          选择 5
         </o-menu-item>
         <o-menu-item key="6">
-          Option 6
+          选择 6
         </o-menu-item>
-        <a-sub-menu key="sub3" title="Submenu">
+        <o-sub-menu key="sub3" title="Submenu">
           <o-menu-item key="7">
-            Option 7
+            选择 7
           </o-menu-item>
           <o-menu-item key="8">
-            Option 8
+            选择 8
           </o-menu-item>
-        </a-sub-menu>
-      </a-sub-menu>
-      <a-sub-menu key="sub4">
-        <span slot="title"><a-icon type="setting" /><span>Navigation Three</span></span>
+        </o-sub-menu>
+      </o-sub-menu>
+      <o-sub-menu key="sub4">
+        <span slot="title"><o-icon type="setting" /><span>分组 3</span></span>
         <o-menu-item key="9">
-          Option 9
+          选择 9
         </o-menu-item>
         <o-menu-item key="10">
-          Option 10
+          选择 10
         </o-menu-item>
         <o-menu-item key="11">
-          Option 11
+          选择 11
         </o-menu-item>
         <o-menu-item key="12">
-          Option 12
+          选择 12
         </o-menu-item>
-      </a-sub-menu>
+      </o-sub-menu>
     </o-menu>
   </div>
 </template>

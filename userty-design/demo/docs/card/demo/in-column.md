@@ -13,18 +13,18 @@
   <div style="background-color: #ececec; padding: 20px;">
     <a-row :gutter="16">
       <a-col :span="8">
-        <o-card title="Card title" :bordered="false">
-          <p>card content</p>
+        <o-card title="卡片名称" :bordered="false">
+          <p>卡片内容</p>
         </o-card>
       </a-col>
       <a-col :span="8">
-        <o-card title="Card title" :bordered="false">
-          <p>card content</p>
+        <o-card title="卡片名称" :bordered="false">
+          <p>卡片内容</p>
         </o-card>
       </a-col>
       <a-col :span="8">
-        <o-card title="Card title" :bordered="false">
-          <p>card content</p>
+        <o-card title="卡片名称" :bordered="false">
+          <p>卡片内容</p>
         </o-card>
       </a-col>
     </a-row>

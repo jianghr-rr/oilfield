@@ -42,9 +42,7 @@ export default {
         <demo-sort>
           <Basic />
           <Half />
-          <Text />
           <Disabled />
-          <Clear />
           <Character />
         </demo-sort>
         <api>

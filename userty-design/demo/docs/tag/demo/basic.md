@@ -11,13 +11,10 @@ Usage of basic Tag, and it could be closable by set `closable` property. Closabl
 ```vue
 <template>
   <div>
-    <o-tag>Tag 1</o-tag>
-    <o-tag><a href="https://github.com/vueComponent/ant-design">Link</a></o-tag>
+    <o-tag>标签 1</o-tag>
+    <o-tag><a href="https://baidu.com">链接标签</a></o-tag>
     <o-tag closable @close="log">
-      Tag 2
-    </o-tag>
-    <o-tag closable @close="preventDefault">
-      Prevent Default
+      可关闭标签
     </o-tag>
   </div>
 </template>

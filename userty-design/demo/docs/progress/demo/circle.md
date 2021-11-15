@@ -11,9 +11,14 @@ A circular progress bar.
 ```vue
 <template>
   <div>
-    <o-progress type="circle" :percent="75" />
-    <o-progress type="circle" :percent="70" status="exception" />
-    <o-progress type="circle" :percent="100" />
+    <o-progress type="circle" :percent="75" strokeColor="#990F0F" />
+    <o-progress type="circle" :percent="70" status="exception" strokeColor="#F27F0C" >
+      <template #format="percent">
+        <span style="color: #F27F0C;fontSize: 20px">X</span>
+      </template>
+    </o-progress>
+    <o-progress type="circle" :percent="100" strokeColor="#258006" >
+    </o-progress>
   </div>
 </template>
 <style scoped>

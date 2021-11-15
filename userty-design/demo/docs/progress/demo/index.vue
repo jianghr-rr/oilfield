@@ -44,15 +44,8 @@ export default {
         <demo-sort>
           <Line />
           <Circle />
-          <LineMini />
-          <CircleMini />
-          <CircleDynamic />
           <Format />
-          <Dynamic />
           <Dashboard />
-          <Segment />
-          <Linecap />
-          <GradientLine />
         </demo-sort>
         <api>
           <template slot="cn">

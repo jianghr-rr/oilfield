@@ -36,9 +36,6 @@ export default {
           <Basic />
           <Color />
           <Pending />
-          <Custom />
-          <Alternate />
-          <Right />
         </demo-sort>
         <api>
           <template slot="cn">

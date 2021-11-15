@@ -32,26 +32,26 @@ export default {
       switch (value.date()) {
         case 8:
           listData = [
-            { type: 'warning', content: 'This is warning event.' },
-            { type: 'success', content: 'This is usual event.' },
+            { type: 'warning', content: '编写《设计规范》' },
+            { type: 'success', content: '组件各个模块设计...' },
           ];
           break;
         case 10:
-          listData = [
-            { type: 'warning', content: 'This is warning event.' },
-            { type: 'success', content: 'This is usual event.' },
-            { type: 'error', content: 'This is error event.' },
-          ];
+          // listData = [
+          //   { type: 'warning', content: 'This is warning event.' },
+          //   { type: 'success', content: 'This is usual event.' },
+          //   { type: 'error', content: 'This is error event.' },
+          // ];
           break;
         case 15:
-          listData = [
-            { type: 'warning', content: 'This is warning event' },
-            { type: 'success', content: 'This is very long usual event。。....' },
-            { type: 'error', content: 'This is error event 1.' },
-            { type: 'error', content: 'This is error event 2.' },
-            { type: 'error', content: 'This is error event 3.' },
-            { type: 'error', content: 'This is error event 4.' },
-          ];
+          // listData = [
+          //   { type: 'warning', content: 'This is warning event' },
+          //   { type: 'success', content: 'This is very long usual event。。....' },
+          //   { type: 'error', content: 'This is error event 1.' },
+          //   { type: 'error', content: 'This is error event 2.' },
+          //   { type: 'error', content: 'This is error event 3.' },
+          //   { type: 'error', content: 'This is error event 4.' },
+          // ];
           break;
         default:
       }

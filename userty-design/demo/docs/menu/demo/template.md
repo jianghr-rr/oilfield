@@ -1,13 +1,13 @@
 <cn>
 #### 单文件递归菜单
 使用单文件方式递归生成菜单。
-Before v2.0, 因组件内部会动态更改`a-sub-menu`的属性，如果拆分成单文件，无法将属性挂载到`a-sub-menu`上，你需要自行声明属性并挂载。为了方便，避免属性的声明，我们推荐使用函数式组件。
+Before v2.0, 因组件内部会动态更改`o-sub-menu`的属性，如果拆分成单文件，无法将属性挂载到`o-sub-menu`上，你需要自行声明属性并挂载。为了方便，避免属性的声明，我们推荐使用函数式组件。
 </cn>
 
 <us>
 #### Single file recursive menu
 Use the single file method to recursively generate menus.
-Before v2.0,  The properties of `a-sub-menu` are dynamically changed inside the component. If you split the file into a single file and you cannot mount the `props` to `a-sub-menu`, you need to declare the `props` and mount it yourself. For convenience, to avoid the declaration of attributes, we recommend using functional components.
+Before v2.0,  The properties of `o-sub-menu` are dynamically changed inside the component. If you split the file into a single file and you cannot mount the `props` to `o-sub-menu`, you need to declare the `props` and mount it yourself. For convenience, to avoid the declaration of attributes, we recommend using functional components.
 </us>
 
 ```vue
@@ -37,7 +37,7 @@ Before v2.0,  The properties of `a-sub-menu` are dynamically changed inside the 
 <script>
 // recommend use functional component
 // <template functional>
-//   <a-sub-menu :key="props.menuInfo.key">
+//   <o-sub-menu :key="props.menuInfo.key">
 //     <span slot="title">
 //       <a-icon type="mail" /><span>{{ props.menuInfo.title }}</span>
 //     </span>
@@ -48,7 +48,7 @@ Before v2.0,  The properties of `a-sub-menu` are dynamically changed inside the 
 //       </o-menu-item>
 //       <sub-menu v-else :key="item.key" :menu-info="item" />
 //     </template>
-//   </a-sub-menu>
+//   </o-sub-menu>
 // </template>
 // export default {
 //   props: ['menuInfo'],
@@ -56,7 +56,7 @@ Before v2.0,  The properties of `a-sub-menu` are dynamically changed inside the 
 import { Menu } from 'ant-design-vue';
 const SubMenu = {
   template: `
-      <a-sub-menu :key="menuInfo.key" v-bind="$props" v-on="$listeners">
+      <o-sub-menu :key="menuInfo.key" v-bind="$props" v-on="$listeners">
         <span slot="title">
           <a-icon type="mail" /><span>{{ menuInfo.title }}</span>
         </span>
@@ -67,7 +67,7 @@ const SubMenu = {
           </o-menu-item>
           <sub-menu v-else :key="item.key" :menu-info="item" />
         </template>
-      </a-sub-menu>
+      </o-sub-menu>
     `,
   name: 'SubMenu',
   // must add isSubMenu: true

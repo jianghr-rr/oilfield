@@ -11,9 +11,9 @@ By setting like this: `<Steps size="small">`, you can get a mini version.
 ```vue
 <template>
   <o-steps :current="1" size="small">
-    <o-step title="Finished" />
-    <o-step title="In Progress" />
-    <o-step title="Waiting" />
+    <o-step title="已完成" />
+    <o-step title="进行中" />
+    <o-step title="等待中" />
   </o-steps>
 </template>
 ```

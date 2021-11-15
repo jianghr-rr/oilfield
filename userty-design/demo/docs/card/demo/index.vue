@@ -40,14 +40,12 @@ export default {
         <md cn={md.cn} us={md.us} />
         <demo-sort>
           <Basic />
-          <BorderLess />
+          <Simple />
           <FlexibleContent />
-          <GridCard />
-          <InColumn />
           <Inner />
           <Loading />
-          <Meta />
-          <Simple />
+          <InColumn />
+          <GridCard />
           <Tabs />
         </demo-sort>
         <api>
