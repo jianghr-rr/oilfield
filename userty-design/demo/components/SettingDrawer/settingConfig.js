@@ -7,14 +7,14 @@ import themeColor from './themeColor.js'
 const colorList = [
     {
       key: 'red', color: '#990F0F'
-    }
+    },
   // {
   //   key: '薄暮', color: '#F5222D'
   //   key: '薄暮', color: '#F5222D'
   // },
-  // {
-  //   key: '火山', color: '#FA541C'
-  // },
+    {
+      key: '火山', color: '#FA541C'
+    },
   // {
   //   key: '日暮', color: '#FAAD14'
   // },
