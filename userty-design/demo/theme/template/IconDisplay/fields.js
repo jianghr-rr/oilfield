@@ -1,4 +1,5 @@
-import manifest from '@ant-design/icons/lib/manifest';
+import manifest from './displayManifest';
+import {fillIcons} from './icons';
 
 let allIcons = [];
 Object.keys(manifest).forEach(theme => {
@@ -11,6 +12,7 @@ allIcons = allIcons.filter(name => !['interation', 'canlendar', 'colum-height'].
 const categories = {
   all: [...new Set(allIcons)],
   direction: [
+    ...fillIcons,
     'step-backward',
     'step-forward',
     'fast-backward',

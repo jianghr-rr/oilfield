@@ -1,11 +1,9 @@
-import manifest from '@ant-design/icons/lib/manifest';
+import manifest from './displayManifest';
 import Category from './Category';
 import { FilledIcon, OutlinedIcon, TwoToneIcon } from './themeIcons';
 import categories from './fields';
 import { Radio } from '../../../node_modules/ant-design-vue';
 // import 'ant-design-vue/es/radio/style';
-
-console.log('Radio:::', Radio);
 
 const IconDisplay = {
   cagetories: categories,
