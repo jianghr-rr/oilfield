@@ -41,9 +41,9 @@ if (fs.existsSync(path.join(__dirname, '../dist'))) {
 
     // Build less entry file: dist/antd.less
     fs.writeFileSync(
-      path.join(process.cwd(), 'dist', 'antd.less'),
+      path.join(process.cwd(), 'dist', 'oui.less'),
       '@import "../lib/style/index.less";\n@import "../lib/style/components.less";',
     );
   });
-  console.log('Built a entry less file to dist/antd.less');
+  console.log('Built a entry less file to dist/oui.less');
 }
