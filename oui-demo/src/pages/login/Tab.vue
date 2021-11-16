@@ -1,8 +1,7 @@
 <template>
     <div class="oil-tab">
         <div
-            v-for="(item, index) in tabs"
-            v-if="!item.hidden"
+            v-for="(item, index) in tabList"
             :class="['oil-tab-item', controlIndex === index ? 'selected' : '']"
             :key="item.value"
             @click="$emit('update:controlIndex', index)"
@@ -14,6 +13,9 @@
 </template>
 
 <script>
+
+import {mapState} from 'vuex'
+
 export default {
     name: 'Tab',
     props: {
@@ -24,9 +26,12 @@ export default {
         tabs: Array
     },
     computed: {
-        color() {
-            return this.$store.getters.color;
-        }
+        tabList() {
+            return this.tabs.filter(({hidden}) => !hidden);
+        },
+        ...mapState({
+            color: state => state.setting.theme.color
+        })
     }
 }
 </script>
@@ -34,10 +39,11 @@ export default {
 <style lang="less">
     .oil-tab{
         width: 316px;
-        height: 78px;
+        height: 70px;
         display: flex;
         position: relative;
         margin-bottom: 20px;
+        border-bottom: 1px solid #ccc;
         &-item{
             flex: 1;
             display: flex;
@@ -55,7 +61,7 @@ export default {
             width: 50%;
             height: 2px;
             position: absolute;
-            bottom: 0;
+            bottom: -1px;
             left: 0;
             transition: left .1s linear;
         }

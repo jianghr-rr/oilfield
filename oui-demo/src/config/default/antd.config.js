@@ -1,10 +1,10 @@
 // antd 配置
 const ANTD = {
   primary: {
-    color: '#1890ff',
+    color: '#990F0F',
     warning: '#faad14',
     success: '#52c41a',
-    error: '#f5222d',
+    error: '#990F0F',
     light: {
       menuColors: ['#000c17', '#001529', '#002140']
     },

@@ -1,6 +1,6 @@
 // admin 配置
 const ADMIN = {
-  palettes: ['#f5222d', '#fa541c', '#fadb14', '#3eaf7c', '#13c2c2', '#1890ff', '#722ed1', '#eb2f96'],
+  palettes: ['#990F0F', '#001D73', '#0060E5', '#99DDFF'],
   animates: require('./animate.config').preset,
   theme: {
     mode: {

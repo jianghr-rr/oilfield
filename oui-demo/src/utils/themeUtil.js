@@ -21,9 +21,7 @@ function getThemeColors(color, $theme) {
 }
 
 function changeThemeColor(newColor, $theme) {
-  const newColors = getThemeColors(newColor, $theme);
-  console.log('newColors: ', newColors);
-  let promise = client.changer.changeColor({newColors})
+  let promise = client.changer.changeColor({newColors: getThemeColors(newColor, $theme)})
   return promise
 }
 
