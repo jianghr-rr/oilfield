@@ -82,6 +82,7 @@ export default {
         }
     },
     computed: {
+         ...mapState('setting', ['systemName']),
          ...mapState({
             color: state => state.setting.theme.color
         })

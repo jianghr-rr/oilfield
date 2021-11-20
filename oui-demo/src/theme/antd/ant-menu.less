@@ -1,3 +1,58 @@
 .ant-menu-inline-collapsed-tooltip a{
   color: @text-color-inverse;
 }
+.ant-menu-vertical .ant-menu-item::after,
+.ant-menu-vertical-left .ant-menu-item::after,
+.ant-menu-vertical-right .ant-menu-item::after,
+.ant-menu-inline .ant-menu-item::after{
+  display: none;
+}
+.ant-menu-item > a{
+  display: block;
+  height: 60px;
+  position: relative;
+}
+.ant-menu-submenu-title,
+.ant-menu-sub.ant-menu-inline > .ant-menu-item{
+  height: 60px !important;
+  line-height: 60px !important;
+  padding-left: 60px !important;
+}
+.ant-menu-sub.ant-menu-inline > .ant-menu-item{
+  padding-left: 80px !important;
+  padding-right: 0 !important;
+}
+.ant-menu-item-selected > a::after{
+  content: "";
+  position: absolute;
+  bottom: 2px;
+  left: 0;
+  right: 0;
+  height: 2px;
+  background-color: @primary-color;
+}
+.ant-menu-item:active, .ant-menu-submenu-title:active,
+.ant-menu:not(.ant-menu-horizontal) .ant-menu-item-selected{
+  background-color: transparent !important;
+}
+.ant-menu-sub{
+  position: relative;
+}
+.ant-menu-sub.ant-menu-inline::before{
+  content: "";
+  width: 100%;
+  height: 3px;
+  position: absolute;
+  top: 0;
+  left: 0;
+  box-shadow: inset 0px 15px 10px -15px #f2f2f2;
+}
+.ant-menu-sub.ant-menu-inline::after{
+  content: "";
+  width: 100%;
+  height: 3px;
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  box-shadow: inset 0px -5px 10px -3px #f2f2f2;
+}
