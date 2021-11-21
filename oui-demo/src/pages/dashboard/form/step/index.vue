@@ -3,7 +3,7 @@
     <p>
        将一个冗长或用户不熟悉的表单任务分成多个步骤，指导用户完成。
     </p>
-    <o-card :hoverable="true" class="card">
+    <o-card class="card">
         <first-step v-if="current === 0" @nextStep="current++" />
         <second-step v-else-if="current === 1" @nextStep="current++" />
         <third-step v-else></third-step>

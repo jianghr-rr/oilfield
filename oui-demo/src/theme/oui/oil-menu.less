@@ -12,8 +12,12 @@
   height: 60px;
   position: relative;
 }
+.ant-menu-sub{
+  position: relative;
+}
 .ant-menu-submenu-title,
 .ant-menu-sub.ant-menu-inline > .ant-menu-item{
+  position: relative;
   height: 60px !important;
   line-height: 60px !important;
   padding-left: 60px !important;
@@ -35,24 +39,21 @@
 .ant-menu:not(.ant-menu-horizontal) .ant-menu-item-selected{
   background-color: transparent !important;
 }
-.ant-menu-sub{
-  position: relative;
-}
-.ant-menu-sub.ant-menu-inline::before{
+.ant-menu-sub::before{
   content: "";
   width: 100%;
   height: 3px;
   position: absolute;
   top: 0;
   left: 0;
-  box-shadow: inset 0px 15px 10px -15px #f2f2f2;
+  box-shadow: inset 0px 15px 10px -15px @shadow-shallow-color;
 }
-.ant-menu-sub.ant-menu-inline::after{
+.ant-menu-sub::after{
   content: "";
   width: 100%;
   height: 3px;
   position: absolute;
   bottom: 0;
   left: 0;
-  box-shadow: inset 0px -5px 10px -3px #f2f2f2;
+  box-shadow: inset 0px -5px 10px -3px @shadow-shallow-color;
 }

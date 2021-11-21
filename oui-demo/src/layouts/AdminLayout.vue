@@ -7,31 +7,31 @@
       :collapsed="collapsed"
       @toggleCollapse="toggleCollapse"
     />
-    <o-layout :class="['admin-layout', 'beauty-scroll']">
-      <drawer v-if="isMobile" v-model="drawerOpen">
-        <side-menu
-          :theme="theme.mode"
-          :menuData="menuData"
-          :collapsed="false"
-          :collapsible="false"
-          @menuSelect="onMenuSelect"
-        />
-      </drawer>
+    <drawer v-if="isMobile" v-model="drawerOpen">
       <side-menu
-        :class="[fixedSideBar ? 'fixed-side' : '']"
         :theme="theme.mode"
-        v-else-if="layout === 'side' || layout === 'mix'"
-        :menuData="sideMenuData"
-        :collapsed="collapsed"
-        :collapsible="true"
+        :menuData="menuData"
+        :collapsed="false"
+        :collapsible="false"
+        @menuSelect="onMenuSelect"
       />
+    </drawer>
+    <side-menu
+      :class="[fixedSideBar ? 'fixed-side' : '']"
+      :theme="theme.mode"
+      v-else-if="layout === 'side' || layout === 'mix'"
+      :menuData="sideMenuData"
+      :collapsed="collapsed"
+      :collapsible="true"
+    />
+    <o-layout :class="['admin-layout', 'beauty-scroll']">
       <drawer v-if="!hideSetting" v-model="showSetting" placement="right">
         <div class="setting" slot="handler">
           <o-icon :type="showSetting ? 'close' : 'setting'" />
         </div>
         <setting />
       </drawer>
-      <o-layout class="admin-layout-main beauty-scroll">
+      <o-layout id="layoutContainer" class="admin-layout-main beauty-scroll">
         <o-layout-content class="admin-layout-content" :style="`min-height: ${minHeight}px;`">
           <div style="position: relative">
             <slot></slot>
@@ -136,14 +136,16 @@ export default {
 </script>
 
 <style lang="less" scoped>
+.fixed-side {
+  position: sticky;
+  top: 0px;
+  bottom: 0;
+  float: left;
+  margin-top: 40px;
+}
 .admin-layout {
   margin-top: 40px;
-  background: #FFF;
-  .side-menu {
-    &.fixed-side {
-    
-    }
-  }
+  // background: #FFF;
   .virtual-side {
     transition: all 0.2s;
   }
@@ -167,9 +169,8 @@ export default {
     }
   }
   .admin-layout-content {
-    padding: 24px 64px 0 64px;
-    /*overflow-x: hidden;*/
-    /*min-height: calc(100vh - 64px - 122px);*/
+    padding: 24px 64px 40px 64px;
+    box-shadow: inset 2px -2px 8px @shadow-shallow-color;
   }
   .setting {
     background-color: @primary-color;

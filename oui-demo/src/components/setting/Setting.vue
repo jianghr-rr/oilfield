@@ -117,7 +117,7 @@ export default {
     width: 300px;
     min-height: 100%;
     background-color: @base-bg-color;
-    padding: 50px 24px 24px 24px;
+    padding: 24px;
     font-size: 14px;
     line-height: 1.5;
     word-wrap: break-word;

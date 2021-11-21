@@ -53,7 +53,7 @@ export default {
             font-weight: 400;
             font-style: normal;
             font-size: 14px;
-            color: #555555;
+            color: @text-color;
             user-select: none;
             cursor: pointer;
         }

@@ -28,7 +28,7 @@ export default {
         height: 88px;
         box-sizing: border-box;
         padding: 0 30px;
-        box-shadow: 0 2px 8px #f0f1f2;
+        box-shadow: 0 2px 8px @shadow-shallow-color;
         img {
             width: 40px;
             height: 40px;

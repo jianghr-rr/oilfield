@@ -8,7 +8,7 @@
       :dataSource="dataSource"
     >
       <o-list-item slot="renderItem" slot-scope="item">
-        <o-card :hoverable="true">
+        <o-card>
           <o-card-meta >
             <div style="margin-bottom: 3px" slot="title">{{item.title}}</div>
             <o-avatar class="card-avatar" slot="avatar" :src="item.avatar" size="large" />

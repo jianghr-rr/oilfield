@@ -168,12 +168,9 @@ export default {
         border-width: 0px;
         width: 376px;
         background: inherit;
-        background-color: rgba(255, 255, 255, 1);
         border: none;
         border-radius: 0px;
-        -moz-box-shadow: 2px 2px 4px rgba(215, 215, 215, 0.345098039215686);
-        -webkit-box-shadow: 2px 2px 4px rgb(215 215 215 / 35%);
-        box-shadow:  0 2px 12px 0 rgba(0, 0, 0, 0.1);
+        box-shadow: 0 2px 12px 0 @shadow-shallow-color;
         box-sizing: border-box;
         padding: 0 30px;
     }
