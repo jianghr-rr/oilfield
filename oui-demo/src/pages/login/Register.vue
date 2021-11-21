@@ -185,13 +185,12 @@ export default {
         .ant-btn {
             width: 100%;
         }
+        .ant-form label{
+            font-size: 12px;
+        }
         .ant-checkbox + span{
             padding-left: 10px;
             color: #aaa;
-        }
-        .ant-checkbox > .ant-checkbox-inner{
-            width: 20px;
-            height: 20px;
         }
         .ant-input-group-addon{
             background-color: #FFF;

@@ -1,14 +1,14 @@
 <template>
   <div>
     <p>
-      XInjiang Userty Design Pro Pro为用户用最小的工作量，无缝接入XInjiang Userty Design Pro界面生态， 提供新疆油田相关系统产品的界面设计、用户体验问题给予的设计方案。
+      XinJiang Userty Design Pro Pro为用户用最小的工作量，无缝接入XinJiang Userty Design Pro界面生态， 提供新疆油田相关系统产品的界面设计、用户体验问题给予的设计方案。
     </p>
     <o-list
       :grid="{gutter: 24, lg: 3, md: 2, sm: 1, xs: 1}"
       :dataSource="dataSource"
     >
       <o-list-item slot="renderItem" slot-scope="item">
-        <o-card class="card-hover">
+        <o-card class="card-hover" :bordered="false">
           <o-card-meta>
             <div style="margin-bottom: 3px" slot="title">{{item.title}}</div>
             <o-avatar class="card-avatar" slot="avatar" :src="item.avatar" size="large" />
@@ -23,7 +23,7 @@
 </template>
 
 <script>
-const titles = ['XInjiang Userty Design Pro', 'Vue', 'React', 'Webpack', 'Angular', 'Bootstrap'];
+const titles = ['XinJiang Userty Design Pro', 'Vue', 'React', 'Webpack', 'Angular', 'Bootstrap'];
 const icons = [
   'https://i.loli.net/2021/11/10/8HVg9aflzD5poGe.png',
   'https://gw.alipayobjects.com/zos/rmsportal/ComBAopevLwENQdKWiIn.png',

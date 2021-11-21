@@ -1,6 +1,6 @@
 <template>
     <div>
-        <o-card style="margin-bottom: 20px;">
+        <o-card style="margin-bottom: 20px;" :bordered="false">
             <search-filters :loading="loading" @onSearch="handleSearch" />
         </o-card>
         <search-list :loading="loading" :dataSource="data" @change="loadList" />

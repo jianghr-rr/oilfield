@@ -4,7 +4,6 @@
             <o-col :span="8">
                 <o-form-item label="项目名称">
                     <o-input
-                        placeholder="请输入项目名称"
                         v-decorator="[
                             'projectName',
                             {
@@ -17,9 +16,11 @@
                 </o-form-item>
             </o-col>
             <o-col :span="8">
-                <o-form-item label="描述">
+                <o-form-item>
+                    <span class="label" slot="label">
+                        <span>描</span><span>述</span>
+                    </span>
                     <o-input
-                        placeholder="请输入描述"
                         v-decorator="[
                             'desc',
                             {
@@ -34,7 +35,6 @@
             <o-col :span="8">
                 <o-form-item label="交接人">
                     <o-input
-                        placeholder="请输入交接人"
                         v-decorator="[
                             'handover',
                             {
@@ -49,9 +49,11 @@
         </o-row>
         <o-row>
             <o-col :span="8">
-                <o-form-item label="状态">
+                <o-form-item>
+                    <span class="label" slot="label">
+                        <span>状</span><span>态</span>
+                    </span>
                     <o-input
-                        placeholder="请输入状态"
                         v-decorator="[
                             'status',
                             {
@@ -66,7 +68,6 @@
             <o-col :span="8">
                 <o-form-item label="交接日期">
                     <o-input
-                        placeholder="请输入交接日期"
                         v-decorator="[
                             'connectDate',
                             {
@@ -81,7 +82,7 @@
             <o-col :span="8">
                 <div style="display: flex;justifyContent: flex-end;margin: 5px;">
                     <o-button style="margin-right: 15px;" @click="handleReset">重置</o-button>
-                    <o-button type="primary" @click="handleSubmit">提交</o-button>
+                    <o-button type="primary">查询</o-button>
                 </div>
             </o-col>
         </o-row>
@@ -97,10 +98,22 @@ const layout = {
 
 export default {
     name: 'other',
+    props: {
+        resetKey: String || null,
+        submitKey: String || null
+    },
     data() {
         return {
             form: null,
             layout
+        }
+    },
+    watch: {
+        resetKey() {
+            this.handleReset();
+        },
+        submitKey() {
+            this.handleSubmit();
         }
     },
     mounted() {
@@ -123,5 +136,15 @@ export default {
 }
 </script>
 
-<style scoped>
+<style lang="less" scoped>
+    @import "../index.less";
+    .label{
+        span{
+            display: inline-block;
+            margin-left: 28px;
+            &:nth-child(1){
+                margin: 0;
+            }
+        }
+    }
 </style>

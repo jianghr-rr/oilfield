@@ -39,7 +39,6 @@ export default {
 <style lang="less">
     .oil-tab{
         width: 316px;
-        height: 70px;
         display: flex;
         position: relative;
         margin-bottom: 20px;
@@ -53,9 +52,13 @@ export default {
             font-weight: 400;
             font-style: normal;
             font-size: 14px;
+            padding: 20px 0;
             color: @text-color;
             user-select: none;
             cursor: pointer;
+            &.selected{
+                color: @primary-color;
+            }
         }
         &-bottomline{
             width: 50%;

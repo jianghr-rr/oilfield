@@ -141,7 +141,7 @@ export default {
     .oil-layout{
         display: flex;
         justify-content: center;
-        column-gap: 300px;
+        column-gap: 310px;
     }
     .oil-img{
         height: 492px;

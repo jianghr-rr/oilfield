@@ -72,7 +72,7 @@
                 </div>
             </div>
             <div class="oil-form-item">
-                <o-checkbox @change="handleRemember">记住登陆状态</o-checkbox>
+                <o-checkbox @change="handleRemember">记住登录状态</o-checkbox>
             </div>
             <o-form-item>
                 <o-button

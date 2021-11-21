@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div class="admin-layout-wrapper">
     <admin-header
       :class="[{ 'fixed-tabs': fixedTabs, 'fixed-header': fixedHeader, 'multi-page': multiPage }]"
       :style="headerStyle"
@@ -136,16 +136,18 @@ export default {
 </script>
 
 <style lang="less" scoped>
+.admin-layout-wrapper{
+  // height: calc(100vh + 120px);
+}
 .fixed-side {
   position: sticky;
   top: 0px;
   bottom: 0;
   float: left;
-  margin-top: 40px;
+  margin-top: 50px;
 }
 .admin-layout {
-  margin-top: 40px;
-  // background: #FFF;
+  margin-top: 50px;
   .virtual-side {
     transition: all 0.2s;
   }
@@ -169,7 +171,7 @@ export default {
     }
   }
   .admin-layout-content {
-    padding: 24px 64px 40px 64px;
+    padding: 24px 64px 160px 64px;
     box-shadow: inset 2px -2px 8px @shadow-shallow-color;
   }
   .setting {

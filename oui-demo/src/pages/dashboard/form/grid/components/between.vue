@@ -31,11 +31,10 @@
                 </o-form-item>
             </o-col>
             <o-col :span="16">
-                <o-row :gutter="16">
+                <o-row :gutter="70">
                     <o-col :span="12">
                         <o-form-item label="详细地址">
                             <o-input
-                                placeholder="请输入详细地址"
                                 v-decorator="[
                                     'address',
                                     {
@@ -50,7 +49,6 @@
                     <o-col :span="12">
                         <o-form-item label="电话">
                             <o-input
-                                placeholder="请输入电话"
                                 v-decorator="[
                                     'tel',
                                     {
@@ -63,11 +61,10 @@
                         </o-form-item>
                     </o-col>
                 </o-row>
-                <o-row :gutter="16">
+                <o-row :gutter="70">
                     <o-col :span="12">
                         <o-form-item label="传真">
                             <o-input
-                                placeholder="请输入传真"
                                 v-decorator="[
                                     'fax',
                                     {
@@ -82,7 +79,6 @@
                     <o-col :span="12">
                         <o-form-item label="网址">
                             <o-input
-                                placeholder="请输入网址"
                                 v-decorator="[
                                     'website',
                                     {
@@ -95,8 +91,8 @@
                         </o-form-item>
                     </o-col>
                 </o-row>
-                <o-form-item label="可替换内容">
-                    <o-textarea rows="4" placeholder="请输入可替换内容"/>
+                <o-form-item label="公司介绍">
+                    <o-textarea :rows="4" />
                 </o-form-item>
             </o-col>
         </o-row>
@@ -115,12 +111,24 @@ const action = 'https://www.mocky.io/v2/5cc8019d300000980a055e76';
 
 export default {
     name: 'between',
+    props: {
+        resetKey: String || null,
+        submitKey: String || null
+    },
     data () {
         return {
             form: null,
             loading: false,
             imageUrl: 'https://i.loli.net/2021/10/23/BXS4msaMvqWlG7H.jpg',
             action
+        }
+    },
+    watch: {
+        resetKey() {
+            this.handleReset();
+        },
+        submitKey() {
+            this.handleSubmit();
         }
     },
     mounted() {
@@ -152,21 +160,31 @@ export default {
                 this.$message.error('Image must smaller than 2MB!');
             }
             return isJpgOrPng && isLt2M;
+        },
+        handleReset() {
+            this.form.resetFields();
+        },
+        handleSubmit() {
+            this.form.validateFields((err, values) => {
+                if (!err) {
+                    console.log('--values--: ', values);
+                }
+            });
         }
     }
 }
 </script>
 
 <style lang="less" scoped>
-    
+    @import "../index.less";
+    .ant-form-item{
+        margin-bottom: 0;
+    }
     .avatar-uploader {
-        .ant-upload {
-            width: 128px;
-            height: 128px;
-        }
+       
         img {
-            width: 108px;
-            height: 108px;
+            width: 96px;
+            height: 96px;
             object-fit: cover;
         }
     }
