@@ -184,6 +184,7 @@ export default {
         }
         .ant-btn {
             width: 100%;
+            height: 60px !important;
         }
         .ant-form label{
             font-size: 12px;
