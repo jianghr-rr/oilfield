@@ -10,9 +10,9 @@ Update content with unique key.
 
 ```vue
 <template>
-  <a-button type="primary" @click="openNotification">
-    Open the notification box
-  </a-button>
+  <o-button type="primary" @click="openNotification">
+    打开通知提醒
+  </o-button>
 </template>
 <script>
 const key = 'updatable';
@@ -21,14 +21,16 @@ export default {
     openNotification() {
       this.$omnotification.open({
         key,
-        message: 'Notification Title',
-        description: 'description.',
+        message: `标题名称`,
+        description:
+          '这是一段文字信息，可以给用户提供通知提醒。这是一段文字信息，可以给用户提供通知提醒。这是一段文字信息，可以给用户提供通知提醒。',
       });
       setTimeout(() => {
         this.$omnotification.open({
           key,
-          message: 'New Title',
-          description: 'New description.',
+          message: `标题名称`,
+          description:
+            '这是一段文字信息，可以给用户提供通知提醒。这是一段文字信息，可以给用户提供通知提醒。这是一段文字信息，可以给用户提供通知提醒。',
         });
       }, 1000);
     },
