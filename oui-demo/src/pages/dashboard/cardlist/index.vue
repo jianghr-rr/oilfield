@@ -4,7 +4,7 @@
       XinJiang Userty Design Pro Pro为用户用最小的工作量，无缝接入XinJiang Userty Design Pro界面生态， 提供新疆油田相关系统产品的界面设计、用户体验问题给予的设计方案。
     </p>
     <o-list
-      :grid="{gutter: 24, lg: 3, md: 2, sm: 1, xs: 1}"
+      :grid="{gutter: [40, 40], lg: 3, md: 2, sm: 1, xs: 1}"
       :dataSource="dataSource"
     >
       <o-list-item slot="renderItem" slot-scope="item">
@@ -15,7 +15,7 @@
             <div class="meto-content" slot="description">{{item.content}}</div>
           </o-card-meta>
           <a slot="actions">操作一</a>
-          <a slot="actions">操作一</a>
+          <a slot="actions">操作二</a>
         </o-card>
       </o-list-item>
     </o-list>
@@ -52,12 +52,18 @@ export default {
 
 <style lang="less" scoped>
   p{
-    margin: 10px 0 20px;
+    margin: 40px 0;
+    font-size: 14px;
+    font-family: Source Han Sans CN;
+    font-weight: 400;
+    color: #333333;
+    line-height: 26px;
   }
   .card-avatar {
-    width: 48px;
-    height: 48px;
+    width: 80px;
+    height: 80px;
     border-radius: 48px;
+    margin-right: 4px;
   }
   .new-btn{
     border-radius: 2px;
@@ -74,6 +80,7 @@ export default {
     -webkit-box-orient: vertical;
   }
   .card-hover{
+    height: 203px;
     &:hover{
       box-shadow: 0 2px 8px rgba(@primary-color, .2);
     }
