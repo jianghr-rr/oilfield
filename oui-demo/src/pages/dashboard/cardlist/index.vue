@@ -8,8 +8,8 @@
       :dataSource="dataSource"
     >
       <o-list-item slot="renderItem" slot-scope="item">
-        <o-card>
-          <o-card-meta >
+        <o-card class="card-hover">
+          <o-card-meta>
             <div style="margin-bottom: 3px" slot="title">{{item.title}}</div>
             <o-avatar class="card-avatar" slot="avatar" :src="item.avatar" size="large" />
             <div class="meto-content" slot="description">{{item.content}}</div>
@@ -72,6 +72,11 @@ export default {
     height: 64px;
     -webkit-line-clamp: 3;
     -webkit-box-orient: vertical;
+  }
+  .card-hover{
+    &:hover{
+      box-shadow: 0 2px 8px rgba(@primary-color, .2);
+    }
   }
 
 </style>
