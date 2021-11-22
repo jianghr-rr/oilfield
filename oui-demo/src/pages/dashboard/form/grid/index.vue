@@ -87,11 +87,11 @@ export default {
         }
     }
     p{
-        margin: 40px 0;
+        margin-bottom: 40px;
         font-size: 14px;
         font-family: Source Han Sans CN;
         font-weight: 400;
-        color: #333333;
+        color: @title-color;
         line-height: 26px;
     }
     .footer{

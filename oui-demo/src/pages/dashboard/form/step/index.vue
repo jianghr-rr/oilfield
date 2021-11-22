@@ -43,7 +43,12 @@ export default {
     margin: 16px auto;
   }
   p{
-      margin: 10px 0 20px;
+    margin-bottom: 40px;
+    font-size: 14px;
+    font-family: Source Han Sans CN;
+    font-weight: 400;
+    color: @title-color;
+    line-height: 26px;
   }
   .card{
     padding-bottom: 50px;

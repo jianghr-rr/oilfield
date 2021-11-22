@@ -27,9 +27,9 @@ export default {
     width: 72%;
     margin: 0 auto;
     .icon{
-      font-size: 72px;
-      line-height: 72px;
-      margin-bottom: 24px;
+      font-size: 120px;
+      line-height: 120px;
+      margin-bottom: 18px;
     }
     .success {
       color: @primary-color;
@@ -38,11 +38,12 @@ export default {
       color: @error-color;
     }
     .title{
-      font-size: 24px;
+      font-size: 26px;
       color: @title-color;
-      font-weight: 500;
-      line-height: 32px;
-      margin-bottom: 16px;
+      font-family: Source Han Sans CN;
+      font-weight: 400;
+      line-height: 26px;
+      margin-bottom: 52px;
     }
     .desc{
       font-size: 14px;
@@ -51,13 +52,15 @@ export default {
       margin-bottom: 24px;
     }
     .action{
-      margin: 25px 0;
+      margin-bottom: 50px;
     }
     .content{
-      background-color: @background-color-light;
-      padding: 24px 40px;
+      background-color: @shadow-shallow-color;
+      padding: 30px;
       border-radius: 2px;
       text-align: left;
+      box-shadow: 0px 0px 9px 1px @shadow-color;
+      border-radius: 4px;
     }
 
   }

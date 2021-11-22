@@ -1,31 +1,37 @@
 <template>
     <o-form :form="form" v-bind="layout">
-        <o-row>
+        <o-row :gutter="70">
             <o-col :span="8">
                 <o-form-item label="项目名称">
-                    <o-input v-decorator="['projectName']" placeholder="请输入项目名称" />
+                    <o-input v-decorator="['projectName']" />
                 </o-form-item>
             </o-col>
             <o-col :span="8">
-                <o-form-item label="描述">
-                    <o-input v-decorator="['desc']" placeholder="请输入描述" />
+                <o-form-item>
+                    <span class="label" slot="label">
+                        <span>描</span><span>述</span>
+                    </span>
+                    <o-input v-decorator="['desc']" />
                 </o-form-item>
             </o-col>
             <o-col :span="8">
                 <o-form-item label="交接人">
-                    <o-input v-decorator="['orderer']" placeholder="请输入交接人" />
+                    <o-input v-decorator="['orderer']" />
                 </o-form-item>
             </o-col>
         </o-row>
-        <o-row>
+        <o-row :gutter="70">
             <o-col :span="8">
-                <o-form-item label="状态">
-                    <o-input v-decorator="['status']" placeholder="请输入状态" />
+                <o-form-item>
+                    <span class="label" slot="label">
+                        <span>状</span><span>态</span>
+                    </span>
+                    <o-input v-decorator="['status']" />
                 </o-form-item>
             </o-col>
             <o-col :span="8">
                 <o-form-item label="交接日期">
-                    <o-range-picker v-decorator="['orderDate']" />
+                    <o-input v-decorator="['orderDate']" />
                 </o-form-item>
             </o-col>
             <o-col :span="8">
@@ -76,3 +82,20 @@ export default {
     }
 }
 </script>
+
+<style lang="less" scoped>
+    input {
+        &.ant-input{
+            height: 40px;
+        }
+    }
+    .label{
+        span{
+            display: inline-block;
+            margin-left: 28px;
+            &:nth-child(1){
+                margin: 0;
+            }
+        }
+    }
+</style>
