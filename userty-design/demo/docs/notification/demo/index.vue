@@ -43,13 +43,9 @@ export default {
         <md cn={md.cn} us={md.us} />
         <demo-sort>
           <Basic />
-          <CustomIcon />
-          <CustomStyle />
-          <Duration />
-          <Placement />
-          <WithBtn />
-          <WithIcon />
           <Update />
+          <WithIcon />
+          <Placement />
         </demo-sort>
         <api>
           <CN slot="cn" />

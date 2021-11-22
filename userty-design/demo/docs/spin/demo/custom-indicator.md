@@ -12,7 +12,7 @@ Use custom loading indicator.
 <template>
   <div>
     <o-spin>
-      <o-icon slot="indicator" type="loading" style="font-size: 24px" spin />
+      <img slot="indicator" type="loading" style="font-size: 24px" spin />
     </o-spin>
     <o-spin :indicator="indicator" />
   </div>

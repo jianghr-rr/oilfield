@@ -11,23 +11,18 @@ A notification box can pop up from `topRight` or `bottomRight` or `bottomLeft` o
 ```vue
 <template>
   <div>
-    <a-button type="primary" @click="openNotification('topLeft')">
-      <a-icon type="radius-upleft" />
-      topLeft
-    </a-button>
-    <a-button type="primary" @click="openNotification('topRight')">
-      <a-icon type="radius-upright" />
-      topRight
-    </a-button>
-    <a-divider />
-    <a-button type="primary" @click="openNotification('bottomLeft')">
-      <a-icon type="radius-bottomleft" />
-      bottomLeft
-    </a-button>
-    <a-button type="primary" @click="openNotification('bottomRight')">
-      <a-icon type="radius-bottomright" />
-      bottomRight
-    </a-button>
+    <o-button @click="openNotification('topLeft')">
+      左上角
+    </o-button>
+    <o-button @click="openNotification('bottomLeft')">
+      左下角
+    </o-button>
+    <o-button @click="openNotification('topRight')">
+      右上角
+    </o-button>
+    <o-button @click="openNotification('bottomRight')">
+      右下角
+    </o-button>
   </div>
 </template>
 <script>
@@ -35,9 +30,9 @@ export default {
   methods: {
     openNotification(placement) {
       this.$omnotification.open({
-        message: `Notification ${placement}`,
+        message: `标题名称`,
         description:
-          'This is the content of the notification. This is the content of the notification. This is the content of the notification.',
+          '这是一段文字信息，可以给用户提供通知提醒。这是一段文字信息，可以给用户提供通知提醒。这是一段文字信息，可以给用户提供通知提醒。',
         placement,
       });
     },

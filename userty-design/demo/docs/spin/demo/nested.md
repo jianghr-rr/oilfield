@@ -11,19 +11,21 @@ Embedding content into `Spin` will alter it into loading state.
 ```vue
 <style scoped>
 .spin-content {
-  border: 1px solid #91d5ff;
-  background-color: #e6f7ff;
+  border: 1px solid #990F0F;
+  background-color: #F5E7E7;
   padding: 30px;
+  margin: 20px 0 0 0;
 }
 </style>
 <template>
   <div>
+    Loading state：<o-switch v-model="spinning" />
+    <br/>
     <o-spin :spinning="spinning">
       <div class="spin-content">
         可以点击‘切换’按钮，控制本区域的spin展示。
       </div>
     </o-spin>
-    Loading state：<o-switch v-model="spinning" />
   </div>
 </template>
 <script>

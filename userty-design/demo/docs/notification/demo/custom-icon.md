@@ -10,9 +10,9 @@ The icon can be customized to any vue node or (h) => vue node.
 
 ```vue
 <template>
-  <a-button type="primary" @click="openNotification">
+  <o-button type="primary" @click="openNotification">
     Open the notification box
-  </a-button>
+  </o-button>
 </template>
 <script>
 export default {
@@ -22,7 +22,7 @@ export default {
         message: 'Notification Title',
         description:
           'This is the content of the notification. This is the content of the notification. This is the content of the notification.',
-        icon: <a-icon type="smile" style="color: #108ee9" />,
+        icon: <o-icon type="smile" style="color: #108ee9" />,
       });
     },
   },

@@ -38,12 +38,9 @@ export default {
         <md cn={md.cn} us={md.us} />
         <demo-sort>
           <Basic />
+          <Nested />
           <Size />
           <Inside />
-          <Nested />
-          <Tip />
-          <DelayAndDebounce />
-          <CustomIndicator />
         </demo-sort>
         <api>
           <template slot="cn">

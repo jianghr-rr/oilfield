@@ -10,9 +10,9 @@ To customize the style or font of the close button.
 
 ```vue
 <template>
-  <a-button type="primary" @click="openNotification">
+  <o-button type="primary" @click="openNotification">
     Open the notification box
-  </a-button>
+  </o-button>
 </template>
 <script>
 const close = () => {
@@ -30,7 +30,7 @@ export default {
           'A function will be be called after the notification is closed (automatically after the "duration" time of manually).',
         btn: h => {
           return h(
-            'a-button',
+            'o-button',
             {
               props: {
                 type: 'primary',

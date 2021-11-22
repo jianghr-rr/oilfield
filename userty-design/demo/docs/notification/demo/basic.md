@@ -10,20 +10,20 @@ The simplest usage that close the notification box after 4.5s.
 
 ```vue
 <template>
-  <a-button type="primary" @click="openNotification">
-    Open the notification box
-  </a-button>
+  <o-button type="primary" @click="openNotification">
+    打开通知提醒
+  </o-button>
 </template>
 <script>
 export default {
   methods: {
     openNotification() {
       this.$omnotification.open({
-        message: 'Notification Title',
+        message: `标题名称`,
         description:
-          'This is the content of the notification. This is the content of the notification. This is the content of the notification.',
+          '这是一段文字信息，可以给用户提供通知提醒。这是一段文字信息，可以给用户提供通知提醒。这是一段文字信息，可以给用户提供通知提醒。',
         onClick: () => {
-          console.log('Notification Clicked!');
+          console.log('点击!');
         },
       });
     },
