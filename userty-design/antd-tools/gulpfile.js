@@ -137,7 +137,7 @@ function compile(modules) {
 
   const source = ['components/**/*.js', 'components/**/*.jsx', '!components/*/__tests__/*'];
   const jsFilesStream = babelify(gulp.src(source), modules);
-  console.log('less', less);
+  // console.log('less', less);
   return merge2([less, jsFilesStream, assets]);
 }
 

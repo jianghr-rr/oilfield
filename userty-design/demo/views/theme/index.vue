@@ -82,7 +82,7 @@ export default {
 </script>
 <style lang="less" scope>
   .layout-theme {
-    padding: 40px 0;
+    padding: 40px 0 120px 0;
     display: flex;
 
     .ant-menu-submenu-title {

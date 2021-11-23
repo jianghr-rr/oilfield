@@ -10,7 +10,7 @@ A basic calendar component with Year/Month switch.
 
 ```vue
 <template>
-  <a-calendar @panelChange="onPanelChange" />
+  <o-calendar @panelChange="onPanelChange" />
 </template>
 <script>
 export default {

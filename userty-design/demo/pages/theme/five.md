@@ -1,3 +1,3 @@
 ```js
-  @import '~ant-design-vue/dist/antd.dark.css';
+  @import 'userty-design/dist/usertyd.dark.css';
 ```

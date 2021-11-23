@@ -3,7 +3,7 @@ img {
 }
 pre > code[class*='lang-'], pre > code[class*='language-'] {
   background: #FAFAFA;
-  padding: 20px;
+  padding: 30px;
 }
 .h1-title-d(@color) {
   font-size: 24px;
@@ -11,15 +11,23 @@ pre > code[class*='lang-'], pre > code[class*='language-'] {
   font-weight: 400;
   color: @color;
   line-height: 42px;
-  margin: 0 0 36px 0;
+  margin: 0 0 31px 0;
 }
 .h2-title-d(@color) {
   font-size: 18px;
   font-family: 'SourceHanSansNormal';
   font-weight: 400;
   color: @color;
-  line-height: 36px;
-  margin: 0 0 20px 0;
+  line-height: 18px;
+  margin: 50px 0 40px 0;
+}
+.h3-title-d(@color) {
+  font-size: 16px;
+  font-family: 'SourceHanSansNormal';
+  font-weight: 400;
+  color: @color;
+  line-height: 16px;
+  margin: 40px 0 40px 0;
 }
 .text-d {
   font-size: 14px;
@@ -28,6 +36,22 @@ pre > code[class*='lang-'], pre > code[class*='language-'] {
   color: #333333;
   line-height: 28px;
   margin: 0 0 30px 0;
+  .i {
+    color: #990F0F;
+  }
+  .i2 {
+    color: #E5B217;
+  }
+  .i-b {
+    display: inline-block;
+    font-size: 12px;
+    height: 16px;
+    line-height: 16px;
+    color: #990F0F;
+    padding: 0 5px;
+    background: #F5E7E7;
+    border-radius: 4px;
+  }
 }
 .text-title-d {
   span {
@@ -46,7 +70,7 @@ pre > code[class*='lang-'], pre > code[class*='language-'] {
 .img-wrap-d {
   text-align: center;
   vertical-align: top;
-  margin: 0 0 36px 0;
+  margin: 0 0 50px 0;
   & > div {
     display: inline-block;
     padding: 0 10px;
@@ -59,7 +83,7 @@ pre > code[class*='lang-'], pre > code[class*='language-'] {
       font-family: 'SourceHanSansNormal';
       font-weight: 400;
       color: #333333;
-      line-height: 42px;
+      line-height: 14px;
     }
   }
 }

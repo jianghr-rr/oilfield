@@ -123,7 +123,10 @@ export default {
       margin: 0;
       padding-left: 80px !important;
       & * {
-        font-size: 12px;
+        font-size: 14px;
+      }
+      & .chinese {
+        font-size: 14px;
       }
     }
     .ant-menu-submenu-inline > .ant-menu-submenu-title .ant-menu-submenu-arrow {

@@ -140,7 +140,6 @@ export default {
     },
     getMonthYearSelections(getPrefixCls) {
       const { prefixCls: customizePrefixCls, type, value } = this.$props;
-
       const prefixCls = getPrefixCls('fullcalendar', customizePrefixCls);
       const yearReactNode = this.getYearSelectElement(prefixCls, value.year());
       const monthReactNode =
