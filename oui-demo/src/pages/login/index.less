@@ -13,10 +13,6 @@
             padding-left: 10px;
             color: #aaa;
         }
-        .icon{
-            opacity: 0.25;
-            font-size: 20px;
-        }
         .oil-input, .ant-btn {
             height: 60px;
             input, .ant-input {
@@ -32,14 +28,21 @@
             display: flex;
             align-items: center;
         }
+        .icon{
+            opacity: 0.25;
+            font-size: 20px;
+        }
+       
         .oil-very{
-            justify-content: space-between;
             &-item{
                 height: 60px;
                 &:nth-child(1) {
+                    display: inline-block;
                     width: 186px;
+                    margin-right: 20px;
                 }
                 &:nth-child(2) {
+                    display: inline-block;
                     width: 110px;
                     box-sizing: border-box;
                     border: 1px solid @shadow-color;
@@ -54,6 +57,8 @@
                     line-height: 60px;
                     user-select: none;
                     cursor: pointer;
+                    position: relative;
+                    top: 4px;
                 }
             }
         }

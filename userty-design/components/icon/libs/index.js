@@ -1,11 +1,203 @@
-export const oclicked = `<svg class="icon" width="200px" height="200.00px" viewBox="0 0 1024 1024" version="1.1" xmlns="http://www.w3.org/2000/svg">
-<path fill="#808080" d="M323.584 233.216l-235.008 235.776-32.512 32.768a15.616 15.616 0 0 0 0 21.76l268.544 267.264a15.616 15.616 0 0 0 21.76 0l32.512-32.768a15.616 15.616 0 0 0 0-21.76L153.6 512l224-224.768a15.104 15.104 0 0 0 0-21.76l-32.256-32.256a15.616 15.616 0 0 0-21.76 0zM700.416 234.496l235.008 235.776 32.512 32.512a15.616 15.616 0 0 1 0 21.76L699.392 792.064a15.616 15.616 0 0 1-21.76 0l-32.512-32.768a15.616 15.616 0 0 1 0-21.76l225.28-224-224-224.768a15.104 15.104 0 0 1 0-21.76l32.512-32.512a15.104 15.104 0 0 1 21.504 0zMNaN NaNmNaN NaNlNaN NaNqNaN NaN NaN NaNlNaN NaNqNaN NaN NaN NaNlNaN NaNqNaN NaN NaN NaNlNaN NaNqNaN NaN NaN NaNZ" />
-</svg>`;
-export const ounclicked = oclicked;
-export const ocopyed = `<svg class="icon" width="200px" height="200.00px" viewBox="0 0 1024 1024" version="1.1" xmlns="http://www.w3.org/2000/svg">
-<path fill="#808080" d="M51.2 971.008m0-15.36l0-737.28q0-15.36 15.36-15.36l71.68 0q15.36 0 15.36 15.36l0 737.28q0 15.36-15.36 15.36l-71.68 0q-15.36 0-15.36-15.36ZM50.944 868.608m15.36 0l737.28 0q15.36 0 15.36 15.36l0 71.68q0 15.36-15.36 15.36l-737.28 0q-15.36 0-15.36-15.36l0-71.68q0-15.36 15.36-15.36ZM818.944 202.752m0 15.36l0 737.28q0 15.36-15.36 15.36l-71.68 0q-15.36 0-15.36-15.36l0-737.28q0-15.36 15.36-15.36l71.68 0q15.36 0 15.36 15.36ZM819.2 305.408m-15.36 0l-737.28 0q-15.36 0-15.36-15.36l0-71.68q0-15.36 15.36-15.36l737.28 0q15.36 0 15.36 15.36l0 71.68q0 15.36-15.36 15.36ZM973.056 53.248m0 15.36l0 737.28q0 15.36-15.36 15.36l-46.08 0q-15.36 0-15.36-15.36l0-737.28q0-15.36 15.36-15.36l46.08 0q15.36 0 15.36 15.36ZM972.8 129.792m-15.36 0l-737.28 0q-15.36 0-15.36-15.36l0-46.08q0-15.36 15.36-15.36l737.28 0q15.36 0 15.36 15.36l0 46.08q0 15.36-15.36 15.36Z" />
-</svg>`;
-export const ouncopyed = ocopyed;
-export const oloading = `<svg class="icon" width="200px" height="200.00px" viewBox="0 0 1024 1024" version="1.1" xmlns="http://www.w3.org/2000/svg">
-<path fill="#808080" d="M934.144 239.616A87.808 87.808 0 0 0 825.344 179.2a89.344 89.344 0 0 0-39.424 25.6l-1.792 2.048-2.56 2.816q-94.976 111.104-189.952 221.44a17.408 17.408 0 0 0-3.072 15.36 16.896 16.896 0 0 0 20.992 11.52h1.28l276.736-113.152a87.808 87.808 0 0 0 46.592-105.216zM960.256 429.056a86.272 86.272 0 0 0-46.08-3.328h-6.4l-283.648 69.632a16.384 16.384 0 0 0-11.264 10.496 16.896 16.896 0 0 0 10.24 21.76h1.536l290.304 70.144a87.808 87.808 0 0 0 45.824-168.96zM921.6 710.144a86.272 86.272 0 0 0-35.328-29.952h-2.56l-3.584-1.536-268.8-112.64a17.408 17.408 0 0 0-15.36 1.792 16.896 16.896 0 0 0-4.352 23.552v1.28L785.664 819.2A87.552 87.552 0 0 0 921.6 710.144zM713.728 870.4l-1.536-2.304a14.592 14.592 0 0 0-2.048-3.328L557.824 614.4a16.896 16.896 0 0 0-30.976 8.704v1.536l23.04 297.984a87.552 87.552 0 0 0 174.592-8.704 88.576 88.576 0 0 0-10.752-43.52zM489.984 622.592a17.408 17.408 0 0 0-6.4-14.08 17.152 17.152 0 0 0-23.808 3.072v1.28q-76.8 128-156.416 254.72a87.808 87.808 0 0 0 146.432 95.744 85.504 85.504 0 0 0 17.408-42.752v-2.816-3.84q11.52-145.92 22.784-291.328zM401.408 496.128h-1.536L109.568 425.472a87.552 87.552 0 0 0-45.824 168.704 86.272 86.272 0 0 0 46.08 3.584h6.4l283.648-68.096a15.872 15.872 0 0 0 11.264-10.496 16.64 16.64 0 0 0-9.728-23.04zM430.08 588.8a17.152 17.152 0 0 0 3.072-15.36 16.64 16.64 0 0 0-20.992-10.24H409.6L134.4 676.864a87.808 87.808 0 1 0 102.4 139.264l1.792-2.048 2.56-3.072L429.824 588.8zM430.592 435.2v-1.28Q332.8 320.768 235.776 206.848a87.808 87.808 0 0 0-136.448 109.568 86.272 86.272 0 0 0 35.328 29.952h2.56l3.584 1.536L409.6 460.8a17.408 17.408 0 0 0 15.36-1.792 16.896 16.896 0 0 0 5.632-23.808zM488.192 401.408Q477.184 252.416 465.408 102.4a87.808 87.808 0 0 0-174.848 8.448 86.528 86.528 0 0 0 11.008 45.056l1.28 2.304 2.048 3.328 153.6 248.832a16.896 16.896 0 0 0 13.568 7.68 17.152 17.152 0 0 0 17.408-16.64s-1.28 0.512-1.28 0zM691.2 42.752a87.808 87.808 0 0 0-123.136 15.872A86.528 86.528 0 0 0 551.424 102.4v6.656q-11.264 145.664-22.784 290.816a16.896 16.896 0 0 0 29.44 9.728 3.328 3.328 0 0 0 0-1.28Q637.44 281.6 716.8 153.6a87.552 87.552 0 0 0-25.6-110.848z" />
-</svg>`;
+import oaligncenter from "./align-center.json";
+import oalignleft from "./align-left.json";
+import oalignright from "./align-right.json";
+import oarrowdown from "./arrow-down.json";
+import oarrowleft from "./arrow-left.json";
+import oarrowright from "./arrow-right.json";
+import oarrowup from "./arrow-up.json";
+import oarrowsaltingtubiao06 from "./arrows-altingtubiao-06.json";
+import obgColors from "./bg-colors.json";
+import obold from "./bold.json";
+import ocaretDown from "./caret-down.json";
+import ocaretLeft from "./caret-left.json";
+import ocaretRight from "./caret-right.json";
+import ocaretup from "./caret-up.json";
+import ocheckcircle from "./check-circle.json";
+import ochecksquare from "./check-square.json";
+import ocheck from "./check.json";
+import oclicked from "./clicked.json";
+import oclosecircle from "./close-circle.json";
+import oclosesquare from "./close-square.json";
+import oclose from "./close.json";
+import ocolumnheight from "./column-height.json";
+import ocolumnwidth from "./column-width.json";
+import ocopy from "./copy.json";
+import ocopyed from "./copyed.json";
+import odaimadianji from "./daima-dianji.json";
+import odaimaweidianji from "./daima-weidianji.json";
+import obash from "./delete.json";
+import odoubleleft from "./double-left.json";
+import odowncircle from "./down-circle.json";
+import odownsquare from "./down-square.json";
+import odown from "./down.json";
+import oedit from "./edit.json";
+import oenter from "./enter.json";
+import oexclamationcircle from "./exclamation-circle.json";
+import oexclamation from "./exclamation.json";
+import ofacebook from "./face-book.json";
+import ofastbackward from "./fast-backward.json";
+import ofastforward from "./fast-forward.json";
+import ofontcolors from "./font-colors.json";
+import ofontsize from "./font-size.json";
+import oform from "./form.json";
+import ofullscreenexit from "./fullscreen-exit.json";
+import ofullscreen from "./fullscreen.json";
+import ofunc from "./function.json";
+import ogenerally from "./generally.json";
+import oinfocircle from "./info-circle.json";
+import oinfo from "./info.json";
+import oinstall from "./install.json";
+import oitalic from "./italic.json";
+import oleftcircle from "./left-circle.json";
+import oleftsquare from "./left-square.json";
+import oleft from "./left.json";
+import olineheight from "./line-height.json";
+import oloading from "./loading.json";
+import omenufold from "./menu-fold.json";
+import omenuunfold from "./menu-unfold.json";
+import ominuscircle from "./minus-circle.json";
+import ominussquare from "./minus-square.json";
+import ominus from "./minus.json";
+import opassword from "./password.json";
+import opiccenter from "./pic-center.json";
+import opicleft from "./pic-left.json";
+import opicright from "./pic-right.json";
+import oplaycircle from "./play-circle.json";
+import opluscircle from "./plus-circle.json";
+import oplussquare from "./plus-square.json";
+import oplus from "./plus.json";
+import oquestioncircle from "./question-circle.json";
+import oquestion from "./question.json";
+import oredo from "./redo.json";
+import oretweet from "./retweet.json";
+import orightcircle from "./right-circle.json";
+import orightsquare from "./right-square.json";
+import oright from "./right.json";
+import osatisfy from "./satisfy.json";
+import oscissor from "./scissor.json";
+import oscore from "./score.json";
+import osearch from "./search.json";
+import oshrink5 from "./shrink5.json";
+import osortascending from "./sort-ascending.json";
+import osortdescending from "./sort-descending.json";
+import ostepbackward from "./step-backward.json";
+import ostepforward from "./step-forward.json";
+import ostop from "./stop.json";
+import otwitterlogo from "./twitter-logo.json";
+import ounderline from "./underline.json";
+import oundo from "./undo.json";
+import oupcircle from "./up-circle.json";
+import oupsquare from "./up-square.json";
+import oup from "./up.json";
+import oupload from "./upload.json";
+import ouser from "./user.json";
+import overticalalignbottom from "./vertical-align-bottom.json";
+import overticalalignmiddle from "./vertical-align-middle.json";
+import overticalaligntop from "./vertical-align-top.json";
+import overysatisfied from "./very-satisfied.json";
+import owarning from "./warning.json";
+import ozoomin from "./zoom-in.json";
+import ozoomout from "./zoom-out.json";
+
+export {
+    oaligncenter,
+    oalignleft,
+    oalignright,
+    oarrowdown,
+    oarrowleft,
+    oarrowright,
+    oarrowup,
+    oarrowsaltingtubiao06,
+    obgColors,
+    obold,
+    ocaretDown,
+    ocaretLeft,
+    ocaretRight,
+    ocaretup,
+    ocheckcircle,
+    ochecksquare,
+    ocheck,
+    oclicked,
+    oclosecircle,
+    oclosesquare,
+    oclose,
+    ocolumnheight,
+    ocolumnwidth,
+    ocopy,
+    ocopyed,
+    odaimadianji,
+    odaimaweidianji,
+    obash,
+    odoubleleft,
+    odowncircle,
+    odownsquare,
+    odown,
+    oedit,
+    oenter,
+    oexclamationcircle,
+    oexclamation,
+    ofacebook,
+    ofastbackward,
+    ofastforward,
+    ofontcolors,
+    ofontsize,
+    oform,
+    ofullscreenexit,
+    ofullscreen,
+    ofunc,
+    ogenerally,
+    oinfocircle,
+    oinfo,
+    oinstall,
+    oitalic,
+    oleftcircle,
+    oleftsquare,
+    oleft,
+    olineheight,
+    oloading,
+    omenufold,
+    omenuunfold,
+    ominuscircle,
+    ominussquare,
+    ominus,
+    opassword,
+    opiccenter,
+    opicleft,
+    opicright,
+    oplaycircle,
+    opluscircle,
+    oplussquare,
+    oplus,
+    oquestioncircle,
+    oquestion,
+    oredo,
+    oretweet,
+    orightcircle,
+    orightsquare,
+    oright,
+    osatisfy,
+    oscissor,
+    oscore,
+    osearch,
+    oshrink5,
+    osortascending,
+    osortdescending,
+    ostepbackward,
+    ostepforward,
+    ostop,
+    otwitterlogo,
+    ounderline,
+    oundo,
+    oupcircle,
+    oupsquare,
+    oup,
+    oupload,
+    ouser,
+    overticalalignbottom,
+    overticalalignmiddle,
+    overticalaligntop,
+    overysatisfied,
+    owarning,
+    ozoomin,
+    ozoomout
+};
