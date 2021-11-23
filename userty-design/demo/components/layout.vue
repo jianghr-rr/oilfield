@@ -272,7 +272,7 @@ export default {
         <Header searchData={searchData} name={name} />
         <o-config-provider locale={locale}>
           <div class="layout">
-            <div class="layout-left-doc">
+            <div class="layout-left layout-left-doc">
                 <o-affix style={'height: 100%, overflow: auto'}>
                   <div class="menu-wrap">
                     <a-menu
@@ -367,7 +367,7 @@ export default {
     padding: 40px 0;
     display: flex;
   }
-  .layout-left-doc {
+  .layout-left {
     box-shadow: 1px -2px 4px 0px #F2F2F2;
 
     .ant-menu{
@@ -383,38 +383,6 @@ export default {
       overflow: auto;
     }
 
-    .ant-menu-inline > .ant-menu-submenu > .ant-menu-submenu-title,
-    .ant-menu-sub.ant-menu-inline > .ant-menu-item,
-    .ant-menu-vertical > .ant-menu-item,
-    .ant-menu-inline > .ant-menu-item {
-      height: 60px;
-      line-height: 60px;
-      padding-left: 60px !important;
-      color: #555;
-      box-sizing: border-box;
-      & * {
-        font-size: 12px !important;
-        // color: #333;
-      }
-      & .chinese {
-        font-size: 14px !important;
-      }
-    }
-    .ant-menu-sub.ant-menu-inline > .ant-menu-item {
-      margin: 0;
-      padding-left: 80px !important;
-      color: #333;
-      & * {
-        font-size: 12px !important;
-        // color: #333;
-      }
-      & .chinese {
-        font-size: 14px !important;
-      }
-      // & .router-link-active {
-      //   color: var(--color);
-      // }
-    }
     .ant-menu-submenu-inline > .ant-menu-submenu-title .ant-menu-submenu-arrow {
       right: 20px;
     }
@@ -481,6 +449,41 @@ export default {
         box-shadow: inset 0px -5px 10px -3px #F2F2F2;
       }
       // box-shadow: 0px 0px -3px 0px #F2F2F2;
+    }
+  }
+  .layout-left-doc {
+
+    .ant-menu-inline > .ant-menu-submenu > .ant-menu-submenu-title,
+    .ant-menu-sub.ant-menu-inline > .ant-menu-item,
+    .ant-menu-vertical > .ant-menu-item,
+    .ant-menu-inline > .ant-menu-item {
+      height: 60px;
+      line-height: 60px;
+      padding-left: 60px !important;
+      color: #555;
+      box-sizing: border-box;
+      & * {
+        font-size: 12px !important;
+        // color: #333;
+      }
+      & .chinese {
+        font-size: 14px !important;
+      }
+    }
+    .ant-menu-sub.ant-menu-inline > .ant-menu-item {
+      margin: 0;
+      padding-left: 80px !important;
+      color: #333;
+      & * {
+        font-size: 12px !important;
+        // color: #333;
+      }
+      & .chinese {
+        font-size: 14px !important;
+      }
+      // & .router-link-active {
+      //   color: var(--color);
+      // }
     }
   }
   .layout-right {
