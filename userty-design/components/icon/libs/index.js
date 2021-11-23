@@ -27,6 +27,7 @@ import odaimadianji from "./daima-dianji.json";
 import odaimaweidianji from "./daima-weidianji.json";
 import obash from "./delete.json";
 import odoubleleft from "./double-left.json";
+import odoubleright from "./double-right.json";
 import odowncircle from "./down-circle.json";
 import odownsquare from "./down-square.json";
 import odown from "./down.json";
@@ -129,6 +130,7 @@ export {
     odaimaweidianji,
     obash,
     odoubleleft,
+    odoubleright,
     odowncircle,
     odownsquare,
     odown,

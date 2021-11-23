@@ -29,6 +29,7 @@ export const fillIcons = [
     'odaimaweidianji',
     'obash',
     'odoubleleft',
+    'odoubleright',
     'odowncircle',
     'odownsquare',
     'odown',
