@@ -11,7 +11,7 @@ Nested inside a container element for rendering in limited space.
 ```vue
 <template>
   <div :style="{ width: '300px', border: '1px solid #d9d9d9', borderRadius: '4px' }">
-    <a-calendar :fullscreen="false" @panelChange="onPanelChange" />
+    <o-calendar :fullscreen="false" @panelChange="onPanelChange" />
   </div>
 </template>
 <script>

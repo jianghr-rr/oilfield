@@ -7,6 +7,7 @@ import CustomizeHeader from './customize-header.vue';
 import CustomizeHeaderString from '!raw-loader!./customize-header.vue';
 import CN from '../index.zh-CN.md';
 import US from '../index.en-US.md';
+
 const md = {
   cn: `# Calendar 日历
 

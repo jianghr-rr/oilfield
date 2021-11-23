@@ -7,9 +7,12 @@ import Header from './Header';
 import LocaleReceiver from '../locale-provider/LocaleReceiver';
 import interopDefault from '../_util/interopDefault';
 import { ConfigConsumerProps } from '../config-provider/configConsumerProps';
-import enUS from './locale/en_US';
+import zhCN from './locale/zh_CN';
 import Base from '../base';
 import { checkValidate, stringToMoment, momentToString, TimeType } from '../_util/moment-util';
+
+import 'moment/locale/zh-cn';
+moment.locale('zh-cn');
 
 function noop() {
   return null;
@@ -132,7 +135,7 @@ const Calendar = {
     },
     getDefaultLocale() {
       const result = {
-        ...enUS,
+        ...zhCN,
         ...this.$props.locale,
       };
       result.lang = {
