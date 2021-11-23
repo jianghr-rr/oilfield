@@ -272,7 +272,7 @@ export default {
         <Header searchData={searchData} name={name} />
         <o-config-provider locale={locale}>
           <div class="layout">
-            <div class="layout-left">
+            <div class="layout-left-doc">
                 <o-affix style={'height: 100%, overflow: auto'}>
                   <div class="menu-wrap">
                     <a-menu
@@ -367,7 +367,7 @@ export default {
     padding: 40px 0;
     display: flex;
   }
-  .layout-left {
+  .layout-left-doc {
     box-shadow: 1px -2px 4px 0px #F2F2F2;
 
     .ant-menu{
