@@ -3,7 +3,7 @@
     <p>
        将一个冗长或用户不熟悉的表单任务分成多个步骤，指导用户完成。
     </p>
-    <o-card :hoverable="true" class="card">
+    <o-card class="card" :bordered="false">
         <first-step v-if="current === 0" @nextStep="current++" />
         <second-step v-else-if="current === 1" @nextStep="current++" />
         <third-step v-else></third-step>
@@ -43,7 +43,12 @@ export default {
     margin: 16px auto;
   }
   p{
-      margin: 10px 0 20px;
+    margin-bottom: 40px;
+    font-size: 14px;
+    font-family: Source Han Sans CN;
+    font-weight: 400;
+    color: @title-color;
+    line-height: 26px;
   }
   .card{
     padding-bottom: 50px;

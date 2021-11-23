@@ -110,15 +110,16 @@ export default {
 </script>
 
 <style lang="less" scoped>
+    @import "../../index.less";
 
-.action{
-    padding: 4px 6px;
-    border: 1px solid #D7D7D7;
-    border-radius: 2px;
-    color: #555;
-}
-.footer{
-    margin-top: 50px;
-    text-align: center;
-}
+    .action{
+        padding: 4px 6px;
+        border: 1px solid #D7D7D7;
+        border-radius: 2px;
+        color: #555;
+    }
+    .footer{
+        margin-top: 50px;
+        text-align: center;
+    }
 </style>

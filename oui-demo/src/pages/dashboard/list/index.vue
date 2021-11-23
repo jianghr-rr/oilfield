@@ -1,8 +1,9 @@
 <template>
     <div>
-        <o-card style="margin-bottom: 20px;" :hoverable="true">
+        <o-card :bordered="false">
             <search-filters :loading="loading" @onSearch="handleSearch" />
         </o-card>
+        <div class="subtitle">可搜索查询表格</div>
         <search-list :loading="loading" :dataSource="data" @change="loadList" />
     </div>
 </template>
@@ -63,4 +64,13 @@ export default {
 </script>
 
 <style lang="less" scoped>
+    @import "@/pages/common/css/global.less";
+    .subtitle{
+        font-size: 18px;
+        font-family: Source Han Sans CN;
+        font-weight: 400;
+        color: @title-color;
+        line-height: 26px;
+        margin: 42px 0 48px;
+    }
 </style>

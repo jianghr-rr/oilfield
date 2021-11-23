@@ -23,7 +23,7 @@ export default {
 <style scoped lang="less">
 .common-layout{
   min-width: 970px;
-  height: 100vh;
+  height: calc(100vh + 120px);
   overflow: auto;
   // background-color: @layout-body-background;
   // background-image: url('https://gw.alipayobjects.com/zos/rmsportal/TVYTbAXWheQpRcWDaDMu.svg');
