@@ -62,8 +62,8 @@ body {
 a {
   transition: color 0.3s ease;
   &:focus {
-    text-decoration: underline;
-    text-decoration-skip-ink: auto;
+    // text-decoration: underline;
+    // text-decoration-skip-ink: auto;
   }
 }
 
@@ -103,7 +103,7 @@ a {
   &.ant-menu-inline > .ant-menu-item,
   &.ant-menu-inline .ant-menu-item a {
     font-size: 14px;
-    text-overflow: ellipsis;
+    // text-overflow: ellipsis;
     overflow: hidden;
   }
 
@@ -155,12 +155,12 @@ a {
 
 // reset menu text color
 .menu-site .ant-menu-item > a {
-  color: @site-text-color;
+  // color: #555 !important;
 }
 
 .menu-site .ant-menu-item-selected > a,
 .menu-site .ant-menu-item > a:hover {
-  color: @primary-color;
+  color: @primary-color !important;
 }
 
 #react-content {

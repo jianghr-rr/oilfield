@@ -18,10 +18,6 @@ import NProgress from 'nprogress';
 import TopAd from './top_ad';
 import GoogleAds from './GoogleAds';
 
-import moment from 'moment';
-import 'moment/locale/zh-cn';
-moment.locale('zh-cn');
-
 const docsList = [];
 
 const isGitee = window.location.host.indexOf('gitee.io') > -1;
@@ -89,14 +85,14 @@ export default {
   },
   mounted() {
     if (isGitee) {
-      this.$info({
-        title: '提示',
-        content: '访问国内镜像站点的用户请访问 antdv.com 站点',
-        okText: '立即跳转',
-        onOk() {
-          location.href = 'https://www.antdv.com';
-        },
-      });
+      // this.$info({
+      //   title: '提示',
+      //   content: '访问国内镜像站点的用户请访问 antdv.com 站点',
+      //   okText: '立即跳转',
+      //   onOk() {
+      //     location.href = 'https://www.antdv.com';
+      //   },
+      // });
     }
 
     this.$nextTick(() => {
@@ -222,7 +218,7 @@ export default {
       const MenuItems = [];
       sortBy(menus, ['title']).forEach(({ title, subtitle, key }) => {
         const linkValue = isCN
-          ? [<span class="chinese">{subtitle}</span>, '/' , <span>{title}</span>]
+          ? [<span class="chinese">{subtitle}</span>, '  / ' , <span>{title}</span>]
           : [<span>{title}</span>];
         if (isCN) {
           key = `${key}-cn`;
@@ -253,7 +249,7 @@ export default {
       // console.log('type:::', type);
       MenuGroup.push(
         <a-sub-menu key={type}>
-          <div slot="title"><span>{menuConfigTitle[type]}</span>/<span>{type}</span></div>
+          <div slot="title"><span class="chinese">{menuConfigTitle[type]}</span>  / <span>{type}</span></div>
           {MenuItems}
         </a-sub-menu>
       );
@@ -278,15 +274,17 @@ export default {
           <div class="layout">
             <div class="layout-left">
                 <o-affix style={'height: 100%, overflow: auto'}>
-                  <a-menu
-                    class="aside-container menu-site"
-                    selectedKeys={[name]}
-                    defaultOpenKeys={[defaultOpenKey]}
-                    inlineIndent={40}
-                    mode="inline"
-                  >
-                    {MenuGroup}
-                  </a-menu>
+                  <div class="menu-wrap">
+                    <a-menu
+                      class="aside-container menu-site"
+                      selectedKeys={[name]}
+                      defaultOpenKeys={[defaultOpenKey]}
+                      inlineIndent={40}
+                      mode="inline"
+                    >
+                      {MenuGroup}
+                    </a-menu>
+                  </div>
                 </o-affix>
               </div>
               <div class="layout-right layout-right-doc">
@@ -380,6 +378,11 @@ export default {
       border: none;
     }
 
+    .menu-wrap {
+      max-height: 100vh;
+      overflow: auto;
+    }
+
     .ant-menu-inline > .ant-menu-submenu > .ant-menu-submenu-title,
     .ant-menu-sub.ant-menu-inline > .ant-menu-item,
     .ant-menu-vertical > .ant-menu-item,
@@ -387,13 +390,30 @@ export default {
       height: 60px;
       line-height: 60px;
       padding-left: 60px !important;
+      color: #555;
+      box-sizing: border-box;
+      & * {
+        font-size: 12px !important;
+        // color: #333;
+      }
+      & .chinese {
+        font-size: 14px !important;
+      }
     }
     .ant-menu-sub.ant-menu-inline > .ant-menu-item {
       margin: 0;
       padding-left: 80px !important;
+      color: #333;
       & * {
-        font-size: 12px;
+        font-size: 12px !important;
+        // color: #333;
       }
+      & .chinese {
+        font-size: 14px !important;
+      }
+      // & .router-link-active {
+      //   color: var(--color);
+      // }
     }
     .ant-menu-submenu-inline > .ant-menu-submenu-title .ant-menu-submenu-arrow {
       right: 20px;
