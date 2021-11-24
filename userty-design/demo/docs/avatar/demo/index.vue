@@ -20,11 +20,18 @@ const md = {
           `,
 };
 export default {
+  // category: 'Components',
+  // subtitle: '头像',
+  // type: 'Data Display',
+  // zhType: '数据展示',
+  // title: 'Avatar',
+
   category: 'Components',
-  subtitle: '头像',
-  type: 'Data Display',
-  zhType: '数据展示',
+  type: 'General',
+  zhType: '通用',
   title: 'Avatar',
+  subtitle: '头像',
+
   render() {
     return (
       <div>

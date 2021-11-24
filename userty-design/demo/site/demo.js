@@ -1,10 +1,4 @@
 export default {
-  avatar: {
-    category: 'Components',
-    subtitle: '头像',
-    type: 'Data Display',
-    title: 'Avatar',
-  },
   // badge: {
   //   category: 'Components',
   //   subtitle: '徽标数',
@@ -66,6 +60,12 @@ export default {
     subtitle: '图标',
     type: 'General',
     title: 'Icon',
+  },
+  avatar: {
+    category: 'Components',
+    subtitle: '头像',
+    type: 'General',
+    title: 'Avatar',
   },
   // input: {
   //   category: 'Components',
