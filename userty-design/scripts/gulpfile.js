@@ -64,7 +64,6 @@ function copyHtml() {
   rl.on('line', line => {
     if (line.indexOf('path:') > -1) {
       const name = line.split("'")[1].split("'")[0];
-      console.log('create path:', name);
       const toPaths = [
         `_site/components/${name}`,
         // `_site/components/${name}-cn`,

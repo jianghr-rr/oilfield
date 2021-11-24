@@ -1,22 +1,24 @@
 <template>
   <div class="layout-theme">
     <div class="layout-left" :style="{'--color': themmeColor}">
-      <a-menu
-        mode="inline"
-        :open-keys="openKeys"
-        :default-selected-keys="defaultSelectedKeys"
-        style="width: 256px"
-        @openChange="onOpenChange"
-      >
-        <a-sub-menu key="/homepage/theme">
-          <a-menu-item key="/homepage/theme/main">
-            <router-link to="/homepage/theme/main">定制主题</router-link>
-          </a-menu-item>
-          <a-menu-item key="/homepage/theme/use">
-            <router-link to="/homepage/theme/use">主题使用</router-link>
-          </a-menu-item>
-        </a-sub-menu>
-      </a-menu>
+      <div class="menu-wrap">
+        <a-menu
+          mode="inline"
+          :open-keys="openKeys"
+          :default-selected-keys="defaultSelectedKeys"
+          style="width: 256px"
+          @openChange="onOpenChange"
+        >
+          <a-sub-menu key="/homepage/theme">
+            <a-menu-item key="/homepage/theme/main">
+              <router-link to="/homepage/theme/main">定制主题</router-link>
+            </a-menu-item>
+            <a-menu-item key="/homepage/theme/use">
+              <router-link to="/homepage/theme/use">主题使用</router-link>
+            </a-menu-item>
+          </a-sub-menu>
+        </a-menu>
+      </div>
     </div>
     <div class="layout-right">
       <router-view v-mountedCallback="mountedCallback" />
@@ -92,6 +94,11 @@ export default {
   .layout-left {
     box-shadow: 1px -2px 4px 0px #F2F2F2;
 
+    .menu-wrap {
+      max-height: 100vh;
+      overflow: auto;
+      width: 250px;
+    }
     .ant-menu{
       background: none;
     }
@@ -106,6 +113,7 @@ export default {
     .ant-menu-inline > .ant-menu-item {
       height: 60px;
       line-height: 60px;
+      box-sizing: border-box;
     }
     .ant-menu-sub.ant-menu-inline > .ant-menu-item {
       margin: 0;

@@ -141,6 +141,7 @@ export default {
     .menu-wrap {
       max-height: 100vh;
       overflow: auto;
+      width: 250px;
     }
     .ant-menu{
       background: none;
@@ -158,6 +159,7 @@ export default {
       line-height: 60px;
       padding-left: 60px !important;
       margin: 0;
+      box-sizing: border-box;
     }
     .ant-menu-sub.ant-menu-inline > .ant-menu-item {
       margin: 0;

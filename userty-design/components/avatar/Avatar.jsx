@@ -112,8 +112,8 @@ export default {
         ? {
             width: `${size}px`,
             height: `${size}px`,
-            lineHeight: `${size}px`,
-            fontSize: icon ? `${size / 2}px` : '18px',
+            lineHeight: `${size + 2}px`,
+            fontSize: icon ? `${size / 1.5}px` : '18px',
           }
         : {};
 
@@ -138,7 +138,7 @@ export default {
         const sizeChildrenStyle =
           typeof size === 'number'
             ? {
-                lineHeight: `${size}px`,
+                lineHeight: `${size+2}px`,
               }
             : {};
         children = (

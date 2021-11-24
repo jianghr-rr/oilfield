@@ -320,24 +320,6 @@ export default {
                     ''
                   )}
                 </section>
-                <section class="prev-next-nav">
-                  {prevPage ? (
-                    <router-link class="prev-page" to={`${prevPage.url}`}>
-                      <a-icon type="left" />
-                      &nbsp;&nbsp;{prevPage.title}
-                    </router-link>
-                  ) : (
-                    ''
-                  )}
-                  {nextPage ? (
-                    <router-link class="next-page" to={`${nextPage.url}`}>
-                      {nextPage.title}&nbsp;&nbsp;
-                      <a-icon type="right" />
-                    </router-link>
-                  ) : (
-                    ''
-                  )}
-                </section>
               </div>
           </div>
           </o-config-provider>
@@ -370,6 +352,7 @@ export default {
     .menu-wrap {
       max-height: 100vh;
       overflow: auto;
+      width: 250px;
     }
 
     .ant-menu-submenu-inline > .ant-menu-submenu-title .ant-menu-submenu-arrow {
