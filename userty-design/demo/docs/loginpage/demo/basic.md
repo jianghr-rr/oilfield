@@ -47,7 +47,7 @@
 </template>
 <script>
 
-import logo from '../../../assets/logo.png';
+import logo from '../../../assets/image/logo.png';
 import Tab from './Tab.vue';
 import Account from './Account.vue';
 import Register from './Register.vue';

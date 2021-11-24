@@ -25,7 +25,7 @@
 </template>
 
 <script>
-import logo from '../../../assets/img-1.png';
+import logo from '../../../assets/image/img-1.png';
 export default {
     data() {
         return {

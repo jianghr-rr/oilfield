@@ -22,7 +22,7 @@
 </template>
 
 <script>
-import logo from '../assets/logo.png';
+import logo from '../assets/image/logo.png';
 import { mixin } from '../utils/mixin';
 export default {
     name: 'homepage-header',
