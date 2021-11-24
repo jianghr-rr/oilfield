@@ -1,0 +1,101 @@
+@import "@/pages/common/css/global.less";
+
+.form-content {
+    margin: 30px auto 0;
+    padding: 0 60px;
+
+    input {
+        &.ant-input {
+            height: 40px;
+        }
+    }
+
+    .ant-form-item {
+        margin-bottom: 0px;
+    }
+
+    .ant-select-selection--single,
+    .ant-select-selection__rendered {
+        height: 40px !important;
+        line-height: 40px !important;
+    }
+
+    .ant-calendar-picker-input.ant-input {
+        height: 40px;
+    }
+
+    .ant-form-item-label {
+        line-height: 54px;
+    }
+
+    .label {
+        span {
+            display: inline-block;
+            margin-left: 28px;
+
+            &:nth-child(1) {
+                margin: 0;
+            }
+        }
+    }
+
+    .avatar-uploader {
+        .ant-upload {
+            width: 128px;
+            height: 128px;
+        }
+
+        img {
+            width: 108px;
+            height: 108px;
+            object-fit: cover;
+        }
+    }
+
+    .ant-upload-select-picture-card .ant-upload-text {
+        margin-top: 8px;
+        color: #666;
+    }
+
+    img {
+        width: 118px;
+        height: 118px;
+        object-fit: cover;
+    }
+}
+
+
+.result-content {
+    max-width: 500px;
+    margin: 100px auto;
+    text-align: center;
+
+    .inner {
+        position: relative;
+        box-sizing: border-box;
+        padding-left: 70px;
+        font-size: 14px;
+        font-family: Source Han Sans CN;
+        font-weight: 400;
+        line-height: 26px;
+
+        &::before {
+            content: "研";
+            width: 30px;
+            height: 30px;
+            font-size: 20px;
+            font-family: Source Han Sans CN;
+            font-weight: 400;
+            color: #FFFFFF;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            color: @gray-1;
+            background: @primary-color;
+            border-radius: 50%;
+            position: absolute;
+            left: 0px;
+            top: 0px;
+        }
+    }
+}

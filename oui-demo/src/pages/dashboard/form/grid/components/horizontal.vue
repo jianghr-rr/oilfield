@@ -1,10 +1,9 @@
 <template>
     <o-form :form="form">
-        <o-row :gutter="16">
+        <o-row :gutter="70">
             <o-col :span="8">
                 <o-form-item label="公司名称">
                     <o-input
-                        placeholder="请输入公司名称"
                         v-decorator="[
                             'company',
                             {
@@ -19,7 +18,6 @@
             <o-col :span="8">
                 <o-form-item label="行业类型">
                     <o-input
-                        placeholder="请输入行业类型"
                         v-decorator="[
                             'industry',
                             {
@@ -34,7 +32,6 @@
             <o-col :span="8">
                 <o-form-item label="所在区域">
                     <o-input
-                        placeholder="请输入所在区域"
                         v-decorator="[
                             'area',
                             {
@@ -47,11 +44,10 @@
                 </o-form-item>
             </o-col>
         </o-row>
-        <o-row :gutter="16">
+        <o-row :gutter="70">
             <o-col :span="8">
                 <o-form-item label="邮编">
                     <o-input
-                        placeholder="请输入邮编"
                         v-decorator="[
                             'email',
                             {
@@ -66,7 +62,6 @@
             <o-col :span="8">
                 <o-form-item label="联系人">
                     <o-input
-                        placeholder="请输入联系人"
                         v-decorator="[
                             'connector',
                             {
@@ -81,7 +76,6 @@
             <o-col :span="8">
                 <o-form-item label="职位">
                     <o-input
-                        placeholder="请输入职位"
                         v-decorator="[
                             'position',
                             {
@@ -94,11 +88,10 @@
                 </o-form-item>
             </o-col>
         </o-row>
-        <o-row :gutter="16">
+        <o-row :gutter="70">
             <o-col :span="8">
                 <o-form-item label="联系人">
                     <o-input
-                        placeholder="请输入联系人"
                         v-decorator="[
                             'connector2',
                             {
@@ -113,7 +106,6 @@
             <o-col :span="8">
                 <o-form-item label="手机号码">
                     <o-input
-                        placeholder="请输入手机号码"
                         v-decorator="[
                             'tel',
                             {
@@ -128,7 +120,6 @@
             <o-col :span="8">
                 <o-form-item label="QQ">
                     <o-input
-                        placeholder="请输入QQ"
                         v-decorator="[
                             'qq',
                             {
@@ -147,15 +138,46 @@
 <script>
 export default {
     name: 'HorizontalForm',
+    props: {
+        resetKey: String || null,
+        submitKey: String || null
+    },
     data() {
         return {
             form: null
+        }
+    },
+    watch: {
+        resetKey() {
+            this.handleReset();
+        },
+        submitKey() {
+            this.handleSubmit();
         }
     },
     mounted() {
         this.$nextTick(() => {
             this.form = this.$form.createForm(this, { name: 'oil_form', onValuesChange: (props, values) => console.log('values: ', values) });
         });
+    },
+    methods: {
+        handleReset() {
+            this.form.resetFields();
+        },
+        handleSubmit() {
+            this.form.validateFields((err, values) => {
+                if (!err) {
+                    console.log('--values--: ', values);
+                }
+            });
+        }
     }
 }
 </script>
+
+<style lang="less" scoped>
+    @import "../index.less";
+    .ant-form-item{
+        margin-bottom: 0;
+    }
+</style>

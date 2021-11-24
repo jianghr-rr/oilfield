@@ -44,6 +44,9 @@ const options = {
             {
               path: 'step',
               name: '分步表单',
+              meta: {
+                showTitle: false,
+              },
               component: () => import('@/pages/dashboard/form/step'),
             }
           ]

@@ -6,7 +6,7 @@
     v-model="collapsed"
     :trigger="null"
   >
-    <i-menu :theme="theme" :collapsed="collapsed" :options="menuData" @select="onSelect" class="menu" style="width: 321px"/>
+    <i-menu :theme="theme" :collapsed="collapsed" :options="menuData" @select="onSelect" class="menu"/>
   </o-layout-sider>
 </template>
 

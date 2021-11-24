@@ -14,7 +14,6 @@
       <detail @finish="finish" @preStep="current--" />
     </template>
   </div>
-
 </template>
 
 <script>
@@ -23,22 +22,27 @@ import Step2 from './Step2';
 import Detail from './Detail';
 
 export default {
-    name: 'StepForm',
-    components: {
-        Step1,
-        Step2,
-        Detail
-    },
-    data () {
-        return {
-            current: 0,
-            step1Values: null
-        }
-    },
-    methods: {
-        finish (values) {
-            this.$emit('nextStep', values)
-        }
+  name: 'StepForm',
+  components: {
+    Step1,
+    Step2,
+    Detail
+  },
+  data() {
+    return {
+      current: 0,
+      step1Values: null
     }
+  },
+  watch: {
+    current(val) {
+      this.$emit("update:firstStep", val);
+    }
+  },
+  methods: {
+    finish(values) {
+      this.$emit('nextStep', values)
+    }
+  }
 }
 </script>

@@ -15,6 +15,7 @@ import LocaleReceiver from '../locale-provider/LocaleReceiver';
 import { getTwoToneColor, setTwoToneColor } from './twoTonePrimaryColor';
 import { filterEmpty, getListeners } from '../_util/props-util';
 import Base from '../base';
+import * as allOtherIcons from './libs';
 
 // Initial setting
 VueIcon.add(...Object.keys(allIcons).map(key => allIcons[key]));
@@ -143,8 +144,8 @@ function renderIcon(h, locale, context) {
   return <i {...iProps}>{renderInnerNode()}</i>;
 }
 
-const Icon = {
-  name: 'OIcon',
+const OriginIcon = {
+  name: 'OriginIcon',
   props: {
     tabIndex: PropTypes.number,
     type: PropTypes.string,
@@ -166,9 +167,47 @@ const Icon = {
   },
 };
 
+const Icon = {
+  name: 'OIcon',
+  props: {
+    tabIndex: PropTypes.number,
+    type: PropTypes.string,
+    component: PropTypes.any,
+    viewBox: PropTypes.any,
+    spin: PropTypes.bool.def(false),
+    rotate: PropTypes.number,
+    theme: PropTypes.oneOf(['filled', 'outlined', 'twoTone']),
+    twoToneColor: PropTypes.string,
+    role: PropTypes.string,
+  },
+  render(h) {
+    let $component = this.component;
+    const $icons = Object.keys(allOtherIcons);
+    if ($icons.includes(this.type)) {
+      $component = {
+        template: allOtherIcons[this.type]
+      };
+    }
+    return (
+      <OriginIcon
+        tabIndex={this.tabIndex}
+        type={this.type}
+        component={$component}
+        viewBox={this.viewBox}
+        spin={this.spin}
+        rotate={this.rotate}
+        theme={this.theme}
+        twoToneColor={this.twoToneColor}
+        role={this.role}
+      />
+    );
+  },
+};
+
 Icon.createFromIconfontCN = createFromIconfontCN;
 Icon.getTwoToneColor = getTwoToneColor;
 Icon.setTwoToneColor = setTwoToneColor;
+
 
 /* istanbul ignore next */
 Icon.install = function(Vue) {

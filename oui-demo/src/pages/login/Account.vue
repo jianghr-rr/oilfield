@@ -15,7 +15,7 @@
                     :maxLength="20"
                     placeholder="请输入用户名称"
                 >
-                    <o-icon slot="prefix" type="user" style="color:rgba(0,0,0,.25); font-size: 20px;" />
+                    <o-icon slot="prefix" type="user" class="icon" />
                 </o-input>
             </o-form-item>
             <o-form-item>
@@ -33,42 +33,38 @@
                     :maxLength="20"
                     placeholder="请输入登录密码"
                 >
-                    <o-icon slot="prefix" type="lock" style="color:rgba(0,0,0,.25); font-size: 20px;" />
+                    <o-icon slot="prefix" type="lock" class="icon" />
                 </o-input>
             </o-form-item>
-            <div class="oil-very oil-form-item">
-                <div class="oil-very-item">
-                    <o-form-item>
-                        <o-input
-                            class="oil-input"
-                            v-decorator="[
-                                'verycode',
-                                {
-                                    rules: [
-                                        {required: true, message: '请输入右侧校验码'},
-                                        {validator: (_rule, value, callback) => {
-                                            if (!value) {
-                                                callback();
-                                            }
-                                            if (value !== this.veryCode) {
-                                                callback('验证码错误');
-                                            }
-                                            callback();
-                                        }}
-                                    ]
-                                }
-                            ]"
-                            :maxLength="4"
-                            placeholder="请输入右侧校验码"
-                        />
-                    </o-form-item>
-                </div>
+            <o-form-item class="oil-very oil-form-item">
+                <o-input
+                    class="oil-input oil-very-item"
+                    v-decorator="[
+                        'verycode',
+                        {
+                            rules: [
+                                {required: true, message: '请输入右侧校验码'},
+                                {validator: (_rule, value, callback) => {
+                                    if (!value) {
+                                        callback();
+                                    }
+                                    if (value !== this.veryCode) {
+                                        callback('验证码错误');
+                                    }
+                                    callback();
+                                }}
+                            ]
+                        }
+                    ]"
+                    :maxLength="4"
+                    placeholder="请输入右侧校验码"
+                />
                 <div class="oil-very-item" @click="getVeryCode">
                     {{veryCode}}
                 </div>
-            </div>
+            </o-form-item>
             <div class="oil-form-item">
-                <o-checkbox @change="handleRemember">记住登陆状态</o-checkbox>
+                <o-checkbox @change="handleRemember">记住登录状态</o-checkbox>
             </div>
             <o-form-item>
                 <o-button

@@ -3,6 +3,7 @@ const webpack = require('webpack');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const TerserJSPlugin = require('terser-webpack-plugin');
 const OptimizeCSSAssetsPlugin = require('optimize-css-assets-webpack-plugin');
+const CopyPlugin = require("copy-webpack-plugin");
 
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const merge = require('webpack-merge');
@@ -60,5 +61,11 @@ module.exports = merge(baseWebpackConfig, {
       filename: '[name].[contenthash:8].css',
       chunkFilename: '[id].[contenthash:8].css',
     }),
+    new CopyPlugin([
+      {
+        from: path.resolve(__dirname, '../assets/image/'),
+        to: path.resolve(__dirname, '../_site/')
+      }
+    ]),
   ],
 });
