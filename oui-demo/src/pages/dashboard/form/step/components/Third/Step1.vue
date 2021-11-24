@@ -11,7 +11,7 @@
                             'logo',
                             {
                                 rules: [
-                                    {required: true, message: '请上传公司Lgogo'}
+                                    { required: true, message: '请上传公司Lgogo' }
                                 ]
                             }
                         ]"
@@ -23,9 +23,7 @@
                         <img v-if="imageUrl" :src="imageUrl" alt="avatar" />
                         <div v-else>
                             <o-icon :type="loading ? 'loading' : 'plus'" />
-                            <div class="ant-upload-text">
-                                上传图片
-                            </div>
+                            <div class="ant-upload-text">上传图片</div>
                         </div>
                     </o-upload>
                 </o-form-item>
@@ -37,7 +35,7 @@
                             'batchCode',
                             {
                                 rules: [
-                                    {required: true, message: '请选择样品批号'}
+                                    { required: true, message: '请选择样品批号' }
                                 ]
                             }
                         ]"
@@ -49,14 +47,15 @@
                 </o-form-item>
                 <o-form-item>
                     <span class="label" slot="label">
-                        <span>地</span><span>址</span>
+                        <span>地</span>
+                        <span>址</span>
                     </span>
                     <o-input
                         v-decorator="[
                             'address',
                             {
                                 rules: [
-                                    {required: true, message: '请输入地址'}
+                                    { required: true, message: '请输入地址' }
                                 ]
                             }
                         ]"
@@ -68,7 +67,7 @@
                             'projectName',
                             {
                                 rules: [
-                                    {required: true, message: '请输入项目名称'}
+                                    { required: true, message: '请输入项目名称' }
                                 ]
                             }
                         ]"
@@ -80,7 +79,7 @@
                             'orderName',
                             {
                                 rules: [
-                                    {required: true, message: '请输入交接人姓名'}
+                                    { required: true, message: '请输入交接人姓名' }
                                 ]
                             }
                         ]"
@@ -92,7 +91,7 @@
                             'orderDate',
                             {
                                 rules: [
-                                    {required: true, message: '请输入交接日期'}
+                                    { required: true, message: '请输入交接日期' }
                                 ]
                             }
                         ]"
@@ -100,11 +99,11 @@
                 </o-form-item>
                 <o-form-item label="可替换内容">
                     <o-input
-                         v-decorator="[
+                        v-decorator="[
                             'replaceItem',
                             {
                                 rules: [
-                                    {required: true, message: '请输入可替换内容'}
+                                    { required: true, message: '请输入可替换内容' }
                                 ]
                             }
                         ]"
@@ -112,7 +111,7 @@
                 </o-form-item>
             </o-col>
         </o-row>
-        <o-form-item :wrapperCol="{span: 17, offset: 8}" style="margin: 100px 0;">
+        <o-form-item :wrapperCol="{ span: 17, offset: 8 }" style="margin: 100px 0;">
             <o-button type="primary" @click="handleSubmit">下一步</o-button>
         </o-form-item>
     </o-form>
@@ -130,7 +129,7 @@ const action = 'https://www.mocky.io/v2/5cc8019d300000980a055e76';
 
 export default {
     name: 'Step1',
-    data () {
+    data() {
         return {
             form: null,
             loading: false,
@@ -140,7 +139,7 @@ export default {
     },
     mounted() {
         this.$nextTick(async () => {
-            this.form = await this.$form.createForm(this, {name: 'oil_form'});
+            this.form = await this.$form.createForm(this, { name: 'oil_form' });
             const registerList = ['logo', 'batchCode', 'address', 'projectName', 'orderName', 'orderDate', 'replaceItem'];
             registerList.forEach(id => {
                 this.form.getFieldDecorator(id);
@@ -203,5 +202,5 @@ export default {
 </script>
 
 <style lang="less">
-    @import "../../index.less";
+@import "../../index.less";
 </style>

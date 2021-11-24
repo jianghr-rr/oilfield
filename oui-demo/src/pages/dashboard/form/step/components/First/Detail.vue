@@ -4,14 +4,14 @@
             :columns="columns"
             :data-source="dataSource"
             :row-selection="{ onChange, onSelect, onSelectAll }"
-            :scroll="{x: 'max-content'}"
+            :scroll="{ x: 'max-content' }"
             @change="$event => $emit('change', $event)"
         >
             <template slot="status" slot-scope="type">
                 <status :type="type" :title="handleType[type]" />
             </template>
             <template slot="operate" slot-scope="scoped, record, index">
-                <a class="action" @click="$emit('finish', {scoped, index})">二次交接</a>
+                <a class="action" @click="$emit('finish', { scoped, index })">二次交接</a>
             </template>
         </o-table>
         <div class="footer">
@@ -87,7 +87,7 @@ const dataSource = new Array(30).fill().map((_item, index) => ({
 
 export default {
     name: 'SearchList',
-    components: {Status},
+    components: { Status },
     data() {
         return {
             columns,
@@ -110,15 +110,15 @@ export default {
 </script>
 
 <style lang="less" scoped>
-    @import "../../index.less";
-    .action{
-        padding: 4px 6px;
-        border: 1px solid #D7D7D7;
-        border-radius: 2px;
-        color: #555;
-    }
-    .footer{
-        margin-top: 50px;
-        text-align: center;
-    }
+@import "../../index.less";
+.action {
+    padding: 4px 6px;
+    border: 1px solid #d7d7d7;
+    border-radius: 2px;
+    color: #555;
+}
+.footer {
+    margin-top: 50px;
+    text-align: center;
+}
 </style>

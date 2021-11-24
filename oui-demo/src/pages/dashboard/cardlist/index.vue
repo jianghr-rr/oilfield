@@ -1,10 +1,10 @@
 <template>
-  <div>
+  <div class="wrapper">
     <p>
       XinJiang Userty Design Pro Pro为用户用最小的工作量，无缝接入XinJiang Userty Design Pro界面生态， 提供新疆油田相关系统产品的界面设计、用户体验问题给予的设计方案。
     </p>
     <o-list
-      :grid="{gutter: [40, 40], lg: 3, md: 2, sm: 1, xs: 1}"
+      :grid="{gutter: 40, lg: 3, md: 2, sm: 1, xs: 1}"
       :dataSource="dataSource"
     >
       <o-list-item slot="renderItem" slot-scope="item">
@@ -51,39 +51,5 @@ export default {
 </script>
 
 <style lang="less" scoped>
-  p{
-    margin-bottom: 40px;
-    font-size: 14px;
-    font-family: Source Han Sans CN;
-    font-weight: 400;
-    color: @title-color;
-    line-height: 26px;
-  }
-  .card-avatar {
-    width: 80px;
-    height: 80px;
-    border-radius: 48px;
-    margin-right: 4px;
-  }
-  .new-btn{
-    border-radius: 2px;
-    width: 100%;
-    height: 187px;
-  }
-  .meto-content{
-    position: relative;
-    overflow: hidden;
-    text-overflow: ellipsis;
-    display: -webkit-box;
-    height: 64px;
-    -webkit-line-clamp: 3;
-    -webkit-box-orient: vertical;
-  }
-  .card-hover{
-    height: 203px;
-    &:hover{
-      box-shadow: 0 2px 8px rgba(@primary-color, .2);
-    }
-  }
-
+  @import "./index.less";
 </style>

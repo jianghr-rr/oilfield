@@ -2,10 +2,11 @@
   <div class="page-layout">
     <page-header
       ref="pageHeader"
-      :style="`margin-top: ${multiPage ? 0 : -24}px; margin-bottom: 40px`"
+      :style="`margin-top: ${multiPage ? 0 : -24}px;`"
       :title="pageTitle"
       :logo="logo"
       :avatar="avatar"
+      :showTitle="showTitle"
     >
       <slot name="action"  slot="action"></slot>
       <slot slot="content" name="headerContent"></slot>
@@ -69,6 +70,9 @@ export default {
     },
     marginCorrect() {
       return this.multiPage ? 24 : 0
+    },
+    showTitle() {
+      return this.$route.meta.showTitle;
     }
   },
   methods: {

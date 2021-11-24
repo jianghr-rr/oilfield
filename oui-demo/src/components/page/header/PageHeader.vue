@@ -4,7 +4,7 @@
       <div class="detail">
         <div class="main">
           <div class="row">
-            <h1 v-if="showPageTitle && title" class="title">{{title}}</h1>
+            <h1 v-if="showPageTitle && title && showTitle" class="title">{{title}}</h1>
             <div class="action"><slot name="action"></slot></div>
           </div>
           <div class="row">
@@ -37,6 +37,10 @@ export default {
       type: String,
       required: false
     },
+    showTitle: {
+      type: Boolean,
+      default: true
+    }
   },
   computed: {
     ...mapState('setting', ['layout', 'showPageTitle', 'pageWidth'])

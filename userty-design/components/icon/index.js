@@ -184,7 +184,6 @@ const Icon = {
     let $component = this.component;
     const $icons = Object.keys(allOtherIcons);
     if ($icons.includes(this.type)) {
-      console.log('ininin', this.type, $icons);
       $component = {
         template: allOtherIcons[this.type]
       };
