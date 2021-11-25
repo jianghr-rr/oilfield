@@ -1,12 +1,10 @@
 ```js
   import Vue from 'vue';
-  import Button from 'ant-design-vue/lib/button';
-  import 'ant-design-vue/dist/antd.css';
+  import Usertyd from 'userty-design';
+  import 'userty-design/dist/usertyd.less';
   import App from './App';
 
-  Vue.component(Button.name, Button);
-
-  Vue.config.productionTip = false;
+  Vue.use(Usertyd)
 
   new Vue({
     render: h => h(App),

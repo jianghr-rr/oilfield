@@ -34,15 +34,7 @@ export default {
         <div class="h1-title">使用说明</div>
         <div class="text">Xinjiang Userty Design Vue 致力于提供给程序员愉悦的开发体验。</div>
         <div id="b" class="h2-title">引入 Xinjiang Userty Design-vue</div>
-        <div class="text" id="a">1. 安装脚手架工具</div>
-        <div class="link">vue-cli</div>
-        <Basic/>
-        <div class="text" id="b">2. 创建一个项目</div>
-        <div class="text">使用命令行进行初始化</div>
-        <Tow />
-        <div class="text">并配置项目。</div>
-        <div class="text">若安装缓慢报错，可尝试用cnpm 或别的镜像源自行安装：rm -rf node_modules && cnpm install 。</div>
-        <div class="text" id="c">3. 使用组件</div>
+        <div class="text" id="c">使用组件</div>
         <Three />
         <div class="text">完整引入</div>
         <Four />
