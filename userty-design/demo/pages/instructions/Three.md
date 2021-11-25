@@ -1,3 +1,3 @@
 ```shell
-  $ npm i --save userty-design-vue
+  $ npm i --save userty-design
 ```
