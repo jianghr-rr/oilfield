@@ -119,7 +119,6 @@ function compile(modules) {
               file.contents = Buffer.from(css);
               file.path = file.path.replace(/\.less$/, '.css');
               this.push(file);
-              console.log('file:::', file);
               next();
             })
             .catch(e => {
