@@ -2,7 +2,7 @@
 // Definitions by: akki-jat <https://github.com/akki-jat>
 // Definitions: https://github.com/vueComponent/ant-design-vue/types
 
-export * from './ant-design-vue';
+export * from './userty-design';
 
-import * as Antd from './ant-design-vue';
-export default Antd;
+import * as Usertyd from './userty-design';
+export default Usertyd;
