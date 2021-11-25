@@ -5,10 +5,7 @@ import Header from './hompageHeader';
 import Footer from './footer';
 // import Geektime from './geektime';
 import GeektimeAds from './geektime_ads';
-import RightBottomAd from './right_bottom_ad';
-import Sponsors from './sponsors';
 import zhCN from 'ant-design-vue/es/locale-provider/zh_CN';
-import enUS from 'ant-design-vue/es/locale-provider/default';
 import sortBy from 'lodash/sortBy';
 import { isZhCN } from '../utils/util';
 import { Provider, create } from '../../components/_util/store';
@@ -21,7 +18,7 @@ import GoogleAds from './GoogleAds';
 const docsList = [];
 
 const isGitee = window.location.host.indexOf('gitee.io') > -1;
-const showAd = false; // location.host.indexOf('antdv.com') > -1;
+const showAd = false;
 
 export default {
   provide() {
@@ -85,14 +82,6 @@ export default {
   },
   mounted() {
     if (isGitee) {
-      // this.$info({
-      //   title: '提示',
-      //   content: '访问国内镜像站点的用户请访问 antdv.com 站点',
-      //   okText: '立即跳转',
-      //   onOk() {
-      //     location.href = 'https://www.antdv.com';
-      //   },
-      // });
     }
 
     this.$nextTick(() => {
@@ -331,24 +320,6 @@ export default {
                     ''
                   )}
                 </section>
-                <section class="prev-next-nav">
-                  {prevPage ? (
-                    <router-link class="prev-page" to={`${prevPage.url}`}>
-                      <a-icon type="left" />
-                      &nbsp;&nbsp;{prevPage.title}
-                    </router-link>
-                  ) : (
-                    ''
-                  )}
-                  {nextPage ? (
-                    <router-link class="next-page" to={`${nextPage.url}`}>
-                      {nextPage.title}&nbsp;&nbsp;
-                      <a-icon type="right" />
-                    </router-link>
-                  ) : (
-                    ''
-                  )}
-                </section>
               </div>
           </div>
           </o-config-provider>
@@ -381,6 +352,7 @@ export default {
     .menu-wrap {
       max-height: 100vh;
       overflow: auto;
+      width: 250px;
     }
 
     .ant-menu-submenu-inline > .ant-menu-submenu-title .ant-menu-submenu-arrow {
@@ -460,8 +432,9 @@ export default {
       height: 60px;
       line-height: 60px;
       padding-left: 60px !important;
-      color: #555;
+      color: #333;
       box-sizing: border-box;
+      margin: 0;
       & * {
         font-size: 12px !important;
         // color: #333;

@@ -8,14 +8,14 @@
 }
 
 .code-box {
-  border: 1px solid @site-border-color-split;
+  // border: 1px solid @site-border-color-split;
   border-radius: @border-radius-sm;
   display: inline-block;
   width: 100%;
   position: relative;
   margin: 0 0 16px;
   transition: all 0.2s;
-
+  box-shadow: 0px 0px 9px 1px rgba(215, 215, 215, 0.35);
   &:target {
     border: 1px solid @primary-color;
   }
@@ -96,6 +96,9 @@
       padding: 20px;
       width: 100%;
       word-break: break-word;
+      font-family: 'SourceHanSansLight';
+      color: #333;
+      line-height: 26px;
     }
   }
 

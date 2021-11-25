@@ -2,35 +2,70 @@
   <div class="layout">
     <div class="layout-left" :style="{'--color': themmeColor}">
       <o-affix>
-        <a-menu
-          mode="inline"
-          :open-keys="openKeys"
-          :default-selected-keys="defaultSelectedKeys"
-          style="width: 256px"
-          @openChange="onOpenChange"
-        >
-          <a-sub-menu key="/homepage/guide/">
-            <span slot="title"><span>Userty Design</span></span>
-            <a-menu-item key="/homepage/guide/introduce">
-              <router-link to="/homepage/guide/introduce">介绍</router-link>
+        <div class="menu-wrap">
+          <a-menu
+            mode="inline"
+            :open-keys="openKeys"
+            :default-selected-keys="defaultSelectedKeys"
+            style="width: 256px"
+            @openChange="onOpenChange"
+          >
+            <a-sub-menu key="/homepage/guide/">
+              <span slot="title"><span>Userty Design</span></span>
+              <a-menu-item key="/homepage/guide/introduce">
+                <router-link to="/homepage/guide/introduce">介绍</router-link>
+              </a-menu-item>
+              <!-- <a-menu-item key="/homepage/guide/designpr">
+                <router-link to="/homepage/guide/designpr">设计原则</router-link>
+              </a-menu-item> -->
+              <a-menu-item key="/homepage/guide/designspec">
+                <router-link to="/homepage/guide/designspec">设计规范</router-link>
+              </a-menu-item>
+            </a-sub-menu>
+            <a-sub-menu key="/homepage/designpr/">
+              <span slot="title"><span>设计原则</span></span>
+              <a-menu-item key="/homepage/designpr/base">
+                <router-link to="/homepage/designpr/base">基础原则</router-link>
+              </a-menu-item>
+              <a-menu-item key="/homepage/designpr/graph">
+                <router-link to="/homepage/designpr/graph">间距关系</router-link>
+              </a-menu-item>
+              <a-menu-item key="/homepage/designpr/alignment">
+                <router-link to="/homepage/designpr/alignment">对齐方式</router-link>
+              </a-menu-item>
+              <a-menu-item key="/homepage/designpr/infotip">
+                <router-link to="/homepage/designpr/infotip">信息提示</router-link>
+              </a-menu-item>
+              <a-menu-item key="/homepage/designpr/transition">
+                <router-link to="/homepage/designpr/transition">过渡效果</router-link>
+              </a-menu-item>
+              <a-menu-item key="/homepage/designpr/simple">
+                <router-link to="/homepage/designpr/simple">简单易用</router-link>
+              </a-menu-item>
+              <a-menu-item key="/homepage/designpr/user">
+                <router-link to="/homepage/designpr/user">用户体验要素</router-link>
+              </a-menu-item>
+              <a-menu-item key="/homepage/designpr/sequence">
+                <router-link to="/homepage/designpr/sequence">序列效应</router-link>
+              </a-menu-item>
+              <a-menu-item key="/homepage/designpr/test">
+                <router-link to="/homepage/designpr/test">测试法则</router-link>
+              </a-menu-item>
+              <!-- <a-menu-item key="/homepage/guide/designpr">
+                <router-link to="/homepage/guide/designpr">设计原则</router-link>
+              </a-menu-item> -->
+            </a-sub-menu>
+            <a-menu-item key="/homepage/instructions/main">
+              <router-link to="/homepage/instructions/main">使用说明</router-link>
             </a-menu-item>
-            <a-menu-item key="/homepage/guide/designpr">
-              <router-link to="/homepage/guide/designpr">设计原则</router-link>
+            <a-menu-item key="/homepage/fag/main">
+              <router-link to="/homepage/fag/main">常见问题</router-link>
             </a-menu-item>
-            <a-menu-item key="/homepage/guide/designspec">
-              <router-link to="/homepage/guide/designspec">设计规范</router-link>
+            <a-menu-item key="/homepage/introduce/main">
+              <router-link to="/homepage/introduce/main">发布内容</router-link>
             </a-menu-item>
-          </a-sub-menu>
-          <a-menu-item key="/homepage/instructions/main">
-            <router-link to="/homepage/instructions/main">使用说明</router-link>
-          </a-menu-item>
-          <a-menu-item key="/homepage/fag/main">
-            <router-link to="/homepage/fag/main">常见问题</router-link>
-          </a-menu-item>
-          <a-menu-item key="/homepage/introduce/main">
-            <router-link to="/homepage/introduce/main">发布内容</router-link>
-          </a-menu-item>
-        </a-menu>
+          </a-menu>
+        </div>
       </o-affix>
     </div>
     <div class="layout-right">
@@ -103,6 +138,11 @@ export default {
   .layout-left {
     box-shadow: 1px -2px 4px 0px #F2F2F2;
 
+    .menu-wrap {
+      max-height: 100vh;
+      overflow: auto;
+      width: 250px;
+    }
     .ant-menu{
       background: none;
     }
@@ -118,6 +158,8 @@ export default {
       height: 60px;
       line-height: 60px;
       padding-left: 60px !important;
+      margin: 0;
+      box-sizing: border-box;
     }
     .ant-menu-sub.ant-menu-inline > .ant-menu-item {
       margin: 0;

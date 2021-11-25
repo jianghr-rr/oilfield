@@ -12,13 +12,13 @@ For letter type Avatar, when the letters are too long to display, the font size 
 <template>
   <div>
     <o-avatar
-      size="30"
+      :size="50"
       style="color: #fff; backgroundColor: #990F0F"
     >
-      {{ avatarValue }}
+      <span class='icon-size'>{{ avatarValue }}</span>
     </o-avatar>
     <a-button
-      :style="{ marginLeft: 30, verticalAlign: 'middle' }"
+      :style="{ marginLeft: '20px', verticalAlign: 'middle' }"
       @click="changeValue"
     >
       更改用户
@@ -44,4 +44,9 @@ export default {
   },
 };
 </script>
+<style>
+.icon-size {
+  font-size: 36px;
+}
+</style>
 ```

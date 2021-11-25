@@ -63,8 +63,8 @@ export default {
 </script>
 <style>
 [id^='components-button-demo-'] .ant-btn {
-  margin-right: 8px;
-  margin-bottom: 12px;
+  margin-right: 20px;
+  margin-bottom: 20px;
 }
 [id^='components-button-demo-'] .ant-btn-group > .ant-btn {
   margin-right: 0;

@@ -79,28 +79,6 @@ const IconDisplay = {
     const list = this.getComputedDisplayList();
     return (
       <div>
-        <h3>{this.$t('app.docs.components.icon.pick-theme')}</h3>
-        <div style={{ display: 'flex', justifyContent: 'space-between' }}>
-          <a-radio-group value={this.theme} onChange={this.handleChangeTheme} size="large">
-            <a-radio-button value="outlined">
-              <o-icon component={OutlinedIcon} /> {this.$t('app.docs.components.icon.outlined')}
-            </a-radio-button>
-            <a-radio-button value="filled">
-              <o-icon component={FilledIcon} /> {this.$t('app.docs.components.icon.filled')}
-            </a-radio-button>
-            <a-radio-button value="twoTone">
-              <o-icon component={TwoToneIcon} /> {this.$t('app.docs.components.icon.two-tone')}
-            </a-radio-button>
-          </a-radio-group>
-          <a-input-search
-            placeholder={this.$t('app.docs.components.icon.search.placeholder')}
-            style={{ marginLeft: '10px', flex: 1 }}
-            allowClear
-            onChange={e => this.handleSearchIcon(e.currentTarget.value)}
-            size="large"
-            autoFocus
-          />
-        </div>
         {this.renderCategories(list)}
       </div>
     );
