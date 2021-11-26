@@ -1,6 +1,6 @@
 <cn>
-#### 内嵌菜单
-垂直菜单，子菜单内嵌在菜单区域。
+#### 缩起内嵌菜单
+内嵌菜单可以被缩起或展开。
 </cn>
 
 <us>
@@ -10,26 +10,26 @@ Vertical menu with inline submenus.
 
 ```vue
 <template>
-  <div>
+  <div style="width: 256px">
+    <o-button type="primary" style="margin-bottom: 16px" @click="toggleCollapsed">
+        <o-icon :type="collapsed ? 'menu-unfold' : 'menu-fold'" />
+    </o-button>
     <o-menu
-      style="width: 256px"
       :default-selected-keys="['1']"
       :open-keys.sync="openKeys"
       mode="inline"
       @click="handleClick"
+      :inline-collapsed="collapsed"
     >
       <o-sub-menu key="sub1" @titleClick="titleClick">
         <span slot="title"><o-icon type="mail" /><span>分组 1</span></span>
         <o-menu-item-group key="g1">
-          <template slot="title"><span>Item 1</span> </template>
           <o-menu-item key="1">
             选择 1
           </o-menu-item>
           <o-menu-item key="2">
             选择 2
           </o-menu-item>
-        </o-menu-item-group>
-        <o-menu-item-group key="g2" title="Item 2">
           <o-menu-item key="3">
             选择 3
           </o-menu-item>
@@ -79,6 +79,7 @@ export default {
     return {
       current: ['mail'],
       openKeys: ['sub1'],
+      collapsed: false,
     };
   },
   watch: {
@@ -92,6 +93,9 @@ export default {
     },
     titleClick(e) {
       console.log('titleClick', e);
+    },
+     toggleCollapsed() {
+      this.collapsed = !this.collapsed;
     },
   },
 };

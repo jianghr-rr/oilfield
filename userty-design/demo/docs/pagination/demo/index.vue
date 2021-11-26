@@ -13,7 +13,7 @@ import CN from '../index.zh-CN.md';
 import US from '../index.en-US.md';
 
 const md = {
-  cn: `# Pagination 分页
+  cn: `# 分页 Pagination
 
     采用分页的形式分隔长列表，每次只加载一个页面。
 
@@ -37,7 +37,7 @@ const md = {
 export default {
   category: 'Components',
   subtitle: '分页',
-  type: 'Navigation',
+  type: 'Data Display',
   title: 'Pagination',
   cols: 1,
   render() {

@@ -14,7 +14,7 @@ import CN from '../index.zh-CN.md';
 import US from '../index.en-US.md';
 
 const md = {
-  cn: `# Steps
+  cn: `# 步骤条 Steps
 
   引导用户按照流程完成任务的导航条。
 
@@ -47,7 +47,6 @@ export default {
           <SmallSize />
           <Icon />
           <Vertical />
-          <VerticalSmall />
           <Nav />
         </demo-sort>
         <api>

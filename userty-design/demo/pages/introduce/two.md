@@ -1,3 +1,3 @@
 ```shell
-  $ yarn add uesrty-design-vue
+  $ yarn add uesrty-design
 ```

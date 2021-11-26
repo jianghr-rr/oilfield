@@ -95,7 +95,7 @@ export default {
   pagination: {
     category: 'Components',
     subtitle: '分页',
-    type: 'Navigation',
+    type: 'Data Display',
     title: 'Pagination',
     cols: 1,
   },
@@ -278,7 +278,7 @@ export default {
   progress: {
     category: 'Components',
     subtitle: '进度条',
-    type: 'Feedback',
+    type: 'Navigation',
     title: 'Progress',
   },
   timeline: {

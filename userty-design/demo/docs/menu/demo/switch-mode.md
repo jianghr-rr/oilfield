@@ -25,42 +25,34 @@ Show the dynamic switching mode (between 'inline' and 'vertical').
     >
       <o-menu-item key="1">
         <a-icon type="mail" />
-        Navigation One
+        分组 1
       </o-menu-item>
       <o-menu-item key="2">
         <a-icon type="calendar" />
-        Navigation Two
+        分组 2
       </o-menu-item>
       <o-sub-menu key="sub1">
-        <span slot="title"><a-icon type="appstore" /><span>Navigation Three</span></span>
+        <span slot="title"><a-icon type="appstore" /><span>分组 3</span></span>
         <o-menu-item key="3">
-          Option 3
+          选择 3
         </o-menu-item>
         <o-menu-item key="4">
-          Option 4
+          选择 4
         </o-menu-item>
-        <o-sub-menu key="sub1-2" title="Submenu">
-          <o-menu-item key="5">
-            Option 5
-          </o-menu-item>
-          <o-menu-item key="6">
-            Option 6
-          </o-menu-item>
-        </o-sub-menu>
       </o-sub-menu>
       <o-sub-menu key="sub2">
-        <span slot="title"><a-icon type="setting" /><span>Navigation Four</span></span>
+        <span slot="title"><a-icon type="setting" /><span>分组 4</span></span>
         <o-menu-item key="7">
-          Option 7
+          选择 7
         </o-menu-item>
         <o-menu-item key="8">
-          Option 8
+          选择 8
         </o-menu-item>
         <o-menu-item key="9">
-          Option 9
+          选择 9
         </o-menu-item>
         <o-menu-item key="10">
-          Option 10
+          选择 10
         </o-menu-item>
       </o-sub-menu>
     </o-menu>

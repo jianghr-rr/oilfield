@@ -340,7 +340,8 @@ export default {
   }
   .layout-left {
     box-shadow: 1px -2px 4px 0px #F2F2F2;
-
+    background: #FFFFFF;
+    padding: 0 0 120px 0;
     .ant-menu{
       background: none;
     }
@@ -353,6 +354,10 @@ export default {
       max-height: 100vh;
       overflow: auto;
       width: 250px;
+    }
+
+    .ant-menu-submenu-inline {
+      background: #FFFFFF;
     }
 
     .ant-menu-submenu-inline > .ant-menu-submenu-title .ant-menu-submenu-arrow {

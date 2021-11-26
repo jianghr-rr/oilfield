@@ -1,3 +1,3 @@
 ```shell
-  $ npm install uesrty-design-vue --save
+  $ npm install uesrty-design --save
 ```

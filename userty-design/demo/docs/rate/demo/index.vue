@@ -9,14 +9,13 @@ import CN from '../index.zh-CN.md';
 import US from '../index.en-US.md';
 
 const md = {
-  cn: `# Rate
+  cn: `# 评分 Rate
 
   评分组件。
 
   ## 何时使用
 
-  - 对评价进行展示。
-  - 对事物进行快速的评级操作。
+对评价进行展示或对事物进行快速的评级操作。
             ## 代码演示`,
   us: `# Rate
 

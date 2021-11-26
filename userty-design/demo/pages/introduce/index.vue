@@ -50,6 +50,8 @@ export default {
         <One />
         <Tow />
         <div class="text">如果你的网络环境不佳，推荐使用 cnpm</div>
+        <div id="d" class="h2-title">网站说明</div>
+        <div class="text">本网站内容设计原则部分由开发团队就界面设计、用户体验等知识作相关参考，因内容涉及知识面广，没有一一标明出处，目前仅供公司内部学习使用。后期如有开源计划，会一一追加参考文献出处，特此说明。</div>
       </div>
     );
   },

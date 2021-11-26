@@ -14,13 +14,11 @@ import CN from '../index.zh-CN.md';
 import US from '../index.en-US.md';
 
 const md = {
-  cn: `# Progress 进度条
+  cn: `# 进度条 Progress
   展示操作的当前进度。
   ## 何时使用
   在操作需要较长时间才能完成时，为用户显示该操作的当前进度和状态。
 
-  - 当一个操作会打断当前界面，或者需要在后台运行，且耗时可能超过2秒时；
-  - 当需要显示一个操作完成的百分比时。
         ## 代码演示`,
   us: `# Progress
   Display the current progress of an operation flow.
