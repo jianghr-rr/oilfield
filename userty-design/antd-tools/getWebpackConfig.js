@@ -163,7 +163,7 @@ Copyright 2017-present, ant-design-vue.
 All rights reserved.
       `),
       new WebpackBar({
-        name: '🚚  Ant Design Vue Tools',
+        name: '🚚 Build Tools',
         color: '#2f54eb',
       }),
       new CleanUpStatsPlugin(),

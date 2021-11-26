@@ -3,9 +3,14 @@
 /* eslint-disable */
 'use strict';
 
+const gulp = require('gulp');
 const fs = require('fs');
 const path = require('path');
 const packageInfo = require('../package.json');
+
+gulp.src(path.join(__dirname, '../components/icon/libs/*.json'))
+    .pipe(gulp.dest(path.join(__dirname, '../lib/icon/libs/')))
+    .pipe(gulp.dest(path.join(__dirname, '../es/icon/libs/')));
 
 if (fs.existsSync(path.join(__dirname, '../lib'))) {
   // Build package.json version to lib/version/index.js
@@ -45,5 +50,7 @@ if (fs.existsSync(path.join(__dirname, '../dist'))) {
       '@import "../lib/style/index.less";\n@import "../lib/style/components.less";',
     );
   });
+
   console.log('Built a entry less file to dist/usertyd.less');
 }
+
