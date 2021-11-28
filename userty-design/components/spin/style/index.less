@@ -124,20 +124,20 @@
     display: inline-block;
     font-size: @spin-dot-size;
     animation: spin 1s steps(12, end) infinite;
-
-    .square(30px);
+    // border: 1px solid red;
+    .square(34px);
 
     &-item {
       position: absolute;
       display: block;
-      height: 13px;
+      height: 10px;
       width: 9px;
-      margin-left: 5px;
+      margin-left: 7px;
       display: block;
       transition: height 1s;
       position: absolute;
-      left: 15%;
-      transform-origin: center 15px;
+      left: 16%;
+      transform-origin: center 17px;
       // width: 9px;
       // height: 9px;
       // background-color: @primary-color;
@@ -198,11 +198,11 @@
   &-sm &-dot {
     font-size: @spin-dot-size-sm;
 
-    .square(20px);
+    .square(24px);
     i {
       height: 9px;
       width: 6px;
-      transform-origin: center 10px;
+      transform-origin: center 12px;
       margin-left: 4px;
       & .svg {
         position: absolute;
@@ -216,12 +216,12 @@
   &-lg &-dot {
     font-size: @spin-dot-size-lg;
 
-    .square(40px);
+    .square(44px);
     i {
       height: 18px;
       width: 12px;
       margin-left: 8px;
-      transform-origin: center 20px;
+      transform-origin: center 22px;
       // width: 6px;
       // height: 6px;
       & .svg {

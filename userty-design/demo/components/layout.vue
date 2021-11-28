@@ -343,7 +343,7 @@ export default {
     background: #FFFFFF;
     padding: 0 0 120px 0;
     .ant-menu{
-      background: none;
+      background: #FFFFFF;
     }
 
     .ant-menu-inline, .ant-menu-vertical, .ant-menu-vertical-left {

@@ -94,17 +94,22 @@ export default {
   .layout-left {
     box-shadow: 1px -2px 4px 0px #F2F2F2;
 
+    background: #FFFFFF;
     .menu-wrap {
       max-height: 100vh;
       overflow: auto;
       width: 250px;
     }
     .ant-menu{
-      background: none;
+      background: #FFFFFF;
     }
 
     .ant-menu-inline, .ant-menu-vertical, .ant-menu-vertical-left {
       border: none;
+    }
+
+    .ant-menu-submenu-inline {
+      background: #FFFFFF;
     }
 
     .ant-menu-inline > .ant-menu-submenu > .ant-menu-submenu-title,

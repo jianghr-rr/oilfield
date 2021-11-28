@@ -10,7 +10,7 @@ import CN from '../index.zh-CN.md';
 import US from '../index.en-US.md';
 
 const md = {
-  cn: `# Spin 加载中
+  cn: `# 加载中 Spin
 
   用于页面和区块的加载中状态。
 

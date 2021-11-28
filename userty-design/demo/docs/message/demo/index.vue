@@ -8,11 +8,10 @@ import Update from './update';
 import CN from '../index.zh-CN.md';
 import US from '../index.en-US.md';
 const md = {
-  cn: `# 全局提示
+  cn: `# 全局提示 Message
 全局展示操作反馈信息。
 ## 何时使用
-- 可提供成功、警告和错误等反馈信息。
-- 顶部居中显示并自动消失，是一种不打断用户操作的轻量级提示方式。
+顶部居中显示并自动消失，是一种不打断用户操作的轻量级提示方式，可提供成功、警告和提示等反馈信息。
 
 ## 代码演示`,
   us: `# Message

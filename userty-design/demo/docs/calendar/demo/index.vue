@@ -9,7 +9,7 @@ import CN from '../index.zh-CN.md';
 import US from '../index.en-US.md';
 
 const md = {
-  cn: `# Calendar 日历
+  cn: `# 日历 Calendar
 
 按照日历形式展示数据的容器。
 

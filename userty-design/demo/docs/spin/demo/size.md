@@ -12,7 +12,7 @@ A small `Spin` use in loading text, default `Spin` use in loading card-level blo
 <template>
   <div>
     <o-spin size="small" />
-    <o-spin />
+    <o-spin style='margin: 0 15px;'/>
     <o-spin size="large" />
   </div>
 </template>

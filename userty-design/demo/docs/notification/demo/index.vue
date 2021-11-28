@@ -11,13 +11,10 @@ import Update from './update';
 import CN from '../index.zh-CN.md';
 import US from '../index.en-US.md';
 const md = {
-  cn: `# 通知提醒框
+  cn: `# 通知提醒 Notification
 全局展示通知提醒信息。
 ## 何时使用
-在系统四个角显示通知提醒信息。经常用于以下情况：
-- 较为复杂的通知内容。
-- 带有交互的通知，给出用户下一步的行动点。
-- 系统主动推送。
+在系统四个角显示通知提醒消息，经常用于较为复杂的通知内容、带有交互的通知并给用户行动点或系统主动推送。
 
 ## 代码演示`,
   us: `# Notification
