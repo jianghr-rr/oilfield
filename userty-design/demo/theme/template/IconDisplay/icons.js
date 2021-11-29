@@ -31,6 +31,7 @@ export const directionIcons = [
     'step-backward',
     'step-forward',
     'fast-backward',
+    'fast-forward',
     'shrink',
     'arrows-alt',
     'up',
@@ -44,6 +45,7 @@ export const directionIcons = [
     'caret-left',
     'caret-right',
     'fullscreen',
+    'fullscreen-exit',
     'up-circle',
     'down-circle',
     'left-circle',
@@ -65,7 +67,8 @@ export const directionIcons = [
     'up-square',
     'down-square',
     'left-square',
-    'right-square'
+    'right-square',
+    'play-circle'
 ];
 
 export const suggestionIcons = [
@@ -96,6 +99,7 @@ export const editorIcons = [
     'edit',
     'form',
     'copy',
+    'scissor',
     'delete',
     'upload',
     'bg-colors',
@@ -108,6 +112,7 @@ export const editorIcons = [
     'align-center',
     'align-left',
     'line-height',
+    'column-height',
     'column-width',
     'sort-descending',
     'sort-ascending',
@@ -118,5 +123,7 @@ export const editorIcons = [
     'install',
     'function',
     'search',
-    'user'
+    'user',
+    'password',
+    'score'
 ];
