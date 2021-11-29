@@ -99,6 +99,31 @@ import overysatisfied from "./very-satisfied.json";
 import owarning from "./warning.json";
 import ozoomin from "./zoom-in.json";
 import ozoomout from "./zoom-out.json";
+import ocaiqijing from './caiqijing.json';
+import ocaiyoujing from './caiyoujing.json';
+import ohanyouwushuichulizhan from './hanyouwushuichulizhan.json';
+import ojiliangzhan from './jiliangzhan.json';
+import ojiqizhan from './jiqizhan.json';
+import ojizhongchulizhan from './jizhongchulizhan.json';
+import olianhezhan from './lianhezhan.json';
+import opeiqizhan from './peiqizhan.json';
+import opeishuizhan from './peishuizhan.json';
+import oshuqizhan from './shuqizhan.json';
+import oshuyoushouzhanmozhan from './shuyoushouzhan-mozhan.json';
+import otanjing from './tanjing.json';
+import otianranqizengyazhan from './tianranqizengyazhan.json';
+import owanzuanjing from './wanzuanjing.json';
+import oyuanyoujiayazhan from './yuanyoujiayazhan.json';
+import ozhengqituntuzhan from './zhengqituntuzhan.json';
+import ozhengshijing from './zhengshijing.json';
+import ozhengzuanjing from './zhengzuanjing.json';
+import ozhuanyouzhan from './zhuanyouzhan.json';
+import ozhujuzhan from './zhujuzhan.json';
+import ozhuqijing from './zhuqijing.json';
+import ozhuqizhan from './zhuqizhan.json';
+import ozhushuijing from './zhushuijing.json';
+import ozhushuizhan from './zhushuizhan.json';
+import ozhuzhengqijing from './zhuzhengqijing.json';
 
 export {
     oaligncenter,
@@ -201,5 +226,30 @@ export {
     overysatisfied,
     owarning,
     ozoomin,
-    ozoomout
+    ozoomout,
+    ocaiqijing,
+    ocaiyoujing,
+    ohanyouwushuichulizhan,
+    ojiliangzhan,
+    ojiqizhan,
+    ojizhongchulizhan,
+    olianhezhan,
+    opeiqizhan,
+    opeishuizhan,
+    oshuqizhan,
+    oshuyoushouzhanmozhan,
+    otanjing,
+    otianranqizengyazhan,
+    owanzuanjing,
+    oyuanyoujiayazhan,
+    ozhengqituntuzhan,
+    ozhengshijing,
+    ozhengzuanjing,
+    ozhuanyouzhan,
+    ozhujuzhan,
+    ozhuqijing,
+    ozhuqizhan,
+    ozhushuijing,
+    ozhushuizhan,
+    ozhuzhengqijing
 };
