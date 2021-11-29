@@ -73,7 +73,7 @@
                     @click="isRemember = !isRemember"
                 >
                     <o-input type="checkbox" :checked="isRemember" />
-                    <div style="margin-left: 10px;">记住登陆状态</div>
+                    <div style="margin-left: 10px;">记住登录状态</div>
                 </div>
             </div>
             <o-form-item style="margin-bottom: 10px;">
@@ -93,7 +93,7 @@
                 <a :style="{color}">立即注册</a>
             </div>
             <div @click="$emit('onMessage')">
-                <a :style="{color}">忘记登陆密码</a>
+                <a :style="{color}">忘记登录密码</a>
             </div>
         </div>
     </div>

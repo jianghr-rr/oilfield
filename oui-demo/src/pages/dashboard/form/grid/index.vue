@@ -6,7 +6,7 @@
         </p>
         <o-form :form="form" v-bind="layout">
             <o-card class="card" :bordered="false">
-                <div class="title">水平布局</div>
+                <div class="title">基础信息</div>
                 <horizontal-form :resetKey="resetKey" :submitKey="submitKey"></horizontal-form>
             </o-card>
             <o-card class="card" :bordered="false">

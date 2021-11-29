@@ -83,7 +83,7 @@
                 <a :style="{color}">立即注册</a>
             </div>
             <div @click="$emit('onMessage')">
-                <a :style="{color}">忘记登陆密码</a>
+                <a :style="{color}">忘记登录密码</a>
             </div>
         </div>
     </div>

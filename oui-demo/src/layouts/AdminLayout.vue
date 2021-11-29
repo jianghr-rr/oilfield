@@ -144,10 +144,10 @@ export default {
   top: 0px;
   bottom: 0;
   float: left;
-  margin-top: 50px;
+  margin-top: 40px;
 }
 .admin-layout {
-  margin-top: 50px;
+  margin-top: 40px;
   .virtual-side {
     transition: all 0.2s;
   }

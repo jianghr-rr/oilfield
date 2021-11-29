@@ -41,21 +41,21 @@ export default {
     }
 }
 .status-icon-success > .icon {
-    background-color: rgba(@primary-color, 0.5);
+    background-color: rgba(#258006, 0.5);
 }
 .status-icon-success > .icon::before {
-    background-color: @primary-color;
+    background-color: #258006;
 }
 .status-icon-warning > .icon {
-    background-color: rgba(@warning-color, 0.5);
+    background-color: rgba(@primary-color, 0.5);
 }
 .status-icon-warning > .icon::before {
-    background-color: @warning-color;
+    background-color: @primary-color;
 }
 .status-icon-error > .icon {
-    background-color: rgba(@error-color, 0.5);
+    background-color: rgba(#F27F0C, 0.5);
 }
 .status-icon-error > .icon::before {
-    background-color: @error-color;
+    background-color: #F27F0C;
 }
 </style>

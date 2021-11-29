@@ -47,16 +47,16 @@
                         'password',
                         {
                             rules: [
-                                {required: true, message: '设置6-20位登陆密码'},
-                                {min: 6, message: '设置6-20位登陆密码'},
-                                {max: 20, message: '设置6-20位登陆密码'},
+                                {required: true, message: '设置6-20位登录密码'},
+                                {min: 6, message: '设置6-20位登录密码'},
+                                {max: 20, message: '设置6-20位登录密码'},
                                 {validator: validateToNextPassword}
                             ]
                         }
                     ]"
                     :maxLength="20"
                     type="password"
-                    placeholder="设置6-20位登陆密码"
+                    placeholder="设置6-20位登录密码"
                 />
             </o-form-item>
              <o-form-item class="oil-form-item">

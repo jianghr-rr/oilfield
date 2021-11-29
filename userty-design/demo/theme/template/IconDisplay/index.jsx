@@ -48,7 +48,7 @@ const IconDisplay = {
           .filter(({ category }) => category !== 'all')
           .every(item => !item.icons.includes(icon));
       });
-      return list
+      const $list = list
         .filter(({ category }) => category !== 'all')
         .concat({ category: 'other', icons: otherIcons })
         .map(({ category, icons }) => ({
@@ -57,8 +57,12 @@ const IconDisplay = {
             .filter(name => name.includes(searchKey))
             .filter(name => manifest[IconDisplay.themeTypeMapper[theme]].includes(name)),
         }))
-        .filter(({ icons }) => !!icons.length)
-        .map(({ category, icons }) => {
+        .filter(({ category, icons }) => {
+          // console.log('category: ', category, !!icons.length || category !== 'other');
+          return !!icons.length && category !== 'other';
+        });
+      console.log('$list: ', $list);
+      return $list.map(({ category, icons }) => {
           return (
             <Category
               key={category}
