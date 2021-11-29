@@ -1,255 +1,199 @@
-import oaligncenter from "./align-center.json";
-import oalignleft from "./align-left.json";
-import oalignright from "./align-right.json";
-import oarrowdown from "./arrow-down.json";
-import oarrowleft from "./arrow-left.json";
-import oarrowright from "./arrow-right.json";
-import oarrowup from "./arrow-up.json";
-import oarrowsaltingtubiao06 from "./arrows-altingtubiao-06.json";
-import obgColors from "./bg-colors.json";
-import obold from "./bold.json";
-import ocaretDown from "./caret-down.json";
-import ocaretLeft from "./caret-left.json";
-import ocaretRight from "./caret-right.json";
-import ocaretup from "./caret-up.json";
-import ocheckcircle from "./check-circle.json";
-import ochecksquare from "./check-square.json";
-import ocheck from "./check.json";
-import oclicked from "./clicked.json";
-import oclosecircle from "./close-circle.json";
-import oclosesquare from "./close-square.json";
-import oclose from "./close.json";
-import ocolumnheight from "./column-height.json";
-import ocolumnwidth from "./column-width.json";
-import ocopy from "./copy.json";
-import ocopyed from "./copyed.json";
-import odaimadianji from "./daima-dianji.json";
-import odaimaweidianji from "./daima-weidianji.json";
-import obash from "./delete.json";
-import odoubleleft from "./double-left.json";
-import odoubleright from "./double-right.json";
-import odowncircle from "./down-circle.json";
-import odownsquare from "./down-square.json";
-import odown from "./down.json";
-import oedit from "./edit.json";
-import oenter from "./enter.json";
-import oexclamationcircle from "./exclamation-circle.json";
-import oexclamation from "./exclamation.json";
-import ofacebook from "./face-book.json";
-import ofastbackward from "./fast-backward.json";
-import ofastforward from "./fast-forward.json";
-import ofontcolors from "./font-colors.json";
-import ofontsize from "./font-size.json";
-import oform from "./form.json";
-import ofullscreenexit from "./fullscreen-exit.json";
-import ofullscreen from "./fullscreen.json";
-import ofunc from "./function.json";
-import ogenerally from "./generally.json";
-import oinfocircle from "./info-circle.json";
-import oinfo from "./info.json";
-import oinstall from "./install.json";
-import oitalic from "./italic.json";
-import oleftcircle from "./left-circle.json";
-import oleftsquare from "./left-square.json";
-import oleft from "./left.json";
-import olineheight from "./line-height.json";
-import oloading from "./loading.json";
-import omenufold from "./menu-fold.json";
-import omenuunfold from "./menu-unfold.json";
-import ominuscircle from "./minus-circle.json";
-import ominussquare from "./minus-square.json";
-import ominus from "./minus.json";
-import opassword from "./password.json";
-import opiccenter from "./pic-center.json";
-import opicleft from "./pic-left.json";
-import opicright from "./pic-right.json";
-import oplaycircle from "./play-circle.json";
-import opluscircle from "./plus-circle.json";
-import oplussquare from "./plus-square.json";
-import oplus from "./plus.json";
-import oquestioncircle from "./question-circle.json";
-import oquestion from "./question.json";
-import oredo from "./redo.json";
-import oretweet from "./retweet.json";
-import orightcircle from "./right-circle.json";
-import orightsquare from "./right-square.json";
-import oright from "./right.json";
-import osatisfy from "./satisfy.json";
-import oscissor from "./scissor.json";
-import oscore from "./score.json";
-import osearch from "./search.json";
-import oshrink5 from "./shrink5.json";
-import osortascending from "./sort-ascending.json";
-import osortdescending from "./sort-descending.json";
-import ostepbackward from "./step-backward.json";
-import ostepforward from "./step-forward.json";
-import ostop from "./stop.json";
-import otwitterlogo from "./twitter-logo.json";
-import ounderline from "./underline.json";
-import oundo from "./undo.json";
-import oupcircle from "./up-circle.json";
-import oupsquare from "./up-square.json";
-import oup from "./up.json";
-import oupload from "./upload.json";
-import ouser from "./user.json";
-import overticalalignbottom from "./vertical-align-bottom.json";
-import overticalalignmiddle from "./vertical-align-middle.json";
-import overticalaligntop from "./vertical-align-top.json";
-import overysatisfied from "./very-satisfied.json";
-import owarning from "./warning.json";
-import ozoomin from "./zoom-in.json";
-import ozoomout from "./zoom-out.json";
-import ocaiqijing from './caiqijing.json';
-import ocaiyoujing from './caiyoujing.json';
-import ohanyouwushuichulizhan from './hanyouwushuichulizhan.json';
-import ojiliangzhan from './jiliangzhan.json';
-import ojiqizhan from './jiqizhan.json';
-import ojizhongchulizhan from './jizhongchulizhan.json';
-import olianhezhan from './lianhezhan.json';
-import opeiqizhan from './peiqizhan.json';
-import opeishuizhan from './peishuizhan.json';
-import oshuqizhan from './shuqizhan.json';
-import oshuyoushouzhanmozhan from './shuyoushouzhan-mozhan.json';
-import otanjing from './tanjing.json';
-import otianranqizengyazhan from './tianranqizengyazhan.json';
-import owanzuanjing from './wanzuanjing.json';
-import oyuanyoujiayazhan from './yuanyoujiayazhan.json';
-import ozhengqituntuzhan from './zhengqituntuzhan.json';
-import ozhengshijing from './zhengshijing.json';
-import ozhengzuanjing from './zhengzuanjing.json';
-import ozhuanyouzhan from './zhuanyouzhan.json';
-import ozhujuzhan from './zhujuzhan.json';
-import ozhuqijing from './zhuqijing.json';
-import ozhuqizhan from './zhuqizhan.json';
-import ozhushuijing from './zhushuijing.json';
-import ozhushuizhan from './zhushuizhan.json';
-import ozhuzhengqijing from './zhuzhengqijing.json';
+import aligncenter from './align-center.json';
+import alignleft from './align-left.json';
+import alignright from './align-right.json';
+import arrowdown from './arrow-down.json';
+import arrowleft from './arrow-left.json';
+import arrowright from './arrow-right.json';
+import arrowsaltingtubiao06 from './arrows-altingtubiao-06.json';
+import arrowup from './arrow-up.json';
+import bgcolors from './bg-colors.json';
+import bold from './bold.json';
+import caretdown from './caret-down.json';
+import caretleft from './caret-left.json';
+import caretright from './caret-right.json';
+import caretup from './caret-up.json';
+import check from './check.json';
+import checkcircle from './check-circle.json';
+import checksquare from './check-square.json';
+import close from './close.json';
+import closecircle from './close-circle.json';
+import closesquare from './close-square.json';
+import columnheight from './column-height.json';
+import columnwidth from './column-width.json';
+import copy from './copy.json';
+import daimadianji from './daima-dianji.json';
+import daimaweidianji from './daima-weidianji.json';
+import del from './delete.json';
+import doubleleft from './double-left.json';
+import doubleright from './double-right.json';
+import down from './down.json';
+import downcircle from './down-circle.json';
+import downsquare from './down-square.json';
+import edit from './edit.json';
+import enter from './enter.json';
+import exclamation from './exclamation.json';
+import exclamationcircle from './exclamation-circle.json';
+import fastbackward from './fast-backward.json';
+import fastforward from './fast-forward.json';
+import fontcolors from './font-colors.json';
+import fontsize from './font-size.json';
+import form from './form.json';
+import fullscreen from './fullscreen.json';
+import fullscreenexit from './fullscreen-exit.json';
+import func from './function.json';
+import generally from './generally.json';
+import info from './info.json';
+import infocircle from './info-circle.json';
+import install from './install.json';
+import italic from './italic.json';
+import left from './left.json';
+import leftcircle from './left-circle.json';
+import leftsquare from './left-square.json';
+import lineheight from './line-height.json';
+import loading from './loading.json';
+import menufold from './menu-fold.json';
+import menuunfold from './menu-unfold.json';
+import minus from './minus.json';
+import minuscircle from './minus-circle.json';
+import minussquare from './minus-square.json';
+import password from './password.json';
+import piccenter from './pic-center.json';
+import picleft from './pic-left.json';
+import picright from './pic-right.json';
+import playcircle from './play-circle.json';
+import plus from './plus.json';
+import pluscircle from './plus-circle.json';
+import plussquare from './plus-square.json';
+import question from './question.json';
+import questioncircle from './question-circle.json';
+import redo from './redo.json';
+import retweet from './retweet.json';
+import right from './right.json';
+import rightcircle from './right-circle.json';
+import rightsquare from './right-square.json';
+import satisfy from './satisfy.json';
+import scissor from './scissor.json';
+import score from './score.json';
+import search from './search.json';
+import shrink5 from './shrink5.json';
+import sortascending from './sort-ascending.json';
+import sortdescending from './sort-descending.json';
+import stepbackward from './step-backward.json';
+import stepforward from './step-forward.json';
+import stop from './stop.json';
+import underline from './underline.json';
+import undo from './undo.json';
+import up from './up.json';
+import upcircle from './up-circle.json';
+import upload from './upload.json';
+import upsquare from './up-square.json';
+import user from './user.json';
+import verticalalignbottom from './vertical-align-bottom.json';
+import verticalalignmiddle from './vertical-align-middle.json';
+import verticalaligntop from './vertical-align-top.json';
+import verysatisfied from './very-satisfied.json';
+import warning from './warning.json';
+import zoomin from './zoom-in.json';
+import zoomout from './zoom-out.json';
+import oils from './oil';
 
-export {
-    oaligncenter,
-    oalignleft,
-    oalignright,
-    oarrowdown,
-    oarrowleft,
-    oarrowright,
-    oarrowup,
-    oarrowsaltingtubiao06,
-    obgColors,
-    obold,
-    ocaretDown,
-    ocaretLeft,
-    ocaretRight,
-    ocaretup,
-    ocheckcircle,
-    ochecksquare,
-    ocheck,
-    oclicked,
-    oclosecircle,
-    oclosesquare,
-    oclose,
-    ocolumnheight,
-    ocolumnwidth,
-    ocopy,
-    ocopyed,
-    odaimadianji,
-    odaimaweidianji,
-    obash,
-    odoubleleft,
-    odoubleright,
-    odowncircle,
-    odownsquare,
-    odown,
-    oedit,
-    oenter,
-    oexclamationcircle,
-    oexclamation,
-    ofacebook,
-    ofastbackward,
-    ofastforward,
-    ofontcolors,
-    ofontsize,
-    oform,
-    ofullscreenexit,
-    ofullscreen,
-    ofunc,
-    ogenerally,
-    oinfocircle,
-    oinfo,
-    oinstall,
-    oitalic,
-    oleftcircle,
-    oleftsquare,
-    oleft,
-    olineheight,
-    oloading,
-    omenufold,
-    omenuunfold,
-    ominuscircle,
-    ominussquare,
-    ominus,
-    opassword,
-    opiccenter,
-    opicleft,
-    opicright,
-    oplaycircle,
-    opluscircle,
-    oplussquare,
-    oplus,
-    oquestioncircle,
-    oquestion,
-    oredo,
-    oretweet,
-    orightcircle,
-    orightsquare,
-    oright,
-    osatisfy,
-    oscissor,
-    oscore,
-    osearch,
-    oshrink5,
-    osortascending,
-    osortdescending,
-    ostepbackward,
-    ostepforward,
-    ostop,
-    otwitterlogo,
-    ounderline,
-    oundo,
-    oupcircle,
-    oupsquare,
-    oup,
-    oupload,
-    ouser,
-    overticalalignbottom,
-    overticalalignmiddle,
-    overticalaligntop,
-    overysatisfied,
-    owarning,
-    ozoomin,
-    ozoomout,
-    ocaiqijing,
-    ocaiyoujing,
-    ohanyouwushuichulizhan,
-    ojiliangzhan,
-    ojiqizhan,
-    ojizhongchulizhan,
-    olianhezhan,
-    opeiqizhan,
-    opeishuizhan,
-    oshuqizhan,
-    oshuyoushouzhanmozhan,
-    otanjing,
-    otianranqizengyazhan,
-    owanzuanjing,
-    oyuanyoujiayazhan,
-    ozhengqituntuzhan,
-    ozhengshijing,
-    ozhengzuanjing,
-    ozhuanyouzhan,
-    ozhujuzhan,
-    ozhuqijing,
-    ozhuqizhan,
-    ozhushuijing,
-    ozhushuizhan,
-    ozhuzhengqijing
+export default {
+    "align-center": aligncenter,
+    'align-left': alignleft,
+    'align-right': alignright,
+    'arrow-down': arrowdown,
+    'arrow-left': arrowleft,
+    'arrow-right': arrowright,
+    'arrows-altingtubiao-06': arrowsaltingtubiao06,
+    'arrow-up': arrowup,
+    'bg-colors': bgcolors,
+    'bold': bold,
+    'caret-down': caretdown,
+    'caret-left': caretleft,
+    'caret-right': caretright,
+    'caret-up': caretup,
+    'check': check,
+    'check-circle': checkcircle,
+    'check-square': checksquare,
+    'close': close,
+    'close-circle': closecircle,
+    'close-square': closesquare,
+    'column-height': columnheight,
+    'column-width': columnwidth,
+    'copy': copy,
+    'daima-dianji': daimadianji,
+    'daima-weidianji': daimaweidianji,
+    'delete': del,
+    'double-left': doubleleft,
+    'double-right': doubleright,
+    'down': down,
+    'down-circle': downcircle,
+    'down-square': downsquare,
+    'edit': edit,
+    'enter': enter,
+    'exclamation': exclamation,
+    'exclamation-circle': exclamationcircle,
+    'fast-backward': fastbackward,
+    'fast-forward': fastforward,
+    'font-colors': fontcolors,
+    'font-size': fontsize,
+    'form': form,
+    'fullscreen': fullscreen,
+    'fullscreen-exit': fullscreenexit,
+    'function': func,
+    'generally': generally,
+    'info': info,
+    'info-circle': infocircle,
+    'install': install,
+    'italic': italic,
+    'left': left,
+    'left-circle': leftcircle,
+    'left-square': leftsquare,
+    'line-height': lineheight,
+    'loading': loading,
+    'menu-fold': menufold,
+    'menu-unfold': menuunfold,
+    'minus': minus,
+    'minus-circle': minuscircle,
+    'minus-square': minussquare,
+    'password': password,
+    'pic-center': piccenter,
+    'pic-left': picleft,
+    'pic-right': picright,
+    'play-circle': playcircle,
+    'plus': plus,
+    'plus-circle': pluscircle,
+    'plus-square': plussquare,
+    'question': question,
+    'question-circle': questioncircle,
+    'redo': redo,
+    'retweet': retweet,
+    'right': right,
+    'right-circle': rightcircle,
+    'right-square': rightsquare,
+    'satisfy': satisfy,
+    'scissor': scissor,
+    'score': score,
+    'search': search,
+    'shrink5': shrink5,
+    'sort-ascending': sortascending,
+    'sort-descending': sortdescending,
+    'step-backward': stepbackward,
+    'step-forward': stepforward,
+    'stop': stop,
+    'underline': underline,
+    'undo': undo,
+    'up': up,
+    'up-circle': upcircle,
+    'upload': upload,
+    'up-square': upsquare,
+    'user': user,
+    'vertical-align-bottom': verticalalignbottom,
+    'vertical-align-middle': verticalalignmiddle,
+    'vertical-align-top': verticalaligntop,
+    'very-satisfied': verysatisfied,
+    'warning': warning,
+    'zoom-in': zoomin,
+    'zoom-out': zoomout,
+    ...oils
 };

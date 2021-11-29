@@ -61,7 +61,6 @@ const IconDisplay = {
           // console.log('category: ', category, !!icons.length || category !== 'other');
           return !!icons.length && category !== 'other';
         });
-      console.log('$list: ', $list);
       return $list.map(({ category, icons }) => {
           return (
             <Category
