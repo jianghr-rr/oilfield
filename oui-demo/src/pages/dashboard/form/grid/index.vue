@@ -1,8 +1,8 @@
 <template>
     <div>
         <p>
-            XinJiang Userty Design Pro Pro为新疆油田相关系统产品的界面设计、用户体验问题给予的设计方案。
-            XinJiang Userty Design Pro Pro为新疆油田相关系统产品的界面设计、用户体验问题给予的设计方案。
+            XinJiang Userty Design Pro为新疆油田相关系统产品的界面设计、用户体验问题给予的设计方案。
+            XinJiang Userty Design Pro为新疆油田相关系统产品的界面设计、用户体验问题给予的设计方案。
         </p>
         <o-form :form="form" v-bind="layout">
             <o-card class="card" :bordered="false">
