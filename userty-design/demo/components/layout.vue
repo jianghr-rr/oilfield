@@ -353,7 +353,7 @@ export default {
     .menu-wrap {
       max-height: 100vh;
       overflow: auto;
-      width: 250px;
+      width: 257px;
     }
 
     .ant-menu-submenu-inline {

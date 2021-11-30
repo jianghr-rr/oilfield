@@ -1,6 +1,6 @@
 <cn>
-#### 表单联动
-使用 `setFieldsValue` 来动态设置其他控件的值。
+#### 基本使用
+基本的表单数据域控制展示，包含布局、初始化、验证、提交。
 </cn>
 
 <us>
@@ -10,31 +10,59 @@ Use `setFieldsValue` to set other control's value programmaticly.
 
 <template>
   <o-form :form="form" :label-col="{ span: 5 }" :wrapper-col="{ span: 12 }" @submit="handleSubmit">
-    <o-form-item label="Note">
-      <o-input
-        v-decorator="['note', { rules: [{ required: true, message: 'Please input your note!' }] }]"
-      />
+    <o-form-item label="活动名称">
+      <o-input />
     </o-form-item>
-    <o-form-item label="Gender">
-      <a-select
-        v-decorator="[
-          'gender',
-          { rules: [{ required: true, message: 'Please select your gender!' }] },
-        ]"
-        placeholder="Select a option and change input text above"
+    <o-form-item label="活动区域">
+      <o-select
+        placeholder="请选择你的区域"
         @change="handleSelectChange"
       >
-        <a-select-option value="male">
-          male
-        </a-select-option>
-        <a-select-option value="female">
-          female
-        </a-select-option>
-      </a-select>
+        <o-select-option value="male">
+          区域一
+        </o-select-option>
+        <o-select-option value="female">
+          区域二
+        </o-select-option>
+      </o-select>
+    </o-form-item>
+    <o-form-item label="活动日期">
+      <o-date-picker style="width: 100%" />
+    </o-form-item>
+    <o-form-item label="即时完成">
+      <o-switch v-decorator="['switch', { valuePropName: 'checked' }]" />
+    </o-form-item>
+    <o-form-item label="活动类型">
+      <o-checkbox-group
+        style="width: 100%;"
+      >
+        <o-checkbox value="A">
+          在线
+        </o-checkbox>
+        <o-checkbox value="A">
+          离线
+        </o-checkbox>
+      </o-checkbox-group>
+    </o-form-item>
+    <o-form-item label="活动资源">
+      <o-radio-group v-decorator="['radio-group']">
+        <o-radio value="a">
+          赞助
+        </o-radio>
+        <o-radio value="b">
+          场地
+        </o-radio>
+      </o-radio-group>
+    </o-form-item>
+    <o-form-item label="活动形式">
+      <o-input />
     </o-form-item>
     <o-form-item :wrapper-col="{ span: 12, offset: 5 }">
+      <o-button style="margin: 0 20px 0 0">
+        取消
+      </o-button>
       <o-button type="primary" html-type="submit">
-        Submit
+        确定
       </o-button>
     </o-form-item>
   </o-form>

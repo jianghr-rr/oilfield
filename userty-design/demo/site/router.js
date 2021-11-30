@@ -114,7 +114,7 @@ const routes = [
 ];
 
 export default new VueRouter({
-  mode: 'history',
+  mode: 'hash',
   fallback: false,
   routes,
 });
