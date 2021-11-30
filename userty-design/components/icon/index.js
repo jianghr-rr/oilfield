@@ -15,7 +15,7 @@ import LocaleReceiver from '../locale-provider/LocaleReceiver';
 import { getTwoToneColor, setTwoToneColor } from './twoTonePrimaryColor';
 import { filterEmpty, getListeners } from '../_util/props-util';
 import Base from '../base';
-import * as allOtherIcons from './libs';
+import allOtherIcons from './libs';
 
 // Initial setting
 VueIcon.add(...Object.keys(allIcons).map(key => allIcons[key]));

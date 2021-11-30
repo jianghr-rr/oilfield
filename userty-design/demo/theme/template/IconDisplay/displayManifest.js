@@ -1,7 +1,7 @@
 import manifest from '@ant-design/icons/lib/manifest';
-import {fillIcons} from './icons';
+import {oilIcons, directionIcons, suggestionIcons, editorIcons} from './icons';
 
 export default {
     ...manifest,
-    outline: [...fillIcons, ...manifest.outline]
+    outline: [...oilIcons, ...directionIcons, ...suggestionIcons, ...editorIcons, ...manifest.outline]
 };

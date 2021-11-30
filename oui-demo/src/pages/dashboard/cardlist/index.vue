@@ -1,7 +1,7 @@
 <template>
   <div class="wrapper">
     <p>
-      XinJiang Userty Design Pro Pro为用户用最小的工作量，无缝接入XinJiang Userty Design Pro界面生态， 提供新疆油田相关系统产品的界面设计、用户体验问题给予的设计方案。
+      XinJiang Userty Design Pro为用户用最小的工作量，无缝接入XinJiang Userty Design Pro界面生态， 提供新疆油田相关系统产品的界面设计、用户体验问题给予的设计方案。
     </p>
     <o-list
       :grid="{gutter: 40, lg: 3, md: 2, sm: 1, xs: 1}"

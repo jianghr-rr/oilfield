@@ -4,11 +4,18 @@
 }
 .beauty-scroll{
   scrollbar-color: @primary-color @primary-2;
-  scrollbar-width: thin;
+  scrollbar-width: 0px;
   -ms-overflow-style:none;
-  background-color: #FFF;
+  /*隐藏滚动条，当IE下溢出，仍然可以滚动*/
+  -ms-overflow-style:none;
+  /*火狐下隐藏滚动条*/
+  overflow:-moz-scrollbars-none;
+  ::-webkit-scrollbar{
+    display:none;
+  }
+  scrollbar-color: transparent transparent;
   &::-webkit-scrollbar{
-    width: 3px;
+    width: 0px;
     height: 1px;
   }
   &::-webkit-scrollbar-thumb {

@@ -1,6 +1,6 @@
 <template>
   <div class="footer" :style="{background: color}">
-      备案号: 京 XJ Userty Design 备 20210726 号
+      中国石油新疆油田公司版权所有
   </div>
 </template>
 

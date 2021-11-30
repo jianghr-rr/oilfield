@@ -133,7 +133,7 @@ export default {
         return {
             form: null,
             loading: false,
-            imageUrl: 'https://i.loli.net/2021/10/23/BXS4msaMvqWlG7H.jpg',
+            imageUrl: 'https://i.loli.net/2021/11/29/wf7IjBJcPCeQYRA.png',
             action
         }
     },
@@ -151,7 +151,7 @@ export default {
                             uid: 'xxxx',
                             name: 'logo.png',
                             status: 'done',
-                            url: 'https://i.loli.net/2021/10/23/BXS4msaMvqWlG7H.jpg'
+                            url: 'https://i.loli.net/2021/11/29/wf7IjBJcPCeQYRA.png'
                         }
                     ]
                 },
