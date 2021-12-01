@@ -12,6 +12,10 @@ gulp.src(path.join(__dirname, '../components/icon/libs/*.json'))
     .pipe(gulp.dest(path.join(__dirname, '../lib/icon/libs/')))
     .pipe(gulp.dest(path.join(__dirname, '../es/icon/libs/')));
 
+gulp.src(path.join(__dirname, '../components/icon/libs/oil/*.json'))
+  .pipe(gulp.dest(path.join(__dirname, '../lib/icon/libs/oil/')))
+  .pipe(gulp.dest(path.join(__dirname, '../es/icon/libs/oil/')));
+
 if (fs.existsSync(path.join(__dirname, '../lib'))) {
   // Build package.json version to lib/version/index.js
   // prevent json-loader needing in user-side
