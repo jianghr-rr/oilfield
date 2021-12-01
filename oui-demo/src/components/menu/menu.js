@@ -1,5 +1,5 @@
 /**
- * 该插件可根据菜单配置自动生成 ANTD menu组件
+ * 该插件可根据菜单配置自动生成 USERTYD menu组件
  * menuOptions示例：
  * [
  *  {

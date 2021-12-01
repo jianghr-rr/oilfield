@@ -1,5 +1,5 @@
 // antd 配置
-const ANTD = {
+const USERTYD = {
   primary: {
     color: '#990F0F',
     warning: '#faad14',
@@ -81,4 +81,4 @@ const ANTD = {
     }
   }
 }
-module.exports = ANTD
+module.exports = USERTYD
