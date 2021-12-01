@@ -9,7 +9,7 @@ const CaseSensitivePathsPlugin = require('case-sensitive-paths-webpack-plugin');
 const postcssConfig = require('./postcssConfig');
 const CleanUpStatsPlugin = require('./utils/CleanUpStatsPlugin');
 
-const distFileBaseName = 'usertyd';
+const distFileBaseName = 'userty-design';
 
 const svgRegex = /\.svg(\?v=\d+\.\d+\.\d+)?$/;
 const svgOptions = {
