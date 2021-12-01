@@ -1,6 +1,6 @@
 const varyColor = require('webpack-theme-color-replacer/client/varyColor')
 const {generate} =  require('@ant-design/colors')
-const {ADMIN, ANTD} = require('../config/default')
+const {ADMIN, USERTYD} = require('../config/default')
 const Config = require('../config')
 
 const themeMode = ADMIN.theme.mode
@@ -14,7 +14,7 @@ function getAntdColors(color, mode) {
 // 获取功能性颜色
 function getFunctionalColors(mode) {
   let options = mode && (mode == themeMode.NIGHT) ? {theme: 'dark'} : undefined
-  let {success, warning, error} = ANTD.primary
+  let {success, warning, error} = USERTYD.primary
   const  {success: s1, warning: w1, error: e1} = Config.theme
   success = success && s1
   warning = success && w1
@@ -32,9 +32,9 @@ function getFunctionalColors(mode) {
 // 获取菜单色系
 function getMenuColors(color, mode) {
   if (mode == themeMode.NIGHT) {
-    return ANTD.primary.night.menuColors
-  } else if (color == ANTD.primary.color) {
-    return ANTD.primary.dark.menuColors
+    return USERTYD.primary.night.menuColors
+  } else if (color == USERTYD.primary.color) {
+    return USERTYD.primary.dark.menuColors
   } else {
     return [varyColor.darken(color, 0.93), varyColor.darken(color, 0.83), varyColor.darken(color, 0.73)]
   }
@@ -50,7 +50,7 @@ function getThemeToggleColors(color, mode) {
   //菜单色系
   const menuColors = getMenuColors(color, mode)
   //内容色系（包含背景色、文字颜色等）
-  const themeCfg = ANTD.theme[mode]
+  const themeCfg = USERTYD.theme[mode]
   let contentColors = Object.keys(themeCfg)
     .map(key => themeCfg[key])
     .map(color => isHex(color) ? color : toNum3(color).join(','))
