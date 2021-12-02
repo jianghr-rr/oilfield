@@ -7,8 +7,8 @@
 .ant-menu-inline .ant-menu-item::after{
   display: none;
 }
-.ant-menu-inline .ant-menu-item:not(:last-child){
-  margin-bottom: 4px !important;
+.ant-menu-inline .ant-menu-item{
+  margin: 0 !important;
 }
 .ant-menu-item > a{
   display: block;
@@ -21,9 +21,12 @@
 .ant-menu-submenu-title,
 .ant-menu-sub.ant-menu-inline > .ant-menu-item{
   position: relative;
-  height: 60px !important;
-  line-height: 60px !important;
+  height: 68px !important;
+  line-height: 68px !important;
   padding-left: 60px !important;
+  a{
+    height: 100% !important;
+  }
 }
 .ant-menu-sub.ant-menu-inline > .ant-menu-item{
   padding-left: 80px !important;
@@ -32,7 +35,7 @@
 .ant-menu-item-selected > a::after{
   content: "";
   position: absolute;
-  bottom: 1px;
+  bottom: 0;
   left: 0;
   right: 0;
   height: 1px;
