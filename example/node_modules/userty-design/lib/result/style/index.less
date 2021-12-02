@@ -1,0 +1,43 @@
+@import '../../style/themes/index';
+@import '../../style/mixins/index';
+
+@btn-prefix-cls: ~'@{ant-prefix}-result';
+
+.@{btn-prefix-cls}{
+    text-align: center;
+    width: 72%;
+    margin: 0 auto;
+    .success {
+      color: @success-color;
+    }
+    .error {
+      color: @error-color;
+    }
+    .icon{
+      line-height: 72px;
+      margin-bottom: 24px;
+      .iconfont-size-under-12px(72px, -12deg);
+    }
+    &-title{
+      font-size: 24px;
+      color: rgba(0,0,0,.85);
+      font-weight: 500;
+      line-height: 32px;
+      margin-bottom: 16px;
+      &-desc{
+        font-size: 14px;
+        line-height: 22px;
+        color: rgba(0,0,0,.45);
+        margin-bottom: 24px;
+      }
+      &-content{
+        background-color: #fafafa;
+        padding: 24px 40px;
+        border-radius: 2px;
+        text-align: left;
+      }
+    }
+    &-action{
+      margin-top: 32px;
+    }
+  }

@@ -55,6 +55,6 @@ if (fs.existsSync(path.join(__dirname, '../dist'))) {
     );
   });
 
-  console.log('Built a entry less file to dist/usertyd.less');
+  console.log('Built a entry less file to dist/userty-design.less');
 }
 
