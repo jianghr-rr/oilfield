@@ -90,6 +90,7 @@ export default {
         }
     }
     .label{
+        font-family: Source Han Sans CN;
         span{
             display: inline-block;
             margin-left: 28px;
