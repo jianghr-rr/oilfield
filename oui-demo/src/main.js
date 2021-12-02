@@ -11,7 +11,7 @@ import Plugins from '@/plugins'
 import {initI18n} from '@/utils/i18n'
 import bootstrap from '@/bootstrap'
 import 'moment/locale/zh-cn'
-import 'userty-design/dist/userty-design.less';
+import 'userty-design/dist/usertyd.less';
 import './theme/font.less';
 
 const router = initRouter(store.state.setting.asyncRoutes)
