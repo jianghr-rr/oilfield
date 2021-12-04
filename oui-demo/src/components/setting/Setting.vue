@@ -10,8 +10,8 @@
         @change="values => setTheme({...theme, mode: values[0]})"
         :default-values="[theme.mode]"
       >
-        <img-checkbox :title="$t('theme.light')" img="https://gw.alipayobjects.com/zos/rmsportal/jpRkZQMyYRryryPNtyIC.svg" value="light"/>
-        <img-checkbox :title="$t('theme.night')" img="https://gw.alipayobjects.com/zos/antfincdn/hmKaLQvmY2/LCkqqYNmvBEbokSDscrm.svg" value="night"/>
+        <img-checkbox :title="$t('theme.light')" value="light"/>
+        <img-checkbox :title="$t('theme.night')" value="night"/>
       </img-checkbox-group>
     </setting-item>
     <setting-item :title="$t('theme.color')">

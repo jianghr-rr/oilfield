@@ -1,7 +1,8 @@
 <template>
   <o-tooltip :title="title" :overlayStyle="{zIndex: 2001}">
     <div class="img-check-box" @click="toggle">
-      <img :src="img" />
+      <img v-if="value === 'light'" src="../../assets/img/group-light.svg" />
+      <img v-if="value === 'night'" src="../../assets/img/group-dark.svg" />
       <div v-if="sChecked" class="check-item">
         <o-icon type="check" />
       </div>
