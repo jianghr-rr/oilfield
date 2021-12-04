@@ -85,10 +85,10 @@ export default {
       required: false,
       default: false
     },
-    img: {
-      type: String,
-      required: true
-    },
+    // img: {
+    //   type: String,
+    //   required: true
+    // },
     value: {
       required: true
     },
