@@ -61,7 +61,7 @@ export default {
         <div class="text">注意样式必须加载 less 格式，一个常见的问题就是引入了多份样式，less 的样式被 css 的样式覆盖了。</div>
         <div class="text">
           如果你在使用 <span class="i">babel-plugin-import</span> 的 <span class='i-b'>style</span> 配置来引入样式，需要将配置值从 <span class='i-b'>'css'</span> 改为 <span class='i-b'>true</span>，这样会引入 less 文件。<br />
-          如果你是通过 <span class='i-b'>'userty-design/dist/usertyd.css'</span> 引入样式的，改为 <span class='i-b'>userty-design/dist/userty-design.less</span>。
+          如果你是通过 <span class='i-b'>'userty-design/dist/usertyd.css'</span> 引入样式的，改为 <span class='i-b'>userty-design/dist/usertyd.less</span>。
         </div>
       </div>
     );

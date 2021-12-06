@@ -1,5 +1,5 @@
 <cn>
-#### 完全控制的上传列表
+#### 图片列表样式
 使用 `fileList` 对列表进行完全控制，可以实现各种自定义功能，以下演示三种情况：
 1) 上传列表数量的限制。
 2) 读取远程路径并显示链接。
@@ -20,7 +20,7 @@ You can gain full control over filelist by configuring `fileList`. You can accom
     :file-list="fileList"
     @change="handleChange"
   >
-    <o-button> <o-icon type="upload" /> Upload </o-button>
+    <o-button> <o-icon type="upload" /> 上传 </o-button>
   </o-upload>
 </template>
 <script>

@@ -21,11 +21,10 @@ Classic mode. File selection dialog pops up when upload button is clicked.
       <o-icon type="inbox" />
     </p>
     <p class="ant-upload-text">
-      Click or drag file to this area to upload
+      点击或拖拽文件到此区域上传
     </p>
     <p class="ant-upload-hint">
-      Support for a single or bulk upload. Strictly prohibit from uploading company data or other
-      band files
+      支持单次或批次上传，禁止上传公司保密文件
     </p>
   </o-upload-dragger>
 </template>

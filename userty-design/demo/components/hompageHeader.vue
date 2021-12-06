@@ -8,10 +8,10 @@
             <router-link class="nav-link guide" to="/homepage/guide">
                 指南
             </router-link>
-            <router-link class="nav-link theme" to="/homepage/theme/main">
+            <router-link class="nav-link theme" to="/homepage/theme">
                 主题
             </router-link>
-            <router-link class="nav-link component" to="/components/button-cn/">
+            <router-link class="nav-link component" to="/components/">
                 组件
             </router-link>
             <router-link class="nav-link resource" to="/homepage/resource/main">
@@ -65,6 +65,8 @@ export default {
     display: flex;
     align-items: center;
     padding: 0 30px;
+    width: auto;
+    min-width: 980px;
 }
 .header-left {
     display: flex;

@@ -1,5 +1,6 @@
 import Wave from '../_util/wave';
 import Icon from '../icon';
+import Spin from '../icon';
 import buttonTypes from './buttonTypes';
 import { filterEmpty, getListeners, getComponentFromProp } from '../_util/props-util';
 import { ConfigConsumerProps } from '../config-provider/configConsumerProps';

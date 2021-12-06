@@ -85,5 +85,7 @@ export default {
   font-size: 24px;
   display: flex;
   align-items: center;
+  width: auto;
+  min-width: 980px;
 }
 </style>

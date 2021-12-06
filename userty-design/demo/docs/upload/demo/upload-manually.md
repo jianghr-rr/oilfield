@@ -12,7 +12,7 @@ Upload files manually after `beforeUpload` returns `false`.
 <template>
   <div class="clearfix">
     <o-upload :file-list="fileList" :remove="handleRemove" :before-upload="beforeUpload">
-      <o-button> <o-icon type="upload" /> Select File </o-button>
+      <o-button> <o-icon type="upload" /> 选择文件 </o-button>
     </o-upload>
     <o-button
       type="primary"
@@ -21,7 +21,7 @@ Upload files manually after `beforeUpload` returns `false`.
       style="margin-top: 16px"
       @click="handleUpload"
     >
-      {{ uploading ? 'Uploading' : 'Start Upload' }}
+      {{ uploading ? '上传中' : '开始上传' }}
     </o-button>
   </div>
 </template>

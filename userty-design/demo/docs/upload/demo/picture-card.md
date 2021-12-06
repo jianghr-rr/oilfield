@@ -21,7 +21,7 @@ After users upload picture, the thumbnail will be shown in list. The upload butt
       <div v-if="fileList.length < 8">
         <o-icon type="plus" />
         <div class="ant-upload-text">
-          Upload
+          文件上传
         </div>
       </div>
     </o-upload>

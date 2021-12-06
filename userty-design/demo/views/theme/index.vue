@@ -1,6 +1,6 @@
 <template>
   <div class="layout-theme">
-    <div class="layout-left" :style="{'--color': themmeColor}">
+    <div class="layout-left-theme" :style="{'--color': themmeColor}">
       <div class="menu-wrap">
         <a-menu
           mode="inline"
@@ -91,14 +91,30 @@ export default {
       display: none;
     }
   }
-  .layout-left {
+  .layout-left-theme {
     box-shadow: 1px -2px 4px 0px #F2F2F2;
 
     background: #FFFFFF;
     .menu-wrap {
       max-height: 100vh;
-      overflow: auto;
+      overflow-y: auto;
+      overflow-x: hidden;
       width: 257px;
+      &::-webkit-scrollbar{
+            width: 4px;
+            height: 4px;
+        }
+      /*定义滚动条轨道 内阴影+圆角*/
+      &::-webkit-scrollbar-track{
+          border-radius: 6px;
+          background-color: #cecfd1f6;
+      }
+
+      /*定义滑块 内阴影+圆角*/
+      &::-webkit-scrollbar-thumb{
+          border-radius: 6px;
+          box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.561);
+      }
     }
     .ant-menu{
       background: #FFFFFF;
@@ -122,7 +138,7 @@ export default {
     }
     .ant-menu-sub.ant-menu-inline > .ant-menu-item {
       margin: 0;
-      padding-left: 80px !important;
+      padding-left:60px !important;
     }
     .ant-menu-submenu-selected {
       // color: #990F0F;
@@ -136,7 +152,7 @@ export default {
         width: 100%;
         position: absolute;
         bottom: 0;
-        left: 0;
+        left: 60px;
         border-bottom: 2px solid var(--color);
       }
       &::after {
@@ -151,7 +167,7 @@ export default {
         width: 100%;
         position: absolute;
         bottom: 0;
-        left: 80px;
+        left: 60px;
         border-bottom: 2px solid var(--color);
       }
       &::after {
@@ -191,5 +207,8 @@ export default {
   .layout-right {
     flex: 1;
     margin: 0 200px 0 60px;
+    width: auto;
+    min-width: 800px;
+    flex-shrink: 0;
   }
 </style>

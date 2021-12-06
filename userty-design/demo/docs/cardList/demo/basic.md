@@ -23,7 +23,7 @@ Step bar + custom content.
           </o-button>
         </template>
         <template v-else>
-          <o-card :hoverable="true">
+          <o-card :hoverable="true" style="margin: 12px;">
             <o-card-meta >
               <div style="margin-bottom: 3px" slot="title">{{item.title}}</div>
               <o-avatar class="card-avatar" slot="avatar" :src="item.avatar" size="large" />
@@ -74,6 +74,7 @@ export default {
     border-radius: 2px;
     width: 100%;
     height: 187px;
+    margin: 12px;
   }
   .meto-content{
     position: relative;

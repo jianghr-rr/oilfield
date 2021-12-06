@@ -2,7 +2,9 @@
   <div :style="{'--color': themmeColor}">
     <div class="img-wrap">
       <div>
-        <img class="img" :src="p2" />
+        <a href="http://11.71.3.110:30133/#/login" target="_blank">
+          <img class="img" :src="p2" />
+        </a>
       </div>
     </div>
   </div>

@@ -48,13 +48,9 @@ export default {
           <Avatar />
           <DefaultFileList />
           <PictureCard />
-          <FileList />
-          <Drag />
           <PictureStyle />
+          <Drag />
           <UploadManually />
-          <Directory />
-          <PreviewFile />
-          <TransformFile />
         </demo-sort>
         <api>
           <template slot="cn">

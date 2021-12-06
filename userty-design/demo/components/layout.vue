@@ -352,8 +352,24 @@ export default {
 
     .menu-wrap {
       max-height: 100vh;
-      overflow: auto;
+      overflow-y: auto;
+      overflow-x: hidden;
       width: 257px;
+      &::-webkit-scrollbar{
+            width: 4px;
+            height: 4px;
+        }
+      /*定义滚动条轨道 内阴影+圆角*/
+      &::-webkit-scrollbar-track{
+          border-radius: 6px;
+          background-color: #cecfd1f6;
+      }
+
+      /*定义滑块 内阴影+圆角*/
+      &::-webkit-scrollbar-thumb{
+          border-radius: 6px;
+          box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.561);
+      }
     }
 
     .ant-menu-submenu-inline {
@@ -376,7 +392,7 @@ export default {
         width: 100%;
         position: absolute;
         bottom: 0;
-        left: 0;
+        left: 60px;
         border-bottom: 2px solid var(--color);
       }
       &::after {
@@ -468,6 +484,9 @@ export default {
     flex: 1;
     margin: 0 200px 0 60px;
     padding: 8px 0 0 0;
+    width: auto;
+    min-width: 800px;
+    flex-shrink: 0;
     .main-container {
       margin: 0;
       padding: 0;

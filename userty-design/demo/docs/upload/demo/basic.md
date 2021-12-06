@@ -1,6 +1,6 @@
 <cn>
 #### 点击上传
-经典款式，用户点击按钮弹出文件选择框。
+用户点击按钮弹出文件选择框，可上传文件或文件夹。
 </cn>
 
 <us>
@@ -17,7 +17,7 @@ Classic mode. File selection dialog pops up when upload button is clicked.
     :headers="headers"
     @change="handleChange"
   >
-    <o-button> <o-icon type="upload" /> Click to Upload </o-button>
+    <o-button> <o-icon type="upload" />点击上传</o-button>
   </o-upload>
 </template>
 <script>

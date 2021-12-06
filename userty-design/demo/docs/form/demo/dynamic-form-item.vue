@@ -14,24 +14,17 @@ Add or remove form items dynamically.
       v-for="(k, index) in form.getFieldValue('keys')"
       :key="k"
       v-bind="index === 0 ? formItemLayout : formItemLayoutWithOutLabel"
-      :label="index === 0 ? 'Passengers' : ''"
+      :label="index === 0 ? '域' : ''"
       :required="false"
     >
       <o-input
         v-decorator="[
           `names[${k}]`,
           {
-            validateTrigger: ['change', 'blur'],
-            rules: [
-              {
-                required: true,
-                whitespace: true,
-                message: 'Please input passenger\'s name or delete this field.',
-              },
-            ],
+            validateTrigger: ['change', 'blur']
           },
         ]"
-        placeholder="passenger name"
+        placeholder="请输入域"
         style="width: 60%; margin-right: 8px"
       />
       <a-icon
@@ -44,12 +37,12 @@ Add or remove form items dynamically.
     </o-form-item>
     <o-form-item v-bind="formItemLayoutWithOutLabel">
       <o-button type="dashed" style="width: 60%" @click="add">
-        <a-icon type="plus" /> Add field
+        <a-icon type="plus" /> 添加字段
       </o-button>
     </o-form-item>
     <o-form-item v-bind="formItemLayoutWithOutLabel">
       <o-button type="primary" html-type="submit">
-        Submit
+        确认
       </o-button>
     </o-form-item>
   </o-form>

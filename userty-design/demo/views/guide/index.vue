@@ -22,47 +22,44 @@
                 <router-link to="/homepage/guide/designspec">设计规范</router-link>
               </a-menu-item>
             </a-sub-menu>
-            <a-sub-menu key="/homepage/designpr/">
+            <a-sub-menu key="/homepage/guide/designpr/">
               <span slot="title"><span>设计原则</span></span>
-              <a-menu-item key="/homepage/designpr/base">
-                <router-link to="/homepage/designpr/base">基础原则</router-link>
+              <a-menu-item key="/homepage/guide/designpr/base">
+                <router-link to="/homepage/guide/designpr/base">基础原则</router-link>
               </a-menu-item>
-              <a-menu-item key="/homepage/designpr/graph">
-                <router-link to="/homepage/designpr/graph">间距关系</router-link>
+              <a-menu-item key="/homepage/guide/designpr/graph">
+                <router-link to="/homepage/guide/designpr/graph">间距关系</router-link>
               </a-menu-item>
-              <a-menu-item key="/homepage/designpr/alignment">
-                <router-link to="/homepage/designpr/alignment">对齐方式</router-link>
+              <a-menu-item key="/homepage/guide/designpr/alignment">
+                <router-link to="/homepage/guide/designpr/alignment">对齐方式</router-link>
               </a-menu-item>
-              <a-menu-item key="/homepage/designpr/infotip">
-                <router-link to="/homepage/designpr/infotip">信息提示</router-link>
+              <a-menu-item key="/homepage/guide/designpr/infotip">
+                <router-link to="/homepage/guide/designpr/infotip">信息提示</router-link>
               </a-menu-item>
-              <a-menu-item key="/homepage/designpr/transition">
-                <router-link to="/homepage/designpr/transition">过渡效果</router-link>
+              <a-menu-item key="/homepage/guide/designpr/transition">
+                <router-link to="/homepage/guide/designpr/transition">过渡效果</router-link>
               </a-menu-item>
-              <a-menu-item key="/homepage/designpr/simple">
-                <router-link to="/homepage/designpr/simple">简单易用</router-link>
+              <a-menu-item key="/homepage/guide/designpr/simple">
+                <router-link to="/homepage/guide/designpr/simple">简单易用</router-link>
               </a-menu-item>
-              <a-menu-item key="/homepage/designpr/user">
-                <router-link to="/homepage/designpr/user">用户体验要素</router-link>
+              <a-menu-item key="/homepage/guide/designpr/user">
+                <router-link to="/homepage/guide/designpr/user">用户体验要素</router-link>
               </a-menu-item>
-              <a-menu-item key="/homepage/designpr/sequence">
-                <router-link to="/homepage/designpr/sequence">序列效应</router-link>
+              <a-menu-item key="/homepage/guide/designpr/sequence">
+                <router-link to="/homepage/guide/designpr/sequence">序列效应</router-link>
               </a-menu-item>
-              <a-menu-item key="/homepage/designpr/test">
-                <router-link to="/homepage/designpr/test">测试法则</router-link>
+              <a-menu-item key="/homepage/guide/designpr/test">
+                <router-link to="/homepage/guide/designpr/test">测试法则</router-link>
               </a-menu-item>
-              <!-- <a-menu-item key="/homepage/guide/designpr">
-                <router-link to="/homepage/guide/designpr">设计原则</router-link>
-              </a-menu-item> -->
             </a-sub-menu>
-            <a-menu-item key="/homepage/instructions/main">
-              <router-link to="/homepage/instructions/main">使用说明</router-link>
+            <a-menu-item key="/homepage/guide/instructions/main">
+              <router-link to="/homepage/guide/instructions/main">使用说明</router-link>
             </a-menu-item>
-            <a-menu-item key="/homepage/fag/main">
-              <router-link to="/homepage/fag/main">常见问题</router-link>
+            <a-menu-item key="/homepage/guide/fag/main">
+              <router-link to="/homepage/guide/fag/main">常见问题</router-link>
             </a-menu-item>
-            <a-menu-item key="/homepage/introduce/main">
-              <router-link to="/homepage/introduce/main">发布内容</router-link>
+            <a-menu-item key="/homepage/guide/introduce/main">
+              <router-link to="/homepage/guide/introduce/main">发布内容</router-link>
             </a-menu-item>
           </a-menu>
         </div>
@@ -79,7 +76,7 @@ import NProgress from 'nprogress';
 export default {
   data() {
     return {
-      rootSubmenuKeys: ['/homepage/guide', '/homepage/theme', '/homepage/resource'],
+      rootSubmenuKeys: ['/homepage/guide/guide', '/homepage/guide/theme', '/homepage/guide/resource'],
       openKeys: [],
       defaultSelectedKeys: [this.$route.fullPath],
       theme: this.$store.getters.theme,
@@ -141,8 +138,24 @@ export default {
     background: #FFFFFF;
     .menu-wrap {
       max-height: 100vh;
-      overflow: auto;
+      overflow-y: auto;
+      overflow-x: hidden;
       width: 257px;
+      &::-webkit-scrollbar{
+            width: 4px;
+            height: 4px;
+        }
+      /*定义滚动条轨道 内阴影+圆角*/
+      &::-webkit-scrollbar-track{
+          border-radius: 6px;
+          background-color: #cecfd1f6;
+      }
+
+      /*定义滑块 内阴影+圆角*/
+      &::-webkit-scrollbar-thumb{
+          border-radius: 6px;
+          box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.561);
+      }
     }
     .ant-menu{
       background: #FFFFFF;
@@ -192,7 +205,7 @@ export default {
         width: 100%;
         position: absolute;
         bottom: 0;
-        left: 0;
+        left: 60px;
         border-bottom: 2px solid var(--color);
       }
       &::after {
@@ -248,5 +261,8 @@ export default {
     flex: 1;
     margin: 0 200px 0 60px;
     padding: 8px 0 0 0;
+    width: auto;
+    min-width: 800px;
+    flex-shrink: 0;
   }
 </style>

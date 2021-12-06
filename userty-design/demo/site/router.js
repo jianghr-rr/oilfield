@@ -12,7 +12,10 @@ const routes = [
       const name = route.path.split('/components/')[1].split('/')[0];
       return { name, showDemo: true };
     },
-    children: demoRoutes,
+    children: [
+      ...demoRoutes,
+      { path: '/components/*', redirect: '/components/button-cn/' },
+    ],
   },
   {
     path: '/iframe',
