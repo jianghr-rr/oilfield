@@ -2,7 +2,7 @@
   <div :style="{'--color': themmeColor}">
     <div class="img-wrap">
       <div>
-        <a href="http://11.71.3.110:30133/#/login" target="_blank">
+        <a href="https://jin-ec.gitee.io/userty-design/" target="_blank">
           <img class="img" :src="p2" />
         </a>
       </div>
