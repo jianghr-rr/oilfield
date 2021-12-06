@@ -45,6 +45,7 @@ const IconDisplay = {
 
     renderCategories(list) {
       const { searchKey, theme } = this;
+      console.log('searchKey');
       const otherIcons = categories.all.filter(icon => {
         return list
           .filter(({ category }) => category !== 'all')
