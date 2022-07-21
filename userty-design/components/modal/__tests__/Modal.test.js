@@ -1,70 +1,76 @@
-import { mount } from '@vue/test-utils';
+import React from 'react';
+import {mount} from 'enzyme';
 import Modal from '..';
+import Button from '../../button';
 import mountTest from '../../../tests/shared/mountTest';
-import { asyncExpect } from '@/tests/utils';
+import rtlTest from '../../../tests/shared/rtlTest';
 
-const ModalTester = {
-  props: ['footer', 'visible'],
-  methods: {
-    getContainer() {
-      return this.$refs.container;
-    },
-  },
+jest.mock('rc-util/lib/Portal');
+
+class ModalTester extends React.Component {
+    constructor(props) {
+        super(props);
+        this.state = {visible: false};
+    }
+
+    componentDidMount() {
+        this.setState({visible: true}); // eslint-disable-line react/no-did-mount-set-state
+    }
+
+  saveContainer = container => {
+      this.container = container;
+  };
+
+  getContainer = () => this.container;
+
   render() {
-    const modalProps = {
-      props: {
-        ...this.$props,
-        getContainer: this.getContainer,
-      },
-    };
-    return (
-      <div>
-        <div ref="container" />
-        <Modal {...modalProps}>Here is content of Modal</Modal>
-      </div>
-    );
-  },
-};
+      const {visible} = this.state;
+      return (
+          <div>
+              <div ref={this.saveContainer} />
+              <Modal {...this.props} visible={visible} getContainer={this.getContainer}>
+          Here is content of Modal
+              </Modal>
+          </div>
+      );
+  }
+}
 
 describe('Modal', () => {
-  mountTest(Modal);
-  it('render correctly', async () => {
-    const wrapper = mount(
-      {
-        render() {
-          return <ModalTester visible />;
-        },
-      },
-      {
-        sync: false,
-        attachToDocument: true,
-      },
-    );
-    await asyncExpect(() => {
-      expect(wrapper.html()).toMatchSnapshot();
-    });
-    // https://github.com/vuejs/vue-test-utils/issues/624
-    const wrapper1 = mount(ModalTester, {
-      sync: false,
-      attachToDocument: true,
-    });
-    wrapper1.setProps({ visible: true });
-    await asyncExpect(() => {
-      expect(wrapper1.html()).toMatchSnapshot();
-    });
-  });
+    mountTest(Modal);
+    rtlTest(Modal);
 
-  it('render without footer', async () => {
-    const wrapper = mount(
-      {
-        render() {
-          return <ModalTester visible footer={null} />;
-        },
-      },
-      { attachToDocument: true, sync: true },
-    );
-    await asyncExpect(() => {
-      expect(wrapper.html()).toMatchSnapshot();
+    it('render correctly', () => {
+        const wrapper = mount(<ModalTester />);
+        expect(wrapper.render()).toMatchSnapshot();
     });
-  });
+
+    it('render without footer', () => {
+        const wrapper = mount(<ModalTester footer={null} />);
+        expect(wrapper.render()).toMatchSnapshot();
+    });
+
+    it('onCancel should be called', () => {
+        const onCancel = jest.fn();
+        const wrapper = mount(<Modal visible onCancel={onCancel} />);
+        wrapper.find('.ant-btn').first().simulate('click');
+        expect(onCancel).toHaveBeenCalled();
+    });
+
+    it('onOk should be called', () => {
+        const onOk = jest.fn();
+        const wrapper = mount(<Modal visible onOk={onOk} />);
+        wrapper.find('.ant-btn').last().simulate('click');
+        expect(onOk).toHaveBeenCalled();
+    });
+
+    it('support closeIcon', () => {
+        const wrapper = mount(<Modal closeIcon={<a>closeIcon</a>} visible />);
+        expect(wrapper.render()).toMatchSnapshot();
+    });
+
+    it('danger type', () => {
+        const wrapper = mount(<Modal okType="danger" visible />);
+        expect(wrapper.find(Button).last().props().danger).toBeTruthy();
+    });
 });

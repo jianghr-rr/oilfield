@@ -1,0 +1,48 @@
+
+// Table
+// --
+@table-bg: @component-background;
+// @table-header-bg: #F6FAFD;
+@table-header-bg: @B1;
+// @table-header-bg: @background-color-light;
+// @table-header-color: @heading-color;
+@table-header-color: #628096;
+@table-header-sort-bg: @background-color-base;
+@table-body-sort-bg: #fafafa;
+@table-row-hover-bg: @G10;
+// @table-row-hover-bg: @background-color-light;
+@table-selected-row-color: inherit;
+@table-selected-row-bg: @G10;
+@table-body-selected-sort-bg: @table-selected-row-bg;
+@table-selected-row-hover-bg: darken(@table-selected-row-bg, 2%);
+@table-expanded-row-bg: #fbfbfb;
+@table-padding-vertical: 11px;
+@table-padding-vertical-th: 4px;
+@table-padding-horizontal: 16px;
+@table-padding-vertical-md: (@table-padding-vertical * 3 / 4);
+@table-padding-horizontal-md: (@table-padding-horizontal / 2);
+@table-padding-vertical-sm: (@table-padding-vertical / 2);
+@table-padding-horizontal-sm: (@table-padding-horizontal / 2);
+@table-border-color: @border-color-split;
+@table-border-radius-base: @border-radius-base;
+@table-footer-bg: @background-color-light;
+@table-footer-color: @heading-color;
+@table-header-bg-sm: @table-header-bg;
+@table-font-size: @font-size-base;
+@table-font-size-md: @table-font-size;
+@table-font-size-sm: @table-font-size;
+@table-header-cell-split-color: @G11;
+// Sorter
+// Legacy: `table-header-sort-active-bg` is used for hover not real active
+@table-header-sort-active-bg: rgba(0, 0, 0, 0.04);
+@table-fixed-header-sort-active-bg: hsv(0, 0, 96%);
+
+// Filter
+@table-header-filter-active-bg: rgba(0, 0, 0, 0.04);
+@table-filter-btns-bg: inherit;
+@table-filter-dropdown-bg: #628096;
+@table-expand-icon-bg: #628096;
+@table-selection-column-width: 32px;
+// Sticky
+@table-sticky-scroll-bar-bg: fade(#000, 35%);
+@table-sticky-scroll-bar-radius: 4px;

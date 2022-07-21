@@ -1,0 +1,47 @@
+.font(@fontSize: 12px, @color: '#fff', @fontFamily: 'PingFangSC-Medium') {
+    font-size: @fontSize;
+    color: @color;
+    font-family: @fontFamily;
+}
+
+.flex(@flexDirection: row, @rowAlign: flex-start, @colAlign: center) {
+    display: flex;
+    flex-direction: @flexDirection;
+    justify-content: @rowAlign;
+    align-items: @colAlign;
+}
+
+.hidden-scroll {
+    scrollbar-width: 0px;
+    scrollbar-width: thin;
+
+    // 滚动条
+    &::-webkit-scrollbar {
+        width: 0px;
+        height: 0;
+    }
+
+    &::-webkit-scrollbar-thumb {
+        background: transparent;
+    }
+
+    &::-webkit-scrollbar-track {
+        background: transparent;
+    }
+}
+
+.ellipse {
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+.global-tooltip {
+    &-tooltip {
+        max-width: 500px;
+        .ant-tooltip-inner {
+            max-height: 100px;
+            overflow-y: auto;
+        }
+    }
+}

@@ -1,0 +1,83 @@
+// 所有用到的变量必须声明，参考 https://github.com/less/less.js/issues/3444
+
+.property(@property; @value) when not (@@value = false) {
+    @{property}: @@value;
+}
+
+.property-setting(@type, @actionType, @property) {
+    @color: ~'@{type}-@{actionType}-@{property}';
+    .property(@property, @color);
+}
+
+// auto-gnt
+.auto-config(@type, @property) {
+    .property-setting(@type, 'default', @property);
+
+    &:hover {
+        .property-setting(@type, 'hover', @property);
+    }
+
+    &:focus,&:active {
+        .property-setting(@type, 'click', @property);
+    }
+
+    &[disabled] {
+        &,
+        &:hover,
+        &:focus,
+        &:active {
+            .property-setting(@type, 'disabled', @property);
+        }
+    }
+}
+
+.basic-tp-config(@type) {
+    // tp
+    .auto-config(@type, color);
+}
+
+.basic-p-config(@type) {
+    // p
+    .auto-config(@type, background-color);
+    .auto-config(@type, border-color);
+    .auto-config(@type, box-shadow);
+}
+
+.basic-config(@tptype; @ptype) {
+    .basic-tp-config(@tptype);
+    .basic-p-config(@ptype);
+}
+
+// 为非 [disabled] 情况设置
+.disabled-config(@type, @property) {
+    .property-setting(@type, 'disabled', @property);
+
+    &:focus,
+    &:hover {
+        .property-setting(@type, 'disabled', @property);
+    }
+
+    &:active {
+        .property-setting(@type, 'disabled', @property);
+    }
+}
+
+.basic-tp-disabled-config(@type) {
+    .disabled-config(@type, color);
+}
+.basic-p-disabled-config(@type) {
+    // p
+    .disabled-config(@type, background-color);
+    .disabled-config(@type, border-color);
+    .disabled-config(@type, box-shadow);
+}
+
+.basic-disabled-config(@tptype; @ptype) {
+    .basic-tp-disabled-config(@tptype);
+    .basic-p-disabled-config(@ptype);
+}
+
+.reset-component() {
+    margin: 0;
+    padding: 0;
+}

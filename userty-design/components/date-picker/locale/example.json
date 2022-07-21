@@ -1,11 +1,12 @@
 {
   "lang": {
+    "locale": "en_US",
     "placeholder": "Select date",
     "rangePlaceholder": ["Start date", "End date"],
     "today": "Today",
     "now": "Now",
     "backToToday": "Back to today",
-    "ok": "Ok",
+    "ok": "OK",
     "clear": "Clear",
     "month": "Month",
     "year": "Year",

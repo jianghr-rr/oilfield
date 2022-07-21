@@ -1,51 +1,50 @@
-import { mount } from '@vue/test-utils';
-import { asyncExpect } from '@/tests/utils';
+import React from 'react';
+import {render, mount} from 'enzyme';
 import Spin from '..';
+import mountTest from '../../../tests/shared/mountTest';
+import rtlTest from '../../../tests/shared/rtlTest';
 
 describe('Spin', () => {
-  it('should only affect the spin element when set style to a nested <Spin>xx</Spin>', () => {
-    const wrapper = mount({
-      render() {
-        return (
-          <Spin style={{ background: 'red' }}>
-            <div>content</div>
-          </Spin>
-        );
-      },
-    });
-    expect(wrapper.html()).toMatchSnapshot();
-    // expect(wrapper.findAll('.ant-spin-nested-loading').at(0).prop('style')).toBe(null)
-    // expect(wrapper.findAll('.ant-spin').at(0).prop('style').background).toBe('red')
-  });
+    mountTest(Spin);
+    rtlTest(Spin);
 
-  it("should render custom indicator when it's set", () => {
-    // const customIndicator = <div className='custom-indicator' />
-    const wrapper = mount({
-      render() {
-        return (
-          <Spin>
-            <div slot="indicator" class="custom-indicator" />
-          </Spin>
+    it('should only affect the spin element when set style to a nested <Spin>xx</Spin>', () => {
+        const wrapper = mount(
+            <Spin style={{background: 'red'}}>
+                <div>content</div>
+            </Spin>,
         );
-      },
+        expect(wrapper.find('.ant-spin-nested-loading').at(0).prop('style')).toBeFalsy();
+        expect(wrapper.find('.ant-spin').at(0).prop('style').background).toBe('red');
     });
-    expect(wrapper.html()).toMatchSnapshot();
-  });
 
-  it('should be controlled by spinning', async () => {
-    const props = {
-      propsData: {
-        spinning: false,
-      },
-      sync: false,
-    };
-    const wrapper = mount(Spin, props);
-    await asyncExpect(() => {
-      expect(wrapper.vm.sSpinning).toBe(false);
-      wrapper.setProps({ spinning: true });
+    it("should render custom indicator when it's set", () => {
+        const customIndicator = <div className="custom-indicator" />;
+        const wrapper = render(<Spin indicator={customIndicator} />);
+        expect(wrapper).toMatchSnapshot();
     });
-    await asyncExpect(() => {
-      expect(wrapper.vm.sSpinning).toBe(true);
+
+    it('should be controlled by spinning', () => {
+        const wrapper = mount(<Spin spinning={false} />);
+        expect(wrapper.instance().state.spinning).toBe(false);
+        wrapper.setProps({spinning: true});
+        expect(wrapper.instance().state.spinning).toBe(true);
     });
-  });
+
+    it('if indicator set null should not be render default indicator', () => {
+        const wrapper = mount(<Spin indicator={null} />);
+        expect(wrapper).toMatchSnapshot();
+    });
+
+    it('should support static method Spin.setDefaultIndicator', () => {
+        Spin.setDefaultIndicator(<em className="custom-spinner" />);
+        const wrapper = mount(<Spin />);
+        expect(wrapper).toMatchSnapshot();
+        Spin.setDefaultIndicator(null);
+    });
+
+    it('should render 0', () => {
+        const wrapper = mount(<Spin>{0}</Spin>);
+        expect(wrapper.find('.ant-spin-container').at(0).text()).toBe('0');
+    });
 });

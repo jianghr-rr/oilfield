@@ -1,175 +1,175 @@
-import { mount } from '@vue/test-utils';
+import React from 'react';
+import {mount} from 'enzyme';
 import Drawer from '..';
 import Button from '../../button';
-import { asyncExpect } from '@/tests/utils';
-export function $$(className) {
-  return document.body.querySelectorAll(className);
-}
-const MultiDrawer = {
-  props: {
-    placement: {
-      type: String,
-      default: 'right',
-    },
-  },
-  data() {
-    return {
-      visible: false,
-      childrenDrawer: false,
-    };
-  },
-  methods: {
-    showDrawer() {
-      this.visible = true;
-    },
-    onClose() {
-      this.visible = false;
-    },
-    showChildrenDrawer() {
-      this.childrenDrawer = true;
-    },
-    onChildrenDrawerClose() {
-      this.childrenDrawer = false;
-    },
-  },
+
+class MultiDrawer extends React.Component {
+  state = {visible: false, childrenDrawer: false, hasChildren: true};
+
+  showDrawer = () => {
+      this.setState({
+          visible: true,
+          hasChildren: true
+      });
+  };
+
+  onClose = () => {
+      this.setState({
+          visible: false
+      });
+  };
+
+  showChildrenDrawer = () => {
+      this.setState({
+          childrenDrawer: true,
+          hasChildren: true
+      });
+  };
+
+  onChildrenDrawerClose = () => {
+      this.setState({
+          childrenDrawer: false
+      });
+  };
+
+  onRemoveChildDrawer = () => {
+      this.setState({
+          hasChildren: false
+      });
+  };
+
   render() {
-    const drawerProps = {
-      props: {
-        title: 'Multi-level drawer',
-        width: 520,
-        visible: this.visible,
-        getContainer: false,
-        wrapClassName: 'test_drawer',
-        placement: this.placement,
-      },
-      on: {
-        close: this.onClose,
-      },
-    };
-    const childrenDrawerProps = {
-      props: {
-        title: 'Two-level Drawer',
-        width: 320,
-        wrapClassName: 'Two-level',
-        visible: this.childrenDrawer,
-        getContainer: false,
-        placement: this.placement,
-      },
-      on: {
-        close: this.onChildrenDrawerClose,
-      },
-    };
-    const buttonProps = {
-      props: {
-        type: 'primary',
-      },
-      attrs: {
-        id: 'open_drawer',
-      },
-      on: {
-        click: this.showDrawer,
-      },
-    };
-    return (
-      <div>
-        <Button {...buttonProps}>open</Button>
-        <Drawer {...drawerProps}>
-          <Button type="primary" id="open_two_drawer" onClick={this.showChildrenDrawer}>
+      const {childrenDrawer, visible, hasChildren} = this.state;
+      const {placement, push} = this.props;
+      return (
+          <div>
+              <Button type="primary" id="open_drawer" onClick={this.showDrawer}>
+          Open drawer
+              </Button>
+              <Button type="primary" id="remove_drawer" onClick={this.onRemoveChildDrawer}>
+          rm child drawer
+              </Button>
+              <Drawer
+                  title="Multi-level drawer"
+                  className="test_drawer"
+                  width={520}
+                  onClose={this.onClose}
+                  getContainer={false}
+                  placement={placement}
+                  visible={visible}
+                  push={push}
+              >
+                  <Button type="primary" id="open_two_drawer" onClick={this.showChildrenDrawer}>
             Two-level drawer
-          </Button>
-          <Drawer {...childrenDrawerProps}>
-            <div id="two_drawer_text">This is two-level drawer</div>
-          </Drawer>
-          <div
-            style={{
-              position: 'absolute',
-              bottom: 0,
-              width: '100%',
-              borderTop: '1px solid #e8e8e8',
-              padding: '10px 16px',
-              textAlign: 'right',
-              left: 0,
-              background: '#fff',
-              borderRadius: '0 0 4px 4px',
-            }}
-          >
-            <Button
-              style={{
-                marginRight: 8,
-              }}
-              onClick={this.onClose}
-            >
+                  </Button>
+                  {hasChildren && (
+                      <Drawer
+                          title="Two-level Drawer"
+                          width={320}
+                          className="Two-level"
+                          getContainer={false}
+                          placement={placement}
+                          onClose={this.onChildrenDrawerClose}
+                          visible={childrenDrawer}
+                      >
+                          <div id="two_drawer_text">This is two-level drawer</div>
+                      </Drawer>
+                  )}
+                  <div
+                      style={{
+                          position: 'absolute',
+                          bottom: 0,
+                          width: '100%',
+                          borderTop: '1px solid #e8e8e8',
+                          padding: '10px 16px',
+                          textAlign: 'right',
+                          left: 0,
+                          background: '#fff',
+                          borderRadius: '0 0 4px 4px'
+                      }}
+                  >
+                      <Button
+                          style={{
+                              marginRight: 8
+                          }}
+                          onClick={this.onClose}
+                      >
               Cancel
-            </Button>
-            <Button onClick={this.onClose} type="primary">
+                      </Button>
+                      <Button onClick={this.onClose} type="primary">
               Submit
-            </Button>
+                      </Button>
+                  </div>
+              </Drawer>
           </div>
-        </Drawer>
-      </div>
-    );
-  },
-};
+      );
+  }
+}
 
 describe('Drawer', () => {
-  it('render right MultiDrawer', async () => {
-    const wrapper = mount(MultiDrawer, {
-      propsData: {
-        placement: 'right',
-      },
-      sync: false,
+    it('render right MultiDrawer', () => {
+        const wrapper = mount(<MultiDrawer placement="right" />);
+        wrapper.find('button#open_drawer').simulate('click');
+        wrapper.find('button#open_two_drawer').simulate('click');
+        const translateX = wrapper.find('.ant-drawer.test_drawer').get(0).props.style.transform;
+        expect(translateX).toEqual('translateX(-180px)');
+        expect(wrapper.find('#two_drawer_text').exists()).toBe(true);
     });
-    await asyncExpect(() => {
-      wrapper.find('#open_drawer').trigger('click');
-    }, 0);
-    await asyncExpect(() => {
-      wrapper.find('#open_two_drawer').trigger('click');
-    }, 0);
-    await asyncExpect(() => {
-      const translateX = wrapper.find('.ant-drawer.test_drawer').element.style.transform;
-      expect(translateX).toEqual('translateX(-180px)');
-      expect(wrapper.find('#two_drawer_text').exists()).toBe(true);
-    }, 1000);
-  });
 
-  it('render left MultiDrawer', async () => {
-    document.body.innerHTML = '';
-    const wrapper = mount(MultiDrawer, {
-      propsData: {
-        placement: 'left',
-      },
-      sync: false,
+    it('render left MultiDrawer', () => {
+        const wrapper = mount(<MultiDrawer placement="left" />);
+        wrapper.find('button#open_drawer').simulate('click');
+        wrapper.find('button#open_two_drawer').simulate('click');
+        const translateX = wrapper.find('.ant-drawer.test_drawer').get(0).props.style.transform;
+        expect(translateX).toEqual('translateX(180px)');
+        expect(wrapper.find('#two_drawer_text').exists()).toBe(true);
+        wrapper.find('.Two-level .ant-drawer-close').simulate('click');
+        expect(wrapper.state().childrenDrawer).toBe(false);
     });
-    await asyncExpect(() => {
-      wrapper.find('#open_drawer').trigger('click');
-    }, 0);
-    await asyncExpect(() => {
-      wrapper.find('#open_two_drawer').trigger('click');
-    }, 0);
-    await asyncExpect(() => {
-      const translateX = wrapper.find('.ant-drawer.test_drawer').element.style.transform;
-      expect(translateX).toEqual('translateX(180px)');
-      expect(wrapper.find('#two_drawer_text').exists()).toBe(true);
-    }, 1000);
-  });
 
-  it('render top MultiDrawer', async () => {
-    const wrapper = mount(MultiDrawer, {
-      propsData: {
-        placement: 'top',
-      },
-      sync: false,
+    it('render top MultiDrawer', () => {
+        const wrapper = mount(<MultiDrawer placement="top" />);
+        wrapper.find('button#open_drawer').simulate('click');
+        wrapper.find('button#open_two_drawer').simulate('click');
+        const translateX = wrapper.find('.ant-drawer.test_drawer').get(0).props.style.transform;
+        expect(translateX).toEqual('translateY(180px)');
+        expect(wrapper.find('#two_drawer_text').exists()).toBe(true);
     });
-    await asyncExpect(() => {
-      wrapper.find('#open_drawer').trigger('click');
-    }, 0);
-    await asyncExpect(() => {
-      wrapper.find('#open_two_drawer').trigger('click');
-    }, 0);
-    await asyncExpect(() => {
-      const translateY = wrapper.find('.ant-drawer.test_drawer').element.style.transform;
-      expect(translateY).toEqual('translateY(180px)');
-      expect(wrapper.find('#two_drawer_text').exists()).toBe(true);
-    }, 1000);
-  });
+
+    it('render MultiDrawer is child in unmount', () => {
+        const wrapper = mount(<MultiDrawer placement="top" mask={false} />);
+        wrapper.find('button#open_drawer').simulate('click');
+        wrapper.find('button#open_two_drawer').simulate('click');
+        wrapper.find('button#remove_drawer').simulate('click');
+        let translateX = wrapper.find('.ant-drawer.test_drawer').get(0).props.style.transform;
+        expect(translateX).toEqual(undefined);
+        wrapper.find('button#open_two_drawer').simulate('click');
+        translateX = wrapper.find('.ant-drawer.test_drawer').get(0).props.style.transform;
+        expect(translateX).toEqual('translateY(180px)');
+        expect(wrapper.find('#two_drawer_text').exists()).toBe(true);
+    });
+
+    it('custom MultiDrawer push distance', () => {
+        const wrapper = mount(<MultiDrawer push={{distance: 256}} />);
+        wrapper.find('button#open_drawer').simulate('click');
+        wrapper.find('button#open_two_drawer').simulate('click');
+        const translateX = wrapper.find('.ant-drawer.test_drawer').get(0).props.style.transform;
+        expect(translateX).toEqual('translateX(-256px)');
+    });
+
+    it('custom MultiDrawer push with true', () => {
+        const wrapper = mount(<MultiDrawer push />);
+        wrapper.find('button#open_drawer').simulate('click');
+        wrapper.find('button#open_two_drawer').simulate('click');
+        const translateX = wrapper.find('.ant-drawer.test_drawer').get(0).props.style.transform;
+        expect(translateX).toEqual('translateX(-180px)');
+    });
+
+    it('custom MultiDrawer push with false', () => {
+        const wrapper = mount(<MultiDrawer push={false} />);
+        wrapper.find('button#open_drawer').simulate('click');
+        wrapper.find('button#open_two_drawer').simulate('click');
+        const translateX = wrapper.find('.ant-drawer.test_drawer').get(0).props.style.transform;
+        expect(translateX).toBeUndefined();
+    });
 });

@@ -1,26 +1,29 @@
-import { mount } from '@vue/test-utils';
-import Vue from 'vue';
+/* eslint-disable react/no-multi-comp */
+import React from 'react';
+import {mount} from 'enzyme';
 import moment from 'moment';
 import MockDate from 'mockdate';
-import { sleep } from '../../../tests/utils';
+import mountTest from '../../../tests/shared/mountTest';
 import {
-  LocaleProvider,
-  Pagination,
-  DatePicker,
-  TimePicker,
-  Calendar,
-  Popconfirm,
-  Table,
-  Modal,
-  Select,
-  Transfer,
+    Pagination,
+    DatePicker,
+    TimePicker,
+    Calendar,
+    Popconfirm,
+    Table,
+    Modal,
+    Select,
+    Transfer
 } from '../..';
+import LocaleProvider from '..';
 import arEG from '../ar_EG';
+import azAZ from '../az_AZ';
 import bgBG from '../bg_BG';
+import byBY from '../by_BY';
 import caES from '../ca_ES';
 import csCZ from '../cs_CZ';
-import daDK from '../da_DK';
 import deDE from '../de_DE';
+import daDK from '../da_DK';
 import elGR from '../el_GR';
 import enGB from '../en_GB';
 import enUS from '../en_US';
@@ -29,23 +32,31 @@ import etEE from '../et_EE';
 import faIR from '../fa_IR';
 import fiFI from '../fi_FI';
 import frBE from '../fr_BE';
+import frCA from '../fr_CA';
 import frFR from '../fr_FR';
+import gaIE from '../ga_IE';
+import glES from '../gl_ES';
 import heIL from '../he_IL';
 import hiIN from '../hi_IN';
 import hrHR from '../hr_HR';
 import huHU from '../hu_HU';
 import hyAM from '../hy_AM';
+import idID from '../id_ID';
 import isIS from '../is_IS';
 import itIT from '../it_IT';
 import jaJP from '../ja_JP';
+import kkKZ from '../kk_KZ';
 import knIN from '../kn_IN';
 import koKR from '../ko_KR';
+import kmrIQ from '../kmr_IQ';
 import kuIQ from '../ku_IQ';
+import lvLV from '../lv_LV';
+import ltLT from '../lt_LT';
 import mkMK from '../mk_MK';
 import mnMN from '../mn_MN';
 import msMY from '../ms_MY';
 import nbNO from '../nb_NO';
-import neNP from '../ne-NP';
+import neNP from '../ne_NP';
 import nlBE from '../nl_BE';
 import nlNL from '../nl_NL';
 import plPL from '../pl_PL';
@@ -62,210 +73,200 @@ import thTH from '../th_TH';
 import trTR from '../tr_TR';
 import ukUA from '../uk_UA';
 import viVN from '../vi_VN';
-import idID from '../id_ID';
-import lvLV from '../lv_LV';
 import zhCN from '../zh_CN';
+import zhHK from '../zh_HK';
 import zhTW from '../zh_TW';
 
 const locales = [
-  arEG,
-  bgBG,
-  caES,
-  csCZ,
-  daDK,
-  deDE,
-  elGR,
-  enGB,
-  enUS,
-  esES,
-  etEE,
-  faIR,
-  fiFI,
-  frBE,
-  frFR,
-  heIL,
-  hiIN,
-  hrHR,
-  huHU,
-  hyAM,
-  isIS,
-  itIT,
-  jaJP,
-  knIN,
-  koKR,
-  kuIQ,
-  mkMK,
-  msMY,
-  mnMN,
-  nbNO,
-  neNP,
-  nlBE,
-  nlNL,
-  plPL,
-  ptBR,
-  ptPT,
-  roRO,
-  ruRU,
-  skSK,
-  slSI,
-  srRS,
-  svSE,
-  taIN,
-  thTH,
-  trTR,
-  ukUA,
-  viVN,
-  idID,
-  lvLV,
-  zhCN,
-  zhTW,
+    azAZ,
+    arEG,
+    bgBG,
+    byBY,
+    caES,
+    csCZ,
+    daDK,
+    deDE,
+    elGR,
+    enGB,
+    enUS,
+    esES,
+    etEE,
+    faIR,
+    fiFI,
+    frBE,
+    frCA,
+    frFR,
+    gaIE,
+    glES,
+    heIL,
+    hiIN,
+    hrHR,
+    huHU,
+    hyAM,
+    isIS,
+    itIT,
+    jaJP,
+    kkKZ,
+    knIN,
+    koKR,
+    kmrIQ,
+    kuIQ,
+    ltLT,
+    mkMK,
+    msMY,
+    mnMN,
+    nbNO,
+    neNP,
+    nlBE,
+    nlNL,
+    plPL,
+    ptBR,
+    ptPT,
+    roRO,
+    ruRU,
+    skSK,
+    slSI,
+    srRS,
+    svSE,
+    taIN,
+    thTH,
+    trTR,
+    ukUA,
+    viVN,
+    idID,
+    lvLV,
+    zhCN,
+    zhHK,
+    zhTW
 ];
 
-const { Option } = Select;
-const { RangePicker } = DatePicker;
+const {Option} = Select;
+const {RangePicker} = DatePicker;
 
 const columns = [
-  {
-    title: 'Name',
-    dataIndex: 'name',
-    filters: [
-      {
-        text: 'filter1',
-        value: 'filter1',
-      },
-    ],
-  },
-  {
-    title: 'Age',
-    dataIndex: 'age',
-  },
+    {
+        title: 'Name',
+        dataIndex: 'name',
+        filters: [
+            {
+                text: 'filter1',
+                value: 'filter1'
+            }
+        ]
+    },
+    {
+        title: 'Age',
+        dataIndex: 'age'
+    }
 ];
 
-const App = {
-  render() {
-    return (
-      <div>
+const App = () => (
+    <div>
         <Pagination defaultCurrent={1} total={50} showSizeChanger />
-        <Select showSearch style={{ width: '200px' }}>
-          <Option value="jack">jack</Option>
-          <Option value="lucy">lucy</Option>
+        <Select showSearch style={{width: 200}}>
+            <Option value="jack">jack</Option>
+            <Option value="lucy">lucy</Option>
         </Select>
         <DatePicker open />
         <TimePicker open defaultOpenValue={moment()} />
-        <RangePicker open style={{ width: '200px' }} />
+        <RangePicker open style={{width: 200}} />
         <Popconfirm title="Question?" visible>
-          <a>Click to confirm</a>
+            <a>Click to confirm</a>
         </Popconfirm>
         <Transfer dataSource={[]} showSearch targetKeys={[]} render={item => item.title} />
         <Calendar fullscreen={false} value={moment()} />
         <Table dataSource={[]} columns={columns} />
-        <Modal title="Locale Modal" visible>
-          <p>Locale Modal</p>
+        <Modal title="Locale Modal" visible getContainer={false}>
+            <p>Locale Modal</p>
         </Modal>
-      </div>
-    );
-  },
-};
+    </div>
+);
 
 describe('Locale Provider', () => {
-  beforeAll(() => {
-    document.body.innerHTML = '';
-    MockDate.set(moment('2017-09-18T03:30:07.795'));
-  });
+    mountTest(() => (
+        <LocaleProvider>
+            <div />
+        </LocaleProvider>
+    ));
 
-  afterAll(() => {
-    MockDate.reset();
-  });
-
-  locales.forEach(locale => {
-    it(`should display the text as ${locale.locale}`, done => {
-      const wrapper = mount(
-        {
-          render() {
-            return (
-              <LocaleProvider locale={locale}>
-                <App />
-              </LocaleProvider>
-            );
-          },
-        },
-        { sync: false, attachToDocument: true },
-      );
-      Vue.nextTick(() => {
-        expect(wrapper.html()).toMatchSnapshot();
-        done();
-      });
+    beforeAll(() => {
+        MockDate.set(moment('2017-09-18T03:30:07.795').valueOf());
     });
-  });
 
-  fit('should change locale of Modal.xxx', async () => {
-    const ModalDemo = {
-      mounted() {
-        Modal.confirm({
-          title: 'Hello World!',
-        });
-      },
-      render() {
-        return null;
-      },
-    };
-    for (let locale of locales) {
-      document.body.innerHTML = '';
-      mount(
-        {
-          render() {
-            return (
-              <LocaleProvider locale={locale}>
-                <ModalDemo />
-              </LocaleProvider>
+    afterAll(() => {
+        MockDate.reset();
+    });
+
+    locales.forEach(locale => {
+        it(`should display the text as ${locale.locale}`, () => {
+            const wrapper = mount(
+                <LocaleProvider locale={locale}>
+                    <App />
+                </LocaleProvider>,
             );
-          },
-        },
-        { sync: false, attachToDocument: true },
-      );
-      await sleep();
-      const currentConfirmNode = document.querySelectorAll('.ant-modal-confirm')[
-        document.querySelectorAll('.ant-modal-confirm').length - 1
-      ];
-      let cancelButtonText = currentConfirmNode.querySelectorAll(
-        '.ant-btn:not(.ant-btn-primary) span',
-      )[0].innerHTML;
-      let okButtonText = currentConfirmNode.querySelectorAll('.ant-btn-primary span')[0].innerHTML;
-      if (locale.locale === 'zh-cn' || locale.locale === 'zh-tw') {
-        cancelButtonText = cancelButtonText.replace(' ', '');
-        okButtonText = okButtonText.replace(' ', '');
-      }
-      expect(cancelButtonText).toBe(locale.Modal.cancelText);
-      expect(okButtonText).toBe(locale.Modal.okText);
-    }
-  });
+            expect(wrapper.render()).toMatchSnapshot();
+        });
+    });
 
-  it('set moment locale when locale changes', async () => {
-    document.body.innerHTML = '';
-    const Test = {
-      data() {
-        return {
-          locale: zhCN,
-        };
-      },
+    it('should change locale of Modal.xxx', () => {
+        class ModalDemo extends React.Component {
+            componentDidMount() {
+                jest.useFakeTimers();
+                Modal.confirm({
+                    title: 'Hello World!'
+                });
+                jest.runAllTimers();
+                jest.useRealTimers();
+            }
+
+            render() {
+                return null;
+            }
+        }
+        locales.forEach(locale => {
+            mount(
+                <LocaleProvider locale={locale}>
+                    <ModalDemo />
+                </LocaleProvider>,
+            );
+            const currentConfirmNode = document.querySelectorAll('.ant-modal-confirm')[
+                document.querySelectorAll('.ant-modal-confirm').length - 1
+            ];
+            let cancelButtonText = currentConfirmNode.querySelectorAll(
+                '.ant-btn:not(.ant-btn-primary) span',
+            )[0].innerHTML;
+            let okButtonText = currentConfirmNode.querySelectorAll('.ant-btn-primary span')[0].innerHTML;
+            if (locale.locale.indexOf('zh-') === 0) {
+                cancelButtonText = cancelButtonText.replace(' ', '');
+                okButtonText = okButtonText.replace(' ', '');
+            }
+            expect(cancelButtonText).toBe(locale.Modal.cancelText);
+            expect(okButtonText).toBe(locale.Modal.okText);
+        });
+    });
+
+    it('set moment locale when locale changes', () => {
+        class Test extends React.Component {
+      state = {
+          locale: zhCN
+      };
+
       render() {
-        return (
-          <LocaleProvider locale={this.locale}>
-            <div>
-              <DatePicker defaultValue={moment()} open />
-            </div>
-          </LocaleProvider>
-        );
-      },
-    };
-    const wrapper = mount(Test, { sync: false, attachToDocument: true });
-    await sleep(50);
-    expect(document.body.innerHTML).toMatchSnapshot();
-    wrapper.setData({ locale: frFR });
-    await sleep(50);
-    expect(document.body.innerHTML).toMatchSnapshot();
-    wrapper.setData({ locale: null });
-    await sleep(50);
-    expect(document.body.innerHTML).toMatchSnapshot();
-  });
+          const {locale} = this.state;
+          return (
+              <LocaleProvider locale={locale}>
+                  <div>
+                      <DatePicker defaultValue={moment()} open />
+                  </div>
+              </LocaleProvider>
+          );
+      }
+        }
+        const wrapper = mount(<Test />);
+        expect(wrapper.render()).toMatchSnapshot();
+        wrapper.setState({locale: frFR});
+        expect(wrapper.render()).toMatchSnapshot();
+        wrapper.setState({locale: null});
+        expect(wrapper.render()).toMatchSnapshot();
+    });
 });

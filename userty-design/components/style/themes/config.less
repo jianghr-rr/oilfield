@@ -1,0 +1,1108 @@
+@import '../color/colors.less';
+
+// 尺寸单位
+@P: 4px;
+@p: 4px;
+
+// TODO！！ 需要写一个方法 - 把excel的config传进去，就可以出来这个组件的样式了， 因为是开关和TX控制的
+// Color
+// 主色 因为没有计算 所以先这样
+@B1: @blue-1;
+@B2: @blue-2;
+@B3: @blue-3;
+@B4: @blue-4;
+@B5: @blue-5;
+@B6: @blue-6;
+@B7: @blue-7;
+@B8: @blue-8;
+@B9: @blue-9;
+@B10: @blue-10;
+
+// 中性色
+// @G1: @grey-1;
+// @G2: @grey-2;
+// @G3: @grey-3;
+// @G4: @grey-4;
+// @G5: @grey-5;
+// @G6: @grey-6;
+// @G7: @grey-7;
+// @G8: @grey-8;
+// @G9: @grey-9;
+// @G10: @grey-10;
+// @G11: @grey-11;
+@G1: @grey-11;
+@G2: @grey-10;
+@G3: @grey-9;
+@G4: @grey-8;
+@G5: @grey-7;
+@G6: @grey-6;
+@G7: @grey-5;
+@G8: @grey-4;
+@G9: @grey-3;
+@G10: @grey-2;
+@G11: @grey-1;
+
+// 功能色 - 错误状态
+@E1: @red-1;
+@E2: @red-2;
+@E3: @red-3;
+@E4: @red-4;
+@E5: @red-5;
+@E6: @red-6;
+@E7: @red-7;
+@E8: @red-8;
+@E9: @red-9;
+@E10: @red-10;
+
+@S1: @green-1;
+@S2: @green-2;
+@S3: @green-3;
+@S4: @green-4;
+@S5: @green-5;
+@S6: @green-6;
+@S7: @green-7;
+@S8: @green-8;
+@S9: @green-9;
+@S10: @green-10;
+
+@W1: @orange-1;
+@W2: @orange-2;
+@W3: @orange-3;
+@W4: @orange-4;
+@W5: @orange-5;
+@W6: @orange-6;
+@W7: @orange-7;
+@W8: @orange-8;
+@W9: @orange-9;
+@W10: @orange-10;
+
+@I1: @blue-1;
+@I2: @blue-2;
+@I3: @blue-3;
+@I4: @blue-4;
+@I5: @blue-5;
+@I6: @blue-6;
+@I7: @blue-7;
+@I8: @blue-8;
+@I9: @blue-9;
+@I10: @blue-10;
+
+// 基本属性
+@font-family: -apple-system, BlinkMacSystemFont,"SF Pro SC","SF Pro Text","Helvetica Neue",  Helvetica, "PingFang SC", Roboto, 'Arial','microsoft yahei ui',"Microsoft YaHei",SimSun, sans-serif;
+
+// 字号 - 每个梯度都是2
+// 根据UE规范使用@T{num}方式表示字体大小，不再支持@font-size-{size}形式
+@T1: 10px;
+@T2: 12px;
+@T3: 14px;
+@T4: 16px;
+@T5: 18px;
+@T6: 20px;
+@T7: 22px;
+@T8: 24px;
+@T9: 28px;
+@T10: 30px;
+@T11: 32px;
+@T12: 34px;
+@T13: 36px;
+@T14: 40px;
+
+// 高度
+@height: 8 * @P;
+@height-sm: 6 * @P;
+@height-md: @height;
+@height-lg: 12 * @P;
+
+// 字重
+@font-weight-200: 200;
+@font-weight-400: 400;
+@font-weight-500: 500;
+@font-weight-600: 600;
+
+// 行高
+@line-height-base: 1.6667;
+
+// 间距 - 可做padding/margin
+@space-1: 4px;
+@space-2: 8px;
+@space-3: 16px;
+@space-4: 24px;
+@space-5: 32px;
+@space-6: 40px;
+@space-7: 48px;
+@space-8: 56px;
+@space-9: 80px;
+
+// padding
+@padding-xsm: @P;
+@padding-sm: 2 * @P;
+@padding-m: 3 * @P;
+
+// Animation
+@ease-base-out: cubic-bezier(0.7, 0.3, 0.1, 1);
+@ease-base-in: cubic-bezier(0.9, 0, 0.3, 0.7);
+@ease-out: cubic-bezier(0.215, 0.61, 0.355, 1);
+@ease-in: cubic-bezier(0.55, 0.055, 0.675, 0.19);
+@ease-in-out: cubic-bezier(0.645, 0.045, 0.355, 1);
+@ease-out-back: cubic-bezier(0.12, 0.4, 0.29, 1.46);
+@ease-in-back: cubic-bezier(0.71, -0.46, 0.88, 0.6);
+@ease-in-out-back: cubic-bezier(0.71, -0.46, 0.29, 1.46);
+@ease-out-circ: cubic-bezier(0.08, 0.82, 0.17, 1);
+@ease-in-circ: cubic-bezier(0.6, 0.04, 0.98, 0.34);
+@ease-in-out-circ: cubic-bezier(0.78, 0.14, 0.15, 0.86);
+@ease-out-quint: cubic-bezier(0.23, 1, 0.32, 1);
+@ease-in-quint: cubic-bezier(0.755, 0.05, 0.855, 0.06);
+@ease-in-out-quint: cubic-bezier(0.86, 0, 0.07, 1);
+
+@animation-duration-base: 0.2s;
+@animation-duration-slow: 0.3s;
+@animation-duration-fast: 0.1s;
+
+// 圆角
+@R1: 0px;
+@R2: 2px;
+@R3: 4px;
+@R4: 6px;
+@R5: 8px;
+@R6: 10px;
+@R7: 16px;
+@R8: 50%;
+
+// z-index
+@zindex-range-0: 1000;
+@zindex-range-1: 1010;
+@zindex-range-2: 1030;
+@zindex-range-3: 1050;
+@zindex-range-4: 1050;
+@zindex-range-5: 1070;
+
+// border style - todo!!!
+@border-width-base: 1px;
+@border-style-base: solid;
+@border-radius-base: 0px;
+
+// shadow
+@shadow-basic-color: @G1;
+@shadow-main-color: fade(@shadow-basic-color, 6%);
+@shadow-blur-color: fade(@shadow-basic-color, 5%);
+@shadow-border-color: fade(@shadow-basic-color, 4%);
+
+@shadow-1: ~'0px 4px 6px 0px @{shadow-main-color}, 0px 1px 10px 0px @{shadow-blur-color},  0px 2px 4px -1px @{shadow-border-color}';
+@shadow-2: ~'0px 8px 10px 1px @{shadow-main-color}, 0px 3px 14px 2px @{shadow-blur-color},  0px 5px 5px -3px @{shadow-border-color}';
+@shadow-3: ~'0px 8px 10px 1px @{shadow-main-color}, 0px 3px 14px 2px @{shadow-blur-color},  0px 5px 5px -3px @{shadow-border-color}';
+
+@offConfig: transparent;
+@shadowOff: false;
+
+// {tpxx}-{actionType(deafult|hover|click|disabled)-cssproperty(color|background-color...)}
+// 为什么最后一个要是css属性，是为了以后做拓展用 tp/p不一定只有四个属性
+// 所有用到的变量必须声明，参考 https://github.com/less/less.js/issues/3444
+
+// tp
+// tp0 不配置的时候选择
+@tp0-default-color: @offConfig;
+@tp0-hover-color: @offConfig;
+@tp0-click-color: @offConfig;
+@tp0-disabled-color: @offConfig;
+
+@tp1-default-color: @G11;
+@tp1-hover-color: @G11;
+@tp1-click-color: @G11;
+@tp1-disabled-color: @G6;
+
+@tp2-default-color: @B6;
+@tp2-hover-color: @B5;
+@tp2-click-color: @B7;
+@tp2-disabled-color: @G6;
+
+@tp3-default-color: @G2;
+@tp3-hover-color: @B6;
+@tp3-click-color: @B7;
+@tp3-disabled-color: @G6;
+
+@tp4-default-color: @G6;
+@tp4-hover-color: @G6;
+@tp4-click-color: @G2;
+@tp4-disabled-color: @G6;
+
+@tp5-default-color: @G5;
+@tp5-hover-color: @B6;
+@tp5-click-color: @B6;
+@tp5-disabled-color: @G7;
+
+@tp6-default-color: @G2;
+@tp6-hover-color: @G2;
+@tp6-click-color: @B6;
+@tp6-disabled-color: @G6;
+
+@tp7-default-color: @G5;
+@tp7-hover-color: @G5;
+@tp7-click-color: @G5;
+@tp7-disabled-color: @G7;
+
+@tp8-default-color: @G2;
+@tp8-hover-color: @G2;
+@tp8-click-color: @G2;
+@tp8-disabled-color: @G6;
+
+@tp9-default-color: @G11;
+@tp9-hover-color: @G11;
+@tp9-click-color: @G11;
+@tp9-disabled-color: @G11;
+
+@tp10-default-color: @G11;
+@tp10-hover-color: @G11;
+@tp10-click-color: @G11;
+@tp10-disabled-color: @G7;
+
+@tp11-default-color: @offConfig;
+@tp11-hover-color: @offConfig;
+@tp11-click-color: @G11;
+@tp11-disabled-color: @G9;
+
+@tp12-default-color: @offConfig;
+@tp12-hover-color: @offConfig;
+@tp12-click-color: @B6;
+@tp12-disabled-color: @G9;
+
+@tp13-default-color: @E6;
+@tp13-hover-color: @E6;
+@tp13-click-color: @E6;
+@tp13-disabled-color: @G6;
+
+@tp14-default-color: @G6;
+@tp14-hover-color: @G3;
+@tp14-click-color: @G3;
+@tp14-disabled-color: @G7;
+
+@tp15-default-color: @G5;
+@tp15-hover-color: @G5;
+@tp15-click-color: @G5;
+@tp15-disabled-color: @G6;
+
+@tp16-default-color: @G2;
+@tp16-hover-color: @B5;
+@tp16-click-color: @B6;
+@tp16-disabled-color: @G6;
+
+@tp17-default-color: @B6;
+@tp17-hover-color: @B5;
+@tp17-click-color: @B6;
+@tp17-disabled-color: @B3;
+
+@tp18-default-color: @G11;
+@tp18-hover-color: @G10;
+@tp18-click-color: @G11;
+@tp18-disabled-color: @G6;
+
+@tp19-default-color: @G5;
+@tp19-hover-color: @B6;
+@tp19-click-color: @B7;
+@tp19-disabled-color: @G6;
+
+@tp20-default-color: @G5;
+@tp20-hover-color: @B6;
+@tp20-click-color: @G2;
+@tp20-disabled-color: @offConfig;
+
+@tp21-default-color: @offConfig;
+@tp21-hover-color: @G11;
+@tp21-click-color: @G11;
+@tp21-disabled-color: @offConfig;
+
+@tp22-default-color: @B4;
+@tp22-hover-color: @B4;
+@tp22-click-color: @B4;
+@tp22-disabled-color: @G7;
+
+@tp23-default-color: @G4;
+@tp23-hover-color: @G4;
+@tp23-click-color: @G4;
+@tp23-disabled-color: @G6;
+
+@tp24-default-color: @G5;
+@tp24-hover-color: @G3;
+@tp24-click-color: @G3;
+@tp24-disabled-color: @G7;
+
+@tp25-default-color: @G5;
+@tp25-hover-color: @G4;
+@tp25-click-color: @W6;
+@tp25-disabled-color: @offConfig;
+
+@tp26-default-color: @G6;
+@tp26-hover-color: @B6;
+@tp26-click-color: @B7;
+@tp26-disabled-color: @G6;
+
+@tp27-default-color: @G6;
+@tp27-hover-color: @G6;
+@tp27-click-color: @G11;
+@tp27-disabled-color: @offConfig;
+
+@tp28-default-color: @G5;
+@tp28-hover-color: @G5;
+@tp28-click-color: @G2;
+@tp28-disabled-color: @offConfig;
+
+@tp29-default-color: @G2;
+@tp29-hover-color: @B6;
+@tp29-click-color: @B6;
+@tp29-disabled-color: @G6;
+
+@tp30-default-color: @G7;
+@tp30-hover-color: @G7;
+@tp30-click-color: @G7;
+@tp30-disabled-color: @G9;
+
+@tp31-default-color: @G2;
+@tp31-hover-color: @G2;
+@tp31-click-color: @G11;
+@tp31-disabled-color: @G6;
+
+@tp32-default-color: @G9;
+@tp32-hover-color: @G6;
+@tp32-click-color: @G5;
+@tp32-disabled-color: @G10;
+
+@tp33-default-color: @G9;
+@tp33-hover-color: @W6;
+@tp33-click-color: @W6;
+@tp33-disabled-color: @G10;
+
+// tp4-1 to tp34
+@tp34-default-color: @G2;
+@tp34-hover-color: @G2;
+@tp34-click-color: @G2;
+@tp34-disabled-color: @G6;
+
+// tp9-1 to tp35
+@tp35-default-color: @G7;
+@tp35-hover-color: @G4;
+@tp35-click-color: @G3;
+@tp35-disabled-color: @G9;
+
+@tp36-default-color: @G2;
+@tp36-hover-color: @G2;
+@tp36-click-color: @G11;
+@tp36-disabled-color: @G6;
+
+// p
+// p0 不配置的时候选择
+@p0-default-background-color: @offConfig;
+@p0-hover-background-color: @offConfig;
+@p0-click-background-color: @offConfig;
+@p0-disabled-background-color: @offConfig;
+
+@p0-default-border-color: @offConfig;
+@p0-hover-border-color: @offConfig;
+@p0-click-border-color: @offConfig;
+@p0-disabled-border-color: @offConfig;
+
+@p0-default-box-shadow: @shadowOff;
+@p0-hover-box-shadow: @shadowOff;
+@p0-click-box-shadow: @shadowOff;
+@p0-disabled-box-shadow: @shadowOff;
+
+// P1
+@p1-default-background-color: @B6;
+@p1-hover-background-color: @B5;
+@p1-click-background-color: @B7;
+@p1-disabled-background-color: @G10;
+
+@p1-default-border-color: @offConfig;
+@p1-hover-border-color: @offConfig;
+@p1-click-border-color: @offConfig;
+@p1-disabled-border-color: @offConfig;
+
+@p1-default-box-shadow: @shadowOff;
+@p1-hover-box-shadow: @shadowOff;
+@p1-click-box-shadow: @shadowOff;
+@p1-disabled-box-shadow: @shadowOff;
+
+// P2
+@p2-default-background-color: @G11;
+@p2-hover-background-color: @G11;
+@p2-click-background-color: @G11;
+@p2-disabled-background-color: @G10;
+
+@p2-default-border-color: @B6;
+@p2-hover-border-color: @B5;
+@p2-click-border-color: @B7;
+@p2-disabled-border-color: @G10;
+
+@p2-default-box-shadow: @shadowOff;
+@p2-hover-box-shadow: @shadowOff;
+@p2-click-box-shadow: @shadowOff;
+@p2-disabled-box-shadow: @shadowOff;
+
+// P3
+@p3-default-background-color: @G11;
+@p3-hover-background-color: @G11;
+@p3-click-background-color: @G11;
+@p3-disabled-background-color: @G10;
+
+@p3-default-border-color: @G7;
+@p3-hover-border-color: @B6;
+@p3-click-border-color: @B7;
+@p3-disabled-border-color: @G10;
+
+@p3-default-box-shadow: @shadowOff;
+@p3-hover-box-shadow: @shadowOff;
+@p3-click-box-shadow: @shadowOff;
+@p3-disabled-box-shadow: @shadowOff;
+
+// P4
+@p4-default-background-color: @E6;
+@p4-hover-background-color: @E5;
+@p4-click-background-color: @E7;
+@p4-disabled-background-color: @G10;
+
+@p4-default-border-color: @offConfig;
+@p4-hover-border-color: @offConfig;
+@p4-click-border-color: @offConfig;
+@p4-disabled-border-color: @offConfig;
+
+@p4-default-box-shadow: @shadowOff;
+@p4-hover-box-shadow: @shadowOff;
+@p4-click-box-shadow: @shadowOff;
+@p4-disabled-box-shadow: @shadowOff;
+
+// P5
+@p5-default-background-color: @G11;
+@p5-hover-background-color: @G11;
+@p5-click-background-color: @G11;
+@p5-disabled-background-color: @G10;
+
+@p5-default-border-color: @G7;
+@p5-hover-border-color: @B6;
+@p5-click-border-color: @B6;
+@p5-disabled-border-color: @G9;
+
+@p5-default-box-shadow: @shadowOff;
+@p5-hover-box-shadow: @shadowOff;
+@p5-click-box-shadow: @shadowOff;
+@p5-disabled-box-shadow: @shadowOff;
+
+// P6
+@p6-default-background-color: @G11;
+@p6-hover-background-color: @B1;
+@p6-click-background-color: @G11;
+@p6-disabled-background-color: @G11;
+
+@p6-default-border-color: @offConfig;
+@p6-hover-border-color: @offConfig;
+@p6-click-border-color: @offConfig;
+@p6-disabled-border-color: @offConfig;
+
+@p6-default-box-shadow: @shadowOff;
+@p6-hover-box-shadow: @shadowOff;
+@p6-click-box-shadow: @shadowOff;
+@p6-disabled-box-shadow: @shadowOff;
+
+// P7
+@p7-default-background-color: @G11;
+@p7-hover-background-color: @offConfig;
+@p7-click-background-color: @B1;
+@p7-disabled-background-color: @G11;
+
+@p7-default-border-color: @offConfig;
+@p7-hover-border-color: @offConfig;
+@p7-click-border-color: @offConfig;
+@p7-disabled-border-color: @offConfig;
+
+@p7-default-box-shadow: @shadow-1;
+@p7-hover-box-shadow: @shadow-1;
+@p7-click-box-shadow: @shadow-1;
+@p7-disabled-box-shadow: @shadow-1;
+
+// P8
+@p8-default-background-color: @G10;
+@p8-hover-background-color: @G10;
+@p8-click-background-color: @G10;
+@p8-disabled-background-color: @G10;
+
+@p8-default-border-color: @offConfig;
+@p8-hover-border-color: @offConfig;
+@p8-click-border-color: @offConfig;
+@p8-disabled-border-color: @offConfig;
+
+@p8-default-box-shadow: @shadowOff;
+@p8-hover-box-shadow: @shadowOff;
+@p8-click-box-shadow: @shadowOff;
+@p8-disabled-box-shadow: @shadowOff;
+
+// P9
+@p9-default-background-color: @G7;
+@p9-hover-background-color: @G4;
+@p9-click-background-color: @G3;
+@p9-disabled-background-color: @G9;
+
+@p9-default-border-color: @offConfig;
+@p9-hover-border-color: @offConfig;
+@p9-click-border-color: @offConfig;
+@p9-disabled-border-color: @offConfig;
+
+@p9-default-box-shadow: @shadowOff;
+@p9-hover-box-shadow: @shadowOff;
+@p9-click-box-shadow: @shadowOff;
+@p9-disabled-box-shadow: @shadowOff;
+
+// P10
+@p10-default-background-color: @G11;
+@p10-hover-background-color: @G11;
+@p10-click-background-color: @B6;
+@p10-disabled-background-color: @G10;
+
+@p10-default-border-color: @G7;
+@p10-hover-border-color: @B6;
+@p10-click-border-color: @B6;
+@p10-disabled-border-color: @G9;
+
+@p10-default-box-shadow: @shadowOff;
+@p10-hover-box-shadow: @shadowOff;
+@p10-click-box-shadow: @shadowOff;
+@p10-disabled-box-shadow: @shadowOff;
+
+// P11
+@p11-default-background-color: @G10;
+@p11-hover-background-color: @G10;
+@p11-click-background-color: @G10;
+@p11-disabled-background-color: @G9;
+
+@p11-default-border-color: @offConfig;
+@p11-hover-border-color: @offConfig;
+@p11-click-border-color: @offConfig;
+@p11-disabled-border-color: @offConfig;
+
+@p11-default-box-shadow: @shadowOff;
+@p11-hover-box-shadow: @shadowOff;
+@p11-click-box-shadow: @shadowOff;
+@p11-disabled-box-shadow: @shadowOff;
+
+// P12
+@p12-default-background-color: @G11;
+@p12-hover-background-color: @G11;
+@p12-click-background-color: @G11;
+@p12-disabled-background-color: @G10;
+
+@p12-default-border-color: @E6;
+@p12-hover-border-color: @E6;
+@p12-click-border-color: @E6;
+@p12-disabled-border-color: @G9;
+
+@p12-default-box-shadow: @shadowOff;
+@p12-hover-box-shadow: @shadowOff;
+@p12-click-box-shadow: @shadowOff;
+@p12-disabled-box-shadow: @shadowOff;
+
+// P13
+@p13-default-background-color: @G11;
+@p13-hover-background-color: @G11;
+@p13-click-background-color: @G11;
+@p13-disabled-background-color: @G10;
+
+@p13-default-border-color: @G7;
+@p13-hover-border-color: @G7;
+@p13-click-border-color: @B6;
+@p13-disabled-border-color: @G9;
+
+@p13-default-box-shadow: @shadowOff;
+@p13-hover-box-shadow: @shadowOff;
+@p13-click-box-shadow: @shadowOff;
+@p13-disabled-box-shadow: @shadowOff;
+
+// P14
+@p14-default-background-color: @G11;
+@p14-hover-background-color: @G11;
+@p14-click-background-color: @G11;
+@p14-disabled-background-color: @G11;
+
+@p14-default-border-color: @B6;
+@p14-hover-border-color: @B5;
+@p14-click-border-color: @B6;
+@p14-disabled-border-color: @B2;
+
+@p14-default-box-shadow: @shadowOff;
+@p14-hover-box-shadow: @shadowOff;
+@p14-click-box-shadow: @shadowOff;
+@p14-disabled-box-shadow: @shadowOff;
+
+// P15
+@p15-default-background-color: @B6;
+@p15-hover-background-color: @B6;
+@p15-click-background-color: @B6;
+@p15-disabled-background-color: @B2;
+
+@p15-default-border-color: @offConfig;
+@p15-hover-border-color: @offConfig;
+@p15-click-border-color: @offConfig;
+@p15-disabled-border-color: @offConfig;
+
+@p15-default-box-shadow: @shadowOff;
+@p15-hover-box-shadow: @shadowOff;
+@p15-click-box-shadow: @shadowOff;
+@p15-disabled-box-shadow: @shadowOff;
+
+// P16
+@p16-default-background-color: @G7;
+@p16-hover-background-color: @G7;
+@p16-click-background-color: @G7;
+@p16-disabled-background-color: @G10;
+
+@p16-default-border-color: @offConfig;
+@p16-hover-border-color: @offConfig;
+@p16-click-border-color: @offConfig;
+@p16-disabled-border-color: @offConfig;
+
+@p16-default-box-shadow: @shadowOff;
+@p16-hover-box-shadow: @shadowOff;
+@p16-click-box-shadow: @shadowOff;
+@p16-disabled-box-shadow: @shadowOff;
+
+// P17
+@p17-default-background-color: @G11;
+@p17-hover-background-color: @G11;
+@p17-click-background-color: @G11;
+@p17-disabled-background-color: @G11;
+
+@p17-default-border-color: @offConfig;
+@p17-hover-border-color: @offConfig;
+@p17-click-border-color: @offConfig;
+@p17-disabled-border-color: @offConfig;
+
+@p17-default-box-shadow: @shadow-1;
+@p17-hover-box-shadow: @shadow-1;
+@p17-click-box-shadow: @shadow-1;
+@p17-disabled-box-shadow: @shadow-1;
+
+// P18
+@p18-default-background-color: @G8;
+@p18-hover-background-color: @G8;
+@p18-click-background-color: @G8;
+@p18-disabled-background-color: @G9;
+
+@p18-default-border-color: @offConfig;
+@p18-hover-border-color: @offConfig;
+@p18-click-border-color: @offConfig;
+@p18-disabled-border-color: @offConfig;
+
+@p18-default-box-shadow: @shadowOff;
+@p18-hover-box-shadow: @shadowOff;
+@p18-click-box-shadow: @shadowOff;
+@p18-disabled-box-shadow: @shadowOff;
+
+// P19
+@p19-default-background-color: @G11;
+@p19-hover-background-color: @G11;
+@p19-click-background-color: @G11;
+@p19-disabled-background-color: @G11;
+
+@p19-default-border-color: @B4;
+@p19-hover-border-color: @B6;
+@p19-click-border-color: @B6;
+@p19-disabled-border-color: @G7;
+
+@p19-default-box-shadow: @shadow-1;
+@p19-hover-box-shadow: @shadow-1;
+@p19-click-box-shadow: @shadow-1;
+@p19-disabled-box-shadow: @shadow-1;
+
+// P20
+@p20-default-background-color: @offConfig;
+@p20-hover-background-color: @G2;
+@p20-click-background-color: @G2;
+@p20-disabled-background-color: @offConfig;
+
+@p20-default-border-color: @offConfig;
+@p20-hover-border-color: @offConfig;
+@p20-click-border-color: @offConfig;
+@p20-disabled-border-color: @offConfig;
+
+@p20-default-box-shadow: @shadowOff;
+@p20-hover-box-shadow: @shadow-1;
+@p20-click-box-shadow: @shadow-1;
+@p20-disabled-box-shadow: @shadowOff;
+
+// P21
+@p21-default-background-color: @G11;
+@p21-hover-background-color: @G11;
+@p21-click-background-color: @G11;
+@p21-disabled-background-color: @G11;
+
+@p21-default-border-color: @offConfig;
+@p21-hover-border-color: @offConfig;
+@p21-click-border-color: @offConfig;
+@p21-disabled-border-color: @offConfig;
+
+@p21-default-box-shadow: @shadow-1;
+@p21-hover-box-shadow: @shadow-1;
+@p21-click-box-shadow: @shadow-1;
+@p21-disabled-box-shadow: @shadow-1;
+
+// P22
+@p22-default-background-color: @B6;
+@p22-hover-background-color: @B5;
+@p22-click-background-color: @B6;
+@p22-disabled-background-color: @G10;
+
+@p22-default-border-color: @B6;
+@p22-hover-border-color: @B5;
+@p22-click-border-color: @B6;
+@p22-disabled-border-color: @G9;
+
+@p22-default-box-shadow: @shadowOff;
+@p22-hover-box-shadow: @shadowOff;
+@p22-click-box-shadow: @shadowOff;
+@p22-disabled-box-shadow: @shadowOff;
+
+// P23
+@p23-default-background-color: @offConfig;
+@p23-hover-background-color: @offConfig;
+@p23-click-background-color: @G11;
+@p23-disabled-background-color: @offConfig;
+
+@p23-default-border-color: @offConfig;
+@p23-hover-border-color: @offConfig;
+@p23-click-border-color: @B6;
+@p23-disabled-border-color: @offConfig;
+
+@p23-default-box-shadow: @shadowOff;
+@p23-hover-box-shadow: @shadowOff;
+@p23-click-box-shadow: @shadowOff;
+@p23-disabled-box-shadow: @shadowOff;
+
+// P24
+@p24-default-background-color: @G11;
+@p24-hover-background-color: @B1;
+@p24-click-background-color: @G11;
+@p24-disabled-background-color: @G10;
+
+@p24-default-border-color: @G7;
+@p24-hover-border-color: @G7;
+@p24-click-border-color: @B6;
+@p24-disabled-border-color: @G9;
+
+@p24-default-box-shadow: @shadowOff;
+@p24-hover-box-shadow: @shadowOff;
+@p24-click-box-shadow: @shadowOff;
+@p24-disabled-box-shadow: @shadowOff;
+
+// P25
+@p25-default-background-color: @E6;
+@p25-hover-background-color: @E6;
+@p25-click-background-color: @E6;
+@p25-disabled-background-color: @offConfig;
+
+@p25-default-border-color: @G11;
+@p25-hover-border-color: @G11;
+@p25-click-border-color: @G11;
+@p25-disabled-border-color: @offConfig;
+
+@p25-default-box-shadow: @shadowOff;
+@p25-hover-box-shadow: @shadowOff;
+@p25-click-box-shadow: @shadowOff;
+@p25-disabled-box-shadow: @shadowOff;
+
+// P26
+@p26-default-background-color: @G11;
+@p26-hover-background-color: @G11;
+@p26-click-background-color: @W6;
+@p26-disabled-background-color: @offConfig;
+
+@p26-default-border-color: @G5;
+@p26-hover-border-color: @G4;
+@p26-click-border-color: @W6;
+@p26-disabled-border-color: @offConfig;
+
+@p26-default-box-shadow: @shadowOff;
+@p26-hover-box-shadow: @shadowOff;
+@p26-click-box-shadow: @shadowOff;
+@p26-disabled-box-shadow: @shadowOff;
+
+// P27
+@p27-default-background-color: @G11;
+@p27-hover-background-color: @G11;
+@p27-click-background-color: @W6;
+@p27-disabled-background-color: @offConfig;
+
+@p27-default-border-color: @G7;
+@p27-hover-border-color: @G7;
+@p27-click-border-color: @W6;
+@p27-disabled-border-color: @offConfig;
+
+@p27-default-box-shadow: @shadowOff;
+@p27-hover-box-shadow: @shadowOff;
+@p27-click-box-shadow: @shadowOff;
+@p27-disabled-box-shadow: @shadowOff;
+
+// P28
+@p28-default-background-color: @G6;
+@p28-hover-background-color: @G3;
+@p28-click-background-color: @G3;
+@p28-disabled-background-color: @offConfig;
+
+@p28-default-border-color: @offConfig;
+@p28-hover-border-color: @offConfig;
+@p28-click-border-color: @offConfig;
+@p28-disabled-border-color: @offConfig;
+
+@p28-default-box-shadow: @shadowOff;
+@p28-hover-box-shadow: @shadowOff;
+@p28-click-box-shadow: @shadowOff;
+@p28-disabled-box-shadow: @shadowOff;
+
+// P29
+@p29-default-background-color: @G10;
+@p29-hover-background-color: @G9;
+@p29-click-background-color: @B6;
+@p29-disabled-background-color: @G10;
+
+@p29-default-border-color: @offConfig;
+@p29-hover-border-color: @offConfig;
+@p29-click-border-color: @offConfig;
+@p29-disabled-border-color: @offConfig;
+
+@p29-default-box-shadow: @shadowOff;
+@p29-hover-box-shadow: @shadowOff;
+@p29-click-box-shadow: @shadowOff;
+@p29-disabled-box-shadow: @shadowOff;
+
+// P30
+@p30-default-background-color: @B6;
+@p30-hover-background-color: @B5;
+@p30-click-background-color: @B6;
+@p30-disabled-background-color: @G10;
+
+@p30-default-border-color: @offConfig;
+@p30-hover-border-color: @offConfig;
+@p30-click-border-color: @offConfig;
+@p30-disabled-border-color: @offConfig;
+
+@p30-default-box-shadow: @shadowOff;
+@p30-hover-box-shadow: @shadowOff;
+@p30-click-box-shadow: @shadowOff;
+@p30-disabled-box-shadow: @shadowOff;
+
+// P31
+@p31-default-background-color: @G11;
+@p31-hover-background-color: @G11;
+@p31-click-background-color: @G11;
+@p31-disabled-background-color: @G10;
+
+@p31-default-border-color: @G7;
+@p31-hover-border-color: @B6;
+@p31-click-border-color: @B6;
+@p31-disabled-border-color: @G9;
+
+@p31-default-box-shadow: @shadowOff;
+@p31-hover-box-shadow: @shadowOff;
+@p31-click-box-shadow: @shadowOff;
+@p31-disabled-box-shadow: @shadowOff;
+
+// P32
+@p32-default-background-color: @G9;
+@p32-hover-background-color: @G9;
+@p32-click-background-color: @G9;
+@p32-disabled-background-color: @G10;
+
+@p32-default-border-color: @offConfig;
+@p32-hover-border-color: @offConfig;
+@p32-click-border-color: @offConfig;
+@p32-disabled-border-color: @offConfig;
+
+@p32-default-box-shadow: @shadowOff;
+@p32-hover-box-shadow: @shadowOff;
+@p32-click-box-shadow: @shadowOff;
+@p32-disabled-box-shadow: @shadowOff;
+
+// P33
+@p33-default-background-color: @E1;
+@p33-hover-background-color: @offConfig;
+@p33-click-background-color: @offConfig;
+@p33-disabled-background-color: @offConfig;
+
+@p33-default-border-color: @E3;
+@p33-hover-border-color: @offConfig;
+@p33-click-border-color: @offConfig;
+@p33-disabled-border-color: @offConfig;
+
+@p33-default-box-shadow: @shadowOff;
+@p33-hover-box-shadow: @shadowOff;
+@p33-click-box-shadow: @shadowOff;
+@p33-disabled-box-shadow: @shadowOff;
+
+// P34
+@p34-default-background-color: @G11;
+@p34-hover-background-color: @G11;
+@p34-click-background-color: @G11;
+@p34-disabled-background-color: @G11;
+
+@p34-default-border-color: @G7;
+@p34-hover-border-color: @B6;
+@p34-click-border-color: @B6;
+@p34-disabled-border-color: @G9;
+
+@p34-default-box-shadow: @shadowOff;
+@p34-hover-box-shadow: @shadowOff;
+@p34-click-box-shadow: @shadowOff;
+@p34-disabled-box-shadow: @shadowOff;
+
+// P35
+@p35-default-background-color: @G11;
+@p35-hover-background-color: @B1;
+@p35-click-background-color: @B1;
+@p35-disabled-background-color: @G11;
+
+@p35-default-border-color: @offConfig;
+@p35-hover-border-color: @offConfig;
+@p35-click-border-color: @offConfig;
+@p35-disabled-border-color: @offConfig;
+
+@p35-default-box-shadow: @shadowOff;
+@p35-hover-box-shadow: @shadowOff;
+@p35-click-box-shadow: @shadowOff;
+@p35-disabled-box-shadow: @shadowOff;
+
+// P36
+@p36-default-background-color: @B6;
+@p36-hover-background-color: @B6;
+@p36-click-background-color: @B6;
+@p36-disabled-background-color: @B2;
+
+@p36-default-border-color: @offConfig;
+@p36-hover-border-color: @offConfig;
+@p36-click-border-color: @offConfig;
+@p36-disabled-border-color: @offConfig;
+
+@p36-default-box-shadow: @shadowOff;
+@p36-hover-box-shadow: @shadowOff;
+@p36-click-box-shadow: @shadowOff;
+@p36-disabled-box-shadow: @shadowOff;
+
+// P37
+@p37-default-background-color: @G11;
+@p37-hover-background-color: @G11;
+@p37-click-background-color: @G11;
+@p37-disabled-background-color: @G11;
+
+@p37-default-border-color: @G7;
+@p37-hover-border-color: @G7;
+@p37-click-border-color: @G7;
+@p37-disabled-border-color: @G7;
+
+@p37-default-box-shadow: @shadowOff;
+@p37-hover-box-shadow: @shadowOff;
+@p37-click-box-shadow: @shadowOff;
+@p37-disabled-box-shadow: @shadowOff;
+
+// P38
+@p38-default-background-color: @offConfig;
+@p38-hover-background-color: @offConfig;
+@p38-click-background-color: @offConfig;
+@p38-disabled-background-color: @offConfig;
+
+@p38-default-border-color: @G7;
+@p38-hover-border-color: @G7;
+@p38-click-border-color: @G7;
+@p38-disabled-border-color: @G7;
+
+@p38-default-box-shadow: @shadow-3;
+@p38-hover-box-shadow: @shadow-3;
+@p38-click-box-shadow: @shadow-3;
+@p38-disabled-box-shadow: @shadow-3;
+
+// P39
+@p39-default-background-color: @G11;
+@p39-hover-background-color: @G11;
+@p39-click-background-color: @G3;
+@p39-disabled-background-color: @shadowOff;
+
+@p39-default-border-color: @G7;
+@p39-hover-border-color: @G7;
+@p39-click-border-color: @G3;
+@p39-disabled-border-color: @shadowOff;
+
+@p39-default-box-shadow: @shadowOff;
+@p39-hover-box-shadow: @shadowOff;
+@p39-click-box-shadow: @shadowOff;
+@p39-disabled-box-shadow: @shadowOff;
+
+// P40
+@p40-default-background-color: @G11;
+@p40-hover-background-color: @B1;
+@p40-click-background-color: @B6;
+@p40-disabled-background-color: @G11;
+
+@p40-default-border-color: @offConfig;
+@p40-hover-border-color: @offConfig;
+@p40-click-border-color: @offConfig;
+@p40-disabled-border-color: @offConfig;
+
+@p40-default-box-shadow: @shadowOff;
+@p40-hover-box-shadow: @shadowOff;
+@p40-click-box-shadow: @shadowOff;
+@p40-disabled-box-shadow: @shadowOff;
+
+// P41
+@p41-default-background-color: @G11;
+@p41-hover-background-color: @G11;
+@p41-click-background-color: @G11;
+@p41-disabled-background-color: @G10;
+
+@p41-default-border-color: @G9;
+@p41-hover-border-color: @G9;
+@p41-click-border-color: @B6;
+@p41-disabled-border-color: @G9;
+
+@p41-default-box-shadow: @shadowOff;
+@p41-hover-box-shadow: @shadow-1;
+@p41-click-box-shadow: @shadow-1;
+@p41-disabled-box-shadow: @shadowOff;
+
+// P43
+@p43-default-background-color: @G11;
+@p43-hover-background-color: @B1;
+@p43-click-background-color: @G11;
+@p43-disabled-background-color: @G11;
+
+@p43-default-border-color: @offConfig;
+@p43-hover-border-color: @offConfig;
+@p43-click-border-color: @offConfig;
+@p43-disabled-border-color: @offConfig;
+
+@p43-default-box-shadow: @shadowOff;
+@p43-hover-box-shadow: @shadowOff;
+@p43-click-box-shadow: @shadowOff;
+@p43-disabled-box-shadow: @shadowOff;
+
+// screen
+
+@screen-xs: 480px;
+@screen-xs-min: @screen-xs;
+
+@screen-sm: 576px;
+@screen-sm-min: @screen-sm;
+
+// Medium screen / desktop
+@screen-md: 768px;
+@screen-md-min: @screen-md;
+
+// Large screen / wide desktop
+@screen-lg: 992px;
+@screen-lg-min: @screen-lg;
+
+// Extra large screen / full hd
+@screen-xl: 1200px;
+@screen-xl-min: @screen-xl;
+
+// Extra extra large screen / large desktop
+@screen-xxl: 1600px;
+@screen-xxl-min: @screen-xxl;
+
+// provide a maximum
+@screen-xs-max: (@screen-sm-min - 1px);
+@screen-sm-max: (@screen-md-min - 1px);
+@screen-md-max: (@screen-lg-min - 1px);
+@screen-lg-max: (@screen-xl-min - 1px);
+@screen-xl-max: (@screen-xxl-min - 1px);

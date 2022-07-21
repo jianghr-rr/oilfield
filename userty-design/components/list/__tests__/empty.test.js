@@ -1,13 +1,10 @@
-import { mount } from '@vue/test-utils';
+import React from 'react';
+import {render} from 'enzyme';
 import List from '..';
 
 describe('List', () => {
-  it('renders empty list', () => {
-    const wrapper = mount({
-      render() {
-        return <List dataSource={[]} renderItem={() => <List.Item />} />;
-      },
+    it('renders empty list', () => {
+        const wrapper = render(<List dataSource={[]} renderItem={() => <List.Item />} />);
+        expect(wrapper).toMatchSnapshot();
     });
-    expect(wrapper.html()).toMatchSnapshot();
-  });
 });

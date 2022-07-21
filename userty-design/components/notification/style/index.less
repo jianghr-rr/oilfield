@@ -1,26 +1,31 @@
 @import '../../style/themes/index';
 @import '../../style/mixins/index';
 
+@toast-padding-vertical: @P;
+@toast-padding-horizontal: 4 * @P;
+@font-size-base: @T3;
+@line-height-base: 1.5715;
+@notification-bg: #fff;
+@heading-color: #000;
+
 @notification-prefix-cls: ~'@{ant-prefix}-notification';
-@notification-width: 384px;
-@notification-padding-vertical: 16px;
-@notification-padding-horizontal: 24px;
-@notification-padding: @notification-padding-vertical @notification-padding-horizontal;
-@notification-margin-bottom: 16px;
+@toast-padding: @toast-padding-vertical @toast-padding-horizontal;
 
 .@{notification-prefix-cls} {
-  .reset-component;
-
+  .reset-component();
   position: fixed;
-  z-index: @zindex-notification;
-  width: @notification-width;
-  max-width: ~'calc(100vw - 32px)';
-  margin-right: 24px;
+  z-index: 1010;
+  margin-right: @toast-margin-edge;
+
+  & > div {
+      display: flex;
+      flex-direction: column-reverse;
+  }
 
   &-topLeft,
   &-bottomLeft {
     margin-right: 0;
-    margin-left: 24px;
+    margin-left: @toast-margin-edge;
 
     .@{notification-prefix-cls}-fade-enter.@{notification-prefix-cls}-fade-enter-active,
     .@{notification-prefix-cls}-fade-appear.@{notification-prefix-cls}-fade-appear-active {
@@ -29,32 +34,43 @@
   }
 
   &-close-icon {
-    font-size: @font-size-base;
+    font-size: 4 * @P;
     cursor: pointer;
+  }
+
+  &-hook-holder {
+    position: relative;
   }
 
   &-notice {
     position: relative;
-    margin-bottom: @notification-margin-bottom;
-    padding: @notification-padding;
+    width: @toast-width;
+    max-width: ~'calc(100vw - @{toast-margin-edge} * 2)';
+    margin-bottom: @toast-margin-bottom;
+    margin-left: auto;
+    padding: @toast-padding;
     overflow: hidden;
-    line-height: 1.5;
-    background: @component-background;
-    border-radius: @border-radius-base;
-    box-shadow: @shadow-2;
+    line-height: @line-height-base;
+    word-wrap: break-word;
+    background: @notification-bg;
+    border-radius: @R3;
+    box-shadow: @shadow-1;
+
+    .@{notification-prefix-cls}-topLeft &,
+    .@{notification-prefix-cls}-bottomLeft & {
+      margin-right: auto;
+      margin-left: 0;
+    }
 
     &-message {
-      display: inline-block;
-      margin-bottom: 8px;
-      color: @heading-color;
-      font-size: @font-size-lg;
-      line-height: 24px;
+      margin-bottom: 2 * @P;
+      color: @G2;
+      font-size: @T3;
+      line-height: 6 * @P;
 
-      // https://github.com/ant-design/ant-design/issues/5846#issuecomment-296244140
       &-single-line-auto-margin {
         display: block;
-        width: ~'calc(@{notification-width} - @{notification-padding-horizontal} * 2 - 24px - 48px - 100%)';
-        max-width: 4px;
+        width: ~'calc(@{toast-width} - @{toast-padding-horizontal} * 2 - 24px - 48px - 100%)';
         background-color: transparent;
         pointer-events: none;
         &::before {
@@ -62,68 +78,120 @@
           content: '';
         }
       }
+
+      .ant-toast-wrap {
+        display: flex;
+        &-left {
+          flex: 1;
+          font-size: @T3;
+          color: @G2;
+          font-weight: @font-weight-500;
+        }
+        &-right {
+          font-size: @T2;
+          color: @G6;
+          span {
+            font-size: @T2;
+          }
+        }
+        &-no-description {
+            color: @G2;
+            font-size: @T2;
+            font-weight: @font-weight-400;
+        }
+      }
     }
 
     &-description {
       font-size: @font-size-base;
+      .description-wrap {
+          margin: @P 0 0 0;
+          color: @G2;
+          font-size: @T2;
+          font-weight: @font-weight-400;
+      }
     }
 
     &-closable &-message {
-      padding-right: 24px;
+      // padding-right: 24px;
     }
 
     &-with-icon &-message {
-      margin-bottom: 4px;
-      margin-left: 48px;
+      margin: 0 ~'calc(@{toast-title-margin} + @{P} * 6)' 0 ~'calc(@{toast-title-margin} + @{T5})';
       font-size: @font-size-lg;
     }
 
     &-with-icon &-description {
-      margin-left: 48px;
+      margin: 0 ~'calc(@{toast-title-margin} + @{P} * 6)' 0 ~'calc(@{toast-title-margin} + @{T5})';
       font-size: @font-size-base;
     }
 
-    // Icon & color style in different selector level
-    // https://github.com/ant-design/ant-design/issues/16503
-    // https://github.com/ant-design/ant-design/issues/15512
     &-icon {
       position: absolute;
-      margin-left: 4px;
-      font-size: 24px;
-      line-height: 24px;
+      font-size: 4 * @P;
+      line-height: 4 * @P;
+      top: 2 * @P
     }
 
-    .@{iconfont-css-prefix}&-icon {
+    .@{iconfont-css-prefix-acud}&-icon {
       &-success {
-        color: @success-color;
+        path {
+            fill: @S6;
+        }
       }
       &-info {
-        color: @info-color;
+        path {
+          fill: @B6;
+        }
       }
       &-warning {
-        color: @warning-color;
+        path {
+          fill: @W6;
+        }
       }
       &-error {
-        color: @error-color;
+        path {
+          fill: @E6;
+        }
       }
     }
 
     &-close {
-      position: absolute;
-      top: 16px;
-      right: 22px;
-      color: @text-color-secondary;
-      outline: none;
-
-      &:hover {
-        color: shade(@text-color-secondary, 40%);
-      }
+        position: absolute;
+        top: 1.6 * @P;
+        right: 6 * @P;
+        outline: none;
+        color: @G5;
+        &:hover {
+            color: @G4;
+            // & when (@theme = dark) {
+            //   color: #fff;
+            // }
+            // & when not (@theme = dark) {
+            // //   color: shade('#ccc', 40%);
+            //   color: #ccc;
+            // }
+        }
+        &:active {
+            color: @G3;
+        }
     }
 
     &-btn {
       float: right;
       margin-top: 16px;
     }
+  }
+
+  &-has-description {
+    padding: 4 * @P @toast-padding-horizontal;
+    .@{notification-prefix-cls}-notice-icon {
+      top: 4.8 * @P
+    }
+    .@{notification-prefix-cls}-notice-close {
+        top: 4.6 * @P;
+    }
+
   }
 
   .notification-fade-effect {
@@ -134,16 +202,16 @@
 
   &-fade-enter,
   &-fade-appear {
-    opacity: 0;
     .notification-fade-effect();
 
+    opacity: 0;
     animation-play-state: paused;
   }
 
   &-fade-leave {
     .notification-fade-effect();
 
-    animation-duration: 0.2s;
+    animation-duration: 0.4s;
     animation-play-state: paused;
   }
 
@@ -161,7 +229,7 @@
 
 @keyframes NotificationFadeIn {
   0% {
-    left: @notification-width;
+    left: @toast-width;
     opacity: 0;
   }
   100% {
@@ -172,7 +240,7 @@
 
 @keyframes NotificationLeftFadeIn {
   0% {
-    right: @notification-width;
+    right: @toast-width;
     opacity: 0;
   }
   100% {
@@ -182,18 +250,21 @@
 }
 
 @keyframes NotificationFadeOut {
-  0% {
-    max-height: 150px;
-    margin-bottom: @notification-margin-bottom;
-    padding-top: @notification-padding;
-    padding-bottom: @notification-padding;
-    opacity: 1;
-  }
-  100% {
-    max-height: 0;
-    margin-bottom: 0;
-    padding-top: 0;
-    padding-bottom: 0;
-    opacity: 0;
-  }
+//   0% {
+//     top: 0;
+//     opacity: 1;
+//   }
+//   100% {
+//     top: -@toast-width;
+//     opacity: 0;
+//   }
+
+    0% {
+        right: 0;
+        opacity: 1;
+    }
+    100% {
+        right: -100 * @P;
+        opacity: 0;
+    }
 }

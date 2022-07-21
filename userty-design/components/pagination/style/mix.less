@@ -1,0 +1,79 @@
+.property(@property; @value) when not (@@value = false) {
+    @{property}: @@value;
+}
+
+.property-setting(@type, @actionType, @property) {
+    @color: ~'@{type}-@{actionType}-@{property}';
+    .property(@property, @color);
+}
+// auto-gnt
+.auto-config(@type, @property) {
+    .property-setting(@type, 'default', @property);
+
+    &:focus,
+    &:hover {
+        .property-setting(@type, 'hover', @property);
+    }
+
+    &:active {
+        .property-setting(@type, 'click', @property);
+    }
+
+    &[disabled] {
+        &,
+        &:hover,
+        &:focus,
+        &:active {
+            .property-setting(@type, 'disabled', @property);
+        }
+    }
+}
+
+.basic-tp-config(@type) {
+    // tp
+    .auto-config(@type, color);
+}
+
+.basic-p-config(@type) {
+    // p
+    .auto-config(@type, background-color);
+    .auto-config(@type, border-color);
+    .auto-config(@type, box-shadow);
+}
+
+.basic-config(@tptype; @ptype) {
+    .basic-tp-config(@tptype);
+    .basic-p-config(@ptype);
+}
+
+.pagination-size(@height, @font-size) {
+    font-size: @font-size;
+    height: @height;
+    line-height: @height;
+
+    > * {
+        line-height: @height - 2;
+    }
+}
+
+.pagination() {
+    width: 100%;
+    outline: none;
+    position: relative;
+
+    ul {
+        min-width: 0;
+        border: none;
+        height: 100%;
+        color: inherit;
+        background-color: inherit;
+
+        &:focus {
+            outline: none;
+        }
+
+        &-item{
+            .pagination-size(@pagination-height-md, @pagination-font-size)
+        }
+    }
+}

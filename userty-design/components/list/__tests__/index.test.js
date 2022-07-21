@@ -1,31 +1,22 @@
-import { mount } from '@vue/test-utils';
-import { asyncExpect } from '@/tests/utils';
+import React from 'react';
+import {mount} from 'enzyme';
 import List from '..';
 import mountTest from '../../../tests/shared/mountTest';
+import rtlTest from '../../../tests/shared/rtlTest';
 
 describe('List', () => {
-  mountTest(List);
-  mountTest(List.Item);
-  it('locale not passed to internal div', async () => {
-    const locale = { emptyText: 'Custom text' };
-    const wrapper = mount(
-      {
-        render() {
-          return (
-            <List
-              dataSource={[]}
-              renderItem={item => <List.Item>{item}</List.Item>}
-              locale={locale}
-            />
-          );
-        },
-      },
-      {
-        sync: false,
-      },
-    );
-    await asyncExpect(() => {
-      expect(wrapper.props().locale).toBe(undefined);
+    mountTest(List);
+    mountTest(List.Item);
+
+    rtlTest(List);
+    rtlTest(List.Item);
+
+    it('locale not passed to internal div', async () => {
+        const locale = {emptyText: 'Custom text'};
+        const renderItem = item => <List.Item>{item}</List.Item>;
+        const dataSource = [];
+
+        const wrapper = mount(<List renderItem={renderItem} dataSource={dataSource} locale={locale} />);
+        expect(wrapper.find('div').first().props().locale).toBe(undefined);
     });
-  });
 });

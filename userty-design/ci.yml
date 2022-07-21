@@ -1,0 +1,36 @@
+Global:
+  version: 2.0
+
+Default:
+  profile: [buildProduction]
+
+Profiles:
+  - profile:
+    name: buildProduction
+    mode: AGENT
+    environment:
+      image: DECK_CENTOS7U5_K3
+    build:
+      command: export NODE_ENV=production && sh scripts/build.sh
+      cache:
+          enable: true
+          type: BRANCH
+          paths: 
+            - node_modules
+    artifacts:
+      release: true
+
+  - profile:
+    name: buildDevelopment
+    mode: AGENT
+    environment:
+      image: DECK_CENTOS7U5_K3
+    build:
+      command: export NODE_ENV=development && sh scripts/build.sh
+      cache:
+          enable: true
+          type: BRANCH
+          paths: 
+            - node_modules
+    artifacts:
+      release: true

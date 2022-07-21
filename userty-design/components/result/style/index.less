@@ -1,43 +1,74 @@
-@import '../../style/themes/index';
+@import '../../style/themes/default';
 @import '../../style/mixins/index';
 
-@btn-prefix-cls: ~'@{ant-prefix}-result';
+@result-prefix-cls: ~'@{ant-prefix}-result';
 
-.@{btn-prefix-cls}{
+.@{result-prefix-cls} {
+  padding: 48px 32px;
+  // status color
+  &-success &-icon > .@{iconfont-css-prefix} {
+    color: @success-color;
+ }
+
+  &-error &-icon > .@{iconfont-css-prefix} {
+    color: @error-color;
+ }
+
+  &-info &-icon > .@{iconfont-css-prefix} {
+    color: @info-color;
+ }
+
+  &-warning &-icon > .@{iconfont-css-prefix} {
+    color: @warning-color;
+ }
+
+  // Exception Status image
+  &-image {
+    width: 250px;
+    height: 295px;
+    margin: auto;
+ }
+
+  &-icon {
+    margin-bottom: 24px;
     text-align: center;
-    width: 72%;
-    margin: 0 auto;
-    .success {
-      color: @success-color;
-    }
-    .error {
-      color: @error-color;
-    }
-    .icon{
-      line-height: 72px;
-      margin-bottom: 24px;
-      .iconfont-size-under-12px(72px, -12deg);
-    }
-    &-title{
-      font-size: 24px;
-      color: rgba(0,0,0,.85);
-      font-weight: 500;
-      line-height: 32px;
-      margin-bottom: 16px;
-      &-desc{
-        font-size: 14px;
-        line-height: 22px;
-        color: rgba(0,0,0,.45);
-        margin-bottom: 24px;
+
+    > .@{iconfont-css-prefix} {
+      font-size: @result-icon-font-size;
       }
-      &-content{
-        background-color: #fafafa;
-        padding: 24px 40px;
-        border-radius: 2px;
-        text-align: left;
+ }
+
+  &-title {
+    color: @heading-color;
+    font-size: @result-title-font-size;
+    line-height: 1.8;
+    text-align: center;
+ }
+
+  &-subtitle {
+    color: @text-color-secondary;
+    font-size: @result-subtitle-font-size;
+    line-height: 1.6;
+    text-align: center;
+ }
+
+  &-extra {
+    margin: @result-extra-margin;
+    text-align: center;
+    > * {
+      margin-right: 8px;
+
+      &:last-child {
+        margin-right: 0;
+        }
       }
-    }
-    &-action{
-      margin-top: 32px;
-    }
-  }
+ }
+
+  &-content {
+    margin-top: 24px;
+    padding: 24px 40px;
+    background-color: @background-color-light;
+ }
+}
+
+@import './rtl';

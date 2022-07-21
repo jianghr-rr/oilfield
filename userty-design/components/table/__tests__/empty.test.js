@@ -1,6 +1,6 @@
-import { mount } from '@vue/test-utils';
+import React from 'react';
+import { render } from 'enzyme';
 import Table from '..';
-import Vue from 'vue';
 
 const columns = [
   { title: 'Column 1', dataIndex: 'address', key: '1' },
@@ -45,70 +45,32 @@ const columnsFixed = [
 ];
 
 describe('Table', () => {
-  it('renders empty table', done => {
-    const wrapper = mount(
-      {
-        render() {
-          return <Table dataSource={[]} columns={columns} pagination={false} />;
-        },
-      },
-      { sync: false },
-    );
-    Vue.nextTick(() => {
-      expect(wrapper.html()).toMatchSnapshot();
-      done();
-    });
+  it('renders empty table', () => {
+    const wrapper = render(<Table dataSource={[]} columns={columns} pagination={false} />);
+    expect(wrapper).toMatchSnapshot();
   });
 
-  it('renders empty table with fixed columns', done => {
-    const wrapper = mount(
-      {
-        render() {
-          return <Table dataSource={[]} columns={columnsFixed} pagination={false} />;
-        },
-      },
-      { sync: false },
+  it('renders empty table with fixed columns', () => {
+    const wrapper = render(
+      <Table dataSource={[]} columns={columnsFixed} pagination={false} scroll={{ x: 1 }} />,
     );
-    Vue.nextTick(() => {
-      expect(wrapper.html()).toMatchSnapshot();
-      done();
-    });
+    expect(wrapper).toMatchSnapshot();
   });
 
-  it('renders empty table with custom emptyText', done => {
-    const wrapper = mount(
-      {
-        render() {
-          return (
-            <Table
-              dataSource={[]}
-              columns={columns}
-              pagination={false}
-              locale={{ emptyText: 'custom empty text ' }}
-            />
-          );
-        },
-      },
-      { sync: false },
+  it('renders empty table with custom emptyText', () => {
+    const wrapper = render(
+      <Table
+        dataSource={[]}
+        columns={columns}
+        pagination={false}
+        locale={{ emptyText: 'custom empty text' }}
+      />,
     );
-    Vue.nextTick(() => {
-      expect(wrapper.html()).toMatchSnapshot();
-      done();
-    });
+    expect(wrapper).toMatchSnapshot();
   });
 
-  it('renders empty table without emptyText when loading', done => {
-    const wrapper = mount(
-      {
-        render() {
-          return <Table dataSource={[]} columns={columns} loading />;
-        },
-      },
-      { sync: false },
-    );
-    Vue.nextTick(() => {
-      expect(wrapper.html()).toMatchSnapshot();
-      done();
-    });
+  it('renders empty table without emptyText when loading', () => {
+    const wrapper = render(<Table dataSource={[]} columns={columns} loading />);
+    expect(wrapper).toMatchSnapshot();
   });
 });

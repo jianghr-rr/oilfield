@@ -1,45 +1,35 @@
-import { mount } from '@vue/test-utils';
-import { asyncExpect } from '@/tests/utils';
-import Radio, { Group, Button } from '..';
+import React from 'react';
+import {mount, render} from 'enzyme';
+import Radio, {Group, Button} from '..';
 import focusTest from '../../../tests/shared/focusTest';
 import mountTest from '../../../tests/shared/mountTest';
+import rtlTest from '../../../tests/shared/rtlTest';
 
 describe('Radio', () => {
-  focusTest(Radio);
-  mountTest(Radio);
-  mountTest(Group);
-  mountTest(Button);
+    focusTest(Radio, {refFocus: true});
+    mountTest(Radio);
+    mountTest(Group);
+    mountTest(Button);
 
-  it('should render correctly', () => {
-    const wrapper = mount({
-      render() {
-        return <Radio class="customized">Test</Radio>;
-      },
-    });
-    expect(wrapper.html()).toMatchSnapshot();
-  });
+    rtlTest(Radio);
+    rtlTest(Group);
+    rtlTest(Button);
 
-  it('responses hover events', async () => {
-    const onMouseEnter = jest.fn();
-    const onMouseLeave = jest.fn();
+    it('should render correctly', () => {
+        const wrapper = render(<Radio className="customized">Test</Radio>);
+        expect(wrapper).toMatchSnapshot();
+    });
 
-    const wrapper = mount(
-      {
-        render() {
-          return <Radio onMouseenter={onMouseEnter} onMouseleave={onMouseLeave} />;
-        },
-      },
-      { sync: false },
-    );
-    await asyncExpect(() => {
-      wrapper.find('label').trigger('mouseenter');
+    it('responses hover events', () => {
+        const onMouseEnter = jest.fn();
+        const onMouseLeave = jest.fn();
+
+        const wrapper = mount(<Radio onMouseEnter={onMouseEnter} onMouseLeave={onMouseLeave} />);
+
+        wrapper.find('label').simulate('mouseenter');
+        expect(onMouseEnter).toHaveBeenCalled();
+
+        wrapper.find('label').simulate('mouseleave');
+        expect(onMouseLeave).toHaveBeenCalled();
     });
-    await asyncExpect(() => {
-      expect(onMouseEnter).toHaveBeenCalled();
-    });
-    wrapper.find('label').trigger('mouseleave');
-    await asyncExpect(() => {
-      expect(onMouseLeave).toHaveBeenCalled();
-    });
-  });
 });

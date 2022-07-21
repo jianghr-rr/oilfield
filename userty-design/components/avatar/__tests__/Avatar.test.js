@@ -1,143 +1,196 @@
-import { mount } from '@vue/test-utils';
-import { asyncExpect } from '@/tests/utils';
+import React from 'react';
+import ReactDOM from 'react-dom';
+import {act} from 'react-dom/test-utils';
+import {mount} from 'enzyme';
 import Avatar from '..';
+import mountTest from '../../../tests/shared/mountTest';
+import rtlTest from '../../../tests/shared/rtlTest';
+import useBreakpoint from '../../grid/hooks/useBreakpoint';
+
+jest.mock('../../grid/hooks/useBreakpoint');
 
 describe('Avatar Render', () => {
-  let originOffsetWidth;
-  beforeAll(() => {
+    mountTest(Avatar);
+    rtlTest(Avatar);
+
+    const sizes = {xs: 24, sm: 32, md: 40, lg: 64, xl: 80, xxl: 100};
+    let originOffsetWidth;
+    beforeAll(() => {
     // Mock offsetHeight
-    originOffsetWidth = Object.getOwnPropertyDescriptor(HTMLElement.prototype, 'offsetWidth').get;
-    Object.defineProperty(HTMLElement.prototype, 'offsetWidth', {
-      get() {
-        if (this.className === 'ant-avatar-string') {
-          return 100;
-        }
-        return 80;
-      },
+        originOffsetWidth = Object.getOwnPropertyDescriptor(HTMLElement.prototype, 'offsetWidth').get;
+        Object.defineProperty(HTMLElement.prototype, 'offsetWidth', {
+            get() {
+                if (this.className === 'ant-avatar-string') {
+                    return 100;
+                }
+                return 80;
+            }
+        });
     });
-  });
 
-  afterAll(() => {
+    afterAll(() => {
     // Restore Mock offsetHeight
-    Object.defineProperty(HTMLElement.prototype, 'offsetWidth', {
-      get: originOffsetWidth,
+        Object.defineProperty(HTMLElement.prototype, 'offsetWidth', {
+            get: originOffsetWidth
+        });
     });
-  });
-  it('Render long string correctly', () => {
-    const wrapper = mount(Avatar, {
-      slots: {
-        default: 'TestString',
-      },
-    });
-    const children = wrapper.findAll('.ant-avatar-string');
-    expect(children.length).toBe(1);
-  });
-  it('should render fallback string correctly', async () => {
-    global.document.body.innerHTML = '';
-    const wrapper = mount(Avatar, {
-      slots: {
-        default: 'Fallback',
-      },
-      propsData: {
-        src: 'http://error.url',
-      },
-      sync: false,
-      attachToDocument: true,
-    });
-    wrapper.vm.setScale = jest.fn(() => {
-      if (wrapper.vm.scale === 0.5) {
-        return;
-      }
-      wrapper.setData({ scale: 0.5 });
-      wrapper.vm.$forceUpdate();
-    });
-    await asyncExpect(() => {
-      wrapper.find('img').trigger('error');
-    }, 0);
-    await asyncExpect(() => {
-      const children = wrapper.findAll('.ant-avatar-string');
-      expect(children.length).toBe(1);
-      expect(children.at(0).text()).toBe('Fallback');
-      expect(wrapper.vm.setScale).toHaveBeenCalled();
-    });
-    await asyncExpect(() => {
-      expect(global.document.body.querySelector('.ant-avatar-string').style.transform).toContain(
-        'scale(0.5)',
-      );
-      global.document.body.innerHTML = '';
-    }, 1000);
-  });
-  it('should handle onError correctly', async () => {
-    global.document.body.innerHTML = '';
-    const LOAD_FAILURE_SRC = 'http://error.url';
-    const LOAD_SUCCESS_SRC = 'https://zos.alipayobjects.com/rmsportal/ODTLcjxAfvqbxHnVXCYX.png';
 
-    const Foo = {
-      data() {
-        return {
-          src: LOAD_FAILURE_SRC,
-        };
-      },
-      methods: {
-        handleImgError() {
-          this.src = LOAD_SUCCESS_SRC;
+    it('Render long string correctly', () => {
+        const wrapper = mount(<Avatar>TestString</Avatar>);
+        const children = wrapper.find('.ant-avatar-string');
+        expect(children.length).toBe(1);
+    });
+
+    it('should render fallback string correctly', () => {
+        const div = global.document.createElement('div');
+        global.document.body.appendChild(div);
+
+        const wrapper = mount(<Avatar src="http://error.url">Fallback</Avatar>, {attachTo: div});
+        wrapper.find('img').simulate('error');
+        const children = wrapper.find('.ant-avatar-string');
+        expect(children.length).toBe(1);
+        expect(children.text()).toBe('Fallback');
+
+        wrapper.detach();
+        global.document.body.removeChild(div);
+    });
+
+    it('should handle onError correctly', () => {
+        const LOAD_FAILURE_SRC = 'http://error.url';
+        const LOAD_SUCCESS_SRC = 'https://zos.alipayobjects.com/rmsportal/ODTLcjxAfvqbxHnVXCYX.png';
+
+        const div = global.document.createElement('div');
+        global.document.body.appendChild(div);
+
+        class Foo extends React.Component {
+      state = {
+          src: LOAD_FAILURE_SRC
+      };
+
+      handleImgError = () => {
+          this.setState({
+              src: LOAD_SUCCESS_SRC
+          });
           return false;
-        },
-      },
+      };
 
       render() {
-        const { src } = this;
-        return <Avatar src={src} loadError={this.handleImgError} />;
-      },
-    };
+          const {src} = this.state;
+          return <Avatar src={src} onError={this.handleImgError} />;
+      }
+        }
 
-    const wrapper = mount(Foo, { sync: false, attachToDocument: true });
-    await asyncExpect(() => {
-      // mock img load Error, since jsdom do not load resource by default
-      // https://github.com/jsdom/jsdom/issues/1816
-      wrapper.find('img').trigger('error');
-    }, 0);
-    await asyncExpect(() => {
-      expect(wrapper.find({ name: 'AAvatar' }).vm.isImgExist).toBe(true);
-    }, 0);
-    await asyncExpect(() => {
-      expect(global.document.body.querySelector('img').getAttribute('src')).toBe(LOAD_SUCCESS_SRC);
-    }, 0);
-  });
+        const wrapper = mount(<Foo />, {attachTo: div});
+        expect(div.querySelector('img').getAttribute('src')).toBe(LOAD_FAILURE_SRC);
+        // mock img load Error, since jsdom do not load resource by default
+        // https://github.com/jsdom/jsdom/issues/1816
+        wrapper.find('img').simulate('error');
 
-  it('should show image on success after a failure state', async () => {
-    global.document.body.innerHTML = '';
-    const LOAD_FAILURE_SRC = 'http://error.url';
-    const LOAD_SUCCESS_SRC = 'https://zos.alipayobjects.com/rmsportal/ODTLcjxAfvqbxHnVXCYX.png';
+        expect(wrapper).toMatchSnapshot();
+        expect(div.querySelector('img').getAttribute('src')).toBe(LOAD_SUCCESS_SRC);
 
-    const Foo = {
-      data() {
-        return {
-          src: LOAD_FAILURE_SRC,
-        };
-      },
-      render() {
-        const { src } = this;
-        return <Avatar src={src}>Fallback</Avatar>;
-      },
-    };
-
-    const wrapper = mount(Foo, { sync: false, attachToDocument: true });
-    await asyncExpect(() => {
-      wrapper.find('img').trigger('error');
-    }, 0);
-
-    await asyncExpect(() => {
-      expect(wrapper.find({ name: 'AAvatar' }).vm.isImgExist).toBe(false);
-      expect(wrapper.findAll('.ant-avatar-string').length).toBe(1);
-    }, 0);
-
-    await asyncExpect(() => {
-      wrapper.setData({ src: LOAD_SUCCESS_SRC });
+        wrapper.detach();
+        global.document.body.removeChild(div);
     });
-    await asyncExpect(() => {
-      expect(wrapper.find({ name: 'AAvatar' }).vm.isImgExist).toBe(true);
-      expect(wrapper.findAll('.ant-avatar-image').length).toBe(1);
-    }, 0);
-  });
+
+    it('should show image on success after a failure state', () => {
+        const LOAD_FAILURE_SRC = 'http://error.url';
+        const LOAD_SUCCESS_SRC = 'https://zos.alipayobjects.com/rmsportal/ODTLcjxAfvqbxHnVXCYX.png';
+
+        const div = global.document.createElement('div');
+        global.document.body.appendChild(div);
+
+        // simulate error src url
+        const wrapper = mount(<Avatar src={LOAD_FAILURE_SRC}>Fallback</Avatar>, {attachTo: div});
+        wrapper.find('img').simulate('error');
+
+        expect(wrapper).toMatchSnapshot();
+        expect(wrapper.find('.ant-avatar-string').length).toBe(1);
+        // children should show, when image load error without onError return false
+        expect(wrapper.find('.ant-avatar-string').prop('style')).not.toHaveProperty('opacity', 0);
+
+        // simulate successful src url
+        wrapper.setProps({src: LOAD_SUCCESS_SRC});
+        wrapper.update();
+
+        expect(wrapper).toMatchSnapshot();
+        expect(wrapper.find('.ant-avatar-image').length).toBe(1);
+
+        // cleanup
+        wrapper.detach();
+        global.document.body.removeChild(div);
+    });
+
+    it('should calculate scale of avatar children correctly', () => {
+        const wrapper = mount(<Avatar>Avatar</Avatar>);
+        expect(wrapper.find('.ant-avatar-string')).toMatchSnapshot();
+
+        Object.defineProperty(HTMLElement.prototype, 'offsetWidth', {
+            get() {
+                if (this.className === 'ant-avatar-string') {
+                    return 100;
+                }
+                return 40;
+            }
+        });
+        wrapper.setProps({children: 'xx'});
+        expect(wrapper.find('.ant-avatar-string')).toMatchSnapshot();
+    });
+
+    it('should calculate scale of avatar children correctly with gap', () => {
+        const wrapper = mount(<Avatar gap={2}>Avatar</Avatar>);
+        expect(wrapper.find('.ant-avatar-string')).toMatchSnapshot();
+    });
+
+    it('should warning when pass a string as icon props', () => {
+        const warnSpy = jest.spyOn(console, 'error').mockImplementation(() => {});
+        mount(<Avatar size={64} icon="aa" />);
+        expect(warnSpy).not.toHaveBeenCalled();
+        mount(<Avatar size={64} icon="user" />);
+        expect(warnSpy).toHaveBeenCalledWith(
+            'Warning: [antd: Avatar] `icon` is using ReactNode instead of string naming in v4. Please check `user` at https://ant.design/components/icon',
+        );
+        warnSpy.mockRestore();
+    });
+
+    it('support size is number', () => {
+        const wrapper = mount(<Avatar size={100}>TestString</Avatar>);
+        expect(wrapper).toMatchRenderedSnapshot();
+    });
+
+    Object.entries(sizes).forEach(([key, value]) => {
+        it(`adjusts component size to ${value} when window size is ${key}`, () => {
+            const wrapper = global.document.createElement('div');
+
+            useBreakpoint.mockReturnValue({[key]: true});
+            act(() => {
+                ReactDOM.render(<Avatar size={sizes} />, wrapper);
+            });
+
+            expect(wrapper).toMatchSnapshot();
+        });
+    });
+
+    it('support onMouseEnter', () => {
+        const onMouseEnter = jest.fn();
+        const wrapper = mount(<Avatar onMouseEnter={onMouseEnter}>TestString</Avatar>);
+        wrapper.simulate('mouseenter');
+        expect(onMouseEnter).toHaveBeenCalled();
+    });
+
+    it('fallback', () => {
+        const div = global.document.createElement('div');
+        global.document.body.appendChild(div);
+        const wrapper = mount(
+            <Avatar shape="circle" src="http://error.url">
+        A
+            </Avatar>,
+            {attachTo: div},
+        );
+        wrapper.find('img').simulate('error');
+        wrapper.update();
+        expect(wrapper).toMatchRenderedSnapshot();
+        wrapper.detach();
+        global.document.body.removeChild(div);
+    });
 });

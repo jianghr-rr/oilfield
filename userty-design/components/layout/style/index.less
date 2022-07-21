@@ -2,6 +2,7 @@
 @import '../../style/mixins/index';
 
 @layout-prefix-cls: ~'@{ant-prefix}-layout';
+@layout-menu-prefix-cls: ~'@{ant-prefix}-menu';
 
 .@{layout-prefix-cls} {
   display: flex;
@@ -14,40 +15,42 @@
   &,
   * {
     box-sizing: border-box;
-  }
+ }
 
   &&-has-sider {
     flex-direction: row;
+
     > .@{layout-prefix-cls},
     > .@{layout-prefix-cls}-content {
-      overflow-x: hidden;
-    }
-  }
+      width: 0; // https://segmentfault.com/a/1190000019498300
+      }
+ }
 
   &-header,
   &-footer {
     flex: 0 0 auto;
-  }
+ }
 
   &-header {
     height: @layout-header-height;
     padding: @layout-header-padding;
+    color: @layout-header-color;
     line-height: @layout-header-height;
     background: @layout-header-background;
-  }
+ }
 
   &-footer {
     padding: @layout-footer-padding;
     color: @text-color;
     font-size: @font-size-base;
     background: @layout-footer-background;
-  }
+ }
 
   &-content {
     flex: auto;
     /* fix firefox can't set height smaller than content on flex item */
     min-height: 0;
-  }
+ }
 
   &-sider {
     position: relative;
@@ -64,15 +67,19 @@
       // https://github.com/ant-design/ant-design/issues/7967
       // solution from https://stackoverflow.com/a/33132624/3040605
       padding-top: 0.1px;
-    }
+
+      .@{layout-menu-prefix-cls}.@{layout-menu-prefix-cls}-inline-collapsed {
+        width: auto;
+        }
+      }
 
     &-has-trigger {
       padding-bottom: @layout-trigger-height;
-    }
+      }
 
     &-right {
       order: 1;
-    }
+      }
 
     &-trigger {
       position: fixed;
@@ -85,12 +92,12 @@
       background: @layout-trigger-background;
       cursor: pointer;
       transition: all 0.2s;
-    }
+      }
 
     &-zero-width {
-      & > * {
+      > * {
         overflow: hidden;
-      }
+        }
 
       &-trigger {
         position: absolute;
@@ -100,7 +107,7 @@
         width: @layout-zero-trigger-width;
         height: @layout-zero-trigger-height;
         color: @layout-trigger-color;
-        font-size: @layout-zero-trigger-width / 2;
+        font-size: (@layout-zero-trigger-width / 2);
         line-height: @layout-zero-trigger-height;
         text-align: center;
         background: @layout-sider-background;
@@ -108,17 +115,29 @@
         cursor: pointer;
         transition: background 0.3s ease;
 
-        &:hover {
-          background: tint(@layout-sider-background, 10%);
-        }
+        &::after {
+          position: absolute;
+          top: 0;
+          right: 0;
+          bottom: 0;
+          left: 0;
+          background: transparent;
+          transition: all 0.3s;
+          content: '';
+          }
+
+        &:hover::after {
+          background: rgba(255, 255, 255, 0.1);
+          }
 
         &-right {
           left: -@layout-zero-trigger-width;
           border-radius: @border-radius-base 0 0 @border-radius-base;
+          }
         }
       }
-    }
-  }
+ }
 }
 
 @import './light';
+@import './rtl';

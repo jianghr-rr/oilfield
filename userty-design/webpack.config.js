@@ -1,108 +1,115 @@
-const HtmlWebpackPlugin = require('html-webpack-plugin');
-const VueLoaderPlugin = require('vue-loader/lib/plugin');
-const webpack = require('webpack');
-const WebpackBar = require('webpackbar');
-const path = require('path');
+/* eslint no-param-reassign: 0 */
+// This config is for building dist files
+const getWebpackConfig = require('./tools/lib/getWebpackConfig');
+const IgnoreEmitPlugin = require('ignore-emit-webpack-plugin');
+const {BundleAnalyzerPlugin} = require('webpack-bundle-analyzer');
+const EsbuildPlugin = require('esbuild-webpack-plugin').default;
 
-module.exports = {
-  mode: 'development',
-  entry: {
-    app: './examples/index.js',
-  },
-  module: {
-    rules: [
-      {
-        test: /\.(vue|md)$/,
-        loader: 'vue-loader',
-      },
-      {
-        test: /\.(js|jsx)$/,
-        loader: 'babel-loader',
-        exclude: /pickr.*js/,
-        options: {
-          presets: [
-            [
-              'env',
-              {
-                targets: {
-                  browsers: [
-                    'last 2 versions',
-                    'Firefox ESR',
-                    '> 1%',
-                    'ie >= 9',
-                    'iOS >= 8',
-                    'Android >= 4',
-                  ],
-                },
-              },
-            ],
-          ],
-          plugins: [
-            'transform-vue-jsx',
-            'transform-object-assign',
-            'transform-object-rest-spread',
-            'transform-class-properties',
-          ],
-        },
-      },
-      {
-        test: /\.(png|jpg|gif|svg)$/,
-        loader: 'file-loader',
-        options: {
-          name: '[name].[ext]?[hash]',
-        },
-      },
-      {
-        test: /\.less$/,
-        use: [
-          { loader: 'vue-style-loader' },
-          {
-            loader: 'css-loader',
-            options: { sourceMap: true },
-          },
-          {
-            loader: 'less-loader',
-            options: {
-              lessOptions: {
-                sourceMap: true,
-                javascriptEnabled: true,
-              },
-            },
-          },
-        ],
-      },
-      {
-        test: /\.css$/,
-        use: ['vue-style-loader', 'css-loader'],
-      },
-    ],
-  },
-  resolve: {
-    alias: {
-      'ant-design-vue': path.join(__dirname, './components'),
-      vue$: 'vue/dist/vue.esm.js',
-    },
-    extensions: ['.js', '.jsx', '.vue', '.md'],
-  },
-  devServer: {
-    host: 'localhost',
-    port: 3002,
-    historyApiFallback: {
-      rewrites: [{ from: /./, to: '/index.html' }],
-    },
-    disableHostCheck: true,
-    hot: true,
-    open: true,
-  },
-  devtool: '#source-map',
-  plugins: [
-    new webpack.HotModuleReplacementPlugin(),
-    new HtmlWebpackPlugin({
-      template: 'examples/index.html',
-      filename: 'index.html',
-      inject: true,
-    }),
-    new VueLoaderPlugin(),
-    new WebpackBar(),
-  ],
-};
+const {webpack} = getWebpackConfig;
+
+// noParse still leave `require('./locale' + name)` in dist files
+// ignore is better: http://stackoverflow.com/q/25384360
+function ignoreMomentLocale(webpackConfig) {
+    delete webpackConfig.module.noParse;
+    webpackConfig.plugins.push(new webpack.IgnorePlugin(/^\.\/locale$/, /moment$/));
+}
+
+function addLocales(webpackConfig) {
+    let packageName = 'acud-with-locales';
+    if (webpackConfig.entry['acud.min']) {
+        packageName += '.min';
+    }
+    webpackConfig.output.filename = '[name].js';
+}
+
+function externalMoment(config) {
+    config.externals.moment = {
+        root: 'moment',
+        commonjs2: 'moment',
+        commonjs: 'moment',
+        amd: 'moment'
+    };
+}
+
+function injectWarningCondition(config) {
+    config.module.rules.forEach(rule => {
+        // Remove devWarning if needed
+        if (rule.test.test('test.tsx')) {
+            rule.use = [
+                ...rule.use,
+                {
+                    loader: 'string-replace-loader',
+                    options: {
+                        search: 'devWarning(',
+                        replace: 'if (process.env.NODE_ENV !== "production") devWarning('
+                    }
+                }
+            ];
+        }
+    });
+}
+
+function processWebpackThemeConfig(themeConfig, theme, vars) {
+    themeConfig.forEach(config => {
+        ignoreMomentLocale(config);
+        externalMoment(config);
+
+        // rename default entry to ${theme} entry
+        Object.keys(config.entry).forEach(entryName => {
+            config.entry[entryName.replace('acud', `acud.${theme}`)] = config.entry[entryName];
+            delete config.entry[entryName];
+        });
+
+        // apply ${theme} less variables
+        config.module.rules.forEach(rule => {
+            // filter less rule
+            if (rule.test instanceof RegExp && rule.test.test('.less')) {
+                const lessRule = rule.use[rule.use.length - 1];
+                if (lessRule.options.lessOptions) {
+                    lessRule.options.lessOptions.modifyVars = vars;
+                }
+                else {
+                    lessRule.options.modifyVars = vars;
+                }
+            }
+        });
+
+        const themeReg = new RegExp(`${theme}(.min)?\\.js(\\.map)?$`);
+        // ignore emit ${theme} entry js & js.map file
+        config.plugins.push(new IgnoreEmitPlugin(themeReg));
+    });
+}
+
+const webpackConfig = getWebpackConfig(false);
+const webpackDarkConfig = getWebpackConfig(false);
+const webpackCompactConfig = getWebpackConfig(false);
+
+webpackConfig.forEach(config => {
+    injectWarningCondition(config);
+});
+
+if (process.env.RUN_ENV === 'PRODUCTION') {
+    webpackConfig.forEach(config => {
+        ignoreMomentLocale(config);
+        externalMoment(config);
+        addLocales(config);
+        // Reduce non-minified dist files size
+        config.optimization.usedExports = true;
+        // use esbuild
+        if (process.env.ESBUILD || process.env.CSB_REPO) {
+            config.optimization.minimizer[0] = new EsbuildPlugin({
+                target: 'chrome49'
+            });
+        }
+
+        config.plugins.push(
+            new BundleAnalyzerPlugin({
+                analyzerMode: 'static',
+                openAnalyzer: false,
+                reportFilename: '../report.html'
+            })
+        );
+    });
+}
+
+module.exports = [...webpackConfig, ...webpackDarkConfig, ...webpackCompactConfig];

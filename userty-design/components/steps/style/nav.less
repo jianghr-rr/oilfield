@@ -5,9 +5,9 @@
     .@{steps-prefix-cls}-item {
       &-container {
         margin-left: -12px;
+        }
       }
-    }
-  }
+ }
 
   .@{steps-prefix-cls}-item {
     overflow: visible;
@@ -20,13 +20,10 @@
       padding-bottom: 12px;
       text-align: left;
       transition: opacity 0.3s;
-      &::after {
-        display: none;
-      }
 
       .@{steps-prefix-cls}-item-content {
         max-width: @steps-nav-content-max-width;
-      }
+        }
 
       .@{steps-prefix-cls}-item-title {
         max-width: 100%;
@@ -37,29 +34,25 @@
 
         &::after {
           display: none;
+          }
         }
       }
-    }
-    &-content{
-      display: inline-block;
-      vertical-align: top;
-    }
 
     &:not(.@{steps-prefix-cls}-item-active) {
       .@{steps-prefix-cls}-item-container[role='button'] {
         cursor: pointer;
         &:hover {
           opacity: 0.85;
+          }
         }
       }
-    }
 
     &:last-child {
       flex: 1;
       &::after {
         display: none;
+        }
       }
-    }
 
     &::after {
       position: absolute;
@@ -75,7 +68,7 @@
       border-left: none;
       transform: rotate(45deg);
       content: '';
-    }
+      }
 
     &::before {
       position: absolute;
@@ -83,49 +76,47 @@
       left: 50%;
       display: inline-block;
       width: 0;
-      height: 3px;
+      height: 2px;
       background-color: @steps-nav-active-color;
       transition: width 0.3s, left 0.3s;
       transition-timing-function: ease-out;
       content: '';
-    }
-  }
+      }
+ }
 
   .@{steps-prefix-cls}-item.@{steps-prefix-cls}-item-active::before {
     left: 0;
     width: 100%;
-  }
+ }
 }
 
-@media (max-width: @screen-xs) {
-  .@{steps-prefix-cls}-navigation {
-    > .@{steps-prefix-cls}-item {
-      margin-right: 0 !important;
-      &::before {
-        display: none;
+.@{steps-prefix-cls}-navigation.@{steps-prefix-cls}-vertical {
+  > .@{steps-prefix-cls}-item {
+    margin-right: 0 !important;
+    &::before {
+      display: none;
       }
-      &.@{steps-prefix-cls}-item-active::before {
-        top: 0;
-        right: 0;
-        left: unset;
-        display: block;
-        width: 3px;
-        height: calc(100% - 24px);
+    &.@{steps-prefix-cls}-item-active::before {
+      top: 0;
+      right: 0;
+      left: unset;
+      display: block;
+      width: 3px;
+      height: calc(100% - 24px);
       }
-      &::after {
-        position: relative;
-        top: -2px;
-        left: 50%;
-        display: block;
-        width: 8px;
-        height: 8px;
-        margin-bottom: 8px;
-        text-align: center;
-        transform: rotate(135deg);
+    &::after {
+      position: relative;
+      top: -2px;
+      left: 50%;
+      display: block;
+      width: 8px;
+      height: 8px;
+      margin-bottom: 8px;
+      text-align: center;
+      transform: rotate(135deg);
       }
-      > .@{steps-prefix-cls}-item-container > .@{steps-prefix-cls}-item-tail {
-        visibility: hidden;
+    > .@{steps-prefix-cls}-item-container > .@{steps-prefix-cls}-item-tail {
+      visibility: hidden;
       }
-    }
-  }
+ }
 }

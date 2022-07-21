@@ -1,0 +1,726 @@
+@picker-cell-inner-cls: ~'@{picker-prefix-cls}-cell-inner';
+
+.@{picker-prefix-cls} {
+    @picker-arrow-size: 7px;
+    @picker-year-month-cell-width: 60px;
+    // @picker-panel-width: @picker-panel-cell-width * 7+@padding-sm * 2+4;
+
+    &-panel {
+        display: inline-flex;
+        flex-direction: column;
+        text-align: center;
+        border-radius: @border-radius-base;
+        outline: none;
+
+        &-header {
+            height: 8*@P;
+            padding: 0 3*@P;
+            background-color: @G10;
+            font-size: @T2;
+            line-height: 8*@P;
+            color: @G2;
+            > li {
+                margin-right: 6*@P;
+                display: inline-block;
+                cursor: pointer;
+            }
+        }
+    }
+
+    // ========================================================
+    // =                     Shared Panel                     =
+    // ========================================================
+    &-date-panel,
+    &-decade-panel,
+    &-year-panel,
+    &-quarter-panel,
+    &-month-panel,
+    &-week-panel,
+    &-date-panel,
+    &-time-panel {
+        display: flex;
+        flex-direction: column;
+        width: @date-picker-panel-width;
+    }
+
+    // ======================= Header =======================
+    &-header {
+        display: flex;
+        padding: 0 3*@P;
+        .basic-tp-config(@date-picker-date-tp);
+        border-bottom: 1px solid @G6;
+
+        >* {
+            flex: none;
+        }
+
+        button {
+            padding: 0;
+            color: @G6;
+            background: transparent;
+            border: 0;
+            cursor: pointer;
+            transition: color @animation-duration-slow;
+        }
+
+        >button {
+            min-width: 2*@P;
+            font-size: @date-picker-base-font-size;
+        }
+
+        &-super-prev-btn,
+        &-next-btn {
+            margin-right: 2*@P;
+        }
+
+        &-view {
+            flex: auto;
+            line-height: 10*@P;
+            .basic-tp-config(@date-picker-date-tp);
+
+            button {
+                color: inherit;
+                font-weight: inherit;
+
+                &:not(:first-child) {
+                    margin-left: 2*@P;
+                }
+            }
+        }
+    }
+
+    // Arrow button
+    &-prev-icon,
+    &-next-icon,
+    &-super-prev-icon,
+    &-super-next-icon {
+        position: relative;
+        display: inline-block;
+        width: @picker-arrow-size;
+        height: @picker-arrow-size;
+
+        &::before {
+            position: absolute;
+            top: 0;
+            left: 0;
+            display: inline-block;
+            width: @picker-arrow-size;
+            height: @picker-arrow-size;
+            border: 0 solid currentColor;
+            border-width: 1.5px 0 0 1.5px;
+            content: '';
+        }
+    }
+
+    &-super-prev-icon,
+    &-super-next-icon {
+        &::after {
+            position: absolute;
+            top: ceil((@picker-arrow-size / 2));
+            left: ceil((@picker-arrow-size / 2));
+            display: inline-block;
+            width: @picker-arrow-size;
+            height: @picker-arrow-size;
+            border: 0 solid currentColor;
+            border-width: 1.5px 0 0 1.5px;
+            content: '';
+        }
+    }
+
+    &-prev-icon,
+    &-super-prev-icon {
+        transform: rotate(-45deg);
+    }
+
+    &-next-icon,
+    &-super-next-icon {
+        transform: rotate(135deg);
+    }
+
+    // ======================== Body ========================
+    &-content {
+        width: 100%;
+        table-layout: fixed;
+        border-collapse: collapse;
+
+        >div {
+            width: 8*@P;
+            margin-right: 4*@P;
+            height: 6*@P + 2;
+            overflow: visible;
+
+            &:after {
+                content: ':';
+                display: block;
+                position: relative;
+                top: -6*@P;
+                left: 6*@P;
+            }
+
+            input {
+                width: 100%;
+                outline-style: none;
+                line-height: 6*@P;
+                text-align: center;
+                height: 6*@P;
+                box-sizing: border-box;
+                border: 1px solid;
+                .basic-p-config(@date-picker-default-p);
+            }
+
+            &:last-child {
+                &:after {
+                    display: none;
+                }
+            }
+        }
+
+        th,
+        td {
+            position: relative;
+            font-weight: 400;
+            font-size: @date-picker-base-font-size;
+            line-height: @date-picker-base-line-height;
+        }
+
+        td {
+            .basic-p-config(@date-picker-date-p);
+        }
+    }
+
+    .picker-cell-inner(@cellClassName) {
+        &::before {
+            position: absolute;
+            top: 50%;
+            right: 0;
+            left: 0;
+            z-index: 1;
+            height: @picker-panel-cell-height;
+            transform: translateY(-50%);
+            content: '';
+        }
+
+        // >>> Default
+        .@{cellClassName} {
+            position: relative;
+            z-index: 2;
+            display: inline-block;
+            min-width: 22px;
+            height: @picker-panel-cell-height;
+            line-height: @picker-panel-cell-height;
+            border-radius: @border-radius-base;
+            transition: background @animation-duration-slow, border @animation-duration-slow;
+        }
+
+        // >>> Hover
+        &:hover:not(&-in-view),
+        &:hover:not(&-selected):not(&-range-start):not(&-range-end):not(&-range-hover-start):not(&-range-hover-end) {
+            .@{cellClassName} {
+                background: @B1;
+            }
+        }
+
+        // >>> Today
+        &-in-view&-today .@{cellClassName} {
+            &::before {
+                position: absolute;
+                top: 0;
+                right: 0;
+                bottom: 0;
+                left: 0;
+                z-index: 1;
+                border: 1px solid @B6;
+                content: '';
+            }
+        }
+
+        // >>> In Range
+        &-in-view&-in-range {
+            position: relative;
+
+            &::before {
+                background: @picker-basic-cell-active-with-range-color;
+            }
+        }
+
+        // >>> Selected
+        &-in-view&-selected .@{cellClassName},
+        &-in-view&-range-start .@{cellClassName},
+        &-in-view&-range-end .@{cellClassName} {
+            .property-setting(@date-picker-date-tp, 'click', color);
+            // background: @B6;
+            .property-setting(@date-picker-date-p, 'click', background-color);
+        }
+
+        &-in-view&-range-start:not(&-range-start-single),
+        &-in-view&-range-end:not(&-range-end-single) {
+            &::before {
+                background: @picker-basic-cell-active-with-range-color;
+            }
+        }
+
+        &-in-view&-range-start::before {
+            left: 50%;
+        }
+
+        &-in-view&-range-end::before {
+            right: 50%;
+        }
+
+        // Add space for stash
+        &-range-hover-start::after,
+        &-range-hover-end::after,
+        &-range-hover::after {
+            right: 0;
+            left: 2px;
+        }
+
+        // Hover with in range
+        &-in-view&-in-range&-range-hover::before,
+        &-in-view&-range-start&-range-hover::before,
+        &-in-view&-range-end&-range-hover::before,
+        &-in-view&-range-start:not(&-range-start-single)&-range-hover-start::before,
+        &-in-view&-range-end:not(&-range-end-single)&-range-hover-end::before,
+        .@{picker-prefix-cls}-panel> :not(.@{picker-prefix-cls}-date-panel) &-in-view&-in-range&-range-hover-start::before,
+        .@{picker-prefix-cls}-panel> :not(.@{picker-prefix-cls}-date-panel) &-in-view&-in-range&-range-hover-end::before {
+            background: @picker-date-hover-range-color;
+        }
+
+        // range start border-radius
+        &-in-view&-range-start:not(&-range-start-single):not(&-range-end) .@{cellClassName} {
+            border-radius: @border-radius-base 0 0 @border-radius-base;
+        }
+
+        // range end border-radius
+        &-in-view&-range-end:not(&-range-end-single):not(&-range-start) .@{cellClassName} {
+            border-radius: 0 @border-radius-base @border-radius-base 0;
+        }
+
+        // DatePanel only
+        .@{picker-prefix-cls}-date-panel &-in-view&-in-range&-range-hover-start .@{cellClassName},
+        .@{picker-prefix-cls}-date-panel &-in-view&-in-range&-range-hover-end .@{cellClassName} {
+            &::after {
+                position: absolute;
+                top: 0;
+                bottom: 0;
+                z-index: -1;
+                background: @picker-date-hover-range-color;
+                content: '';
+            }
+        }
+
+        .@{picker-prefix-cls}-date-panel &-in-view&-in-range&-range-hover-start .@{cellClassName}::after {
+            right: 0;
+            left: 0;
+        }
+
+        .@{picker-prefix-cls}-date-panel &-in-view&-in-range&-range-hover-end .@{cellClassName}::after {
+            right: 0;
+            left: 0;
+        }
+
+        // Hover with range start & end
+        &-range-hover&-range-start::after {
+            right: 50%;
+        }
+
+        &-range-hover&-range-end::after {
+            left: 50%;
+        }
+
+        // Edge start
+        tr>&-in-view&-range-hover:first-child::after,
+        tr>&-in-view&-range-hover-end:first-child::after,
+        &-in-view&-start&-range-hover-edge-start&-range-hover-edge-start-near-range::after,
+        &-in-view&-range-hover-edge-start:not(&-range-hover-edge-start-near-range)::after,
+        &-in-view&-range-hover-start::after {
+            left: 0;
+            border-left: @border-width-base dashed @picker-date-hover-range-border-color;
+            border-top-left-radius: @border-radius-base;
+            border-bottom-left-radius: @border-radius-base;
+        }
+
+        // Edge end
+        tr>&-in-view&-range-hover:last-child::after,
+        tr>&-in-view&-range-hover-start:last-child::after,
+        &-in-view&-end&-range-hover-edge-end&-range-hover-edge-end-near-range::after,
+        &-in-view&-range-hover-edge-end:not(&-range-hover-edge-end-near-range)::after,
+        &-in-view&-range-hover-end::after {
+            right: 0;
+            border-right: @border-width-base dashed @picker-date-hover-range-border-color;
+            border-top-right-radius: @border-radius-base;
+            border-bottom-right-radius: @border-radius-base;
+        }
+
+        // >>> Disabled
+        &-disabled {
+            pointer-events: none;
+
+            .@{cellClassName} {
+                color: @disabled-color;
+                background: transparent;
+            }
+
+            &::before {
+                background: @picker-basic-cell-disabled-bg;
+            }
+        }
+
+        &-disabled&-today .@{cellClassName}::before {
+            border-color: @disabled-color;
+        }
+    }
+
+    &-cell {
+        cursor: pointer;
+        .property-setting(@date-picker-date-tp, 'disabled', color);
+
+        // In view
+        &-in-view {
+            .property-setting(@date-picker-date-tp, 'default', color);
+        }
+
+        // Disabled
+        &-disabled {
+            cursor: not-allowed;
+        }
+
+        .picker-cell-inner(~'@{picker-cell-inner-cls}');
+    }
+
+    &-decade-panel,
+    &-year-panel,
+    &-quarter-panel,
+    &-month-panel {
+        .@{picker-prefix-cls}-content {
+            // height: @picker-panel-without-time-cell-height * 4;
+        }
+
+        .@{picker-cell-inner-cls} {
+            // padding: 0 @padding-xs;
+        }
+
+        .@{picker-prefix-cls}-cell {
+            &-disabled .@{picker-cell-inner-cls} {
+                // background: @picker-basic-cell-disabled-bg;
+            }
+        }
+
+        .@{picker-prefix-cls}-body {
+            padding: 0 3*@P;
+        }
+    }
+
+    &-quarter-panel {
+        .@{picker-prefix-cls}-content {
+            height: 56px;
+        }
+    }
+
+    // ======================== Footer ========================
+    &-footer {
+        width: min-content;
+        min-width: 100%;
+        // line-height: @picker-text-height - 2 * @border-width-base;
+        text-align: center;
+        // border-bottom: @border-width-base @border-style-base transparent;
+
+        .@{picker-prefix-cls}-panel & {
+            // border-top: @border-width-base @border-style-base @picker-border-color;
+        }
+
+        &-extra {
+            padding: 0 @padding-sm;
+            // line-height: @picker-text-height - 2 * @border-width-base;
+            text-align: left;
+
+            &:not(:last-child) {
+                // border-bottom: @border-width-base @border-style-base @picker-border-color;
+            }
+        }
+    }
+
+    &-now {
+        text-align: left;
+    }
+
+    &-today-btn {
+        // color: @link-color;
+
+        &:hover {
+            // color: @link-hover-color;
+        }
+
+        &:active {
+            // color: @link-active-color;
+        }
+
+        &&-disabled {
+            // color: @disabled-color;
+            cursor: not-allowed;
+        }
+    }
+
+    // ========================================================
+    // =                       Special                        =
+    // ========================================================
+
+    // ===================== Decade Panel =====================
+    &-decade-panel {
+        .@{picker-cell-inner-cls} {
+            padding: 0 (@padding-xs / 2);
+        }
+
+        .@{picker-prefix-cls}-cell::before {
+            display: none;
+        }
+    }
+
+    // ============= Year & Quarter & Month Panel =============
+    &-year-panel,
+    &-quarter-panel,
+    &-month-panel {
+        width: 200px;
+        // @hover-cell-fixed-distance: ((((@picker-panel-width - @padding-xs * 2) / 3) - @picker-year-month-cell-width) / 2);
+        tr {
+            display: block;
+            margin: 3*@P 0;
+
+            td {
+                display: inline-block;
+                margin-right: 3*@P;
+
+                &:last-child {
+                    margin-right: 0;
+                }
+            }
+        }
+
+        .@{picker-cell-inner-cls} {
+            width: 12*@P;
+        }
+
+        .@{picker-prefix-cls}-cell-range-hover-start::after {
+            // left: @hover-cell-fixed-distance;
+            // border-left: @border-width-base dashed @picker-date-hover-range-border-color;
+            border-radius: @border-radius-base 0 0 @border-radius-base;
+
+            .@{picker-prefix-cls}-panel-rtl & {
+                // right: @hover-cell-fixed-distance;
+                // border-right: @border-width-base dashed @picker-date-hover-range-border-color;
+                border-radius: 0 @border-radius-base @border-radius-base 0;
+            }
+        }
+
+        .@{picker-prefix-cls}-cell-range-hover-end::after {
+            // right: @hover-cell-fixed-distance;
+            // border-right: @border-width-base dashed @picker-date-hover-range-border-color;
+            border-radius: 0 @border-radius-base @border-radius-base 0;
+
+            .@{picker-prefix-cls}-panel-rtl & {
+                // left: @hover-cell-fixed-distance;
+                // border-left: @border-width-base dashed @picker-date-hover-range-border-color;
+                border-radius: @border-radius-base 0 0 @border-radius-base;
+            }
+        }
+    }
+
+    // ====================== Week Panel ======================
+    &-week-panel {
+        .@{picker-prefix-cls}-body {
+            padding: @padding-xs @padding-sm;
+        }
+
+        // Clear cell style
+        .@{picker-prefix-cls}-cell {
+
+            &:hover .@{picker-cell-inner-cls},
+            &-selected .@{picker-cell-inner-cls},
+            .@{picker-cell-inner-cls} {
+                background: transparent !important;
+            }
+        }
+
+        &-row {
+            td {
+                transition: background @animation-duration-slow;
+            }
+
+            &:hover td {
+                // background: @picker-basic-cell-hover-color;
+            }
+
+            &-selected td,
+            &-selected:hover td {
+                // background: @primary-color;
+
+                &.@{picker-prefix-cls}-cell-week {
+                    // color: fade(@text-color-inverse, 50%);
+                }
+
+                &.@{picker-prefix-cls}-cell-today .@{picker-cell-inner-cls}::before {
+                    border-color: @B6;
+                }
+
+                .@{picker-cell-inner-cls} {
+                    // color: @text-color-inverse;
+                }
+            }
+        }
+    }
+
+    // ====================== Date Panel ======================
+    &-date-panel {
+        .@{picker-prefix-cls}-body {
+            padding: 3*@P;
+        }
+
+        .@{picker-prefix-cls}-content {
+            // width: @picker-panel-cell-width * 7;
+
+            th {
+                // width: @picker-panel-cell-width;
+            }
+        }
+    }
+
+    // ==================== Datetime Panel ====================
+    &-datetime-panel {
+        .@{picker-prefix-cls}-time-panel {
+            margin-bottom: 3*@P;
+        }
+
+        .@{picker-prefix-cls}-date-panel,
+        .@{picker-prefix-cls}-time-panel {
+            transition: opacity @animation-duration-slow;
+        }
+
+        // Keyboard
+        &-active {
+
+            .@{picker-prefix-cls}-date-panel,
+            .@{picker-prefix-cls}-time-panel {
+                opacity: 0.3;
+
+                &-active {
+                    opacity: 1;
+                }
+            }
+        }
+    }
+
+    // ====================== Time Panel ======================
+    &-time-panel {
+        width: auto;
+        min-width: auto;
+        height: 6*@P;
+        padding: 0 3*@P;
+
+        .@{picker-prefix-cls}-content {
+            display: flex;
+            flex: auto;
+
+            .@{ant-prefix}-input-number-handler-wrap {
+                display: none;
+            }
+
+            .@{ant-prefix}-input-number-input-wrap {
+                input {
+                    border: none;
+                    padding: 0;
+                    display: block;
+                }
+            }
+        }
+
+        &-column {
+            flex: 1 0 auto;
+            // width: @picker-time-panel-column-width;
+            margin: 0;
+            padding: 0;
+            overflow-y: hidden;
+            text-align: left;
+            list-style: none;
+            transition: background @animation-duration-slow;
+
+            &::after {
+                display: block;
+                // height: @picker-time-panel-column-height - @picker-time-panel-cell-height;
+                content: '';
+
+                .@{picker-prefix-cls}-datetime-panel & {
+                    // height: @picker-time-panel-column-height - @picker-time-panel-cell-height + 2 * @border-width-base;
+                }
+            }
+
+            &:not(:first-child) {
+                // border-left: @border-width-base @border-style-base @picker-border-color;
+            }
+
+            &-active {
+                // background: fade(@calendar-item-active-bg, 20%);
+            }
+
+            &:hover {
+                overflow-y: auto;
+            }
+
+            >li {
+                margin: 0;
+                padding: 0;
+
+                &.@{picker-prefix-cls}-time-panel-cell {
+                    .@{picker-prefix-cls}-time-panel-cell-inner {
+                        display: block;
+                        width: 100%;
+                        // height: @picker-time-panel-cell-height;
+                        margin: 0;
+                        // padding: 0 0 0 ((@picker-time-panel-column-width - 28px) / 2);
+                        // color: @text-color;
+                        // line-height: @picker-time-panel-cell-height;
+                        border-radius: 0;
+                        cursor: pointer;
+                        transition: background @animation-duration-slow;
+
+                        &:hover {
+                            // background: @item-hover-bg;
+                        }
+                    }
+
+                    &-selected {
+                        .@{picker-prefix-cls}-time-panel-cell-inner {
+                            // background: @calendar-item-active-bg;
+                        }
+                    }
+
+                    &-disabled {
+                        .@{picker-prefix-cls}-time-panel-cell-inner {
+                            // color: @disabled-color;
+                            background: transparent;
+                            cursor: not-allowed;
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
+
+// Fix IE11 render bug by css hacks
+/* stylelint-disable-next-line */
+_:-ms-fullscreen,
+:root {
+    .@{picker-prefix-cls}-range-wrapper {
+
+        .@{picker-prefix-cls}-month-panel .@{picker-prefix-cls}-cell,
+        .@{picker-prefix-cls}-year-panel .@{picker-prefix-cls}-cell {
+            padding: 21px 0;
+        }
+    }
+}
+
+.acud-input-number {
+    &-handler-wrap {
+        display: none;
+    }
+}

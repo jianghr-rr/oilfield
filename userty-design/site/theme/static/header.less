@@ -1,0 +1,84 @@
+@header-height: 64px;
+@menu-item-border: 2px;
+
+.header {
+  position: relative;
+  z-index: 10;
+  height: @header-height;
+  line-height: @header-height;
+  transition: all 0.3s;
+  background: #fff;
+  box-shadow: 0 2px 8px rgba(240, 241, 242, 65);
+  display: flex;
+  justify-content: space-between;
+}
+
+#logo {
+  display: inline-block;
+  overflow: hidden;
+  padding-left: 40px;
+  color: rgba(0,0,0,.85);
+  height: @header-height;
+  line-height: @header-height;
+  font-size: 18px;
+  font-family: Avenir,-apple-system,BlinkMacSystemFont,segoe ui,Roboto,helvetica neue,Arial,noto sans,sans-serif,apple color emoji,segoe ui emoji,segoe ui symbol,noto color emoji,sans-serif;
+  overflow: hidden;
+  text-decoration: none;
+  white-space: nowrap;
+  img {
+    position: relative;
+    top: -2px;
+    height: 32px;
+    margin-right: 16px;
+    vertical-align: middle;
+  }
+}
+
+#theme {
+  padding: 0 20px 0 0;
+}
+
+#nav {
+  height: 100%;
+  font-size: 14px;
+  font-family: Avenir, @font-family, sans-serif;
+  border: 0;
+
+  &.ant-menu-horizontal {
+
+    & > .ant-menu-item,
+    & > .ant-menu-submenu {
+      min-width: 72px;
+      height: @header-height;
+      line-height: @header-height - @menu-item-border - 2px;
+    }
+
+    & .ant-menu-submenu-title .anticon {
+      margin: 0;
+    }
+
+    & > .ant-menu-item-selected {
+      a {
+        color: @primary-color;
+      }
+    }
+  }
+
+  & > .ant-menu-item,
+  & > .ant-menu-submenu {
+    text-align: center;
+  }
+}
+
+.header-lang-button,
+.version {
+  float: right;
+  margin-top: 20px;
+  margin-left: 16px;
+}
+
+.header-lang-button {
+  color: rgba(0, 0, 0, 0.65);
+  border-color: #d9d9d9;
+  margin-right: 40px;
+}
