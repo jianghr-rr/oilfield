@@ -60,7 +60,7 @@ typings/
 .idea
 .DS_Store
 dist
-lib
+# lib
 es
 _site
 yarn.lock
