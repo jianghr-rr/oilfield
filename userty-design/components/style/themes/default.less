@@ -63,6 +63,8 @@
 @font-variant-base: tabular-nums;
 @font-feature-settings-base: 'tnum';
 @font-size-base: 12px;
+@font-size-md: 14px;
+@font-size-hg: 16px;
 @font-size-lg: @font-size-base + 2px;
 @font-size-sm: 12px;
 @heading-1-size: ceil(@font-size-base * 2.71);
@@ -72,10 +74,13 @@
 @heading-5-size: ceil(@font-size-base * 1.14);
 // https://github.com/ant-design/ant-design/issues/20210
 @line-height-base: 1.5715;
+@line-height-btn-base: 1;
 @border-radius-base: @p;
 @border-radius-sm: @border-radius-base;
 
 // vertical paddings
+@padding-hgr: 44px; // more huge
+@padding-hg: 32px; // huge
 @padding-lg: 24px; // containers
 @padding-md: 16px; // small containers and buttons
 @padding-sm: 12px; // Form controls and items
@@ -94,6 +99,7 @@
 @margin-xss: 4px; // more small
 
 // height rules
+@height-md: 30px;
 @height-base: 32px;
 @height-lg: 40px;
 @height-sm: 24px;
@@ -173,7 +179,7 @@
 
 // Checkbox
 @checkbox-size: 16px;
-@checkbox-color: @primary-color;
+@checkbox-color: @green-6;
 @checkbox-check-color: #fff;
 @checkbox-check-bg: @checkbox-check-color;
 @checkbox-border-width: @border-width-base;
@@ -387,13 +393,15 @@
 
 //Modal
 //--
+@modal-header-color: @primary-color;
+@modal-header-font-size: 20px;
 @modal-header-close-size: 56px;
 @modal-footer-bg: transparent;
-@modal-footer-padding-vertical: 10px;
-@modal-footer-padding-horizontal: 16px;
+@modal-footer-padding-vertical: @padding-hg;
+@modal-footer-padding-horizontal: @padding-hgr;
 @modal-mask-bg: fade(@black, 45%);
 @modal-confirm-body-padding: 32px 32px 24px;
-@modal-header-title-line-height: 22px;
+@modal-header-title-line-height: 27px;
 // Progress
 // --
 @progress-default-color: @processing-color;

@@ -216,7 +216,7 @@
   user-select: none;
   touch-action: manipulation;
   .button-size(
-    @btn-height-base; @btn-padding-horizontal-base; @font-size-base; @btn-border-radius-base
+    @btn-height-base; @btn-padding-horizontal-base; @font-size-md; @btn-border-radius-base
   );
   > .@{iconfont-css-prefix}, > .@{iconfont-css-prefix-acud} {
     line-height: 1;
@@ -392,7 +392,7 @@
 }
 // round button
 .btn-round(@btnClassName: btn) {
-  .button-size(@btn-circle-size; (@btn-circle-size / 2); @font-size-base; @btn-circle-size);
+  .button-size(@btn-circle-size; (@btn-circle-size / 2); @font-size-md; @btn-circle-size);
   &.@{btnClassName}-lg {
     .button-size(
       @btn-circle-size-lg; (@btn-circle-size-lg / 2); @btn-font-size-lg; @btn-circle-size-lg
