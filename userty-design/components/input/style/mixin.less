@@ -59,7 +59,7 @@
   background-color: @input-bg;
   background-image: none;
   border: @border-width-base @border-style-base @input-border-color;
-  border-radius: @border-radius-base;
+  border-radius: @border-radius-lg;
   transition: all 0.3s;
   .placeholder(); // Reset placeholder
 
@@ -101,6 +101,7 @@
     line-height: @line-height-base;
     vertical-align: bottom;
     transition: all 0.3s, height 0s;
+    border-radius: @border-radius-base;
  }
 
   // Size
@@ -186,7 +187,7 @@
     text-align: center;
     background-color: @input-addon-bg;
     border: @border-width-base @border-style-base @input-border-color;
-    border-radius: @border-radius-base;
+    border-radius: @border-radius-lg;
     transition: all 0.3s;
 
     // Reset Select's style in addon
@@ -295,8 +296,8 @@
       border-top-right-radius: 0;
       border-bottom-right-radius: 0;
       .@{ant-prefix}-input-search & {
-        border-top-left-radius: @border-radius-base;
-        border-bottom-left-radius: @border-radius-base;
+        border-top-left-radius: @border-radius-lg;
+        border-bottom-left-radius: @border-radius-lg;
         }
       }
  }
@@ -376,8 +377,8 @@
     & > .@{ant-prefix}-select:first-child > .@{ant-prefix}-select-selector,
     & > .@{ant-prefix}-select-auto-complete:first-child .@{ant-prefix}-input,
     & > .@{ant-prefix}-cascader-picker:first-child .@{ant-prefix}-input {
-      border-top-left-radius: @border-radius-base;
-      border-bottom-left-radius: @border-radius-base;
+      border-top-left-radius: @border-radius-lg;
+      border-bottom-left-radius: @border-radius-lg;
       }
 
     & > *:last-child,
@@ -385,8 +386,8 @@
     & > .@{ant-prefix}-cascader-picker:last-child .@{ant-prefix}-input,
     & > .@{ant-prefix}-cascader-picker-focused:last-child .@{ant-prefix}-input {
       border-right-width: @border-width-base;
-      border-top-right-radius: @border-radius-base;
-      border-bottom-right-radius: @border-radius-base;
+      border-top-right-radius: @border-radius-lg;
+      border-bottom-right-radius: @border-radius-lg;
       }
 
     // https://github.com/ant-design/ant-design/issues/12493
@@ -408,7 +409,7 @@
           }
 
         & > .@{ant-prefix}-input {
-          border-radius: @border-radius-base 0 0 @border-radius-base;
+          border-radius: @border-radius-lg 0 0 @border-radius-lg;
           }
         }
       }

@@ -15,7 +15,7 @@ debug: true
 For multi-line input.
 
 ```jsx
-import {Input, Button} from 'skd';
+import {Input, Button, Space} from 'skd';
 
 const {TextArea} = Input;
 
@@ -31,16 +31,15 @@ class Demo extends React.Component {
     const {autoResize} = this.state;
 
     return (
-      <>
+      <Space direction="vertical" style={{width: '100%'}}>
         <Button
           onClick={() => this.setState({autoResize: !autoResize})}
-          style={{marginBottom: 16}}
         >
           Auto Resize: {String(autoResize)}
         </Button>
         <TextArea rows={4} autoSize={autoResize} defaultValue={defaultValue} />
         <TextArea style={{width: 93}} />
-      </>
+      </Space>
     );
  }
 }
