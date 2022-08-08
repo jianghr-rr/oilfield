@@ -10,7 +10,7 @@
 .@{form-prefix-cls} {
   &-rtl {
     direction: rtl;
- }
+  }
 }
 
 // ================================================================
@@ -23,29 +23,30 @@
   &-label {
     .@{form-prefix-cls}-rtl & {
       text-align: left;
-      }
+    }
 
     > label {
       &.@{form-item-prefix-cls}-required::before {
         .@{form-prefix-cls}-rtl & {
           margin-right: 0;
           margin-left: 4px;
-          }
         }
+      }
+
       &::after {
         .@{form-prefix-cls}-rtl & {
           margin: 0 @form-item-label-colon-margin-left 0 @form-item-label-colon-margin-right;
-          }
         }
+      }
 
       .@{form-item-prefix-cls}-optional {
         .@{form-prefix-cls}-rtl & {
           margin-right: @margin-xss;
           margin-left: 0;
-          }
         }
       }
- }
+    }
+  }
 
   // ==============================================================
   // =                            Input                           =
@@ -53,8 +54,8 @@
   &-control {
     .@{ant-prefix}-col-rtl &:first-child {
       width: 100%;
-      }
- }
+    }
+  }
 
   // status
   &-has-feedback {
@@ -62,93 +63,111 @@
       .@{form-prefix-cls}-rtl & {
         padding-right: @input-padding-horizontal-base;
         padding-left: 24px;
-        }
       }
+    }
 
     .@{ant-prefix}-input-affix-wrapper {
       .@{ant-prefix}-input-suffix {
         .@{form-prefix-cls}-rtl & {
           padding-right: @input-padding-horizontal-base;
           padding-left: 18px;
-          }
         }
+      }
       .@{ant-prefix}-input {
         .@{form-prefix-cls}-rtl & {
           padding: 0;
-          }
         }
       }
+    }
+
+    .@{ant-prefix}-input-number-affix-wrapper {
+      .@{ant-prefix}-input-number {
+        .@{form-prefix-cls}-rtl & {
+          padding: 0;
+        }
+      }
+    }
 
     .@{ant-prefix}-input-search:not(.@{ant-prefix}-input-search-enter-button) {
       .@{ant-prefix}-input-suffix {
         .@{form-prefix-cls}-rtl & {
           right: auto;
           left: 28px;
-          }
         }
       }
+    }
 
     .@{ant-prefix}-input-number {
       .@{form-prefix-cls}-rtl & {
         padding-left: 18px;
-        }
       }
+    }
 
     > .@{ant-prefix}-select .@{ant-prefix}-select-arrow,
     > .@{ant-prefix}-select .@{ant-prefix}-select-clear,
     :not(.@{ant-prefix}-input-group-addon) > .@{ant-prefix}-select .@{ant-prefix}-select-arrow,
-    :not(.@{ant-prefix}-input-group-addon) > .@{ant-prefix}-select .@{ant-prefix}-select-clear {
+    :not(.@{ant-prefix}-input-group-addon) > .@{ant-prefix}-select .@{ant-prefix}-select-clear,
+    :not(.@{ant-prefix}-input-number-group-addon)
+      > .@{ant-prefix}-select
+      .@{ant-prefix}-select-arrow,
+    :not(.@{ant-prefix}-input-number-group-addon)
+      > .@{ant-prefix}-select
+      .@{ant-prefix}-select-clear {
       .@{form-prefix-cls}-rtl & {
         right: auto;
         left: 32px;
-        }
       }
+    }
 
     > .@{ant-prefix}-select .@{ant-prefix}-select-selection-selected-value,
     :not(.@{ant-prefix}-input-group-addon)
+      > .@{ant-prefix}-select
+      .@{ant-prefix}-select-selection-selected-value,
+    :not(.@{ant-prefix}-input-number-group-addon)
       > .@{ant-prefix}-select
       .@{ant-prefix}-select-selection-selected-value {
       .@{form-prefix-cls}-rtl & {
         padding-right: 0;
         padding-left: 42px;
-        }
       }
+    }
 
     .@{ant-prefix}-cascader-picker {
       &-arrow {
         .@{form-prefix-cls}-rtl & {
           margin-right: 0;
           margin-left: 19px;
-          }
         }
+      }
+
       &-clear {
         .@{form-prefix-cls}-rtl & {
           right: auto;
           left: 32px;
-          }
         }
       }
+    }
 
     .@{ant-prefix}-picker {
       .@{form-prefix-cls}-rtl & {
         padding-right: @input-padding-horizontal-base;
         padding-left: @input-padding-horizontal-base + @font-size-base * 1.3;
-        }
+      }
 
       &-large {
         .@{form-prefix-cls}-rtl & {
           padding-right: @input-padding-horizontal-lg;
           padding-left: @input-padding-horizontal-lg + @font-size-base * 1.3;
-          }
         }
+      }
 
       &-small {
         .@{form-prefix-cls}-rtl & {
           padding-right: @input-padding-horizontal-sm;
           padding-left: @input-padding-horizontal-sm + @font-size-base * 1.3;
-          }
         }
       }
+    }
 
     &.@{form-item-prefix-cls} {
       &-has-success,
@@ -160,11 +179,11 @@
           .@{form-prefix-cls}-rtl & {
             right: auto;
             left: 0;
-            }
           }
         }
       }
- }
+    }
+  }
 }
 
 // inline
@@ -173,13 +192,13 @@
     .@{form-prefix-cls}-rtl& {
       margin-right: 0;
       margin-left: 16px;
-      }
- }
+    }
+  }
 }
 
 // vertical
 .make-vertical-layout-label() {
   .@{form-prefix-cls}-rtl& {
     text-align: right;
- }
+  }
 }

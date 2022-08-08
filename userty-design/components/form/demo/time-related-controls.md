@@ -14,28 +14,29 @@ title:
 The `value` of time-related components is a `moment` object, which we need to pre-process it before we submit to server.
 
 ```tsx
-import {Form, DatePicker, TimePicker, Button} from 'skd';
+import { Button, DatePicker, Form, TimePicker } from 'antd';
+import React from 'react';
 
-const {RangePicker} = DatePicker;
+const { RangePicker } = DatePicker;
 
 const formItemLayout = {
   labelCol: {
-    xs: {span: 24},
-    sm: {span: 8},
- },
+    xs: { span: 24 },
+    sm: { span: 8 },
+  },
   wrapperCol: {
-    xs: {span: 24},
-    sm: {span: 16},
- }
+    xs: { span: 24 },
+    sm: { span: 16 },
+  },
 };
 const config = {
-  rules: [{type: 'object' as const, required: true, message: 'Please select time!'}]
+  rules: [{ type: 'object' as const, required: true, message: 'Please select time!' }],
 };
 const rangeConfig = {
-  rules: [{type: 'array' as const, required: true, message: 'Please select time!'}]
+  rules: [{ type: 'array' as const, required: true, message: 'Please select time!' }],
 };
 
-const TimeRelatedForm = () => {
+const App: React.FC = () => {
   const onFinish = (fieldsValue: any) => {
     // Should format date value before submit.
     const rangeValue = fieldsValue['range-picker'];
@@ -51,9 +52,9 @@ const TimeRelatedForm = () => {
         rangeTimeValue[1].format('YYYY-MM-DD HH:mm:ss'),
       ],
       'time-picker': fieldsValue['time-picker'].format('HH:mm:ss'),
-      };
+    };
     console.log('Received values of form: ', values);
- };
+  };
 
   return (
     <Form name="time_related_controls" {...formItemLayout} onFinish={onFinish}>
@@ -77,9 +78,9 @@ const TimeRelatedForm = () => {
       </Form.Item>
       <Form.Item
         wrapperCol={{
-          xs: {span: 24, offset: 0},
-          sm: {span: 16, offset: 8},
-          }}
+          xs: { span: 24, offset: 0 },
+          sm: { span: 16, offset: 8 },
+        }}
       >
         <Button type="primary" htmlType="submit">
           Submit
@@ -89,5 +90,5 @@ const TimeRelatedForm = () => {
   );
 };
 
-ReactDOM.render(<TimeRelatedForm />, mountNode);
+export default App;
 ```

@@ -20,10 +20,10 @@ Customized or third-party form controls can be used in Form, too. Controls must 
 > - It has event `onChange` or an event which name is equal to the value of [`trigger`](https://ant.design/components/form/#Form.Item).
 
 ```tsx
-import React, {useState} from 'react';
-import {Form, Input, Select, Button} from 'skd';
+import { Button, Form, Input, Select } from 'antd';
+import React, { useState } from 'react';
 
-const {Option} = Select;
+const { Option } = Select;
 
 type Currency = 'rmb' | 'dollar';
 
@@ -37,31 +37,31 @@ interface PriceInputProps {
   onChange?: (value: PriceValue) => void;
 }
 
-const PriceInput: React.FC<PriceInputProps> = ({value = {}, onChange}) => {
+const PriceInput: React.FC<PriceInputProps> = ({ value = {}, onChange }) => {
   const [number, setNumber] = useState(0);
   const [currency, setCurrency] = useState<Currency>('rmb');
 
-  const triggerChange = (changedValue: {number?: number; currency?: Currency}) => {
-    onChange?.({number, currency, ...value, ...changedValue});
- };
+  const triggerChange = (changedValue: { number?: number; currency?: Currency }) => {
+    onChange?.({ number, currency, ...value, ...changedValue });
+  };
 
   const onNumberChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const newNumber = parseInt(e.target.value || '0', 10);
     if (Number.isNaN(number)) {
       return;
-      }
+    }
     if (!('number' in value)) {
       setNumber(newNumber);
-      }
-    triggerChange({number: newNumber});
- };
+    }
+    triggerChange({ number: newNumber });
+  };
 
   const onCurrencyChange = (newCurrency: Currency) => {
     if (!('currency' in value)) {
       setCurrency(newCurrency);
-      }
-    triggerChange({currency: newCurrency});
- };
+    }
+    triggerChange({ currency: newCurrency });
+  };
 
   return (
     <span>
@@ -69,11 +69,11 @@ const PriceInput: React.FC<PriceInputProps> = ({value = {}, onChange}) => {
         type="text"
         value={value.number || number}
         onChange={onNumberChange}
-        style={{width: 100}}
+        style={{ width: 100 }}
       />
       <Select
         value={value.currency || currency}
-        style={{width: 80, margin: '0 8px'}}
+        style={{ width: 80, margin: '0 8px' }}
         onChange={onCurrencyChange}
       >
         <Option value="rmb">RMB</Option>
@@ -83,17 +83,17 @@ const PriceInput: React.FC<PriceInputProps> = ({value = {}, onChange}) => {
   );
 };
 
-const Demo = () => {
+const App: React.FC = () => {
   const onFinish = (values: any) => {
     console.log('Received values from form: ', values);
- };
+  };
 
-  const checkPrice = (_: any, value: {number: number}) => {
+  const checkPrice = (_: any, value: { number: number }) => {
     if (value.number > 0) {
       return Promise.resolve();
-      }
+    }
     return Promise.reject(new Error('Price must be greater than zero!'));
- };
+  };
 
   return (
     <Form
@@ -104,10 +104,10 @@ const Demo = () => {
         price: {
           number: 0,
           currency: 'rmb',
-          },
-        }}
+        },
+      }}
     >
-      <Form.Item name="price" label="Price" rules={[{validator: checkPrice}]}>
+      <Form.Item name="price" label="Price" rules={[{ validator: checkPrice }]}>
         <PriceInput />
       </Form.Item>
       <Form.Item>
@@ -119,5 +119,5 @@ const Demo = () => {
   );
 };
 
-ReactDOM.render(<Demo />, mountNode);
+export default App;
 ```

@@ -13,40 +13,43 @@ title:
 
 This example demonstrates the case that a form contains multiple form controls.
 
-```jsx
-import {Form, Input, Button, Space, Select} from 'skd';
-import {MinusCircleOutlined, PlusOutlined} from '@ant-design/icons';
+```tsx
+import { MinusCircleOutlined, PlusOutlined } from '@ant-design/icons';
+import { Button, Form, Input, Select, Space } from 'antd';
+import React from 'react';
 
-const {Option} = Select;
+const { Option } = Select;
 
 const areas = [
-  {label: 'Beijing', value: 'Beijing'},
-  {label: 'Shanghai', value: 'Shanghai'},
+  { label: 'Beijing', value: 'Beijing' },
+  { label: 'Shanghai', value: 'Shanghai' },
 ];
 
 const sights = {
   Beijing: ['Tiananmen', 'Great Wall'],
-  Shanghai: ['Oriental Pearl', 'The Bund']
+  Shanghai: ['Oriental Pearl', 'The Bund'],
 };
 
-const Demo = () => {
+type SightsKeys = keyof typeof sights;
+
+const App: React.FC = () => {
   const [form] = Form.useForm();
 
-  const onFinish = values => {
+  const onFinish = (values: any) => {
     console.log('Received values of form:', values);
- };
+  };
 
   const handleChange = () => {
-    form.setFieldsValue({sights: []});
- };
+    form.setFieldsValue({ sights: [] });
+  };
 
   return (
     <Form form={form} name="dynamic_form_nest_item" onFinish={onFinish} autoComplete="off">
-      <Form.Item name="area" label="Area" rules={[{required: true, message: 'Missing area'}]}>
+      <Form.Item name="area" label="Area" rules={[{ required: true, message: 'Missing area' }]}>
         <Select options={areas} onChange={handleChange} />
       </Form.Item>
       <Form.List name="sights">
-        {(fields, {add, remove}) => (
+        {(fields, { add, remove }) => (
           <>
             {fields.map(field => (
               <Space key={field.key} align="baseline">
@@ -54,18 +57,17 @@ const Demo = () => {
                   noStyle
                   shouldUpdate={(prevValues, curValues) =>
                     prevValues.area !== curValues.area || prevValues.sights !== curValues.sights
-                    }
+                  }
                 >
                   {() => (
                     <Form.Item
                       {...field}
                       label="Sight"
                       name={[field.name, 'sight']}
-                      fieldKey={[field.fieldKey, 'sight']}
-                      rules={[{required: true, message: 'Missing sight'}]}
+                      rules={[{ required: true, message: 'Missing sight' }]}
                     >
-                      <Select disabled={!form.getFieldValue('area')} style={{width: 130}}>
-                        {(sights[form.getFieldValue('area')] || []).map(item => (
+                      <Select disabled={!form.getFieldValue('area')} style={{ width: 130 }}>
+                        {(sights[form.getFieldValue('area') as SightsKeys] || []).map(item => (
                           <Option key={item} value={item}>
                             {item}
                           </Option>
@@ -78,8 +80,7 @@ const Demo = () => {
                   {...field}
                   label="Price"
                   name={[field.name, 'price']}
-                  fieldKey={[field.fieldKey, 'price']}
-                  rules={[{required: true, message: 'Missing price'}]}
+                  rules={[{ required: true, message: 'Missing price' }]}
                 >
                   <Input />
                 </Form.Item>
@@ -105,5 +106,5 @@ const Demo = () => {
   );
 };
 
-ReactDOM.render(<Demo />, mountNode);
+export default App;
 ```

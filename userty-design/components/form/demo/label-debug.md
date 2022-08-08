@@ -15,16 +15,17 @@ debug: true
 Use `<Typography.Text ellipsis>` in label should show `...`.
 
 ```tsx
-import {Form, Input, Typography} from 'skd';
+import { Form, Input, Typography } from 'antd';
+import React from 'react';
 
-const Demo = () => (
-  <Form name="label-ellipsis" labelCol={{span: 8}} wrapperCol={{span: 16}}>
+const App: React.FC = () => (
+  <Form name="label-ellipsis" labelCol={{ span: 8 }} wrapperCol={{ span: 16 }}>
     <Form.Item
       label={
         <Typography.Text ellipsis>
           longtextlongtextlongtextlongtextlongtextlongtextlongtext
         </Typography.Text>
-        }
+      }
       name="username"
     >
       <Input />
@@ -35,7 +36,7 @@ const Demo = () => (
         <Typography.Text ellipsis>
           longtext longtext longtext longtext longtext longtext longtext
         </Typography.Text>
-        }
+      }
       name="password"
     >
       <Input.Password />
@@ -43,5 +44,5 @@ const Demo = () => (
   </Form>
 );
 
-ReactDOM.render(<Demo />, mountNode);
+export default App;
 ```

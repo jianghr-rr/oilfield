@@ -19,9 +19,18 @@
 @info-color: @primary-color;
 @success-color: @green-6;
 @processing-color: @blue-6;
-@error-color: @red-5;
 @highlight-color: @red-5;
+
+// Error color
+@error-color: @red-5;
+@error-color-hover: color(~`colorPalette('@{error-color}', 5) `);
+@error-color-outline: fade(@error-color, @outline-fade);
+
+// Warning color
 @warning-color: @gold-6;
+@warning-color-hover: color(~`colorPalette('@{warning-color}', 5) `);
+@warning-color-outline: fade(@warning-color, @outline-fade);
+
 @normal-color: #d9d9d9;
 @white: #fff;
 @black: #000;

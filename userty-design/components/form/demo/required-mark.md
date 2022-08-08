@@ -14,25 +14,25 @@ title:
 Switch required or optional style with `requiredMark`.
 
 ```tsx
-import React, {useState} from 'react';
-import {Form, Input, Button, Radio} from 'skd';
-import {InfoCircleOutlined} from '@ant-design/icons';
+import { InfoCircleOutlined } from '@ant-design/icons';
+import { Button, Form, Input, Radio } from 'antd';
+import React, { useState } from 'react';
 
 type RequiredMark = boolean | 'optional';
 
-const FormLayoutDemo = () => {
+const App: React.FC = () => {
   const [form] = Form.useForm();
   const [requiredMark, setRequiredMarkType] = useState<RequiredMark>('optional');
 
-  const onRequiredTypeChange = ({requiredMarkValue}: {requiredMarkValue: RequiredMark}) => {
+  const onRequiredTypeChange = ({ requiredMarkValue }: { requiredMarkValue: RequiredMark }) => {
     setRequiredMarkType(requiredMarkValue);
- };
+  };
 
   return (
     <Form
       form={form}
       layout="vertical"
-      initialValues={{requiredMarkValue: requiredMark}}
+      initialValues={{ requiredMarkValue: requiredMark }}
       onValuesChange={onRequiredTypeChange}
       requiredMark={requiredMark}
     >
@@ -48,7 +48,7 @@ const FormLayoutDemo = () => {
       </Form.Item>
       <Form.Item
         label="Field B"
-        tooltip={{title: 'Tooltip with customize icon', icon: <InfoCircleOutlined />}}
+        tooltip={{ title: 'Tooltip with customize icon', icon: <InfoCircleOutlined /> }}
       >
         <Input placeholder="input placeholder" />
       </Form.Item>
@@ -59,5 +59,5 @@ const FormLayoutDemo = () => {
   );
 };
 
-ReactDOM.render(<FormLayoutDemo />, mountNode);
+export default App;
 ```

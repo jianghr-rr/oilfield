@@ -7,10 +7,20 @@
 
 @input-prefix-cls: ~'@{ant-prefix}-input';
 
+// border-radius adaptation
+.@{input-prefix-cls}-affix-wrapper
+.@{input-prefix-cls} {
+    border-radius: 0;
+}
+.@{input-prefix-cls}-password .@{input-prefix-cls} {
+    border-radius: 0;
+}
+
 // Input styles
 .@{input-prefix-cls} {
     .reset-component();
     .input();
+
 
     //== Style for input-group: input with label, with button or dropdown...
     &-group {

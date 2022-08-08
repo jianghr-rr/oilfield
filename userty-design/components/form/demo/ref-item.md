@@ -14,16 +14,17 @@ debug: true
 
 Use `ref` first!
 
-```jsx
+```tsx
+import type { InputRef } from 'antd';
+import { Button, Form, Input } from 'antd';
 import React from 'react';
-import {Button, Form, Input} from 'skd';
 
-const Demo = () => {
+const App: React.FC = () => {
   const [form] = Form.useForm();
-  const ref = React.useRef();
+  const ref = React.useRef<InputRef>(null);
 
   return (
-    <Form form={form} initialValues={{list: ['light']}}>
+    <Form form={form} initialValues={{ list: ['light'] }}>
       <Form.Item name="test" label="test">
         <Input ref={ref} />
       </Form.Item>
@@ -31,25 +32,25 @@ const Demo = () => {
       <Form.List name="list">
         {fields =>
           fields.map(field => (
-            <Form.Item key={field.key} {...field}>
+            <Form.Item {...field} key={field.key}>
               <Input ref={ref} />
             </Form.Item>
           ))
-          }
+        }
       </Form.List>
 
       <Button
-        type="button"
+        htmlType="button"
         onClick={() => {
           form.getFieldInstance('test').focus();
-          }}
+        }}
       >
         Focus Form.Item
       </Button>
       <Button
         onClick={() => {
           form.getFieldInstance(['list', 0]).focus();
-          }}
+        }}
       >
         Focus Form.List
       </Button>
@@ -57,5 +58,5 @@ const Demo = () => {
   );
 };
 
-ReactDOM.render(<Demo />, mountNode);
+export default App;
 ```
