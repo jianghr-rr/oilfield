@@ -34,13 +34,13 @@ class ButtonSize extends React.Component {
     const {size} = this.state;
     return (
       <div className="container">
+        <div className="toolbar">
         <Radio.Group value={size} onChange={this.handleSizeChange}>
           <Radio.Button value="large">Large</Radio.Button>
           <Radio.Button value="default">Default</Radio.Button>
           <Radio.Button value="small">Small</Radio.Button>
         </Radio.Group>
-        <br />
-        <br />
+        </div>
         <Button type="primary" size={size}>
           Primary
         </Button>
@@ -75,6 +75,10 @@ ReactDOM.render(<ButtonSize />, mountNode);
     display: flex;
     margin: 10px;
     flex-wrap: wrap;
+}
+.container .toolbar {
+  width: 100%;
+  margin-bottom: 10px;
 }
 .container .ant-btn {
     margin-right: 8px;

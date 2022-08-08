@@ -14,7 +14,7 @@ title:
 You could display an arrow.
 
 ```jsx
-import {Menu, Dropdown, Button} from 'skd';
+import {Menu, Dropdown, Button, Space} from 'skd';
 
 const menu = (
   <Menu>
@@ -37,7 +37,7 @@ const menu = (
 );
 
 ReactDOM.render(
-  <>
+  <Space wrap>
     <Dropdown overlay={menu} placement="bottomLeft" arrow>
       <Button>bottomLeft</Button>
     </Dropdown>
@@ -57,7 +57,7 @@ ReactDOM.render(
     <Dropdown overlay={menu} placement="topRight" arrow>
       <Button>topRight</Button>
     </Dropdown>
-  </>,
+  </Space>,
   mountNode,
 );
 ```

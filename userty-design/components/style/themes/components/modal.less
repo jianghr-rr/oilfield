@@ -4,18 +4,18 @@
 // Modal
 // --
 @modal-default-radius: 4 * @p;
-@modal-header-padding-vertical: @padding-md;
-@modal-header-padding-horizontal: @padding-lg;
-@modal-body-padding: @padding-lg;
+@modal-header-padding-vertical: @padding-hg;
+@modal-header-padding-horizontal: @padding-hgr;
+@modal-body-padding: @padding-lg @padding-hgr @padding-lg @padding-hgr;
 @modal-header-bg: @component-background;
-@modal-header-padding: @modal-header-padding-vertical @modal-header-padding-horizontal;
+@modal-header-padding: @modal-header-padding-vertical @modal-header-padding-horizontal 0 @modal-header-padding-horizontal;
 @modal-header-border-width: @border-width-base;
 @modal-header-border-style: @border-style-base;
 
-@modal-header-title-font-size: @font-size-lg;
+@modal-header-title-font-size: @modal-header-font-size;
 @modal-header-border-color-split: @border-color-split;
 @modal-content-bg: @component-background;
-@modal-heading-color: @heading-color;
+@modal-heading-color: @modal-header-color;
 @modal-close-color: @text-color-secondary;
 @modal-footer-border-color-split: @border-color-split;
 @modal-footer-border-style: @border-style-base;

@@ -20,9 +20,11 @@ Three columns layout is often used for advanced searching of data table.
 Because the width of label is not fixed, you may need to adjust it by customizing its style.
 
 ```tsx
-import React, {useState} from 'react';
-import {Form, Row, Col, Input, Button} from 'skd';
-import {DownOutlined, UpOutlined} from '@ant-design/icons';
+import { DownOutlined, UpOutlined } from '@ant-design/icons';
+import { Button, Col, Form, Input, Row, Select } from 'antd';
+import React, { useState } from 'react';
+
+const { Option } = Select;
 
 const AdvancedSearchForm = () => {
   const [expand, setExpand] = useState(false);
@@ -41,20 +43,29 @@ const AdvancedSearchForm = () => {
               {
                 required: true,
                 message: 'Input something!',
-                },
+              },
             ]}
           >
-            <Input placeholder="placeholder" />
+            {i % 3 !== 1 ? (
+              <Input placeholder="placeholder" />
+            ) : (
+              <Select defaultValue="2">
+                <Option value="1">1</Option>
+                <Option value="2">
+                  longlonglonglonglonglonglonglonglonglonglonglonglonglonglonglonglonglonglonglonglonglonglonglonglonglonglonglonglonglonglonglonglonglonglonglonglonglonglonglonglonglonglonglonglonglonglonglonglonglonglonglonglonglonglonglonglonglonglonglonglonglonglonglonglonglonglonglonglonglonglonglonglonglonglonglonglonglonglonglonglong
+                </Option>
+              </Select>
+            )}
           </Form.Item>
         </Col>,
       );
-      }
+    }
     return children;
- };
+  };
 
   const onFinish = (values: any) => {
     console.log('Received values of form: ', values);
- };
+  };
 
   return (
     <Form
@@ -65,23 +76,23 @@ const AdvancedSearchForm = () => {
     >
       <Row gutter={24}>{getFields()}</Row>
       <Row>
-        <Col span={24} style={{textAlign: 'right'}}>
+        <Col span={24} style={{ textAlign: 'right' }}>
           <Button type="primary" htmlType="submit">
             Search
           </Button>
           <Button
-            style={{margin: '0 8px'}}
+            style={{ margin: '0 8px' }}
             onClick={() => {
               form.resetFields();
-              }}
+            }}
           >
             Clear
           </Button>
           <a
-            style={{fontSize: 12}}
+            style={{ fontSize: 12 }}
             onClick={() => {
               setExpand(!expand);
-              }}
+            }}
           >
             {expand ? <UpOutlined /> : <DownOutlined />} Collapse
           </a>
@@ -91,13 +102,14 @@ const AdvancedSearchForm = () => {
   );
 };
 
-ReactDOM.render(
+const App: React.FC = () => (
   <div>
     <AdvancedSearchForm />
     <div className="search-result-list">Search Result List</div>
-  </div>,
-  mountNode,
+  </div>
 );
+
+export default App;
 ```
 
 ```css

@@ -15,11 +15,12 @@ Buggy!
 Buggy!
 
 ```tsx
-import {Form, Input} from 'skd';
+import { Form, Input } from 'antd';
+import React from 'react';
 
 let acc = 0;
 
-const Demo = () => {
+const App: React.FC = () => {
   const [form] = Form.useForm();
   return (
     <Form
@@ -28,13 +29,13 @@ const Demo = () => {
       initialValues={{
         debug1: 'debug1',
         debug2: 'debug2',
-        }}
+      }}
     >
       <Form.Item noStyle dependencies={['debug1']}>
         {
           () => acc++
           // return <pre>{JSON.stringify(form.getFieldsValue(), null, 2)}</pre>;
-          }
+        }
       </Form.Item>
       <Form.Item label="debug1" name="debug1">
         <Input />
@@ -46,5 +47,5 @@ const Demo = () => {
   );
 };
 
-ReactDOM.render(<Demo />, mountNode);
+export default App;
 ```

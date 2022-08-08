@@ -22,6 +22,7 @@ const getMenuItems = ({menuData, selectedKey, level = 1}) => {
     let feedbackList = []; // 反馈
     let topList = []; // 顶部
     let bizList = []; // 业务代码
+    let otherList = []; // 其他
     let menuItemClassName = '';
     const paddingLeft = 20 + 5 * level;
     // 修改显示顺序
@@ -47,12 +48,16 @@ const getMenuItems = ({menuData, selectedKey, level = 1}) => {
         } else if (type === '顶部') {
             topList.push(menuItem);
         }
+        else if (type === '其他') {
+            otherList.push(menuItem);
+        }
         navigationList = DisplayOrder(navigationList);
         dataEntryList = DisplayOrder(dataEntryList);
         dataDisplayList = DisplayOrder(dataDisplayList);
         feedbackList = DisplayOrder(feedbackList);
         bizList = DisplayOrder(bizList);
         universalList = DisplayOrder(universalList);
+        otherList = DisplayOrder(otherList);
         const titleText = _.upperFirst(title || getComponentName(key));
 
         const titleComp = (
@@ -154,6 +159,7 @@ const getMenuItems = ({menuData, selectedKey, level = 1}) => {
     const dataEntryListDiv  = Render(dataEntryList, '数据录入');
     const dataDisplayListDiv  = Render(dataDisplayList, '数据展示');
     const feedbackListDiv  = Render(feedbackList, '反馈');
+    const otherListDiv = Render(otherList, '其他');
     return (
         <div className='menu-site-div'>
             {topListDiv}
@@ -163,6 +169,7 @@ const getMenuItems = ({menuData, selectedKey, level = 1}) => {
             {dataEntryListDiv}
             {dataDisplayListDiv}
             {feedbackListDiv}
+            {otherListDiv}
         </div>
     );
 };

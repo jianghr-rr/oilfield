@@ -34,6 +34,7 @@ export interface ConfigConsumerProps {
   dropdownMatchSelectWidth?: boolean;
   form?: {
     requiredMark?: RequiredMark;
+    colon?: boolean;
  };
 }
 

@@ -1,5 +1,5 @@
-import {imageDemoTest} from '../../../tests/shared/imageTest';
+import { imageDemoTest } from '../../../tests/shared/imageTest';
 
 describe('Menu image', () => {
-    imageDemoTest('menu');
+  imageDemoTest('menu');
 });

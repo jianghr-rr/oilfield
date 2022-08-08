@@ -18,8 +18,8 @@ We can store form data into upper component or [Redux](https://github.com/reactj
 **Note:** Save Form data globally [is not a good practice](https://github.com/reduxjs/redux/issues/1287#issuecomment-175351978). You should avoid this if not necessary.
 
 ```tsx
-import React, {useState} from 'react';
-import {Form, Input} from 'skd';
+import { Form, Input } from 'antd';
+import React, { useState } from 'react';
 
 interface FieldData {
   name: string | number | (string | number)[];
@@ -34,27 +34,27 @@ interface CustomizedFormProps {
   fields: FieldData[];
 }
 
-const CustomizedForm: React.FC<CustomizedFormProps> = ({onChange, fields}) => (
+const CustomizedForm: React.FC<CustomizedFormProps> = ({ onChange, fields }) => (
   <Form
     name="global_state"
     layout="inline"
     fields={fields}
     onFieldsChange={(_, allFields) => {
       onChange(allFields);
-      }}
+    }}
   >
     <Form.Item
       name="username"
       label="Username"
-      rules={[{required: true, message: 'Username is required!'}]}
+      rules={[{ required: true, message: 'Username is required!' }]}
     >
       <Input />
     </Form.Item>
   </Form>
 );
 
-const Demo = () => {
-  const [fields, setFields] = useState<FieldData[]>([{name: ['username'], value: 'Ant Design'}]);
+const App: React.FC = () => {
+  const [fields, setFields] = useState<FieldData[]>([{ name: ['username'], value: 'Ant Design' }]);
 
   return (
     <>
@@ -62,14 +62,14 @@ const Demo = () => {
         fields={fields}
         onChange={newFields => {
           setFields(newFields);
-          }}
+        }}
       />
       <pre className="language-bash">{JSON.stringify(fields, null, 2)}</pre>
     </>
   );
 };
 
-ReactDOM.render(<Demo />, mountNode);
+export default App;
 ```
 
 <style>

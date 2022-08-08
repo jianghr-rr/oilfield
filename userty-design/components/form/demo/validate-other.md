@@ -14,41 +14,42 @@ title:
 Demonstration of validation configuration for form controls which are not shown in the demos above.
 
 ```tsx
+import { InboxOutlined, UploadOutlined } from '@ant-design/icons';
 import {
-  Form,
-  Select,
-  InputNumber,
-  Switch,
-  Radio,
-  Slider,
   Button,
-  Upload,
-  Rate,
   Checkbox,
+  Col,
+  Form,
+  InputNumber,
+  Radio,
+  Rate,
   Row,
-  Col
-} from 'skd';
-import {UploadOutlined, InboxOutlined} from '@ant-design/icons';
+  Select,
+  Slider,
+  Switch,
+  Upload,
+} from 'antd';
+import React from 'react';
 
-const {Option} = Select;
+const { Option } = Select;
 
 const formItemLayout = {
-  labelCol: {span: 6},
-  wrapperCol: {span: 14}
+  labelCol: { span: 6 },
+  wrapperCol: { span: 14 },
 };
 
 const normFile = (e: any) => {
   console.log('Upload event:', e);
   if (Array.isArray(e)) {
     return e;
- }
-  return e && e.fileList;
+  }
+  return e?.fileList;
 };
 
-const Demo = () => {
+const App: React.FC = () => {
   const onFinish = (values: any) => {
     console.log('Received values of form: ', values);
- };
+  };
 
   return (
     <Form
@@ -59,7 +60,7 @@ const Demo = () => {
         'input-number': 3,
         'checkbox-group': ['A', 'B'],
         rate: 3.5,
-        }}
+      }}
     >
       <Form.Item label="Plain Text">
         <span className="ant-form-text">China</span>
@@ -68,7 +69,7 @@ const Demo = () => {
         name="select"
         label="Select"
         hasFeedback
-        rules={[{required: true, message: 'Please select your country!'}]}
+        rules={[{ required: true, message: 'Please select your country!' }]}
       >
         <Select placeholder="Please select a country">
           <Option value="china">China</Option>
@@ -79,7 +80,7 @@ const Demo = () => {
       <Form.Item
         name="select-multiple"
         label="Select[multiple]"
-        rules={[{required: true, message: 'Please select your favourite colors!', type: 'array'}]}
+        rules={[{ required: true, message: 'Please select your favourite colors!', type: 'array' }]}
       >
         <Select mode="multiple" placeholder="Please select favourite colors">
           <Option value="red">Red</Option>
@@ -108,7 +109,7 @@ const Demo = () => {
             60: 'D',
             80: 'E',
             100: 'F',
-            }}
+          }}
         />
       </Form.Item>
 
@@ -123,7 +124,7 @@ const Demo = () => {
       <Form.Item
         name="radio-button"
         label="Radio.Button"
-        rules={[{required: true, message: 'Please pick an item!'}]}
+        rules={[{ required: true, message: 'Please pick an item!' }]}
       >
         <Radio.Group>
           <Radio.Button value="a">item 1</Radio.Button>
@@ -136,32 +137,32 @@ const Demo = () => {
         <Checkbox.Group>
           <Row>
             <Col span={8}>
-              <Checkbox value="A" style={{lineHeight: '32px'}}>
+              <Checkbox value="A" style={{ lineHeight: '32px' }}>
                 A
               </Checkbox>
             </Col>
             <Col span={8}>
-              <Checkbox value="B" style={{lineHeight: '32px'}} disabled>
+              <Checkbox value="B" style={{ lineHeight: '32px' }} disabled>
                 B
               </Checkbox>
             </Col>
             <Col span={8}>
-              <Checkbox value="C" style={{lineHeight: '32px'}}>
+              <Checkbox value="C" style={{ lineHeight: '32px' }}>
                 C
               </Checkbox>
             </Col>
             <Col span={8}>
-              <Checkbox value="D" style={{lineHeight: '32px'}}>
+              <Checkbox value="D" style={{ lineHeight: '32px' }}>
                 D
               </Checkbox>
             </Col>
             <Col span={8}>
-              <Checkbox value="E" style={{lineHeight: '32px'}}>
+              <Checkbox value="E" style={{ lineHeight: '32px' }}>
                 E
               </Checkbox>
             </Col>
             <Col span={8}>
-              <Checkbox value="F" style={{lineHeight: '32px'}}>
+              <Checkbox value="F" style={{ lineHeight: '32px' }}>
                 F
               </Checkbox>
             </Col>
@@ -197,7 +198,7 @@ const Demo = () => {
         </Form.Item>
       </Form.Item>
 
-      <Form.Item wrapperCol={{span: 12, offset: 6}}>
+      <Form.Item wrapperCol={{ span: 12, offset: 6 }}>
         <Button type="primary" htmlType="submit">
           Submit
         </Button>
@@ -206,5 +207,5 @@ const Demo = () => {
   );
 };
 
-ReactDOM.render(<Demo />, mountNode);
+export default App;
 ```
