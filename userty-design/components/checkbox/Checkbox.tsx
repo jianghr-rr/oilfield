@@ -117,6 +117,7 @@ const InternalCheckbox: React.ForwardRefRenderFunction<HTMLInputElement, Checkbo
             onMouseLeave={onMouseLeave}
         >
             <RcCheckbox
+                // @ts-ignore
                 ref={ref}
                 {...checkboxProps}
                 prefixCls={prefixCls}

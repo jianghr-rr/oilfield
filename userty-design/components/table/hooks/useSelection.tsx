@@ -30,8 +30,8 @@ export const SELECTION_ALL = 'SELECT_ALL' as const;
 export const SELECTION_INVERT = 'SELECT_INVERT' as const;
 export const SELECTION_NONE = 'SELECT_NONE' as const;
 
-function getFixedType<RecordType>(column: ColumnsType<RecordType>[number]): FixedType | undefined {
-  return column && column.fixed;
+function getFixedType<RecordType>(column: ColumnsType<RecordType>[number]): FixedType {
+  return column.fixed ?? false;
 }
 
 interface UseSelectionConfig<RecordType> {

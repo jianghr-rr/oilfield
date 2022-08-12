@@ -78,6 +78,7 @@ const Switch = React.forwardRef<unknown, SwitchProps>(
                     prefixCls={prefixCls}
                     className={classes}
                     disabled={disabled || loading}
+                    // @ts-ignore
                     ref={ref}
                     loadingIcon={loadingIcon}
                 />

@@ -382,6 +382,7 @@ const InternalUpload: React.ForwardRefRenderFunction<unknown, UploadProps> = (pr
                     onDragLeave={onFileDrop}
                     style={style}
                 >
+                    {/* @ts-ignore */}
                     <RcUpload {...rcUploadProps} ref={upload} className={`${prefixCls}-btn`}>
                         <div className={`${prefixCls}-drag-container`}>{children}</div>
                     </RcUpload>
@@ -400,6 +401,7 @@ const InternalUpload: React.ForwardRefRenderFunction<unknown, UploadProps> = (pr
 
     const uploadButton = (
         <div className={uploadButtonCls} style={children ? undefined : {display: 'none'}}>
+            {/* @ts-ignore */}
             <RcUpload {...rcUploadProps} ref={upload} />
         </div>
     );

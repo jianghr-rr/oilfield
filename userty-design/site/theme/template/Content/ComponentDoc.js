@@ -9,6 +9,17 @@ import classNames from 'classnames';
 
 import Demo from './Demo';
 
+// 删除挂载的错误参数，格式化为可用参数
+const dealDomExtraParams = item => {
+    const zhCN = item.content?.['zh-CN'];
+    const enUS = item.content?.['en-US'];
+    zhCN && (item.content['zh-cn'] = zhCN);
+    enUS && (item.content['en-us'] = enUS);
+    delete item.content?.['zh-CN'];
+    delete item.content?.['en-US'];
+    return item;
+};
+
 const getDemoComponent = props => {
     const {pageData: {meta}, demos, utils: {toReactComponent}} = props;
     if (!demos) {
@@ -22,7 +33,8 @@ const getDemoComponent = props => {
         .map(key => demos[key])
         .sort((a, b) => a.meta.order - b.meta.order)
         .forEach((item, i) => {
-            const content = toReactComponent(['div'].concat(item.content));
+            const $item = dealDomExtraParams(item);
+            const content = toReactComponent(['div'].concat($item.content));
             const {title, component} = item.meta;
             const demoProps = {
                 ...item,
@@ -91,3 +103,4 @@ export default props => {
         </div>
     );
 };
+ 
